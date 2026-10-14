@@ -317,7 +317,7 @@ def build_voice():
     st = fx(np.vstack([vox, vox]), Pedalboard([Reverb(room_size=0.12, damping=0.7, wet_level=0.06, dry_level=1.0, width=0.3)]))
     return st[:, :N], spans
 
-def duck_curve(spans, depth_db=-9.0, attack=0.12, release=0.5):
+def duck_curve(spans, depth_db=-13.0, attack=0.12, release=0.5):
     g = np.zeros(N)
     for a, b in spans: g[at(a - attack):at(b + 0.15)] = 1.0
     # suavização assimétrica (ataque/relaxamento)
@@ -339,9 +339,9 @@ def main():
     duck = duck_curve(spans)
     mus_d = mus * duck; sfx_d = sfx * (0.6 + 0.4 * duck)
     # níveis relativos (fala > música > efeitos)
-    vox *= 10 ** ((-17.0 - lufs(vox)) / 20)
-    mus_d *= 10 ** ((-23.5 - lufs(mus)) / 20); mus_clean = mus * 10 ** ((-23.5 - lufs(mus)) / 20)
-    sfx_d *= 10 ** ((-27.0 - lufs(sfx)) / 20); sfx_clean = sfx * 10 ** ((-27.0 - lufs(sfx)) / 20)
+    vox *= 10 ** ((-15.5 - lufs(vox)) / 20)
+    mus_d *= 10 ** ((-25.5 - lufs(mus)) / 20); mus_clean = mus * 10 ** ((-25.5 - lufs(mus)) / 20)
+    sfx_d *= 10 ** ((-29.0 - lufs(sfx)) / 20); sfx_clean = sfx * 10 ** ((-29.0 - lufs(sfx)) / 20)
     mix = vox + mus_d + sfx_d
     # fade-out limpo
     fo = automation([(0, 1), (DUR - 2.6, 1), (DUR - 0.15, 0), (DUR, 0)])

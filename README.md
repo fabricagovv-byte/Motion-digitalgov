@@ -142,3 +142,89 @@ bash src/inst/assemble.sh                   # vídeos finais em deliverables/ins
 
 Prévia de quadros: `node src/render.mjs --film inst --stills 5,15,25 --out build/stills`.
 Cenas: `src/web/inst/i1_open.js` … `i5_end.js`; cenário: `room.js`; objetos e pessoas: `kit.js`; documentos e telas: `docs.js`.
+
+---
+
+# DigitalGov · Curta de animação 3D (60 s)
+
+Curta institucional de **60 s** (1920×1080, 30 fps) em animação 3D com personagens, falas sincronizadas, trilha
+original e encerramento com o protagonista da DigitalGov. História: **problema real → solução demonstrada → resultado**.
+
+## Entregáveis (`deliverables/animacao/`)
+
+| Arquivo | Descrição |
+|---|---|
+| `DigitalGov_Animacao_60s_1080p.mp4` | Versão principal, H.264 + AAC 320 kb/s, faixa de legenda opcional (pt-BR) |
+| `DigitalGov_Animacao_60s_1080p_legendado.mp4` | Legendas embutidas (redes sociais / reprodução sem som) |
+| `legendas_ptBR.srt` / `.vtt` | Legendas com o texto literal do roteiro, sincronizadas com as falas reais |
+| `audio/mix_final_48k24.wav` | Mixagem final −14 LUFS, true peak ≤ −1 dBTP |
+| `audio/stem_*.flac` | Falas, trilha (com e sem ducking) e efeitos, separados |
+
+## Roteiro (como foi animado)
+
+| Tempo | Cena | O que acontece | Fala |
+|---|---|---|---|
+| 0:00–0:03 | 1 · Prefeitura cheia de vida | Fachada colonial com bandeiras ao vento, palmeiras e ipês; Seu José e Marcos (com uma caixa) chegam; pessoas na praça | — |
+| 0:03–0:13 | 1 · Sala administrativa | Marcos atravessa com caixas, Juliana revira o arquivo de aço, Fátima confere papéis, Seu José aguarda na recepção (senha 042). Rafael põe uma pasta na pilha, a pilha balança e ele segura; Paulo olha a quantidade de caixas; Cláudia responde com humor; o prefeito chega pela recepção | Rafael, Cláudia, Prefeito |
+| 0:13–0:22 | 2 · O desafio da papelada | No arquivo: Paulo abre uma caixa, Fátima confere números de processos, Marcos e Rafael carregam caixas; Juliana encontra a pasta e comenta; o prefeito decide | Juliana, Prefeito |
+| 0:22–0:33 | 3 · Entra a DigitalGov | Central de tratamento: Ana prepara os documentos, Diego opera o scanner de produção (páginas atravessando o alimentador), Lucas indexa, Bruna confere a qualidade; tela do GED com pesquisa por número e por assunto | Narração |
+| 0:33–0:39 | 3 · O documento aparece | Na prefeitura, Cláudia abre o processo no GED na hora; Rafael, Juliana e Paulo comemoram | Cláudia |
+| 0:39–0:45 | 4 · A equipe vê a diferença | Sala organizada (pastas e caixas etiquetadas); Juliana consulta no computador, Marcos arruma as últimas pastas; o prefeito comemora com a equipe | Prefeito |
+| 0:45–1:00 | 5 · O protagonista | A câmera desliza da equipe para o protagonista da DigitalGov (maior e em primeiro plano, logo no blazer e banner ao lado). Ele acena, apresenta a empresa e convida; ao fundo o prefeito acena e Seu José finalmente é atendido. Tela final com logo, serviços, telefone/WhatsApp, e-mail e a frase final | Protagonista |
+
+## Elenco (aparência fixa em todas as cenas — definida uma única vez em `src/web/anim/cast.js`)
+
+| Personagem | Função | Visual | Voz |
+|---|---|---|---|
+| Antônio | Prefeito | Terno azul-marinho, gravata vermelha, calvo com laterais grisalhas, bigode | Piper `cadu` (grave) |
+| Cláudia | Secretária municipal | Coque, óculos vermelhos, blusa verde-água, colar dourado | Kokoro `pf_dora` |
+| Rafael | Servidor (bem-humorado) | Cabelo cacheado, camisa azul-clara, crachá | Kokoro `pm_santa` |
+| Marcos | Servidor | Polo mostarda, cavanhaque, crachá | — |
+| Juliana | Funcionária do arquivo | Rabo de cavalo ruivo, cardigã amarelo | Kokoro `pf_dora` com timbre mais agudo |
+| Paulo | Responsável administrativo | Colete verde, gravata, óculos | — |
+| Fátima | Servidora do protocolo | Cabelo grisalho chanel, blusa roxa, óculos dourados | — |
+| Seu José | Cidadão | Boina, camisa xadrez, bigode branco | — |
+| Ana, Diego, Bruna, Lucas | Equipe DigitalGov | Polo branca com a logo DigitalGov | — |
+| Protagonista DigitalGov | Apresentador | Blazer azul-marinho, camisa social sem gravata, logo DigitalGov no peito; 16 % maior que os demais | Kokoro `pm_alex` |
+| Narrador | — | — | Piper `faber` |
+
+## Como foi feito e limites honestos
+
+- **Não é vídeo gerado por IA de imagem.** É animação 3D procedural em Three.js, renderizada quadro a quadro: cada
+  personagem é um boneco articulado (coluna, cabeça, braços com cotovelo e punho, mãos com 4 dedos + polegar, pernas),
+  com rosto modelado numa malha única, olhos com íris, pálpebras que piscam, sobrancelhas e boca desenhada a cada quadro.
+  Por isso não há rostos que mudam, mãos deformadas nem objetos aparecendo do nada: a aparência é sempre a mesma.
+- **Atuação**: respiração e troca de peso constantes (ninguém fica "congelado"), caminhada com balanço de braços,
+  olhar que acompanha quem fala, piscadas irregulares, gestos (aceno, mão aberta, apontar, braços cruzados, mão no queixo,
+  joinha), mãos que seguram pastas e caixas por cinemática inversa.
+- **Sincronia labial**: abertura, largura e arredondamento da boca são extraídos do próprio áudio de cada fala (30 quadros/s,
+  `audio/anim/lipsync.json`); a cabeça acena e as sobrancelhas sobem nas sílabas tônicas.
+- **Vozes**: neurais pt-BR (sherpa-onnx). Cada fala teve várias tomadas, transcritas automaticamente (Whisper small); ficou
+  a mais inteligível. A grafia fonética ("Digital Góv", "Gê É Dê") é usada só no texto enviado à voz. As vozes são boas,
+  mas ainda são sintéticas; para um acabamento de estúdio, basta gravar dubladores sobre os mesmos tempos (`src/anim/timeline.json`).
+- **Protagonista**: não foi enviada foto do Warley, então o protagonista é um personagem **original**. Com uma foto
+  autorizada, ajuste cabelo, pele, olhos e formato do rosto em `CAST.heroi` (`src/web/anim/cast.js`) e renderize a cena 5 de novo.
+- **Logo**: a imagem original (`assets/logo-digitalgov.png`) é aplicada sempre com a proporção original (588×189), sem
+  redesenho, no blazer, nas polos da equipe, no painel da central, no banner e na tela final (em tamanho nativo 1:1).
+- **GED**: tela ilustrativa ("Ambiente demonstrativo") só com o que o roteiro cita — pesquisa por número, identificação por
+  assunto e consulta do documento — além das telas de digitalização, conferência e indexação do serviço. Dados fictícios.
+- **Contatos** aparecem somente na tela final: Telefone/WhatsApp **33 99819-4979** e e-mail **digitagovaadm@gmail.com**
+  (grafado exatamente como enviado; se o correto for outro, altere em `src/web/anim.html`).
+
+## Como reproduzir
+
+```bash
+npm install && pip install sherpa-onnx numpy scipy soundfile pyloudnorm pedalboard
+# modelos em voices/: kokoro-multi-lang-v1_0, vits-piper-pt_BR-{cadu,faber}-medium (releases tts-models do k2-fsa/sherpa-onnx)
+# e voices/asr/sherpa-onnx-whisper-small (releases asr-models)
+python3 src/anim/voices.py --takes 4     # falas + sincronia labial
+python3 src/anim/audio.py                # trilha, efeitos, mixagem e stems
+python3 src/anim/subtitles.py            # legendas
+node src/render.mjs --film anim --out build/anim_frames --workers 4    # 1.800 quadros 1080p
+bash src/anim/assemble.sh                # vídeos finais em deliverables/animacao/
+```
+
+- Prévia de quadros: `node src/render.mjs --film anim --stills 5,20,50 --out build/stills` (uma cena só: `--only s5_hero`).
+- Elenco lado a lado: `node src/render.mjs --film anim --only lineup --stills 1 --out build/stills`.
+- Cenas: `src/web/anim/s1_ext.js` … `s5_hero.js`; personagens: `toon.js` (construção), `act.js` (atuação), `cast.js` (elenco);
+  cenários: `sets.js`; telas: `ged.js`; tela final: `anim.html` / `anim.css`.

@@ -1,0 +1,56 @@
+{
+ "L1": {
+  "who": "rafael",
+  "dur": 2.425,
+  "caption": "Gente, alguém viu o processo que estava aqui?",
+  "wer": 0.0
+ },
+ "L2": {
+  "who": "claudia",
+  "dur": 2.708,
+  "caption": "Se eu soubesse onde ele está, já tinha encontrado!",
+  "wer": 0.0
+ },
+ "L3": {
+  "who": "prefeito",
+  "dur": 3.564,
+  "caption": "Precisamos resolver isso. Como vamos organizar tanta coisa?",
+  "wer": 0.0
+ },
+ "L4": {
+  "who": "juliana",
+  "dur": 3.811,
+  "caption": "Achei! Mas precisamos de um jeito melhor de organizar tudo isso.",
+  "wer": 0.0
+ },
+ "L5": {
+  "who": "prefeito",
+  "dur": 2.172,
+  "caption": "É hora de modernizar nossa gestão documental.",
+  "wer": 0.0
+ },
+ "N1": {
+  "who": "narrador",
+  "dur": 10.657,
+  "caption": "A DigitalGov trabalha com digitalização documental, indexação e Gestão Eletrônica de Documentos, ajudando instituições públicas a organizar suas informações e facilitar o acesso aos arquivos.",
+  "wer": 0.0
+ },
+ "L6": {
+  "who": "claudia",
+  "dur": 5.419,
+  "caption": "Olha só! Agora conseguimos localizar a informação sem procurar em todas essas pastas!",
+  "wer": 0.0
+ },
+ "L7": {
+  "who": "prefeito",
+  "dur": 4.684,
+  "caption": "É disso que precisamos: organização, tecnologia e mais facilidade no dia a dia!",
+  "wer": 0.0
+ },
+ "P1": {
+  "who": "heroi",
+  "dur": 12.723,
+  "caption": "Olá! Nós somos a DigitalGov. Ajudamos prefeituras e instituições públicas a transformar a gestão documental com digitalização, indexação e GED. Vamos levar mais organização e tecnologia para sua instituição?",
+  "wer": 0.0
+ }
+}

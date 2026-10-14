@@ -1,0 +1,25 @@
+{
+  "fps": 30,
+  "duration": 60.0,
+  "scenes": [
+    { "id": "s1_ext", "start": 0.0, "end": 3.2 },
+    { "id": "s1_admin", "start": 3.2, "end": 13.7, "dissolve": 0.5 },
+    { "id": "s2_archive", "start": 13.7, "end": 22.3 },
+    { "id": "s3_ops", "start": 22.3, "end": 32.9, "dissolve": 0.7 },
+    { "id": "s3_ged", "start": 32.9, "end": 39.0 },
+    { "id": "s4_hall", "start": 39.0, "end": 44.7, "dissolve": 0.5 },
+    { "id": "s5_hero", "start": 44.7, "end": 60.0 }
+  ],
+  "lines": [
+    { "id": "L1", "at": 4.6 },
+    { "id": "L2", "at": 7.25 },
+    { "id": "L3", "at": 10.1 },
+    { "id": "L4", "at": 16.2 },
+    { "id": "L5", "at": 20.15 },
+    { "id": "N1", "at": 22.7 },
+    { "id": "L6", "at": 33.55 },
+    { "id": "L7", "at": 39.6 },
+    { "id": "P1", "at": 45.6 }
+  ],
+  "endcard": { "in": 55.0, "tag": 57.4 }
+}

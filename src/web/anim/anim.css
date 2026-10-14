@@ -1,0 +1,23 @@
+html, body { margin: 0; padding: 0; background: #000; overflow: hidden; }
+#stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+#gl { position: absolute; inset: 0; width: 1920px; height: 1080px; display: block; }
+#overlay { position: absolute; inset: 0; pointer-events: none; font-family: "Inter", sans-serif; }
+#fade { position: absolute; inset: 0; background: #000; opacity: 0; }
+/* Tela final: cartão com a logo oficial (tamanho nativo, sem deformação), serviços e contatos */
+#end { position: absolute; inset: 0; opacity: 0; }
+#end-card { position: absolute; left: 905px; top: 150px; width: 900px; height: 780px; border-radius: 36px;
+  background: linear-gradient(180deg, rgba(255,255,255,.97), rgba(247,250,253,.97)); box-shadow: 0 40px 90px rgba(10,30,60,.35), 0 0 0 1px rgba(255,255,255,.6) inset; }
+#end-logo { position: absolute; left: 156px; top: 64px; width: 588px; height: 189px; display: block; }
+#end-brand { position: absolute; left: 0; right: 0; top: 282px; text-align: center; font-family: "Inter Display", "Inter"; font-weight: 700; font-size: 30px; letter-spacing: .32em; color: #1b2a44; text-indent: .32em; }
+#end-services { position: absolute; left: 0; right: 0; top: 334px; text-align: center; font-family: "Inter Display", "Inter"; font-weight: 600; font-size: 40px; color: #1f5fa8; letter-spacing: -0.005em; }
+#end-services i { font-style: normal; color: #9fb3cc; padding: 0 8px; }
+#end-rule { position: absolute; left: 390px; top: 418px; width: 120px; height: 4px; border-radius: 2px; background: #1f6fd1; transform-origin: center; }
+.end-row { position: absolute; left: 90px; right: 60px; height: 84px; display: flex; align-items: center; gap: 22px; }
+#end-phone { top: 452px; } #end-mail { top: 546px; }
+.end-row .ic { width: 58px; height: 58px; border-radius: 16px; background: #1f6fd1; display: flex; align-items: center; justify-content: center; flex: none; }
+#end-phone .ic { background: #1fa855; }
+.end-row .ic svg { width: 34px; height: 34px; fill: #fff; }
+.end-row .lbl { font-size: 23px; font-weight: 500; color: #5a6a82; width: 236px; flex: none; }
+.end-row .val { font-family: "Inter Display", "Inter"; font-size: 36px; font-weight: 700; color: #14233d; letter-spacing: -0.01em; }
+#end-tag { position: absolute; left: 0; right: 0; top: 680px; text-align: center; font-size: 29px; font-weight: 500; color: #33445e; }
+#end-tag b { color: #1b2a44; font-weight: 700; }

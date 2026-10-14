@@ -1,0 +1,100 @@
+{
+  "fps": 30,
+  "duration": 60.0,
+  "scenes": [
+    {
+      "id": "i1_open",
+      "start": 0.0,
+      "end": 8.0
+    },
+    {
+      "id": "i2_digit",
+      "start": 8.0,
+      "end": 20.0
+    },
+    {
+      "id": "i3_index",
+      "start": 20.0,
+      "end": 32.0
+    },
+    {
+      "id": "i4_ged",
+      "start": 32.0,
+      "end": 46.0
+    },
+    {
+      "id": "i5_end",
+      "start": 46.0,
+      "end": 60.0
+    }
+  ],
+  "transition": 0.7,
+  "narration": [
+    {
+      "id": "a1",
+      "at": 0.7
+    },
+    {
+      "id": "a2",
+      "at": 8.25
+    },
+    {
+      "id": "a3a",
+      "at": 19.9
+    },
+    {
+      "id": "a3b",
+      "at": 21.45
+    },
+    {
+      "id": "a4",
+      "at": 31.5
+    },
+    {
+      "id": "a5a",
+      "at": 45.3
+    },
+    {
+      "id": "a5b",
+      "at": 49.25
+    },
+    {
+      "id": "a5c",
+      "at": 55.1
+    }
+  ],
+  "keywords": [
+    {
+      "in": 13.4,
+      "out": 17.4,
+      "kicker": "01",
+      "word": "Digitalização"
+    },
+    {
+      "in": 24.0,
+      "out": 27.4,
+      "kicker": "02",
+      "word": "Indexação"
+    },
+    {
+      "in": 27.6,
+      "out": 31.2,
+      "kicker": "03",
+      "word": "Organização"
+    },
+    {
+      "in": 33.2,
+      "out": 37.6,
+      "kicker": "04",
+      "word": "GED",
+      "sub": "Gestão Eletrônica de Documentos"
+    }
+  ],
+  "endcard": {
+    "in": 54.2,
+    "brand": "DIGITALGOV",
+    "services": "Digitalização • Indexação • Gestão Eletrônica de Documentos",
+    "cta": "Modernize a gestão documental da sua instituição.",
+    "contacts": ""
+  }
+}

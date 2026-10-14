@@ -1,0 +1,23 @@
+html, body { margin: 0; padding: 0; background: #000; overflow: hidden; }
+#stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #fff; }
+#gl { position: absolute; inset: 0; width: 1920px; height: 1080px; display: block; }
+#overlay { position: absolute; inset: 0; pointer-events: none; font-family: "Inter", sans-serif; }
+/* Palavra-chave (motion graphic discreto) */
+#kw { position: absolute; left: 120px; bottom: 118px; opacity: 0; color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,.35); }
+#kw .kicker { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+#kw .num { font-family: "Inter Display", "Inter"; font-weight: 600; font-size: 22px; letter-spacing: .08em; color: #fff; opacity: .9; }
+#kw .bar { display: block; width: 90px; height: 3px; background: #2f8cff; transform-origin: left center; border-radius: 2px; box-shadow: 0 0 12px rgba(47,140,255,.5); }
+#kw .word { overflow: hidden; padding: 4px 0 8px; }
+#kw .word span { display: inline-block; font-family: "Inter Display", "Inter"; font-weight: 600; font-size: 76px; letter-spacing: -0.02em; line-height: 1; }
+#kw .sub { font-size: 26px; font-weight: 500; margin-top: 8px; opacity: 0; }
+#kw::before { content: ""; position: absolute; left: -120px; bottom: -118px; width: 1100px; height: 420px; z-index: -1;
+  background: radial-gradient(ellipse 60% 70% at 18% 85%, rgba(6,16,32,.55), rgba(6,16,32,0) 75%); }
+/* Cartão branco da marca (abertura e encerramento) */
+#card { position: absolute; inset: 0; opacity: 0; }
+#card-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 80% at 50% 45%, #ffffff 0%, #f6f8fb 65%, #eef2f7 100%); }
+#logo { position: absolute; left: 50%; top: 50%; width: 588px; height: 189px; margin-left: -294px; margin-top: -94.5px; display: block; }
+#card-rule { position: absolute; left: 50%; top: 640px; width: 120px; height: 3px; margin-left: -60px; background: #1f6fd1; border-radius: 2px; transform: scaleX(0); }
+#card-services { position: absolute; left: 0; right: 0; top: 670px; text-align: center; font-family: "Inter Display", "Inter"; font-size: 34px; font-weight: 600; color: #1b2a44; letter-spacing: -0.005em; opacity: 0; }
+#card-cta { position: absolute; left: 0; right: 0; top: 728px; text-align: center; font-size: 28px; font-weight: 400; color: #4a5a72; opacity: 0; }
+#card-contacts { position: absolute; left: 0; right: 0; top: 850px; text-align: center; font-size: 26px; font-weight: 500; color: #1b2a44; opacity: 0; }
+#fade { position: absolute; inset: 0; background: #fff; opacity: 0; }

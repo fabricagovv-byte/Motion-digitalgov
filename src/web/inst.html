@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>DigitalGov — Institucional</title>
+<link rel="stylesheet" href="inst/inst.css">
+<script type="importmap">
+{ "imports": {
+  "three": "/node_modules/three/build/three.module.js",
+  "three/addons/": "/node_modules/three/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="gl"></canvas>
+  <div id="overlay">
+    <div id="kw"><div class="kicker"><span class="num"></span><span class="bar"></span></div><div class="word"><span></span></div><div class="sub"></div></div>
+    <div id="card">
+      <div id="card-bg"></div>
+      <img id="logo" src="/assets/logo-digitalgov.png" alt="DigitalGov">
+      <div id="card-rule"></div>
+      <div id="card-services"></div>
+      <div id="card-cta"></div>
+      <div id="card-contacts"></div>
+    </div>
+    <div id="fade"></div>
+  </div>
+</div>
+<script type="module" src="inst/main.js"></script>
+</body>
+</html>

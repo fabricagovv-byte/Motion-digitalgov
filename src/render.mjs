@@ -12,15 +12,16 @@ try { ({ chromium } = require('playwright')); } catch { ({ chromium } = require(
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const args = Object.fromEntries(process.argv.slice(2).reduce((a, v, i, arr) => (v.startsWith('--') ? [...a, [v.slice(2), arr[i + 1]?.startsWith('--') || arr[i + 1] === undefined ? '1' : arr[i + 1]]] : a), []));
-const TL = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/timeline.json'), 'utf8'));
+const FILM = args.film || 'ged';
+const TL = JSON.parse(fs.readFileSync(path.join(ROOT, FILM === 'inst' ? 'src/inst/timeline.json' : 'src/timeline.json'), 'utf8'));
 const dpr = parseFloat(args.dpr || '1'), workers = parseInt(args.workers || '4'), out = path.resolve(ROOT, args.out || 'build/frames');
 const fps = TL.fps, from = parseFloat(args.from || '0'), to = parseFloat(args.to || String(TL.duration)), step = parseInt(args.step || '1');
 fs.mkdirSync(out, { recursive: true });
 
-const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png' };
+const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.otf': 'font/otf' };
 const server = http.createServer((req, res) => {
   let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
-  if (p === '/' ) p = '/src/web/index.html';
+  if (p === '/' ) p = FILM === 'inst' ? '/src/web/inst.html' : '/src/web/index.html';
   if (!p.startsWith('/node_modules') && !p.startsWith('/src') && !p.startsWith('/assets')) p = '/src/web' + p;
   const f = path.join(ROOT, p);
   fs.readFile(f, (e, d) => { if (e) { res.writeHead(404); res.end(); return; } res.writeHead(200, { 'Content-Type': MIME[path.extname(f)] || 'application/octet-stream' }); res.end(d); });
@@ -46,7 +47,10 @@ async function worker(id) {
     const j = q.shift();
     await page.evaluate((t) => window.renderFrame(t), j.t);
     const file = path.join(out, j.name);
-    await stage.screenshot({ path: file, type: j.name.endsWith('.png') ? 'png' : 'jpeg', ...(j.name.endsWith('.jpg') ? { quality: 95 } : {}) });
+    for (let k = 0; ; k++) {   // tolera lentidão momentânea da máquina
+      try { await stage.screenshot({ path: file, timeout: 180000, type: j.name.endsWith('.png') ? 'png' : 'jpeg', ...(j.name.endsWith('.jpg') ? { quality: 95 } : {}) }); break; }
+      catch (e) { if (k >= 2) throw e; console.error(`[w${id}] retry ${j.name}: ${e.message.split('\n')[0]}`); }
+    }
     if (++done % 25 === 0 || done === jobs.length) { const el = (Date.now() - t0) / 1000; console.log(`${done}/${jobs.length}  ${el.toFixed(0)}s  eta ${((jobs.length - done) * el / done).toFixed(0)}s`); }
   }
   await page.close();

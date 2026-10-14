@@ -73,3 +73,72 @@ bash src/assemble.sh                # vídeos finais + stems em deliverables/
 - Narração: `src/narration.py` (texto da legenda e texto falado separados).
 - Cenas: `src/web/scenes/s1_archive.js` … `s7_brand.js`. Prévia de quadros: `node src/render.mjs --stills 12.5,40 --out build/stills`.
 - Modelo de voz: `vits-piper-pt_BR-faber-medium` (releases `tts-models` do projeto k2-fsa/sherpa-onnx) extraído em `voices/`.
+
+---
+
+# DigitalGov · Vídeo institucional (60 s)
+
+Vídeo institucional de **60 s** (1920×1080, 30 fps) que segue o roteiro de 5 cenas: apresentação → digitalização →
+indexação e organização → GED na prática → resultado e assinatura. Mostra o fluxo completo
+**documento físico → preparação → digitalização → indexação → consulta no GED**, num único ambiente contínuo
+(central de tratamento documental), com cortes secos entre planos, como num filme de câmera.
+
+## Entregáveis (`deliverables/institucional/`)
+
+| Arquivo | Descrição |
+|---|---|
+| `DigitalGov_Institucional_60s_1080p.mp4` | Versão principal, H.264 + AAC 320 kb/s, faixa de legenda opcional (pt-BR) |
+| `DigitalGov_Institucional_60s_1080p_legendado.mp4` | Legendas embutidas (redes sociais / reprodução sem som) |
+| `legendas_ptBR.srt` / `.vtt` | Legendas com o texto literal do roteiro, sincronizadas com a fala real |
+| `audio/mix_final_48k24.wav` | Mixagem final −14 LUFS, true peak ≤ −1 dBTP |
+| `audio/stem_*.flac` | Narração, trilha (com e sem ducking) e efeitos, separados |
+| `DECUPAGEM_FILMAGEM_REAL.md` | Plano a plano para refazer com filmagem real usando a mesma trilha/locução |
+
+## Roteiro técnico
+
+| Tempo | Cena | Imagem | Destaque na tela |
+|---|---|---|---|
+| 0:00–0:08 | 1 · Apresentação | Logo oficial sobre branco → central de tratamento documental em funcionamento | — |
+| 0:08–0:20 | 2 · Digitalização | Carrinho com caixas chega; retirada de grampos e montagem de lotes; scanner de produção; páginas surgindo no software de captura | 01 Digitalização |
+| 0:20–0:32 | 3 · Indexação e organização | Equipe cadastra nº do processo, data, tipo documental, setor e palavras-chave; busca encontra o contrato | 02 Indexação · 03 Organização |
+| 0:32–0:46 | 4 · GED na prática | Documento aberto, histórico, encaminhamento a outro setor; acesso pelo notebook e pelo celular | 04 GED |
+| 0:46–1:00 | 5 · Resultado | Arquivo organizado, scanner, documento encontrado em instantes; cartela final | Logo + serviços + chamada |
+
+## Decisões e limites
+
+- **Não é filmagem real.** É computação gráfica 3D (Three.js) com luz natural, sombras suaves e materiais foscos.
+  As pessoas são manequins sem rosto, para evitar rostos sintéticos artificiais. Para um resultado "filmado", use
+  `DECUPAGEM_FILMAGEM_REAL.md`: a trilha, a locução e as legendas servem igualmente para a filmagem.
+- **Telas**: interface **ilustrativa** (identificada como "Ambiente demonstrativo"), em tema claro e sóbrio, mostrando
+  apenas as funções citadas no roteiro: captura, indexação, pesquisa, visualização, histórico, encaminhamento entre
+  setores e acesso por perfil. Os dados são fictícios e genéricos. Se houver telas reais do sistema, substitua as funções
+  `drawCapture`, `drawIndex`, `drawSearch`, `drawGed` e `drawMobile` em `src/web/inst/docs.js` por capturas reais.
+- **Documentos** com texto real e legível (contrato, ofício, memorando, processo, requerimento genéricos), sem "texto falso".
+- **Sem claims**: nenhum cliente, certificação, número de desempenho ou tempo de resposta.
+- **Logo** original (`assets/logo-digitalgov.png`) exibida em tamanho nativo (1:1) sobre fundo branco, sem alterações.
+- **Contatos**: o roteiro pede telefone, WhatsApp e site oficiais, que não foram fornecidos. A linha existe e fica vazia
+  até ser preenchida em `src/inst/timeline.json` → `endcard.contacts`; depois basta renderizar a cena 5 de novo.
+
+## Áudio
+
+- **Locução**: voz neural pt-BR (Piper `pt_BR-cadu-medium`), com o texto literal do roteiro. A grafia fonética é usada
+  só no texto enviado à voz ("Gê É Dê", "Digital Góvi", "pílias"). Para cada fala, a voz gera 6 tomadas, cada tomada
+  é transcrita automaticamente (Whisper small) e fica a mais inteligível. O andamento foi ajustado (×1,07) para que o
+  roteiro inteiro caiba em 60 s com respiro no final.
+- **Trilha** original sintetizada, sem samples de terceiros: Ré maior, 96 BPM, piano elétrico, pads, cordas suaves e
+  percussão discreta, com resolução e assinatura sonora na cartela. Ducking de −10 dB sob a voz.
+- **Efeitos** sincronizados e discretos: carrinho, folhas, alimentação do scanner, teclado, cliques e confirmação do
+  encaminhamento.
+
+## Como reproduzir
+
+```bash
+python3 src/inst/narration.py --takes 6     # voz em voices/vits-piper-pt_BR-cadu-medium (+ ASR em voices/asr/)
+python3 src/inst/audio.py                   # trilha, efeitos, mixagem e stems
+python3 src/inst/subtitles.py               # legendas
+node src/render.mjs --film inst --out build/inst_frames --workers 4    # 1.800 quadros 1080p
+bash src/inst/assemble.sh                   # vídeos finais em deliverables/institucional/
+```
+
+Prévia de quadros: `node src/render.mjs --film inst --stills 5,15,25 --out build/stills`.
+Cenas: `src/web/inst/i1_open.js` … `i5_end.js`; cenário: `room.js`; objetos e pessoas: `kit.js`; documentos e telas: `docs.js`.

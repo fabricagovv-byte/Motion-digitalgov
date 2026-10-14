@@ -5,3 +5,5 @@ voices
 __pycache__/
 audio/stems/
 audio/mix_master.wav
+audio/inst/stems/
+audio/inst/mix_master.wav

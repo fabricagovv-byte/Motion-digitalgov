@@ -44,7 +44,7 @@ async function init() {
   const inst = {};
   for (const s of list) inst[s.id] = { ...s, ...(await (await SCENES[s.id]()).create(env)) };
 
-  const rtOpts = { type: THREE.HalfFloatType, samples: 4 };
+  const rtOpts = { type: THREE.HalfFloatType, samples: DPR >= 2 ? 0 : 4 };  // em 4K a resolução já suaviza as bordas
   const rtA = new THREE.WebGLRenderTarget(W * DPR, H * DPR, rtOpts), rtB = new THREE.WebGLRenderTarget(W * DPR, H * DPR, rtOpts);
 
   const composer = new EffectComposer(renderer); composer.setPixelRatio(DPR); composer.setSize(W, H);

@@ -85,7 +85,7 @@ export async function create(env) {
   ];
   const CW = 2.4, CH = 1.35;
   envs.forEach((e, i) => {
-    e.rt = new THREE.WebGLRenderTarget(Math.round(1280 * Math.min(DPR, 1.6)), Math.round(720 * Math.min(DPR, 1.6)), { samples: 4, type: THREE.HalfFloatType });
+    e.rt = new THREE.WebGLRenderTarget(Math.round(1280 * Math.min(DPR, 1.6)), Math.round(720 * Math.min(DPR, 1.6)), { samples: DPR >= 2 ? 2 : 4, type: THREE.HalfFloatType });
     e.rt.texture.colorSpace = THREE.LinearSRGBColorSpace;
     const g = new THREE.Group();
     const pic = new THREE.Mesh(new THREE.PlaneGeometry(CW, CH), new THREE.MeshBasicMaterial({ map: e.rt.texture, transparent: true })); g.add(pic);

@@ -1,0 +1,31 @@
+{
+  "fps": 30,
+  "duration": 67.0,
+  "scenes": [
+    { "id": "s1_archive",   "start": 0.0,  "end": 9.6 },
+    { "id": "s2_scan",      "start": 9.6,  "end": 18.6 },
+    { "id": "s3_ged",       "start": 18.6, "end": 29.2 },
+    { "id": "s4_globe",     "start": 29.2, "end": 43.2 },
+    { "id": "s5_security",  "start": 43.2, "end": 50.2 },
+    { "id": "s6_future",    "start": 50.2, "end": 56.2 },
+    { "id": "s7_brand",     "start": 56.2, "end": 67.0 }
+  ],
+  "transition": 1.2,
+  "narration": [
+    { "id": "n1",  "at": 1.7 },
+    { "id": "n2",  "at": 10.4 },
+    { "id": "n3",  "at": 19.6 },
+    { "id": "n4a", "at": 30.4 },
+    { "id": "n4b", "at": 34.0 },
+    { "id": "n5",  "at": 44.0 },
+    { "id": "n6",  "at": 58.4 }
+  ],
+  "titles": [
+    { "scene": "s1_archive",  "in": 5.2,  "out": 9.2,  "lines": ["Milhares de documentos.", "Uma nova maneira de gerenciar."] },
+    { "scene": "s2_scan",     "in": 14.4, "out": 18.2, "lines": ["Digitalização inteligente.", "Organização. Agilidade."] },
+    { "scene": "s3_ged",      "in": 24.6, "out": 28.8, "lines": ["Tudo organizado.", "Tudo mais fácil de encontrar."] },
+    { "scene": "s4_globe",    "in": 38.6, "out": 42.8, "hero": true, "lines": ["Seus documentos.", "Em qualquer lugar do mundo."], "sub": "Acesse seus arquivos de onde estiver, quando precisar." },
+    { "scene": "s5_security", "in": 45.6, "out": 49.8, "lines": ["Mais controle. Mais organização.", "Mais confiança."] },
+    { "scene": "s6_future",   "in": 51.4, "out": 55.8, "lines": ["Transforme documentos", "em informação acessível."] }
+  ]
+}

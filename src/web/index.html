@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>GED — Motion</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "/node_modules/three/build/three.module.js",
+  "three/addons/": "/node_modules/three/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="gl"></canvas>
+  <div id="overlay">
+    <div id="scrim"></div>
+    <div id="title" class="title"></div>
+    <div id="brand">
+      <div id="brand-card"><img id="logo" src="/assets/logo-digitalgov.png" alt="Digital Gov"><div id="sheen"></div></div>
+      <div id="brand-line1">GED — Gestão Eletrônica de Documentos</div>
+      <div id="brand-line2">Organização inteligente. Acesso global. Gestão digital.</div>
+    </div>
+    <div id="fade"></div>
+  </div>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

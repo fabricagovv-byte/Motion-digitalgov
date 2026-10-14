@@ -1,0 +1,7 @@
+node_modules/
+build/
+voices
+*.pyc
+__pycache__/
+audio/stems/
+audio/mix_master.wav

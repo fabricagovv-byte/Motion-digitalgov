@@ -1,0 +1,13 @@
+{
+  "name": "ged-motion-digitalgov",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node src/render.mjs"
+  },
+  "dependencies": {
+    "three": "0.169.0",
+    "world-atlas": "2.0.2",
+    "topojson-client": "3.1.0"
+  }
+}

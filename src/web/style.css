@@ -1,0 +1,27 @@
+html, body { margin: 0; padding: 0; background: #02050c; overflow: hidden; }
+#stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #02050c; }
+#gl { position: absolute; inset: 0; width: 1920px; height: 1080px; display: block; }
+#overlay { position: absolute; inset: 0; pointer-events: none; font-family: "Inter Display", "Inter", sans-serif; color: #fff; }
+.title { position: absolute; left: 132px; bottom: 150px; }
+.title .line { display: block; overflow: hidden; padding: 6px 0 10px; }
+.title .line span { display: inline-block; will-change: transform, opacity, filter; }
+.title .l0 { font-size: 66px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.04; }
+.title .l1 { font-size: 66px; font-weight: 300; letter-spacing: -0.02em; line-height: 1.04; color: #9fd0ff; }
+.title .rule { width: 72px; height: 3px; border-radius: 2px; background: linear-gradient(90deg,#34b6ff,#6be0ff); margin-bottom: 26px; transform-origin: left center; }
+.title.hero { left: 0; right: 0; bottom: auto; top: 150px; text-align: center; }
+.title.hero .rule { margin: 0 auto 30px; transform-origin: center; }
+.title.hero .l0 { font-size: 84px; }
+.title.hero .l1 { font-size: 84px; font-weight: 600; color: #fff; }
+.title.hero .l1 span { background: linear-gradient(90deg,#8fd3ff,#ffffff 45%,#8fd3ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.title .sub { margin-top: 26px; font-family: "Inter", sans-serif; font-size: 30px; font-weight: 400; color: #c9def5; letter-spacing: 0; }
+#brand { position: absolute; inset: 0; opacity: 0; }
+#brand-card { position: absolute; left: 50%; top: 410px; width: 760px; height: 300px; margin-left: -380px; margin-top: -150px;
+  background: #ffffff; border-radius: 28px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.6), 0 30px 120px rgba(40,140,255,.35), 0 0 60px rgba(120,200,255,.25); }
+#logo { width: 588px; height: 189px; display: block; image-rendering: auto; }
+#sheen { position: absolute; top: -50%; bottom: -50%; width: 140px; left: -200px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(170,215,255,.22), rgba(255,255,255,0)); transform: rotate(18deg); }
+#brand-line1 { position: absolute; left: 0; right: 0; top: 640px; text-align: center; font-size: 46px; font-weight: 600; letter-spacing: -0.01em; }
+#brand-line2 { position: absolute; left: 0; right: 0; top: 712px; text-align: center; font-family: "Inter", sans-serif; font-size: 30px; font-weight: 400; color: #a9cff5; letter-spacing: 0.01em; }
+#fade { position: absolute; inset: 0; background: #000; opacity: 0; }
+#scrim { position: absolute; inset: 0; opacity: 0; background: radial-gradient(ellipse 60% 55% at 12% 92%, rgba(1,4,11,.82), rgba(1,4,11,.45) 45%, rgba(1,4,11,0) 75%); }
+#scrim.hero { background: radial-gradient(ellipse 55% 34% at 50% 26%, rgba(1,4,11,.6), rgba(1,4,11,0) 80%); }

@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 FábricaGov · Pesquisas Amazônia e Saúde MG</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-700-normal.woff2) format('woff2');font-weight:700}
+:root{--ink:#111216;--card:#1b1c21;--card2:#23252b;--gold:#D9A441;--paper:#F2EFE8;--mute:#9a9ba3;--line:#2c2e35}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;overflow:hidden;width:100%;height:100%}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;background:var(--ink);overflow:hidden;transform-origin:0 0;font-family:Inter,sans-serif;color:var(--paper)}
+.abs{position:absolute}
+#grid{position:absolute;left:-100px;top:-100px;width:2120px;height:1280px;z-index:1;
+  background-image:radial-gradient(circle,#ffffff10 1.4px,transparent 1.6px);background-size:40px 40px}
+#ghost{position:absolute;left:60px;top:-30px;z-index:2;font-family:Anton;font-size:300px;line-height:1;color:#18191e;letter-spacing:2px;white-space:nowrap}
+#mapwrap{position:absolute;left:0;top:0;z-index:5;transform-origin:0 0}
+#mapwrap svg{display:block;width:613px;height:639px;overflow:visible}
+#mapwrap path{fill:#202228;stroke:#3a3c44;stroke-width:.7;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+#pin{position:absolute;z-index:7;width:0;height:0}
+#pin .dot{position:absolute;left:-11px;top:-11px;width:22px;height:22px;border-radius:50%;background:var(--paper);border:5px solid var(--ink)}
+#pin .ring{position:absolute;left:-11px;top:-11px;width:22px;height:22px;border-radius:50%;border:3px solid var(--paper)}
+#pin .lab{position:absolute;left:26px;top:-22px;white-space:nowrap;font-weight:600;font-size:24px;background:var(--ink);padding:6px 14px;border-radius:8px;border:1px solid var(--line)}
+.pill{display:inline-block;background:var(--gold);color:var(--ink);font-weight:700;font-size:22px;letter-spacing:4px;padding:10px 22px;border-radius:999px}
+.mask{overflow:hidden;display:block;padding-bottom:4px}
+.mask>.in{display:block;will-change:transform}
+.mask>.in.stat{display:flex}
+.h1{font-family:Anton;font-size:150px;line-height:1.02;letter-spacing:1px;text-transform:uppercase}
+.h2{font-family:Anton;font-size:104px;line-height:1.04;text-transform:uppercase}
+.sub{font-size:34px;line-height:1.35;color:#d9d7d0;font-weight:400}
+.gold{color:var(--gold)}
+.foot{font-size:19px;color:var(--mute);letter-spacing:.2px}
+.stat{display:flex;align-items:baseline;gap:22px;height:118px}
+.stat .n{font-family:Anton;font-size:96px;color:var(--gold);line-height:1;min-width:0;font-variant-numeric:tabular-nums}
+.stat .l{font-size:30px;font-weight:500;color:var(--paper)}
+.card{background:var(--card);border-radius:22px;border:1px solid var(--line)}
+.tag{display:inline-block;font-size:18px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);border-radius:999px;padding:6px 14px}
+#flood{position:absolute;z-index:40;border-radius:50%;background:var(--gold);left:960px;top:540px;width:0;height:0}
+#end{position:absolute;inset:0;z-index:41}
+#hud{position:fixed;right:10px;bottom:10px;font:12px monospace;color:#888;z-index:99}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="grid"></div>
+  <div id="ghost">FÁBRICAGOV</div>
+  <div id="mapwrap"></div>
+  <div id="pin"><div class="ring"></div><div class="ring"></div><div class="dot"></div><div class="lab">Alvorada de Minas · sede V4</div></div>
+
+  <!-- S1 abertura -->
+  <div id="s1" class="abs" style="left:140px;top:270px;z-index:10">
+    <div class="mask"><div class="in"><span class="pill">PESQUISA · DADOS · GOVERNO</span></div></div>
+    <div style="height:30px"></div>
+    <div class="mask"><div class="in h1">Dados que</div></div>
+    <div class="mask"><div class="in h1 gold">viram decisão</div></div>
+    <div style="height:26px"></div>
+    <div class="mask"><div class="in sub">Coleta, tratamento e painéis de pesquisa<br>para o setor público.</div></div>
+  </div>
+
+  <!-- S2 Amazônia capítulo -->
+  <div id="s2" class="abs" style="left:140px;top:150px;z-index:10;width:860px">
+    <div class="mask"><div class="in"><span class="pill">CAPÍTULO 01</span></div></div>
+    <div style="height:24px"></div>
+    <div class="mask"><div class="in h2">Pesquisas na</div></div>
+    <div class="mask"><div class="in h2 gold">Amazônia</div></div>
+  </div>
+  <div id="s2stats" class="abs" style="left:140px;top:500px;z-index:10;width:800px">
+    <div class="mask"><div class="in stat"><span class="n" data-v="9" data-f="int">0</span><span class="l">estados na Amazônia Legal</span></div></div>
+    <div class="mask"><div class="in stat"><span class="n" data-v="772" data-f="int">0</span><span class="l">municípios</span></div></div>
+    <div class="mask"><div class="in stat"><span class="n" data-v="5015068" data-f="int">0</span><span class="l">km² de área</span></div></div>
+    <div class="mask"><div class="in stat"><span class="n" data-v="58.9" data-f="d1" data-s="%">0</span><span class="l">do território nacional</span></div></div>
+  </div>
+  <div id="s2foot" class="abs foot" style="left:140px;top:1000px;z-index:10">Fonte: IBGE, Amazônia Legal (limites 2020).</div>
+
+  <!-- S3 PRODES -->
+  <div id="s3" class="abs card" style="left:120px;top:150px;z-index:12;width:860px;height:800px;padding:52px 56px">
+    <div class="mask"><div class="in"><span class="tag">Monitoramento</span></div></div>
+    <div style="height:18px"></div>
+    <div class="mask"><div class="in" style="font-family:Anton;font-size:68px;line-height:1.05;text-transform:uppercase">Desmatamento anual</div></div>
+    <div class="mask"><div class="in" style="font-size:26px;color:#c9c7c0;margin-top:6px">Amazônia Legal · taxa PRODES, em km²</div></div>
+    <div id="bars" style="position:absolute;left:56px;right:56px;bottom:120px;height:400px"></div>
+    <div id="badge" class="abs" style="right:56px;top:250px;background:var(--gold);color:var(--ink);border-radius:16px;padding:16px 22px;text-align:right">
+      <div style="font-family:Anton;font-size:64px;line-height:1">-11,08%</div>
+      <div style="font-size:20px;font-weight:600">2025 vs 2024</div>
+    </div>
+    <div class="abs foot" style="left:56px;bottom:40px">Fonte: INPE/PRODES. 2025 = taxa estimada (nota técnica out/2025).</div>
+  </div>
+
+  <!-- S4 Saúde MG -->
+  <div id="s4" class="abs" style="left:140px;top:150px;z-index:10;width:900px">
+    <div class="mask"><div class="in"><span class="pill">CAPÍTULO 02</span></div></div>
+    <div style="height:24px"></div>
+    <div class="mask"><div class="in h2">Pesquisa de saúde</div></div>
+    <div class="mask"><div class="in h2 gold">Minas Gerais</div></div>
+  </div>
+  <div id="s4stats" class="abs" style="left:140px;top:560px;z-index:10;width:800px">
+    <div class="mask"><div class="in stat"><span class="n" data-v="853" data-f="int">0</span><span class="l">municípios</span></div></div>
+    <div class="mask"><div class="in stat"><span class="n" data-v="20.5" data-f="d1" data-s=" mi">0</span><span class="l">habitantes</span></div></div>
+  </div>
+  <div id="s4foot" class="abs foot" style="left:140px;top:1000px;z-index:10">Fonte: IBGE, Censo 2022.</div>
+
+  <!-- S5 Painel -->
+  <div id="s5" class="abs card" style="left:150px;top:110px;z-index:14;width:1620px;height:860px;padding:44px 52px;background:#17181d">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div style="font-size:22px;color:var(--mute);font-weight:500">Painel de pesquisa · Saúde MG</div>
+        <div style="font-family:Anton;font-size:56px;text-transform:uppercase;margin-top:4px">Atenção primária por região</div>
+      </div>
+      <span class="tag">Dados ilustrativos</span>
+    </div>
+    <div id="kpis" style="display:flex;gap:24px;margin-top:30px"></div>
+    <div style="display:flex;gap:24px;margin-top:24px">
+      <div class="card" style="flex:1.35;height:470px;padding:28px 32px;background:var(--card)">
+        <div style="font-size:22px;font-weight:600">Avaliação positiva do atendimento (%)</div>
+        <div id="hbars" style="margin-top:22px"></div>
+      </div>
+      <div class="card" style="flex:1;height:470px;padding:28px 32px;background:var(--card)">
+        <div style="font-size:22px;font-weight:600">Entrevistas por semana</div>
+        <svg id="spark" width="560" height="360" viewBox="0 0 560 360" style="margin-top:18px;overflow:visible"></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6 entregas -->
+  <div id="s6" class="abs" style="left:140px;top:170px;z-index:15;width:1640px">
+    <div class="mask"><div class="in"><span class="pill">O QUE ENTREGAMOS</span></div></div>
+    <div style="height:22px"></div>
+    <div class="mask"><div class="in h2">Da coleta ao painel</div></div>
+    <div id="cards6" style="display:flex;gap:26px;margin-top:56px"></div>
+  </div>
+
+  <div id="flood"></div>
+  <div id="end">
+    <img id="logo" src="assets/logo_white.png" class="abs" style="left:50%;top:330px;width:1000px;margin-left:-500px;filter:brightness(0);opacity:.93">
+    <div id="tagline" class="abs" style="left:0;right:0;top:620px;text-align:center">
+      <div class="mask"><div class="in" style="font-family:Anton;font-size:84px;color:var(--ink);text-transform:uppercase">Tecnologia para quem pesquisa e governa</div></div>
+    </div>
+    <div id="contact" class="abs" style="left:0;right:0;top:790px;text-align:center">
+      <div class="mask"><div class="in" style="font-size:30px;font-weight:600;color:var(--ink)">fabricagovv@gmail.com  ·  (31) 99827-7323  ·  @Grupo_v4_fabricagovv</div></div>
+    </div>
+  </div>
+</div>
+<div id="hud"></div>
+<script>
+const W=1920,H=1080,DUR=44;
+const $=s=>document.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const rng=(t,a,b)=>clamp((t-a)/(b-a));
+const io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const out=x=>1-Math.pow(1-x,3);
+const inn=x=>x*x*x;
+const expo=x=>x>=1?1:1-Math.pow(2,-10*x);
+// closed-form spring step response (k stiffness, d damping), returns 0..~1
+function spring(t,k=170,d=26){ if(t<=0) return 0; const w=Math.sqrt(k), z=d/(2*w);
+  if(z>=1) return 1-Math.exp(-w*t)*(1+w*t);
+  const wd=w*Math.sqrt(1-z*z); return 1-Math.exp(-z*w*t)*(Math.cos(wd*t)+z/Math.sqrt(1-z*z)*Math.sin(wd*t)); }
+const fmtInt=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+const fmtD1=n=>{const s=(Math.round(n*10)/10).toFixed(1).split('.');return fmtInt(+s[0])+','+s[1];};
+
+// masked rise: in at tin, out at tout
+function rise(el,t,tin,tout=1e9,dir=1){
+  const a=spring(t-tin,180,27), b=io(rng(t,tout,tout+0.42));
+  el.style.transform=`translateY(${((1-a)*112 - b*112)*dir}%)`;
+  el.parentElement.style.visibility=(t<tin-0.01||t>tout+0.43)?'hidden':'inherit';
+}
+function riseList(els,t,tin,step,tout,ostep=0.05){els.forEach((e,i)=>rise(e,t,tin+i*step,tout+i*ostep));}
+function counter(el,t,t0,dur=1.1){
+  const v=+el.dataset.v, e=expo(rng(t,t0,t0+dur)), x=v*e;
+  el.textContent=(el.dataset.f==='d1'?fmtD1(x):fmtInt(x))+(el.dataset.s||'');
+}
+function show(el,on){el.style.visibility=on?'inherit':'hidden';}
+
+// ---------- build static DOM ----------
+const AMZ=['ac','am','ap','pa','ro','rr','to','mt','ma'];
+const BARS=[[2021,13038],[2022,11594],[2023,9064],[2024,6518],[2025,5796]];
+const KPIS=[['Entrevistas realizadas',12480,'int',''],['Municípios visitados',312,'int',''],['Taxa de resposta',87,'int','%'],['Agentes em campo',146,'int','']];
+const HB=[['Central',81],['Sul',78],['Triângulo',74],['Zona da Mata',71],['Norte',66],['Jequitinhonha',59]];
+const SPK=[220,410,560,640,890,1020,1180,1310,1490,1620,1840,2050];
+const C6=[['01','Coleta em campo','App de questionário que funciona offline, com GPS e validação.'],
+          ['02','Tratamento de dados','Limpeza, padronização e cruzamento com bases públicas.'],
+          ['03','Painéis e mapas','Resultados em tempo real para gestores e cidadãos.'],
+          ['04','LGPD desde o projeto','Anonimização, controle de acesso e trilha de auditoria.']];
+
+let paths={}, mapBox=null, mgC=null, pinXY=null;
+
+function buildBars(){
+  const box=$('#bars'), max=14000, bw=118, gap=(860-112-bw*5)/4;
+  BARS.forEach(([y,v],i)=>{
+    const col=document.createElement('div'); col.className='abs';
+    col.style.cssText=`left:${i*(bw+gap)}px;bottom:0;width:${bw}px;height:400px`;
+    const h=Math.round(v/max*330);
+    col.innerHTML=`<div class="b abs" style="left:0;bottom:44px;width:${bw}px;height:${h}px;border-radius:10px 10px 4px 4px;background:${y===2025?'var(--gold)':'#3a3c45'};transform-origin:50% 100%"></div>
+      <div class="v abs" style="left:-20px;right:-20px;bottom:${h+56}px;text-align:center;font-family:Anton;font-size:38px;color:${y===2025?'var(--gold)':'var(--paper)'}">${fmtInt(v)}</div>
+      <div class="abs" style="left:0;right:0;bottom:0;text-align:center;font-size:24px;font-weight:600;color:#c9c7c0">${y}</div>`;
+    box.appendChild(col);
+  });
+}
+function buildPanel(){
+  const k=$('#kpis');
+  KPIS.forEach(([l,v,f,s])=>{const d=document.createElement('div');d.className='card kp';
+    d.style.cssText='flex:1;padding:22px 28px;background:var(--card)';
+    d.innerHTML=`<div style="font-size:20px;color:var(--mute);font-weight:500">${l}</div><div class="n" data-v="${v}" data-f="${f}" data-s="${s}" style="font-family:Anton;font-size:64px;color:var(--gold);line-height:1.1">0</div>`;k.appendChild(d);});
+  const hb=$('#hbars');
+  HB.forEach(([l,v])=>{const r=document.createElement('div');r.style.cssText='display:flex;align-items:center;height:62px;gap:18px';
+    r.innerHTML=`<div style="width:200px;font-size:22px;font-weight:500;color:#d9d7d0">${l}</div><div style="flex:1;height:30px;background:#2a2c33;border-radius:6px;position:relative;overflow:hidden"><div class="hb" data-v="${v}" style="position:absolute;left:0;top:0;bottom:0;width:${v}%;background:var(--gold);border-radius:6px;transform-origin:0 50%"></div></div><div class="hv" data-v="${v}" style="width:64px;text-align:right;font-family:Anton;font-size:30px">0</div>`;hb.appendChild(r);});
+  const sv=$('#spark'), mx=2200, w=560, h=300;
+  const pts=SPK.map((v,i)=>[i/(SPK.length-1)*w, h-v/mx*h]);
+  let g='';for(let i=0;i<=4;i++){const y=h-i*h/4;g+=`<line x1="0" x2="${w}" y1="${y}" y2="${y}" stroke="#2c2e35" stroke-width="1.5"/>`;}
+  const d=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+  sv.innerHTML=g+`<path id="area" d="${d} L ${w} ${h} L 0 ${h} Z" fill="#D9A44122"/><path id="ln" d="${d}" fill="none" stroke="#D9A441" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1"/>`+
+    `<circle id="lnd" r="9" fill="#F2EFE8" stroke="#D9A441" stroke-width="4"/><text x="0" y="${h+40}" fill="#9a9ba3" font-size="20" font-family="Inter">sem 1</text><text x="${w}" y="${h+40}" fill="#9a9ba3" font-size="20" font-family="Inter" text-anchor="end">sem 12</text>`;
+  window._spk=pts;
+}
+function buildCards(){
+  const c=$('#cards6');
+  C6.forEach(([n,t,d])=>{const e=document.createElement('div');e.className='card c6';
+    e.style.cssText='flex:1;height:380px;padding:36px 34px;border-top:6px solid var(--gold);background:var(--card)';
+    e.innerHTML=`<div style="font-family:Anton;font-size:64px;color:var(--gold);line-height:1">${n}</div><div style="font-size:34px;font-weight:700;margin-top:22px;line-height:1.15">${t}</div><div style="font-size:24px;color:#c9c7c0;margin-top:16px;line-height:1.4">${d}</div>`;
+    c.appendChild(e);});
+}
+
+// ---------- camera on the map ----------
+// keys: [t, zoom, fx, fy, px, py]   (focus point in svg units -> screen point)
+let CAM=[];
+const S0=1.45;
+function camAt(t){
+  if(t<=CAM[0][0]) return CAM[0];
+  for(let i=0;i<CAM.length-1;i++){const a=CAM[i],b=CAM[i+1];
+    if(t<=b[0]){const e=io(rng(t,a[0],b[0]));
+      return [t,Math.exp(lerp(Math.log(a[1]),Math.log(b[1]),e)),lerp(a[2],b[2],e),lerp(a[3],b[3],e),lerp(a[4],b[4],e),lerp(a[5],b[5],e)];}}
+  return CAM[CAM.length-1];
+}
+
+function lonlatToSvg(lon,lat){
+  // calibrated on the Minas Gerais bounding box (lon -51.05..-39.86, lat -14.23..-22.92), Mercator in latitude
+  const b=paths.mg.getBBox(), L0=-51.05,L1=-39.86,P0=-14.23,P1=-22.92;
+  const m=p=>Math.log(Math.tan(Math.PI/4+p*Math.PI/360));
+  return [b.x+(lon-L0)/(L1-L0)*b.width, b.y+(m(P0)-m(lat))/(m(P0)-m(P1))*b.height];
+}
+async function init(){
+  buildBars();buildPanel();buildCards();
+  const svgTxt=await (await fetch('assets/brazil.svg')).text();
+  $('#mapwrap').innerHTML=svgTxt;
+  const svg=$('#mapwrap svg');
+  $$('path',svg).forEach(p=>{paths[p.id]=p;p.setAttribute('pathLength','1');});
+  const g=svg.getBBox(); mapBox=g;
+  const mb=paths.mg.getBBox(); mgC=[mb.x+mb.width/2, mb.y+mb.height/2];
+  pinXY=lonlatToSvg(-43.37,-18.73);
+  const C=[306,320], AZ=[225,215];
+  CAM=[[3.2,.78,C[0],C[1],960,600],[4.6,.98,C[0],C[1],1330,560],[7.4,1.0,C[0],C[1],1330,560],
+       [9.6,1.26,AZ[0],AZ[1],1320,540],[14.8,1.32,AZ[0]+6,AZ[1]+4,1320,540],[15.6,1.12,AZ[0],AZ[1]+10,1440,560],
+       [21.0,1.16,AZ[0],AZ[1]+10,1440,560],[23.4,2.7,mgC[0],mgC[1],1360,600],[26.6,2.85,mgC[0]+4,mgC[1],1360,600],[28.5,3.2,mgC[0],mgC[1],1360,600]];
+  await document.fonts.ready;
+  await Promise.all($$('img').map(i=>i.complete?0:new Promise(r=>i.onload=r)));
+  fit(); window.ready=true; seek(0);
+}
+
+// ---------- per-frame ----------
+const LER={s1:null};
+function seek(t){
+  // background drift
+  $('#grid').style.transform=`translate(${(-t*6)%40}px,${(-t*3)%40}px)`;
+  $('#ghost').style.transform=`translateX(${-t*9}px)`;
+  $('#ghost').style.opacity=1-rng(t,37.4,38);
+
+  // ---- S1 ----
+  const s1=$$('#s1 .in'); riseList(s1,t,0.25,0.16,3.3);
+  // ---- map ----
+  const mapOn=t>3.0&&t<29.2;
+  show($('#mapwrap'),mapOn);
+  if(mapOn){
+    const c=camAt(t), z=S0*c[1], tx=c[4]-c[2]*z, ty=c[5]-c[3]*z;
+    $('#mapwrap').style.transform=`translate(${tx}px,${ty}px) scale(${z})`;
+    const ids=Object.keys(paths);
+    const fade=1-rng(t,27.0,28.2);
+    $('#mapwrap').style.opacity=fade;
+    ids.forEach((id,i)=>{const p=paths[id];
+      const d=out(rng(t,3.1+i*0.045,3.9+i*0.045));   // outline draw
+      p.style.strokeDasharray='1 1'; p.style.strokeDashoffset=String(1-d);
+      const fillA=rng(t,4.0+i*0.03,4.8+i*0.03);
+      // amazon highlight
+      let gold=0;
+      const ai=AMZ.indexOf(id);
+      if(ai>=0) gold=out(rng(t,5.6+ai*0.12,6.2+ai*0.12))*(1-io(rng(t,21.0,21.8)));
+      if(id==='mg') gold=Math.max(gold,out(rng(t,22.4,23.2)));
+      const dimOthers=(t>5.4&&t<21.8&&ai<0)?0.55*out(rng(t,5.4,6.2))*(1-rng(t,21,21.8)):(t>22.2&&id!=='mg'?0.5*out(rng(t,22.2,23)):0);
+      // colour: base #202228 -> gold #D9A441
+      const base=[32,34,40], gd=[217,164,65];
+      const k=gold, dm=1-dimOthers*0.6;
+      const r=lerp(base[0],gd[0],k)*dm, gg=lerp(base[1],gd[1],k)*dm, b=lerp(base[2],gd[2],k)*dm;
+      p.style.fill=`rgba(${r|0},${gg|0},${b|0},${fillA})`;
+      p.style.stroke=k>0.5?'#111216':'#3a3c44';
+    });
+  }
+  // pin
+  const pinOn=t>24.0&&t<28.4;
+  show($('#pin'),pinOn);
+  if(pinOn){
+    const c=camAt(t), z=S0*c[1];
+    const x=c[4]+(pinXY[0]-c[2])*z, y=c[5]+(pinXY[1]-c[3])*z;
+    const a=spring(t-24.0,220,22), o=1-rng(t,27.6,28.3);
+    $('#pin').style.transform=`translate(${x}px,${y}px)`;
+    $('#pin .dot').style.transform=`scale(${a})`; $('#pin').style.opacity=o;
+    $$('#pin .ring').forEach((r,i)=>{const ph=((t-24.0)/1.4+i*0.5)%1; r.style.transform=`scale(${1+ph*3})`; r.style.opacity=(1-ph)*a*0.7;});
+    const lb=$('#pin .lab'); const la=out(rng(t,24.5,25.1)); lb.style.opacity=la; lb.style.transform=`translateX(${(1-la)*-14}px)`;
+  }
+
+  // ---- S2 Amazônia ----
+  riseList($$('#s2 .in'),t,4.3,0.14,14.6);
+  const st=$$('#s2stats .in'); riseList(st,t,8.2,0.85,14.7,0.06);
+  $$('#s2stats .n').forEach((n,i)=>counter(n,t,8.3+i*0.85));
+  $('#s2foot').style.opacity=rng(t,9,9.6)*(1-rng(t,14.6,15));
+
+  // ---- S3 PRODES card ----
+  const s3=$('#s3'); const s3a=spring(t-15.0,170,26), s3o=io(rng(t,20.6,21.2));
+  show(s3,t>14.95&&t<21.25);
+  s3.style.transform=`translateY(${(1-s3a)*60 - s3o*40}px)`; s3.style.opacity=clamp(s3a*1.4)*(1-s3o);
+  riseList($$('#s3 .in'),t,15.15,0.12,99);
+  $$('#bars>div').forEach((col,i)=>{const t0=16.0+i*0.38, e=spring(t-t0,200,24);
+    col.querySelector('.b').style.transform=`scaleY(${Math.max(0,e)})`;
+    const v=col.querySelector('.v'); v.style.opacity=rng(t,t0+0.25,t0+0.5); v.style.transform=`translateY(${(1-out(rng(t,t0+0.25,t0+0.6)))*12}px)`;});
+  const bd=$('#badge'), ba=spring(t-18.4,260,20); bd.style.transform=`scale(${0.6+0.4*ba})`; bd.style.opacity=clamp(ba*2);
+
+  // ---- S4 Saúde MG ----
+  riseList($$('#s4 .in'),t,22.3,0.14,26.7);
+  riseList($$('#s4stats .in'),t,24.3,0.8,26.75,0.06);
+  $$('#s4stats .n').forEach((n,i)=>counter(n,t,24.4+i*0.8));
+  $('#s4foot').style.opacity=rng(t,24.8,25.3)*(1-rng(t,26.7,27.1));
+
+  // ---- S5 painel ----
+  const s5=$('#s5'), p5=spring(t-27.2,150,25), o5=io(rng(t,31.6,32.1));
+  show(s5,t>27.15&&t<32.15);
+  s5.style.transform=`translateY(${(1-p5)*80 - o5*60}px) scale(${0.97+0.03*p5})`; s5.style.opacity=clamp(p5*1.3)*(1-o5);
+  $$('#kpis .kp').forEach((k,i)=>{const t0=27.6+i*0.18,e=spring(t-t0,200,26);k.style.transform=`translateY(${(1-e)*30}px)`;k.style.opacity=clamp(e*1.5);
+    counter(k.querySelector('.n'),t,t0+0.1,1.4);});
+  $$('#hbars .hb').forEach((b,i)=>{const t0=28.4+i*0.16;b.style.transform=`scaleX(${out(rng(t,t0,t0+0.8))})`;
+    const hv=b.parentElement.nextElementSibling; hv.textContent=Math.round(+hv.dataset.v*out(rng(t,t0,t0+0.8)))+'%';});
+  const lp=io(rng(t,28.6,30.6)); $('#ln').style.strokeDashoffset=String(1-lp);
+  $('#area').style.opacity=lp*0.9;
+  const P=window._spk, fi=lp*(P.length-1), i0=Math.min(P.length-2,Math.floor(fi)), fr=fi-i0;
+  $('#lnd').setAttribute('cx',lerp(P[i0][0],P[i0+1][0],fr)); $('#lnd').setAttribute('cy',lerp(P[i0][1],P[i0+1][1],fr));
+  $('#lnd').style.opacity=rng(t,28.6,28.8);
+
+  // ---- S6 entregas ----
+  riseList($$('#s6 .in'),t,32.1,0.14,37.2);
+  $$('#cards6 .c6').forEach((c,i)=>{const t0=33.0+i*0.7, e=spring(t-t0,190,26), x=io(rng(t,37.2+i*0.05,37.65+i*0.05));
+    c.style.transform=`translateY(${(1-e)*70 - x*50}px)`; c.style.opacity=clamp(e*1.6)*(1-x);});
+
+  // ---- flood + end card ----
+  const fl=$('#flood'), R=Math.hypot(960,540)*1.08, fe=io(rng(t,37.9,38.3)), rad=R*fe;
+  fl.style.width=fl.style.height=(2*rad)+'px'; fl.style.left=(960-rad)+'px'; fl.style.top=(540-rad)+'px';
+  show(fl,t>37.9);
+  show($('#end'),t>38.2);
+  const lo=$('#logo'), la=spring(t-38.5,120,24);
+  lo.style.transform=`scaleY(${0.014+0.986*clamp(la,0,1.02)}) scale(${1.0+0.02*rng(t,38.5,44)})`;
+  lo.style.opacity=0.93*clamp((t-38.45)/0.08);
+  rise($('#tagline .in'),t,39.6); rise($('#contact .in'),t,40.3);
+  $('#end').style.transform=`translateY(${-6*rng(t,39,44)}px)`;
+
+  $('#hud').textContent=t.toFixed(2)+'s';
+}
+window.seek=seek;
+
+function fit(){const s=Math.min(innerWidth/W,innerHeight/H);const st=$('#stage');
+  st.style.transform=`translate(${(innerWidth-W*s)/2}px,${(innerHeight-H*s)/2}px) scale(${s})`;}
+addEventListener('resize',()=>{fit();});
+
+// preview controls (never used by the render)
+let playing=false,t0=0,cur=0;
+addEventListener('keydown',e=>{if(e.code==='Space'){playing=!playing;t0=performance.now()/1000-cur;loop();}
+  if(e.code==='ArrowRight'){cur=Math.min(DUR,cur+1/30);seek(cur);} if(e.code==='ArrowLeft'){cur=Math.max(0,cur-1/30);seek(cur);}
+  if(e.code==='KeyR'){cur=0;t0=performance.now()/1000;playing=true;loop();}});
+function loop(){if(!playing)return;cur=performance.now()/1000-t0;if(cur>DUR){cur=DUR;playing=false;}seek(cur);requestAnimationFrame(loop);}
+if(new URLSearchParams(location.search).has('render')) $('#hud').style.display='none';
+init();
+</script>
+</body>
+</html>

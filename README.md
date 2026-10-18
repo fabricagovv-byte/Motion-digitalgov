@@ -228,3 +228,25 @@ bash src/anim/assemble.sh                # vídeos finais em deliverables/animac
 - Elenco lado a lado: `node src/render.mjs --film anim --only lineup --stills 1 --out build/stills`.
 - Cenas: `src/web/anim/s1_ext.js` … `s5_hero.js`; personagens: `toon.js` (construção), `act.js` (atuação), `cast.js` (elenco);
   cenários: `sets.js`; telas: `ged.js`; tela final: `anim.html` / `anim.css`.
+
+---
+
+# V4 FábricaGov · Motion "Pesquisas: Amazônia e Saúde MG" (44 s)
+
+Filme em motion design 100% código (HTML + `seek(t)` + Playwright + ffmpeg), feito com a skill *claude-motion-design*,
+na identidade da V4 FábricaGov (tinta `#111216`, dourado `#D9A441`, Anton + Inter, logo original).
+
+| Tempo | Cena |
+|---|---|
+| 0–4 s | Abertura: "Dados que viram decisão" |
+| 4–15 s | Capítulo 01 · Pesquisas na Amazônia: mapa da Amazônia Legal + 9 estados, 772 municípios, 5.015.068 km², 58,9% |
+| 15–21 s | Desmatamento anual PRODES/INPE 2021–2025, destaque -11,08% em 2025 |
+| 21–27 s | Capítulo 02 · Pesquisa de saúde em Minas Gerais: 853 municípios, 20,5 mi habitantes, pino na sede (Alvorada de Minas) |
+| 27–32 s | Painel de pesquisa de saúde (marcado "Dados ilustrativos") |
+| 32–38 s | O que entregamos: coleta em campo, tratamento, painéis, LGPD |
+| 38–44 s | Drop musical, tela dourada, logo, "Tecnologia para quem pesquisa e governa", contatos |
+
+- Entregáveis: `deliverables/pesquisa/V4_FabricaGov_Pesquisas_1080p.mp4` (1920×1080, 60 fps, H.264 + AAC, -14 LUFS) e `trilha_mix_48k24.wav`.
+- Fontes de cada número: `src/pesquisa/facts.md`.
+- Reproduzir: `bash src/pesquisa/render.sh` (pré-visualização: sirva `src/pesquisa/` e abra `film.html`; Espaço = play, R = recomeçar).
+- Trilha e efeitos são sintetizados em código (`audio.py`), sem direitos de terceiros.

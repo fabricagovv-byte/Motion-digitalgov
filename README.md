@@ -231,7 +231,7 @@ bash src/anim/assemble.sh                # vídeos finais em deliverables/animac
 
 ---
 
-# V4 FábricaGov · Motion "Pesquisas: Amazônia e Saúde MG" (44 s)
+# V4 FábricaGov · Motion "Pesquisas: Amazônia e Saúde MG" (68 s)
 
 Filme em motion design 100% código (HTML + `seek(t)` + Playwright + ffmpeg), feito com a skill *claude-motion-design*,
 na identidade da V4 FábricaGov (tinta `#111216`, dourado `#D9A441`, Anton + Inter, logo original).
@@ -243,8 +243,11 @@ na identidade da V4 FábricaGov (tinta `#111216`, dourado `#D9A441`, Anton + Int
 | 15–21 s | Desmatamento anual PRODES/INPE 2021–2025, destaque -11,08% em 2025 |
 | 21–27 s | Capítulo 02 · Pesquisa de saúde em Minas Gerais: 853 municípios, 20,5 mi habitantes, pino na sede (Alvorada de Minas) |
 | 27–32 s | Painel de pesquisa de saúde (marcado "Dados ilustrativos") |
-| 32–38 s | O que entregamos: coleta em campo, tratamento, painéis, LGPD |
-| 38–44 s | Drop musical, tela dourada, logo, "Tecnologia para quem pesquisa e governa", contatos |
+| 32–38 s | Atualizações semanais: linha do tempo de 8 semanas + ciclo coleta → painel → relatório ao gestor |
+| 38–48 s | A IA ouve o povo: respostas dos cidadãos chegando, temas mais citados e recomendações ao gestor (exemplo ilustrativo) |
+| 48–54 s | O que entregamos: coleta em campo, tratamento, painéis, LGPD |
+| 54–62 s | Preço comparado ao mercado: UST, PF, HST e projeto fechado, V4 x concorrência, economia por modalidade |
+| 62–68 s | Drop musical, tela dourada, logo, "Tecnologia para quem pesquisa e governa", contatos |
 
 - Entregáveis: `deliverables/pesquisa/V4_FabricaGov_Pesquisas_1080p.mp4` (1920×1080, 60 fps, H.264 + AAC, -14 LUFS) e `trilha_mix_48k24.wav`.
 - Fontes de cada número: `src/pesquisa/facts.md`.

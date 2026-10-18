@@ -1,11 +1,11 @@
-"""Trilha + efeitos 100% sintetizados para o filme "Pesquisas" (44 s, 120 BPM).
+"""Trilha + efeitos 100% sintetizados para o filme "Pesquisas" (68 s, 120 BPM).
 Saída: build/pesquisa/mix_raw.wav (depois normalizado a -14 LUFS pelo render.sh).
 Todos os eventos usam os mesmos tempos do film.html."""
 import sys, wave
 import numpy as np
 
 SR = 48000
-DUR = 44.0
+DUR = 68.0
 BEAT = 0.5
 N = int(SR * DUR)
 rng = np.random.default_rng(7)
@@ -79,35 +79,35 @@ def pluck(f, d=0.5):
 # Am - F - C - G (2 bars each = 4 s)
 CH = [[57, 60, 64], [53, 57, 60], [48, 55, 64], [55, 59, 62]]
 ROOT = [45, 41, 48, 43]
-for k in range(11):
+for k in range(17):
     t0 = k * 4.0
     c = CH[k % 4]
-    pg = 0.55 if t0 < 38 else 0.75
+    pg = 0.55 if t0 < 62 else 0.75
     add(pad([note(m) for m in c], 4.3), t0, pg, pan=-0.1)
     add(pad([note(m + 12) for m in c[1:]], 4.3), t0, pg * 0.35, pan=0.15)
 
 beats = np.arange(0, DUR, BEAT)
 for i, b in enumerate(beats):
-    if 37.0 <= b < 38.0:
+    if 61.0 <= b < 62.0:
         continue  # breath before the drop
     bar_pos = i % 4
     if b >= 4.0:
-        g = 0.55 if b < 8 else (0.8 if b < 38 else 1.0)
+        g = 0.55 if b < 8 else (0.8 if b < 62 else 1.0)
         if b < 8 and bar_pos % 2:
             pass
         else:
             add(kick(g), b)
     if b >= 8.0:
         r = ROOT[int(b // 4) % 4]
-        if bar_pos in (0, 2) or b >= 38:
+        if bar_pos in (0, 2) or b >= 62:
             add(bass(note(r - 12), 0.45), b, 0.32)
     if b >= 15.0:
-        add(hat(), b + BEAT / 2, 0.45 if b < 38 else 0.6, pan=0.3)
-    if b >= 27.0 and b < 37:
+        add(hat(), b + BEAT / 2, 0.45 if b < 62 else 0.6, pan=0.3)
+    if b >= 27.0 and b < 61:
         add(hat(), b + BEAT / 4, 0.18, pan=-0.3)
 # arpeggio during data scenes
 arp_t = 8.0
-while arp_t < 37.0:
+while arp_t < 61.0:
     c = CH[int(arp_t // 4) % 4]
     step = int(arp_t / 0.25) % 6
     m = (c + [x + 12 for x in c])[step]
@@ -158,7 +158,7 @@ def shimmer():
 
 
 # scene transitions (just before the visual moves, so the peak lands on it)
-for tt in (4.05, 14.75, 21.0, 26.95, 31.85):
+for tt in (4.05, 14.75, 21.0, 26.95, 31.85, 38.3, 47.85, 53.65):
     add(whoosh(0.5), tt - 0.1, 0.22, pan=0.2)
 # counters
 for tt in (8.3, 9.15, 10.0, 10.85, 24.4, 25.2):
@@ -176,15 +176,36 @@ add(pop(700, 1200), 24.0, 0.16)     # pin
 # dashboard
 for i in range(4):
     add(tick(2200 + i * 200), 27.6 + i * 0.18, 0.1)
+# weekly updates: one tick per week node, pops for the 3 steps
+for i in range(8):
+    add(tick(1600 + i * 150), 32.9 + i * (3.2 / 7), 0.12)
+for i in range(3):
+    add(pop(450 + i * 80, 900 + i * 100), 34.6 + i * 0.55, 0.18)
+# AI: feed bubbles, analysis sweep, topics, typing
+for i in range(6):
+    add(pop(700 + i * 40, 1100 + i * 40), 39.5 + i * 0.5, 0.12, pan=-0.3)
+add(riser(2.6), 40.0, 0.12)
+for i in range(4):
+    add(tick(2000 + i * 250), 42.0 + i * 0.22, 0.1)
+for i in range(3):
+    t0 = 43.6 + i * 1.1
+    add(pop(500, 900), t0, 0.14)
+    for k in range(16):
+        add(tick(3000 + (k * 37) % 400), t0 + 0.05 + k * 0.055, 0.035, pan=0.2)
 # delivery cards
 for i in range(4):
-    add(pop(420 + i * 70, 820 + i * 90), 33.0 + i * 0.7, 0.2)
+    add(pop(420 + i * 70, 820 + i * 90), 49.0 + i * 0.7, 0.2)
+# price rows: bar + savings badge
+for i in range(4):
+    t0 = 55.0 + i * 0.85
+    add(pop(380 + i * 50, 700 + i * 60), t0 + 0.05, 0.15)
+    add(pop(700, 1500), t0 + 1.0, 0.18); add(tick(3200), t0 + 1.02, 0.08)
 # drop
-add(riser(1.9), 36.1, 0.32)
-add(impact(), 38.0, 0.55)
-add(whoosh(0.4, up=False), 37.85, 0.25)
-add(shimmer(), 38.55, 0.18)
-add(pop(500, 1000), 39.6, 0.08)
+add(riser(1.9), 60.1, 0.32)
+add(impact(), 62.0, 0.55)
+add(whoosh(0.4, up=False), 61.85, 0.25)
+add(shimmer(), 62.55, 0.18)
+add(pop(500, 1000), 63.6, 0.08)
 
 mix = np.stack([L, R], axis=1)
 # fades

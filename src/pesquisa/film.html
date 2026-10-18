@@ -132,6 +132,62 @@ html,body{background:#000;overflow:hidden;width:100%;height:100%}
     <div id="cards6" style="display:flex;gap:26px;margin-top:56px"></div>
   </div>
 
+  <!-- S7 atualizações semanais -->
+  <div id="sw" class="abs" style="left:140px;top:130px;z-index:15;width:1640px;height:860px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div>
+        <div class="mask"><div class="in"><span class="pill">ROTINA DE ENTREGA</span></div></div>
+        <div style="height:22px"></div>
+        <div class="mask"><div class="in h2">Atualizações <span class="gold">semanais</span></div></div>
+      </div>
+      <div class="mask" style="margin-top:20px"><div class="in"><span class="tag">Dados ilustrativos</span></div></div>
+    </div>
+    <div id="wline" class="abs" style="left:0;top:470px;width:1640px;height:6px;background:#2a2c33;border-radius:3px"><div id="wfill" style="height:6px;width:100%;background:var(--gold);border-radius:3px;transform-origin:0 50%"></div></div>
+    <div id="wnodes"></div>
+    <div id="wsteps" class="abs" style="left:0;top:620px;width:1640px;display:flex;gap:26px"></div>
+  </div>
+
+  <!-- S8 IA ouve o povo -->
+  <div id="sai" class="abs" style="left:0;top:0;width:1920px;height:1080px;z-index:15">
+    <div class="abs" style="left:140px;top:120px;width:700px">
+      <div class="mask"><div class="in"><span class="pill">INTELIGÊNCIA ARTIFICIAL</span></div></div>
+      <div style="height:22px"></div>
+      <div class="mask"><div class="in h2">A IA ouve</div></div>
+      <div class="mask"><div class="in h2 gold">o povo</div></div>
+      <div class="mask" style="margin-top:14px"><div class="in" style="font-size:24px;color:var(--mute);font-weight:500">Respostas dos cidadãos chegando da pesquisa</div></div>
+    </div>
+    <div id="feed" class="abs" style="left:140px;top:430px;width:690px;height:610px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 70px)"></div>
+    <div id="aicard" class="abs card" style="left:900px;top:120px;width:880px;height:860px;padding:40px 44px;background:#17181d">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:16px">
+          <svg width="44" height="44" viewBox="0 0 24 24"><path d="M12 1 L14.2 9.8 L23 12 L14.2 14.2 L12 23 L9.8 14.2 L1 12 L9.8 9.8 Z" fill="#D9A441"/></svg>
+          <div><div style="font-size:20px;color:var(--mute);font-weight:500">IA V4 FábricaGov</div><div style="font-family:Anton;font-size:44px;text-transform:uppercase;line-height:1.05">O que melhorar</div></div>
+        </div>
+        <span class="tag">Exemplo ilustrativo</span>
+      </div>
+      <div id="aistat" style="margin-top:26px;font-size:22px;color:#c9c7c0;font-weight:500">Lendo respostas: <span id="ain" style="color:var(--gold);font-weight:700">0</span></div>
+      <div style="height:8px;background:#2a2c33;border-radius:4px;margin-top:12px;overflow:hidden"><div id="aiprog" style="height:8px;background:var(--gold);transform-origin:0 50%"></div></div>
+      <div style="font-size:21px;font-weight:600;margin-top:28px">Temas mais citados</div>
+      <div id="topics" style="margin-top:10px"></div>
+      <div style="font-size:21px;font-weight:600;margin-top:22px">Recomendações para o gestor</div>
+      <div id="recs" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <!-- S9 preço vs mercado -->
+  <div id="spr" class="abs" style="left:140px;top:110px;z-index:15;width:1640px;height:900px">
+    <div class="mask"><div class="in"><span class="pill">PREÇO JUSTO</span></div></div>
+    <div style="height:20px"></div>
+    <div class="mask"><div class="in h2">Comparado ao <span class="gold">mercado</span></div></div>
+    <div class="mask" style="margin-top:10px"><div class="in" style="font-size:27px;color:#c9c7c0">Como avaliamos: cada modalidade de contratação frente à faixa cobrada pela concorrência.</div></div>
+    <div id="legend" style="display:flex;gap:34px;margin-top:30px;font-size:22px;font-weight:600">
+      <span><i style="display:inline-block;width:18px;height:18px;border-radius:4px;background:var(--gold);vertical-align:-2px;margin-right:10px"></i>V4 FábricaGov</span>
+      <span><i style="display:inline-block;width:18px;height:18px;border-radius:4px;background:#4a4c55;vertical-align:-2px;margin-right:10px"></i>Mercado</span>
+    </div>
+    <div id="prows" style="margin-top:22px"></div>
+    <div id="pfoot" class="abs foot" style="left:0;top:850px">Valores da tabela V4 FábricaGov. Mercado: faixa de preços da concorrência levantada pela V4.</div>
+  </div>
+
   <div id="flood"></div>
   <div id="end">
     <img id="logo" src="assets/logo_white.png" class="abs" style="left:50%;top:330px;width:1000px;margin-left:-500px;filter:brightness(0);opacity:.93">
@@ -145,7 +201,7 @@ html,body{background:#000;overflow:hidden;width:100%;height:100%}
 </div>
 <div id="hud"></div>
 <script>
-const W=1920,H=1080,DUR=44;
+const W=1920,H=1080,DUR=68;
 const $=s=>document.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
 const lerp=(a,b,t)=>a+(b-a)*t;
@@ -185,7 +241,69 @@ const C6=[['01','Coleta em campo','App de questionário que funciona offline, co
           ['03','Painéis e mapas','Resultados em tempo real para gestores e cidadãos.'],
           ['04','LGPD desde o projeto','Anonimização, controle de acesso e trilha de auditoria.']];
 
+const WEEKS=[[5,890],[6,1020],[7,1180],[8,1310],[9,1490],[10,1620],[11,1840],[12,2050]];
+const WSTEPS=[['01','Dados novos de campo','Entrevistas da semana sincronizadas pelo app.'],
+              ['02','Painel atualizado','Validação automática e indicadores recalculados.'],
+              ['03','Relatório ao gestor','Resumo semanal com o que mudou e onde agir.']];
+const FEED=[['Norte de Minas','Demorei três semanas para conseguir consulta no posto.'],
+            ['Jequitinhonha','Aqui não tem pediatra, a gente viaja até outra cidade.'],
+            ['Zona da Mata','O atendimento é bom, mas a fila começa de madrugada.'],
+            ['Central','Queria lembrete no celular da vacina das crianças.'],
+            ['Triângulo','A marcação por telefone nunca atende.'],
+            ['Sul','Faltou remédio de pressão na farmácia da UBS.']];
+const TOPICS=[['Tempo de espera',38],['Falta de especialistas',21],['Vacinação',17],['Medicamentos',14]];
+const RECS=['Ampliar horários de marcação nas UBS do Norte de Minas.',
+            'Priorizar pediatria itinerante no Jequitinhonha.',
+            'Lembretes de vacina por WhatsApp para as famílias.'];
+const PRICES=[['UST','Unidade de Serviço Técnico',70,'R$ 70',[230,230],'R$ 230','até 70%'],
+              ['PF','Ponto de Função',250,'R$ 250',[500,1000],'R$ 500 a R$ 1.000','até 75%'],
+              ['HST','Hora de Serviço Técnico',80,'R$ 80',[150,220],'R$ 150 a R$ 220','até 64%'],
+              ['Projeto','Escopo fechado',90,'10% de desconto',[100,100],'Preço cheio','10%']];
+
 let paths={}, mapBox=null, mgC=null, pinXY=null;
+
+function buildWeekly(){
+  const n=$('#wnodes'), W=1640;
+  WEEKS.forEach(([w,v],i)=>{const x=40+i*(W-80)/(WEEKS.length-1);
+    const d=document.createElement('div'); d.className='abs wn'; d.style.cssText=`left:${x}px;top:473px;width:0;height:0`;
+    d.innerHTML=`<div class="dot abs" style="left:-17px;top:-17px;width:34px;height:34px;border-radius:50%;background:var(--ink);border:5px solid #3a3c44"></div>
+      <div class="lab abs" style="left:-60px;width:120px;top:34px;text-align:center;font-size:20px;font-weight:600;color:#c9c7c0">SEM ${String(w).padStart(2,'0')}</div>
+      <div class="val abs" style="left:-90px;width:180px;top:-118px;text-align:center"><div style="font-family:Anton;font-size:46px;color:var(--gold);line-height:1">+${fmtInt(v)}</div><div style="font-size:18px;color:var(--mute)">entrevistas</div></div>`;
+    n.appendChild(d);});
+  const s=$('#wsteps');
+  WSTEPS.forEach(([k,t,dd])=>{const e=document.createElement('div');e.className='card ws';
+    e.style.cssText='flex:1;padding:30px 34px;border-top:6px solid var(--gold);background:var(--card)';
+    e.innerHTML=`<div style="display:flex;align-items:baseline;gap:18px"><span style="font-family:Anton;font-size:52px;color:var(--gold)">${k}</span><span style="font-size:32px;font-weight:700">${t}</span></div><div style="font-size:23px;color:#c9c7c0;margin-top:10px">${dd}</div>`;
+    s.appendChild(e);});
+}
+function buildAI(){
+  const f=$('#feed');
+  FEED.forEach(([r,q])=>{const b=document.createElement('div');b.className='fb card';
+    b.style.cssText='position:absolute;left:0;width:690px;padding:16px 22px;background:var(--card2)';
+    b.innerHTML=`<div style="font-size:16px;font-weight:700;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase">${r}</div><div style="font-size:22px;margin-top:4px;line-height:1.3">“${q}”</div>`;
+    f.appendChild(b);});
+  const tp=$('#topics');
+  TOPICS.forEach(([l,v])=>{const r=document.createElement('div');r.style.cssText='display:flex;align-items:center;height:46px;gap:16px';
+    r.innerHTML=`<div style="width:270px;font-size:21px;color:#d9d7d0">${l}</div><div style="flex:1;height:22px;background:#2a2c33;border-radius:5px;overflow:hidden"><div class="tb" style="height:22px;width:${v/40*100}%;background:var(--gold);border-radius:5px;transform-origin:0 50%"></div></div><div class="tv" data-v="${v}" style="width:60px;text-align:right;font-family:Anton;font-size:28px">0%</div>`;tp.appendChild(r);});
+  const rc=$('#recs');
+  RECS.forEach((t,i)=>{const r=document.createElement('div');r.className='rec';r.style.cssText='display:flex;gap:16px;align-items:flex-start;margin-bottom:12px';
+    r.innerHTML=`<span style="flex:none;width:38px;height:38px;border-radius:10px;background:var(--gold);color:var(--ink);font-family:Anton;font-size:24px;display:flex;align-items:center;justify-content:center">${i+1}</span><span class="rt" data-t="${t}" style="font-size:24px;font-weight:600;line-height:1.35;padding-top:3px"></span>`;rc.appendChild(r);});
+}
+function buildPrices(){
+  const p=$('#prows'), BW=780;
+  PRICES.forEach(([k,l,v,vt,m,mt,sv])=>{const r=document.createElement('div');r.className='pr';
+    r.style.cssText='display:flex;align-items:center;height:132px;border-top:1px solid var(--line);gap:30px';
+    const vw=v/m[1]*BW, m0=m[0]/m[1]*BW;
+    r.innerHTML=`<div style="width:330px"><div style="font-family:Anton;font-size:52px;line-height:1">${k}</div><div style="font-size:20px;color:var(--mute);margin-top:4px">${l}</div></div>
+      <div style="width:${BW+200}px;position:relative;height:100px">
+        <div class="bv abs" style="left:0;top:10px;height:34px;width:${vw}px;background:var(--gold);border-radius:6px;transform-origin:0 50%"></div>
+        <div class="tv abs" style="left:${vw+14}px;top:10px;font-size:26px;font-weight:700;color:var(--gold);line-height:34px;white-space:nowrap">${vt}</div>
+        <div class="bm abs" style="left:0;top:56px;height:34px;width:${BW}px;border-radius:6px;transform-origin:0 50%;background:linear-gradient(90deg,#4a4c55 ${m0}px,#34363e ${m0}px)"></div>
+        <div class="tm abs" style="left:${BW+14}px;top:56px;font-size:24px;font-weight:600;color:#c9c7c0;line-height:34px;white-space:nowrap">${mt}</div>
+      </div>
+      <div class="sv" style="margin-left:auto;background:var(--gold);color:var(--ink);border-radius:14px;padding:10px 18px;text-align:center;min-width:170px"><div style="font-size:16px;font-weight:700;letter-spacing:1px">ECONOMIA</div><div style="font-family:Anton;font-size:40px;line-height:1.05">${sv}</div></div>`;
+    p.appendChild(r);});
+}
 
 function buildBars(){
   const box=$('#bars'), max=14000, bw=118, gap=(860-112-bw*5)/4;
@@ -242,7 +360,7 @@ function lonlatToSvg(lon,lat){
   return [b.x+(lon-L0)/(L1-L0)*b.width, b.y+(m(P0)-m(lat))/(m(P0)-m(P1))*b.height];
 }
 async function init(){
-  buildBars();buildPanel();buildCards();
+  buildBars();buildPanel();buildCards();buildWeekly();buildAI();buildPrices();
   const svgTxt=await (await fetch('assets/brazil.svg')).text();
   $('#mapwrap').innerHTML=svgTxt;
   const svg=$('#mapwrap svg');
@@ -265,7 +383,7 @@ function seek(t){
   // background drift
   $('#grid').style.transform=`translate(${(-t*6)%40}px,${(-t*3)%40}px)`;
   $('#ghost').style.transform=`translateX(${-t*9}px)`;
-  $('#ghost').style.opacity=1-rng(t,37.4,38);
+  $('#ghost').style.opacity=1-rng(t,61.4,62);
 
   // ---- S1 ----
   const s1=$$('#s1 .in'); riseList(s1,t,0.25,0.16,3.3);
@@ -345,21 +463,65 @@ function seek(t){
   $('#lnd').setAttribute('cx',lerp(P[i0][0],P[i0+1][0],fr)); $('#lnd').setAttribute('cy',lerp(P[i0][1],P[i0+1][1],fr));
   $('#lnd').style.opacity=rng(t,28.6,28.8);
 
-  // ---- S6 entregas ----
-  riseList($$('#s6 .in'),t,32.1,0.14,37.2);
-  $$('#cards6 .c6').forEach((c,i)=>{const t0=33.0+i*0.7, e=spring(t-t0,190,26), x=io(rng(t,37.2+i*0.05,37.65+i*0.05));
+  // ---- S7 atualizações semanais (32.0-38.4) ----
+  const sw=$('#sw'); show(sw,t>31.95&&t<38.5);
+  riseList($$('#sw .in'),t,32.15,0.14,37.9);
+  const wl=io(rng(t,32.9,36.1)); $('#wfill').style.transform=`scaleX(${wl})`;
+  const wx=io(rng(t,37.9,38.4)); $('#wline').style.opacity=rng(t,32.6,32.9)*(1-wx);
+  $$('#wnodes .wn').forEach((n,i)=>{const t0=32.9+i*(3.2/7), on=spring(t-t0,260,22);
+    n.style.opacity=rng(t,32.6+i*0.03,32.9+i*0.03)*(1-wx);
+    const d=n.querySelector('.dot'); d.style.borderColor=on>0.3?'#D9A441':'#3a3c44'; d.style.background=on>0.3?'#D9A441':'#111216';
+    d.style.transform=`scale(${1+0.25*Math.max(0,on)*(1-rng(t,t0+0.3,t0+0.8))})`;
+    const v=n.querySelector('.val'); v.style.opacity=clamp(on*1.5); v.style.transform=`translateY(${(1-clamp(on,0,1.1))*20}px)`;});
+  $$('#wsteps .ws').forEach((c,i)=>{const t0=34.6+i*0.55, e=spring(t-t0,190,26);
+    c.style.transform=`translateY(${(1-e)*60 - wx*40}px)`; c.style.opacity=clamp(e*1.6)*(1-wx);});
+
+  // ---- S8 IA ouve o povo (38.4-48.0) ----
+  const sai=$('#sai'); show(sai,t>38.35&&t<48.1);
+  const ax=io(rng(t,47.5,48.0));
+  riseList($$('#sai .in'),t,38.55,0.13,47.45);
+  // feed: bubbles enter at the bottom and push the list up
+  const fb=$$('#feed .fb'), FH=118, es=fb.map((_,i)=>spring(t-(39.5+i*0.5),200,26));
+  let scroll=0; for(let j=4;j<fb.length;j++) scroll+=clamp(es[j],0,1)*FH;
+  fb.forEach((b,i)=>{b.style.top=(i*FH+(1-es[i])*50-scroll+60)+'px'; b.style.opacity=clamp(es[i]*1.6)*(1-ax);});
+  const ac=$('#aicard'), ae=spring(t-38.9,160,25);
+  ac.style.transform=`translateX(${(1-ae)*80 + ax*40}px)`; ac.style.opacity=clamp(ae*1.4)*(1-ax);
+  const ap=io(rng(t,40.0,42.6)); $('#aiprog').style.transform=`scaleX(${ap})`;
+  $('#ain').textContent=fmtInt(12480*ap);
+  $$('#topics .tb').forEach((b,i)=>{const t0=42.0+i*0.22, e=out(rng(t,t0,t0+0.7)); b.style.transform=`scaleX(${e})`;
+    const tv=b.parentElement.nextElementSibling; tv.textContent=Math.round(+tv.dataset.v*e)+'%';});
+  $$('#recs .rec').forEach((r,i)=>{const t0=43.6+i*1.1, rt=r.querySelector('.rt'), full=rt.dataset.t;
+    const k=Math.floor(full.length*clamp((t-t0)/0.9)); rt.textContent=full.slice(0,k)+((t>t0&&k<full.length)?'▍':'');
+    r.style.opacity=t>t0-0.05?1:0; r.firstElementChild.style.transform=`scale(${clamp(spring(t-t0,260,22),0,1.2)})`;});
+
+  // ---- S6 entregas (48.0-53.7) ----
+  riseList($$('#s6 .in'),t,48.1,0.14,53.2);
+  $$('#cards6 .c6').forEach((c,i)=>{const t0=49.0+i*0.7, e=spring(t-t0,190,26), x=io(rng(t,53.2+i*0.05,53.65+i*0.05));
     c.style.transform=`translateY(${(1-e)*70 - x*50}px)`; c.style.opacity=clamp(e*1.6)*(1-x);});
 
-  // ---- flood + end card ----
-  const fl=$('#flood'), R=Math.hypot(960,540)*1.08, fe=io(rng(t,37.9,38.3)), rad=R*fe;
+  // ---- S9 preço x mercado (53.8-61.6) ----
+  const spr=$('#spr'); show(spr,t>53.75&&t<61.8);
+  const px=io(rng(t,61.2,61.7));
+  riseList($$('#spr .in'),t,53.9,0.14,61.15);
+  $('#legend').style.opacity=rng(t,54.7,55.1)*(1-px);
+  $('#pfoot').style.opacity=rng(t,58.6,59.1)*(1-px);
+  $$('#prows .pr').forEach((r,i)=>{const t0=55.0+i*0.85, e=spring(t-t0,190,26);
+    r.style.opacity=clamp(e*1.6)*(1-px); r.style.transform=`translateY(${(1-e)*40 - px*30}px)`;
+    const bm=out(rng(t,t0+0.05,t0+0.7)), bv=out(rng(t,t0+0.35,t0+0.95));
+    r.querySelector('.bm').style.transform=`scaleX(${bm})`; r.querySelector('.bv').style.transform=`scaleX(${bv})`;
+    r.querySelector('.tm').style.opacity=rng(t,t0+0.5,t0+0.8); r.querySelector('.tv').style.opacity=rng(t,t0+0.8,t0+1.1);
+    const sv=r.querySelector('.sv'), se=spring(t-(t0+1.0),260,20); sv.style.transform=`scale(${0.6+0.4*se})`; sv.style.opacity=clamp(se*2);});
+
+  // ---- flood + end card (62.0-68.0) ----
+  const fl=$('#flood'), R=Math.hypot(960,540)*1.08, fe=io(rng(t,61.9,62.3)), rad=R*fe;
   fl.style.width=fl.style.height=(2*rad)+'px'; fl.style.left=(960-rad)+'px'; fl.style.top=(540-rad)+'px';
-  show(fl,t>37.9);
-  show($('#end'),t>38.2);
-  const lo=$('#logo'), la=spring(t-38.5,120,24);
-  lo.style.transform=`scaleY(${0.014+0.986*clamp(la,0,1.02)}) scale(${1.0+0.02*rng(t,38.5,44)})`;
-  lo.style.opacity=0.93*clamp((t-38.45)/0.08);
-  rise($('#tagline .in'),t,39.6); rise($('#contact .in'),t,40.3);
-  $('#end').style.transform=`translateY(${-6*rng(t,39,44)}px)`;
+  show(fl,t>61.9);
+  show($('#end'),t>62.2);
+  const lo=$('#logo'), la=spring(t-62.5,120,24);
+  lo.style.transform=`scaleY(${0.014+0.986*clamp(la,0,1.02)}) scale(${1.0+0.02*rng(t,62.5,68)})`;
+  lo.style.opacity=0.93*clamp((t-62.45)/0.08);
+  rise($('#tagline .in'),t,63.6); rise($('#contact .in'),t,64.3);
+  $('#end').style.transform=`translateY(${-6*rng(t,63,68)}px)`;
 
   $('#hud').textContent=t.toFixed(2)+'s';
 }

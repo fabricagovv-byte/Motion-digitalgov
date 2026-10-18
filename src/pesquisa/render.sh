@@ -3,7 +3,7 @@
 # Uso: bash render.sh [fps]   (padrão 60; SKIP_FRAMES=1 reaproveita os quadros já gerados)
 set -euo pipefail
 cd "$(dirname "$0")"
-FPS=${1:-60}; DUR=44; TOTAL=$((FPS*DUR)); J=4
+FPS=${1:-60}; DUR=68; TOTAL=$((FPS*DUR)); J=4
 OUT=../../build/pesquisa; FR=$OUT/frames; DEL=../../deliverables/pesquisa
 mkdir -p "$FR" "$DEL"
 export PORT=${PORT:-8765}

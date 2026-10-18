@@ -29,6 +29,18 @@ Atualizar 2025 quando o INPE publicar a taxa consolidada.
 taxa de resposta (87%), agentes em campo (146), avaliação por região (59% a 81%) e a curva semanal.
 Trocar por resultados reais quando houver uma pesquisa contratada.
 
+## Atualizações semanais e IA (dados ilustrativos, marcados na tela)
+Entrevistas por semana (+890 a +2.050), falas de cidadãos, temas (38%, 21%, 17%, 14%) e as 3 recomendações
+são exemplos. As falas foram escritas para o filme, não são de pessoas reais.
+
+## Preço x mercado · apresentação institucional V4 (pág. 14)
+| Modalidade | V4 | Concorrência | Economia |
+|---|---|---|---|
+| UST | R$ 70 | R$ 230 | até 70% |
+| Ponto de Função | R$ 250 | R$ 500 a R$ 1.000 | até 75% |
+| HST | R$ 80 | R$ 150 a R$ 220 | até 64% |
+| Projeto fechado | 10% de desconto | preço cheio | 10% |
+
 ## Marca
 Logo recortada da capa da apresentação institucional (sem redesenho). Cores: tinta `#111216`, dourado `#D9A441`,
 papel `#F2EFE8`. Tipos: Anton (títulos) e Inter (texto), ambas SIL OFL.

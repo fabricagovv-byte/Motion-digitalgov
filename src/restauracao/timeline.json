@@ -1,0 +1,71 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.9,
+   "dur": 6.35,
+   "caption": "Um documento manchado, rasgado ou apagado pode guardar a história de uma cidade inteira."
+  },
+  {
+   "id": "n2",
+   "start": 8.05,
+   "dur": 8.945,
+   "caption": "Agora a V4 FábricaGov tem uma plataforma de restauração de documentos, para órgãos públicos e empresas."
+  },
+  {
+   "id": "n3",
+   "start": 17.696,
+   "dur": 7.128,
+   "caption": "Você envia a imagem, e o software remove manchas, corrige o papel amarelado e recupera o texto apagado."
+  },
+  {
+   "id": "n4",
+   "start": 25.524,
+   "dur": 8.284,
+   "caption": "E você recebe duas versões: o documento restaurado e o texto limpo, transcrito do que está escrito na folha."
+  },
+  {
+   "id": "n5",
+   "start": 34.607,
+   "dur": 8.969,
+   "caption": "No mercado, a restauração manual custa de 50 a 500 reais por página. Com a V4, de 15 a 30 reais."
+  },
+  {
+   "id": "n6",
+   "start": 44.376,
+   "dur": 11.192,
+   "caption": "Imagine um órgão que precisa restaurar 20 mil páginas. No mercado, de 1 a 10 milhões de reais. Com a V4, de 300 a 600 mil."
+  },
+  {
+   "id": "n7",
+   "start": 56.368,
+   "dur": 5.259,
+   "caption": "E por ser software, a entrega é muito mais rápida que a restauração feita à mão."
+  },
+  {
+   "id": "n8",
+   "start": 62.327,
+   "dur": 6.025,
+   "caption": "A entrega é segura: o documento restaurado fica na palma da mão, com acesso controlado."
+  },
+  {
+   "id": "n9",
+   "start": 69.052,
+   "dur": 6.443,
+   "caption": "Você também pode enviar documentos já restaurados, organizar o acervo e exportar quando precisar."
+  },
+  {
+   "id": "n10",
+   "start": 76.195,
+   "dur": 8.022,
+   "caption": "E tem uma área de trabalho para a sua equipe: apresentar documentos, preparar respostas e compartilhar com outros órgãos."
+  },
+  {
+   "id": "n11",
+   "start": 86.717,
+   "dur": 8.214,
+   "caption": "V4 FábricaGov. Restauração de documentos mais rápida, mais segura, e por uma fração do preço."
+  }
+ ],
+ "end": 98.13
+}

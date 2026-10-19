@@ -298,3 +298,15 @@ Planejamento em `src/tic/BRIEF.md`. 11 falas: problemas da TI pública → quem 
 sustentação com SLA (cronômetro 30 min / 4 h) → 5 etapas → stack → Lei 14.133, UST/PF, LGPD, código do cliente → preço V4 x
 concorrência → +17 portais e +35 clientes no mapa → "Vamos modernizar o seu sistema?". Todos os fatos vêm da apresentação
 institucional; os resultados e depoimentos marcados como ilustrativos nela ficaram de fora. Entregáveis em `deliverables/tic/`.
+
+---
+
+# V4 FábricaGov · Filme narrado "Restauração de documentos" (98 s)
+
+SaaS de restauração para órgãos públicos e empresas. Voz nova: Piper `pt_BR-cadu-medium` com tratamento de estúdio
+(EQ, compressor, de-esser, ambiência leve, loudnorm por fala). Amostra comparando as 3 vozes: `deliverables/restauracao/amostras_de_voz.mp3`.
+Cenas: documento manchado → plataforma (órgãos públicos e empresas) → antes/depois com remoção de manchas → duas entregas
+(documento restaurado + texto transcrito) → preço por página (mercado R$ 50 a R$ 500 x V4 R$ 15 a R$ 30) → cenário de
+20.000 páginas (mercado R$ 1 a 10 mi x V4 R$ 300 a 600 mil) → velocidade → celular com acesso controlado → acervo:
+enviar restaurados e exportar → área de trabalho (apresentar, responder, compartilhar com outro órgão) → logo e contatos.
+Preços informados pela V4; cenário, telas e documento são ilustrativos (marcados na tela). Entregáveis em `deliverables/restauracao/`.

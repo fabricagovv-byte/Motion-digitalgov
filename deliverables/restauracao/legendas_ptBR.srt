@@ -1,0 +1,44 @@
+1
+00:00:00,900 --> 00:00:07,450
+Um documento manchado, rasgado ou apagado pode guardar a história de uma cidade inteira.
+
+2
+00:00:08,050 --> 00:00:17,195
+Agora a V4 FábricaGov tem uma plataforma de restauração de documentos, para órgãos públicos e empresas.
+
+3
+00:00:17,696 --> 00:00:25,024
+Você envia a imagem, e o software remove manchas, corrige o papel amarelado e recupera o texto apagado.
+
+4
+00:00:25,524 --> 00:00:34,008
+E você recebe duas versões: o documento restaurado e o texto limpo, transcrito do que está escrito na folha.
+
+5
+00:00:34,607 --> 00:00:43,776
+No mercado, a restauração manual custa de 50 a 500 reais por página. Com a V4, de 15 a 30 reais.
+
+6
+00:00:44,376 --> 00:00:55,768
+Imagine um órgão que precisa restaurar 20 mil páginas. No mercado, de 1 a 10 milhões de reais. Com a V4, de 300 a 600 mil.
+
+7
+00:00:56,368 --> 00:01:01,827
+E por ser software, a entrega é muito mais rápida que a restauração feita à mão.
+
+8
+00:01:02,327 --> 00:01:08,552
+A entrega é segura: o documento restaurado fica na palma da mão, com acesso controlado.
+
+9
+00:01:09,052 --> 00:01:15,695
+Você também pode enviar documentos já restaurados, organizar o acervo e exportar quando precisar.
+
+10
+00:01:16,195 --> 00:01:24,417
+E tem uma área de trabalho para a sua equipe: apresentar documentos, preparar respostas e compartilhar com outros órgãos.
+
+11
+00:01:26,717 --> 00:01:35,131
+V4 FábricaGov. Restauração de documentos mais rápida, mais segura, e por uma fração do preço.
+

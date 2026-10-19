@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 FábricaGov · Restauração de documentos</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-700-normal.woff2) format('woff2');font-weight:700}
+:root{--ink:#111216;--card:#1b1c21;--card2:#23252b;--gold:#D9A441;--paper:#F2EFE8;--mute:#9a9ba3;--line:#2c2e35}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;overflow:hidden;width:100%;height:100%}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;background:var(--ink);overflow:hidden;transform-origin:0 0;font-family:Inter,sans-serif;color:var(--paper)}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;visibility:hidden}
+#grid{position:absolute;left:-100px;top:-100px;width:2120px;height:1280px;background-image:radial-gradient(circle,#ffffff10 1.4px,transparent 1.6px);background-size:40px 40px}
+#ghost{position:absolute;left:60px;top:-30px;font-family:Anton;font-size:300px;line-height:1;color:#18191e;white-space:nowrap}
+.pill{display:inline-block;background:var(--gold);color:var(--ink);font-weight:700;font-size:22px;letter-spacing:4px;padding:10px 22px;border-radius:999px}
+.mask{overflow:hidden;display:block;padding-bottom:4px}
+.mask>.in{display:block}
+.h1{font-family:Anton;font-size:124px;line-height:1.02;text-transform:uppercase}
+.h2{font-family:Anton;font-size:96px;line-height:1.04;text-transform:uppercase}
+.sub{font-size:30px;line-height:1.35;color:#d9d7d0}
+.gold{color:var(--gold)}
+.card{background:var(--card);border-radius:22px;border:1px solid var(--line)}
+.tag{display:inline-block;font-size:18px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);border-radius:999px;padding:6px 14px}
+.chip{display:inline-flex;align-items:center;gap:12px;font-size:26px;font-weight:600;padding:14px 24px;border-radius:999px;border:2px solid #3a3c44;background:var(--card2);margin:0 12px 12px 0}
+.ok{display:inline-flex;width:46px;height:46px;border-radius:12px;align-items:center;justify-content:center;font-weight:800;font-size:26px;background:var(--gold);color:var(--ink);flex:none}
+/* documento */
+.doc{position:relative;width:600px;height:800px;overflow:hidden;font-family:'DejaVu Serif','Liberation Serif',serif;color:#2a2116}
+.doc .pg{position:absolute;inset:0;padding:58px 60px}
+.doc .hd{text-align:center;font-weight:700;letter-spacing:3px;font-size:20px}
+.doc .hd2{text-align:center;font-size:30px;font-weight:700;margin-top:10px;letter-spacing:1px}
+.doc .dt{text-align:center;font-size:18px;margin-top:8px;font-style:italic}
+.doc .bd{font-size:21px;line-height:1.75;margin-top:30px;text-align:justify;font-style:italic}
+.doc .sg{position:absolute;left:60px;right:60px;bottom:70px;display:flex;justify-content:space-between;font-size:16px;font-style:italic}
+.doc .sg div{border-top:1.5px solid currentColor;padding-top:8px;width:42%;text-align:center}
+.old{background:#cdb27a}
+.old .pg{color:#4a3a22}
+.new{background:#f7f3ea}
+.new .pg{color:#1c1a16}
+#flood{position:absolute;z-index:40;border-radius:50%;background:var(--gold);visibility:hidden}
+#end{position:absolute;inset:0;z-index:41;visibility:hidden}
+#hud{position:fixed;right:10px;bottom:10px;font:12px monospace;color:#888;z-index:99}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 0.35  0 0 0 0 0.26  0 0 0 0 0.12  0 0 0 0.55 0"/></filter>
+    <filter id="blot" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="8"/><feDisplacementMap in="SourceGraphic" scale="60"/><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="fade" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" seed="21"/><feColorMatrix values="0 0 0 0 0.80  0 0 0 0 0.70  0 0 0 0 0.48  0 0 0 0 0" result="c"/><feComponentTransfer in="SourceGraphic"/></filter>
+  </defs>
+</svg>
+<div id="stage">
+  <div id="grid"></div>
+  <div id="ghost">RESTAURAÇÃO · DOCUMENTOS · ACERVO · HISTÓRIA</div>
+
+  <!-- S1 -->
+  <div id="S1" class="scene">
+    <div class="abs" style="left:140px;top:300px;width:860px">
+      <div class="mask"><div class="in"><span class="pill">RESTAURAÇÃO DE DOCUMENTOS</span></div></div>
+      <div style="height:24px"></div>
+      <div class="mask"><div class="in h1">A história de</div></div>
+      <div class="mask"><div class="in h1 gold">uma cidade</div></div>
+      <div class="mask"><div class="in h1">inteira</div></div>
+    </div>
+    <div id="d1" class="abs" style="left:1160px;top:140px"></div>
+  </div>
+
+  <!-- S2 -->
+  <div id="S2" class="scene">
+    <img id="logo2" src="assets/logo_white.png" class="abs" style="left:50%;top:150px;width:860px;margin-left:-430px">
+    <div class="abs" style="left:0;right:0;top:420px;text-align:center">
+      <div class="mask"><div class="in h2">Plataforma de <span class="gold">restauração</span></div></div>
+      <div class="mask"><div class="in h2">de documentos</div></div>
+    </div>
+    <div id="aud" class="abs" style="left:0;right:0;top:720px;display:flex;justify-content:center;gap:24px"></div>
+    <div id="saas" class="abs" style="left:0;right:0;top:860px;text-align:center;font-size:26px;color:var(--mute)">Software on-line · sem instalação</div>
+  </div>
+
+  <!-- S3 antes/depois -->
+  <div id="S3" class="scene">
+    <div class="abs" style="left:140px;top:150px;width:780px">
+      <div class="mask"><div class="in"><span class="pill">COMO FUNCIONA</span></div></div>
+      <div style="height:22px"></div>
+      <div class="mask"><div class="in h2">Envie a imagem,</div></div>
+      <div class="mask"><div class="in h2 gold">o software restaura</div></div>
+    </div>
+    <div id="fixes" class="abs" style="left:140px;top:540px;width:780px"></div>
+    <div id="up" class="abs card" style="left:1120px;top:470px;width:680px;height:140px;display:flex;align-items:center;gap:24px;padding:0 34px;border:2px dashed #D9A441">
+      <svg width="54" height="54" viewBox="0 0 24 24" style="fill:none;stroke:#D9A441;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg>
+      <div><div style="font-size:28px;font-weight:700">ata_camara_1923.jpg</div><div style="height:10px;width:420px;background:#2a2c33;border-radius:5px;margin-top:12px;overflow:hidden"><div id="upbar" style="height:10px;background:#D9A441;transform-origin:0 50%"></div></div></div>
+    </div>
+    <div id="ba" class="abs" style="left:1160px;top:140px;width:600px;height:800px">
+      <div id="baOld" class="abs" style="left:0;top:0"></div>
+      <div id="baNewClip" class="abs" style="left:0;top:0;width:600px;height:800px;overflow:hidden"><div id="baNew"></div></div>
+      <div id="baBar" class="abs" style="top:-20px;width:6px;height:840px;background:#D9A441;box-shadow:0 0 30px 8px #D9A44188;margin-left:-3px"></div>
+      <div id="baL1" class="abs tag" style="left:16px;top:16px;background:#111216cc">Antes</div>
+      <div id="baL2" class="abs tag" style="right:16px;top:16px;background:#111216cc">Depois</div>
+    </div>
+  </div>
+
+  <!-- S4 duas versões -->
+  <div id="S4" class="scene">
+    <div class="abs" style="left:140px;top:90px;width:1640px;display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div class="mask"><div class="in"><span class="pill">VOCÊ RECEBE</span></div></div><div style="height:18px"></div>
+        <div class="mask"><div class="in h2">Duas <span class="gold">versões</span></div></div></div>
+      <div class="mask"><div class="in"><span class="tag">Documento ilustrativo</span></div></div>
+    </div>
+    <div id="o1" class="abs" style="left:140px;top:330px">
+      <div style="font-size:26px;font-weight:700;margin-bottom:16px"><span class="gold">1</span> · Documento restaurado</div>
+      <div id="d4" style="transform:scale(.8);transform-origin:0 0"></div>
+    </div>
+    <div id="o2" class="abs card" style="left:700px;top:330px;width:1080px;height:690px;padding:40px 46px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:26px;font-weight:700"><span class="gold">2</span> · Texto limpo, transcrito da folha</div>
+        <span style="font-size:18px;color:var(--mute);font-weight:600">TXT · editável · pesquisável</span></div>
+      <div id="tx" style="margin-top:26px;font-size:26px;line-height:1.6;color:#e8e4da;white-space:pre-wrap"></div>
+    </div>
+  </div>
+
+  <!-- S5 preço por página -->
+  <div id="S5" class="scene">
+    <div class="abs" style="left:140px;top:100px">
+      <div class="mask"><div class="in"><span class="pill">PREÇO POR PÁGINA</span></div></div><div style="height:18px"></div>
+      <div class="mask"><div class="in h2">Mercado x <span class="gold">V4</span></div></div>
+    </div>
+    <div id="pm" class="abs card" style="left:140px;top:380px;width:1640px;height:220px;padding:34px 44px"></div>
+    <div id="pv" class="abs card" style="left:140px;top:630px;width:1640px;height:220px;padding:34px 44px;border:2px solid #D9A441"></div>
+    <div id="eco" class="abs" style="left:140px;top:890px;font-size:34px;font-weight:700">Economia de <span class="gold">40% a 97%</span> por página</div>
+  </div>
+
+  <!-- S6 cenário -->
+  <div id="S6" class="scene">
+    <div class="abs" style="left:140px;top:100px;width:1640px;display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div class="mask"><div class="in"><span class="pill">EXEMPLO DE COMPRA PÚBLICA</span></div></div><div style="height:18px"></div>
+        <div class="mask"><div class="in h2"><span id="pgs" class="gold">0</span> páginas</div></div></div>
+      <div class="mask"><div class="in"><span class="tag">Cenário ilustrativo</span></div></div>
+    </div>
+    <div id="cols6" class="abs" style="left:140px;top:380px;width:1640px;display:flex;gap:28px"></div>
+    <div id="f6" class="abs" style="left:140px;top:1000px;font-size:20px;color:var(--mute)">Cálculo: 20.000 páginas × R$ 50 a R$ 500 (mercado) e × R$ 15 a R$ 30 (V4).</div>
+  </div>
+
+  <!-- S7 velocidade -->
+  <div id="S7" class="scene">
+    <div class="abs" style="left:140px;top:120px">
+      <div class="mask"><div class="in"><span class="pill">AGILIDADE</span></div></div><div style="height:18px"></div>
+      <div class="mask"><div class="in h2">Software é <span class="gold">mais rápido</span></div></div>
+    </div>
+    <div id="lanes" class="abs" style="left:140px;top:420px;width:1640px"></div>
+    <div class="abs" style="left:140px;top:960px"><span class="tag">Comparação ilustrativa</span></div>
+  </div>
+
+  <!-- S8 celular -->
+  <div id="S8" class="scene">
+    <div class="abs" style="left:140px;top:240px;width:820px">
+      <div class="mask"><div class="in"><span class="pill">ENTREGA SEGURA</span></div></div><div style="height:22px"></div>
+      <div class="mask"><div class="in h2">Na palma</div></div>
+      <div class="mask"><div class="in h2 gold">da mão</div></div>
+      <div style="height:30px"></div>
+      <div id="sec" style="width:780px"></div>
+    </div>
+    <div id="phone" class="abs" style="left:1200px;top:90px;width:470px;height:900px;border-radius:64px;background:#0a0a0c;border:3px solid #34363e;padding:22px">
+      <div style="width:100%;height:100%;border-radius:46px;background:#16171b;overflow:hidden;position:relative">
+        <div style="height:110px;padding:50px 26px 0;display:flex;justify-content:space-between;align-items:center"><span style="font-size:20px;font-weight:700">Acervo</span>
+          <span id="lock" style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:#D9A441;border:1.5px solid #D9A441;border-radius:999px;padding:5px 12px">🔒 Acesso controlado</span></div>
+        <div id="pdoc" style="position:absolute;left:24px;top:130px;transform:scale(.64);transform-origin:0 0"></div>
+        <div style="position:absolute;left:24px;right:24px;bottom:26px;display:flex;gap:10px">
+          <div style="flex:1;height:54px;border-radius:14px;background:#D9A441;color:#111216;font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center">Ver texto</div>
+          <div style="flex:1;height:54px;border-radius:14px;border:2px solid #3a3c44;font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center">Compartilhar</div></div>
+      </div>
+    </div>
+    <div class="abs" style="left:1700px;top:120px"><span class="tag" style="writing-mode:vertical-rl;padding:14px 6px">Interface ilustrativa</span></div>
+  </div>
+
+  <!-- S9 acervo: enviar e exportar -->
+  <div id="S9" class="scene">
+    <div class="abs" style="left:140px;top:100px;width:1640px;display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div class="mask"><div class="in"><span class="pill">ACERVO DIGITAL</span></div></div><div style="height:18px"></div>
+        <div class="mask"><div class="in h2">Envie, organize <span class="gold">e exporte</span></div></div></div>
+      <div class="mask"><div class="in"><span class="tag">Interface ilustrativa</span></div></div>
+    </div>
+    <div id="lib" class="abs card" style="left:140px;top:340px;width:1100px;height:660px;padding:30px 34px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:24px;font-weight:700">Acervo · Câmara Municipal</div>
+        <div id="upbtn" style="font-size:20px;font-weight:700;padding:12px 20px;border-radius:12px;background:#D9A441;color:#111216">+ Enviar já restaurados</div></div>
+      <div id="thumbs" style="display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-top:26px"></div>
+    </div>
+    <div id="exp" class="abs card" style="left:1280px;top:340px;width:500px;padding:30px 34px">
+      <div style="font-size:24px;font-weight:700;margin-bottom:14px">Exportar</div>
+      <div id="exps"></div>
+    </div>
+  </div>
+
+  <!-- S10 área de trabalho -->
+  <div id="S10" class="scene">
+    <div class="abs" style="left:140px;top:90px;width:1640px;display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div class="mask"><div class="in"><span class="pill">ÁREA DE TRABALHO</span></div></div><div style="height:18px"></div>
+        <div class="mask"><div class="in h2">Para a sua <span class="gold">equipe</span></div></div></div>
+      <div class="mask"><div class="in"><span class="tag">Interface ilustrativa</span></div></div>
+    </div>
+    <div id="ws" class="abs" style="left:140px;top:330px;width:1640px;height:690px;border-radius:22px;background:#17181d;border:2px solid #34363e;overflow:hidden;display:flex">
+      <div style="width:280px;background:#1b1c21;border-right:1px solid #2c2e35;padding:30px 24px;font-size:22px;font-weight:600">
+        <div style="font-family:Anton;font-size:30px;color:#D9A441;margin-bottom:26px">V4 RESTAURA</div>
+        <div style="padding:12px 14px;border-radius:10px;color:#9a9ba3">Acervo</div>
+        <div style="padding:12px 14px;border-radius:10px;background:#D9A44122;color:#D9A441">Área de trabalho</div>
+        <div style="padding:12px 14px;border-radius:10px;color:#9a9ba3">Compartilhados</div>
+        <div style="padding:12px 14px;border-radius:10px;color:#9a9ba3">Exportações</div>
+      </div>
+      <div style="flex:1;position:relative;padding:30px 34px">
+        <div style="display:flex;gap:16px" id="acts"></div>
+        <div id="wsdoc" class="abs" style="left:34px;top:120px;transform:scale(.62);transform-origin:0 0"></div>
+        <div id="notes" class="abs" style="left:450px;top:120px;width:820px"></div>
+        <div id="share" class="abs card" style="left:600px;top:330px;width:640px;padding:28px 32px;background:#23252b;border:2px solid #D9A441">
+          <div style="font-size:24px;font-weight:700">Compartilhar com outro órgão</div>
+          <div style="margin-top:16px;height:56px;border-radius:12px;background:#111216;border:2px solid #3a3c44;display:flex;align-items:center;padding:0 18px;font-size:21px" id="dest"></div>
+          <div id="sent" style="margin-top:16px;font-size:20px;font-weight:700;color:#D9A441"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="flood"></div>
+  <div id="end">
+    <img id="logo" src="assets/logo_white.png" class="abs" style="left:50%;top:220px;width:900px;margin-left:-450px;filter:brightness(0);opacity:.93">
+    <div id="tagline" class="abs" style="left:0;right:0;top:480px;text-align:center">
+      <div class="mask"><div class="in" style="font-family:Anton;font-size:116px;color:var(--ink);text-transform:uppercase">Restauração de documentos</div></div>
+    </div>
+    <div id="cta" class="abs" style="left:0;right:0;top:650px;text-align:center">
+      <div class="mask"><div class="in" style="font-size:38px;font-weight:700;color:var(--ink)">Mais rápida · mais segura · de R$ 15 a R$ 30 por página</div></div>
+    </div>
+    <div id="contact" class="abs" style="left:0;right:0;top:790px;text-align:center">
+      <div class="mask"><div class="in" style="font-size:30px;font-weight:600;color:var(--ink)">fabricagovv@gmail.com  ·  (31) 99827-7323  ·  @Grupo_v4_fabricagovv</div></div>
+    </div>
+  </div>
+</div>
+<div id="hud"></div>
+<script>
+const W=1920,H=1080;
+const $=s=>document.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const rng=(t,a,b)=>clamp((t-a)/(b-a));
+const io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const out=x=>1-Math.pow(1-x,3);
+const expo=x=>x>=1?1:1-Math.pow(2,-10*x);
+function spring(t,k=170,d=26){ if(t<=0) return 0; const w=Math.sqrt(k), z=d/(2*w);
+  if(z>=1) return 1-Math.exp(-w*t)*(1+w*t);
+  const wd=w*Math.sqrt(1-z*z); return 1-Math.exp(-z*w*t)*(Math.cos(wd*t)+z/Math.sqrt(1-z*z)*Math.sin(wd*t)); }
+const fmtInt=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+function rise(el,t,tin,tout=1e9){const a=spring(t-tin,180,27), b=io(rng(t,tout,tout+0.42));
+  el.style.transform=`translateY(${(1-a)*112 - b*112}%)`; el.parentElement.style.visibility=(t<tin-0.01||t>tout+0.43)?'hidden':'inherit';}
+function riseAll(sel,t,tin,step,tout){$$(sel+' .in').forEach((e,i)=>rise(e,t,tin+i*step,tout+i*0.04));}
+function pop(el,t,t0,tout=1e9,dy=50,k=190,d=26){const e=spring(t-t0,k,d), x=io(rng(t,tout,tout+0.4));
+  el.style.transform=`translateY(${(1-e)*dy - x*40}px)`; el.style.opacity=clamp(e*1.6)*(1-x);}
+const show=(el,on)=>{el.style.visibility=on?'visible':'hidden';el.style.display=on?'':'none';};
+function typed(full,t,t0,dur){const k=Math.floor(full.length*clamp((t-t0)/dur));return full.slice(0,k)+((t>t0&&k<full.length)?'▍':'');}
+
+const BODY='Aos doze dias do mês de março de mil novecentos e vinte e três, reuniram-se os vereadores na sala das sessões, sob a presidência do senhor Antônio Pereira, para deliberar sobre a construção da nova ponte sobre o rio e o calçamento da rua principal. Aprovado por unanimidade.';
+function docHTML(old){
+  const stains=old?`<svg class="abs" style="left:0;top:0" width="600" height="800">
+      <rect width="600" height="800" filter="url(#grain)"/>
+      <g filter="url(#blot)" opacity=".75"><ellipse cx="430" cy="210" rx="120" ry="90" fill="#7a5524"/><ellipse cx="150" cy="560" rx="90" ry="140" fill="#6b4a1f"/><ellipse cx="480" cy="650" rx="70" ry="50" fill="#5c3f1a"/><circle cx="270" cy="380" r="40" fill="#8a6430"/></g>
+      <g opacity=".5"><path d="M0 0 L600 0 L600 30 Q300 60 0 20 Z" fill="#8f7140"/><path d="M0 800 L600 800 L600 770 Q300 740 0 780 Z" fill="#8f7140"/></g>
+    </svg>`:'';
+  return `<div class="doc ${old?'old':'new'}" style="${old?'clip-path:polygon(0 0,100% 0,100% 82%,92% 86%,96% 91%,89% 100%,0 100%)':''}">${stains}
+    <div class="pg" style="${old?'filter:blur(.6px);opacity:.55':''}">
+      <div class="hd">CÂMARA MUNICIPAL</div><div class="hd2">ATA DA SESSÃO ORDINÁRIA</div><div class="dt">12 de março de 1923</div>
+      <div class="bd">${BODY}</div>
+      <div class="sg"><div>Presidente</div><div>Secretário</div></div>
+    </div></div>`;
+}
+let TL=null,S=[],END=100,L=[];
+function build(){
+  $('#d1').innerHTML=docHTML(true); $('#baOld').innerHTML=docHTML(true); $('#baNew').innerHTML=docHTML(false);
+  $('#d4').innerHTML=docHTML(false); $('#pdoc').innerHTML=docHTML(false); $('#wsdoc').innerHTML=docHTML(false);
+  ['Órgãos públicos','Empresas'].forEach(a=>{const e=document.createElement('span');e.className='chip au';e.style.fontSize='34px';e.innerHTML=a;$('#aud').appendChild(e);});
+  ['Manchas removidas','Papel amarelado corrigido','Texto apagado recuperado'].forEach(f=>{const e=document.createElement('div');e.className='fx';e.style.cssText='display:flex;align-items:center;gap:22px;height:96px;font-size:34px;font-weight:600;border-bottom:1px solid #2c2e35';
+    e.innerHTML=`<span class="ok">✓</span>${f}`;$('#fixes').appendChild(e);});
+  // preços
+  const BW=1100;
+  $('#pm').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:28px;font-weight:700;color:#c9c7c0">Restauração manual no mercado</span><span style="font-family:Anton;font-size:72px">R$ 50 <span style="font-size:40px">a</span> R$ 500<span style="font-size:30px;font-family:Inter;color:#9a9ba3"> / página</span></span></div>
+    <div style="position:relative;height:40px;margin-top:22px;background:#23252b;border-radius:8px;overflow:hidden"><div id="bm" style="position:absolute;left:0;top:0;height:40px;width:100%;transform-origin:0 50%;background:linear-gradient(90deg,#4a4c55 10%,#34363e 10%)"></div></div>`;
+  $('#pv').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:28px;font-weight:700;color:#D9A441">V4 FábricaGov · software</span><span style="font-family:Anton;font-size:72px;color:#D9A441">R$ 15 <span style="font-size:40px">a</span> R$ 30<span style="font-size:30px;font-family:Inter;color:#9a9ba3"> / página</span></span></div>
+    <div style="position:relative;height:40px;margin-top:22px;background:#23252b;border-radius:8px;overflow:hidden"><div id="bv" style="position:absolute;left:0;top:0;height:40px;width:6%;transform-origin:0 50%;background:linear-gradient(90deg,#D9A441 50%,#b8862f 50%)"></div></div>`;
+  // cenário
+  [['MERCADO','R$ 1 mi a R$ 10 mi','20.000 × R$ 50 a R$ 500','#3a3c44'],['V4 FÁBRICAGOV','R$ 300 mil a R$ 600 mil','20.000 × R$ 15 a R$ 30','#D9A441'],['ECONOMIA','a partir de R$ 400 mil','e pode passar de R$ 9 milhões','#D9A441']].forEach(([h,v,d,c],i)=>{
+    const e=document.createElement('div');e.className='c6 card';e.style.cssText=`flex:1;height:540px;padding:40px 40px;border-top:8px solid ${c};${i===2?'background:#D9A441;color:#111216':''}`;
+    e.innerHTML=`<div style="font-size:24px;font-weight:700;letter-spacing:2px;${i===2?'':'color:#9a9ba3'}">${h}</div><div style="font-family:Anton;font-size:84px;line-height:1.05;margin-top:40px;${i===1?'color:#D9A441':''}">${v}</div><div style="font-size:24px;margin-top:26px;${i===2?'':'color:#c9c7c0'}">${d}</div>`;
+    $('#cols6').appendChild(e);});
+  // velocidade
+  [['Restauração manual','página por página, à mão','#4a4c55'],['V4 · software','processamento em lote','#D9A441']].forEach(([h,d,c])=>{
+    const e=document.createElement('div');e.className='ln';e.style.cssText='margin-bottom:70px';
+    e.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:Anton;font-size:60px">${h}</span><span style="font-size:26px;color:#9a9ba3">${d}</span></div>
+      <div style="height:56px;background:#23252b;border-radius:12px;margin-top:18px;overflow:hidden;position:relative"><div class="lb" style="position:absolute;inset:0;background:${c};transform-origin:0 50%"></div><div class="lp" style="position:absolute;right:20px;top:0;line-height:56px;font-size:24px;font-weight:700;color:#F2EFE8;mix-blend-mode:difference"></div></div>`;
+    $('#lanes').appendChild(e);});
+  // segurança
+  ['Acesso por perfil e senha','Registro de quem abriu cada documento','Pelo celular, tablet ou computador'].forEach(s=>{const e=document.createElement('div');e.className='sc';e.style.cssText='display:flex;align-items:center;gap:20px;height:78px;font-size:28px;font-weight:600';
+    e.innerHTML=`<span class="ok" style="width:40px;height:40px;font-size:22px">✓</span>${s}`;$('#sec').appendChild(e);});
+  // acervo
+  for(let i=0;i<10;i++){const e=document.createElement('div');e.className='th';e.style.cssText='height:250px;border-radius:12px;background:#23252b;border:1px solid #2c2e35;padding:12px;position:relative';
+    e.innerHTML=`<div style="height:170px;border-radius:6px;background:${i<7?'#f1ebdd':'#cdb27a'};padding:16px 14px">${'<div style="height:6px;background:#b9b1a0;border-radius:3px;margin-bottom:9px"></div>'.repeat(8)}</div><div style="font-size:15px;font-weight:600;margin-top:10px">${['Ata 1923','Ata 1924','Lei 112/1931','Planta 1940','Ata 1952','Livro tombo','Registro 1960','Ofício 1898','Mapa 1911','Decreto 1934'][i]}</div>
+      <div class="badge" style="position:absolute;right:20px;top:20px;font-size:13px;font-weight:700;padding:4px 8px;border-radius:6px;background:#D9A441;color:#111216">${i<7?'RESTAURADO':'ENVIADO'}</div>`;$('#thumbs').appendChild(e);}
+  [['PDF','Documento restaurado'],['Imagem','Alta resolução'],['Texto','Transcrição editável']].forEach(([f,d])=>{const e=document.createElement('div');e.className='ex';e.style.cssText='display:flex;align-items:center;gap:18px;height:96px;border-top:1px solid #2c2e35';
+    e.innerHTML=`<span style="width:70px;height:70px;border-radius:14px;background:#2a2c33;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:24px;color:#D9A441">${f}</span><div><div style="font-size:24px;font-weight:700">${f}</div><div style="font-size:18px;color:#9a9ba3">${d}</div></div><span class="ok ek" style="margin-left:auto;width:40px;height:40px;font-size:22px">✓</span>`;$('#exps').appendChild(e);});
+  // workspace
+  ['Apresentar','Responder solicitação','Compartilhar'].forEach(a=>{const e=document.createElement('div');e.className='ab';e.style.cssText='font-size:21px;font-weight:700;padding:14px 22px;border-radius:12px;border:2px solid #3a3c44';e.textContent=a;$('#acts').appendChild(e);});
+  ['Nota: ata cita a construção da ponte (1923).','Resposta ao pedido de informação nº 45/2026 em preparação.'].forEach(n=>{const e=document.createElement('div');e.className='nt';e.style.cssText='background:#23252b;border-left:5px solid #D9A441;border-radius:10px;padding:18px 22px;font-size:22px;margin-bottom:16px';e.textContent=n;$('#notes').appendChild(e);});
+}
+async function init(){
+  TL=await (await fetch('timeline.json')).json();
+  L=TL.lines.map(l=>l.start); S=L.map((s,i)=>[i===0?0:s-0.4, i<L.length-1?L[i+1]-0.4:TL.end]); END=TL.end;
+  build();
+  await document.fonts.ready; await Promise.all($$('img').map(i=>i.complete?0:new Promise(r=>i.onload=r)));
+  fit(); window.DUR=END; window.ready=true; seek(0);
+}
+
+function seek(t){
+  $('#grid').style.transform=`translate(${(-t*6)%40}px,${(-t*3)%40}px)`;
+  $('#ghost').style.transform=`translateX(${-t*14}px)`;
+  const SC=k=>{const [a,b]=S[k-1]; const on=t>=a-0.01&&t<b+0.02; show($('#S'+k),on); return [a,b,on,L[k-1]];};
+
+  { const [a,b,on,l]=SC(1); if(on){ riseAll('#S1',t,l+2.2,0.16,b-0.45); const x=io(rng(t,b-0.5,b));
+      const d=$('#d1'), e=spring(t-0.2,90,22); d.style.transform=`translateY(${(1-e)*80}px) rotate(${lerp(-4,-1.5,rng(t,0,b))}deg) scale(${lerp(.98,1.04,rng(t,0,b))})`; d.style.opacity=clamp(e*1.4)*(1-x); } }
+  { const [a,b,on,l]=SC(2); if(on){ riseAll('#S2',t,l+3.0,0.15,b-0.45); const x=io(rng(t,b-0.5,b));
+      const lo=$('#logo2'), e=spring(t-(a+0.3),120,24); lo.style.transform=`scaleY(${0.014+0.986*clamp(e,0,1.02)})`; lo.style.opacity=clamp((t-a-0.25)/0.08)*(1-x);
+      $$('#aud .au').forEach((c,i)=>pop(c,t,l+[6.2,7.6][i],b-0.5,30)); $('#saas').style.opacity=rng(t,l+7.9,l+8.3)*(1-x); } }
+  { const [a,b,on,l]=SC(3); if(on){ riseAll('#S3',t,a+0.2,0.12,b-0.45); const x=io(rng(t,b-0.5,b));
+      const up=$('#up'); pop(up,t,a+0.3,l+1.6,40); $('#upbar').style.transform=`scaleX(${io(rng(t,a+0.5,l+1.4))})`;
+      const ba=$('#ba'), be=spring(t-(l+1.6),150,25); ba.style.opacity=clamp(be*1.5)*(1-x); ba.style.transform=`translateY(${(1-be)*60}px)`;
+      const p=io(rng(t,l+2.2,l+6.4)), X=p*600; $('#baNewClip').style.width=X+'px'; $('#baBar').style.left=X+'px'; $('#baBar').style.opacity=(p>0&&p<1)?1:0;
+      $('#baL2').style.opacity=rng(t,l+6.2,l+6.5);
+      $$('#fixes .fx').forEach((f,i)=>{const t0=l+[2.3,3.9,5.6][i]; pop(f,t,t0,b-0.5,30); f.querySelector('.ok').style.transform=`scale(${clamp(spring(t-(t0+0.15),260,18),0,1.2)})`;}); } }
+  { const [a,b,on,l]=SC(4); if(on){ riseAll('#S4',t,a+0.2,0.12,b-0.45);
+      pop($('#o1'),t,l+2.0,b-0.5,50); pop($('#o2'),t,l+3.6,b-0.5,50);
+      $('#tx').textContent=typed('CÂMARA MUNICIPAL\nAta da Sessão Ordinária · 12 de março de 1923\n\n'+BODY,t,l+4.2,4.0); } }
+  { const [a,b,on,l]=SC(5); if(on){ riseAll('#S5',t,a+0.2,0.12,b-0.45);
+      pop($('#pm'),t,l+0.6,b-0.5,40); $('#bm').style.transform=`scaleX(${out(rng(t,l+1.0,l+2.2))})`;
+      pop($('#pv'),t,l+5.4,b-0.5,40); $('#bv').style.transform=`scaleX(${out(rng(t,l+5.8,l+6.6))})`;
+      pop($('#eco'),t,l+7.4,b-0.5,30); } }
+  { const [a,b,on,l]=SC(6); if(on){ riseAll('#S6',t,a+0.2,0.12,b-0.45);
+      $('#pgs').textContent=fmtInt(20000*expo(rng(t,l+1.2,l+2.6)));
+      $$('#cols6 .c6').forEach((c,i)=>pop(c,t,l+[4.0,7.6,9.6][i],b-0.5,60)); $('#f6').style.opacity=rng(t,l+8,l+8.4)*(1-rng(t,b-0.5,b)); } }
+  { const [a,b,on,l]=SC(7); if(on){ riseAll('#S7',t,a+0.2,0.12,b-0.45);
+      $$('#lanes .ln').forEach((n,i)=>{pop(n,t,a+0.5+i*0.3,b-0.5,40); const p=i===0?0.14*io(rng(t,a+1.0,b-0.6)):io(rng(t,a+1.0,a+2.6));
+        n.querySelector('.lb').style.transform=`scaleX(${p})`; n.querySelector('.lp').textContent=Math.round(p*100)+'%';}); } }
+  { const [a,b,on,l]=SC(8); if(on){ riseAll('#S8',t,a+0.2,0.12,b-0.45); const x=io(rng(t,b-0.5,b));
+      const ph=$('#phone'), e=spring(t-(a+0.3),150,25); ph.style.transform=`translateY(${(1-e)*140 - x*60}px)`; ph.style.opacity=clamp(e*1.5)*(1-x);
+      $('#lock').style.transform=`scale(${clamp(spring(t-(l+3.6),260,18),0,1.2)})`;
+      $$('#sec .sc').forEach((s,i)=>pop(s,t,l+2.4+i*0.5,b-0.5,24)); } }
+  { const [a,b,on,l]=SC(9); if(on){ riseAll('#S9',t,a+0.2,0.12,b-0.45);
+      pop($('#lib'),t,a+0.3,b-0.5,50); $$('#thumbs .th').forEach((th,i)=>{const t0=i<7?a+0.6+i*0.08:l+1.6+(i-7)*0.3; pop(th,t,t0,b-0.5,i<7?20:-60,220,22);});
+      $('#upbtn').style.transform=`scale(${1-0.06*Math.sin(Math.PI*rng(t,l+1.2,l+1.5))})`;
+      pop($('#exp'),t,l+4.2,b-0.5,40); $$('#exps .ex').forEach((e,i)=>{e.querySelector('.ek').style.transform=`scale(${clamp(spring(t-(l+4.7+i*0.3),260,18),0,1.2)})`;}); } }
+  { const [a,b,on,l]=SC(10); if(on){ riseAll('#S10',t,a+0.2,0.12,b-0.45);
+      pop($('#ws'),t,a+0.3,b-0.5,60,150,25);
+      const T=[2.6,4.0,5.6].map(v=>l+v);
+      $$('#acts .ab').forEach((ab,i)=>{const on2=t>T[i]&&t<T[i]+1.4; ab.style.background=on2?'#D9A441':'transparent'; ab.style.color=on2?'#111216':'#F2EFE8'; ab.style.borderColor=on2?'#D9A441':'#3a3c44';});
+      const wd=$('#wsdoc'); wd.style.transform=`scale(${t>T[0]&&t<T[1]?0.7:0.62})`; wd.style.transition='none';
+      $$('#notes .nt').forEach((n,i)=>pop(n,t,T[1]+0.2+i*0.4,b-0.5,24));
+      pop($('#share'),t,T[2],b-0.5,40); $('#dest').textContent=typed('Secretaria de Cultura · Arquivo Público',t,T[2]+0.4,1.2); $('#sent').textContent=t>T[2]+2.0?'✓ Enviado com acesso controlado':''; } }
+
+  const F=S[S.length-1][0];
+  const fl=$('#flood'), R=Math.hypot(960,540)*1.08, fe=io(rng(t,F,F+0.4)), rad=R*fe;
+  fl.style.width=fl.style.height=(2*rad)+'px'; fl.style.left=(960-rad)+'px'; fl.style.top=(540-rad)+'px';
+  show(fl,t>F); show($('#end'),t>F+0.3);
+  const lo=$('#logo'), la=spring(t-(F+0.55),120,24);
+  lo.style.transform=`scaleY(${0.014+0.986*clamp(la,0,1.02)}) scale(${1+0.02*rng(t,F,END)})`; lo.style.opacity=0.93*clamp((t-F-0.5)/0.08);
+  rise($('#tagline .in'),t,F+1.8); rise($('#cta .in'),t,F+3.2); rise($('#contact .in'),t,F+4.4);
+  $('#end').style.transform=`translateY(${-6*rng(t,F+1,END)}px)`;
+  $('#ghost').style.opacity=1-rng(t,F-0.5,F);
+  $('#hud').textContent=t.toFixed(2)+'s';
+}
+window.seek=seek;
+function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(${(innerWidth-W*s)/2}px,${(innerHeight-H*s)/2}px) scale(${s})`;}
+addEventListener('resize',fit);
+let playing=false,t0=0,cur=0;
+addEventListener('keydown',e=>{if(e.code==='Space'){playing=!playing;t0=performance.now()/1000-cur;loop();}
+  if(e.code==='ArrowRight'){cur+=1/30;seek(cur);} if(e.code==='ArrowLeft'){cur=Math.max(0,cur-1/30);seek(cur);}
+  if(e.code==='KeyR'){cur=0;t0=performance.now()/1000;playing=true;loop();}});
+function loop(){if(!playing)return;cur=performance.now()/1000-t0;if(cur>END){cur=END;playing=false;}seek(cur);requestAnimationFrame(loop);}
+if(new URLSearchParams(location.search).has('render')) $('#hud').style.display='none';
+init();
+</script>
+</body>
+</html>

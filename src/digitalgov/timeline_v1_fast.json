@@ -1,0 +1,65 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.7,
+   "dur": 6.399,
+   "caption": "Você sabe quanto papel o Brasil produz? São mais de dois milhões de toneladas de papel de imprimir e escrever por ano."
+  },
+  {
+   "id": "n2",
+   "start": 7.699,
+   "dur": 6.571,
+   "caption": "É como se, todo mês, saíssem 38 bilhões de folhas A4. Só em papel, mais de um bilhão de reais por mês."
+  },
+  {
+   "id": "n3",
+   "start": 14.97,
+   "dur": 5.141,
+   "caption": "No serviço público, cada folha vira processo, arquivo, caixa e tempo perdido procurando."
+  },
+  {
+   "id": "n4",
+   "start": 20.811,
+   "dur": 7.851,
+   "caption": "A DigitalGov digitaliza os seus documentos: cada folha é escaneada, lida automaticamente e organizada para ser encontrada em segundos."
+  },
+  {
+   "id": "n5",
+   "start": 29.362,
+   "dur": 5.947,
+   "caption": "Com tudo digital, você acessa de qualquer lugar, com segurança, e para de gastar com impressão, papel e espaço."
+  },
+  {
+   "id": "n6",
+   "start": 36.009,
+   "dur": 8.118,
+   "caption": "Veja a Bahia: só em 2024, o processo eletrônico gerou mais de 50 milhões de reais de economia para o governo do estado."
+  },
+  {
+   "id": "n7",
+   "start": 44.927,
+   "dur": 10.283,
+   "caption": "Agora imagine o seu estado. Minas Gerais tem 853 municípios. Se cada prefeitura imprimisse 20 mil folhas por mês, seriam 17 milhões de folhas."
+  },
+  {
+   "id": "n8",
+   "start": 55.909,
+   "dur": 7.104,
+   "caption": "A 30 centavos por página, são 5 milhões de reais por mês. Mais de 60 milhões por ano que podem virar economia."
+  },
+  {
+   "id": "n9",
+   "start": 63.814,
+   "dur": 5.618,
+   "caption": "A DigitalGov tem sede em Alvorada de Minas, no coração de Minas Gerais, e atende todo o Brasil."
+  },
+  {
+   "id": "n10",
+   "start": 71.832,
+   "dur": 4.885,
+   "caption": "DigitalGov. Tecnologia a serviço da sua empresa. Fale com o Warley, nosso diretor."
+  }
+ ],
+ "end": 79.92
+}

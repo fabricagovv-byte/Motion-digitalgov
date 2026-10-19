@@ -3,63 +3,93 @@
   {
    "id": "n1",
    "start": 0.7,
-   "dur": 6.399,
-   "caption": "Você sabe quanto papel o Brasil produz? São mais de dois milhões de toneladas de papel de imprimir e escrever por ano."
+   "dur": 4.673,
+   "caption": "Todo mês, o Brasil produz o equivalente a 38 bilhões de folhas de papel."
   },
   {
    "id": "n2",
-   "start": 7.699,
-   "dur": 6.571,
-   "caption": "É como se, todo mês, saíssem 38 bilhões de folhas A4. Só em papel, mais de um bilhão de reais por mês."
+   "start": 5.873,
+   "dur": 5.309,
+   "caption": "São mais de 2 milhões de toneladas por ano, e mais de 1 bilhão de reais por mês, só em papel."
   },
   {
    "id": "n3",
-   "start": 14.97,
-   "dur": 5.141,
-   "caption": "No serviço público, cada folha vira processo, arquivo, caixa e tempo perdido procurando."
+   "start": 11.783,
+   "dur": 4.928,
+   "caption": "E o papel ocupa espaço, se perde, amarela e consome o tempo de quem precisa trabalhar."
   },
   {
    "id": "n4",
-   "start": 20.811,
-   "dur": 7.851,
-   "caption": "A DigitalGov digitaliza os seus documentos: cada folha é escaneada, lida automaticamente e organizada para ser encontrada em segundos."
+   "start": 17.311,
+   "dur": 11.756,
+   "caption": "Quando o serviço público troca o papel pelo digital, a economia é real. Na Bahia, o processo eletrônico já poupou mais de 1,2 bilhão de folhas, e 50 milhões de reais só em 2024."
   },
   {
    "id": "n5",
-   "start": 29.362,
-   "dur": 5.947,
-   "caption": "Com tudo digital, você acessa de qualquer lugar, com segurança, e para de gastar com impressão, papel e espaço."
+   "start": 29.667,
+   "dur": 6.318,
+   "caption": "É dinheiro que volta para a saúde, a educação e a cidade. É assim que a digitalização ajuda a economia do Brasil."
   },
   {
    "id": "n6",
-   "start": 36.009,
-   "dur": 8.118,
-   "caption": "Veja a Bahia: só em 2024, o processo eletrônico gerou mais de 50 milhões de reais de economia para o governo do estado."
+   "start": 36.685,
+   "dur": 3.605,
+   "caption": "Na DigitalGov, a digitalização acontece em seis etapas."
   },
   {
    "id": "n7",
-   "start": 44.927,
-   "dur": 10.283,
-   "caption": "Agora imagine o seu estado. Minas Gerais tem 853 municípios. Se cada prefeitura imprimisse 20 mil folhas por mês, seriam 17 milhões de folhas."
+   "start": 40.69,
+   "dur": 5.888,
+   "caption": "Primeiro, recebemos e preparamos os documentos: tiramos os grampos, organizamos e higienizamos as folhas."
   },
   {
    "id": "n8",
-   "start": 55.909,
-   "dur": 7.104,
-   "caption": "A 30 centavos por página, são 5 milhões de reais por mês. Mais de 60 milhões por ano que podem virar economia."
+   "start": 46.978,
+   "dur": 5.077,
+   "caption": "Depois, cada folha é escaneada em alta resolução, e a imagem é tratada para ficar nítida."
   },
   {
    "id": "n9",
-   "start": 63.814,
-   "dur": 5.618,
-   "caption": "A DigitalGov tem sede em Alvorada de Minas, no coração de Minas Gerais, e atende todo o Brasil."
+   "start": 52.456,
+   "dur": 5.114,
+   "caption": "O sistema lê o texto automaticamente e indexa cada documento por nome, número, data e setor."
   },
   {
    "id": "n10",
-   "start": 71.832,
+   "start": 57.969,
+   "dur": 3.349,
+   "caption": "Uma revisão de qualidade confere tudo, página por página."
+  },
+  {
+   "id": "n11",
+   "start": 61.719,
+   "dur": 4.693,
+   "caption": "Por fim, os documentos são publicados no sistema, com acesso seguro, de qualquer lugar."
+  },
+  {
+   "id": "n12",
+   "start": 67.112,
+   "dur": 12.341,
+   "caption": "Agora imagine o seu estado. Em Minas Gerais, 853 prefeituras imprimindo 20 mil folhas por mês, a 30 centavos cada, são 5 milhões de reais por mês. Mais de 60 milhões por ano."
+  },
+  {
+   "id": "n13",
+   "start": 80.153,
+   "dur": 8.256,
+   "caption": "Por que escolher a DigitalGov? Mais de 10 anos de mercado, atendimento em todo o Brasil, segurança e LGPD desde o projeto, e preço justo."
+  },
+  {
+   "id": "n14",
+   "start": 89.009,
+   "dur": 5.269,
+   "caption": "Nossa sede fica em Alvorada de Minas, no coração de Minas Gerais, e atendemos todo o país."
+  },
+  {
+   "id": "n15",
+   "start": 95.879,
    "dur": 4.885,
    "caption": "DigitalGov. Tecnologia a serviço da sua empresa. Fale com o Warley, nosso diretor."
   }
  ],
- "end": 79.92
+ "end": 103.96
 }

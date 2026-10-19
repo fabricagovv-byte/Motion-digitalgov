@@ -12,25 +12,35 @@ OUT = os.path.join(ROOT, "../../build/digitalgov/voice")
 
 # id, legenda, texto para o TTS (grafia ajustada para a pronúncia), pausa depois da fala (s)
 LINES = [
-    ("n1", "Você sabe quanto papel o Brasil produz? São mais de dois milhões de toneladas de papel de imprimir e escrever por ano.",
-           "Você sabe quanto papel o Brasil produz? São mais de dois milhões de toneladas de papel de imprimir e escrever, por ano.", 0.6),
-    ("n2", "É como se, todo mês, saíssem 38 bilhões de folhas A4. Só em papel, mais de um bilhão de reais por mês.",
-           "É como se, todo mês, saíssem trinta e oito bilhões de folhas A quatro. Só em papel, mais de um bilhão de reais por mês.", 0.7),
-    ("n3", "No serviço público, cada folha vira processo, arquivo, caixa e tempo perdido procurando.",
-           "No serviço público, cada folha vira processo, arquivo, caixa. E tempo perdido, procurando.", 0.7),
-    ("n4", "A DigitalGov digitaliza os seus documentos: cada folha é escaneada, lida automaticamente e organizada para ser encontrada em segundos.",
-           "A Digital Gov digitaliza os seus documentos: cada folha é escaneada, lida automaticamente, e organizada para ser encontrada em segundos.", 0.7),
-    ("n5", "Com tudo digital, você acessa de qualquer lugar, com segurança, e para de gastar com impressão, papel e espaço.",
-           "Com tudo digital, você acessa de qualquer lugar, com segurança. E para de gastar com impressão, papel, e espaço.", 0.7),
-    ("n6", "Veja a Bahia: só em 2024, o processo eletrônico gerou mais de 50 milhões de reais de economia para o governo do estado.",
-           "Veja a Bahia: só em dois mil e vinte e quatro, o processo eletrônico gerou mais de cinquenta milhões de reais de economia, para o governo do estado.", 0.8),
-    ("n7", "Agora imagine o seu estado. Minas Gerais tem 853 municípios. Se cada prefeitura imprimisse 20 mil folhas por mês, seriam 17 milhões de folhas.",
-           "Agora, imagine o seu estado. Minas Gerais tem oitocentos e cinquenta e três municípios. Se cada prefeitura imprimisse vinte mil folhas por mês, seriam dezessete milhões de folhas.", 0.7),
-    ("n8", "A 30 centavos por página, são 5 milhões de reais por mês. Mais de 60 milhões por ano que podem virar economia.",
-           "A trinta centavos por página, são cinco milhões de reais por mês. Mais de sessenta milhões por ano, que podem virar economia.", 0.8),
-    ("n9", "A DigitalGov tem sede em Alvorada de Minas, no coração de Minas Gerais, e atende todo o Brasil.",
-           "A Digital Gov tem sede em Alvorada de Minas, no coração de Minas Gerais. E atende todo o Brasil.", 0.8),
-    ("n10", "DigitalGov. Tecnologia a serviço da sua empresa. Fale com o Warley, nosso diretor.",
+    ("n1", "Todo mês, o Brasil produz o equivalente a 38 bilhões de folhas de papel.",
+           "Todo mês, o Brasil produz o equivalente a trinta e oito bilhões de folhas de papel.", 0.5),
+    ("n2", "São mais de 2 milhões de toneladas por ano, e mais de 1 bilhão de reais por mês, só em papel.",
+           "São mais de dois milhões de toneladas por ano. E mais de um bilhão de reais por mês, só em papel.", 0.6),
+    ("n3", "E o papel ocupa espaço, se perde, amarela e consome o tempo de quem precisa trabalhar.",
+           "E o papel ocupa espaço, se perde, amarela, e consome o tempo de quem precisa trabalhar.", 0.6),
+    ("n4", "Quando o serviço público troca o papel pelo digital, a economia é real. Na Bahia, o processo eletrônico já poupou mais de 1,2 bilhão de folhas, e 50 milhões de reais só em 2024.",
+           "Quando o serviço público troca o papel pelo digital, a economia é real. Na Bahia, o processo eletrônico já poupou mais de um bilhão e duzentos milhões de folhas. E cinquenta milhões de reais, só em dois mil e vinte e quatro.", 0.6),
+    ("n5", "É dinheiro que volta para a saúde, a educação e a cidade. É assim que a digitalização ajuda a economia do Brasil.",
+           "É dinheiro que volta para a saúde, a educação, e a cidade. É assim que a digitalização ajuda a economia do Brasil.", 0.7),
+    ("n6", "Na DigitalGov, a digitalização acontece em seis etapas.",
+           "Na Digital Gov, a digitalização acontece em seis etapas.", 0.4),
+    ("n7", "Primeiro, recebemos e preparamos os documentos: tiramos os grampos, organizamos e higienizamos as folhas.",
+           "Primeiro, recebemos e preparamos os documentos: tiramos os grampos, organizamos, e higienizamos as folhas.", 0.4),
+    ("n8", "Depois, cada folha é escaneada em alta resolução, e a imagem é tratada para ficar nítida.",
+           "Depois, cada folha é escaneada em alta resolução. E a imagem é tratada, para ficar nítida.", 0.4),
+    ("n9", "O sistema lê o texto automaticamente e indexa cada documento por nome, número, data e setor.",
+           "O sistema lê o texto automaticamente, e indexa cada documento por nome, número, data e setor.", 0.4),
+    ("n10", "Uma revisão de qualidade confere tudo, página por página.",
+            "Uma revisão de qualidade confere tudo, página por página.", 0.4),
+    ("n11", "Por fim, os documentos são publicados no sistema, com acesso seguro, de qualquer lugar.",
+            "Por fim, os documentos são publicados no sistema, com acesso seguro, de qualquer lugar.", 0.7),
+    ("n12", "Agora imagine o seu estado. Em Minas Gerais, 853 prefeituras imprimindo 20 mil folhas por mês, a 30 centavos cada, são 5 milhões de reais por mês. Mais de 60 milhões por ano.",
+            "Agora, imagine o seu estado. Em Minas Gerais, oitocentas e cinquenta e três prefeituras, imprimindo vinte mil folhas por mês, a trinta centavos cada: são cinco milhões de reais por mês. Mais de sessenta milhões por ano.", 0.7),
+    ("n13", "Por que escolher a DigitalGov? Mais de 10 anos de mercado, atendimento em todo o Brasil, segurança e LGPD desde o projeto, e preço justo.",
+            "Por que escolher a Digital Gov? Mais de dez anos de mercado. Atendimento em todo o Brasil. Segurança, e éle gê pê dê desde o projeto. E preço justo.", 0.6),
+    ("n14", "Nossa sede fica em Alvorada de Minas, no coração de Minas Gerais, e atendemos todo o país.",
+            "Nossa sede fica em Alvorada de Minas, no coração de Minas Gerais. E atendemos todo o país.", 0.6),
+    ("n15", "DigitalGov. Tecnologia a serviço da sua empresa. Fale com o Warley, nosso diretor.",
             "Digital Gov. Tecnologia a serviço da sua empresa. Fale com o Uórlei, nosso diretor.", 0.0),
 ]
 # corta silêncio nas pontas, EQ suave, compressão leve, sem eco
@@ -40,7 +50,7 @@ FX = ("silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,ar
       "acompressor=threshold=-20dB:ratio=2.5:attack=8:release=120:makeup=2,"
       "aresample=48000:resampler=soxr,loudnorm=I=-16:TP=-1.5:LRA=7")
 START = 0.7        # primeira fala
-BEFORE_END = 1.6   # respiro extra antes da assinatura final
+BEFORE_END = 1.0   # respiro extra antes da assinatura final
 
 
 def main():

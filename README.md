@@ -313,10 +313,15 @@ Preços informados pela V4; cenário, telas e documento são ilustrativos (marca
 
 ---
 
-# DigitalGov · Filme narrado "Digitalização de documentos" (80 s)
+# DigitalGov · Filme narrado "Digitalização de documentos" (104 s)
 
 Nova identidade DigitalGov (logo colorido, paleta azul), motion mais vivo: fundo azul com manchas de luz em movimento,
 quadrados do mosaico do logo flutuando, transições em mosaico, papéis caindo, folha que vira pixels e se reorganiza em
 documento digital, mapa com Bahia (caso real), simulação de Minas Gerais e arcos saindo da sede em Alvorada de Minas para
 todo o Brasil. Final em fundo branco com o logo e o contato do diretor Warley. Voz: Kokoro v1.0 (`pm_alex`, Apache 2.0), mais natural e mais rápida; animações mapeadas para o ritmo da nova narração. Fatos e cálculos: `src/digitalgov/facts.md`.
 Entregáveis em `deliverables/digitalgov/`.
+
+Versão 3 (104 s): roteiro ampliado com 15 falas: papel no Brasil (38 bi folhas/mês, 2,17 mi t/ano, R$ 1,2 bi/mês), problemas do
+papel, economia real da Bahia (1,26 bi folhas e R$ 50 mi em 2024), dinheiro que volta para saúde/educação/cidade, as 6 etapas da
+digitalização (preparação, digitalização, tratamento, leitura e indexação, qualidade, publicação), simulação de MG, por que escolher
+(+10 anos, todo o Brasil, LGPD, preço justo), sede em Alvorada de Minas e contato do Warley. Animações e efeitos ancorados na palavra falada.

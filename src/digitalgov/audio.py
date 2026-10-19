@@ -147,42 +147,54 @@ mus.L *= duck; mus.R *= duck
 
 # ---------------- sfx (same times as film.html) ----------------
 fx = Bus()
-# efeitos compostos sobre a narração v1: os tempos são mapeados para a narração atual (igual ao film.html)
-OLD_STARTS = [0.9, 10.12, 19.847, 28.355, 37.692, 47.256, 57.193, 71.616, 81.628, 91.627]; OLD_END = 102.61
-SCo = [0 if i == 0 else s - 0.4 for i, s in enumerate(OLD_STARTS)]; Fo = SCo[-1]
-KN_OLD = SCo + [OLD_END]; KN_NEW = SC + [DUR]
-def fadd(sig, t, g=1.0, pan=0.0):
-    fx.add(sig, float(np.interp(t, KN_OLD, KN_NEW)), g, pan)
-Lx = OLD_STARTS
-for s in SCo[1:5] + [SCo[5], SCo[9]]:
-    fadd(whoosh(.6), s - 0.35, .2, .2)                         # transições em mosaico
-    for q in range(10): fadd(pop(500 + q * 60, 900 + q * 60), s - 0.4 + q * .03, .03, (q % 3 - 1) * .5)
-for q in range(30): fadd(whoosh(.35), .3 + q * .28, .025, (q % 5 - 2) * .4)   # papéis caindo
-fadd(impact()[: int(.8 * SR)], Lx[0] + 2.4, .3); fadd(pop(600, 1200), Lx[0] + 2.5, .14)
-for q in range(12): fadd(tick(2400 + q * 60), Lx[0] + 2.5 + q * .17, .05)
-fadd(pop(500, 1000), Lx[1] + .6, .18); fadd(pop(700, 1400), Lx[1] + 4.9, .2)
-for q in range(12): fadd(tick(1800 + q * 80), SCo[1] + .2 + q * .13, .04)
-for d in (1.4, 2.4, 3.4, 4.2, 5.4): fadd(pop(380, 900), Lx[2] + d, .2)
-for q in range(8): fadd(tick(2600), Lx[2] + 5.5 + q * .12, .07)
-fadd(riser(1.4), Lx[3] + 2.0, .12)
-fadd(impact()[: int(.7 * SR)], Lx[3] + 3.4, .3)
-for q in range(16): fadd(pop(600 + q * 40, 1200 + q * 40), Lx[3] + 3.4 + q * .03, .03, (q % 3 - 1) * .6)
-fadd(shimmer(), Lx[3] + 5.0, .14)
-for d in (2.2, 3.5, 5.0): fadd(pop(420, 900), Lx[3] + d, .16)
-for q in range(10): fadd(tick(3000 + q * 30), Lx[3] + 5.5 + q * .08, .04)
-fadd(pop(400, 800), SCo[4] + .4, .16); fadd(pop(500, 1000), SCo[4] + .9, .16)
-for d in (5.6, 6.7, 7.4): fadd(whoosh(.25), Lx[4] + d - .1, .12); fadd(pop(300, 200), Lx[4] + d, .14)
-fadd(pop(400, 900), SCo[5] + 1.4, .16)
-for q in range(14): fadd(tick(2200 + q * 70), Lx[5] + 3.8 + q * .11, .05)
-fadd(pop(700, 1500), Lx[5] + 5.4, .2)
-for d in (3.2, 7.6, 10.6): fadd(pop(420, 900), Lx[6] + d, .18)
-for q in range(14): fadd(tick(2200 + q * 70), Lx[6] + 10.7 + q * .1, .05)
-for d in (1.4, 4.3): fadd(pop(500, 1100), Lx[7] + d, .2)
-for q in range(14): fadd(tick(2400 + q * 60), Lx[7] + 4.5 + q * .13, .05)
-fadd(pop(500, 1100), SCo[8] + .4, .2)
-for q in range(26): fadd(tick(1500 + (q * 113) % 1500), SCo[8] + 2.7 + q * .06, .04, (q % 5 - 2) * .4)
-fadd(riser(1.8), Fo - 1.8, .3); fadd(impact(), Fo, .55); fadd(shimmer(), Fo + .6, .2)
-for q in range(16): fadd(pop(500 + q * 50, 1000 + q * 50), Fo + .8 + q * .05, .04, (q % 3 - 1) * .6)
+LN = TL["lines"]
+def Wd(k, word, off=0.0):
+    ln = LN[k - 1]; c = ln["caption"].lower(); i = c.find(word.lower())
+    return ln["start"] + ln["dur"] * (0 if i < 0 else i / len(c)) + off
+for k in (2, 3, 4, 5, 6, 7, 12, 13, 14):                       # transições em mosaico
+    s = SC[k - 1]
+    fx.add(whoosh(.6), s - 0.35, .2, .2)
+    for q in range(10): fx.add(pop(500 + q * 60, 900 + q * 60), s - 0.36 + q * .03, .03, (q % 3 - 1) * .5)
+for q in range(22): fx.add(whoosh(.35), .3 + q * .26, .022, (q % 5 - 2) * .4)        # papéis caindo
+t0 = Wd(1, "38") - 0.15; fx.add(impact()[: int(.8 * SR)], t0, .35); fx.add(pop(600, 1300), t0, .16)
+fx.add(pop(500, 1000), Wd(2, "2 milhões", -.2), .18); fx.add(pop(700, 1400), Wd(2, "1 bilhão", -.2), .2)
+for q in range(12): fx.add(tick(1800 + q * 80), SC[1] + .2 + q * .12, .035)
+for w in ("ocupa", "se perde", "amarela", "consome"): fx.add(pop(380, 900), Wd(3, w) - .1, .2)
+for q in range(6): fx.add(pop(220, 160), Wd(3, "ocupa") + .1 + q * .08, .12)
+fx.add(whoosh(.8), Wd(3, "se perde") + .3, .12, .4)
+for q in range(10): fx.add(tick(2600), Wd(3, "consome") + q * .1, .06)
+fx.add(pop(400, 800), Wd(4, "Bahia") - .2, .16)
+for w in ("1,2 bilhão", "50 milhões"):
+    fx.add(pop(600, 1200), Wd(4, w, -.3), .2)
+    for q in range(10): fx.add(tick(2200 + q * 70), Wd(4, w, -.3) + q * .11, .04)
+fx.add(pop(300, 700), SC[4] + .25, .18)
+for w in ("saúde", "educação", "cidade"):
+    fx.add(pop(450, 950), Wd(5, w) - .1, .18)
+    for q in range(10): fx.add(tick(3000 + q * 40), Wd(5, w) - .2 + q * .07, .03, .2)
+for q in range(6): fx.add(pop(420 + q * 60, 900 + q * 60), Wd(6, "seis") + q * .12, .16)
+# etapas
+fx.add(pop(500, 1000), SC[6], .16)
+for q in range(5): fx.add(pop(900, 1400), Wd(7, "grampos") + q * .1, .06)
+fx.add(whoosh(.6), Wd(7, "organizamos"), .14); fx.add(whoosh(1.2), Wd(7, "higienizamos"), .08, .3)
+fx.add(pop(500, 1000), SC[7], .16); fx.add(riser(1.5), Wd(8, "escaneada", -.3), .1); fx.add(shimmer(), Wd(8, "tratada"), .12)
+fx.add(pop(500, 1000), SC[8], .16)
+for w in ("nome", "número", "data", "setor"):
+    for q in range(5): fx.add(tick(3100 + (q * 61) % 300), Wd(9, w, -.1) + q * .07, .03, .2)
+    fx.add(pop(700, 1300), Wd(9, w, .25), .1)
+fx.add(pop(500, 1000), SC[9], .16)
+for q in range(24): fx.add(tick(2800 + (q % 4) * 120), SC[9] + .5 + q * .1, .05)
+fx.add(pop(500, 1000), SC[10], .16)
+for q in range(10): fx.add(tick(3000 + q * 30), SC[10] + .4 + q * .08, .035)
+fx.add(pop(600, 1100), Wd(11, "qualquer", -.4), .16)
+for w in ("853", "20 mil", "30 centavos"): fx.add(pop(420, 900), Wd(12, w, -.2), .18)
+for w in ("5 milhões", "60 milhões"):
+    t0 = Wd(12, w, -.3); fx.add(impact()[: int(.6 * SR)], t0, .3); fx.add(pop(700, 1500), t0, .14)
+for w in ("10 anos", "atendimento", "segurança", "preço"): fx.add(whoosh(.35), Wd(13, w) - .3, .14); fx.add(pop(450, 950), Wd(13, w) - .1, .18)
+fx.add(pop(500, 1100), SC[13] + .3, .2)
+for q in range(26): fx.add(tick(1500 + (q * 113) % 1500), Wd(14, "atendemos") - .4 + q * .05, .04, (q % 5 - 2) * .4)
+fx.add(riser(1.8), F - 1.8, .3); fx.add(impact(), F, .55); fx.add(shimmer(), F + .6, .2)
+for q in range(16): fx.add(pop(500 + q * 50, 1000 + q * 50), F + .8 + q * .05, .04, (q % 3 - 1) * .6)
+fx.add(pop(600, 1200), Wd(15, "Warley", -.3), .16)
 
 
 def stereo(b): return np.stack([b.L, b.R], axis=1)

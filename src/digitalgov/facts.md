@@ -6,6 +6,8 @@
 | Folhas A4 por mês | ≈ 38 bilhões | Estimativa: 2.171.000 t ÷ 12 ÷ 4,68 g (A4 75 g/m²) |
 | Custo só do papel por mês | ≈ R$ 1,2 bilhão | Estimativa: 38,7 bi folhas × R$ 15,50 / 500 (preço de resma usado em estudo do Governo do RJ sobre o SEI) |
 | Economia da Bahia com processo eletrônico em 2024 | R$ 50 milhões | Governo da Bahia / SAEB, balanço do SEI Bahia publicado em jan/2025 |
+| Folhas poupadas na Bahia desde a implantação do SEI | 1,26 bilhão de folhas A4 | Governo da Bahia / SAEB, out/2025 (lançamento do SEI Bahia Municípios) |
+| Mais de 10 anos de mercado | Grupo DigitalGov | Apresentação institucional V4 FábricaGov |
 | Municípios de MG | 853 | IBGE |
 | Simulação MG | 853 × 20.000 folhas/mês = 17,06 mi folhas; × R$ 0,30 = R$ 5,1 mi/mês; R$ 61,4 mi/ano | Hipóteses ilustrativas (marcadas como SIMULAÇÃO na tela) |
 | Sede | Alvorada de Minas (MG) | Informado pela DigitalGov |

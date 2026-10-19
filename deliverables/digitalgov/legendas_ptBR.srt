@@ -1,0 +1,40 @@
+1
+00:00:00,900 --> 00:00:09,720
+Você sabe quanto papel o Brasil produz? São mais de dois milhões de toneladas de papel de imprimir e escrever por ano.
+
+2
+00:00:10,120 --> 00:00:19,347
+É como se, todo mês, saíssem 38 bilhões de folhas A4. Só em papel, mais de um bilhão de reais por mês.
+
+3
+00:00:19,847 --> 00:00:27,855
+No serviço público, cada folha vira processo, arquivo, caixa e tempo perdido procurando.
+
+4
+00:00:28,355 --> 00:00:37,192
+A DigitalGov digitaliza os seus documentos: cada folha é escaneada, lida automaticamente e organizada para ser encontrada em segundos.
+
+5
+00:00:37,692 --> 00:00:46,756
+Com tudo digital, você acessa de qualquer lugar, com segurança, e para de gastar com impressão, papel e espaço.
+
+6
+00:00:47,256 --> 00:00:56,593
+Veja a Bahia: só em 2024, o processo eletrônico gerou mais de 50 milhões de reais de economia para o governo do estado.
+
+7
+00:00:57,193 --> 00:01:11,116
+Agora imagine o seu estado. Minas Gerais tem 853 municípios. Se cada prefeitura imprimisse 20 mil folhas por mês, seriam 17 milhões de folhas.
+
+8
+00:01:11,616 --> 00:01:21,028
+A 30 centavos por página, são 5 milhões de reais por mês. Mais de 60 milhões por ano que podem virar economia.
+
+9
+00:01:21,628 --> 00:01:29,427
+A DigitalGov tem sede em Alvorada de Minas, no coração de Minas Gerais, e atende todo o Brasil.
+
+10
+00:01:31,627 --> 00:01:39,606
+DigitalGov. Tecnologia a serviço da sua empresa. Fale com o Warley, nosso diretor.
+

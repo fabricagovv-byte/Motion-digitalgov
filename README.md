@@ -310,3 +310,13 @@ Cenas: documento manchado → plataforma (órgãos públicos e empresas) → ant
 20.000 páginas (mercado R$ 1 a 10 mi x V4 R$ 300 a 600 mil) → velocidade → celular com acesso controlado → acervo:
 enviar restaurados e exportar → área de trabalho (apresentar, responder, compartilhar com outro órgão) → logo e contatos.
 Preços informados pela V4; cenário, telas e documento são ilustrativos (marcados na tela). Entregáveis em `deliverables/restauracao/`.
+
+---
+
+# DigitalGov · Filme narrado "Digitalização de documentos" (103 s)
+
+Nova identidade DigitalGov (logo colorido, paleta azul), motion mais vivo: fundo azul com manchas de luz em movimento,
+quadrados do mosaico do logo flutuando, transições em mosaico, papéis caindo, folha que vira pixels e se reorganiza em
+documento digital, mapa com Bahia (caso real), simulação de Minas Gerais e arcos saindo da sede em Alvorada de Minas para
+todo o Brasil. Final em fundo branco com o logo e o contato do diretor Warley. Fatos e cálculos: `src/digitalgov/facts.md`.
+Entregáveis em `deliverables/digitalgov/`.

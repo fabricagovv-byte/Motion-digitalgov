@@ -289,3 +289,12 @@ leitura automática dos dados e organização em pastas (Obras › 2026 › Requ
 permissões por perfil e registro de acessos → backup, LGPD, espaço/tempo/segurança → logo "Do papel ao digital, sem perder nada".
 Entregáveis em `deliverables/ged_v4/` (limpo, legendado, SRT, mix -14 LUFS, stems). Documento, nomes e contadores são ilustrativos
 (marcados na tela). Reproduzir: `bash src/ged_v4/render.sh`.
+
+---
+
+# V4 FábricaGov · Filme narrado "TIC de Software" (89 s)
+
+Planejamento em `src/tic/BRIEF.md`. 11 falas: problemas da TI pública → quem somos → desenvolvimento → 4 tipos de manutenção →
+sustentação com SLA (cronômetro 30 min / 4 h) → 5 etapas → stack → Lei 14.133, UST/PF, LGPD, código do cliente → preço V4 x
+concorrência → +17 portais e +35 clientes no mapa → "Vamos modernizar o seu sistema?". Todos os fatos vêm da apresentação
+institucional; os resultados e depoimentos marcados como ilustrativos nela ficaram de fora. Entregáveis em `deliverables/tic/`.

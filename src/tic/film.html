@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 FábricaGov · TIC de Software</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-700-normal.woff2) format('woff2');font-weight:700}
+:root{--ink:#111216;--card:#1b1c21;--card2:#23252b;--gold:#D9A441;--paper:#F2EFE8;--mute:#9a9ba3;--line:#2c2e35}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;overflow:hidden;width:100%;height:100%}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;background:var(--ink);overflow:hidden;transform-origin:0 0;font-family:Inter,sans-serif;color:var(--paper)}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;visibility:hidden}
+#grid{position:absolute;left:-100px;top:-100px;width:2120px;height:1280px;background-image:radial-gradient(circle,#ffffff10 1.4px,transparent 1.6px);background-size:40px 40px}
+#ghost{position:absolute;left:60px;top:-30px;font-family:Anton;font-size:300px;line-height:1;color:#18191e;white-space:nowrap}
+.pill{display:inline-block;background:var(--gold);color:var(--ink);font-weight:700;font-size:22px;letter-spacing:4px;padding:10px 22px;border-radius:999px}
+.mask{overflow:hidden;display:block;padding-bottom:4px}
+.mask>.in{display:block}
+.h1{font-family:Anton;font-size:120px;line-height:1.02;text-transform:uppercase}
+.h2{font-family:Anton;font-size:96px;line-height:1.04;text-transform:uppercase}
+.sub{font-size:30px;line-height:1.35;color:#d9d7d0}
+.gold{color:var(--gold)}
+.card{background:var(--card);border-radius:22px;border:1px solid var(--line)}
+.tag{display:inline-block;font-size:18px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);border-radius:999px;padding:6px 14px}
+.foot{font-size:20px;color:var(--mute)}
+.chip{display:inline-block;font-size:30px;font-weight:600;padding:14px 26px;border-radius:999px;border:2px solid #3a3c44;background:var(--card2);margin:0 10px 12px 0}
+.chk{display:inline-flex;width:56px;height:56px;border-radius:16px;align-items:center;justify-content:center;font-weight:800;font-size:32px;background:var(--gold);color:var(--ink);flex:none}
+#mapwrap{position:absolute;left:0;top:0;transform-origin:0 0}
+#mapwrap svg{display:block;width:613px;height:639px;overflow:visible}
+#mapwrap path{fill:#202228;stroke:#3a3c44;stroke-width:.7;vector-effect:non-scaling-stroke}
+#flood{position:absolute;z-index:40;border-radius:50%;background:var(--gold);visibility:hidden}
+#end{position:absolute;inset:0;z-index:41;visibility:hidden}
+#hud{position:fixed;right:10px;bottom:10px;font:12px monospace;color:#888;z-index:99}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="grid"></div>
+  <div id="ghost">TIC · SOFTWARE · DESENVOLVIMENTO · MANUTENÇÃO · SUSTENTAÇÃO</div>
+
+  <!-- S1 problemas -->
+  <div id="S1" class="scene">
+    <div id="alerts"></div>
+    <div class="abs" style="left:140px;top:660px;width:1640px">
+      <div class="mask"><div class="in h2">Quem cuida de TI pública</div></div>
+      <div class="mask"><div class="in h2 gold">conhece essa história</div></div>
+    </div>
+  </div>
+
+  <!-- S2 quem somos -->
+  <div id="S2" class="scene">
+    <img id="logo2" src="assets/logo_white.png" class="abs" style="left:50%;top:170px;width:900px;margin-left:-450px">
+    <div id="sub2" class="abs" style="left:0;right:0;top:440px;text-align:center;font-size:32px;color:#d9d7d0">Fábrica de software brasileira · setor público e privado</div>
+    <div id="pillars" class="abs" style="left:140px;top:560px;width:1640px;display:flex;gap:28px"></div>
+  </div>
+
+  <!-- S3 desenvolvimento -->
+  <div id="S3" class="scene">
+    <div class="abs" style="left:140px;top:130px;width:600px">
+      <div class="mask"><div class="in"><span class="pill">01 · DESENVOLVIMENTO</span></div></div>
+      <div style="height:22px"></div>
+      <div class="mask"><div class="in h2">Sob</div></div>
+      <div class="mask"><div class="in h2 gold">medida</div></div>
+    </div>
+    <div id="badges3" class="abs" style="left:140px;top:560px;width:600px"></div>
+    <div id="browser" class="abs" style="left:800px;top:150px;width:980px;height:780px;border-radius:22px;background:#17181d;border:2px solid #34363e;overflow:hidden">
+      <div style="height:56px;background:#23252b;display:flex;align-items:center;gap:10px;padding:0 22px">
+        <i style="width:14px;height:14px;border-radius:50%;background:#4a4c55"></i><i style="width:14px;height:14px;border-radius:50%;background:#4a4c55"></i><i style="width:14px;height:14px;border-radius:50%;background:#4a4c55"></i>
+        <div style="margin-left:20px;flex:1;height:30px;border-radius:8px;background:#17181d;font-size:16px;color:var(--mute);display:flex;align-items:center;padding-left:14px">portal.municipio.gov.br</div>
+      </div>
+      <div id="parts"></div>
+    </div>
+    <div class="abs" style="left:1550px;top:950px"><span class="tag">Interface ilustrativa</span></div>
+  </div>
+
+  <!-- S4 manutenção -->
+  <div id="S4" class="scene">
+    <div class="abs" style="left:140px;top:110px">
+      <div class="mask"><div class="in"><span class="pill">02 · MANUTENÇÃO</span></div></div>
+      <div style="height:18px"></div>
+      <div class="mask"><div class="in h2">Os 4 tipos, <span class="gold">cobertos</span></div></div>
+    </div>
+    <div id="mcards" class="abs" style="left:140px;top:380px;width:1640px;display:grid;grid-template-columns:1fr 1fr;gap:28px"></div>
+  </div>
+
+  <!-- S5 sustentação SLA -->
+  <div id="S5" class="scene">
+    <div class="abs" style="left:140px;top:110px">
+      <div class="mask"><div class="in"><span class="pill">03 · SUSTENTAÇÃO</span></div></div>
+      <div style="height:18px"></div>
+      <div class="mask"><div class="in h2">Atendimento <span class="gold">por SLA</span></div></div>
+    </div>
+    <div id="sla" class="abs card" style="left:140px;top:360px;width:1080px;padding:10px 0"></div>
+    <svg id="watch" class="abs" style="left:1300px;top:330px" width="480" height="480" viewBox="-240 -240 480 480"></svg>
+    <div id="wlab" class="abs" style="left:1300px;top:820px;width:480px;text-align:center;font-size:26px;font-weight:600"></div>
+    <div id="rep" class="abs foot" style="left:140px;top:940px;font-size:26px;color:#d9d7d0">Relatório mensal de chamados, prazos cumpridos e horas consumidas.</div>
+  </div>
+
+  <!-- S6 processo -->
+  <div id="S6" class="scene">
+    <div class="abs" style="left:140px;top:110px">
+      <div class="mask"><div class="in"><span class="pill">NOSSO PROCESSO</span></div></div>
+      <div style="height:18px"></div>
+      <div class="mask"><div class="in h2">Cinco <span class="gold">etapas</span></div></div>
+    </div>
+    <div id="pline" class="abs" style="left:240px;top:520px;width:1440px;height:6px;background:#2a2c33;border-radius:3px"><div id="pfill" style="height:6px;background:var(--gold);border-radius:3px;transform-origin:0 50%"></div></div>
+    <div id="pnodes"></div>
+  </div>
+
+  <!-- S7 stack -->
+  <div id="S7" class="scene">
+    <div class="abs" style="left:140px;top:100px">
+      <div class="mask"><div class="in"><span class="pill">NOSSA STACK</span></div></div>
+      <div style="height:18px"></div>
+      <div class="mask"><div class="in h2">Tecnologias</div></div>
+    </div>
+    <div id="cols" class="abs" style="left:140px;top:340px;width:1640px;display:flex;gap:26px"></div>
+    <div id="take" class="abs" style="left:140px;top:930px;font-size:34px;font-weight:600">Assumimos o seu sistema <span class="gold">na tecnologia em que ele já está.</span></div>
+  </div>
+
+  <!-- S8 conformidade -->
+  <div id="S8" class="scene">
+    <div class="abs" style="left:140px;top:100px">
+      <div class="mask"><div class="in"><span class="pill">FEITO PARA O SETOR PÚBLICO</span></div></div>
+      <div style="height:18px"></div>
+      <div class="mask"><div class="in h2">Conformidade <span class="gold">e confiança</span></div></div>
+    </div>
+    <div id="checks" class="abs" style="left:140px;top:350px;width:1640px"></div>
+  </div>
+
+  <!-- S9 preço -->
+  <div id="S9" class="scene">
+    <div class="abs" style="left:140px;top:100px">
+      <div class="mask"><div class="in"><span class="pill">PREÇO JUSTO</span></div></div>
+      <div style="height:18px"></div>
+      <div class="mask"><div class="in h2">V4 x <span class="gold">concorrência</span></div></div>
+    </div>
+    <div id="legend" class="abs" style="left:140px;top:345px;display:flex;gap:34px;font-size:22px;font-weight:600">
+      <span><i style="display:inline-block;width:18px;height:18px;border-radius:4px;background:var(--gold);vertical-align:-2px;margin-right:10px"></i>V4 FábricaGov</span>
+      <span><i style="display:inline-block;width:18px;height:18px;border-radius:4px;background:#4a4c55;vertical-align:-2px;margin-right:10px"></i>Concorrência</span>
+    </div>
+    <div id="prows" class="abs" style="left:140px;top:400px;width:1640px"></div>
+    <div id="pfoot" class="abs foot" style="left:140px;top:1000px">Valores da tabela V4 FábricaGov e faixa de preços da concorrência levantada pela V4.</div>
+  </div>
+
+  <!-- S10 Brasil -->
+  <div id="S10" class="scene">
+    <div class="abs" style="left:140px;top:150px;width:800px">
+      <div class="mask"><div class="in"><span class="pill">DESDE 2024</span></div></div>
+      <div style="height:22px"></div>
+      <div class="mask"><div class="in h2">Atendemos</div></div>
+      <div class="mask"><div class="in h2 gold">todo o Brasil</div></div>
+    </div>
+    <div id="nums" class="abs" style="left:140px;top:560px;width:800px"></div>
+    <div id="mapwrap"></div>
+    <div id="pin" class="abs" style="width:0;height:0"><div id="pdot" style="position:absolute;left:-13px;top:-13px;width:26px;height:26px;border-radius:50%;background:#F2EFE8;border:6px solid #111216"></div>
+      <div id="plab" style="position:absolute;left:28px;top:-22px;white-space:nowrap;font-size:22px;font-weight:600;background:var(--ink);padding:6px 14px;border-radius:8px;border:1px solid var(--line)">Sede · Alvorada de Minas (MG)</div></div>
+  </div>
+
+  <div id="flood"></div>
+  <div id="end">
+    <img id="logo" src="assets/logo_white.png" class="abs" style="left:50%;top:230px;width:900px;margin-left:-450px;filter:brightness(0);opacity:.93">
+    <div id="tagline" class="abs" style="left:0;right:0;top:500px;text-align:center">
+      <div class="mask"><div class="in" style="font-family:Anton;font-size:110px;color:var(--ink);text-transform:uppercase">Vamos modernizar o seu sistema?</div></div>
+    </div>
+    <div id="cta" class="abs" style="left:0;right:0;top:660px;text-align:center">
+      <div class="mask"><div class="in" style="font-size:36px;font-weight:700;color:var(--ink)">Agende um diagnóstico com o nosso time</div></div>
+    </div>
+    <div id="contact" class="abs" style="left:0;right:0;top:790px;text-align:center">
+      <div class="mask"><div class="in" style="font-size:30px;font-weight:600;color:var(--ink)">fabricagovv@gmail.com  ·  (31) 99827-7323  ·  @Grupo_v4_fabricagovv</div></div>
+    </div>
+  </div>
+</div>
+<div id="hud"></div>
+<script>
+const W=1920,H=1080;
+const $=s=>document.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const rng=(t,a,b)=>clamp((t-a)/(b-a));
+const io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const out=x=>1-Math.pow(1-x,3);
+const expo=x=>x>=1?1:1-Math.pow(2,-10*x);
+function spring(t,k=170,d=26){ if(t<=0) return 0; const w=Math.sqrt(k), z=d/(2*w);
+  if(z>=1) return 1-Math.exp(-w*t)*(1+w*t);
+  const wd=w*Math.sqrt(1-z*z); return 1-Math.exp(-z*w*t)*(Math.cos(wd*t)+z/Math.sqrt(1-z*z)*Math.sin(wd*t)); }
+const fmtInt=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+function rise(el,t,tin,tout=1e9){
+  const a=spring(t-tin,180,27), b=io(rng(t,tout,tout+0.42));
+  el.style.transform=`translateY(${(1-a)*112 - b*112}%)`;
+  el.parentElement.style.visibility=(t<tin-0.01||t>tout+0.43)?'hidden':'inherit';
+}
+function riseAll(sel,t,tin,step,tout){$$(sel+' .in').forEach((e,i)=>rise(e,t,tin+i*step,tout+i*0.04));}
+function pop(el,t,t0,tout=1e9,dy=50,k=190,d=26){const e=spring(t-t0,k,d), x=io(rng(t,tout,tout+0.4));
+  el.style.transform=`translateY(${(1-e)*dy - x*40}px)`; el.style.opacity=clamp(e*1.6)*(1-x);}
+const show=(el,on)=>el.style.visibility=on?'visible':'hidden';
+const ICON=(p,s=34)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}" style="fill:none;stroke:#D9A441;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round">${p}</svg>`;
+
+let TL=null,S=[],END=90,L=[];
+// ---------- build ----------
+function buildAlerts(){
+  [['<path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/>','ERRO 500','Sistema fora do ar',140,150],
+   ['<path d="M4 5h16v11H9l-5 4z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/>','CHAMADO #4821','Fornecedor sem resposta',700,230],
+   ['<path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/>','CÓDIGO LEGADO','Sem documentação, ninguém entende',1260,310]].forEach(([ic,h,d,x,y])=>{
+    const e=document.createElement('div');e.className='al card abs';e.style.cssText=`left:${x}px;top:${y}px;width:520px;padding:30px 32px;border:2px solid #D9A441;background:#1d1a14`;
+    e.innerHTML=`<div style="display:flex;align-items:center;gap:16px">${ICON(ic,44)}<div style="font-family:Anton;font-size:44px;letter-spacing:1px">${h}</div></div><div style="font-size:26px;margin-top:10px;color:#e6dcc5">${d}</div>`;$('#alerts').appendChild(e);});
+}
+function buildPillars(){
+  [['DESENVOLVIMENTO','Sistemas web, mobile e portais sob medida.'],['MANUTENÇÃO','Correções, melhorias e novas funcionalidades.'],['SUSTENTAÇÃO','Suporte e monitoramento contínuo, com SLA.']].forEach(([t,d],i)=>{
+    const e=document.createElement('div');e.className='pl card';e.style.cssText='flex:1;height:300px;padding:40px 40px;border-top:6px solid #D9A441';
+    e.innerHTML=`<div style="font-family:Anton;font-size:64px;color:#D9A441;line-height:1">0${i+1}</div><div style="font-family:Anton;font-size:58px;margin-top:18px">${t}</div><div style="font-size:24px;color:#c9c7c0;margin-top:10px">${d}</div>`;$('#pillars').appendChild(e);});
+}
+function buildPortal(){
+  const P=[['nav','left:0;top:56px;width:980px;height:70px;background:#1b1c21;border-bottom:1px solid #2c2e35','<div style="display:flex;gap:28px;align-items:center;height:70px;padding:0 30px;font-size:19px;font-weight:600"><span style="font-family:Anton;font-size:28px;color:#D9A441">PREFEITURA</span><span>Serviços</span><span>Transparência</span><span>Notícias</span><span style="margin-left:auto;padding:8px 18px;border-radius:999px;border:2px solid #D9A441;color:#D9A441">Entrar com gov.br</span></div>'],
+    ['hero','left:30px;top:150px;width:920px;height:230px;border-radius:18px;background:linear-gradient(120deg,#2a2418,#1b1c21)','<div style="padding:40px"><div style="font-family:Anton;font-size:52px">Serviços ao cidadão</div><div style="font-size:22px;color:#c9c7c0;margin-top:8px">Tudo on-line, 24 horas por dia.</div><div style="margin-top:22px;width:420px;height:52px;border-radius:12px;background:#111216;border:2px solid #3a3c44;font-size:19px;color:#9a9ba3;display:flex;align-items:center;padding-left:16px">O que você procura?</div></div>'],
+    ...[0,1,2].map(i=>['c'+i,`left:${30+i*310}px;top:405px;width:290px;height:170px;border-radius:16px;background:#1b1c21;border:1px solid #2c2e35`,`<div style="padding:26px"><div style="width:44px;height:44px;border-radius:12px;background:#D9A44133"></div><div style="font-size:22px;font-weight:700;margin-top:16px">${['Emitir IPTU','Agendar consulta','Matrícula escolar'][i]}</div><div style="height:8px;width:70%;background:#2c2e35;border-radius:4px;margin-top:12px"></div></div>`]),
+    ['foot','left:0;top:600px;width:980px;height:124px;background:#1b1c21;border-top:1px solid #2c2e35','<div style="padding:28px 30px;display:flex;gap:16px;align-items:center"><span style="padding:8px 14px;border-radius:8px;border:2px solid #D9A441;color:#D9A441;font-weight:700;font-size:17px">ACESSIBILIDADE</span><span style="font-size:18px;color:#9a9ba3">Alto contraste · Libras · Teclado</span></div>']];
+  P.forEach(([id,css,h])=>{const e=document.createElement('div');e.className='pt abs';e.style.cssText=css;e.innerHTML=h;$('#parts').appendChild(e);});
+  ['Sistemas web','Aplicativos','Portais','Acessibilidade e-MAG e WCAG','Integração gov.br'].forEach(b=>{const e=document.createElement('span');e.className='chip bd';e.textContent=b;$('#badges3').appendChild(e);});
+}
+function buildMaint(){
+  [['CORRETIVA','Corrige falhas e erros em produção, com prioridade por severidade.','<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>'],
+   ['PREVENTIVA','Atualiza bibliotecas, corrige vulnerabilidades e evita problemas.','<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>'],
+   ['EVOLUTIVA','Novas funcionalidades conforme o negócio e os usuários crescem.','<path d="M4 17l6-6 4 4 6-8"/><path d="M14 7h6v6"/>'],
+   ['ADAPTATIVA','Ajusta o sistema a novas leis, normas, plataformas e integrações.','<path d="M4 7h11M4 17h7M15 4l3 3-3 3M11 14l3 3-3 3"/>']].forEach(([t,d,ic])=>{
+    const e=document.createElement('div');e.className='mc card';e.style.cssText='height:270px;padding:36px 40px;border-left:6px solid #D9A441;display:flex;gap:30px;align-items:flex-start';
+    e.innerHTML=`<div style="width:90px;height:90px;border-radius:22px;background:#2a2c33;display:flex;align-items:center;justify-content:center;flex:none">${ICON(ic,50)}</div><div><div style="font-family:Anton;font-size:60px;line-height:1">${t}</div><div style="font-size:25px;color:#c9c7c0;margin-top:14px;line-height:1.35">${d}</div></div>`;$('#mcards').appendChild(e);});
+}
+const SLA=[['Severidade','Exemplo','1º atendimento','Solução'],['Crítica','Sistema fora do ar','30 min','4 h'],['Alta','Função essencial com falha','1 h','8 h'],['Média','Erro com alternativa','4 h','2 dias úteis'],['Baixa','Ajuste visual ou dúvida','8 h','5 dias úteis']];
+function buildSLA(){
+  SLA.forEach((r,i)=>{const e=document.createElement('div');e.className='sr';e.style.cssText=`display:grid;grid-template-columns:190px 1fr 210px 210px;align-items:center;height:${i?100:70}px;padding:0 34px;${i?'border-top:1px solid #2c2e35;':''}font-size:${i?27:20}px;font-weight:${i?600:700};${i?'':'color:#9a9ba3;letter-spacing:1px;text-transform:uppercase'}`;
+    e.innerHTML=r.map((c,j)=>`<div class="c${j}">${c}</div>`).join('');$('#sla').appendChild(e);});
+  let h='<circle r="200" fill="#1b1c21" stroke="#3a3c44" stroke-width="8"/><circle id="wring" r="200" fill="none" stroke="#D9A441" stroke-width="12" stroke-linecap="round" transform="rotate(-90)" pathLength="1" stroke-dasharray="1 1"/><rect x="-26" y="-246" width="52" height="30" rx="8" fill="#3a3c44"/>';
+  for(let i=0;i<60;i++){const a=i/60*Math.PI*2, r1=i%5?176:166;h+=`<line x1="${Math.sin(a)*r1}" y1="${-Math.cos(a)*r1}" x2="${Math.sin(a)*186}" y2="${-Math.cos(a)*186}" stroke="#5a5c66" stroke-width="${i%5?2:4}"/>`;}
+  h+='<text id="wtxt" y="30" text-anchor="middle" font-family="Anton" font-size="110" fill="#F2EFE8">0</text>';
+  $('#watch').innerHTML=h;
+}
+const STEPS=[['Diagnóstico','Entendemos o sistema, o processo e as prioridades.'],['Planejamento','Escopo, cronograma e indicadores definidos com você.'],['Desenvolvimento ágil','Entregas curtas, demonstradas a cada sprint.'],['Homologação','Testes, validação com usuários e implantação segura.'],['Sustentação','Suporte, monitoramento e evolução contínua.']];
+function buildSteps(){
+  STEPS.forEach(([t,d],i)=>{const x=240+i*360;const e=document.createElement('div');e.className='pn abs';e.style.cssText=`left:${x}px;top:523px;width:0;height:0`;
+    e.innerHTML=`<div class="dot abs" style="left:-36px;top:-36px;width:72px;height:72px;border-radius:50%;background:#111216;border:6px solid #3a3c44;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:32px">0${i+1}</div>
+      <div class="lab abs" style="left:-150px;width:300px;top:60px;text-align:center"><div style="font-size:30px;font-weight:700">${t}</div><div style="font-size:21px;color:#c9c7c0;margin-top:10px;line-height:1.35">${d}</div></div>`;$('#pnodes').appendChild(e);});
+}
+const STACK=[['BACK-END',['Java','.NET','Python','Node.js','PHP']],['FRONT E MOBILE',['React','Angular','Vue','Flutter']],['DADOS',['PostgreSQL','Oracle','SQL Server','MySQL']],['INFRA',['Docker','Kubernetes','Nuvem','On-premise','CI/CD']]];
+function buildStack(){
+  STACK.forEach(([h,cs])=>{const c=document.createElement('div');c.className='col card';c.style.cssText='flex:1;height:540px;padding:34px 30px';
+    c.innerHTML=`<div style="font-family:Anton;font-size:50px;margin-bottom:24px">${h}</div>`+cs.map(x=>`<span class="chip sc">${x}</span>`).join('');$('#cols').appendChild(c);});
+}
+function buildChecks(){
+  [['Contratação conforme a Lei 14.133/2021','Medição e entrega dentro das regras de compras públicas.'],['Medição por UST ou ponto de função','Demanda medida e auditável.'],['LGPD desde o projeto','Base legal, mínimo necessário e registro de acesso. Boas práticas OWASP.'],['O código é do cliente','Repositório, documentação e transferência de conhecimento, sem aprisionamento.']].forEach(([t,d])=>{
+    const e=document.createElement('div');e.className='ck';e.style.cssText='display:flex;align-items:center;gap:34px;height:160px;border-bottom:1px solid #2c2e35';
+    e.innerHTML=`<span class="chk">✓</span><div><div style="font-family:Anton;font-size:62px;line-height:1">${t}</div><div style="font-size:24px;color:#c9c7c0;margin-top:8px">${d}</div></div>`;$('#checks').appendChild(e);});
+}
+const PRICES=[['UST','Unidade de Serviço Técnico',70,'R$ 70',[230,230],'R$ 230','até 70%'],['PF','Ponto de Função',250,'R$ 250',[500,1000],'R$ 500 a R$ 1.000','até 75%'],['HST','Hora de Serviço Técnico',80,'R$ 80',[150,220],'R$ 150 a R$ 220','até 64%']];
+function buildPrices(){
+  const BW=720;
+  PRICES.forEach(([k,l,v,vt,m,mt,sv])=>{const r=document.createElement('div');r.className='pr';r.style.cssText='display:flex;align-items:center;height:180px;border-top:1px solid #2c2e35;gap:30px';
+    const vw=v/m[1]*BW, m0=m[0]/m[1]*BW;
+    r.innerHTML=`<div style="width:320px"><div style="font-family:Anton;font-size:72px;line-height:1">${k}</div><div style="font-size:21px;color:var(--mute);margin-top:6px">${l}</div></div>
+      <div style="width:${BW+220}px;position:relative;height:120px">
+        <div class="bv abs" style="left:0;top:12px;height:42px;width:${vw}px;background:#D9A441;border-radius:8px;transform-origin:0 50%"></div>
+        <div class="tv abs" style="left:${vw+16}px;top:12px;font-size:32px;font-weight:700;color:#D9A441;line-height:42px;white-space:nowrap">${vt}</div>
+        <div class="bm abs" style="left:0;top:66px;height:42px;width:${BW}px;border-radius:8px;transform-origin:0 50%;background:linear-gradient(90deg,#4a4c55 ${m0}px,#34363e ${m0}px)"></div>
+        <div class="tm abs" style="left:${BW+16}px;top:66px;font-size:28px;font-weight:600;color:#c9c7c0;line-height:42px;white-space:nowrap">${mt}</div>
+      </div>
+      <div class="sv" style="margin-left:auto;background:#D9A441;color:#111216;border-radius:16px;padding:12px 22px;text-align:center;min-width:190px"><div style="font-size:17px;font-weight:700;letter-spacing:1px">ECONOMIA</div><div style="font-family:Anton;font-size:48px;line-height:1.05">${sv}</div></div>`;
+    $('#prows').appendChild(r);});
+}
+function buildNums(){
+  [[17,'portais públicos'],[35,'clientes privados']].forEach(([v,l])=>{const e=document.createElement('div');e.className='nm';e.style.cssText='display:flex;align-items:baseline;gap:24px;height:150px';
+    e.innerHTML=`<span class="n" data-v="${v}" style="font-family:Anton;font-size:140px;color:#D9A441;line-height:1">+0</span><span style="font-size:36px;font-weight:600">${l}</span>`;$('#nums').appendChild(e);});
+}
+let paths={};
+async function init(){
+  TL=await (await fetch('timeline.json')).json();
+  L=TL.lines.map(l=>l.start);
+  S=L.map((s,i)=>[i===0?0:s-0.4, i<L.length-1?L[i+1]-0.4:TL.end]);
+  END=TL.end;
+  buildAlerts();buildPillars();buildPortal();buildMaint();buildSLA();buildSteps();buildStack();buildChecks();buildPrices();buildNums();
+  $('#mapwrap').innerHTML=await (await fetch('assets/brazil.svg')).text();
+  $$('#mapwrap path').forEach(p=>paths[p.id]=p);
+  await document.fonts.ready;
+  await Promise.all($$('img').map(i=>i.complete?0:new Promise(r=>i.onload=r)));
+  fit(); window.DUR=END; window.ready=true; seek(0);
+}
+
+function seek(t){
+  $('#grid').style.transform=`translate(${(-t*6)%40}px,${(-t*3)%40}px)`;
+  $('#ghost').style.transform=`translateX(${-t*16}px)`;
+  const SC=k=>{const [a,b]=S[k-1]; const on=t>=a-0.01&&t<b+0.02; show($('#S'+k),on); return [a,b,on, L[k-1]];};
+
+  // S1 alertas
+  { const [a,b,on,l]=SC(1); if(on){ const x=io(rng(t,b-0.5,b));
+      $$('#alerts .al').forEach((e,i)=>{const t0=l+[0,1.7,3.4][i]-0.1, s=spring(t-t0,260,18), dim=out(rng(t,l+4.8,l+5.4));
+        const jit=(t>t0&&t<t0+0.25)?Math.sin(t*140+i)*10*(1-(t-t0)/0.25):0;
+        e.style.transform=`translate(${jit}px,${(1-s)*40 - x*30}px) scale(${0.9+0.1*clamp(s,0,1.05)})`; e.style.opacity=clamp(s*2)*(1-0.6*dim)*(1-x);});
+      riseAll('#S1',t,l+4.9,0.15,b-0.45); } }
+  // S2 quem somos
+  { const [a,b,on,l]=SC(2); if(on){ const x=io(rng(t,b-0.5,b));
+      const lo=$('#logo2'), e=spring(t-(a+0.3),120,24); lo.style.transform=`scaleY(${0.014+0.986*clamp(e,0,1.02)})`; lo.style.opacity=clamp((t-a-0.25)/0.08)*(1-x);
+      $('#sub2').style.opacity=rng(t,a+1.2,a+1.6)*(1-x);
+      $$('#pillars .pl').forEach((p,i)=>pop(p,t,l+[3.9,4.7,5.4][i],b-0.5+i*0.05,70)); } }
+  // S3 desenvolvimento
+  { const [a,b,on,l]=SC(3); if(on){ riseAll('#S3',t,a+0.2,0.12,b-0.45); const x=io(rng(t,b-0.5,b));
+      const br=$('#browser'), e=spring(t-(a+0.3),150,25); br.style.transform=`translateY(${(1-e)*100 - x*50}px)`; br.style.opacity=clamp(e*1.5)*(1-x);
+      $$('#parts .pt').forEach((p,i)=>pop(p,t,a+0.9+i*0.45,1e9,40,200,24));
+      $$('#badges3 .bd').forEach((c,i)=>pop(c,t,l+[0.6,1.6,2.4,3.6,5.0][i],b-0.5,20,220,22)); } }
+  // S4 manutenção
+  { const [a,b,on,l]=SC(4); if(on){ riseAll('#S4',t,a+0.2,0.12,b-0.45);
+      $$('#mcards .mc').forEach((c,i)=>pop(c,t,l+[1.9,2.7,3.5,4.2][i]-0.15,b-0.5+i*0.04,50)); } }
+  // S5 SLA
+  { const [a,b,on,l]=SC(5); if(on){ riseAll('#S5',t,a+0.2,0.12,b-0.45); const x=io(rng(t,b-0.5,b));
+      pop($('#sla'),t,a+0.4,b-0.5,50); $$('#sla .sr').forEach((r,i)=>{r.style.opacity=rng(t,a+0.6+i*0.15,a+0.9+i*0.15);
+        const hi=i===1&&t>l+3.0; r.style.background=hi?'#D9A44122':'transparent'; r.style.boxShadow=hi?'inset 6px 0 0 #D9A441':'none';
+        if(i===1){r.querySelector('.c2').style.color=t>l+3.3?'#D9A441':'';r.querySelector('.c3').style.color=t>l+5.0?'#D9A441':'';}});
+      const w=$('#watch'), we=spring(t-(a+0.6),170,24); w.style.transform=`scale(${0.8+0.2*we})`; w.style.opacity=clamp(we*1.5)*(1-x);
+      let txt,ring,lab;
+      if(t<l+4.9){const p=io(rng(t,l+2.6,l+3.6)); txt=Math.round(30*p)+' min'; ring=p*30/240; lab='1º atendimento · crítica';}
+      else {const p=io(rng(t,l+4.9,l+5.8)); txt=Math.max(1,Math.round(4*p))+' h'; ring=lerp(30/240,1,p); lab='Solução · crítica';}
+      $('#wtxt').textContent=t<l+2.6?'0 min':txt; $('#wring').style.strokeDashoffset=1-ring;
+      $('#wlab').textContent=lab; $('#wlab').style.opacity=rng(t,l+2.6,l+2.9)*(1-x);
+      $('#rep').style.opacity=rng(t,l+6.4,l+6.8)*(1-x); $('#rep').style.transform=`translateY(${(1-out(rng(t,l+6.4,l+6.9)))*20}px)`; } }
+  // S6 processo
+  { const [a,b,on,l]=SC(6); if(on){ riseAll('#S6',t,a+0.2,0.12,b-0.45); const x=io(rng(t,b-0.5,b));
+      const T=[2.1,3.1,4.2,5.3,6.1].map(v=>l+v);
+      $('#pline').style.opacity=rng(t,a+0.4,a+0.8)*(1-x); $('#pfill').style.transform=`scaleX(${io(rng(t,T[0],T[4]))})`;
+      $$('#pnodes .pn').forEach((n,i)=>{const on2=spring(t-T[i],240,20); n.style.opacity=rng(t,a+0.5+i*0.06,a+0.9+i*0.06)*(1-x);
+        const d=n.querySelector('.dot'), lit=on2>0.3; d.style.borderColor=lit?'#D9A441':'#3a3c44'; d.style.background=lit?'#D9A441':'#111216'; d.style.color=lit?'#111216':'#F2EFE8';
+        d.style.transform=`scale(${1+0.2*Math.max(0,on2)*(1-rng(t,T[i]+0.3,T[i]+0.8))})`;
+        const lb=n.querySelector('.lab'); lb.style.opacity=0.35+0.65*clamp(on2); lb.style.transform=`translateY(${(1-clamp(on2))*14}px)`;}); } }
+  // S7 stack
+  { const [a,b,on,l]=SC(7); if(on){ riseAll('#S7',t,a+0.2,0.12,b-0.45);
+      $$('#cols .col').forEach((c,i)=>pop(c,t,a+0.4+i*0.15,b-0.5+i*0.04,60));
+      $$('#cols .sc').forEach((c,i)=>{const e=spring(t-(l+0.1+i*0.16),240,20); c.style.transform=`translateY(${(1-e)*-30}px)`; c.style.opacity=clamp(e*2);});
+      pop($('#take'),t,l+4.6,b-0.5,30); } }
+  // S8 conformidade
+  { const [a,b,on,l]=SC(8); if(on){ riseAll('#S8',t,a+0.2,0.12,b-0.45);
+      $$('#checks .ck').forEach((c,i)=>{const t0=l+[0.3,3.3,5.9,8.3][i]; const e=spring(t-t0,180,26), x=io(rng(t,b-0.55+i*0.04,b-0.1+i*0.04));
+        c.style.transform=`translateX(${(1-e)*-70}px) translateY(${-x*30}px)`; c.style.opacity=clamp(e*1.6)*(1-x);
+        c.querySelector('.chk').style.transform=`scale(${clamp(spring(t-(t0+0.2),260,18),0,1.2)})`;}); } }
+  // S9 preço
+  { const [a,b,on,l]=SC(9); if(on){ riseAll('#S9',t,a+0.2,0.12,b-0.45); const px=io(rng(t,b-0.5,b));
+      $('#legend').style.opacity=rng(t,a+0.6,a+1.0)*(1-px); $('#pfoot').style.opacity=rng(t,l+3.6,l+4.0)*(1-px);
+      $$('#prows .pr').forEach((r,i)=>{const t0=l+[1.0,3.0,3.8][i]; const e=spring(t-t0,190,26);
+        r.style.opacity=clamp(e*1.6)*(1-px); r.style.transform=`translateY(${(1-e)*40 - px*30}px)`;
+        r.querySelector('.bm').style.transform=`scaleX(${out(rng(t,t0+0.05,t0+0.7))})`; r.querySelector('.bv').style.transform=`scaleX(${out(rng(t,t0+0.35,t0+0.95))})`;
+        r.querySelector('.tm').style.opacity=rng(t,t0+0.5,t0+0.8); r.querySelector('.tv').style.opacity=rng(t,t0+0.8,t0+1.1);
+        const sv=r.querySelector('.sv'), se=spring(t-(t0+1.0),260,20); sv.style.transform=`scale(${0.6+0.4*se})`; sv.style.opacity=clamp(se*2);}); } }
+  // S10 Brasil
+  { const [a,b,on,l]=SC(10); if(on){ riseAll('#S10',t,a+0.2,0.12,b-0.45); const x=io(rng(t,b-0.5,b));
+      const me=spring(t-(a+0.3),120,24), z=1.42*(0.9+0.1*me)*(1+0.03*rng(t,a,b)), tx=1250-306*z, ty=560-320*z;
+      $('#mapwrap').style.transform=`translate(${tx}px,${ty}px) scale(${z})`; $('#mapwrap').style.opacity=clamp(me*1.4)*(1-x);
+      Object.entries(paths).forEach(([id,p],i)=>{const g=id==='mg'?out(rng(t,a+0.9,a+1.4)):0; const lit=out(rng(t,l+2.0+i*0.05,l+2.6+i*0.05))*0.18;
+        const base=[32,34,40], gd=[217,164,65], k=Math.max(g,lit*(id==='mg'?0:1));
+        p.style.fill=`rgb(${lerp(base[0],gd[0],k)|0},${lerp(base[1],gd[1],k)|0},${lerp(base[2],gd[2],k)|0})`; p.style.stroke=g>0.5?'#111216':'#3a3c44';});
+      const pe=spring(t-(a+1.3),220,22); $('#pin').style.transform=`translate(${tx+478.6*z}px,${ty+377.8*z}px)`; $('#pdot').style.transform=`scale(${pe})`;
+      $('#pin').style.opacity=1-x; $('#plab').style.opacity=rng(t,a+1.6,a+2.0);
+      $$('#nums .nm').forEach((n,i)=>{const t0=l+[2.3,4.2][i]; pop(n,t,t0,b-0.5,30); const s=n.querySelector('.n'); s.textContent='+'+Math.round(+s.dataset.v*expo(rng(t,t0,t0+1.0)));}); } }
+  // assinatura
+  const F=S[S.length-1][0];
+  const fl=$('#flood'), R=Math.hypot(960,540)*1.08, fe=io(rng(t,F,F+0.4)), rad=R*fe;
+  fl.style.width=fl.style.height=(2*rad)+'px'; fl.style.left=(960-rad)+'px'; fl.style.top=(540-rad)+'px';
+  show(fl,t>F); show($('#end'),t>F+0.3);
+  const lo=$('#logo'), la=spring(t-(F+0.55),120,24);
+  lo.style.transform=`scaleY(${0.014+0.986*clamp(la,0,1.02)}) scale(${1+0.02*rng(t,F,END)})`; lo.style.opacity=0.93*clamp((t-F-0.5)/0.08);
+  rise($('#tagline .in'),t,F+1.6); rise($('#cta .in'),t,F+2.6); rise($('#contact .in'),t,F+3.2);
+  $('#end').style.transform=`translateY(${-6*rng(t,F+1,END)}px)`;
+  $('#ghost').style.opacity=1-rng(t,F-0.5,F);
+  $('#hud').textContent=t.toFixed(2)+'s';
+}
+window.seek=seek;
+function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(${(innerWidth-W*s)/2}px,${(innerHeight-H*s)/2}px) scale(${s})`;}
+addEventListener('resize',fit);
+let playing=false,t0=0,cur=0;
+addEventListener('keydown',e=>{if(e.code==='Space'){playing=!playing;t0=performance.now()/1000-cur;loop();}
+  if(e.code==='ArrowRight'){cur+=1/30;seek(cur);} if(e.code==='ArrowLeft'){cur=Math.max(0,cur-1/30);seek(cur);}
+  if(e.code==='KeyR'){cur=0;t0=performance.now()/1000;playing=true;loop();}});
+function loop(){if(!playing)return;cur=performance.now()/1000-t0;if(cur>END){cur=END;playing=false;}seek(cur);requestAnimationFrame(loop);}
+if(new URLSearchParams(location.search).has('render')) $('#hud').style.display='none';
+init();
+</script>
+</body>
+</html>

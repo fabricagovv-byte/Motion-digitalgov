@@ -1,6 +1,6 @@
 # Planejamento · Filme narrado "TIC de Software" · V4 FábricaGov
 
-Status: **aguardando aprovação** (nada renderizado ainda).
+Status: **produzido** (89 s). Entregáveis em `deliverables/tic/`. Escolhas: ~90 s, preço na tela, só 16:9, sem nomes de clientes.
 
 ## 1. Objetivo
 Explicar, em pouco mais de 1 minuto, o que a V4 FábricaGov entrega como fornecedora de TIC de software

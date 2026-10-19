@@ -1,0 +1,71 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.9,
+   "dur": 7.286,
+   "caption": "Sistema fora do ar, fornecedor que some, código que ninguém entende. Quem cuida de TI pública conhece essa história."
+  },
+  {
+   "id": "n2",
+   "start": 8.986,
+   "dur": 7.639,
+   "caption": "A V4 FábricaGov é uma fábrica de software brasileira que desenvolve, mantém e sustenta sistemas para o setor público e privado."
+  },
+  {
+   "id": "n3",
+   "start": 17.326,
+   "dur": 6.618,
+   "caption": "Criamos sistemas web, aplicativos e portais sob medida, com acessibilidade e integração ao gov.br."
+  },
+  {
+   "id": "n4",
+   "start": 24.643,
+   "dur": 5.039,
+   "caption": "Na manutenção, cuidamos de tudo: corretiva, preventiva, evolutiva e adaptativa."
+  },
+  {
+   "id": "n5",
+   "start": 30.382,
+   "dur": 7.994,
+   "caption": "Na sustentação, sistema fora do ar tem primeiro atendimento em até 30 minutos e solução em até 4 horas, com relatório todo mês."
+  },
+  {
+   "id": "n6",
+   "start": 39.076,
+   "dur": 6.734,
+   "caption": "O processo tem cinco etapas: diagnóstico, planejamento, desenvolvimento ágil, homologação e sustentação."
+  },
+  {
+   "id": "n7",
+   "start": 46.51,
+   "dur": 8.098,
+   "caption": "Java, .NET, Python, React, Flutter, bancos de dados e nuvem. Assumimos o seu sistema na tecnologia em que ele já está."
+  },
+  {
+   "id": "n8",
+   "start": 55.308,
+   "dur": 9.956,
+   "caption": "Contratação conforme a Lei 14.133, medição por UST ou ponto de função, LGPD desde o projeto, e o código é do cliente."
+  },
+  {
+   "id": "n9",
+   "start": 65.964,
+   "dur": 5.7,
+   "caption": "E com preço justo: a UST sai por 70 reais, contra 230 da concorrência."
+  },
+  {
+   "id": "n10",
+   "start": 72.364,
+   "dur": 6.304,
+   "caption": "Em dois anos, mais de 17 portais públicos e mais de 35 clientes privados em todo o Brasil."
+  },
+  {
+   "id": "n11",
+   "start": 81.069,
+   "dur": 4.9,
+   "caption": "V4 FábricaGov. Vamos modernizar o seu sistema? Agende um diagnóstico."
+  }
+ ],
+ "end": 89.17
+}

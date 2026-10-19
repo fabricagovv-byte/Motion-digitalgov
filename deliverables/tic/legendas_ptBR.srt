@@ -1,0 +1,44 @@
+1
+00:00:00,900 --> 00:00:08,386
+Sistema fora do ar, fornecedor que some, código que ninguém entende. Quem cuida de TI pública conhece essa história.
+
+2
+00:00:08,986 --> 00:00:16,825
+A V4 FábricaGov é uma fábrica de software brasileira que desenvolve, mantém e sustenta sistemas para o setor público e privado.
+
+3
+00:00:17,326 --> 00:00:24,144
+Criamos sistemas web, aplicativos e portais sob medida, com acessibilidade e integração ao gov.br.
+
+4
+00:00:24,643 --> 00:00:29,882
+Na manutenção, cuidamos de tudo: corretiva, preventiva, evolutiva e adaptativa.
+
+5
+00:00:30,382 --> 00:00:38,576
+Na sustentação, sistema fora do ar tem primeiro atendimento em até 30 minutos e solução em até 4 horas, com relatório todo mês.
+
+6
+00:00:39,076 --> 00:00:46,010
+O processo tem cinco etapas: diagnóstico, planejamento, desenvolvimento ágil, homologação e sustentação.
+
+7
+00:00:46,510 --> 00:00:54,808
+Java, .NET, Python, React, Flutter, bancos de dados e nuvem. Assumimos o seu sistema na tecnologia em que ele já está.
+
+8
+00:00:55,308 --> 00:01:05,464
+Contratação conforme a Lei 14.133, medição por UST ou ponto de função, LGPD desde o projeto, e o código é do cliente.
+
+9
+00:01:05,964 --> 00:01:11,864
+E com preço justo: a UST sai por 70 reais, contra 230 da concorrência.
+
+10
+00:01:12,364 --> 00:01:18,868
+Em dois anos, mais de 17 portais públicos e mais de 35 clientes privados em todo o Brasil.
+
+11
+00:01:21,069 --> 00:01:26,169
+V4 FábricaGov. Vamos modernizar o seu sistema? Agende um diagnóstico.
+

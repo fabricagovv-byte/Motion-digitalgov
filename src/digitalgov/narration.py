@@ -1,10 +1,13 @@
-"""Narração pt-BR (Piper, voz pt_BR-cadu-medium + tratamento de estúdio) do filme "DigitalGov · Digitalização".
+"""Narração pt-BR (Kokoro v1.0, voz pm_alex, mais rápida e natural, + tratamento leve) do filme "DigitalGov · Digitalização".
 Gera um WAV por fala e digitalgov/timeline.json com o início de cada fala no filme.
 As cenas do film.html e as legendas usam esse mesmo arquivo."""
 import json, os, subprocess, sys, wave
+import soundfile as sf
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-VOICE = os.path.join(ROOT, "../../voices/vits-piper-pt_BR-cadu-medium/pt_BR-cadu-medium.onnx")
+KDIR = os.path.join(ROOT, "../../voices/kokoro")
+VOICE = os.environ.get("KOKORO_VOICE", "pm_alex")
+SPEED = float(os.environ.get("KOKORO_SPEED", "1.12"))
 OUT = os.path.join(ROOT, "../../build/digitalgov/voice")
 
 # id, legenda, texto para o TTS (grafia ajustada para a pronúncia), pausa depois da fala (s)
@@ -30,21 +33,26 @@ LINES = [
     ("n10", "DigitalGov. Tecnologia a serviço da sua empresa. Fale com o Warley, nosso diretor.",
             "Digital Gov. Tecnologia a serviço da sua empresa. Fale com o Uórlei, nosso diretor.", 0.0),
 ]
-FX = ("highpass=f=70,equalizer=f=220:t=q:w=1.2:g=-2.5,equalizer=f=3200:t=q:w=1.4:g=2.5,equalizer=f=9000:t=q:w=1:g=1.5,"
-      "acompressor=threshold=-21dB:ratio=3:attack=6:release=90:makeup=3,deesser=i=0.35,aecho=0.85:0.55:28|46:0.07|0.05,"
+# corta silêncio nas pontas, EQ suave, compressão leve, sem eco
+FX = ("silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
+      "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.12,areverse,"
+      "highpass=f=70,equalizer=f=250:t=q:w=1.2:g=-1.5,equalizer=f=3500:t=q:w=1.4:g=1.5,"
+      "acompressor=threshold=-20dB:ratio=2.5:attack=8:release=120:makeup=2,"
       "aresample=48000:resampler=soxr,loudnorm=I=-16:TP=-1.5:LRA=7")
-START = 0.9        # primeira fala
+START = 0.7        # primeira fala
 BEFORE_END = 1.6   # respiro extra antes da assinatura final
 
 
 def main():
+    global K
+    from kokoro_onnx import Kokoro
+    K = Kokoro(f"{KDIR}/kokoro-v1.0.onnx", f"{KDIR}/voices-v1.0.bin")
     os.makedirs(OUT, exist_ok=True)
     t = START; tl = []
     for i, (lid, cap, tts, pause) in enumerate(LINES):
         path = f"{OUT}/{lid}.wav"; raw = f"{OUT}/{lid}_raw.wav"
-        subprocess.run([sys.executable, "-m", "piper", "-m", VOICE, "-f", raw, "--length-scale", "0.98",
-                        "--noise-scale", "0.6", "--noise-w-scale", "0.7", "--sentence-silence", "0.25"],
-                       input=tts.encode(), check=True, capture_output=True)
+        samples, sr = K.create(tts, voice=VOICE, speed=SPEED, lang="pt-br")
+        sf.write(raw, samples, sr)
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", raw, "-af", FX, "-ac", "1", path], check=True)
         with wave.open(path) as w:
             d = w.getnframes() / w.getframerate()

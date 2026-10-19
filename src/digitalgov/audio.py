@@ -147,36 +147,42 @@ mus.L *= duck; mus.R *= duck
 
 # ---------------- sfx (same times as film.html) ----------------
 fx = Bus()
-Lx = starts
-for s in SC[1:5] + [SC[5], SC[9]]:
-    fx.add(whoosh(.6), s - 0.35, .2, .2)                         # transições em mosaico
-    for q in range(10): fx.add(pop(500 + q * 60, 900 + q * 60), s - 0.4 + q * .03, .03, (q % 3 - 1) * .5)
-for q in range(30): fx.add(whoosh(.35), .3 + q * .28, .025, (q % 5 - 2) * .4)   # papéis caindo
-fx.add(impact()[: int(.8 * SR)], Lx[0] + 2.4, .3); fx.add(pop(600, 1200), Lx[0] + 2.5, .14)
-for q in range(12): fx.add(tick(2400 + q * 60), Lx[0] + 2.5 + q * .17, .05)
-fx.add(pop(500, 1000), Lx[1] + .6, .18); fx.add(pop(700, 1400), Lx[1] + 4.9, .2)
-for q in range(12): fx.add(tick(1800 + q * 80), SC[1] + .2 + q * .13, .04)
-for d in (1.4, 2.4, 3.4, 4.2, 5.4): fx.add(pop(380, 900), Lx[2] + d, .2)
-for q in range(8): fx.add(tick(2600), Lx[2] + 5.5 + q * .12, .07)
-fx.add(riser(1.4), Lx[3] + 2.0, .12)
-fx.add(impact()[: int(.7 * SR)], Lx[3] + 3.4, .3)
-for q in range(16): fx.add(pop(600 + q * 40, 1200 + q * 40), Lx[3] + 3.4 + q * .03, .03, (q % 3 - 1) * .6)
-fx.add(shimmer(), Lx[3] + 5.0, .14)
-for d in (2.2, 3.5, 5.0): fx.add(pop(420, 900), Lx[3] + d, .16)
-for q in range(10): fx.add(tick(3000 + q * 30), Lx[3] + 5.5 + q * .08, .04)
-fx.add(pop(400, 800), SC[4] + .4, .16); fx.add(pop(500, 1000), SC[4] + .9, .16)
-for d in (5.6, 6.7, 7.4): fx.add(whoosh(.25), Lx[4] + d - .1, .12); fx.add(pop(300, 200), Lx[4] + d, .14)
-fx.add(pop(400, 900), SC[5] + 1.4, .16)
-for q in range(14): fx.add(tick(2200 + q * 70), Lx[5] + 3.8 + q * .11, .05)
-fx.add(pop(700, 1500), Lx[5] + 5.4, .2)
-for d in (3.2, 7.6, 10.6): fx.add(pop(420, 900), Lx[6] + d, .18)
-for q in range(14): fx.add(tick(2200 + q * 70), Lx[6] + 10.7 + q * .1, .05)
-for d in (1.4, 4.3): fx.add(pop(500, 1100), Lx[7] + d, .2)
-for q in range(14): fx.add(tick(2400 + q * 60), Lx[7] + 4.5 + q * .13, .05)
-fx.add(pop(500, 1100), SC[8] + .4, .2)
-for q in range(26): fx.add(tick(1500 + (q * 113) % 1500), SC[8] + 2.7 + q * .06, .04, (q % 5 - 2) * .4)
-fx.add(riser(1.8), F - 1.8, .3); fx.add(impact(), F, .55); fx.add(shimmer(), F + .6, .2)
-for q in range(16): fx.add(pop(500 + q * 50, 1000 + q * 50), F + .8 + q * .05, .04, (q % 3 - 1) * .6)
+# efeitos compostos sobre a narração v1: os tempos são mapeados para a narração atual (igual ao film.html)
+OLD_STARTS = [0.9, 10.12, 19.847, 28.355, 37.692, 47.256, 57.193, 71.616, 81.628, 91.627]; OLD_END = 102.61
+SCo = [0 if i == 0 else s - 0.4 for i, s in enumerate(OLD_STARTS)]; Fo = SCo[-1]
+KN_OLD = SCo + [OLD_END]; KN_NEW = SC + [DUR]
+def fadd(sig, t, g=1.0, pan=0.0):
+    fx.add(sig, float(np.interp(t, KN_OLD, KN_NEW)), g, pan)
+Lx = OLD_STARTS
+for s in SCo[1:5] + [SCo[5], SCo[9]]:
+    fadd(whoosh(.6), s - 0.35, .2, .2)                         # transições em mosaico
+    for q in range(10): fadd(pop(500 + q * 60, 900 + q * 60), s - 0.4 + q * .03, .03, (q % 3 - 1) * .5)
+for q in range(30): fadd(whoosh(.35), .3 + q * .28, .025, (q % 5 - 2) * .4)   # papéis caindo
+fadd(impact()[: int(.8 * SR)], Lx[0] + 2.4, .3); fadd(pop(600, 1200), Lx[0] + 2.5, .14)
+for q in range(12): fadd(tick(2400 + q * 60), Lx[0] + 2.5 + q * .17, .05)
+fadd(pop(500, 1000), Lx[1] + .6, .18); fadd(pop(700, 1400), Lx[1] + 4.9, .2)
+for q in range(12): fadd(tick(1800 + q * 80), SCo[1] + .2 + q * .13, .04)
+for d in (1.4, 2.4, 3.4, 4.2, 5.4): fadd(pop(380, 900), Lx[2] + d, .2)
+for q in range(8): fadd(tick(2600), Lx[2] + 5.5 + q * .12, .07)
+fadd(riser(1.4), Lx[3] + 2.0, .12)
+fadd(impact()[: int(.7 * SR)], Lx[3] + 3.4, .3)
+for q in range(16): fadd(pop(600 + q * 40, 1200 + q * 40), Lx[3] + 3.4 + q * .03, .03, (q % 3 - 1) * .6)
+fadd(shimmer(), Lx[3] + 5.0, .14)
+for d in (2.2, 3.5, 5.0): fadd(pop(420, 900), Lx[3] + d, .16)
+for q in range(10): fadd(tick(3000 + q * 30), Lx[3] + 5.5 + q * .08, .04)
+fadd(pop(400, 800), SCo[4] + .4, .16); fadd(pop(500, 1000), SCo[4] + .9, .16)
+for d in (5.6, 6.7, 7.4): fadd(whoosh(.25), Lx[4] + d - .1, .12); fadd(pop(300, 200), Lx[4] + d, .14)
+fadd(pop(400, 900), SCo[5] + 1.4, .16)
+for q in range(14): fadd(tick(2200 + q * 70), Lx[5] + 3.8 + q * .11, .05)
+fadd(pop(700, 1500), Lx[5] + 5.4, .2)
+for d in (3.2, 7.6, 10.6): fadd(pop(420, 900), Lx[6] + d, .18)
+for q in range(14): fadd(tick(2200 + q * 70), Lx[6] + 10.7 + q * .1, .05)
+for d in (1.4, 4.3): fadd(pop(500, 1100), Lx[7] + d, .2)
+for q in range(14): fadd(tick(2400 + q * 60), Lx[7] + 4.5 + q * .13, .05)
+fadd(pop(500, 1100), SCo[8] + .4, .2)
+for q in range(26): fadd(tick(1500 + (q * 113) % 1500), SCo[8] + 2.7 + q * .06, .04, (q % 5 - 2) * .4)
+fadd(riser(1.8), Fo - 1.8, .3); fadd(impact(), Fo, .55); fadd(shimmer(), Fo + .6, .2)
+for q in range(16): fadd(pop(500 + q * 50, 1000 + q * 50), Fo + .8 + q * .05, .04, (q % 3 - 1) * .6)
 
 
 def stereo(b): return np.stack([b.L, b.R], axis=1)

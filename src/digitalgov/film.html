@@ -218,7 +218,9 @@ function typed(full,t,t0,dur){const k=Math.floor(full.length*clamp((t-t0)/dur));
 const PAL=['#0AA0E0','#1BB8EA','#0E5A9C','#8CC63F','#FDB913','#F7931E','#E91E78','#E8303A','#263a7a','#13a05a'];
 const ICON=(p,s)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}">${p}</svg>`;
 
-let TL=null,S=[],END=103,L=[],paths={},cent={},PIN=[478.6,377.8];
+let TL=null,S=[],END=103,L=[],paths={},cent={},PIN=[478.6,377.8],KN_NEW=[],KN_OLD=[];
+const OLD_L=[0.9,10.12,19.847,28.355,37.692,47.256,57.193,71.616,81.628,91.627], OLD_END=102.61;
+function warp(t){for(let i=0;i<KN_NEW.length-1;i++){if(t<=KN_NEW[i+1]||i===KN_NEW.length-2){const f=(t-KN_NEW[i])/(KN_NEW[i+1]-KN_NEW[i]);return KN_OLD[i]+f*(KN_OLD[i+1]-KN_OLD[i]);}}return t;}
 function sheetHTML(n){let s='';for(let i=0;i<n;i++)s+=`<i style="width:${55+((i*37)%45)}%"></i>`;return s;}
 function build(){
   const R=mulberry32(9), F=$('#float');
@@ -259,7 +261,10 @@ function build(){
 }
 async function init(){
   TL=await (await fetch('timeline.json')).json();
-  L=TL.lines.map(l=>l.start); S=L.map((s,i)=>[i===0?0:s-0.4, i<L.length-1?L[i+1]-0.4:TL.end]); END=TL.end;
+  // As animações foram compostas sobre a narração v1 (103 s). A narração atual é mais rápida:
+  // cada cena é mapeada linearmente para os tempos v1, então tudo continua caindo na palavra certa.
+  L=OLD_L.slice(); S=L.map((s,i)=>[i===0?0:s-0.4, i<L.length-1?L[i+1]-0.4:OLD_END]); END=TL.end;
+  const NL=TL.lines.map(l=>l.start); KN_NEW=NL.map((s,i)=>i===0?0:s-0.4).concat([TL.end]); KN_OLD=S.map(x=>x[0]).concat([OLD_END]);
   build();
   $('#mapwrap').innerHTML=await (await fetch('assets/brazil.svg')).text();
   $$('#mapwrap path').forEach(p=>{paths[p.id]=p;const b=p.getBBox();cent[p.id]=[b.x+b.width/2,b.y+b.height/2];});
@@ -276,7 +281,8 @@ function camMap(t){ // [zoom, focusX, focusY, screenX, screenY]
     return [Math.exp(lerp(Math.log(a[1]),Math.log(b[1]),e)),lerp(a[2],b[2],e),lerp(a[3],b[3],e),lerp(a[4],b[4],e),lerp(a[5],b[5],e)];}} return K[K.length-1].slice(1);
 }
 
-function seek(t){
+function seek(tNew){
+  const t=warp(tNew);
   // ambiente vivo
   const bl=$$('#blobs div'); bl.forEach((b,i)=>{b.style.left=(300+i*600+Math.sin(t*0.3+i*2)*220)+'px';b.style.top=(200+Math.cos(t*0.25+i)*240+i*120)+'px';});
   $$('#float div').forEach(d=>{const y=((+d.dataset.y - t*+d.dataset.v)%1180+1180)%1180-50; d.style.left=(+d.dataset.x+Math.sin(t*0.8+ +d.dataset.p)*20)+'px'; d.style.top=y+'px'; d.style.transform=`rotate(${t*30+ +d.dataset.p*50}deg)`;});
@@ -351,7 +357,7 @@ function seek(t){
   const tiles=$$('#tiles div'); let any=false;
   const near=B.find(x=>t>x-0.6&&t<x+0.6);
   tiles.forEach(e=>{let s=0; if(near!==undefined){const d=+e.dataset.d*0.3; s=io(rng(t,near-0.42+d,near-0.22+d))*(1-io(rng(t,near+d-0.02,near+d+0.2)));} e.style.transform=`scale(${s})`;});
-  $('#hud').textContent=t.toFixed(2)+'s';
+  $('#hud').textContent=tNew.toFixed(2)+'s';
 }
 window.seek=seek;
 function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(${(innerWidth-W*s)/2}px,${(innerHeight-H*s)/2}px) scale(${s})`;}
@@ -360,7 +366,7 @@ let playing=false,t0=0,cur=0;
 addEventListener('keydown',e=>{if(e.code==='Space'){playing=!playing;t0=performance.now()/1000-cur;loop();}
   if(e.code==='ArrowRight'){cur+=1/30;seek(cur);} if(e.code==='ArrowLeft'){cur=Math.max(0,cur-1/30);seek(cur);}
   if(e.code==='KeyR'){cur=0;t0=performance.now()/1000;playing=true;loop();}});
-function loop(){if(!playing)return;cur=performance.now()/1000-t0;if(cur>END){cur=END;playing=false;}seek(cur);requestAnimationFrame(loop);}
+function loop(){if(!playing)return;cur=performance.now()/1000-t0;if(cur>TL.end){cur=END;playing=false;}seek(cur);requestAnimationFrame(loop);}
 if(new URLSearchParams(location.search).has('render')) $('#hud').style.display='none';
 init();
 </script>

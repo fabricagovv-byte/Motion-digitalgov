@@ -278,3 +278,14 @@ Entregáveis em `deliverables/saude/`: `V4_FabricaGov_Saude_Educacao_1080p.mp4` 
 `legendas_ptBR.srt`, `mix_final_48k24.wav` (-14 LUFS) e `stems/` (voz, trilha, efeitos).
 Telas e números de painel são ilustrativos (marcados na tela). Reproduzir: `bash src/saude/render.sh`
 (precisa da voz em `voices/vits-piper-pt_BR-faber-medium/` e `pip install piper-tts`).
+
+---
+
+# V4 FábricaGov · Filme narrado "GED · Digitalização de documentos" (50 s)
+
+Mesmo pipeline do filme de saúde (narração Piper pt-BR, cenas pelo tempo de cada fala, trilha com ducking, efeitos, legendas).
+Roteiro: relógio "Quantas horas procurando um papel?" → pilhas, caixas e papéis amarelando/perdidos → scanner digitaliza a folha →
+leitura automática dos dados e organização em pastas (Obras › 2026 › Requerimentos) → busca por número do processo →
+permissões por perfil e registro de acessos → backup, LGPD, espaço/tempo/segurança → logo "Do papel ao digital, sem perder nada".
+Entregáveis em `deliverables/ged_v4/` (limpo, legendado, SRT, mix -14 LUFS, stems). Documento, nomes e contadores são ilustrativos
+(marcados na tela). Reproduzir: `bash src/ged_v4/render.sh`.

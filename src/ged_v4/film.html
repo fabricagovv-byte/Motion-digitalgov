@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 FábricaGov · GED</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-700-normal.woff2) format('woff2');font-weight:700}
+:root{--ink:#111216;--card:#1b1c21;--card2:#23252b;--gold:#D9A441;--paper:#F2EFE8;--mute:#9a9ba3;--line:#2c2e35;--sheet:#ECE7DC}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;overflow:hidden;width:100%;height:100%}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;background:var(--ink);overflow:hidden;transform-origin:0 0;font-family:Inter,sans-serif;color:var(--paper)}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;visibility:hidden}
+#grid{position:absolute;left:-100px;top:-100px;width:2120px;height:1280px;background-image:radial-gradient(circle,#ffffff10 1.4px,transparent 1.6px);background-size:40px 40px}
+#ghost{position:absolute;left:60px;top:-30px;font-family:Anton;font-size:300px;line-height:1;color:#18191e;white-space:nowrap}
+.pill{display:inline-block;background:var(--gold);color:var(--ink);font-weight:700;font-size:22px;letter-spacing:4px;padding:10px 22px;border-radius:999px}
+.mask{overflow:hidden;display:block;padding-bottom:4px}
+.mask>.in{display:block}
+.h1{font-family:Anton;font-size:136px;line-height:1.02;text-transform:uppercase}
+.h2{font-family:Anton;font-size:100px;line-height:1.04;text-transform:uppercase}
+.sub{font-size:32px;line-height:1.35;color:#d9d7d0}
+.gold{color:var(--gold)}
+.card{background:var(--card);border-radius:22px;border:1px solid var(--line)}
+.tag{display:inline-block;font-size:18px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);border-radius:999px;padding:6px 14px}
+.foot{font-size:19px;color:var(--mute)}
+.sheet{position:absolute;width:120px;height:160px;background:var(--sheet);border-radius:4px;box-shadow:0 6px 18px #0006;padding:16px 14px}
+.sheet i{display:block;height:6px;background:#c9c2b2;border-radius:3px;margin-bottom:9px}
+.doc{position:absolute;width:560px;height:760px;border-radius:10px;padding:44px 46px;font-family:Inter}
+.doc .hd{font-size:15px;font-weight:700;letter-spacing:2px}
+.doc .ti{font-family:Anton;font-size:40px;margin-top:14px;text-transform:uppercase}
+.doc .ln{height:10px;border-radius:5px;margin-top:16px}
+.doc .fld{position:absolute;border-radius:6px}
+.chk{display:inline-flex;width:30px;height:30px;border-radius:8px;align-items:center;justify-content:center;font-weight:800}
+#flood{position:absolute;z-index:40;border-radius:50%;background:var(--gold);visibility:hidden}
+#end{position:absolute;inset:0;z-index:41;visibility:hidden}
+#hud{position:fixed;right:10px;bottom:10px;font:12px monospace;color:#888;z-index:99}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="grid"></div>
+  <div id="ghost">GED · GESTÃO ELETRÔNICA DE DOCUMENTOS</div>
+
+  <!-- S1 gancho -->
+  <div id="S1" class="scene">
+    <div class="abs" style="left:140px;top:290px">
+      <div class="mask"><div class="in"><span class="pill">GED</span></div></div>
+      <div style="height:24px"></div>
+      <div class="mask"><div class="in h1">Quantas horas</div></div>
+      <div class="mask"><div class="in h1 gold">procurando</div></div>
+      <div class="mask"><div class="in h1">um papel?</div></div>
+    </div>
+    <svg id="clock" class="abs" style="left:1240px;top:240px" width="600" height="600" viewBox="-300 -300 600 600"></svg>
+  </div>
+
+  <!-- S2 caos de papel -->
+  <div id="S2" class="scene">
+    <div id="chips" class="abs" style="left:140px;top:120px;display:flex;gap:26px"></div>
+    <div id="boxes"></div>
+    <div id="sheets"></div>
+  </div>
+
+  <!-- S3 digitalização -->
+  <div id="S3" class="scene">
+    <div class="abs" style="left:140px;top:260px;width:760px">
+      <div class="mask"><div class="in"><span class="pill">PASSO 1</span></div></div>
+      <div style="height:24px"></div>
+      <div class="mask"><div class="in h2">Digitalização</div></div>
+      <div class="mask"><div class="in h2 gold">em alta qualidade</div></div>
+      <div style="height:34px"></div>
+      <div class="mask"><div class="in" style="display:flex;align-items:baseline;gap:18px"><span id="pg" style="font-family:Anton;font-size:84px;color:var(--gold)">0</span><span style="font-size:28px;font-weight:500">páginas digitalizadas</span></div></div>
+      <div class="mask"><div class="in"><span class="tag">Dados ilustrativos</span></div></div>
+    </div>
+    <div id="scanbox" class="abs" style="left:1140px;top:150px;width:560px;height:760px">
+      <div id="docP" class="doc" style="left:0;top:0;background:var(--sheet);color:#2b2a27"></div>
+      <div id="docDclip" class="abs" style="left:0;top:0;width:560px;height:760px;overflow:hidden">
+        <div id="docD" class="doc" style="left:0;top:0;background:#16171b;color:var(--paper);border:2px solid var(--gold)"></div>
+      </div>
+      <div id="beam" class="abs" style="left:-40px;width:640px;height:8px;border-radius:4px;background:var(--gold);box-shadow:0 0 40px 12px #D9A44188"></div>
+    </div>
+  </div>
+
+  <!-- S4 OCR + organização -->
+  <div id="S4" class="scene">
+    <div class="abs" style="left:140px;top:90px">
+      <div class="mask"><div class="in"><span class="pill">PASSO 2</span></div></div>
+      <div style="height:18px"></div>
+      <div class="mask"><div class="in h2">Lê, identifica <span class="gold">e organiza</span></div></div>
+    </div>
+    <div id="docO" class="doc" style="left:140px;top:300px;height:700px;background:#16171b;color:var(--paper);border:2px solid #3a3c44;transform-origin:0 0"></div>
+    <svg id="links" class="abs" style="left:0;top:0" width="1920" height="1080"></svg>
+    <div id="form" class="abs card" style="left:980px;top:300px;width:800px;height:470px;padding:34px 40px">
+      <div style="font-size:22px;font-weight:700;margin-bottom:16px">Dados identificados automaticamente</div>
+      <div id="fields"></div>
+    </div>
+    <div id="path" class="abs" style="left:980px;top:810px;display:flex;align-items:center;gap:16px"></div>
+    <div id="dtag" class="abs" style="left:980px;top:910px"><span class="tag">Documento ilustrativo</span></div>
+  </div>
+
+  <!-- S5 busca -->
+  <div id="S5" class="scene">
+    <div class="abs" style="left:0;right:0;top:110px;text-align:center">
+      <div class="mask"><div class="in h2">Encontre em <span class="gold">segundos</span></div></div>
+    </div>
+    <div id="search" class="abs" style="left:360px;top:300px;width:1200px;height:110px;border-radius:999px;background:var(--card);border:3px solid var(--gold);display:flex;align-items:center;gap:26px;padding:0 44px">
+      <svg width="46" height="46" viewBox="0 0 24 24" style="fill:none;stroke:#D9A441;stroke-width:2.4;stroke-linecap:round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+      <span id="q" style="font-size:44px;font-weight:600"></span>
+    </div>
+    <div id="hint" class="abs" style="left:0;right:0;top:430px;text-align:center;font-size:24px;color:var(--mute)">Busque por nome, número do processo ou qualquer palavra do texto</div>
+    <div id="results" class="abs" style="left:360px;top:500px;width:1200px"></div>
+  </div>
+
+  <!-- S6 permissões e auditoria -->
+  <div id="S6" class="scene">
+    <div class="abs" style="left:140px;top:100px;width:1640px;display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div class="mask"><div class="in"><span class="pill">SEGURANÇA</span></div></div>
+        <div style="height:18px"></div>
+        <div class="mask"><div class="in h2">Cada um vê <span class="gold">o que pode</span></div></div></div>
+      <div class="mask"><div class="in"><span class="tag">Interface ilustrativa</span></div></div>
+    </div>
+    <div id="users" class="abs" style="left:140px;top:380px;display:flex;gap:26px"></div>
+    <div id="log" class="abs card" style="left:140px;top:720px;width:1640px;height:290px;padding:26px 34px;background:#17181d">
+      <div style="font-size:21px;font-weight:700;color:var(--mute);letter-spacing:1.5px">REGISTRO DE ACESSOS</div>
+      <div id="rows" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <!-- S7 benefícios -->
+  <div id="S7" class="scene">
+    <div class="abs" style="left:140px;top:120px"><div class="mask"><div class="in"><span class="pill">RESULTADO</span></div></div></div>
+    <div id="trust" class="abs" style="left:140px;top:230px;width:1640px"></div>
+  </div>
+
+  <div id="flood"></div>
+  <div id="end">
+    <img id="logo" src="assets/logo_white.png" class="abs" style="left:50%;top:320px;width:1000px;margin-left:-500px;filter:brightness(0);opacity:.93">
+    <div id="tagline" class="abs" style="left:0;right:0;top:610px;text-align:center">
+      <div class="mask"><div class="in" style="font-family:Anton;font-size:84px;color:var(--ink);text-transform:uppercase">Do papel ao digital, sem perder nada</div></div>
+    </div>
+    <div id="contact" class="abs" style="left:0;right:0;top:780px;text-align:center">
+      <div class="mask"><div class="in" style="font-size:30px;font-weight:600;color:var(--ink)">fabricagovv@gmail.com  ·  (31) 99827-7323  ·  @Grupo_v4_fabricagovv</div></div>
+    </div>
+  </div>
+</div>
+<div id="hud"></div>
+<script>
+const W=1920,H=1080;
+const $=s=>document.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const rng=(t,a,b)=>clamp((t-a)/(b-a));
+const io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const out=x=>1-Math.pow(1-x,3);
+const inn=x=>x*x*x;
+const expo=x=>x>=1?1:1-Math.pow(2,-10*x);
+function spring(t,k=170,d=26){ if(t<=0) return 0; const w=Math.sqrt(k), z=d/(2*w);
+  if(z>=1) return 1-Math.exp(-w*t)*(1+w*t);
+  const wd=w*Math.sqrt(1-z*z); return 1-Math.exp(-z*w*t)*(Math.cos(wd*t)+z/Math.sqrt(1-z*z)*Math.sin(wd*t)); }
+const fmtInt=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function rise(el,t,tin,tout=1e9){
+  const a=spring(t-tin,180,27), b=io(rng(t,tout,tout+0.42));
+  el.style.transform=`translateY(${(1-a)*112 - b*112}%)`;
+  el.parentElement.style.visibility=(t<tin-0.01||t>tout+0.43)?'hidden':'inherit';
+}
+function riseAll(sel,t,tin,step,tout){$$(sel+' .in').forEach((e,i)=>rise(e,t,tin+i*step,tout+i*0.04));}
+function pop(el,t,t0,tout=1e9,dy=50,k=190,d=26){const e=spring(t-t0,k,d), x=io(rng(t,tout,tout+0.4));
+  el.style.transform=`translateY(${(1-e)*dy - x*40}px)`; el.style.opacity=clamp(e*1.6)*(1-x);}
+const show=(el,on)=>el.style.visibility=on?'visible':'hidden';
+function typed(full,t,t0,dur){const k=Math.floor(full.length*clamp((t-t0)/dur));return full.slice(0,k)+((t>t0&&k<full.length)?'▍':'');}
+
+let TL=null,S=[],END=50;
+// ---------- build ----------
+function buildClock(){let h='<circle r="270" fill="#1b1c21" stroke="#D9A441" stroke-width="10"/>';
+  for(let i=0;i<12;i++){const a=i/12*Math.PI*2;h+=`<line x1="${Math.sin(a)*220}" y1="${-Math.cos(a)*220}" x2="${Math.sin(a)*250}" y2="${-Math.cos(a)*250}" stroke="#F2EFE8" stroke-width="${i%3?5:10}" stroke-linecap="round"/>`;}
+  h+='<path id="sweep" fill="#D9A44133"/><line id="hh" x1="0" y1="0" x2="0" y2="-130" stroke="#F2EFE8" stroke-width="16" stroke-linecap="round"/><line id="mh" x1="0" y1="0" x2="0" y2="-205" stroke="#D9A441" stroke-width="10" stroke-linecap="round"/><circle r="18" fill="#D9A441"/>';
+  $('#clock').innerHTML=h;}
+function sheetHTML(n){let s='';for(let i=0;i<n;i++)s+=`<i style="width:${55+((i*37)%45)}%"></i>`;return s;}
+function buildChaos(){
+  ['PILHAS','CAIXAS','PERDAS'].forEach(c=>{const e=document.createElement('span');e.className='ch';
+    e.style.cssText='font-family:Anton;font-size:96px;line-height:1;text-transform:uppercase';e.textContent=c;$('#chips').appendChild(e);});
+  const B=$('#boxes');[['ARQUIVO 1998',1180,700],['PROCESSOS 2004',1460,700],['OBRAS 2011',1320,520],['CONTRATOS 2016',1600,520]].forEach(([l,x,y])=>{
+    const b=document.createElement('div');b.className='abs bx';b.dataset.y=y;
+    b.style.cssText=`left:${x}px;top:${y}px;width:260px;height:180px;background:#2a2c33;border:2px solid #3a3c44;border-radius:8px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:22px`;
+    b.innerHTML=`<div style="position:absolute;left:0;right:0;top:0;height:40px;background:#33353d;border-radius:8px 8px 0 0"></div><div style="background:var(--sheet);color:#2b2a27;font-weight:700;font-size:17px;letter-spacing:1px;padding:8px 14px;border-radius:4px">${l}</div>`;B.appendChild(b);});
+  const R=mulberry32(4), SH=$('#sheets'); window._sh=[];
+  for(let i=0;i<34;i++){const pile=i%3, x=180+pile*290+(R()-.5)*40, y=900-Math.floor(i/3)*22, r=(R()-.5)*14;
+    const e=document.createElement('div');e.className='sheet';e.innerHTML=sheetHTML(9);SH.appendChild(e);
+    window._sh.push({e,x,y,r,t0:0.3+i*0.07+R()*0.15,lost:R()<0.22,dx:(R()-.5)*300,rr:(R()-.5)*120});}
+}
+function docHTML(gold){
+  const c=gold?'#3a3c44':'#cfc8b8';
+  return `<div class="hd" style="color:${gold?'#D9A441':'#7a7466'}">PREFEITURA MUNICIPAL · SECRETARIA DE OBRAS</div>
+    <div class="ti">Requerimento nº 2.317/2026</div>
+    <div style="font-size:19px;margin-top:10px;opacity:.85">Data: 14/03/2026 · Requerente: Maria A. Silva</div>
+    ${[92,86,95,70,88,93,60,90,84,72,94,66].map(w=>`<div class="ln" style="width:${w}%;background:${c}"></div>`).join('')}
+    <div style="position:absolute;left:46px;bottom:60px;width:200px;height:2px;background:${c}"></div>
+    <div style="position:absolute;left:46px;bottom:30px;font-size:15px;opacity:.7">Assinatura do requerente</div>`;
+}
+const FIELDS=[['Tipo','Requerimento'],['Número','2.317/2026'],['Data','14/03/2026'],['Setor','Obras'],['Requerente','Maria A. Silva']];
+const FBOX=[[46,96,330,48],[46,96,470,48],[46,146,170,30],[46,44,470,22],[230,146,240,30]]; // [x,y,w,h] on the page
+function buildOCR(){
+  $('#docO').innerHTML=docHTML(true)+FBOX.map(b=>`<div class="fld" style="left:${b[0]-6}px;top:${b[1]-4}px;width:${b[2]+12}px;height:${b[3]+8}px;border:3px solid #D9A441;background:#D9A44118"></div>`).join('');
+  FIELDS.forEach(([k,v])=>{const r=document.createElement('div');r.className='fr';r.style.cssText='display:flex;align-items:center;height:72px;border-top:1px solid var(--line);gap:20px';
+    r.innerHTML=`<div style="width:190px;font-size:22px;color:var(--mute);font-weight:500">${k}</div><div class="fv" data-t="${v}" style="font-size:30px;font-weight:700"></div><span class="ok chk" style="margin-left:auto;background:#D9A441;color:#111216">✓</span>`;$('#fields').appendChild(r);});
+  ['Obras','2026','Requerimentos'].forEach((p,i)=>{if(i){const s=document.createElement('span');s.className='sep';s.style.cssText='font-size:30px;color:var(--mute)';s.textContent='›';$('#path').appendChild(s);}
+    const e=document.createElement('span');e.className='pp';e.style.cssText='display:flex;align-items:center;gap:12px;font-size:28px;font-weight:700;padding:14px 22px;border-radius:14px;background:var(--card);border:2px solid #3a3c44';
+    e.innerHTML=`<svg width="30" height="30" viewBox="0 0 24 24" style="fill:none;stroke:#D9A441;stroke-width:2"><path d="M3 6h7l2 2h9v11H3z"/></svg>${p}`;$('#path').appendChild(e);});
+}
+function buildSearch(){
+  [['Requerimento nº 2.317/2026','Obras › 2026 › Requerimentos','… pedido de alvará referente ao processo <b class="gold">2.317/2026</b>, protocolado em 14/03/2026 …'],
+   ['Parecer técnico · processo 2.317/2026','Obras › 2026 › Pareceres','… análise do requerimento <b class="gold">2.317/2026</b>, com vistoria realizada …']].forEach(([t,p,s])=>{
+    const r=document.createElement('div');r.className='rs card';r.style.cssText='display:flex;gap:28px;padding:26px 30px;margin-bottom:18px';
+    r.innerHTML=`<div style="width:90px;height:120px;border-radius:6px;background:var(--sheet);flex:none;padding:12px 10px">${sheetHTML(7).replaceAll('margin-bottom:9px','')}</div>
+      <div><div style="font-size:30px;font-weight:700">${t}</div><div style="font-size:20px;color:var(--mute);margin-top:6px">${p}</div><div style="font-size:22px;color:#d9d7d0;margin-top:12px">${s}</div></div>`;$('#results').appendChild(r);});
+  const m=document.createElement('div');m.id='meta';m.style.cssText='font-size:22px;color:var(--mute);margin:4px 0 0 10px';m.innerHTML='2 resultados · <b class="gold">em menos de 1 segundo</b> · <span style="opacity:.8">exemplo ilustrativo</span>';$('#results').appendChild(m);
+}
+function buildUsers(){
+  [['Gestora','Todos os setores',[1,1,1]],['Setor de Obras','Somente Obras',[1,0,0]],['Atendimento','Protocolo e consulta',[0,1,0]]].forEach(([n,d,acc])=>{
+    const c=document.createElement('div');c.className='uc card';c.style.cssText='width:530px;height:300px;padding:28px 30px';
+    c.innerHTML=`<div style="display:flex;align-items:center;gap:18px"><div style="width:64px;height:64px;border-radius:50%;background:#2a2c33;display:flex;align-items:center;justify-content:center"><svg width="36" height="36" viewBox="0 0 24 24" style="fill:#D9A441"><circle cx="12" cy="8" r="4.5"/><path d="M3.5 21c0-4.7 3.8-7.5 8.5-7.5s8.5 2.8 8.5 7.5z"/></svg></div><div><div style="font-size:30px;font-weight:700">${n}</div><div style="font-size:20px;color:var(--mute)">${d}</div></div></div>`+
+      ['Obras','Protocolo','Financeiro'].map((s,i)=>`<div class="ac" data-ok="${acc[i]}" style="display:flex;align-items:center;justify-content:space-between;height:52px;border-top:1px solid var(--line);margin-top:${i?0:20}px;font-size:22px;font-weight:600">${s}<span class="chk"></span></div>`).join('');
+    $('#users').appendChild(c);});
+  ['10:02 · Carla (Obras) abriu Requerimento 2.317/2026','10:05 · Paulo (Atendimento) tentou abrir Obras · acesso negado','10:07 · Gestora exportou relatório mensal de acessos'].forEach(s=>{
+    const r=document.createElement('div');r.className='lr';r.style.cssText='font-size:24px;height:58px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--line);font-family:Inter';
+    r.innerHTML=`<span style="width:12px;height:12px;border-radius:50%;background:#D9A441;flex:none"></span><span class="lt" data-t="${s}"></span>`;$('#rows').appendChild(r);});
+}
+function buildTrust(){
+  [['<path d="M4 7c0-2 3.6-3 8-3s8 1 8 3-3.6 3-8 3-8-1-8-3z"/><path d="M4 7v10c0 2 3.6 3 8 3s8-1 8-3V7M4 12c0 2 3.6 3 8 3s8-1 8-3"/>','Backup automático','Cópias de segurança e recuperação quando precisar.'],
+   ['<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>','LGPD desde o projeto','Dados pessoais tratados com base legal e acesso registrado.'],
+   ['<path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/>','Espaço, tempo e segurança','Menos papel guardado, menos tempo procurando, mais controle.']].forEach(([ic,t,d])=>{
+    const r=document.createElement('div');r.className='tr';r.style.cssText='display:flex;align-items:center;gap:40px;height:240px;border-bottom:1px solid var(--line)';
+    r.innerHTML=`<div style="width:130px;height:130px;border-radius:30px;background:var(--card);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;flex:none"><svg viewBox="0 0 24 24" width="70" height="70" style="fill:none;stroke:#D9A441;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round">${ic}</svg></div>
+      <div><div style="font-family:Anton;font-size:90px;line-height:1;text-transform:uppercase">${t}</div><div style="font-size:27px;color:#c9c7c0;margin-top:10px">${d}</div></div>`;$('#trust').appendChild(r);});
+}
+
+async function init(){
+  TL=await (await fetch('timeline.json')).json();
+  const st=TL.lines.map(l=>l.start);
+  S=st.map((s,i)=>[i===0?0:s-0.4, i<st.length-1?st[i+1]-0.4:TL.end]);
+  END=TL.end;
+  buildClock();buildChaos();$('#docP').innerHTML=docHTML(false);$('#docD').innerHTML=docHTML(true);buildOCR();buildSearch();buildUsers();buildTrust();
+  await document.fonts.ready;
+  await Promise.all($$('img').map(i=>i.complete?0:new Promise(r=>i.onload=r)));
+  fit(); window.DUR=END; window.ready=true; seek(0);
+}
+
+function seek(t){
+  $('#grid').style.transform=`translate(${(-t*6)%40}px,${(-t*3)%40}px)`;
+  $('#ghost').style.transform=`translateX(${-t*14}px)`;
+  const SC=k=>{const [a,b]=S[k-1]; const on=t>=a-0.01&&t<b+0.02; show($('#S'+k),on); return [a,b,on];};
+
+  // S1 relógio
+  { const [a,b,on]=SC(1); if(on){ riseAll('#S1',t,0.25,0.14,b-0.45);
+      const e=spring(t-0.4,150,24), x=io(rng(t,b-0.5,b)); const c=$('#clock'); c.style.transform=`scale(${0.7+0.3*e}) rotate(${(1-e)*-20}deg)`; c.style.opacity=clamp(e*1.5)*(1-x);
+      const ang=inn(rng(t,0.6,b))*360*3; $('#mh').setAttribute('transform',`rotate(${ang})`); $('#hh').setAttribute('transform',`rotate(${ang/12+40})`);
+      const sw=Math.min(359.9,ang%360||0), r=200, A=sw*Math.PI/180; $('#sweep').setAttribute('d',sw>0.5?`M0 0 L0 ${-r} A${r} ${r} 0 ${sw>180?1:0} 1 ${Math.sin(A)*r} ${-Math.cos(A)*r} Z`:''); } }
+  // S2 papéis
+  { const [a,b,on]=SC(2); if(on){ const x=io(rng(t,b-0.5,b));
+      $$('#chips .ch').forEach((c,i)=>{pop(c,t,a+0.3+[0,1.5,3.0][i],b-0.5,40,220,22); c.style.color=i===2?'#D9A441':'#F2EFE8';});
+      $$('#boxes .bx').forEach((bx,i)=>{const e=spring(t-(a+1.8+i*0.18),190,22); bx.style.transform=`translateY(${(1-e)*-500}px)`; bx.style.opacity=clamp(e*3)*(1-x);});
+      window._sh.forEach(s=>{const t0=a+s.t0, e=out(rng(t,t0,t0+0.55)), age=rng(t,a+3.0,a+5.0), lose=s.lost?io(rng(t,a+3.6,a+5.2)):0;
+        s.e.style.left=(s.x+s.dx*lose)+'px'; s.e.style.top=(lerp(-220,s.y,e)+lose*260)+'px';
+        s.e.style.transform=`rotate(${s.r+(1-e)*40+s.rr*lose}deg)`; s.e.style.opacity=(t>=t0?1:0)*(1-lose)*(1-x);
+        const yc=[Math.round(lerp(236,216,age)),Math.round(lerp(231,197,age)),Math.round(lerp(220,140,age))]; s.e.style.background=`rgb(${yc})`;}); } }
+  // S3 scanner
+  { const [a,b,on]=SC(3); if(on){ riseAll('#S3',t,a+0.2,0.12,b-0.45);
+      const sb=$('#scanbox'), e=spring(t-(a+0.2),150,25), x=io(rng(t,b-0.5,b)); sb.style.transform=`translateX(${(1-e)*200}px)`; sb.style.opacity=clamp(e*1.5)*(1-x);
+      const p=io(rng(t,a+1.0,a+4.3)), y=p*760; $('#beam').style.top=(y-4)+'px'; $('#beam').style.opacity=rng(t,a+0.9,a+1.0)*(1-rng(t,a+4.3,a+4.6));
+      $('#docDclip').style.height=y+'px';
+      $('#pg').textContent=fmtInt(1248*expo(rng(t,a+1.0,a+4.6))); } }
+  // S4 OCR
+  { const [a,b,on]=SC(4); if(on){ riseAll('#S4',t,a+0.2,0.12,b-0.45); const x=io(rng(t,b-0.5,b));
+      const d=$('#docO'), de=spring(t-(a+0.1),160,25); d.style.transform=`translateY(${(1-de)*60}px) scale(.82)`; d.style.opacity=clamp(de*1.5)*(1-x);
+      pop($('#form'),t,a+0.4,b-0.5,40);
+      const fl=$$('#docO .fld'), fr=$$('#fields .fr'); let lk='';
+      FIELDS.forEach((f,i)=>{const t0=a+0.9+i*0.42; const h=out(rng(t,t0,t0+0.25)); fl[i].style.opacity=h*(1-x);
+        const v=fr[i].querySelector('.fv'); v.textContent=typed(v.dataset.t,t,t0+0.15,0.35);
+        fr[i].querySelector('.ok').style.transform=`scale(${clamp(spring(t-(t0+0.5),260,22),0,1.2)})`;
+        const lp=out(rng(t,t0,t0+0.3))*(1-rng(t,t0+0.5,t0+0.8));
+        if(lp>0.01){const bx=FBOX[i], sx=140+(bx[0]+bx[2])*0.82, sy=300+de*0+(bx[1]+bx[3]/2)*0.82, ex=1020, ey=300+34+50+i*72+36;
+          lk+=`<path d="M${sx} ${sy} C ${sx+150} ${sy}, ${ex-150} ${ey}, ${ex} ${ey}" stroke="#D9A441" stroke-width="3" fill="none" opacity="${lp}" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="${1-lp}"/>`;}});
+      $('#links').innerHTML=lk;
+      const T=a+3.4; $$('#path .pp').forEach((p,i)=>{const e=spring(t-(T+i*0.3),220,24); p.style.transform=`translateY(${(1-e)*30}px)`; p.style.opacity=clamp(e*1.6)*(1-x);
+        const lit=t>T+0.9+i*0.15; p.style.borderColor=lit?'#D9A441':'#3a3c44';});
+      pop($('#dtag'),t,a+1.0,b-0.5,20);
+      $$('#path .sep').forEach((s,i)=>s.style.opacity=rng(t,T+0.2+i*0.3,T+0.4+i*0.3)*(1-x)); } }
+  // S5 busca
+  { const [a,b,on]=SC(5); if(on){ riseAll('#S5',t,a+0.2,0.12,b-0.45); const x=io(rng(t,b-0.5,b));
+      const s=$('#search'), e=spring(t-(a+0.3),170,24); s.style.transform=`scale(${0.9+0.1*e})`; s.style.opacity=clamp(e*1.5)*(1-x);
+      $('#q').textContent=typed('2.317/2026',t,a+1.6,1.0); $('#hint').style.opacity=rng(t,a+0.6,a+0.9)*(1-rng(t,a+1.5,a+1.8))*(1-x);
+      $$('#results .rs').forEach((r,i)=>pop(r,t,a+2.9+i*0.3,b-0.5,40)); pop($('#meta'),t,a+3.6,b-0.5,20); } }
+  // S6 acesso
+  { const [a,b,on]=SC(6); if(on){ riseAll('#S6',t,a+0.2,0.12,b-0.45);
+      $$('#users .uc').forEach((u,i)=>pop(u,t,a+0.5+i*0.25,b-0.5,50));
+      $$('#users .ac').forEach((r,i)=>{const t0=a+1.1+Math.floor(i/3)*0.25+(i%3)*0.12, c=r.querySelector('.chk'), ok=r.dataset.ok==='1', on2=t>t0;
+        c.textContent=on2?(ok?'✓':'×'):''; c.style.background=on2?(ok?'#D9A441':'#3a3c44'):'transparent'; c.style.color=ok?'#111216':'#9a9ba3'; r.style.color=on2&&!ok?'#6a6c74':'#F2EFE8';});
+      pop($('#log'),t,a+1.8,b-0.5,40);
+      $$('#rows .lr').forEach((r,i)=>{const t0=a+2.3+i*0.75, lt=r.querySelector('.lt'); lt.textContent=typed(lt.dataset.t,t,t0,0.6); r.style.opacity=t>t0-0.02?1:0;}); } }
+  // S7 benefícios
+  { const [a,b,on]=SC(7); if(on){ riseAll('#S7',t,a+0.2,0.1,b-0.45);
+      const T=[a+0.5,a+1.6,a+3.0]; $$('#trust .tr').forEach((r,i)=>{const e=spring(t-T[i],180,26), x=io(rng(t,b-0.55+i*0.05,b-0.1+i*0.05));
+        r.style.transform=`translateX(${(1-e)*-80}px) translateY(${-x*30}px)`; r.style.opacity=clamp(e*1.6)*(1-x);}); } }
+  // assinatura
+  const F=S[S.length-1][0];
+  const fl=$('#flood'), R=Math.hypot(960,540)*1.08, fe=io(rng(t,F,F+0.4)), rad=R*fe;
+  fl.style.width=fl.style.height=(2*rad)+'px'; fl.style.left=(960-rad)+'px'; fl.style.top=(540-rad)+'px';
+  show(fl,t>F); show($('#end'),t>F+0.3);
+  const lo=$('#logo'), la=spring(t-(F+0.55),120,24);
+  lo.style.transform=`scaleY(${0.014+0.986*clamp(la,0,1.02)}) scale(${1+0.02*rng(t,F,END)})`; lo.style.opacity=0.93*clamp((t-F-0.5)/0.08);
+  rise($('#tagline .in'),t,F+1.5); rise($('#contact .in'),t,F+2.2);
+  $('#end').style.transform=`translateY(${-6*rng(t,F+1,END)}px)`;
+  $('#ghost').style.opacity=1-rng(t,F-0.5,F);
+  $('#hud').textContent=t.toFixed(2)+'s';
+}
+window.seek=seek;
+function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(${(innerWidth-W*s)/2}px,${(innerHeight-H*s)/2}px) scale(${s})`;}
+addEventListener('resize',fit);
+let playing=false,t0=0,cur=0;
+addEventListener('keydown',e=>{if(e.code==='Space'){playing=!playing;t0=performance.now()/1000-cur;loop();}
+  if(e.code==='ArrowRight'){cur+=1/30;seek(cur);} if(e.code==='ArrowLeft'){cur=Math.max(0,cur-1/30);seek(cur);}
+  if(e.code==='KeyR'){cur=0;t0=performance.now()/1000;playing=true;loop();}});
+function loop(){if(!playing)return;cur=performance.now()/1000-t0;if(cur>END){cur=END;playing=false;}seek(cur);requestAnimationFrame(loop);}
+if(new URLSearchParams(location.search).has('render')) $('#hud').style.display='none';
+init();
+</script>
+</body>
+</html>

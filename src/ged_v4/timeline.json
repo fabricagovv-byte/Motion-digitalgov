@@ -1,0 +1,53 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.9,
+   "dur": 2.81,
+   "caption": "Quantas horas a sua equipe perde procurando um papel?"
+  },
+  {
+   "id": "n2",
+   "start": 4.61,
+   "dur": 5.666,
+   "caption": "Pilhas de processos, caixas no arquivo, documentos que se perdem ou se estragam com o tempo."
+  },
+  {
+   "id": "n3",
+   "start": 11.076,
+   "dur": 4.957,
+   "caption": "Com o GED da V4 FábricaGov, cada folha é digitalizada em alta qualidade."
+  },
+  {
+   "id": "n4",
+   "start": 16.633,
+   "dur": 5.642,
+   "caption": "O sistema lê o texto, identifica os dados e organiza tudo em pastas, por tipo, data e setor."
+  },
+  {
+   "id": "n5",
+   "start": 23.076,
+   "dur": 5.765,
+   "caption": "Depois, é só buscar: um nome ou um número de processo, e o documento aparece em segundos."
+  },
+  {
+   "id": "n6",
+   "start": 29.641,
+   "dur": 4.464,
+   "caption": "Cada pessoa vê apenas o que tem permissão para ver, e todo acesso fica registrado."
+  },
+  {
+   "id": "n7",
+   "start": 34.905,
+   "dur": 5.503,
+   "caption": "Com backup e LGPD desde o projeto, a sua equipe ganha espaço, tempo e segurança."
+  },
+  {
+   "id": "n8",
+   "start": 43.008,
+   "dur": 3.501,
+   "caption": "V4 FábricaGov. Do papel ao digital, sem perder nada."
+  }
+ ],
+ "end": 49.71
+}

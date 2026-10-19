@@ -325,3 +325,13 @@ Versão 3 (104 s): roteiro ampliado com 15 falas: papel no Brasil (38 bi folhas/
 papel, economia real da Bahia (1,26 bi folhas e R$ 50 mi em 2024), dinheiro que volta para saúde/educação/cidade, as 6 etapas da
 digitalização (preparação, digitalização, tratamento, leitura e indexação, qualidade, publicação), simulação de MG, por que escolher
 (+10 anos, todo o Brasil, LGPD, preço justo), sede em Alvorada de Minas e contato do Warley. Animações e efeitos ancorados na palavra falada.
+
+---
+
+# DigitalGov · Filme com apresentadora "Digitalização e GED" (70 s)
+
+Apresentadora ilustrada (SVG em `src/apresentadora/presenter.js`) com camisa polo da DigitalGov, piscando, mexendo a cabeça,
+acenando e apontando, com a boca sincronizada à voz (`lipsync.py` → `mouth.json`). Voz feminina Kokoro `pf_dora`.
+Ela aparece em tela cheia nas falas diretas e numa janela redonda durante as animações. Logo branco no canto superior esquerdo.
+Simulação do GED: busca por número, nome e palavra do texto, resultados com destaque, filtros (setor, data, tipo),
+visualização, baixar PDF e acesso controlado (interface ilustrativa). Entregáveis em `deliverables/apresentadora/`.

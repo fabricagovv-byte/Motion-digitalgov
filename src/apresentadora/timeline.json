@@ -1,0 +1,59 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.7,
+   "dur": 5.952,
+   "caption": "Olá! Aqui é da DigitalGov, e hoje eu vou te mostrar como a digitalização pode transformar o seu órgão."
+  },
+  {
+   "id": "n2",
+   "start": 7.252,
+   "dur": 7.872,
+   "caption": "Todo mês, o Brasil produz o equivalente a 38 bilhões de folhas de papel. E boa parte disso vira processo, arquivo e caixa."
+  },
+  {
+   "id": "n3",
+   "start": 15.724,
+   "dur": 9.707,
+   "caption": "Na DigitalGov, a gente digitaliza tudo em seis etapas: preparação, digitalização, tratamento da imagem, leitura e indexação, controle de qualidade e publicação."
+  },
+  {
+   "id": "n4",
+   "start": 26.031,
+   "dur": 6.336,
+   "caption": "E aí entra o GED, a nossa gestão eletrônica de documentos. Olha só como fica fácil encontrar um processo."
+  },
+  {
+   "id": "n5",
+   "start": 32.867,
+   "dur": 6.741,
+   "caption": "Você digita o número, um nome ou qualquer palavra do texto, e o documento aparece em segundos, já com o trecho destacado."
+  },
+  {
+   "id": "n6",
+   "start": 40.108,
+   "dur": 6.443,
+   "caption": "Dá para filtrar por setor, data e tipo, abrir a visualização e baixar em PDF, tudo com acesso controlado."
+  },
+  {
+   "id": "n7",
+   "start": 47.151,
+   "dur": 8.017,
+   "caption": "Na Bahia, o processo eletrônico gerou 50 milhões de reais de economia só em 2024. Imagina isso no seu município."
+  },
+  {
+   "id": "n8",
+   "start": 55.768,
+   "dur": 5.376,
+   "caption": "São mais de 10 anos de mercado, atendimento em todo o Brasil e sede em Alvorada de Minas."
+  },
+  {
+   "id": "n9",
+   "start": 62.744,
+   "dur": 3.855,
+   "caption": "Fala com o Warley, nosso diretor, e vamos digitalizar o seu acervo!"
+  }
+ ],
+ "end": 69.8
+}

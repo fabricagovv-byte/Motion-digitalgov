@@ -1,0 +1,36 @@
+1
+00:00:00,700 --> 00:00:06,852
+Olá! Aqui é da DigitalGov, e hoje eu vou te mostrar como a digitalização pode transformar o seu órgão.
+
+2
+00:00:07,252 --> 00:00:15,324
+Todo mês, o Brasil produz o equivalente a 38 bilhões de folhas de papel. E boa parte disso vira processo, arquivo e caixa.
+
+3
+00:00:15,724 --> 00:00:25,631
+Na DigitalGov, a gente digitaliza tudo em seis etapas: preparação, digitalização, tratamento da imagem, leitura e indexação, controle de qualidade e publicação.
+
+4
+00:00:26,031 --> 00:00:32,567
+E aí entra o GED, a nossa gestão eletrônica de documentos. Olha só como fica fácil encontrar um processo.
+
+5
+00:00:32,867 --> 00:00:39,808
+Você digita o número, um nome ou qualquer palavra do texto, e o documento aparece em segundos, já com o trecho destacado.
+
+6
+00:00:40,108 --> 00:00:46,751
+Dá para filtrar por setor, data e tipo, abrir a visualização e baixar em PDF, tudo com acesso controlado.
+
+7
+00:00:47,151 --> 00:00:55,368
+Na Bahia, o processo eletrônico gerou 50 milhões de reais de economia só em 2024. Imagina isso no seu município.
+
+8
+00:00:55,768 --> 00:01:01,344
+São mais de 10 anos de mercado, atendimento em todo o Brasil e sede em Alvorada de Minas.
+
+9
+00:01:02,744 --> 00:01:06,799
+Fala com o Warley, nosso diretor, e vamos digitalizar o seu acervo!
+

@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>DigitalGov · Apresentadora</title>
+<style>
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-700-normal.woff2) format('woff2');font-weight:700}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-800-normal.woff2) format('woff2');font-weight:800}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-900-normal.woff2) format('woff2');font-weight:900}
+:root{--navy:#0A1633;--line:#24407a;--cyan:#1BB8EA;--white:#F5F8FF;--mute:#9db0d6;--green:#8CC63F;--yellow:#FDB913;--orange:#F7931E;--pink:#E91E78}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;overflow:hidden;width:100%;height:100%}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;transform-origin:0 0;font-family:Mont,sans-serif;color:var(--white);
+  background:radial-gradient(1400px 900px at 30% 20%,#14306b 0%,#0A1633 60%,#071027 100%)}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;display:none}
+#blobs div{position:absolute;border-radius:50%;filter:blur(90px);opacity:.45}
+#float div{position:absolute;border-radius:4px}
+.mask{overflow:hidden;display:block;padding-bottom:6px}
+.mask>.in{display:block}
+.h1{font-weight:900;font-size:130px;line-height:1.0;text-transform:uppercase;letter-spacing:-2px}
+.h2{font-weight:900;font-size:84px;line-height:1.02;text-transform:uppercase;letter-spacing:-1px}
+.cy{color:var(--cyan)} .ye{color:var(--yellow)} .gr{color:var(--green)}
+.pill{display:inline-block;background:var(--cyan);color:var(--navy);font-weight:800;font-size:22px;letter-spacing:3px;padding:10px 22px;border-radius:999px}
+.card{background:linear-gradient(160deg,#16306a,#0f2350);border-radius:24px;border:1.5px solid var(--line);box-shadow:0 20px 60px #0008}
+.tag{display:inline-block;font-size:16px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);border:2px solid var(--yellow);border-radius:999px;padding:5px 12px}
+.big{font-weight:900;letter-spacing:-3px;line-height:1}
+.sheet{position:absolute;width:110px;height:150px;background:#f4f6fb;border-radius:4px;box-shadow:0 8px 20px #0006;padding:14px 12px}
+.sheet i{display:block;height:6px;background:#c9d2e6;border-radius:3px;margin-bottom:9px}
+.ico{display:flex;align-items:center;justify-content:center;border-radius:24px}
+.ico svg{fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.chip{display:inline-flex;align-items:center;gap:16px;font-size:40px;font-weight:900;text-transform:uppercase;padding:18px 30px;border-radius:20px;background:#13285a;border:2px solid #24407a;margin:0 0 18px 0}
+mark{background:#FDB91355;color:inherit;border-radius:4px;padding:0 3px}
+#mapwrap{position:absolute;left:0;top:0;transform-origin:0 0}
+#mapwrap svg{display:block;width:613px;height:639px;overflow:visible}
+#mapwrap path{fill:#16306a;stroke:#2f5aa8;stroke-width:.8;vector-effect:non-scaling-stroke}
+/* GED */
+#ged{left:110px;top:150px;width:1380px;height:860px;border-radius:22px;background:#f3f6fc;color:#1b2440;overflow:hidden;box-shadow:0 30px 80px #0009}
+#ged .bar{height:70px;background:#263050;color:#fff;display:flex;align-items:center;gap:16px;padding:0 26px}
+#ged .side{position:absolute;left:0;top:70px;bottom:0;width:270px;background:#e6ecf8;padding:24px 22px}
+#ged .fl{display:flex;align-items:center;gap:12px;height:46px;font-size:19px;font-weight:600}
+#ged .cb{width:24px;height:24px;border-radius:6px;border:2px solid #8a97b8;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff}
+#ged .main{position:absolute;left:290px;top:90px;width:560px}
+#ged .prev{position:absolute;left:870px;top:90px;width:490px;height:750px;border-radius:14px;background:#fff;border:1px solid #d5dcec;padding:26px}
+#ged .res{background:#fff;border:1px solid #d5dcec;border-radius:14px;padding:16px 18px;margin-bottom:14px;display:flex;gap:16px}
+#tiles{position:absolute;inset:0;z-index:60;pointer-events:none}
+#tiles div{position:absolute;width:118px;height:118px;border-radius:8px}
+#flood{position:absolute;z-index:30;border-radius:50%;background:#fff;display:none}
+#end{position:absolute;inset:0;z-index:31;display:none;color:#263050}
+#pframe{position:absolute;z-index:40;overflow:hidden}
+#pinner{position:absolute;left:0;top:0;transform-origin:0 0}
+#pback{position:absolute;z-index:39;border-radius:50%}
+#logoC{position:absolute;left:40px;top:28px;width:250px;z-index:50}
+#hud{position:fixed;right:10px;bottom:10px;font:12px monospace;color:#888;z-index:99}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="blobs"><div style="width:700px;height:700px;background:#0AA0E0"></div><div style="width:600px;height:600px;background:#0E5A9C"></div><div style="width:500px;height:500px;background:#1BB8EA"></div></div>
+  <div id="float"></div>
+
+  <div id="S1" class="scene">
+    <div class="abs" style="left:140px;top:300px;width:900px">
+      <div class="mask"><div class="in"><span class="pill">DIGITALIZAÇÃO DE DOCUMENTOS</span></div></div><div style="height:22px"></div>
+      <div class="mask"><div class="in h1">Olá!</div></div>
+      <div class="mask"><div class="in h2">Vamos <span class="cy">transformar</span></div></div>
+      <div class="mask"><div class="in h2">o seu órgão</div></div>
+    </div>
+  </div>
+
+  <div id="S2" class="scene">
+    <div id="rain" class="abs" style="inset:0;z-index:1"></div>
+    <div class="abs" style="left:110px;right:420px;top:170px;text-align:center;z-index:5">
+      <div class="mask"><div class="in" style="font-size:40px;font-weight:800">Todo mês, o Brasil produz</div></div>
+      <div id="b38" class="big cy" style="font-size:260px;margin-top:8px">0</div>
+      <div class="mask"><div class="in" style="font-size:56px;font-weight:900;text-transform:uppercase">bilhões de folhas*</div></div>
+      <div id="chips2" style="display:flex;justify-content:center;gap:22px;margin-top:40px"></div>
+    </div>
+    <div class="abs" style="left:110px;top:1010px;font-size:18px;color:#9db0d6;z-index:5">*Estimativa: produção de papel de imprimir e escrever 2024 (IBGE/Ibá) ÷ 12, em folhas A4 de 75 g.</div>
+  </div>
+
+  <div id="S3" class="scene">
+    <div class="abs" style="left:110px;top:140px">
+      <div class="mask"><div class="in"><span class="pill">COMO FUNCIONA</span></div></div><div style="height:18px"></div>
+      <div class="mask"><div class="in h2"><span class="cy">6</span> etapas</div></div>
+    </div>
+    <div id="steps" class="abs" style="left:110px;top:370px;width:1340px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px"></div>
+  </div>
+
+  <div id="S4" class="scene">
+    <div class="abs" style="left:140px;top:260px;width:900px">
+      <div class="mask"><div class="in"><span class="pill">GESTÃO ELETRÔNICA DE DOCUMENTOS</span></div></div><div style="height:22px"></div>
+      <div class="mask"><div class="in big cy" style="font-size:260px">GED</div></div>
+      <div class="mask"><div class="in h2" style="font-size:66px">Encontre qualquer</div></div>
+      <div class="mask"><div class="in h2" style="font-size:66px">processo <span class="ye">em segundos</span></div></div>
+    </div>
+  </div>
+
+  <div id="GEDS" class="scene">
+    <div id="ged" class="abs">
+      <div class="bar"><img src="assets/mark_d.png" style="height:44px"><span style="font-size:24px;font-weight:900">GED · DigitalGov</span>
+        <span id="lockb" style="margin-left:auto;font-size:17px;font-weight:700;padding:8px 14px;border-radius:999px;background:#ffffff1a;border:2px solid #ffffff44">🔒 Acesso: Setor de Obras</span></div>
+      <div class="side">
+        <div style="font-size:15px;font-weight:800;letter-spacing:2px;color:#5a6a90">FILTROS</div>
+        <div style="font-size:17px;font-weight:800;margin-top:18px">Setor</div><div class="fl" id="fS"><span class="cb"></span>Obras</div><div class="fl"><span class="cb"></span>Saúde</div>
+        <div style="font-size:17px;font-weight:800;margin-top:14px">Data</div><div class="fl" id="fD"><span class="cb"></span>2026</div><div class="fl"><span class="cb"></span>2025</div>
+        <div style="font-size:17px;font-weight:800;margin-top:14px">Tipo</div><div class="fl" id="fT"><span class="cb"></span>Requerimento</div><div class="fl"><span class="cb"></span>Ofício</div>
+      </div>
+      <div class="main">
+        <div style="height:66px;border-radius:999px;background:#fff;border:3px solid #1BB8EA;display:flex;align-items:center;gap:14px;padding:0 24px;font-size:26px;font-weight:700">
+          <svg width="30" height="30" viewBox="0 0 24 24" style="fill:none;stroke:#1BB8EA;stroke-width:2.6;stroke-linecap:round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><span id="q"></span></div>
+        <div id="meta" style="font-size:18px;font-weight:700;color:#2fa84f;margin:14px 6px"></div>
+        <div id="results"></div>
+      </div>
+      <div class="prev" id="prev">
+        <div style="font-size:14px;font-weight:800;color:#5a6a90;letter-spacing:2px">VISUALIZAÇÃO</div>
+        <div id="pdoc" style="margin-top:12px;border:1px solid #e2e7f2;border-radius:8px;padding:22px;height:560px;transform-origin:50% 0">
+          <div style="font-size:13px;font-weight:900;letter-spacing:1px">PREFEITURA MUNICIPAL · SECRETARIA DE OBRAS</div>
+          <div style="font-size:22px;font-weight:900;margin-top:8px">Requerimento nº 2.317/2026</div>
+          <div style="font-size:14px;margin-top:6px;color:#5a6a90">14/03/2026 · Requerente: Maria A. Silva</div>
+          <div style="font-size:16px;line-height:1.7;margin-top:16px">Venho requerer a emissão de <span id="hl" style="background:linear-gradient(90deg,#FDB91388 0,#FDB91388 0) no-repeat;background-size:0 100%">alvará de construção</span> para o imóvel situado na Rua das Flores, 120, conforme projeto anexo e documentos apresentados.</div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:16px">
+          <div id="pdfb" style="flex:1;height:54px;border-radius:12px;background:#263050;color:#fff;font-weight:800;font-size:19px;display:flex;align-items:center;justify-content:center">⬇ Baixar PDF</div>
+          <div style="flex:1;height:54px;border-radius:12px;border:2px solid #263050;font-weight:800;font-size:19px;display:flex;align-items:center;justify-content:center">Compartilhar</div></div>
+      </div>
+      <div id="toast" class="abs" style="left:900px;top:760px;padding:14px 22px;border-radius:12px;background:#2fa84f;color:#fff;font-weight:800;font-size:19px">✓ PDF baixado</div>
+    </div>
+    <div class="abs" style="left:110px;top:1022px"><span class="tag">Interface ilustrativa</span></div>
+  </div>
+
+  <div id="MAP" class="scene"><div id="mapwrap"></div></div>
+  <div id="S7" class="scene">
+    <div class="abs" style="left:110px;top:140px;width:900px">
+      <div class="mask"><div class="in"><span class="pill">A ECONOMIA É REAL</span></div></div><div style="height:18px"></div>
+      <div class="mask"><div class="in h2">Bahia, <span class="cy">2024</span></div></div>
+    </div>
+    <div id="c7" class="abs card" style="left:110px;top:400px;width:820px;padding:40px 46px;background:linear-gradient(160deg,#8CC63F,#2fa84f);border:none;color:#0A1633">
+      <div style="font-size:28px;font-weight:800">economia com o processo eletrônico</div>
+      <div class="big" style="font-size:140px;margin-top:10px">R$ <span id="ba">0</span> mi</div>
+    </div>
+    <div id="im7" class="abs" style="left:110px;top:740px;font-size:54px;font-weight:900;text-transform:uppercase">Imagina no seu <span class="cy">município!</span></div>
+    <div class="abs" style="left:110px;top:1015px;font-size:18px;color:#9db0d6">Fonte: Governo da Bahia / SAEB (SEI Bahia), balanço 2024 publicado em jan/2025.</div>
+  </div>
+
+  <div id="S8" class="scene">
+    <div class="abs" style="left:140px;top:150px;width:950px">
+      <div class="mask"><div class="in"><span class="pill">POR QUE A DIGITALGOV</span></div></div><div style="height:30px"></div>
+      <div id="why"></div>
+    </div>
+  </div>
+
+  <div id="flood"></div>
+  <div id="end">
+    <img src="assets/logo_digitalgov.png" id="logoE" class="abs" style="left:110px;top:170px;width:820px">
+    <div id="contact" class="abs" style="left:110px;top:520px;width:860px;height:300px;border-radius:28px;background:#263050;color:#fff;padding:40px 50px">
+      <div style="font-size:24px;font-weight:700;letter-spacing:3px;color:#1BB8EA">FALE COM O DIRETOR</div>
+      <div style="font-size:64px;font-weight:900;margin-top:6px">Warley</div>
+      <div style="display:flex;gap:34px;margin-top:20px;font-size:30px;font-weight:700"><span>(31) 99827-7323</span><span style="color:#1BB8EA">digitalgovadm@gmail.com</span></div>
+    </div>
+  </div>
+
+  <div id="pback"></div>
+  <div id="pframe"><div id="pinner"></div></div>
+  <img id="logoC" src="assets/logo_digitalgov_white.png">
+  <div id="tiles"></div>
+</div>
+<div id="hud"></div>
+<script src="presenter.js"></script>
+<script>
+const W=1920,H=1080;
+const $=s=>document.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const rng=(t,a,b)=>clamp((t-a)/(b-a));
+const io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const out=x=>1-Math.pow(1-x,3);
+const expo=x=>x>=1?1:1-Math.pow(2,-10*x);
+function spring(t,k=170,d=26){ if(t<=0) return 0; const w=Math.sqrt(k), z=d/(2*w);
+  if(z>=1) return 1-Math.exp(-w*t)*(1+w*t);
+  const wd=w*Math.sqrt(1-z*z); return 1-Math.exp(-z*w*t)*(Math.cos(wd*t)+z/Math.sqrt(1-z*z)*Math.sin(wd*t)); }
+const fmtInt=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function rise(el,t,tin,tout=1e9){const a=spring(t-tin,200,24), b=io(rng(t,tout,tout+0.3));
+  el.style.transform=`translateY(${(1-a)*115 - b*115}%) rotate(${(1-clamp(a))*3}deg)`; el.parentElement.style.visibility=(t<tin-0.01||t>tout+0.31)?'hidden':'inherit';}
+function riseAll(sel,t,tin,step,tout){$$(sel+' .in').forEach((e,i)=>rise(e,t,tin+i*step,tout+i*0.03));}
+function pop(el,t,t0,tout=1e9,dy=60,k=220,d=22){const e=spring(t-t0,k,d), x=io(rng(t,tout,tout+0.3));
+  el.style.transform=`translateY(${(1-e)*dy - x*40}px) scale(${0.92+0.08*e})`; el.style.opacity=clamp(e*1.8)*(1-x);}
+function slam(el,t,t0,tout=1e9){const e=spring(t-t0,320,18), x=io(rng(t,tout,tout+0.3));
+  el.style.transform=`scale(${lerp(1.8,1,clamp(e,0,1.3))})`; el.style.opacity=clamp((t-t0)/0.08)*(1-x);}
+const vis=(el,on)=>{el.style.display=on?'block':'none';};
+function typed(full,t,t0,dur){const k=Math.floor(full.length*clamp((t-t0)/dur));return full.slice(0,k)+((t>t0&&k<full.length)?'▍':'');}
+const PAL=['#0AA0E0','#1BB8EA','#0E5A9C','#8CC63F','#FDB913','#F7931E','#E91E78','#E8303A','#263a7a','#13a05a'];
+const ICON=(p,s)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}">${p}</svg>`;
+function sheetHTML(n){let s='';for(let i=0;i<n;i++)s+=`<i style="width:${55+((i*37)%45)}%"></i>`;return s;}
+
+let TL=null,S=[],END=70,MOUTH=null,paths={};
+function Wd(k,word,off=0){const ln=TL.lines[k-1], c=ln.caption.toLowerCase(), i=c.indexOf(word.toLowerCase()); return ln.start+ln.dur*(i<0?0:i/c.length)+off;}
+// modo da apresentadora por fala: 0 = tela cheia, 1 = janela redonda
+const MODE=[0,1,1,0,1,1,1,0,0];
+const STEPS=[['Preparação','preparação','<path d="M4 7h16M4 12h16M4 17h10"/>'],['Digitalização','digitalização,','<path d="M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3M4 12h16"/>'],['Tratamento da imagem','tratamento','<circle cx="12" cy="12" r="8"/><path d="M12 4v16"/>'],
+  ['Leitura e indexação','leitura','<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/>'],['Controle de qualidade','controle','<path d="M4 12l5 5L20 6"/>'],['Publicação','publicação','<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>']];
+const RES={
+ num:[['Requerimento nº <mark>2.317/2026</mark>','Obras › 2026 › Requerimentos'],['Parecer técnico · processo <mark>2.317/2026</mark>','Obras › 2026 › Pareceres']],
+ nome:[['Requerimento nº 2.317/2026 · <mark>Maria</mark> A. <mark>Silva</mark>','Obras › 2026 › Requerimentos'],['Certidão · <mark>Maria</mark> A. <mark>Silva</mark>','Tributos › 2025 › Certidões'],['Ofício 88/2024 · <mark>Maria</mark> <mark>Silva</mark>','Gabinete › 2024 › Ofícios']],
+ pal:[['Requerimento nº 2.317/2026: "…emissão de <mark>alvará</mark> de construção…"','Obras › 2026 › Requerimentos'],['Alvará 1.022/2025: "…<mark>alvará</mark> de funcionamento…"','Obras › 2025 › Alvarás']]};
+
+function build(){
+  const R=mulberry32(9), F=$('#float');
+  for(let i=0;i<24;i++){const d=document.createElement('div');const s=8+R()*26;d.style.cssText=`width:${s}px;height:${s}px;background:${PAL[i%PAL.length]};opacity:${0.25+R()*0.4}`;
+    d.dataset.x=R()*1920;d.dataset.y=R()*1080;d.dataset.v=10+R()*30;d.dataset.p=R()*6.28;F.appendChild(d);}
+  const RN=$('#rain'); window._rain=[];
+  for(let i=0;i<36;i++){const e=document.createElement('div');e.className='sheet';e.innerHTML=sheetHTML(9);RN.appendChild(e);window._rain.push({e,x:R()*1500,sp:300+R()*300,ph:R(),r:(R()-.5)*60,rs:(R()-.5)*90,s:0.5+R()*0.6});}
+  ['processo','arquivo','caixa'].forEach((c,i)=>{const e=document.createElement('span');e.className='chip';e.style.background=PAL[[1,3,5][i]];e.style.color='#0A1633';e.style.border='none';e.textContent=c;$('#chips2').appendChild(e);});
+  STEPS.forEach(([t,w,ic],i)=>{const c=PAL[[1,0,3,4,5,6][i]];const e=document.createElement('div');e.className='st card';e.style.cssText=`height:250px;padding:30px 30px;display:flex;flex-direction:column;justify-content:space-between;border-top:8px solid ${c}`;
+    e.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:70px;font-weight:900;color:${c}">0${i+1}</span><span class="ico" style="width:80px;height:80px;background:${c}">${ICON(ic,46)}</span></div><div style="font-size:32px;font-weight:900;text-transform:uppercase;line-height:1.1">${t}</div>`;$('#steps').appendChild(e);});
+  [['+10 anos','de mercado','<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>','#FDB913'],['Todo o Brasil','atendimento em todo o país','<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>','#0AA0E0'],['Alvorada de Minas','nossa sede, em MG','<path d="M12 21s-7-7-7-12a7 7 0 0 1 14 0c0 5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>','#8CC63F']].forEach(([a,b,ic,c])=>{
+    const e=document.createElement('div');e.className='wy card';e.style.cssText=`height:200px;padding:28px 36px;display:flex;align-items:center;gap:30px;margin-bottom:24px;border-left:10px solid ${c}`;
+    e.innerHTML=`<div class="ico" style="width:130px;height:130px;background:${c};flex:none">${ICON(ic,74)}</div><div><div style="font-size:62px;font-weight:900;line-height:1">${a}</div><div style="font-size:28px;font-weight:700;color:#c9d6f0;margin-top:8px">${b}</div></div>`;$('#why').appendChild(e);});
+  $('#pinner').innerHTML=presenterSVG('pp');
+  const T=$('#tiles'), R4=mulberry32(31);
+  for(let r=0;r<9;r++)for(let c=0;c<16;c++){const e=document.createElement('div');e.style.cssText=`left:${c*120+1}px;top:${r*120+1}px;background:${PAL[Math.floor(R4()*PAL.length)]};transform:scale(0)`;e.dataset.d=(c+r)/23+R4()*0.08;T.appendChild(e);}
+}
+function setResults(list,t,t0){const box=$('#results'); const key=list.map(x=>x[0]).join('|'); if(box.dataset.k!==key){box.dataset.k=key; box.innerHTML=list.map(([a,b])=>`<div class="res"><div style="width:58px;height:76px;border-radius:6px;background:#e6ecf8;flex:none"></div><div><div style="font-size:19px;font-weight:800;line-height:1.3">${a}</div><div style="font-size:15px;color:#5a6a90;margin-top:6px">${b}</div></div></div>`).join('');}
+  $$('#results .res').forEach((r,i)=>pop(r,t,t0+i*0.08,1e9,24,260,20));}
+async function init(){
+  TL=await (await fetch('timeline.json')).json(); MOUTH=await (await fetch('mouth.json')).json();
+  const st=TL.lines.map(l=>l.start); S=st.map((s,i)=>[i===0?0:s-0.35, i<st.length-1?st[i+1]-0.35:TL.end]); END=TL.end;
+  build();
+  $('#mapwrap').innerHTML=await (await fetch('assets/brazil.svg')).text(); $$('#mapwrap path').forEach(p=>paths[p.id]=p);
+  await document.fonts.ready; await Promise.all($$('img').map(i=>i.complete?0:new Promise(r=>i.onload=r)));
+  fit(); window.DUR=END; window.ready=true; seek(0);
+}
+const sc=(t,k)=>{const [a,b]=S[k-1]; return [a,b,t>=a-0.01&&t<b+0.02];};
+function mouthAt(t){const i=Math.max(0,Math.min(MOUTH.open.length-1,Math.round(t*MOUTH.fps))); return [MOUTH.open[i],MOUTH.wide[i]];}
+
+function seek(t){
+  const bl=$$('#blobs div'); bl.forEach((b,i)=>{b.style.left=(300+i*600+Math.sin(t*0.3+i*2)*220)+'px';b.style.top=(200+Math.cos(t*0.25+i)*240+i*120)+'px';});
+  $$('#float div').forEach(d=>{const y=((+d.dataset.y - t*+d.dataset.v)%1180+1180)%1180-50; d.style.left=(+d.dataset.x+Math.sin(t*0.8+ +d.dataset.p)*20)+'px'; d.style.top=y+'px'; d.style.transform=`rotate(${t*30+ +d.dataset.p*50}deg)`;});
+  for(const k of [1,2,3,4,7,8]) vis($('#S'+k),sc(t,k)[2]);
+  vis($('#GEDS'),t>=S[4][0]-0.01&&t<S[5][1]+0.02); vis($('#MAP'),sc(t,7)[2]);
+  // apresentadora: modo cheio/janela, boca, gestos
+  let k0=S.findIndex(s=>t>=s[0]&&t<s[1]); if(k0<0)k0=S.length-1;
+  const prevM=k0>0?MODE[k0-1]:MODE[0], curM=MODE[k0], mm=lerp(prevM,curM,io(rng(t,S[k0][0]-0.1,S[k0][0]+0.45)));
+  const endOn=t>S[8][0]+0.3;
+  const FULL={x:1110,y:170,w:780,h:910,r:0,s:1.14,ox:46,oy:6}, PIP={x:1530,y:690,w:340,h:340,r:170,s:0.62,ox:-16,oy:-34};
+  const f={}; for(const kk in FULL) f[kk]=lerp(FULL[kk],PIP[kk],mm);
+  const pf=$('#pframe'); pf.style.left=f.x+'px'; pf.style.top=f.y+'px'; pf.style.width=f.w+'px'; pf.style.height=f.h+'px'; pf.style.borderRadius=f.r+'px';
+  pf.style.border=mm>0.5?'6px solid #1BB8EA':'0'; pf.style.background=mm>0.5?'radial-gradient(circle at 50% 40%,#2a5bb0,#13285a)':'transparent'; pf.style.boxShadow=mm>0.5?'0 20px 50px #0009':'none';
+  $('#pinner').style.transform=`translate(${f.ox}px,${f.oy}px) scale(${f.s})`;
+  const pb=$('#pback'); const bs=lerp(640,0,mm); pb.style.width=pb.style.height=bs+'px'; pb.style.left=(1500-bs/2)+'px'; pb.style.top=(560-bs/2)+'px';
+  pb.style.background=endOn?'radial-gradient(circle,#dff2fc,#ffffff00 70%)':'radial-gradient(circle,#1BB8EA66,#1BB8EA00 70%)';
+  const [mo,mw]=mouthAt(t);
+  const wave=Math.max(clamp(1-Math.abs(t-1.6)/1.2)*1.0, endOn?clamp(1-Math.abs(t-(S[8][0]+1.4))/1.2):0);
+  const point=clamp(1-Math.abs(t-Wd(4,'olha só')-0.4)/0.9);
+  const look=mm>0.5?-0.6:(k0===3||k0===7?-1:0);
+  setPresenter('pp',{open:mo,wide:mw,t,wave:clamp(wave*1.4),point:clamp(point*1.4),look,brow:mo>0.85?1:0,nod:Math.sin(t*2.3)*mo});
+  pf.style.opacity=clamp(t/0.4);
+  // logo no canto
+  $('#logoC').style.opacity=1-rng(t,S[8][0],S[8][0]+0.3);
+
+  { const [a,b,on]=sc(t,1); if(on){ riseAll('#S1',t,0.4,0.18,b-0.35); } }
+  { const [a,b,on]=sc(t,2); if(on){ riseAll('#S2',t,a+0.15,0.5,b-0.35);
+      window._rain.forEach(r=>{const y=((t*r.sp+r.ph*1400)%1400)-200; r.e.style.left=r.x+'px'; r.e.style.top=y+'px'; r.e.style.transform=`rotate(${r.r+t*r.rs}deg) scale(${r.s})`; r.e.style.opacity=0.45;});
+      const t0=Wd(2,'38')-0.15; slam($('#b38'),t,t0,b-0.35); $('#b38').textContent=fmtInt(38*expo(rng(t,t0,t0+0.9)));
+      $$('#chips2 .chip').forEach((c,i)=>{const e=spring(t-Wd(2,['processo','arquivo','caixa'][i],-0.1),300,16); c.style.transform=`scale(${Math.max(0,e)}) rotate(${(1-clamp(e))*-10}deg)`; c.style.opacity=clamp(e*2)*(1-rng(t,b-0.35,b));}); } }
+  { const [a,b,on]=sc(t,3); if(on){ riseAll('#S3',t,a+0.15,0.1,b-0.35);
+      $$('#steps .st').forEach((s,i)=>{const t0=Wd(3,STEPS[i][1],-0.15), e=spring(t-t0,280,17); s.style.transform=`translateY(${(1-clamp(e))*80}px) scale(${0.85+0.15*e})`; s.style.opacity=clamp(e*2)*(1-rng(t,b-0.35,b));}); } }
+  { const [a,b,on]=sc(t,4); if(on){ riseAll('#S4',t,a+0.15,0.15,b-0.35); } }
+  // GED (falas 5 e 6)
+  if(t>=S[4][0]-0.01&&t<S[5][1]+0.02){ const a=S[4][0], b=S[5][1];
+    const g=$('#ged'), e=spring(t-(a+0.1),170,22); g.style.transform=`translateY(${(1-e)*80}px) scale(${0.94+0.06*e})`; g.style.opacity=clamp(e*1.6)*(1-rng(t,b-0.35,b));
+    const tn=Wd(5,'número',-0.2), tm=Wd(5,'nome',-0.1), tp=Wd(5,'palavra',-0.1);
+    let qs='', list=RES.num, t0=tn+0.5;
+    if(t<tm){qs=typed('2.317/2026',t,tn,0.6);} else if(t<tp){qs=typed('Maria Silva',t,tm,0.5); list=RES.nome; t0=tm+0.45;} else {qs=typed('alvará',t,tp,0.4); list=RES.pal; t0=tp+0.35;}
+    $('#q').textContent=qs; if(t>t0-0.05) setResults(list,t,t0); else {$('#results').innerHTML='';$('#results').dataset.k='';}
+    const ts=Wd(5,'segundos',-0.3); $('#meta').textContent=t>ts?`✓ ${list.length} resultado${list.length>1?'s':''} · encontrado em 0,4 s`:'';
+    const th=Wd(5,'destacado',-0.2); $('#hl').style.backgroundSize=`${io(rng(t,th,th+0.6))*100}% 100%`;
+    const fs=[['#fS','setor'],['#fD','data'],['#fT','tipo']]; fs.forEach(([id,w])=>{const on2=t>Wd(6,w,-0.1); const cb=$(id+' .cb'); cb.style.background=on2?'#1BB8EA':'transparent'; cb.style.borderColor=on2?'#1BB8EA':'#8a97b8'; cb.textContent=on2?'✓':'';
+      cb.style.transform=`scale(${on2?clamp(spring(t-Wd(6,w,-0.1),300,14),0,1.3):1})`;});
+    const tv=Wd(6,'visualização',-0.2), zv=io(rng(t,tv,tv+0.5))*(1-io(rng(t,tv+1.4,tv+1.9))); $('#prev').style.transform=`scale(${1+0.06*zv})`; $('#prev').style.boxShadow=zv>0.01?`0 0 0 ${4*zv}px #1BB8EA`:'none';
+    const tpdf=Wd(6,'pdf',-0.2); $('#pdfb').style.transform=`scale(${1-0.08*Math.sin(Math.PI*rng(t,tpdf,tpdf+0.25))})`; pop($('#toast'),t,tpdf+0.3,Wd(6,'tudo',0.6),30);
+    const ta=Wd(6,'acesso controlado',-0.2), la=spring(t-ta,260,14); $('#lockb').style.background=t>ta?'#FDB913':'#ffffff1a'; $('#lockb').style.color=t>ta?'#0A1633':'#fff'; $('#lockb').style.transform=`scale(${t>ta?0.9+0.1*la+0.08*Math.exp(-(t-ta)*3):1})`;
+  }
+  { const [a,b,on]=sc(t,7); if(on){ riseAll('#S7',t,a+0.15,0.1,b-0.35);
+      const e=io(rng(t,a,a+1.4)), z=lerp(1.3,1.9,e)*1.45, fx=lerp(306,505,e), fy=lerp(320,255,e), tx=1180-fx*z, ty=520-fy*z;
+      $('#mapwrap').style.transform=`translate(${tx}px,${ty}px) scale(${z})`; $('#MAP').style.opacity=clamp((t-a)/0.3)*(1-rng(t,b-0.3,b));
+      Object.entries(paths).forEach(([id,p])=>{const k=id==='ba'?out(rng(t,Wd(7,'bahia')-0.1,Wd(7,'bahia')+0.5)):0; p.style.fill=`rgb(${lerp(22,140,k)|0},${lerp(48,198,k)|0},${lerp(106,63,k)|0})`;});
+      const tb=Wd(7,'50',-0.3); pop($('#c7'),t,tb,b-0.35,80); $('#ba').textContent=fmtInt(50*expo(rng(t,tb,tb+1)));
+      const ti=Wd(7,'imagina',-0.1), ei=spring(t-ti,300,15); $('#im7').style.transform=`scale(${Math.max(0,ei)})`; $('#im7').style.transformOrigin='0 50%'; $('#im7').style.opacity=clamp(ei*2)*(1-rng(t,b-0.35,b)); } }
+  { const [a,b,on]=sc(t,8); if(on){ riseAll('#S8',t,a+0.15,0.1,b-0.35);
+      $$('#why .wy').forEach((w,i)=>{const e=spring(t-Wd(8,['10 anos','atendimento','sede'][i],-0.2),260,17); w.style.transform=`translateX(${(1-clamp(e))*-140}px)`; w.style.opacity=clamp(e*2)*(1-io(rng(t,b-0.35,b))); w.querySelector('.ico').style.transform=`rotate(${(1-clamp(e))*-90}deg)`;}); } }
+  // final branco
+  const F=S[8][0];
+  const fl=$('#flood'), R=Math.hypot(1300,640)*1.1, fe=io(rng(t,F,F+0.45)), rad=R*fe;
+  fl.style.width=fl.style.height=(2*rad)+'px'; fl.style.left=(560-rad)+'px'; fl.style.top=(540-rad)+'px'; vis(fl,t>F); vis($('#end'),t>F+0.3);
+  const le=spring(t-(F+0.4),150,18); $('#logoE').style.transform=`scale(${0.7+0.3*le})`; $('#logoE').style.transformOrigin='0 50%'; $('#logoE').style.opacity=clamp(le*2);
+  pop($('#contact'),t,Wd(9,'warley',-0.3),1e9,80,200,22);
+  // transições em mosaico
+  const B=[S[1][0],S[3][0],S[4][0],S[6][0],S[7][0]];
+  const near=B.find(x=>t>x-0.5&&t<x+0.5);
+  $$('#tiles div').forEach(e=>{let s=0; if(near!==undefined){const d=+e.dataset.d*0.25; s=io(rng(t,near-0.36+d,near-0.18+d))*(1-io(rng(t,near+d-0.02,near+d+0.18)));} e.style.transform=`scale(${s})`;});
+  $('#hud').textContent=t.toFixed(2)+'s';
+}
+window.seek=seek;
+function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(${(innerWidth-W*s)/2}px,${(innerHeight-H*s)/2}px) scale(${s})`;}
+addEventListener('resize',fit);
+let playing=false,t0=0,cur=0;
+addEventListener('keydown',e=>{if(e.code==='Space'){playing=!playing;t0=performance.now()/1000-cur;loop();}
+  if(e.code==='ArrowRight'){cur+=1/30;seek(cur);} if(e.code==='ArrowLeft'){cur=Math.max(0,cur-1/30);seek(cur);}
+  if(e.code==='KeyR'){cur=0;t0=performance.now()/1000;playing=true;loop();}});
+function loop(){if(!playing)return;cur=performance.now()/1000-t0;if(cur>END){cur=END;playing=false;}seek(cur);requestAnimationFrame(loop);}
+if(new URLSearchParams(location.search).has('render')) $('#hud').style.display='none';
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+1
+00:00:00,900 --> 00:00:05,071
+Toda política pública começa com uma pergunta: do que a população precisa?
+
+2
+00:00:05,771 --> 00:00:12,926
+A V4 FábricaGov transforma essa pergunta em dados, e os dados em ação, na saúde e na educação.
+
+3
+00:00:13,526 --> 00:00:19,566
+Com o aplicativo de pesquisa, agentes de saúde entrevistam as famílias de casa em casa, mesmo sem internet.
+
+4
+00:00:20,066 --> 00:00:25,038
+As respostas chegam a um painel atualizado toda semana, por município e por região.
+
+5
+00:00:25,537 --> 00:00:30,787
+E a nossa inteligência artificial lê o que o povo disse e aponta ao gestor o que melhorar primeiro.
+
+6
+00:00:31,488 --> 00:00:39,037
+Na saúde, criamos sistemas de apoio: agendamento de consultas, lembretes de vacina e acompanhamento de pacientes.
+
+7
+00:00:39,737 --> 00:00:46,956
+Na educação, matrícula on-line, controle de frequência e alertas de risco de evasão, para que nenhum aluno fique para trás.
+
+8
+00:00:47,655 --> 00:00:54,404
+Tudo com LGPD desde o projeto, o código é do cliente e o preço é até três vezes menor que o mercado.
+
+9
+00:00:56,804 --> 00:01:01,004
+V4 FábricaGov. Tecnologia para cuidar de quem mais precisa.
+

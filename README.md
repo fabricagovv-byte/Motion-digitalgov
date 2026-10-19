@@ -253,3 +253,28 @@ na identidade da V4 FábricaGov (tinta `#111216`, dourado `#D9A441`, Anton + Int
 - Fontes de cada número: `src/pesquisa/facts.md`.
 - Reproduzir: `bash src/pesquisa/render.sh` (pré-visualização: sirva `src/pesquisa/` e abra `film.html`; Espaço = play, R = recomeçar).
 - Trilha e efeitos são sintetizados em código (`audio.py`), sem direitos de terceiros.
+
+---
+
+# V4 FábricaGov · Filme narrado "Saúde e Educação" (64 s)
+
+Motion design narrado em pt-BR (voz neural Piper `pt_BR-faber-medium`), trilha sintetizada que abaixa sob a voz,
+efeitos sincronizados e legendas. Mesmo motor HTML + `seek(t)`; as cenas são posicionadas pelo tempo real de cada fala
+(`src/saude/timeline.json`, gerado por `narration.py`).
+
+| Fala | Cena |
+|---|---|
+| "Toda política pública começa com uma pergunta…" | Pessoas acendendo: "Do que a população precisa?" |
+| "…transforma essa pergunta em dados, e os dados em ação…" | Pergunta → Dados → Ação, saúde e educação |
+| "Com o aplicativo de pesquisa…" | App de entrevistas no celular, funciona sem internet e sincroniza |
+| "As respostas chegam a um painel atualizado toda semana…" | Painel com entrevistas por semana e por região |
+| "E a nossa inteligência artificial…" | Falas do povo + IA com recomendações ao gestor |
+| "Na saúde, criamos sistemas de apoio…" | Agendamento, lembrete de vacina, acompanhamento de paciente |
+| "Na educação, matrícula on-line…" | Matrícula, frequência, alerta de evasão |
+| "Tudo com LGPD…" | LGPD, código do cliente, até 3x menor que o mercado |
+| "V4 FábricaGov. Tecnologia para cuidar de quem mais precisa." | Logo e contatos |
+
+Entregáveis em `deliverables/saude/`: `V4_FabricaGov_Saude_Educacao_1080p.mp4` (limpo), `…_legendado.mp4`,
+`legendas_ptBR.srt`, `mix_final_48k24.wav` (-14 LUFS) e `stems/` (voz, trilha, efeitos).
+Telas e números de painel são ilustrativos (marcados na tela). Reproduzir: `bash src/saude/render.sh`
+(precisa da voz em `voices/vits-piper-pt_BR-faber-medium/` e `pip install piper-tts`).

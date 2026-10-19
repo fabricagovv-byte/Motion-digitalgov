@@ -1,0 +1,59 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.9,
+   "dur": 3.971,
+   "caption": "Toda política pública começa com uma pergunta: do que a população precisa?"
+  },
+  {
+   "id": "n2",
+   "start": 5.771,
+   "dur": 6.955,
+   "caption": "A V4 FábricaGov transforma essa pergunta em dados, e os dados em ação, na saúde e na educação."
+  },
+  {
+   "id": "n3",
+   "start": 13.526,
+   "dur": 5.84,
+   "caption": "Com o aplicativo de pesquisa, agentes de saúde entrevistam as famílias de casa em casa, mesmo sem internet."
+  },
+  {
+   "id": "n4",
+   "start": 20.066,
+   "dur": 4.772,
+   "caption": "As respostas chegam a um painel atualizado toda semana, por município e por região."
+  },
+  {
+   "id": "n5",
+   "start": 25.537,
+   "dur": 5.05,
+   "caption": "E a nossa inteligência artificial lê o que o povo disse e aponta ao gestor o que melhorar primeiro."
+  },
+  {
+   "id": "n6",
+   "start": 31.488,
+   "dur": 7.349,
+   "caption": "Na saúde, criamos sistemas de apoio: agendamento de consultas, lembretes de vacina e acompanhamento de pacientes."
+  },
+  {
+   "id": "n7",
+   "start": 39.737,
+   "dur": 7.019,
+   "caption": "Na educação, matrícula on-line, controle de frequência e alertas de risco de evasão, para que nenhum aluno fique para trás."
+  },
+  {
+   "id": "n8",
+   "start": 47.655,
+   "dur": 6.549,
+   "caption": "Tudo com LGPD desde o projeto, o código é do cliente e o preço é até três vezes menor que o mercado."
+  },
+  {
+   "id": "n9",
+   "start": 56.804,
+   "dur": 4.0,
+   "caption": "V4 FábricaGov. Tecnologia para cuidar de quem mais precisa."
+  }
+ ],
+ "end": 64.0
+}

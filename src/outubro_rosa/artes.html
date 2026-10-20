@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 FábricaGov · Outubro Rosa</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-700-normal.woff2) format('woff2');font-weight:700}
+:root{--ink:#111216;--pink:#E8558F;--pink2:#F59AC0;--blush:#FCE4EE;--gold:#D9A441;--paper:#F7F2EE}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000}
+.art{position:relative;overflow:hidden;font-family:Inter,sans-serif}
+.anton{font-family:Anton;text-transform:uppercase;line-height:.98;letter-spacing:.5px}
+.pill{display:inline-block;font-weight:700;font-size:24px;letter-spacing:5px;padding:12px 26px;border-radius:999px}
+.abs{position:absolute}
+.dots{position:absolute;inset:0;background-image:radial-gradient(circle,#ffffff14 1.6px,transparent 1.8px);background-size:44px 44px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+// fita rosa (laço) em SVG
+const RIB=(s,fill='#E8558F',shade='#C23A72')=>`<svg width="${s}" height="${s*1.45}" viewBox="0 0 200 290" style="display:block">
+  <path d="M100 18 C62 18 46 52 58 88 C68 118 86 140 100 158 C114 140 132 118 142 88 C154 52 138 18 100 18Z M100 46 C120 46 126 66 120 86 C114 104 106 116 100 124 C94 116 86 104 80 86 C74 66 80 46 100 46Z" fill="${fill}"/>
+  <path d="M100 158 C84 178 66 206 40 272 L74 282 L96 214 C98 208 102 208 104 214 L126 282 L160 272 C134 206 116 178 100 158Z" fill="${fill}"/>
+  <path d="M100 158 C116 178 134 206 160 272 L126 282 L106 222Z" fill="${shade}"/>
+  <path d="M58 88 C68 118 86 140 100 158 L112 142 C96 122 84 104 78 86 C72 64 80 46 100 46 L100 18 C62 18 46 52 58 88Z" fill="${shade}" opacity=".35"/>
+</svg>`;
+const LOGO_W='<img src="assets/logo_white.png" style="width:330px;display:block">';
+const LOGO_D='<img src="assets/logo_dark.png" style="width:330px;display:block">';
+const p=new URLSearchParams(location.search), A=+p.get('a')||1;
+const W=1080, H=A>=5?1920:1350;
+const root=document.getElementById('root');
+const art=document.createElement('div'); art.className='art'; art.style.width=W+'px'; art.style.height=H+'px'; root.appendChild(art);
+
+if(A===1){ // capa: Outubro Rosa
+  art.style.background='radial-gradient(900px 900px at 75% 30%,#3a1527 0%,#111216 62%)';
+  art.innerHTML=`<div class="dots"></div>
+  <div class="abs" style="right:70px;top:120px;transform:rotate(-8deg);filter:drop-shadow(0 30px 40px #0008)">${RIB(330)}</div>
+  <div class="abs" style="left:80px;top:110px"><span class="pill" style="background:var(--pink);color:#fff">CAMPANHA</span></div>
+  <div class="abs anton" style="left:80px;top:560px;font-size:210px;color:#fff">Outubro</div>
+  <div class="abs anton" style="left:80px;top:765px;font-size:210px;color:var(--pink)">Rosa</div>
+  <div class="abs" style="left:84px;top:1010px;width:800px;font-size:44px;font-weight:600;color:#f2e6ec;line-height:1.3">Cuidar de você também é prioridade.</div>
+  <div class="abs" style="left:80px;bottom:80px">${LOGO_W}</div>
+  <div class="abs" style="right:80px;bottom:92px;font-size:22px;font-weight:600;color:#d8b8c7;letter-spacing:2px">#OUTUBROROSA</div>`;
+}
+if(A===2){ // diagnóstico precoce + dado INCA
+  art.style.background='var(--pink)';
+  art.innerHTML=`<div class="abs" style="right:-120px;top:-60px;opacity:.18;transform:rotate(12deg)">${RIB(620,'#fff','#fff')}</div>
+  <div class="abs" style="left:80px;top:110px"><span class="pill" style="background:#111216;color:#fff">OUTUBRO ROSA</span></div>
+  <div class="abs anton" style="left:80px;top:240px;font-size:150px;color:#111216">O diagnóstico<br>precoce<br><span style="color:#fff">salva vidas</span></div>
+  <div class="abs" style="left:80px;top:830px;width:920px;background:#111216;border-radius:28px;padding:44px 50px;color:#fff">
+    <div style="font-size:26px;font-weight:600;color:var(--pink2)">No Brasil, cerca de</div>
+    <div class="anton" style="font-size:130px;color:#fff;margin-top:6px">74 mil</div>
+    <div style="font-size:30px;font-weight:600;margin-top:6px">casos novos de câncer de mama por ano</div>
+    <div style="font-size:18px;color:#bba5b0;margin-top:16px">Fonte: INCA, Estimativa 2023 (triênio 2023–2025)</div></div>
+  <div class="abs" style="right:80px;top:120px">${LOGO_D.replace('330px','260px')}</div>`;
+}
+if(A===3){ // conheça seu corpo: 3 cuidados
+  art.style.background='var(--paper)';
+  const items=[['01','Conheça o seu corpo','Observe as mamas e fique atenta a qualquer mudança.'],['02','Percebeu algo diferente?','Procure um profissional de saúde.'],['03','Faça os exames','Siga a orientação médica para a sua idade.']];
+  art.innerHTML=`<div class="abs" style="left:80px;top:100px"><span class="pill" style="background:var(--pink);color:#fff">OUTUBRO ROSA</span></div>
+  <div class="abs anton" style="left:80px;top:210px;font-size:120px;color:#111216">3 cuidados que<br><span style="color:var(--pink)">fazem diferença</span></div>
+  <div class="abs" style="left:80px;top:520px;width:920px">${items.map(([n,t,d])=>`<div style="display:flex;gap:34px;align-items:center;background:#fff;border-radius:26px;padding:34px 40px;margin-bottom:26px;border-left:12px solid var(--pink);box-shadow:0 12px 30px #E8558F22">
+     <div class="anton" style="font-size:84px;color:var(--pink);min-width:110px">${n}</div><div><div style="font-size:38px;font-weight:700;color:#111216">${t}</div><div style="font-size:27px;color:#5d5258;margin-top:8px;line-height:1.35">${d}</div></div></div>`).join('')}</div>
+  <div class="abs" style="left:80px;bottom:70px">${LOGO_D.replace('330px','280px')}</div>
+  <div class="abs" style="right:70px;bottom:40px">${RIB(90)}</div>`;
+}
+if(A===4){ // mensagem institucional da V4
+  art.style.background='#111216';
+  art.innerHTML=`<div class="dots"></div>
+  <div class="abs" style="left:50%;top:150px;transform:translateX(-50%)">${RIB(220)}</div>
+  <div class="abs anton" style="left:0;right:0;top:560px;text-align:center;font-size:118px;color:#fff">Tecnologia<br>a serviço da <span style="color:var(--pink)">vida</span></div>
+  <div class="abs" style="left:120px;right:120px;top:860px;text-align:center;font-size:36px;font-weight:500;color:#e8dfe4;line-height:1.4">A V4 FábricaGov apoia o Outubro Rosa.<br>Neste mês, lembre quem você ama de se cuidar.</div>
+  <div class="abs" style="left:0;right:0;bottom:90px;display:flex;justify-content:center">${LOGO_W}</div>
+  <div class="abs" style="left:0;right:0;top:1060px;display:flex;justify-content:center"><div style="height:6px;width:140px;border-radius:3px;background:var(--pink)"></div></div>`;
+}
+if(A===5){ // story: capa
+  art.style.background='radial-gradient(1100px 1200px at 70% 30%,#3a1527 0%,#111216 62%)';
+  art.innerHTML=`<div class="dots"></div>
+  <div class="abs" style="left:50%;top:260px;transform:translateX(-50%) rotate(-6deg);filter:drop-shadow(0 30px 40px #0008)">${RIB(380)}</div>
+  <div class="abs anton" style="left:0;right:0;top:900px;text-align:center;font-size:230px;color:#fff">Outubro</div>
+  <div class="abs anton" style="left:0;right:0;top:1120px;text-align:center;font-size:230px;color:var(--pink)">Rosa</div>
+  <div class="abs" style="left:120px;right:120px;top:1400px;text-align:center;font-size:46px;font-weight:600;color:#f2e6ec;line-height:1.3">Cuidar de você também é prioridade.</div>
+  <div class="abs" style="left:0;right:0;bottom:170px;display:flex;justify-content:center">${LOGO_W}</div>`;
+}
+if(A===6){ // story: diagnóstico precoce
+  art.style.background='var(--pink)';
+  art.innerHTML=`<div class="abs" style="right:-160px;top:40px;opacity:.18;transform:rotate(12deg)">${RIB(760,'#fff','#fff')}</div>
+  <div class="abs" style="left:90px;top:220px"><span class="pill" style="background:#111216;color:#fff">OUTUBRO ROSA</span></div>
+  <div class="abs anton" style="left:90px;top:360px;font-size:170px;color:#111216">O diagnóstico<br>precoce<br><span style="color:#fff">salva vidas</span></div>
+  <div class="abs" style="left:90px;top:1060px;width:900px;background:#111216;border-radius:30px;padding:50px 54px;color:#fff">
+    <div style="font-size:30px;font-weight:600;color:var(--pink2)">No Brasil, cerca de</div>
+    <div class="anton" style="font-size:150px;margin-top:8px">74 mil</div>
+    <div style="font-size:34px;font-weight:600;margin-top:8px">casos novos de câncer de mama por ano</div>
+    <div style="font-size:20px;color:#bba5b0;margin-top:18px">Fonte: INCA, Estimativa 2023 (triênio 2023–2025)</div></div>
+  <div class="abs" style="left:0;right:0;bottom:150px;display:flex;justify-content:center">${LOGO_D}</div>`;
+}
+Promise.all([document.fonts.ready,...[...document.images].map(i=>i.complete?0:new Promise(r=>i.onload=r))]).then(()=>{window.ready=true;});
+window.seek=()=>{};
+</script>
+</body>
+</html>

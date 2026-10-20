@@ -1,0 +1,18 @@
+<p>O processo tem quatro etapas. A Prefeitura acompanha tudo pela plataforma, inclusive pelo celular.</p>
+<div class="flow">
+ <div class="step" style="--c:#1BA3DD">
+  <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" fill="#E3F4FC"/><rect x="11" y="16" width="26" height="18" rx="3" fill="none" stroke="#26305E" stroke-width="2.5"/><circle cx="24" cy="25" r="5" fill="none" stroke="#1BA3DD" stroke-width="2.5"/><rect x="18" y="12" width="12" height="5" rx="1.5" fill="#26305E"/></svg>
+  <b>1. Captura</b><span>Digitalização das páginas no formato A3 ou A0, ou envio de fotos pela plataforma.</span></div>
+ <div class="arrow">›</div>
+ <div class="step" style="--c:#F5A623">
+  <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" fill="#FEF3E0"/><path d="M14 34 L30 18" stroke="#26305E" stroke-width="3" stroke-linecap="round"/><path d="M31 11 l1.5 3.5 3.5 1.5 -3.5 1.5 -1.5 3.5 -1.5 -3.5 -3.5 -1.5 3.5 -1.5z" fill="#F5A623"/><circle cx="36" cy="28" r="2" fill="#F5A623"/><circle cx="20" cy="14" r="1.6" fill="#F5A623"/></svg>
+  <b>2. Restauração</b><span>O software remove manchas, corrige o amarelado, recupera o texto e endireita a página.</span></div>
+ <div class="arrow">›</div>
+ <div class="step" style="--c:#8DC63F">
+  <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" fill="#EEF7E2"/><rect x="14" y="11" width="20" height="26" rx="2" fill="#fff" stroke="#26305E" stroke-width="2.3"/><path d="M18 18h12M18 23h12M18 28h8" stroke="#8DC63F" stroke-width="2.3" stroke-linecap="round"/></svg>
+  <b>3. Transcrição</b><span>O texto de cada página vira texto digital limpo, revisado e pesquisável.</span></div>
+ <div class="arrow">›</div>
+ <div class="step" style="--c:#E8336D">
+  <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" fill="#FCE6EE"/><rect x="16" y="9" width="16" height="30" rx="3" fill="none" stroke="#26305E" stroke-width="2.3"/><path d="M24 17v11M19.5 23.5 24 28l4.5-4.5" stroke="#E8336D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="34.5" r="1.4" fill="#26305E"/></svg>
+  <b>4. Entrega</b><span>Acervo organizado na plataforma, com busca, exportação e acesso seguro.</span></div>
+</div>

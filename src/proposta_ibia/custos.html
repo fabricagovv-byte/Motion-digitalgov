@@ -1,0 +1,104 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Análise de Custos · Restauração</title><style>
+@page{size:A4;margin:34mm 16mm 24mm 16mm}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font-family:Arial,'Liberation Sans',Helvetica,sans-serif;color:#111;font-size:10.6pt;line-height:1.42}
+:root{--navy:#26305E;--cyan:#1BA3DD;--pale:#EAF2FB;--fill:#D6E8F7}
+h1{font-size:28pt;color:var(--navy);text-align:center;margin:2mm 0 0;letter-spacing:.5px}
+.sub{color:var(--cyan);text-align:center;font-size:11pt;margin:1mm 0 5mm}
+table{width:100%;border-collapse:collapse;margin:2mm 0 3mm;font-size:9.4pt;page-break-inside:auto}
+tr{page-break-inside:avoid}
+th{background:var(--navy);color:#fff;text-align:left;padding:2.2mm 2.4mm;font-weight:700}
+td{border:1px solid #CBD3DF;padding:2mm 2.4mm;vertical-align:top}
+tr:nth-child(odd) td{background:#F3F6FA}
+td.k{font-weight:700;width:30%}
+td.fill{background:var(--fill)!important}
+.sum td{background:var(--pale)!important}
+.sec{display:flex;align-items:stretch;margin:7mm 0 3mm;border-bottom:2px solid var(--cyan);background:var(--pale);page-break-after:avoid;break-after:avoid}
+.sec .n{background:var(--navy);color:#fff;font-weight:700;width:11mm;display:flex;align-items:center;justify-content:center;font-size:11pt}
+.sec .t{padding:1.6mm 4mm;font-weight:700;color:var(--navy);font-size:12.5pt;letter-spacing:.3px}
+p{margin:0 0 2.4mm}
+ul{margin:1mm 0 3mm;padding-left:6mm}li{margin-bottom:1.2mm}
+.lab{font-size:8.6pt;font-weight:700;color:var(--navy);letter-spacing:.4px;margin:4mm 0 1mm}
+.box{display:grid;border-bottom:2px solid var(--cyan)}
+.box div{font-size:8.4pt;color:#333;padding:1mm 2mm}
+.box .f{background:var(--fill);height:9mm}
+.note{font-size:8.4pt;color:#555;font-style:italic}
+.flow{page-break-inside:avoid;break-inside:avoid;display:flex;gap:3mm;margin:3mm 0 4mm;align-items:stretch}
+.step{flex:1;border:1px solid #CBD3DF;border-top:4px solid var(--c);background:#fff;padding:3.5mm 3mm 3mm;text-align:center}
+.step svg{width:15mm;height:15mm;display:block;margin:0 auto 2mm}
+.step b{display:block;color:var(--navy);font-size:10pt;margin-bottom:1mm}
+.step span{font-size:8.6pt;color:#333;line-height:1.35;display:block}
+.arrow{align-self:center;color:var(--navy);font-size:16pt;font-weight:700}
+.fig{border:1px solid #CBD3DF;padding:2mm;background:#fff;page-break-inside:avoid}
+.fig img{width:100%;display:block}
+.cap{font-size:8.4pt;color:#555;margin-top:1.5mm;text-align:center}
+.big{display:flex;gap:4mm;margin:2mm 0 3mm}
+.big div{flex:1;border:1px solid #CBD3DF;border-left:5px solid var(--c);padding:3mm 4mm;background:#fff}
+.big b{display:block;font-size:20pt;color:var(--navy);line-height:1.1}
+.big span{font-size:8.8pt;color:#333}
+.sig{display:flex;gap:12mm;margin-top:18mm;text-align:center;font-size:9.4pt}
+.sig div{flex:1;border-top:1px solid #333;padding-top:1.5mm}
+.avoid{page-break-inside:avoid}
+</style>
+<style>
+.callout{background:#EAF2FB;border-left:5px solid #1BA3DD;padding:3mm 4mm;margin:2mm 0 4mm;font-size:10pt}
+.alert{background:#FDECEC;border-left:5px solid #C0392B;padding:3mm 4mm;margin:2mm 0 4mm;font-size:10pt}
+.alert b{color:#9B2A20}.callout b{color:#26305E}
+td.neg{color:#B42318;font-weight:700}td.pos{color:#16794A;font-weight:700}
+.dec{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #CBD3DF;background:#EAF2FB}
+.dec div{padding:4mm;font-size:9.4pt;font-weight:700;color:#26305E;display:flex;gap:3mm;align-items:center;border-right:1px solid #CBD3DF}
+.dec i{width:5mm;height:5mm;border:1.5px solid #26305E;display:inline-block;flex:none;background:#fff}
+</style></head><body><h1>ANÁLISE DE CUSTOS</h1><div class="sub">Restauração de documentos — custo, preço de venda e margem | Base: proposta para Ibiá – MG | Confidencial</div>
+<table class="sum"><tr><th style="width:34%">CUSTO DE RESTAURAÇÃO</th><th style="width:30%">PREÇO DE VENDA</th><th>CUSTO DO OPERADOR</th></tr>
+<tr><td><b>R$ 0,10 a R$ 1,00</b> por página<br>processamento e insumos</td><td><b>A3: R$ 0,75</b> por página<br><b>A0: R$ 7,00</b> por página</td><td><b>R$ 2.500,00</b> por mês<br>por operador</td></tr></table>
+<div class="sec"><div class="n">1</div><div class="t">FINALIDADE E RESUMO EXECUTIVO</div></div>
+<p>Este documento é para uso interno da DigitalGov. Ele mostra quanto custa restaurar cada página, quanto vendemos e quanto sobra, considerando o custo de restauração por página e o custo do operador. Serve para decidir o preço mínimo e para conferir a viabilidade da proposta de Ibiá.</p>
+<table><tr><th style="width:26%">Tema</th><th>Conclusão</th></tr><tr><td class="k">A0 (R$ 7,00)</td><td class="">Margem alta em qualquer cenário de custo: sobra de R$ 5,75 a R$ 6,65 por página após restauração e operador (produtividade de 10 mil páginas/mês).</td></tr><tr><td class="k">A3 (R$ 0,75)</td><td class=""><b>Atenção:</b> com custo de restauração acima de cerca de R$ 0,50 por página, o A3 dá prejuízo quando se soma o operador. Com custo de R$ 1,00, cada página A3 perde dinheiro mesmo sem operador.</td></tr><tr><td class="k">Ponto de equilíbrio A3</td><td class="">Custo de restauração + operador deve ficar abaixo de R$ 0,75 por página. Com operador a R$ 0,25/pág. (10 mil pág./mês), o custo de restauração precisa ser no máximo <b>R$ 0,50</b>.</td></tr><tr><td class="k">Operador</td><td class="">R$ 2.500/mês. O custo por página depende da produtividade: R$ 0,50 (5 mil pág./mês), R$ 0,25 (10 mil) ou R$ 0,125 (20 mil).</td></tr><tr><td class="k">Ibiá</td><td class="">Projetos com muito A0 são muito lucrativos. Projetos só com A3 dependem de manter o custo de restauração baixo e a produtividade alta.</td></tr><tr><td class="k">Recomendação</td><td class="">Medir no lote-piloto o custo real por página e a produtividade do operador antes de fechar o contrato. Para páginas A3 muito danificadas (custo de R$ 1,00), o preço precisaria ser de cerca de R$ 1,80 para margem de 30% (seção 6).</td></tr></table>
+<div class="sec" style="break-before:page;margin-top:0"><div class="n">2</div><div class="t">PREMISSAS</div></div>
+<p>Valores informados pela diretoria e pontos que ainda precisam ser confirmados. Os campos em azul são para preenchimento.</p>
+<table><tr><th style="width:34%">Premissa</th><th style="width:36%">Valor</th><th>Situação</th></tr><tr><td class="k">Preço de venda A3</td><td class="">R$ 0,75 por página</td><td class="">Informado</td></tr><tr><td class="k">Preço de venda A0</td><td class="">R$ 7,00 por página</td><td class="">Informado</td></tr><tr><td class="k">Custo de restauração</td><td class="">R$ 0,10 a R$ 1,00 por página</td><td class="">Informado (faixa)</td></tr><tr><td class="k">Custo do operador</td><td class="">R$ 2.500,00 por mês</td><td class="">Informado</td></tr><tr><td class="k">Produtividade do operador</td><td class="">5 mil, 10 mil ou 20 mil páginas por mês</td><td class="">Hipótese — medir no lote-piloto</td></tr><tr><td class="k">Encargos sobre o operador</td><td class="">Não incluídos nos R$ 2.500</td><td class="fill">[confirmar]</td></tr><tr><td class="k">Impostos sobre a venda</td><td class="">Não incluídos nos cálculos</td><td class="fill">[__]% sobre o faturamento</td></tr><tr><td class="k">Equipamentos (scanner A0/A3), deslocamento</td><td class="">Não incluídos</td><td class="fill">[__]</td></tr></table>
+<div class="callout"><b>Como ler os números.</b> Margem por página = preço de venda − custo de restauração − custo do operador por página. Custo do operador por página = R$ 2.500 ÷ páginas que o operador faz no mês. Impostos, encargos e equipamentos ainda não estão descontados, por isso a margem real será menor.</div>
+<div class="sec"><div class="n">3</div><div class="t">MARGEM POR PÁGINA SEM O OPERADOR</div></div>
+<p>Primeiro olhar: quanto sobra só descontando o custo de restauração.</p>
+<table><tr><th style="width:34%">Custo de restauração por página</th><th>Sobra no A3 (venda R$ 0,75)</th><th>Sobra no A0 (venda R$ 7,00)</th></tr><tr><td class="k">R$ 0,10</td><td class="pos">R$ 0,65 (86,7%)</td><td class="pos">R$ 6,90 (98,6%)</td></tr><tr><td class="k">R$ 0,30</td><td class="pos">R$ 0,45 (60,0%)</td><td class="pos">R$ 6,70 (95,7%)</td></tr><tr><td class="k">R$ 0,50</td><td class="pos">R$ 0,25 (33,3%)</td><td class="pos">R$ 6,50 (92,9%)</td></tr><tr><td class="k">R$ 0,75</td><td class="pos">R$ 0,00 (0,0%)</td><td class="pos">R$ 6,25 (89,3%)</td></tr><tr><td class="k">R$ 1,00</td><td class="neg">−R$ 0,25 (-33,3%)</td><td class="pos">R$ 6,00 (85,7%)</td></tr></table>
+<div class="alert"><b>Ponto crítico do A3.</b> Com custo de R$ 0,75 o A3 empata, e acima disso perde dinheiro em cada página, antes mesmo de pagar o operador.</div>
+<div class="sec"><div class="n">4</div><div class="t">CUSTO DO OPERADOR POR PÁGINA</div></div>
+<table><tr><th style="width:36%">Produtividade do operador</th><th>Páginas por dia útil (22 dias)</th><th>Custo do operador por página</th></tr><tr><td class="k">5.000 páginas/mês</td><td class="">227</td><td class="">R$ 0,500</td></tr><tr><td class="k">10.000 páginas/mês</td><td class="">455</td><td class="">R$ 0,250</td></tr><tr><td class="k">20.000 páginas/mês</td><td class="">909</td><td class="">R$ 0,125</td></tr></table>
+<p class="note">Plantas A0 levam mais tempo por página que o A3. A produtividade de cada formato deve ser medida separadamente no lote-piloto.</p>
+<div class="sec" style="break-before:page;margin-top:0"><div class="n">5</div><div class="t">MARGEM POR PÁGINA COM O OPERADOR</div></div>
+<div class="lab">FORMATO A3 — VENDA R$ 0,75 POR PÁGINA</div>
+<table><tr><th style="width:22%">Custo de restauração</th><th>Operador 5 mil pág./mês (R$ 0,500)</th><th>Operador 10 mil pág./mês (R$ 0,250)</th><th>Operador 20 mil pág./mês (R$ 0,125)</th></tr><tr><td class="k">R$ 0,10</td><td class="pos">R$ 0,150 (20,0%)</td><td class="pos">R$ 0,400 (53,3%)</td><td class="pos">R$ 0,525 (70,0%)</td></tr><tr><td class="k">R$ 0,30</td><td class="neg">−R$ 0,050 (-6,7%)</td><td class="pos">R$ 0,200 (26,7%)</td><td class="pos">R$ 0,325 (43,3%)</td></tr><tr><td class="k">R$ 0,50</td><td class="neg">−R$ 0,250 (-33,3%)</td><td class="pos">R$ 0,000 (0,0%)</td><td class="pos">R$ 0,125 (16,7%)</td></tr><tr><td class="k">R$ 0,75</td><td class="neg">−R$ 0,500 (-66,7%)</td><td class="neg">−R$ 0,250 (-33,3%)</td><td class="neg">−R$ 0,125 (-16,7%)</td></tr><tr><td class="k">R$ 1,00</td><td class="neg">−R$ 0,750 (-100,0%)</td><td class="neg">−R$ 0,500 (-66,7%)</td><td class="neg">−R$ 0,375 (-50,0%)</td></tr></table>
+<div class="lab">FORMATO A0 — VENDA R$ 7,00 POR PÁGINA</div>
+<table><tr><th style="width:22%">Custo de restauração</th><th>Operador 5 mil pág./mês (R$ 0,500)</th><th>Operador 10 mil pág./mês (R$ 0,250)</th><th>Operador 20 mil pág./mês (R$ 0,125)</th></tr><tr><td class="k">R$ 0,10</td><td class="pos">R$ 6,400 (91,4%)</td><td class="pos">R$ 6,650 (95,0%)</td><td class="pos">R$ 6,775 (96,8%)</td></tr><tr><td class="k">R$ 0,30</td><td class="pos">R$ 6,200 (88,6%)</td><td class="pos">R$ 6,450 (92,1%)</td><td class="pos">R$ 6,575 (93,9%)</td></tr><tr><td class="k">R$ 0,50</td><td class="pos">R$ 6,000 (85,7%)</td><td class="pos">R$ 6,250 (89,3%)</td><td class="pos">R$ 6,375 (91,1%)</td></tr><tr><td class="k">R$ 0,75</td><td class="pos">R$ 5,750 (82,1%)</td><td class="pos">R$ 6,000 (85,7%)</td><td class="pos">R$ 6,125 (87,5%)</td></tr><tr><td class="k">R$ 1,00</td><td class="pos">R$ 5,500 (78,6%)</td><td class="pos">R$ 5,750 (82,1%)</td><td class="pos">R$ 5,875 (83,9%)</td></tr></table>
+<p class="note">Verde: sobra por página. Vermelho: prejuízo por página. Percentual sobre o preço de venda.</p>
+<div class="sec" style="break-before:page;margin-top:0"><div class="n">6</div><div class="t">PREÇO MÍNIMO RECOMENDADO PARA O A3</div></div>
+<p>Preço de venda necessário para garantir a margem desejada, com operador a 10 mil páginas por mês (R$ 0,25 por página) e antes de impostos.</p>
+<table><tr><th style="width:22%">Custo de restauração</th><th>Custo total por página</th><th>Preço p/ margem 20%</th><th>Preço p/ margem 30%</th><th>Preço p/ margem 50%</th></tr><tr><td class="k">R$ 0,10</td><td class="">R$ 0,35</td><td class="">R$ 0,44</td><td class="">R$ 0,50</td><td class="">R$ 0,70</td></tr><tr><td class="k">R$ 0,30</td><td class="">R$ 0,55</td><td class="">R$ 0,69</td><td class="">R$ 0,79</td><td class="">R$ 1,10</td></tr><tr><td class="k">R$ 0,50</td><td class="">R$ 0,75</td><td class="">R$ 0,94</td><td class="">R$ 1,07</td><td class="">R$ 1,50</td></tr><tr><td class="k">R$ 0,75</td><td class="">R$ 1,00</td><td class="">R$ 1,25</td><td class="">R$ 1,43</td><td class="">R$ 2,00</td></tr><tr><td class="k">R$ 1,00</td><td class="">R$ 1,25</td><td class="">R$ 1,56</td><td class="">R$ 1,79</td><td class="">R$ 2,50</td></tr></table>
+<div class="callout"><b>Leitura.</b> O preço de R$ 0,75 no A3 só garante margem de 30% se o custo total (restauração + operador) ficar em até cerca de R$ 0,52 por página. Para páginas muito danificadas, que custam mais para restaurar, vale ter um preço diferente (por exemplo, A3 “estado crítico”).</div>
+<div class="sec"><div class="n">7</div><div class="t">SIMULAÇÃO PARA IBIÁ</div></div>
+<p>Resultado do projeto antes de impostos, com operador a 10 mil páginas por mês. Custo mínimo = restauração a R$ 0,10/pág.; custo máximo = R$ 1,00/pág.</p>
+<table><tr><th style="width:27%">Cenário</th><th>Faturamento</th><th style="width:11%">Meses de operador</th><th>Custo operador</th><th>Resultado (custo R$ 0,10)</th><th>Resultado (custo R$ 1,00)</th></tr><tr><td class="k">10 mil — todas A3</td><td class="">R$ 7.500</td><td class="">1</td><td class="">R$ 2.500</td><td class="pos">R$ 4.000</td><td class="neg">−R$ 5.000</td></tr><tr><td class="k">10 mil — todas A0</td><td class="">R$ 70.000</td><td class="">1</td><td class="">R$ 2.500</td><td class="pos">R$ 66.500</td><td class="pos">R$ 57.500</td></tr><tr><td class="k">10 mil — misto 90% A3 + 10% A0</td><td class="">R$ 13.750</td><td class="">1</td><td class="">R$ 2.500</td><td class="pos">R$ 10.250</td><td class="pos">R$ 1.250</td></tr><tr><td class="k">50 mil — todas A3</td><td class="">R$ 37.500</td><td class="">5</td><td class="">R$ 12.500</td><td class="pos">R$ 20.000</td><td class="neg">−R$ 25.000</td></tr><tr><td class="k">50 mil — todas A0</td><td class="">R$ 350.000</td><td class="">5</td><td class="">R$ 12.500</td><td class="pos">R$ 332.500</td><td class="pos">R$ 287.500</td></tr><tr><td class="k">50 mil — misto 90% A3 + 10% A0</td><td class="">R$ 68.750</td><td class="">5</td><td class="">R$ 12.500</td><td class="pos">R$ 51.250</td><td class="pos">R$ 6.250</td></tr></table>
+<p class="note">“Meses de operador” = páginas ÷ 10 mil. Com mais operadores o prazo cai, mas o custo total de operador é o mesmo para a mesma produtividade.</p>
+<div class="alert"><b>Cenário de risco.</b> Um contrato só com A3 e custo de restauração de R$ 1,00 por página dá prejuízo. Antes de assinar, confirmar a quantidade de A0 e o custo real por página.</div>
+<div class="lab">NOSSA PROJEÇÃO PARA IBIÁ</div><div class="box" style="grid-template-columns:1fr 1fr 1fr 1fr">
+<div>Páginas A3:</div><div>Páginas A0:</div><div>Custo real por página:</div><div>Resultado estimado:</div>
+<div class="f"></div><div class="f"></div><div class="f"></div><div class="f"></div></div>
+<div class="sec"><div class="n">8</div><div class="t">RISCOS E COMO REDUZIR</div></div>
+<table><tr><th style="width:28%">Risco</th><th style="width:26%">Impacto</th><th>Como reduzir</th></tr><tr><td class="k">Custo de restauração alto no A3</td><td class="">Prejuízo por página</td><td class="">Medir no lote-piloto; preço separado para páginas em estado crítico</td></tr><tr><td class="k">Produtividade abaixo do previsto</td><td class="">Operador mais caro por página</td><td class="">Medir páginas/dia por formato; ajustar prazo e equipe</td></tr><tr><td class="k">Pouco A0 no acervo</td><td class="">Faturamento menor que o previsto</td><td class="">Confirmar a divisão A3/A0 no diagnóstico</td></tr><tr><td class="k">Encargos e impostos</td><td class="">Margem real menor</td><td class="">Incluir encargos do operador e alíquota de impostos nesta planilha</td></tr><tr><td class="k">Equipamento A0</td><td class="">Investimento ou aluguel de scanner</td><td class="">Orçar compra ou locação antes do contrato</td></tr></table>
+<div class="sec"><div class="n">9</div><div class="t">RECOMENDAÇÕES</div></div>
+<ul>
+<li>Manter o A0 a R$ 7,00: é o item que sustenta a margem do projeto.</li>
+<li>No A3, trabalhar com custo de restauração de no máximo R$ 0,50 por página, ou rever o preço.</li>
+<li>Fazer um lote-piloto em Ibiá para medir o custo real por página e a produtividade do operador em cada formato.</li>
+<li>Incluir encargos, impostos e equipamentos nesta análise antes de enviar a proposta final.</li>
+<li>Criar uma faixa de preço para páginas A3 em estado crítico.</li>
+</ul>
+<div class="avoid"><div class="lab">DECISÃO DA DIRETORIA</div><div class="dec">
+<div><i></i>Manter preços (A3 R$ 0,75 / A0 R$ 7,00)</div><div><i></i>Ajustar preço do A3</div><div style="border-right:none"><i></i>Aguardar lote-piloto</div></div>
+<div class="lab">JUSTIFICATIVA</div><div class="box"><div>Justificativa da decisão e condições:</div><div class="f" style="height:16mm"></div></div></div>
+<div class="avoid"><div class="sec"><div class="n">10</div><div class="t">APROVAÇÃO E ASSINATURAS</div></div>
+<p>Aprovo a análise de custos e a decisão registrada.</p>
+<div class="lab">LOCAL E DATA</div><div class="box" style="grid-template-columns:1fr 1fr"><div>Local:</div><div>Data:</div><div class="f"></div><div class="f"></div></div>
+<div class="sig"><div><b>Arthur Miguel</b><br>Diretor de Vendas e Tecnologia<br>DigitalGov Tecnologia da Informação Ltda.</div>
+<div><b>Warley Luciano Costa Gomes</b><br>Administrador e Gerente Geral<br>DigitalGov Tecnologia da Informação Ltda.</div></div>
+<p class="note" style="margin-top:6mm">Análise interna feita com os valores informados pela diretoria (custo de restauração, preço de venda e custo do operador). A produtividade do operador é hipótese e deve ser medida. Não inclui impostos, encargos nem equipamentos.</p></div></body></html>

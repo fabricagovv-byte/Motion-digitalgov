@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 FábricaGov · Carrossel Restauração</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-700-normal.woff2) format('woff2');font-weight:700}
+:root{--ink:#111216;--card:#1b1c21;--line:#2c2e35;--gold:#D9A441;--paper:#F2EFE8;--mute:#9a9ba3}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000}
+#art{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:Inter,sans-serif;color:var(--paper);
+  background:radial-gradient(900px 900px at 80% 25%,#2a2416 0%,#111216 60%)}
+.abs{position:absolute}
+.anton{font-family:Anton;text-transform:uppercase;line-height:.98}
+.gold{color:var(--gold)}
+.pill{display:inline-block;font-weight:700;font-size:22px;letter-spacing:4px;padding:11px 24px;border-radius:999px;background:var(--gold);color:var(--ink)}
+.dots{position:absolute;inset:0;background-image:radial-gradient(circle,#ffffff12 1.5px,transparent 1.7px);background-size:42px 42px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px}
+.tag{display:inline-block;font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);border-radius:999px;padding:5px 12px}
+.ok{display:inline-flex;align-items:center;justify-content:center;border-radius:14px;background:var(--gold);color:var(--ink);font-weight:900;flex:none}
+/* documento */
+.doc{position:relative;width:600px;height:800px;overflow:hidden;font-family:'DejaVu Serif','Liberation Serif',serif;color:#2a2116;box-shadow:0 30px 70px #000a}
+.doc .pg{position:absolute;inset:0;padding:58px 60px}
+.doc .hd{text-align:center;font-weight:700;letter-spacing:3px;font-size:20px}
+.doc .hd2{text-align:center;font-size:30px;font-weight:700;margin-top:10px;letter-spacing:1px}
+.doc .dt{text-align:center;font-size:18px;margin-top:8px;font-style:italic}
+.doc .bd{font-size:21px;line-height:1.75;margin-top:30px;text-align:justify;font-style:italic}
+.doc .sg{position:absolute;left:60px;right:60px;bottom:70px;display:flex;justify-content:space-between;font-size:16px;font-style:italic}
+.doc .sg div{border-top:1.5px solid currentColor;padding-top:8px;width:42%;text-align:center}
+.old{background:#cdb27a} .old .pg{color:#4a3a22}
+.new{background:#f7f3ea} .new .pg{color:#1c1a16}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 0.35  0 0 0 0 0.26  0 0 0 0 0.12  0 0 0 0.55 0"/></filter>
+  <filter id="blot" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="8"/><feDisplacementMap in="SourceGraphic" scale="60"/><feGaussianBlur stdDeviation="3"/></filter>
+</defs></svg>
+<div id="art"></div>
+<script>
+const BODY='Aos doze dias do mês de março de mil novecentos e vinte e três, reuniram-se os vereadores na sala das sessões, sob a presidência do senhor Antônio Pereira, para deliberar sobre a construção da nova ponte sobre o rio e o calçamento da rua principal. Aprovado por unanimidade.';
+function docHTML(old){
+  const stains=old?`<svg class="abs" style="left:0;top:0" width="600" height="800"><rect width="600" height="800" filter="url(#grain)"/>
+      <g filter="url(#blot)" opacity=".75"><ellipse cx="430" cy="210" rx="120" ry="90" fill="#7a5524"/><ellipse cx="150" cy="560" rx="90" ry="140" fill="#6b4a1f"/><ellipse cx="480" cy="650" rx="70" ry="50" fill="#5c3f1a"/><circle cx="270" cy="380" r="40" fill="#8a6430"/></g>
+      <g opacity=".5"><path d="M0 0 L600 0 L600 30 Q300 60 0 20 Z" fill="#8f7140"/><path d="M0 800 L600 800 L600 770 Q300 740 0 780 Z" fill="#8f7140"/></g></svg>`:'';
+  return `<div class="doc ${old?'old':'new'}" style="${old?'clip-path:polygon(0 0,100% 0,100% 82%,92% 86%,96% 91%,89% 100%,0 100%)':''}">${stains}
+    <div class="pg" style="${old?'filter:blur(.6px);opacity:.55':''}"><div class="hd">CÂMARA MUNICIPAL</div><div class="hd2">ATA DA SESSÃO ORDINÁRIA</div><div class="dt">12 de março de 1923</div>
+      <div class="bd">${BODY}</div><div class="sg"><div>Presidente</div><div>Secretário</div></div></div></div>`;
+}
+const LOGO=(w=230,dark=false)=>`<img src="assets/logo_${dark?'dark':'white'}.png" style="width:${w}px;display:block">`;
+const TOT=8;
+const foot=i=>`<div class="abs" style="left:80px;bottom:56px">${LOGO()}</div><div class="abs" style="right:80px;bottom:62px;font-size:20px;font-weight:700;color:#9a9ba3;letter-spacing:2px">${i}/${TOT}</div>`;
+const ILU=`<div class="abs" style="right:80px;top:110px"><span class="tag">Ilustrativo</span></div>`;
+// documento antes/depois dividido na diagonal
+function split(x,y,s,cut=0.5){return `<div class="abs" style="left:${x}px;top:${y}px;width:600px;height:800px;transform:scale(${s});transform-origin:0 0">
+  <div class="abs" style="left:0;top:0">${docHTML(true)}</div>
+  <div class="abs" style="left:0;top:0;width:600px;height:800px;clip-path:polygon(${cut*100+12}% 0,100% 0,100% 100%,${cut*100-12}% 100%)">${docHTML(false)}</div>
+  <div class="abs" style="left:0;top:0;width:600px;height:800px;background:linear-gradient(105deg,transparent calc(${cut*100}% - 3px),#D9A441 calc(${cut*100}% - 3px),#D9A441 calc(${cut*100}% + 3px),transparent calc(${cut*100}% + 3px))"></div>
+  <span class="tag abs" style="left:18px;top:18px;background:#111216cc">Antes</span><span class="tag abs" style="right:18px;top:18px;background:#111216cc">Depois</span></div>`;}
+const n=+new URLSearchParams(location.search).get('s')||1;
+let h='';
+if(n===1) h=`<div class="dots"></div>
+  <div class="abs" style="left:80px;top:110px"><span class="pill">NOVO · SAAS</span></div>
+  <div class="abs anton" style="left:80px;top:220px;font-size:112px">Restauração<br>de <span class="gold">documentos</span></div>
+  <div class="abs" style="left:84px;top:500px;width:430px;font-size:32px;line-height:1.4;color:#d9d7d0">Manchas, papel amarelado e texto apagado: o software recupera.</div>
+  <div class="abs" style="left:84px;top:760px;width:430px"><div style="font-size:24px;color:#9a9ba3;font-weight:600">a partir de</div><div class="anton gold" style="font-size:120px">R$ 15</div><div style="font-size:26px;font-weight:700">por página</div></div>
+  ${split(590,480,0.66)}
+  <div class="abs" style="left:84px;top:1110px"><span class="tag">Arraste para o lado →</span></div>${foot(1)}`;
+if(n===2) h=`<div class="abs" style="left:80px;top:100px"><span class="pill">COMO FUNCIONA</span></div>
+  <div class="abs anton" style="left:80px;top:200px;font-size:104px">Simples assim:<br><span class="gold">3 passos</span></div>
+  <div class="abs" style="left:80px;top:500px;width:920px">${[['Envie a imagem','Foto ou digitalização da folha, direto na plataforma.','M12 16V4M6 10l6-6 6 6M4 20h16'],['O software restaura','Remove manchas, corrige o amarelado e recupera o texto.','M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z'],['Receba as 2 versões','O documento restaurado e o texto limpo, prontos para usar.','M4 12l5 5L20 6']].map(([t,d,ic],i)=>`<div class="card" style="display:flex;gap:30px;align-items:center;padding:34px 40px;margin-bottom:24px;border-left:10px solid #D9A441">
+    <div class="anton gold" style="font-size:96px;min-width:90px">${i+1}</div><div style="flex:1"><div style="font-size:38px;font-weight:800">${t}</div><div style="font-size:26px;color:#c9c7c0;margin-top:8px;line-height:1.35">${d}</div></div>
+    <span class="ok" style="width:84px;height:84px"><svg width="46" height="46" viewBox="0 0 24 24" style="fill:none;stroke:#111216;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="${ic}"/></svg></span></div>`).join('')}</div>${foot(2)}`;
+if(n===3) h=`<div class="abs" style="left:80px;top:100px"><span class="pill">O QUE O SOFTWARE CORRIGE</span></div>
+  <div class="abs anton" style="left:80px;top:200px;font-size:96px">Do papel<br><span class="gold">danificado</span><br>ao legível</div>
+  <div class="abs" style="left:80px;top:610px;width:460px">${['Manchas removidas','Papel amarelado corrigido','Texto apagado recuperado','Contraste e nitidez ajustados'].map(x=>`<div style="display:flex;gap:18px;align-items:center;height:96px;font-size:30px;font-weight:700;border-bottom:1px solid #2c2e35"><span class="ok" style="width:48px;height:48px;font-size:26px">✓</span>${x}</div>`).join('')}</div>
+  ${split(570,300,0.72,0.42)}${ILU}${foot(3)}`;
+if(n===4) h=`<div class="abs" style="left:80px;top:100px"><span class="pill">VOCÊ RECEBE</span></div>
+  <div class="abs anton" style="left:80px;top:200px;font-size:104px">Duas <span class="gold">versões</span></div>
+  <div class="abs" style="left:80px;top:370px;font-size:26px;font-weight:700"><span class="gold">1</span> · Documento restaurado</div>
+  <div class="abs" style="left:80px;top:420px;transform:scale(.68);transform-origin:0 0">${docHTML(false)}</div>
+  <div class="abs" style="left:540px;top:370px;font-size:26px;font-weight:700"><span class="gold">2</span> · Texto limpo, transcrito da folha</div>
+  <div class="abs card" style="left:540px;top:420px;width:460px;height:544px;padding:30px 30px;font-size:21px;line-height:1.55;color:#e8e4da">
+    <div style="font-size:15px;color:#9a9ba3;font-weight:700;letter-spacing:2px;margin-bottom:14px">TXT · EDITÁVEL · PESQUISÁVEL</div>CÂMARA MUNICIPAL<br>Ata da Sessão Ordinária · 12 de março de 1923<br><br>${BODY.slice(0,230)}…</div>
+  ${ILU}${foot(4)}`;
+if(n===5) h=`<div class="abs" style="left:80px;top:100px"><span class="pill">PREÇO POR PÁGINA</span></div>
+  <div class="abs anton" style="left:80px;top:200px;font-size:104px">Mercado x <span class="gold">V4</span></div>
+  <div class="abs card" style="left:80px;top:400px;width:920px;padding:40px 46px">
+    <div style="font-size:28px;font-weight:700;color:#c9c7c0">Restauração manual no mercado</div>
+    <div class="anton" style="font-size:112px;margin-top:10px">R$ 50 <span style="font-size:60px">a</span> R$ 500</div>
+    <div style="height:34px;border-radius:8px;margin-top:20px;background:linear-gradient(90deg,#4a4c55 10%,#34363e 10%)"></div></div>
+  <div class="abs card" style="left:80px;top:720px;width:920px;padding:40px 46px;border:3px solid #D9A441">
+    <div style="font-size:28px;font-weight:700;color:#D9A441">V4 FábricaGov · software</div>
+    <div class="anton gold" style="font-size:112px;margin-top:10px">R$ 15 <span style="font-size:60px">a</span> R$ 30</div>
+    <div style="height:34px;border-radius:8px;margin-top:20px;background:#23252b"><div style="height:34px;width:6%;border-radius:8px;background:#D9A441"></div></div></div>
+  <div class="abs" style="left:80px;top:1060px;font-size:38px;font-weight:800">Economia de <span class="gold">40% a 97%</span> por página</div>${foot(5)}`;
+if(n===6) h=`<div class="abs" style="left:80px;top:100px"><span class="pill">EXEMPLO DE COMPRA PÚBLICA</span></div>
+  <div class="abs anton" style="left:80px;top:200px;font-size:104px"><span class="gold">20.000</span> páginas</div>
+  <div class="abs" style="left:80px;top:390px;width:920px">
+    <div class="card" style="padding:34px 42px;margin-bottom:22px"><div style="font-size:22px;font-weight:700;letter-spacing:2px;color:#9a9ba3">MERCADO</div><div class="anton" style="font-size:96px;margin-top:6px">R$ 1 a 10 milhões</div></div>
+    <div class="card" style="padding:34px 42px;margin-bottom:22px;border:3px solid #D9A441"><div style="font-size:22px;font-weight:700;letter-spacing:2px;color:#D9A441">V4 FÁBRICAGOV</div><div class="anton gold" style="font-size:96px;margin-top:6px">R$ 300 a 600 mil</div></div>
+    <div style="padding:34px 42px;border-radius:24px;background:#D9A441;color:#111216"><div style="font-size:22px;font-weight:800;letter-spacing:2px">ECONOMIA</div><div class="anton" style="font-size:78px;margin-top:6px">A partir de R$ 400 mil</div></div></div>
+  <div class="abs" style="left:80px;top:1150px;font-size:20px;color:#9a9ba3">Cenário ilustrativo: 20.000 páginas × R$ 50 a R$ 500 (mercado) e × R$ 15 a R$ 30 (V4).</div>${foot(6)}`;
+if(n===7) h=`<div class="dots"></div><div class="abs" style="left:80px;top:100px"><span class="pill">PLATAFORMA</span></div>
+  <div class="abs anton" style="left:80px;top:200px;font-size:96px">Seu acervo,<br><span class="gold">seguro e à mão</span></div>
+  <div class="abs" style="left:80px;top:470px;width:920px;display:grid;grid-template-columns:1fr 1fr;gap:22px">${[['Na palma da mão','Acesse no celular, tablet ou computador','M7 2h10v20H7zM11 18h2'],['Acesso controlado','Perfis, senha e registro de quem abriu','M5 11h14v9H5zM8 11V8a4 4 0 0 1 8 0v3'],['Envie os já restaurados','Organize todo o acervo em um só lugar','M12 16V4M6 10l6-6 6 6M4 20h16'],['Exporte quando quiser','PDF, imagem ou texto','M12 4v12M6 10l6 6 6-6M4 20h16'],['Área de trabalho','Apresente documentos e prepare respostas','M3 5h18v12H3zM8 21h8M12 17v4'],['Compartilhe com órgãos','Envie a outros órgãos com segurança','M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8.6 13.5l6.8 4M15.4 6.5l-6.8 4']].map(([t,d,ic])=>`<div class="card" style="padding:28px 30px;height:220px;display:flex;flex-direction:column;justify-content:space-between">
+    <span class="ok" style="width:68px;height:68px"><svg width="38" height="38" viewBox="0 0 24 24" style="fill:none;stroke:#111216;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round"><path d="${ic}"/></svg></span>
+    <div><div style="font-size:30px;font-weight:800">${t}</div><div style="font-size:21px;color:#9a9ba3;margin-top:6px">${d}</div></div></div>`).join('')}</div>${foot(7)}`;
+if(n===8) h=`<div class="abs" style="inset:0;background:#D9A441"></div>
+  <div class="abs anton" style="left:80px;top:170px;font-size:130px;color:#111216">Recupere a<br>história do<br>seu acervo</div>
+  <div class="abs" style="left:84px;top:620px;font-size:34px;font-weight:600;color:#111216;line-height:1.4;width:900px">Para órgãos públicos e empresas. De R$ 15 a R$ 30 por página.</div>
+  <div class="abs" style="left:80px;top:790px;width:920px;border-radius:28px;background:#111216;padding:40px 46px;color:#fff;font-size:30px;font-weight:700;line-height:1.8">
+    fabricagovv@gmail.com<br>WhatsApp (31) 99827-7323<br><span style="color:#D9A441">@Grupo_v4_fabricagovv</span></div>
+  <div class="abs" style="left:80px;bottom:56px">${LOGO(260,true)}</div><div class="abs" style="right:80px;bottom:62px;font-size:20px;font-weight:700;color:#111216;letter-spacing:2px">8/8</div>`;
+document.getElementById('art').innerHTML=h;
+Promise.all([document.fonts.ready,...[...document.images].map(i=>i.complete?0:new Promise(r=>i.onload=r))]).then(()=>{window.ready=true;});
+</script>
+</body>
+</html>

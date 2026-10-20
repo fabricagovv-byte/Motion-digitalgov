@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Ibiá – MG · Motion</title>
+<style>
+@font-face{font-family:Gar;src:url(fonts/eb-garamond-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Gar;src:url(fonts/eb-garamond-latin-700-normal.woff2) format('woff2');font-weight:700}
+@font-face{font-family:Gar;src:url(fonts/eb-garamond-latin-600-italic.woff2) format('woff2');font-weight:600;font-style:italic}
+@font-face{font-family:Nun;src:url(fonts/nunito-sans-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Nun;src:url(fonts/nunito-sans-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Nun;src:url(fonts/nunito-sans-latin-700-normal.woff2) format('woff2');font-weight:700}
+@font-face{font-family:Nun;src:url(fonts/nunito-sans-latin-800-normal.woff2) format('woff2');font-weight:800}
+:root{--ink:#2A1E17;--cream:#F6EFE3;--sand:#EDE3D2;--terra:#B8572F;--terraDk:#9E4524;--green:#4F6B3A;--gold:#C9962F;--goldLt:#E3B85C;--body:#5B4A3D}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#000}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;font-family:Nun,sans-serif;color:var(--ink)}
+.sc{position:absolute;inset:0;display:none;overflow:hidden}
+.cam{position:absolute;inset:0;transform-origin:50% 50%}
+.abs{position:absolute}
+.ser{font-family:Gar,serif;font-weight:600}
+.eb{font-weight:800;letter-spacing:7px;font-size:26px}
+.card{background:#FFFBF4;border-radius:26px;box-shadow:0 18px 40px #2A1E1722}
+.src{position:absolute;left:96px;bottom:44px;font-size:22px;font-weight:600;opacity:.75}
+#tag{position:absolute;left:96px;top:56px;font-weight:800;letter-spacing:6px;font-size:22px}
+#tiles{position:absolute;inset:0;pointer-events:none}
+#tiles div{position:absolute;border-radius:10px}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1: paisagem -->
+<div class="sc" id="s1" style="background:#F2C38B"><div class="cam">
+ <svg class="abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs><linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FA3C7"/><stop offset=".55" stop-color="#F2C38B"/><stop offset="1" stop-color="#F6DDB5"/></linearGradient></defs>
+  <rect width="1920" height="1080" fill="url(#sky1)"/>
+  <circle id="sun1" cx="1380" cy="560" r="120" fill="#FBE3A8"/>
+  <path id="h1a" d="M-200 760 C200 600 420 640 700 700 C1000 760 1200 560 1500 600 C1800 640 2000 700 2200 690 L2200 1080 L-200 1080Z" fill="#8FA36A"/>
+  <path id="h1b" d="M-200 860 C150 760 500 800 800 830 C1100 860 1400 760 1700 780 C1900 795 2100 830 2200 840 L2200 1080 L-200 1080Z" fill="#5F7A45"/>
+  <path id="h1c" d="M-200 960 C200 900 600 930 960 950 C1300 970 1700 910 2200 930 L2200 1080 L-200 1080Z" fill="#3E5530"/>
+  <path id="road1" d="M960 1080 C930 1000 1010 950 980 900 C960 860 1000 830 990 800" stroke="#E9D3A8" stroke-width="14" fill="none" stroke-linecap="round"/>
+ </svg>
+ <div class="abs eb" id="e1" style="left:120px;top:220px;color:#2A1E17">ALTO PARANAÍBA · MINAS GERAIS</div>
+ <div class="abs ser" id="t1" style="left:116px;top:280px;font-size:118px;line-height:1.02;color:#2A1E17;width:1200px">Uma cidade com<br><i>três séculos</i> de história</div>
+</div></div>
+
+<!-- 2: Ibiá em números -->
+<div class="sc" id="s2" style="background:var(--cream)"><div class="cam">
+ <div class="abs ser" id="t2" style="left:0;right:0;top:120px;text-align:center;font-size:330px;line-height:1;font-weight:700;color:var(--ink)">Ibiá</div>
+ <div class="abs" id="u2" style="left:760px;top:470px;width:400px;height:10px;border-radius:5px;background:var(--terra)"></div>
+ <div class="abs" style="left:150px;top:560px;width:1620px;display:flex;gap:40px">
+  <div class="card" id="c2a" style="flex:1;padding:44px 40px;border-top:10px solid var(--terra)"><div class="ser" id="n2a" style="font-size:96px;line-height:1.1;white-space:nowrap">22.229</div><div style="font-size:34px;color:var(--body);font-weight:600">habitantes</div></div>
+  <div class="card" id="c2b" style="flex:1;padding:44px 40px;border-top:10px solid var(--green)"><div class="ser" id="n2b" style="font-size:96px;line-height:1.1;white-space:nowrap">2.704 km²</div><div style="font-size:34px;color:var(--body);font-weight:600">de território</div></div>
+  <div class="card" id="c2c" style="flex:1;padding:44px 40px;border-top:10px solid var(--gold)"><div class="ser" id="n2c" style="font-size:96px;line-height:1.1;white-space:nowrap">895 m</div><div style="font-size:34px;color:var(--body);font-weight:600">de altitude</div></div>
+ </div>
+ <div class="src">Fonte: IBGE, Censo 2022</div>
+</div></div>
+
+<!-- 3: origem -->
+<div class="sc" id="s3" style="background:var(--sand)"><div class="cam">
+ <svg class="abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <path id="road3" d="M-40 860 C300 820 520 900 800 860 C1080 820 1250 880 1960 820" stroke="#C9B48F" stroke-width="22" fill="none" stroke-linecap="round" stroke-dasharray="2400" stroke-dashoffset="2400"/>
+  <g id="pouso3" transform="translate(470 760)"><rect x="-80" y="-60" width="160" height="90" fill="#B8572F"/><path d="M-100 -60 L0 -130 L100 -60Z" fill="#6E2E16"/><rect x="-20" y="-20" width="40" height="50" fill="#2A1E17"/></g>
+  <g id="igreja3" transform="translate(1380 840)"><rect x="-120" y="-220" width="240" height="220" fill="#FFFBF4" stroke="#2A1E17" stroke-width="6"/><path d="M-140 -220 L0 -330 L140 -220Z" fill="#9E4524"/><rect x="-40" y="-430" width="80" height="120" fill="#FFFBF4" stroke="#2A1E17" stroke-width="6"/><path d="M-55 -430 L0 -500 L55 -430Z" fill="#9E4524"/><path d="M0 -560 L0 -500 M-22 -538 L22 -538" stroke="#2A1E17" stroke-width="8"/><path d="M-36 0 L-36 -90 A36 36 0 0 1 36 -90 L36 0Z" fill="#2A1E17"/></g>
+ </svg>
+ <div class="abs eb" id="e3" style="left:120px;top:150px;color:var(--terraDk)">COMO TUDO COMEÇOU</div>
+ <div class="abs ser" id="t3" style="left:116px;top:210px;font-size:96px;line-height:1.05;width:1100px">Um pouso na estrada e uma promessa</div>
+ <div class="abs ser" id="q3" style="left:120px;top:440px;font-size:76px;font-style:italic;color:var(--terraDk);white-space:nowrap"></div>
+ <div class="abs" id="l3" style="left:124px;top:540px;font-size:32px;font-weight:700;color:var(--body)">o primeiro nome do povoado</div>
+ <div class="src">Fonte: IBGE, histórico do município</div>
+</div></div>
+
+<!-- 4: quilombo -->
+<div class="sc" id="s4" style="background:radial-gradient(1200px 900px at 75% 40%,#6E2E16 0%,#2A1E17 65%)"><div class="cam">
+ <svg class="abs" width="1920" height="1080" viewBox="0 0 1920 1080" id="rays4"></svg>
+ <div class="abs eb" id="e4" style="left:120px;top:200px;color:var(--goldLt)">SÉCULO XVIII · MEMÓRIA NEGRA</div>
+ <div class="abs ser" id="t4" style="left:116px;top:260px;font-size:132px;line-height:1;color:var(--cream);width:1100px">Quilombo do Ambrósio</div>
+ <div class="abs" id="d4" style="left:124px;top:560px;font-size:40px;font-weight:600;color:#E9DCC6;width:900px;line-height:1.35">símbolo de resistência negra em Minas Gerais</div>
+ <div class="abs ser" id="y4" style="right:130px;top:330px;font-size:250px;font-weight:700;color:#FFFBF4;line-height:1">1759</div>
+ <div class="abs" id="yl4" style="right:134px;top:600px;font-size:34px;font-weight:700;color:#FBE4D6;text-align:right">destruído pela milícia</div>
+ <div class="src" style="color:#D8C7AE">Fontes: pesquisas acadêmicas (UFMG, UFT) · Prefeitura de Ibiá</div>
+</div></div>
+
+<!-- 5: morro da espia -->
+<div class="sc" id="s5" style="background:linear-gradient(180deg,#9DB7CF 0%,#E9D9BC 70%)"><div class="cam">
+ <svg class="abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <path d="M-100 1080 L-100 900 C200 860 400 820 620 760 C800 700 900 420 1060 400 C1220 420 1320 700 1500 760 C1700 830 1900 860 2020 880 L2020 1080Z" fill="#4F6B3A"/>
+  <path d="M-100 1080 L-100 980 C400 930 800 960 1200 950 C1600 940 1800 960 2020 970 L2020 1080Z" fill="#3B5230"/>
+  <g id="look5"><path d="M1060 400 L560 780" stroke="#FBE4D6" stroke-width="5" stroke-dasharray="14 14"/><path d="M1060 400 L1560 780" stroke="#FBE4D6" stroke-width="5" stroke-dasharray="14 14"/><path d="M1060 400 L400 640" stroke="#FBE4D6" stroke-width="3" stroke-dasharray="10 16" opacity=".6"/></g>
+  <circle id="pt5" cx="1060" cy="398" r="22" fill="#B8572F" stroke="#FFFBF4" stroke-width="6"/>
+ </svg>
+ <div class="abs eb" id="e5" style="left:120px;top:150px;color:#2A1E17">PATRIMÔNIO</div>
+ <div class="abs ser" id="t5" style="left:116px;top:210px;font-size:120px;line-height:1">Morro da Espia</div>
+ <div class="abs" id="d5" style="left:124px;top:350px;font-size:36px;font-weight:600;color:#2A1E17;width:620px;line-height:1.35">Do alto, conta a tradição, os quilombolas vigiavam quem chegava.</div>
+ <div class="abs" id="b5" style="right:120px;top:170px;background:var(--terra);color:#FFFBF4;border-radius:999px;padding:22px 40px;font-size:36px;font-weight:800">Tombados desde 1998</div>
+ <div class="src" style="color:#FFFBF4">Fonte: Prefeitura de Ibiá · ilustração</div>
+</div></div>
+
+<!-- 6: ferrovia -->
+<div class="sc" id="s6" style="background:var(--cream)"><div class="cam">
+ <svg class="abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <g id="sl6"></g>
+  <path id="r6a" d="M-20 700 L1940 700" stroke="#5B4A3D" stroke-width="10" stroke-dasharray="2000" stroke-dashoffset="2000"/>
+  <path id="r6b" d="M-20 760 L1940 760" stroke="#5B4A3D" stroke-width="10" stroke-dasharray="2000" stroke-dashoffset="2000"/>
+  <path id="r6c" d="M760 1100 L1400 380" stroke="#9E4524" stroke-width="10" stroke-dasharray="1000" stroke-dashoffset="1000"/>
+  <path id="r6d" d="M820 1100 L1460 380" stroke="#9E4524" stroke-width="10" stroke-dasharray="1000" stroke-dashoffset="1000"/>
+  <g id="train6">
+   <rect x="0" y="600" width="260" height="96" rx="14" fill="#2A1E17"/><rect x="170" y="560" width="70" height="50" fill="#2A1E17"/><rect x="30" y="620" width="70" height="40" rx="6" fill="#E3B85C"/><rect x="-14" y="640" width="20" height="40" fill="#B8572F"/>
+   <rect x="-300" y="612" width="270" height="84" rx="12" fill="#B8572F"/><rect x="-600" y="612" width="270" height="84" rx="12" fill="#4F6B3A"/><rect x="-900" y="612" width="270" height="84" rx="12" fill="#C9962F"/>
+   <g fill="#2A1E17"><circle cx="50" cy="700" r="22"/><circle cx="200" cy="700" r="22"/><circle cx="-250" cy="700" r="18"/><circle cx="-80" cy="700" r="18"/><circle cx="-550" cy="700" r="18"/><circle cx="-380" cy="700" r="18"/><circle cx="-850" cy="700" r="18"/><circle cx="-680" cy="700" r="18"/></g>
+  </g>
+ </svg>
+ <div class="abs eb" id="e6" style="left:120px;top:150px;color:var(--terraDk)">CAMINHOS DE FERRO</div>
+ <div class="abs ser" id="t6" style="left:116px;top:210px;font-size:110px;line-height:1.02;width:1300px">Entroncamento ferroviário</div>
+ <div class="src">Fontes: Museu Histórico Municipal de Ibiá · ilustração</div>
+</div></div>
+
+<!-- 7: 1923 -->
+<div class="sc" id="s7" style="background:var(--terra)"><div class="cam">
+ <div id="conf7"></div>
+ <div class="abs eb" id="e7" style="left:0;right:0;top:220px;text-align:center;color:#FBE4D6">EMANCIPAÇÃO</div>
+ <div class="abs" style="left:0;right:0;top:300px;display:flex;justify-content:center;gap:40px;color:#FFFBF4" >
+  <div class="ser" id="d7a" style="font-size:250px;font-weight:700;line-height:1">7</div>
+  <div class="ser" id="d7x" style="font-size:250px;font-weight:700;line-height:1;opacity:.5">·</div>
+  <div class="ser" id="d7b" style="font-size:250px;font-weight:700;line-height:1">9</div>
+  <div class="ser" id="d7y" style="font-size:250px;font-weight:700;line-height:1;opacity:.5">·</div>
+  <div class="ser" id="d7c" style="font-size:250px;font-weight:700;line-height:1">1923</div>
+ </div>
+ <div class="abs ser" id="t7" style="left:0;right:0;top:620px;text-align:center;font-size:96px;font-style:italic;color:#FFFBF4">Ibiá se torna município</div>
+ <div class="src" style="color:#FBE4D6">Fonte: IBGE · Lei estadual nº 843, de 7/9/1923</div>
+</div></div>
+
+<!-- 8: museu -->
+<div class="sc" id="s8" style="background:var(--cream)"><div class="cam">
+ <div class="abs eb" id="e8" style="left:120px;top:150px;color:var(--terraDk)">CULTURA E MEMÓRIA</div>
+ <div class="abs ser" id="t8" style="left:116px;top:210px;font-size:110px;line-height:1.02">Museu Histórico Municipal</div>
+ <div class="abs" style="left:120px;top:440px;width:1680px;display:flex;gap:40px">
+  <div class="card" id="c8a" style="flex:1;padding:50px;display:flex;flex-direction:column;gap:24px;align-items:flex-start">
+   <svg width="120" height="120" viewBox="0 0 120 120"><rect x="10" y="30" width="100" height="72" rx="10" fill="#B8572F"/><rect x="38" y="18" width="44" height="18" rx="4" fill="#2A1E17"/><circle cx="60" cy="66" r="22" fill="#FFFBF4"/><circle cx="60" cy="66" r="12" fill="#2A1E17"/></svg>
+   <div class="ser" style="font-size:64px">Fotos e vídeos</div></div>
+  <div class="card" id="c8b" style="flex:1;padding:50px;display:flex;flex-direction:column;gap:24px;align-items:flex-start">
+   <svg width="120" height="120" viewBox="0 0 120 120"><path d="M20 100 L40 30 L58 54 L74 20 L100 100Z" fill="#C9962F"/><path d="M30 100 L90 100" stroke="#2A1E17" stroke-width="8"/><circle cx="74" cy="20" r="8" fill="#2A1E17"/></svg>
+   <div class="ser" style="font-size:64px">Peças arqueológicas</div></div>
+  <div class="card" id="c8c" style="flex:1;padding:50px;display:flex;flex-direction:column;gap:24px;align-items:flex-start">
+   <svg width="120" height="120" viewBox="0 0 120 120"><path d="M40 14 L80 14 L74 30 C100 44 104 80 86 100 L34 100 C16 80 20 44 46 30Z" fill="#4F6B3A"/><path d="M34 56 L86 56 M30 74 L90 74" stroke="#E3B85C" stroke-width="6"/></svg>
+   <div class="ser" style="font-size:64px">Urnas indígenas</div></div>
+ </div>
+ <div class="abs" id="b8" style="left:120px;top:860px;background:var(--ink);color:var(--goldLt);border-radius:999px;padding:18px 36px;font-size:32px;font-weight:800">Museu tombado em 2017</div>
+ <div class="src">Fontes: UFF, Coleções Etnográficas · Decreto municipal nº 4.838/2017</div>
+</div></div>
+
+<!-- 9: festa -->
+<div class="sc" id="s9" style="background:radial-gradient(1400px 900px at 50% 20%,#3E2C20 0%,#1E1510 70%)"><div class="cam">
+ <svg class="abs" width="1920" height="1080" viewBox="0 0 1920 1080" id="fw9"></svg>
+ <svg class="abs" width="1920" height="300" viewBox="0 0 1920 300" id="flags9"></svg>
+ <div class="abs eb" id="e9" style="left:0;right:0;top:300px;text-align:center;color:var(--goldLt)">TODO MÊS DE SETEMBRO</div>
+ <div class="abs ser" id="t9" style="left:0;right:0;top:360px;text-align:center;font-size:150px;line-height:1;color:#FFFBF4">Festa do Ibiaense</div>
+ <div class="abs" style="left:0;right:0;top:600px;display:flex;justify-content:center;gap:28px">
+  <div class="chip9" id="c9a" style="background:#B8572F;color:#FFFBF4;border-radius:999px;padding:24px 44px;font-size:44px;font-weight:800">Rodeio</div>
+  <div class="chip9" id="c9b" style="background:#C9962F;color:#2A1E17;border-radius:999px;padding:24px 44px;font-size:44px;font-weight:800">Queima do Alho</div>
+  <div class="chip9" id="c9c" style="background:#4F6B3A;color:#FFFBF4;border-radius:999px;padding:24px 44px;font-size:44px;font-weight:800">Desfile</div>
+  <div class="chip9" id="c9d" style="background:#F6EFE3;color:#2A1E17;border-radius:999px;padding:24px 44px;font-size:44px;font-weight:800">Música</div>
+ </div>
+ <div class="abs" id="l9" style="left:0;right:0;top:760px;text-align:center;font-size:32px;font-weight:600;color:#D8C7AE">Parque de Exposições Manoel Terra Cruz · entrada franca</div>
+ <div class="src" style="color:#D8C7AE">Fontes: Prefeitura de Ibiá · Ibiá em Foco</div>
+</div></div>
+
+<!-- 10: economia -->
+<div class="sc" id="s10" style="background:var(--sand)"><div class="cam">
+ <div class="abs eb" id="e10" style="left:120px;top:150px;color:var(--terraDk)">ECONOMIA</div>
+ <div class="abs ser" id="t10" style="left:116px;top:210px;font-size:110px;line-height:1.02">A força do campo</div>
+ <div class="abs" style="left:120px;top:420px;width:1100px;display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;align-items:center;gap:28px"><div style="width:230px;font-size:40px;font-weight:800">Soja</div><div id="b10a" style="height:80px;width:0;background:#4F6B3A;border-radius:10px"></div><div class="ser" id="v10a" style="font-size:52px">559</div></div>
+  <div style="display:flex;align-items:center;gap:28px"><div style="width:230px;font-size:40px;font-weight:800">Café</div><div id="b10b" style="height:80px;width:0;background:#9E4524;border-radius:10px"></div><div class="ser" id="v10b" style="font-size:52px">139</div></div>
+  <div style="display:flex;align-items:center;gap:28px"><div style="width:230px;font-size:40px;font-weight:800">Milho</div><div id="b10c" style="height:80px;width:0;background:#C9962F;border-radius:10px"></div><div class="ser" id="v10c" style="font-size:52px">110</div></div>
+  <div style="font-size:28px;font-weight:700;color:var(--body)">valor das lavouras em 2023, em R$ milhões</div>
+ </div>
+ <div class="abs card" id="k10" style="right:120px;top:420px;width:600px;padding:50px;background:var(--ink);color:var(--cream)">
+  <div class="ser" id="n10" style="font-size:104px;line-height:1;white-space:nowrap;color:var(--goldLt)">R$ 999 mi</div>
+  <div style="font-size:34px;font-weight:600;color:#E9DCC6;margin-top:16px">em lavouras em 2023</div>
+ </div>
+ <div class="src">Fonte: IBGE, Produção Agrícola Municipal 2023 (via levantamento de terceiros)</div>
+</div></div>
+
+<!-- 11: fim -->
+<div class="sc" id="s11" style="background:#2A1E17"><div class="cam">
+ <svg class="abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs><linearGradient id="sky11" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A1E17"/><stop offset=".6" stop-color="#6E2E16"/><stop offset="1" stop-color="#C9962F"/></linearGradient></defs>
+  <rect width="1920" height="1080" fill="url(#sky11)"/>
+  <circle id="sun11" cx="960" cy="860" r="170" fill="#E3B85C" opacity=".9"/>
+  <path d="M-200 900 C200 800 520 840 800 870 C1100 900 1400 800 1700 820 C1900 835 2100 860 2200 870 L2200 1080 L-200 1080Z" fill="#3B5230"/>
+  <path d="M-200 990 C300 940 700 960 960 975 C1300 990 1700 940 2200 960 L2200 1080 L-200 1080Z" fill="#26361F"/>
+ </svg>
+ <div class="abs ser" id="t11" style="left:0;right:0;top:260px;text-align:center;font-size:260px;line-height:1;font-weight:700;color:#FFFBF4">Ibiá</div>
+ <div class="abs ser" id="s11t" style="left:0;right:0;top:540px;text-align:center;font-size:76px;font-style:italic;color:#FBE4D6">Memória, fé e trabalho</div>
+ <div class="abs" id="f11" style="left:0;right:0;bottom:44px;text-align:center;font-size:22px;font-weight:600;color:#E9DCC6;opacity:.8">Fontes: IBGE · Prefeitura de Ibiá · Museu Histórico Municipal · Estado de Minas · pesquisas acadêmicas</div>
+</div></div>
+
+<div id="tag" style="color:#2A1E17">IBIÁ · MG</div>
+<div id="tiles"></div>
+<div id="fade" class="abs" style="inset:0;background:#000;opacity:0;pointer-events:none"></div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>1-Math.pow(1-cl(x),3);
+const eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const spr=x=>x<=0?0:1-Math.exp(-6*x)*Math.cos(10*x);
+function mul(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+let TL,SC=[],LN=[];
+function Wd(k,word,off=0){const l=LN[k-1];const c=l.caption.toLowerCase();const i=c.indexOf(word.toLowerCase());return l.start+l.dur*(i<0?0:i/c.length)+off}
+function rise(el,t,t0,dy=50,d=.6){const p=cl((t-t0)/d);el.style.opacity=p;el.style.transform=`translateY(${(1-eo(p))*dy}px)`}
+function pop(el,t,t0,d=1){const p=spr((t-t0)/d*1.0);el.style.opacity=cl((t-t0)/.15);el.style.transform=`scale(${t<t0?0.6:0.6+0.4*p})`}
+function slam(el,t,t0){const p=cl((t-t0)/.35);el.style.opacity=cl((t-t0)/.12);el.style.transform=`scale(${1.5-0.5*eo(p)+(p>=1?0.03*Math.exp(-(t-t0-.35)*8)*Math.sin((t-t0-.35)*30):0)})`}
+function fmt(n){return Math.round(n).toLocaleString('pt-BR')}
+function count(el,t,t0,d,val,suf=''){const p=eo((t-t0)/d);el.textContent=fmt(val*p)+suf}
+function typed(el,txt,t,t0,cps=26){const n=cl(Math.floor((t-t0)*cps),0,txt.length);el.textContent=txt.slice(0,n)+(n<txt.length&&t>t0?'|':'')}
+
+// tiles
+const COLS=12,ROWS=7,TC=['#B8572F','#C9962F','#4F6B3A','#9E4524','#E3B85C','#2A1E17'];
+const tiles=[];
+function buildTiles(){const box=$('tiles');const w=1920/COLS,h=1080/ROWS;const r=mul(7);
+ for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++){const d=document.createElement('div');d.style.left=(x*w-1)+'px';d.style.top=(y*h-1)+'px';d.style.width=(w+2)+'px';d.style.height=(h+2)+'px';box.appendChild(d);tiles.push({d,x,y,c:Math.floor(r()*TC.length),j:r()*.08})}}
+function drawTiles(t){let cut=null;for(let k=1;k<SC.length;k++){if(Math.abs(t-SC[k])<.75){cut=k;break}}
+ for(const T of tiles){if(cut===null){T.d.style.transform='scale(0)';continue}
+  const c=SC[cut];const di=(T.x+T.y)/(COLS+ROWS)*.32+T.j;
+  const a=eo((t-(c-.5+di))/.2),b=1-eo((t-(c+.04+di))/.2);const s=Math.max(0,Math.min(a,b));
+  T.d.style.transform=`scale(${s})`;T.d.style.background=TC[(T.c+cut)%TC.length]}}
+
+// fixed random layouts
+const CONF=[];function buildConf(){const box=$('conf7');const r=mul(19);for(let i=0;i<90;i++){const d=document.createElement('div');d.className='abs';const w=10+r()*16;d.style.width=w+'px';d.style.height=(w*1.6)+'px';d.style.borderRadius='3px';d.style.background=['#FFFBF4','#E3B85C','#2A1E17','#4F6B3A'][i%4];box.appendChild(d);CONF.push({d,x:r()*1920,v:260+r()*360,s:r()*6.28,dl:r()*.6,sw:30+r()*60})}}
+function buildFlags(){const g=$('flags9');const cols=['#B8572F','#C9962F','#4F6B3A','#F6EFE3','#E3B85C','#9E4524'];let s='';
+ for(let row=0;row<2;row++){const y0=row?140:60;s+=`<path d="M-20 ${y0} Q960 ${y0+90} 1940 ${y0}" stroke="#D8C7AE" stroke-width="3" fill="none"/>`;
+  for(let i=0;i<26;i++){const x=-10+i*76+(row?38:0);const yy=y0+90*4*(x/1920)*(1-x/1920)*0.5*2;s+=`<path class="fl" data-x="${x}" data-y="${yy}" d="M${x-24} ${yy} L${x+24} ${yy} L${x} ${yy+52}Z" fill="${cols[(i+row*3)%6]}"/>`}}
+ g.innerHTML=s}
+function buildRays(){const g=$('rays4');let s='';for(let i=0;i<24;i++){const a=i/24*Math.PI*2;s+=`<path d="M1440 470 L${1440+Math.cos(a)*1400} ${470+Math.sin(a)*1400} L${1440+Math.cos(a+.07)*1400} ${470+Math.sin(a+.07)*1400}Z" fill="#E3B85C" opacity=".05"/>`}g.innerHTML=s}
+function buildSleepers(){const g=$('sl6');let s='';for(let i=0;i<34;i++){s+=`<rect class="sl" x="${-10+i*60}" y="685" width="22" height="90" rx="4" fill="#B8572F" opacity="0"/>`}g.innerHTML=s}
+
+function scene(k,t){const lt=t-SC[k-1];const s=$('s'+k);
+ const end=k<SC.length?SC[k]:TL.end;const cam=s.querySelector('.cam');cam.style.transform=`scale(${1+0.035*cl(lt/(end-SC[k-1]))})`;
+ if(k===1){$('sun1').setAttribute('cy',560-60*eo(lt/5));$('h1a').setAttribute('transform',`translate(${-20*lt} 0)`);$('h1b').setAttribute('transform',`translate(${-40*lt} 0)`);$('h1c').setAttribute('transform',`translate(${-70*lt} 0)`);
+  rise($('e1'),t,SC[0]+.5);rise($('t1'),t,Wd(1,'existe')-.2,70,.8)}
+ if(k===2){slam($('t2'),t,Wd(2,'ibiá')-.05);const u=eo((t-Wd(2,'ibiá')-.3)/.5);$('u2').style.transform=`scaleX(${u})`;
+  [['c2a','n2a','22 mil',22229,''],['c2b','n2b','2.700',2704,' km²'],['c2c','n2c','895',895,' m']].forEach(([c,n,w,v,sf])=>{const t0=Wd(2,w)-.35;pop($(c),t,t0);count($(n),t,t0,1.0,v,sf)})}
+ if(k===3){const r=$('road3');r.setAttribute('stroke-dashoffset',2400*(1-eo((lt-.1)/2.4)));
+  const p=spr((t-Wd(3,'pouso')+.2)/1.2);$('pouso3').setAttribute('transform',`translate(470 760) scale(${t<Wd(3,'pouso')-.2?0:p})`);
+  const ig=eo((t-Wd(3,'promessa')+.2)/.9);$('igreja3').setAttribute('transform',`translate(1380 ${840+400*(1-ig)})`);$('igreja3').style.opacity=ig;
+  rise($('e3'),t,SC[2]+.3);rise($('t3'),t,SC[2]+.5);typed($('q3'),'São Pedro de Alcântara',t,Wd(3,'são pedro')-.1,22);rise($('l3'),t,Wd(3,'primeiro nome')-.2)}
+ if(k===4){$('rays4').style.transform=`rotate(${lt*2}deg)`;$('rays4').style.transformOrigin='1440px 470px';
+  rise($('e4'),t,SC[3]+.3);rise($('t4'),t,Wd(4,'quilombo')-.2,70,.8);rise($('d4'),t,Wd(4,'símbolo')-.2);
+  const t0=Wd(4,'destruído')-.3;const p=eo((t-t0)/1.2);$('y4').textContent=Math.round(1700+59*p);$('y4').style.opacity=cl((t-t0)/.2);rise($('yl4'),t,t0+.6)}
+ if(k===5){const a=Math.sin(lt*1.4)*6;$('look5').setAttribute('transform',`rotate(${a} 1060 400)`);$('look5').style.opacity=cl((t-Wd(5,'vigiavam')+.4)/.4);
+  const pr=1+0.25*Math.max(0,Math.sin(lt*5));$('pt5').setAttribute('r',22*pr);
+  rise($('e5'),t,SC[4]+.3);rise($('t5'),t,SC[4]+.45,60,.8);rise($('d5'),t,Wd(5,'conta')-.2);pop($('b5'),t,Wd(5,'1998')-.35)}
+ if(k===6){const d=eo((lt-.1)/1.4);$('r6a').setAttribute('stroke-dashoffset',2000*(1-d));$('r6b').setAttribute('stroke-dashoffset',2000*(1-d));
+  document.querySelectorAll('#sl6 .sl').forEach((e,i)=>e.setAttribute('opacity',cl((lt-.2-i*.035)/.2)));
+  const c=eo((t-Wd(6,'entroncamento')+.3)/.8);$('r6c').setAttribute('stroke-dashoffset',1000*(1-c));$('r6d').setAttribute('stroke-dashoffset',1000*(1-c));
+  const x=-300+lt*420;$('train6').setAttribute('transform',`translate(${x} ${Math.sin(lt*18)*1.5})`);
+  rise($('e6'),t,SC[5]+.3);rise($('t6'),t,Wd(6,'entroncamento')-.4,60,.7)}
+ if(k===7){rise($('e7'),t,SC[6]+.2);slam($('d7a'),t,Wd(7,'7 de')-.1);$('d7x').style.opacity=.5*cl((t-Wd(7,'setembro'))/.2);slam($('d7b'),t,Wd(7,'setembro')-.1);$('d7y').style.opacity=.5*cl((t-Wd(7,'1923'))/.2);slam($('d7c'),t,Wd(7,'1923')-.1);
+  rise($('t7'),t,Wd(7,'ibiá se')-.2);const t0=Wd(7,'município')-.4;
+  for(const c of CONF){const u=t-t0-c.dl;if(u<0){c.d.style.opacity=0;continue}c.d.style.opacity=1;const y=-60+c.v*u+120*u*u;c.d.style.transform=`translate(${c.x+Math.sin(u*3+c.s)*c.sw}px,${y}px) rotate(${u*300+c.s*60}deg)`}}
+ if(k===8){rise($('e8'),t,SC[7]+.3);rise($('t8'),t,Wd(8,'museu')-.3,60,.7);
+  [['c8a','fotos'],['c8b','peças'],['c8c','urnas']].forEach(([c,w])=>pop($(c),t,Wd(8,w)-.35));pop($('b8'),t,Wd(8,'urnas')+.9)}
+ if(k===9){document.querySelectorAll('#flags9 .fl').forEach((e,i)=>{const x=+e.dataset.x,y=+e.dataset.y;e.setAttribute('transform',`rotate(${Math.sin(lt*3+i*.7)*8} ${x} ${y})`)});
+  $('flags9').style.transform=`translateY(${-200*(1-eo(lt/.8))}px)`;
+  rise($('e9'),t,Wd(9,'setembro')-.3);slam($('t9'),t,Wd(9,'festa')-.15);
+  const ws=['rodeio','queima','desfile','música'];['c9a','c9b','c9c','c9d'].forEach((c,i)=>pop($(c),t,Wd(9,ws[i])-.3));rise($('l9'),t,Wd(9,'música')+.6);
+  let s='';const r=mul(3);ws.forEach((w,i)=>{const t0=Wd(9,w)-.2;const u=t-t0;const cx=300+i*440+r()*120,cy=150+r()*140;const col=['#E3B85C','#B8572F','#FBE4D6','#8FA36A'][i];
+   if(u>0&&u<1.6){for(let j=0;j<22;j++){const a=j/22*6.283;const R=eo(u/1.1)*170;const op=1-cl((u-.5)/1.1);s+=`<circle cx="${cx+Math.cos(a)*R}" cy="${cy+Math.sin(a)*R+u*u*30}" r="${6*(1-u/1.8)}" fill="${col}" opacity="${op}"/>`}}});$('fw9').innerHTML=s}
+ if(k===10){rise($('e10'),t,SC[9]+.3);rise($('t10'),t,SC[9]+.45,60,.7);
+  [['b10a','v10a','soja',559.1],['b10b','v10b','café',138.5],['b10c','v10c','milho',109.6]].forEach(([b,v,w,val])=>{const t0=Wd(10,w)-.3;const p=eo((t-t0)/.9);$(b).style.width=(val/559.1*620*p)+'px';$(v).style.opacity=cl((t-t0)/.3);$(v).textContent=fmt(val*p)});
+  const t0=Wd(10,'1 bilhão')-.4;pop($('k10'),t,t0);count($('n10'),t,t0,1.2,999,' mi');$('n10').textContent='R$ '+$('n10').textContent}
+ if(k===11){$('sun11').setAttribute('cy',1010-110*eo(lt/3));slam($('t11'),t,SC[10]+.6);rise($('s11t'),t,Wd(11,'memória')-.2);rise($('f11'),t,Wd(11,'trabalho')+.6,20)}
+}
+
+function seek(t){let k=1;for(let i=0;i<SC.length;i++)if(t>=SC[i])k=i+1;
+ for(let i=1;i<=SC.length;i++)$('s'+i).style.display=i===k?'block':'none';
+ scene(k,t);drawTiles(t);
+ const dark=[4,7,9,11].includes(k);$('tag').style.color=dark?'#FBE4D6':'#2A1E17';$('tag').style.opacity=k===1||k===11||k===9?0:cl((t-SC[1]+.2)/.4);
+ $('fade').style.opacity=cl((t-(TL.end-1.2))/1.2)}
+window.seek=seek;
+
+fetch('timeline.json').then(r=>r.json()).then(j=>{TL=j;LN=j.lines;SC=LN.map((l,i)=>i===0?0:l.start-.4);
+ buildTiles();buildConf();buildFlags();buildRays();buildSleepers();
+ Promise.all(['600 40px Gar','700 40px Gar','italic 600 40px Gar','400 20px Nun','600 20px Nun','700 20px Nun','800 20px Nun'].map(f=>document.fonts.load(f))).then(()=>document.fonts.ready).then(()=>{seek(0);window.ready=true;
+  if(!location.search.includes('render')){const t0=performance.now();const loop=()=>{seek(((performance.now()-t0)/1000)%TL.end);requestAnimationFrame(loop)};loop()}})});
+</script>
+</body>
+</html>

@@ -142,8 +142,8 @@ function addPin(){const mb=$('#mapbox svg'); if(!mb) return; const ns='http://ww
   const c=document.createElementNS(ns,'circle'); c.setAttribute('cx',478.6);c.setAttribute('cy',377.8);c.setAttribute('r',40);c.setAttribute('fill','#F4C43033');c.setAttribute('stroke','#F4C430');c.setAttribute('stroke-width',3);c.setAttribute('vector-effect','non-scaling-stroke');c.id='rad';mb.appendChild(c);
   const d=document.createElementNS(ns,'circle'); d.setAttribute('cx',478.6);d.setAttribute('cy',377.8);d.setAttribute('r',9);d.setAttribute('fill','#F4C430');d.setAttribute('stroke','#111216');d.setAttribute('stroke-width',4);d.id='pdot';mb.appendChild(d);}
 
-/* ---------------- MOTION (15 s) ---------------- */
-const DUR=15;
+/* ---------------- MOTION (30 s) ---------------- */
+const DUR=30;
 function buildMotion(){
   art.innerHTML=`<div class="dots" id="dots"></div>
    <div id="hook" class="abs" style="left:80px;top:120px;width:920px">
@@ -153,6 +153,7 @@ function buildMotion(){
      <div class="anton" style="font-size:118px;overflow:hidden"><div id="h3">na palma da mão</div></div></div>
    <div id="cap" class="abs anton" style="left:80px;top:150px;width:520px;font-size:78px"></div>
    <div id="capd" class="abs" style="left:84px;top:420px;width:460px;font-size:28px;line-height:1.4;color:#d9d7d0"></div>
+   <div id="capn" class="abs anton" style="left:80px;top:1040px;font-size:64px;color:#2c2e35"></div>
    <div class="phone" id="ph" style="left:590px;top:330px"><div class="scr" id="scr"></div></div>
    <div id="end" class="abs" style="inset:0;background:#D9A441;display:none">
      <div class="abs anton" style="left:80px;top:240px;font-size:150px;color:#111216" id="e1">Leve a sua<br>pesquisa<br>para o app</div>
@@ -161,45 +162,104 @@ function buildMotion(){
    <div id="lg" class="abs" style="left:80px;bottom:60px">${LOGO(230)}</div>
    <div class="abs" style="right:80px;bottom:66px"><span class="tag">Interface ilustrativa</span></div>${BRSTRIPE}`;
 }
-// fases: 0 hook | 1 login | 2 módulos | 3 busca local | 4 resultados | 5 final
-const PH=[[0,2.4],[2.4,5.0],[5.0,8.0],[8.0,11.2],[11.2,13.6],[13.6,15]];
+// fases: 0 hook | 1 login | 2 módulos | 3 questionário | 4 busca local | 5 resultados | 6 mapa de calor | 7 relatório | 8 equipes | 9 final
+const PH=[[0,2.4],[2.4,5.4],[5.4,8.4],[8.4,13.2],[13.2,16.6],[16.6,19.8],[19.8,22.8],[22.8,25.6],[25.6,28.2],[28.2,30]];
 const CAPS=[null,['Acesso<br><span class="gold">fácil</span>','gov.br, e-mail e senha, ou modo offline no campo.'],['Módulos<br><span class="gold">completos</span>','Questionários, coleta, painéis, mapas, relatórios e equipes.'],
-  ['Busca por<br><span class="gold">local</span>','Estado, município e raio no mapa.'],['Resultados<br><span class="gold">na hora</span>','Painéis, insights com IA e PDF.']];
+  ['Coleta em<br><span class="gold">campo</span>','Múltipla escolha, nota, foto com GPS. Funciona sem internet.'],['Busca por<br><span class="gold">local</span>','Estado, município e raio no mapa.'],['Resultados<br><span class="gold">na hora</span>','Indicadores, gráficos por região e insights com IA.'],
+  ['Mapa de<br><span class="gold">calor</span>','Veja onde estão as respostas e os problemas, município por município.'],['Relatório<br><span class="gold">em 1 toque</span>','PDF pronto para enviar ao gestor por e-mail ou WhatsApp.'],['Equipes<br><span class="gold">em tempo real</span>','Acompanhe cada pesquisador e a meta de entrevistas.']];
+function scrQuest(t,a){
+  const q=t<a+1.6?0:t<a+3.0?1:2; const off=t<a+4.0;
+  const stat=off?`<span style="color:#F4C430">● Sem internet · ${3+q} na fila</span>`:`<span style="color:#1F9D55">● Sincronizado ✓</span>`;
+  let body='';
+  if(q===0){const sel=t>a+0.9; body=`<div style="font-size:22px;font-weight:700;line-height:1.3">Com que frequência a família usa a UBS?</div>
+    ${['Toda semana','Todo mês','Raramente','Nunca'].map((o,i)=>`<div style="height:58px;border-radius:14px;margin-top:12px;display:flex;align-items:center;gap:14px;padding:0 16px;font-size:18px;font-weight:600;border:2px solid ${sel&&i===1?'#D9A441':'#34363e'};background:${sel&&i===1?'#D9A44122':'transparent'}"><span style="width:22px;height:22px;border-radius:50%;border:3px solid ${sel&&i===1?'#D9A441':'#5a5c66'};background:${sel&&i===1?'radial-gradient(circle,#D9A441 45%,transparent 50%)':'none'}"></span>${o}</div>`).join('')}`;}
+  if(q===1){const n=Math.min(5,Math.floor(rng(t,a+1.9,a+2.6)*4.99)+ (t>a+1.9?1:0)); body=`<div style="font-size:22px;font-weight:700;line-height:1.3">De 1 a 5, como avalia o atendimento?</div>
+    <div style="display:flex;gap:10px;margin-top:30px">${[1,2,3,4,5].map(i=>`<div style="flex:1;height:70px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:30px;background:${i<=Math.min(n,4)?'#D9A441':'#22242b'};color:${i<=Math.min(n,4)?'#111216':'#6c6d75'}">★</div>`).join('')}</div>
+    <div style="margin-top:22px;font-size:17px;color:#9a9ba3">Comentário (opcional)</div><div style="margin-top:8px;height:90px;border-radius:14px;background:#22242b;padding:12px 14px;font-size:16px">${'Atendimento bom, mas a fila é grande.'.slice(0,Math.floor(38*rng(t,a+2.3,a+2.9)))}</div>`;}
+  if(q===2){const shot=t>a+3.5; body=`<div style="font-size:22px;font-weight:700;line-height:1.3">Foto da fachada da UBS</div>
+    <div style="margin-top:16px;height:280px;border-radius:16px;background:${shot?'linear-gradient(160deg,#5a7a9a,#2f4256)':'#22242b'};position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center">
+      ${shot?`<div style="position:absolute;left:40px;right:40px;bottom:0;height:150px;background:#e9e4da;border-radius:6px 6px 0 0"></div><div style="position:absolute;left:150px;bottom:0;width:70px;height:90px;background:#6b4a2a"></div><div style="position:absolute;left:60px;bottom:110px;right:60px;height:22px;background:#1F9D55"></div>
+      <div style="position:absolute;left:10px;top:10px;font-size:13px;font-weight:700;background:#111216cc;padding:6px 10px;border-radius:8px">📍 -18,73 · -43,37 · 10:42</div>`:`<span style="font-size:60px">📷</span>`}
+      <div style="position:absolute;inset:0;background:#fff;opacity:${clamp(1-(t-(a+3.5))/0.25)*(t>a+3.5?1:0)}"></div></div>`;}
+  return `<div class="st"><span>9:41</span><span>●●● 5G</span></div>
+   <div class="ah"><div style="font-size:14px;font-weight:700;color:#9a9ba3">PESQUISA SAÚDE DA FAMÍLIA · ${q+3}/12</div>
+    <div style="height:6px;border-radius:3px;background:#2c2e35;margin-top:10px"><div style="height:6px;border-radius:3px;background:#D9A441;width:${(q+3)/12*100}%"></div></div>
+    <div style="margin-top:22px">${body}</div></div>
+   <div style="position:absolute;left:24px;right:24px;bottom:96px;font-size:16px;font-weight:700">${stat}</div>
+   <div style="position:absolute;left:24px;right:24px;bottom:30px;height:56px;border-radius:14px;background:#D9A441;color:#111216;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center">Próxima</div>`;
+}
+const HEAT=(()=>{const R=[];let s=7;const rnd=()=>{s=(s*16807)%2147483647;return s/2147483647;};for(let i=0;i<60;i++)R.push([360+rnd()*170,310+rnd()*135,rnd()]);return R;})();
+function scrHeat(h){
+  return `<div class="st"><span>9:41</span><span>●●● 5G</span></div>
+  <div class="ah"><div style="font-size:15px;color:#9a9ba3">Minas Gerais · respostas por município</div><div style="font-size:28px;font-weight:800">Mapa de calor</div></div>
+  <div id="mapbox" style="position:absolute;left:14px;right:14px;top:150px;height:520px;overflow:hidden;border-radius:16px">${MAPSVG}</div>
+  <div style="position:absolute;left:24px;right:24px;bottom:110px;display:flex;align-items:center;gap:10px;font-size:13px;color:#9a9ba3">Poucas<div style="flex:1;height:12px;border-radius:6px;background:linear-gradient(90deg,#1F9D55,#F4C430,#E8786B)"></div>Muitas</div>
+  <div style="position:absolute;left:24px;right:24px;bottom:30px;padding:14px 16px;border-radius:14px;background:#22242b;font-size:15px;line-height:1.35"><b style="color:#E8786B">Alerta:</b> Norte de Minas com mais queixas de espera.</div>`;
+}
+function heatDots(t,a){const mb=$('#mapbox svg'); if(!mb) return; const ns='http://www.w3.org/2000/svg';
+  if(!mb.querySelector('.hd')) HEAT.forEach(([x,y,v],i)=>{const c=document.createElementNS(ns,'circle'); c.setAttribute('class','hd'); c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('fill',v<.4?'#1F9D55':v<.75?'#F4C430':'#E8786B'); c.setAttribute('opacity',.85); c.dataset.i=i; mb.appendChild(c);});
+  $$('#mapbox .hd').forEach(c=>{const i=+c.dataset.i, v=HEAT[i][2], e=spring(t-(a+0.4+i*0.025),300,14); c.setAttribute('r',Math.max(0,e)*(3+v*7));});
+  mb.style.transform=`scale(${2.6})`; mb.style.transformOrigin='74% 58%';}
+function scrRel(t,a){
+  const g=rng(t,a+0.3,a+1.4), sent=t>a+2.3;
+  return `<div class="st"><span>9:41</span><span>●●● 5G</span></div>
+  <div class="ah"><div style="font-size:28px;font-weight:800">Relatório</div><div style="font-size:15px;color:#9a9ba3;margin-top:4px">Pesquisa Saúde da Família · MG · 2026</div></div>
+  <div style="margin:18px 24px;border-radius:14px;background:#f4f6fb;color:#1b2440;padding:18px;height:420px;position:relative;overflow:hidden">
+    <div style="font-size:12px;font-weight:900;letter-spacing:1px">V4 PESQUISA · RELATÓRIO</div><div style="font-size:20px;font-weight:900;margin-top:6px">Resultados por região</div>
+    <div style="display:flex;gap:8px;margin-top:12px">${[['1.248','respostas'],['38','municípios'],['76%','satisfação']].map(([v,l])=>`<div style="flex:1;background:#e6ecf8;border-radius:8px;padding:8px"><div style="font-weight:900;font-size:20px">${v}</div><div style="font-size:11px">${l}</div></div>`).join('')}</div>
+    ${[81,66,78,72,69].map(v=>`<div style="height:14px;border-radius:4px;background:#d5dcec;margin-top:12px"><div style="height:14px;border-radius:4px;background:#D9A441;width:${v}%"></div></div>`).join('')}
+    <div style="position:absolute;left:0;right:0;bottom:0;height:${(1-g)*100}%;background:#f4f6fb"></div></div>
+  <div style="margin:0 24px;height:10px;border-radius:5px;background:#2c2e35"><div style="height:10px;border-radius:5px;background:#D9A441;width:${g*100}%"></div></div>
+  <div style="margin:14px 24px;font-size:15px;font-weight:700;color:${g>=1?'#1F9D55':'#9a9ba3'}">${g>=1?'✓ PDF gerado · 12 páginas':'Gerando PDF…'}</div>
+  <div style="display:flex;gap:10px;margin:0 24px">${[['E-mail','#23252b'],['WhatsApp','#1F9D55']].map(([l,c],i)=>`<div style="flex:1;height:56px;border-radius:14px;background:${c};font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;transform:scale(${i===1&&t>a+1.9?1-0.06*Math.sin(Math.PI*rng(t,a+1.9,a+2.2)):1})">${l}</div>`).join('')}</div>
+  <div style="position:absolute;left:24px;right:24px;bottom:30px;padding:14px;border-radius:14px;background:#1F9D55;color:#fff;font-weight:800;text-align:center;opacity:${sent?clamp((t-a-2.3)/0.2):0}">✓ Relatório enviado ao gestor</div>`;
+}
+function scrTeam(t,a){
+  const T=[['Ana','Norte',92],['Bruno','Central',78],['Carla','Sul',64],['Davi','Leste',85],['Elisa','Oeste',57]];
+  return `<div class="st"><span>9:41</span><span>●●● 5G</span></div>
+  <div class="ah"><div style="font-size:28px;font-weight:800">Equipes</div><div style="font-size:15px;color:#9a9ba3;margin-top:4px">Meta: 1.500 entrevistas · <b style="color:#D9A441">${fmtInt(1248*expo(rng(t,a,a+1.2)))}</b> feitas</div></div>
+  <div style="padding:16px 24px">${T.map(([n,r,v],i)=>{const p=out(rng(t,a+0.2+i*0.12,a+1.2+i*0.12));return `<div style="display:flex;align-items:center;gap:12px;height:86px;border-bottom:1px solid #2c2e35">
+    <div style="width:46px;height:46px;border-radius:50%;background:${['#D9A441','#5BA4E6','#B28CE0','#1F9D55','#E8786B'][i]};display:flex;align-items:center;justify-content:center;font-weight:900;color:#111216">${n[0]}</div>
+    <div style="flex:1"><div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700"><span>${n} · ${r}</span><span style="color:#9a9ba3">${Math.round(v*p)}%</span></div>
+      <div style="height:8px;border-radius:4px;background:#2c2e35;margin-top:8px"><div style="height:8px;border-radius:4px;background:#D9A441;width:${v*p}%"></div></div></div>
+    <span style="width:10px;height:10px;border-radius:50%;background:${i===4?'#F4C430':'#1F9D55'}"></span></div>`;}).join('')}</div>
+  <div style="position:absolute;left:24px;right:24px;bottom:30px;padding:14px;border-radius:14px;background:#22242b;font-size:15px">● 4 em campo agora · 1 sincronizando</div>`;
+}
 let lastPhase=-1;
 function seek(t){
   $('#dots').style.transform=`translate(${(-t*8)%42}px,${(-t*4)%42}px)`;
-  const ph=PH.findIndex(p=>t>=p[0]&&t<p[1]); const k=ph<0?5:ph; const [a,b]=PH[k]; const h=rng(t,a,b);
-  // hook
+  const ph=PH.findIndex(p=>t>=p[0]&&t<p[1]); const k=ph<0?9:ph; const [a,b]=PH[k];
   const hk=$('#hook'); hk.style.display=t<2.7?'block':'none';
   ['#h1','#h2','#h3'].forEach((s,i)=>{const e=spring(t-0.2-i*0.15,220,22), x=io(rng(t,2.2,2.6)); $(s).style.transform=`translateY(${(1-clamp(e))*110 - x*110}%)`;});
   $('#hp').style.opacity=clamp(t/0.3)*(1-rng(t,2.2,2.5));
-  // celular: entra subindo, depois vai para a direita durante as fases
-  const pe=spring(t-0.6,140,20); const toRight=io(rng(t,2.2,2.8));
-  const phx=lerp(325,590,toRight), phy=lerp(560,330,toRight)+(1-pe)*700;
-  const ex=io(rng(t,13.4,13.8));
-  $('#ph').style.left=phx+'px'; $('#ph').style.top=(phy+ex*900)+'px'; $('#ph').style.transform=`rotate(${lerp(-4,0,toRight)+Math.sin(t*1.2)*0.6}deg) scale(${lerp(0.95,1,toRight)})`;
-  // tela
+  const pe=spring(t-0.6,140,20); const toRight=io(rng(t,2.2,2.8)), ex=io(rng(t,28.0,28.4));
+  const swap=k>=2&&k<=8?Math.exp(-Math.max(0,t-a)*8)*(t>a?1:0):0;   // pequeno “soco” na troca de tela
+  $('#ph').style.left=lerp(325,590,toRight)+'px'; $('#ph').style.top=(lerp(560,330,toRight)+(1-pe)*700+ex*900)+'px';
+  $('#ph').style.transform=`rotate(${lerp(-4,0,toRight)+Math.sin(t*1.2)*0.6}deg) scale(${lerp(0.95,1,toRight)*(1+0.03*swap)})`;
   const scr=$('#scr');
-  if(k<=1){ const tap=rng(t,4.2,4.5); scr.innerHTML=scrLogin(k===0?1:clamp((t-2.4)/1.2+0.4),t>4.2?tap:0); }
-  else if(k===2){ scr.innerHTML=scrMods(rng(t,5.0,7.6)); }
-  else if(k===3){ if(lastPhase!==3){ scr.innerHTML=scrBusca(0,{q:'',chips:[],go:0,n:''}); mapPaths(); addPin(); }
-      const q=t<8.6?'':'Alvorada de Minas, MG'; const ty=Math.floor('Alvorada de Minas, MG'.length*clamp((t-8.4)/0.8));
-      const sel={q:'Alvorada de Minas, MG'.slice(0,ty)+(ty<21&&t>8.4?'▍':''),chips:[['Minas Gerais',t>9.3],['Alvorada de Minas',t>9.9],['Raio 20 km',t>10.4]],go:clamp((t-10.6)/0.3),n:'312'};
+  if(k<=1){ const tap=rng(t,4.2,4.5); scr.innerHTML=scrLogin(k===0?1:clamp((t-2.4)/1.2+0.4),t>4.2?tap:0);
+    if(t>4.6) scr.insertAdjacentHTML('beforeend',`<div style="position:absolute;left:24px;right:24px;top:600px;padding:16px;border-radius:14px;background:#1351B4;color:#fff;font-weight:800;font-size:17px;text-align:center;opacity:${clamp((t-4.6)/0.2)}">✓ Autenticado com gov.br</div>`); }
+  else if(k===2){ scr.innerHTML=scrMods(rng(t,a,b-0.4)); }
+  else if(k===3){ scr.innerHTML=scrQuest(t,a); }
+  else if(k===4){ const A=a-8.0; if(lastPhase!==4){ scr.innerHTML=scrBusca(0,{q:'',chips:[],go:0,n:''}); mapPaths(); addPin(); }
+      const ty=Math.floor(21*clamp((t-(a+0.4))/0.8));
+      const sel={q:'Alvorada de Minas, MG'.slice(0,ty)+(ty<21&&t>a+0.4?'▍':''),chips:[['Minas Gerais',t>a+1.3],['Alvorada de Minas',t>a+1.9],['Raio 20 km',t>a+2.4]],go:clamp((t-(a+2.6))/0.3),n:'312'};
       const keep=$('#mapbox').innerHTML; scr.innerHTML=scrBusca(0,sel).replace(MAPSVG,''); $('#mapbox').innerHTML=keep; mapPaths();
-      const g=out(rng(t,9.3,9.8)); colorMap({mg:`rgb(${lerp(42,31,g)|0},${lerp(44,157,g)|0},${lerp(51,85,g)|0})`},t>9.3);
-      const r=$('#rad'), d=$('#pdot'); if(r){const re=spring(t-10.4,200,16); r.setAttribute('r',Math.max(0,re)*40); d.setAttribute('r',t>9.9?9*clamp(spring(t-9.9,300,14),0,1.3):0);}
-      const z=1+1.6*io(rng(t,9.4,10.2)); $('#mapbox svg').style.transform=`scale(${z})`; $('#mapbox svg').style.transformOrigin='78% 59%'; }
-  else if(k===4){ scr.innerHTML=scrRes(rng(t,11.2,13.0)); }
+      const g=out(rng(t,a+1.3,a+1.8)); colorMap({mg:`rgb(${lerp(42,31,g)|0},${lerp(44,157,g)|0},${lerp(51,85,g)|0})`},t>a+1.3);
+      const r=$('#rad'), d=$('#pdot'); if(r){const re=spring(t-(a+2.4),200,16); r.setAttribute('r',Math.max(0,re)*40); d.setAttribute('r',t>a+1.9?9*clamp(spring(t-(a+1.9),300,14),0,1.3):0);}
+      const z=1+1.6*io(rng(t,a+1.4,a+2.2)); $('#mapbox svg').style.transform=`scale(${z})`; $('#mapbox svg').style.transformOrigin='78% 59%'; }
+  else if(k===5){ scr.innerHTML=scrRes(rng(t,a,b-0.6)); }
+  else if(k===6){ if(lastPhase!==6){ scr.innerHTML=scrHeat(0); mapPaths(); colorMap({mg:'#2f3138'},true); } heatDots(t,a); }
+  else if(k===7){ scr.innerHTML=scrRel(t,a); }
+  else if(k===8){ scr.innerHTML=scrTeam(t,a); }
   lastPhase=k;
-  // legendas laterais
-  const showCap=k>=1&&k<=4; const ce=spring(t-a-0.1,240,22);
-  $('#cap').innerHTML=showCap?CAPS[k][0]:''; $('#capd').innerHTML=showCap?CAPS[k][1]:'';
-  [$('#cap'),$('#capd')].forEach((e,i)=>{e.style.opacity=showCap?clamp(ce*2-i*0.3)*(1-rng(t,b-0.25,b)):0; e.style.transform=`translateX(${(1-clamp(ce))*-60}px)`;});
-  // final
-  const en=$('#end'); en.style.display=t>13.6?'block':'none';
-  if(t>13.6){ const f=io(rng(t,13.6,13.9)); en.style.clipPath=`circle(${f*150}% at 50% 50%)`;
-    ['#e1','#e2','#e3'].forEach((s,i)=>{const e=spring(t-13.85-i*0.15,240,22); $(s).style.transform=`translateY(${(1-clamp(e))*60}px)`; $(s).style.opacity=clamp(e*2);}); }
-  $('#lg').style.opacity=t<13.6?1:0;
+  const showCap=k>=1&&k<=8; const ce=spring(t-a-0.1,240,22);
+  $('#cap').innerHTML=showCap?CAPS[k][0]:''; $('#capd').innerHTML=showCap?CAPS[k][1]:''; $('#capn').textContent=showCap?String(k).padStart(2,'0')+' / 08':'';
+  [$('#cap'),$('#capd'),$('#capn')].forEach((e,i)=>{e.style.opacity=showCap?clamp(ce*2-i*0.3)*(1-rng(t,b-0.25,b)):0; e.style.transform=`translateX(${(1-clamp(ce))*-60}px)`;});
+  const en=$('#end'); en.style.display=t>28.2?'block':'none';
+  if(t>28.2){ const f=io(rng(t,28.2,28.5)); en.style.clipPath=`circle(${f*150}% at 50% 50%)`;
+    ['#e1','#e2','#e3'].forEach((s,i)=>{const e=spring(t-28.45-i*0.15,240,22); $(s).style.transform=`translateY(${(1-clamp(e))*60}px)`; $(s).style.opacity=clamp(e*2);}); }
+  $('#lg').style.opacity=t<28.2?1:0;
 }
 window.seek=seek; window.DUR=DUR;
 init();

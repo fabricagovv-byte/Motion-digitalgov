@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 FábricaGov · App de Pesquisas</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-700-normal.woff2) format('woff2');font-weight:700}
+:root{--ink:#111216;--card:#1b1c21;--line:#2c2e35;--gold:#D9A441;--paper:#F2EFE8;--mute:#9a9ba3;--br:#1F9D55;--bry:#F4C430}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000}
+#art{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:Inter,sans-serif;color:var(--paper);
+  background:radial-gradient(900px 900px at 80% 25%,#2a2416 0%,#111216 60%)}
+.abs{position:absolute}
+.anton{font-family:Anton;text-transform:uppercase;line-height:.98}
+.gold{color:var(--gold)}
+.pill{display:inline-block;font-weight:700;font-size:22px;letter-spacing:4px;padding:11px 24px;border-radius:999px;background:var(--gold);color:var(--ink)}
+.dots{position:absolute;inset:0;background-image:radial-gradient(circle,#ffffff12 1.5px,transparent 1.7px);background-size:42px 42px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px}
+.tag{display:inline-block;font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);border-radius:999px;padding:5px 12px}
+/* celular */
+.phone{position:absolute;width:430px;height:880px;border-radius:62px;background:#0a0a0c;border:3px solid #34363e;padding:18px;box-shadow:0 40px 90px #000c}
+.scr{position:relative;width:100%;height:100%;border-radius:46px;background:#16171b;overflow:hidden}
+.st{height:46px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:15px;font-weight:700;color:#cfcfd4}
+.ah{padding:6px 24px 0}
+.btn{height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:12px;font-weight:700;font-size:19px;margin:0 24px 14px}
+.mod{border-radius:18px;background:#22242b;padding:16px;height:128px;display:flex;flex-direction:column;justify-content:space-between}
+.mod .i{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.mod svg{width:26px;height:26px;fill:none;stroke:#111216;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+#mapbox svg{width:100%;height:100%;overflow:visible}
+#mapbox path{fill:#2a2c33;stroke:#3a3c44;stroke-width:1;vector-effect:non-scaling-stroke}
+</style>
+</head>
+<body>
+<div id="art"></div>
+<script>
+const $=s=>document.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), lerp=(a,b,t)=>a+(b-a)*t, rng=(t,a,b)=>clamp((t-a)/(b-a));
+const io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2, out=x=>1-Math.pow(1-x,3), expo=x=>x>=1?1:1-Math.pow(2,-10*x);
+function spring(t,k=200,d=22){ if(t<=0) return 0; const w=Math.sqrt(k), z=d/(2*w); if(z>=1) return 1-Math.exp(-w*t)*(1+w*t);
+  const wd=w*Math.sqrt(1-z*z); return 1-Math.exp(-z*w*t)*(Math.cos(wd*t)+z/Math.sqrt(1-z*z)*Math.sin(wd*t)); }
+const fmtInt=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+const IC={q:'<path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h5"/>',campo:'<path d="M12 21s-7-7-7-12a7 7 0 0 1 14 0c0 5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>',
+  painel:'<path d="M5 20V11M10 20V5M15 20v-7M20 20V8"/>',mapa:'<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>',
+  rel:'<path d="M6 3h9l4 4v14H6z"/><path d="M12 11v6M9 14l3 3 3-3"/>',equipe:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 3-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14c3 0 5.5 2 5.5 5"/>',
+  ia:'<path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/>',lock:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+  wifi:'<path d="M2 9a15 15 0 0 1 20 0M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0"/><path d="M3 3l18 18"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+  web:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',cel:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',
+  gps:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7"/>'};
+const svgI=(k,s=26,c='#111216')=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}" style="fill:none;stroke:${c};stroke-width:2;stroke-linecap:round;stroke-linejoin:round">${IC[k]}</svg>`;
+const MODS=[['Questionários','q','#D9A441'],['Coleta em campo','campo','#1F9D55'],['Painel de resultados','painel','#5BA4E6'],['Mapas por região','mapa','#F4C430'],['Relatórios em PDF','rel','#E8786B'],['Gestão de equipes','equipe','#B28CE0']];
+const ACC=[['Entrar com gov.br','web','#1351B4','#fff'],['E-mail e senha','mail','#23252b','#F2EFE8'],['Modo offline no campo','wifi','#23252b','#F2EFE8']];
+let MAPSVG='', PATHS={};
+
+// telas do celular (h = progresso local, para animar)
+function scrLogin(h,tap){
+  return `<div class="st"><span>9:41</span><span>●●● 5G</span></div>
+  <div class="ah" style="text-align:center;margin-top:50px"><div class="anton" style="font-size:48px;color:#D9A441">V4 Pesquisa</div>
+    <div style="font-size:17px;color:#9a9ba3;margin-top:8px">Pesquisas e resultados</div></div>
+  <div style="margin-top:80px">${ACC.map(([l,ic,bg,fg],i)=>`<div class="btn acc" style="background:${bg};color:${fg};${i===0?'border:none':'border:2px solid #34363e'};transform:scale(${i===0&&tap>0?1-0.06*Math.sin(Math.PI*tap):1});opacity:${clamp(h*3-i*0.5)}">${svgI(ic,24,fg)}${l}</div>`).join('')}</div>
+  <div style="position:absolute;left:0;right:0;bottom:40px;text-align:center;font-size:14px;color:#6c6d75">🔒 Dados protegidos · LGPD</div>`;
+}
+function scrMods(h){
+  return `<div class="st"><span>9:41</span><span>●●● 5G</span></div>
+  <div class="ah"><div style="font-size:15px;color:#9a9ba3">Olá, Ana · Pesquisador</div><div style="font-size:28px;font-weight:800;margin-top:4px">Módulos</div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:22px 24px">${MODS.map(([l,ic,c],i)=>{const e=spring(h*4-i*0.35,260,18);return `<div class="mod" style="transform:scale(${0.6+0.4*clamp(e,0,1.1)});opacity:${clamp(e*2)}"><div class="i" style="background:${c}">${svgI(ic)}</div><div style="font-size:17px;font-weight:700;line-height:1.2">${l}</div></div>`;}).join('')}</div>
+  <div style="margin:4px 24px;padding:16px 18px;border-radius:16px;background:#22242b;display:flex;gap:12px;align-items:center;font-size:15px"><span style="width:12px;height:12px;border-radius:50%;background:#1F9D55"></span>Sincronizado · 1.248 respostas</div>`;
+}
+function scrBusca(h,sel){
+  return `<div class="st"><span>9:41</span><span>●●● 5G</span></div>
+  <div class="ah"><div style="font-size:28px;font-weight:800">Buscar por local</div>
+    <div style="margin-top:14px;height:52px;border-radius:14px;background:#22242b;display:flex;align-items:center;gap:10px;padding:0 16px;font-size:17px">${svgI('gps',22,'#D9A441')}<span id="locq">${sel.q}</span></div>
+    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">${sel.chips.map((c,i)=>`<span style="font-size:14px;font-weight:700;padding:8px 12px;border-radius:999px;background:${c[1]?'#D9A441':'#22242b'};color:${c[1]?'#111216':'#cfcfd4'}">${c[0]}</span>`).join('')}</div></div>
+  <div id="mapbox" style="position:absolute;left:14px;right:14px;top:250px;height:470px;overflow:hidden;border-radius:16px">${MAPSVG}</div>
+  <div style="position:absolute;left:24px;right:24px;bottom:30px;padding:16px 18px;border-radius:16px;background:#D9A441;color:#111216;font-weight:800;font-size:18px;text-align:center;opacity:${sel.go}">Ver ${sel.n} respostas nesta região</div>`;
+}
+function scrRes(h){
+  const B=[['Central',81],['Norte',66],['Sul',78],['Leste',72],['Oeste',69]];
+  return `<div class="st"><span>9:41</span><span>●●● 5G</span></div>
+  <div class="ah"><div style="font-size:15px;color:#9a9ba3">Minas Gerais · 2026</div><div style="font-size:28px;font-weight:800">Resultados</div></div>
+  <div style="display:flex;gap:12px;padding:18px 24px">${[['Respostas',1248],['Municípios',38],['Satisfação',76]].map(([l,v],i)=>`<div style="flex:1;border-radius:14px;background:#22242b;padding:12px"><div style="font-size:12px;color:#9a9ba3">${l}</div><div class="anton" style="font-size:34px;color:#D9A441;margin-top:4px">${fmtInt(v*expo(clamp(h*2-i*0.2)))}${i===2?'%':''}</div></div>`).join('')}</div>
+  <div style="margin:0 24px;border-radius:16px;background:#22242b;padding:16px"><div style="font-size:15px;font-weight:700;margin-bottom:10px">Avaliação por região (%)</div>
+    ${B.map(([l,v],i)=>`<div style="display:flex;align-items:center;gap:10px;height:40px"><div style="width:62px;font-size:13px;color:#cfcfd4">${l}</div><div style="flex:1;height:16px;border-radius:4px;background:#2c2e35"><div style="height:16px;border-radius:4px;background:#D9A441;width:${v*out(clamp(h*2.5-0.4-i*0.12))}%"></div></div><div style="width:36px;text-align:right;font-size:14px;font-weight:700">${Math.round(v*out(clamp(h*2.5-0.4-i*0.12)))}</div></div>`).join('')}</div>
+  <div style="margin:14px 24px;border-radius:16px;background:#22242b;padding:16px;display:flex;align-items:center;gap:14px"><span style="width:44px;height:44px;border-radius:12px;background:#B28CE0;display:flex;align-items:center;justify-content:center">${svgI('ia',24)}</span><div style="font-size:14px;line-height:1.35"><b>Insight da IA:</b> a região Norte pede mais horários de atendimento.</div></div>
+  <div style="margin:0 24px;height:56px;border-radius:14px;border:2px solid #D9A441;color:#D9A441;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center">${svgI('rel',22,'#D9A441')} Exportar relatório PDF</div>`;
+}
+function colorMap(hl,dimOthers){Object.entries(PATHS).forEach(([id,p])=>{p.style.fill=hl[id]||(dimOthers?'#24262c':'#2a2c33'); p.style.stroke=hl[id]?'#111216':'#3a3c44';});}
+
+const P=new URLSearchParams(location.search), MODE=P.get('s')?'slide':'motion', SL=+P.get('s')||0;
+const art=$('#art');
+async function init(){
+  MAPSVG=(await (await fetch('assets/brazil.svg')).text()).replace('<svg','<svg preserveAspectRatio="xMidYMid meet"');
+  if(MODE==='slide') buildSlide(SL); else buildMotion();
+  await document.fonts.ready; await Promise.all([...document.images].map(i=>i.complete?0:new Promise(r=>i.onload=r)));
+  window.ready=true; if(MODE==='motion') seek(0);
+}
+function mapPaths(){PATHS={}; $$('#mapbox path').forEach(p=>PATHS[p.id]=p);}
+const LOGO=(w=260,dark=false)=>`<img src="assets/logo_${dark?'dark':'white'}.png" style="width:${w}px;display:block">`;
+const BRSTRIPE=`<div class="abs" style="left:0;right:0;bottom:0;height:12px;background:linear-gradient(90deg,#1F9D55 0 40%,#F4C430 40% 70%,#1351B4 70%)"></div>`;
+
+/* ---------------- CARROSSEL ---------------- */
+function buildSlide(n){
+  const foot=(i)=>`<div class="abs" style="left:80px;bottom:56px">${LOGO(230)}</div><div class="abs" style="right:80px;bottom:62px;font-size:20px;font-weight:700;color:#9a9ba3;letter-spacing:2px">${i}/7</div>${BRSTRIPE}`;
+  let h='';
+  if(n===1){ h=`<div class="dots"></div>
+    <div class="abs" style="left:80px;top:110px"><span class="pill">NOVO · APLICATIVO</span></div>
+    <div class="abs anton" style="left:80px;top:220px;font-size:112px">Pesquisas<br>e <span class="gold">resultados</span><br>na palma<br>da mão</div>
+    <div class="abs" style="left:84px;top:860px;width:480px;font-size:30px;line-height:1.4;color:#d9d7d0">Do questionário em campo ao painel do gestor, em um só aplicativo.</div>
+    <div class="phone" style="left:700px;top:340px;transform:rotate(6deg) scale(.86);transform-origin:0 0"><div class="scr">${scrRes(1)}</div></div>
+    <div class="abs" style="left:84px;top:1080px"><span class="tag">Arraste para o lado →</span></div>${foot(1)}`; }
+  if(n===2){ h=`<div class="abs" style="left:80px;top:100px"><span class="pill">MÓDULOS</span></div>
+    <div class="abs anton" style="left:80px;top:200px;font-size:96px">Tudo o que a<br>pesquisa <span class="gold">precisa</span></div>
+    <div class="abs" style="left:80px;top:470px;width:920px;display:grid;grid-template-columns:1fr 1fr;gap:22px">${MODS.map(([l,ic,c])=>`<div class="card" style="padding:26px 28px;display:flex;align-items:center;gap:22px"><span style="width:76px;height:76px;border-radius:20px;background:${c};display:flex;align-items:center;justify-content:center;flex:none">${svgI(ic,42)}</span><span style="font-size:30px;font-weight:700;line-height:1.2">${l}</span></div>`).join('')}</div>${foot(2)}`; }
+  if(n===3){ h=`<div class="abs" style="left:80px;top:100px"><span class="pill">FORMAS DE ACESSO</span></div>
+    <div class="abs anton" style="left:80px;top:200px;font-size:96px">Entre do<br><span class="gold">seu jeito</span></div>
+    <div class="abs" style="left:80px;top:460px;width:500px">${[['Entrar com gov.br','web','#1351B4','Login único do governo'],['E-mail e senha','mail','#23252b','Perfis por função'],['Celular e web','cel','#23252b','Android, iPhone e navegador'],['Modo offline','wifi','#23252b','Coleta sem internet, sincroniza depois']].map(([l,ic,bg,d])=>`<div style="display:flex;gap:20px;align-items:center;margin-bottom:26px"><span style="width:72px;height:72px;border-radius:18px;background:${bg};border:2px solid #34363e;display:flex;align-items:center;justify-content:center;flex:none">${svgI(ic,38,'#F2EFE8')}</span><div><div style="font-size:30px;font-weight:800">${l}</div><div style="font-size:21px;color:#9a9ba3;margin-top:4px">${d}</div></div></div>`).join('')}</div>
+    <div class="phone" style="left:620px;top:330px;transform:scale(.9);transform-origin:0 0"><div class="scr">${scrLogin(1,0)}</div></div>${foot(3)}`; }
+  if(n===4){ h=`<div class="abs" style="left:80px;top:100px"><span class="pill">BUSCA POR LOCAL</span></div>
+    <div class="abs anton" style="left:80px;top:200px;font-size:76px">Encontre por<br><span class="gold">estado, cidade<br>e região</span></div>
+    <div class="abs" style="left:80px;top:590px;width:470px">${['Estado e município','Bairro ou região de saúde','Raio no mapa a partir do GPS','Comparar regiões lado a lado'].map((x,i)=>`<div style="display:flex;gap:16px;align-items:center;height:76px;font-size:27px;font-weight:600"><span style="width:44px;height:44px;border-radius:12px;background:${['#1F9D55','#F4C430','#1351B4','#D9A441'][i]};color:#111216;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:22px">${i+1}</span>${x}</div>`).join('')}</div>
+    <div class="phone" style="left:610px;top:300px;transform:scale(.92);transform-origin:0 0"><div class="scr">${scrBusca(1,{q:'Alvorada de Minas, MG',chips:[['Minas Gerais',1],['Alvorada de Minas',1],['Raio 20 km',1]],go:1,n:'312'})}</div></div>${foot(4)}`; }
+  if(n===5){ h=`<div class="abs" style="left:80px;top:100px"><span class="pill">RESULTADOS</span></div>
+    <div class="abs anton" style="left:80px;top:200px;font-size:84px">Decisão com<br><span class="gold">dados na hora</span></div>
+    <div class="abs" style="left:80px;top:480px;width:470px">${['Painéis atualizados a cada envio','Gráficos por região e período','Insights automáticos com IA','Relatório em PDF com um toque'].map(x=>`<div style="display:flex;gap:16px;align-items:center;height:80px;font-size:28px;font-weight:600"><span style="color:#D9A441;font-size:34px;font-weight:900">✓</span>${x}</div>`).join('')}</div>
+    <div class="phone" style="left:610px;top:300px;transform:scale(.92);transform-origin:0 0"><div class="scr">${scrRes(1)}</div></div>${foot(5)}`; }
+  if(n===6){ h=`<div class="dots"></div><div class="abs" style="left:80px;top:100px"><span class="pill">SEGURANÇA</span></div>
+    <div class="abs anton" style="left:80px;top:200px;font-size:96px">Feito para o<br><span class="gold">setor público</span></div>
+    <div class="abs" style="left:80px;top:470px;width:920px;display:grid;grid-template-columns:1fr 1fr;gap:22px">${[['LGPD desde o projeto','lock'],['Acesso por perfil','equipe'],['Login gov.br','web'],['Dados no Brasil, com backup','rel']].map(([l,ic])=>`<div class="card" style="padding:34px 30px;height:220px;display:flex;flex-direction:column;justify-content:space-between"><span style="width:76px;height:76px;border-radius:20px;background:#D9A441;display:flex;align-items:center;justify-content:center">${svgI(ic,42)}</span><span style="font-size:32px;font-weight:800;line-height:1.2">${l}</span></div>`).join('')}</div>${foot(6)}`; }
+  if(n===7){ h=`<div class="abs" style="inset:0;background:#D9A441"></div>
+    <div class="abs anton" style="left:80px;top:180px;font-size:140px;color:#111216">Leve a sua<br>pesquisa<br>para o app</div>
+    <div class="abs" style="left:84px;top:690px;font-size:36px;font-weight:600;color:#111216;line-height:1.4;width:900px">Agende uma demonstração com o nosso time.</div>
+    <div class="abs" style="left:80px;top:820px;width:920px;border-radius:28px;background:#111216;padding:40px 46px;color:#fff;font-size:30px;font-weight:700;line-height:1.8">
+      fabricagovv@gmail.com<br>WhatsApp (31) 99827-7323<br><span style="color:#D9A441">@Grupo_v4_fabricagovv</span></div>
+    <div class="abs" style="left:80px;bottom:56px">${LOGO(260,true)}</div><div class="abs" style="right:80px;bottom:62px;font-size:20px;font-weight:700;color:#111216;letter-spacing:2px">7/7</div>${BRSTRIPE}`; }
+  art.innerHTML=h+(n>=2&&n<=5?`<div class="abs" style="right:80px;top:110px"><span class="tag">Interface ilustrativa</span></div>`:'');
+  mapPaths(); if(n===4){const hl={}; Object.keys(PATHS).forEach(k=>hl[k]=null); colorMap({mg:'#1F9D55'},true); addPin();}
+}
+function addPin(){const mb=$('#mapbox svg'); if(!mb) return; const ns='http://www.w3.org/2000/svg';
+  const c=document.createElementNS(ns,'circle'); c.setAttribute('cx',478.6);c.setAttribute('cy',377.8);c.setAttribute('r',40);c.setAttribute('fill','#F4C43033');c.setAttribute('stroke','#F4C430');c.setAttribute('stroke-width',3);c.setAttribute('vector-effect','non-scaling-stroke');c.id='rad';mb.appendChild(c);
+  const d=document.createElementNS(ns,'circle'); d.setAttribute('cx',478.6);d.setAttribute('cy',377.8);d.setAttribute('r',9);d.setAttribute('fill','#F4C430');d.setAttribute('stroke','#111216');d.setAttribute('stroke-width',4);d.id='pdot';mb.appendChild(d);}
+
+/* ---------------- MOTION (15 s) ---------------- */
+const DUR=15;
+function buildMotion(){
+  art.innerHTML=`<div class="dots" id="dots"></div>
+   <div id="hook" class="abs" style="left:80px;top:120px;width:920px">
+     <div><span class="pill" id="hp">NOVO · APLICATIVO</span></div>
+     <div class="anton" style="font-size:118px;margin-top:26px;overflow:hidden"><div id="h1">Pesquisas e</div></div>
+     <div class="anton gold" style="font-size:118px;overflow:hidden"><div id="h2">resultados</div></div>
+     <div class="anton" style="font-size:118px;overflow:hidden"><div id="h3">na palma da mão</div></div></div>
+   <div id="cap" class="abs anton" style="left:80px;top:150px;width:520px;font-size:78px"></div>
+   <div id="capd" class="abs" style="left:84px;top:420px;width:460px;font-size:28px;line-height:1.4;color:#d9d7d0"></div>
+   <div class="phone" id="ph" style="left:590px;top:330px"><div class="scr" id="scr"></div></div>
+   <div id="end" class="abs" style="inset:0;background:#D9A441;display:none">
+     <div class="abs anton" style="left:80px;top:240px;font-size:150px;color:#111216" id="e1">Leve a sua<br>pesquisa<br>para o app</div>
+     <div class="abs" style="left:84px;top:800px;font-size:34px;font-weight:700;color:#111216;line-height:1.6" id="e2">Agende uma demonstração<br>(31) 99827-7323 · @Grupo_v4_fabricagovv</div>
+     <div class="abs" style="left:80px;bottom:80px" id="e3">${LOGO(300,true)}</div></div>
+   <div id="lg" class="abs" style="left:80px;bottom:60px">${LOGO(230)}</div>
+   <div class="abs" style="right:80px;bottom:66px"><span class="tag">Interface ilustrativa</span></div>${BRSTRIPE}`;
+}
+// fases: 0 hook | 1 login | 2 módulos | 3 busca local | 4 resultados | 5 final
+const PH=[[0,2.4],[2.4,5.0],[5.0,8.0],[8.0,11.2],[11.2,13.6],[13.6,15]];
+const CAPS=[null,['Acesso<br><span class="gold">fácil</span>','gov.br, e-mail e senha, ou modo offline no campo.'],['Módulos<br><span class="gold">completos</span>','Questionários, coleta, painéis, mapas, relatórios e equipes.'],
+  ['Busca por<br><span class="gold">local</span>','Estado, município e raio no mapa.'],['Resultados<br><span class="gold">na hora</span>','Painéis, insights com IA e PDF.']];
+let lastPhase=-1;
+function seek(t){
+  $('#dots').style.transform=`translate(${(-t*8)%42}px,${(-t*4)%42}px)`;
+  const ph=PH.findIndex(p=>t>=p[0]&&t<p[1]); const k=ph<0?5:ph; const [a,b]=PH[k]; const h=rng(t,a,b);
+  // hook
+  const hk=$('#hook'); hk.style.display=t<2.7?'block':'none';
+  ['#h1','#h2','#h3'].forEach((s,i)=>{const e=spring(t-0.2-i*0.15,220,22), x=io(rng(t,2.2,2.6)); $(s).style.transform=`translateY(${(1-clamp(e))*110 - x*110}%)`;});
+  $('#hp').style.opacity=clamp(t/0.3)*(1-rng(t,2.2,2.5));
+  // celular: entra subindo, depois vai para a direita durante as fases
+  const pe=spring(t-0.6,140,20); const toRight=io(rng(t,2.2,2.8));
+  const phx=lerp(325,590,toRight), phy=lerp(560,330,toRight)+(1-pe)*700;
+  const ex=io(rng(t,13.4,13.8));
+  $('#ph').style.left=phx+'px'; $('#ph').style.top=(phy+ex*900)+'px'; $('#ph').style.transform=`rotate(${lerp(-4,0,toRight)+Math.sin(t*1.2)*0.6}deg) scale(${lerp(0.95,1,toRight)})`;
+  // tela
+  const scr=$('#scr');
+  if(k<=1){ const tap=rng(t,4.2,4.5); scr.innerHTML=scrLogin(k===0?1:clamp((t-2.4)/1.2+0.4),t>4.2?tap:0); }
+  else if(k===2){ scr.innerHTML=scrMods(rng(t,5.0,7.6)); }
+  else if(k===3){ if(lastPhase!==3){ scr.innerHTML=scrBusca(0,{q:'',chips:[],go:0,n:''}); mapPaths(); addPin(); }
+      const q=t<8.6?'':'Alvorada de Minas, MG'; const ty=Math.floor('Alvorada de Minas, MG'.length*clamp((t-8.4)/0.8));
+      const sel={q:'Alvorada de Minas, MG'.slice(0,ty)+(ty<21&&t>8.4?'▍':''),chips:[['Minas Gerais',t>9.3],['Alvorada de Minas',t>9.9],['Raio 20 km',t>10.4]],go:clamp((t-10.6)/0.3),n:'312'};
+      const keep=$('#mapbox').innerHTML; scr.innerHTML=scrBusca(0,sel).replace(MAPSVG,''); $('#mapbox').innerHTML=keep; mapPaths();
+      const g=out(rng(t,9.3,9.8)); colorMap({mg:`rgb(${lerp(42,31,g)|0},${lerp(44,157,g)|0},${lerp(51,85,g)|0})`},t>9.3);
+      const r=$('#rad'), d=$('#pdot'); if(r){const re=spring(t-10.4,200,16); r.setAttribute('r',Math.max(0,re)*40); d.setAttribute('r',t>9.9?9*clamp(spring(t-9.9,300,14),0,1.3):0);}
+      const z=1+1.6*io(rng(t,9.4,10.2)); $('#mapbox svg').style.transform=`scale(${z})`; $('#mapbox svg').style.transformOrigin='78% 59%'; }
+  else if(k===4){ scr.innerHTML=scrRes(rng(t,11.2,13.0)); }
+  lastPhase=k;
+  // legendas laterais
+  const showCap=k>=1&&k<=4; const ce=spring(t-a-0.1,240,22);
+  $('#cap').innerHTML=showCap?CAPS[k][0]:''; $('#capd').innerHTML=showCap?CAPS[k][1]:'';
+  [$('#cap'),$('#capd')].forEach((e,i)=>{e.style.opacity=showCap?clamp(ce*2-i*0.3)*(1-rng(t,b-0.25,b)):0; e.style.transform=`translateX(${(1-clamp(ce))*-60}px)`;});
+  // final
+  const en=$('#end'); en.style.display=t>13.6?'block':'none';
+  if(t>13.6){ const f=io(rng(t,13.6,13.9)); en.style.clipPath=`circle(${f*150}% at 50% 50%)`;
+    ['#e1','#e2','#e3'].forEach((s,i)=>{const e=spring(t-13.85-i*0.15,240,22); $(s).style.transform=`translateY(${(1-clamp(e))*60}px)`; $(s).style.opacity=clamp(e*2);}); }
+  $('#lg').style.opacity=t<13.6?1:0;
+}
+window.seek=seek; window.DUR=DUR;
+init();
+</script>
+</body>
+</html>

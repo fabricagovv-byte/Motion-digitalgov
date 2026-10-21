@@ -1,0 +1,43 @@
+/* Kit visual da série V4.7 (Inteligência Pública por V4 FábricaGov) */
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:Inter;src:url(fonts/inter-latin-700-normal.woff2) format('woff2');font-weight:700}
+:root{--ink:#111216;--ink2:#1A1C22;--ink3:#24272F;--line:#2E323C;--paper:#F4F1EA;--mute:#A9ADB8;--gold:#D9A441;--acc:#2EC4E6}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#000}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:var(--paper);background:var(--ink)}
+.sc{position:absolute;inset:0;display:none;overflow:hidden;background:var(--ink)}
+.cam{position:absolute;inset:0;transform-origin:50% 50%}
+.abs{position:absolute}
+.anton{font-family:Anton,sans-serif;text-transform:uppercase;letter-spacing:.5px;line-height:.95}
+.eb{font-weight:700;font-size:24px;letter-spacing:7px;text-transform:uppercase;color:var(--acc)}
+.gold{color:var(--gold)}.acc{color:var(--acc)}.mute{color:var(--mute)}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:60px 60px}
+.glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35}
+.panel{background:var(--ink2);border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 60px #0008}
+.chip{display:inline-flex;align-items:center;gap:12px;background:var(--ink3);border:1px solid var(--line);border-radius:999px;padding:12px 24px;font-size:24px;font-weight:600}
+.chip i{width:12px;height:12px;border-radius:50%;background:var(--acc);display:inline-block}
+.btn{display:inline-block;background:var(--acc);color:var(--ink);border-radius:14px;padding:16px 28px;font-weight:700;font-size:24px}
+.kpi{font-family:Anton,sans-serif;font-size:96px;line-height:1;letter-spacing:.5px}
+.lbl{font-size:24px;font-weight:600;color:var(--mute)}
+/* mockups */
+.phone{position:absolute;width:430px;height:880px;border-radius:64px;background:#0B0C0F;border:3px solid #3A3E48;box-shadow:0 40px 80px #000a,inset 0 0 0 10px #0B0C0F;padding:18px;overflow:hidden}
+.phone .scr{position:relative;width:100%;height:100%;border-radius:48px;overflow:hidden;background:var(--ink2)}
+.phone .notch{position:absolute;left:50%;top:14px;width:130px;height:34px;border-radius:20px;background:#000;transform:translateX(-50%);z-index:5}
+.laptop{position:absolute;border-radius:20px;background:var(--ink2);border:1px solid #3A3E48;box-shadow:0 40px 90px #000a;overflow:hidden}
+.laptop .bar{height:52px;background:#16181E;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 20px}
+.laptop .bar b{width:14px;height:14px;border-radius:50%;background:#3A3E48;display:inline-block}
+.laptop .bar span{margin-left:20px;background:#0E0F13;border-radius:8px;padding:6px 18px;font-size:18px;color:var(--mute);font-weight:500}
+.laptop .body{position:relative;height:calc(100% - 52px);overflow:hidden}
+/* HUD */
+#hud{position:absolute;left:64px;top:44px;display:flex;align-items:center;gap:18px;z-index:40}
+#hud img{height:44px}
+#hud .sep{width:2px;height:34px;background:#ffffff33}
+#hud .sys{font-size:20px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--paper)}
+#note{position:absolute;right:64px;bottom:40px;font-size:20px;font-weight:600;color:#ffffff88;z-index:40;text-align:right}
+#src{position:absolute;left:64px;bottom:40px;font-size:20px;font-weight:600;color:#ffffff88;z-index:40;max-width:1300px}
+#tiles{position:absolute;inset:0;pointer-events:none;z-index:60}
+#tiles div{position:absolute}
+#fade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:70}

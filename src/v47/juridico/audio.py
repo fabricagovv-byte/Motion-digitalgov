@@ -2,6 +2,14 @@
 import sys, os; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '../kit'))
 from audio_lib import *
 
+def typing(n=12, gap=.06):   # versão local: a do kit pode estourar o buffer em textos longos
+    out = np.zeros(int(SR * (n * gap * 1.3 + .2)))
+    for q in range(n):
+        c = lowpass(rng.standard_normal(int(SR * .03)), 4000) * np.exp(-ta(.03) * 120) * .5
+        i = int(q * gap * SR * (0.8 + 0.4 * rng.random())); out[i:i + len(c)] += c
+    return out
+
+
 A = Ctx(); fx = A.fx; W = A.Wd; SC = A.SC
 music(A, chords=((57, 60, 64), (53, 57, 60), (50, 53, 57), (52, 56, 59)))   # Am F Dm E: sóbrio, institucional
 A.transitions()
@@ -25,8 +33,8 @@ fx.add(impact()[: int(.5 * SR)], SC[5] + .2, .18); fx.add(whoosh(.5), W(6, 'suge
 # 7 · prazos
 for q in range(15): fx.add(tick(2400 + q * 30), W(7, 'dias úteis') + q * .05, .03, .2)
 fx.add(pop(600, 1300), W(7, 'dobro') - .2, .18)
-ta = W(7, 'avisa') - .2
-for q in range(6): fx.add(blip(1320 if q % 2 else 1760, .12), ta + q * .14, .12)
+tav = W(7, 'avisa') - .2
+for q in range(6): fx.add(blip(1320 if q % 2 else 1760, .12), tav + q * .14, .12)
 # 8 · documento a partir do modelo
 fx.add(pop(500, 1000), W(8, 'modelos') - .2, .16); fx.add(typing(60, 1 / 95), W(8, 'modelos') + .3, .1)
 for i in range(3): fx.add(pop(800, 1500), W(8, 'citações') - .2 + i * .35, .14)

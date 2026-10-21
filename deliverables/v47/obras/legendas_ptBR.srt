@@ -1,0 +1,52 @@
+1
+00:00:00,800 --> 00:00:07,917
+Toda obra pública começa no papel. E quando a medida está errada, o problema aparece depois: aditivo, atraso e retrabalho.
+
+2
+00:00:08,317 --> 00:00:15,536
+Com o Sistema de Obras da V4.7, tudo começa no celular. O servidor vai até o local e fotografa o terreno.
+
+3
+00:00:15,835 --> 00:00:21,261
+A câmera mede na hora: largura, comprimento e área. Cada cota fica registrada na foto.
+
+4
+00:00:21,561 --> 00:00:26,817
+Depois, é só falar o que a prefeitura quer: quero uma praça com quadra, bancos e iluminação.
+
+5
+00:00:27,117 --> 00:00:34,144
+A IA entende o pedido e desenha a proposta: os caminhos, a quadra, os bancos e os postes, tudo na medida do terreno.
+
+6
+00:00:34,444 --> 00:00:40,511
+Em seguida, levanta os quantitativos: metros quadrados de piso, metros de meio-fio, número de postes.
+
+7
+00:00:40,811 --> 00:00:47,710
+E monta o orçamento com a referência oficial de preços do SINAPI, como pede a Lei 14.133.
+
+8
+00:00:48,010 --> 00:00:54,738
+Os documentos da fase preparatória saem prontos: estudo técnico preliminar, termo de referência e cronograma.
+
+9
+00:00:55,038 --> 00:00:59,526
+A IA estima. O engenheiro responsável confere, ajusta e assina, com ART.
+
+10
+00:00:59,826 --> 00:01:03,674
+Com os dados certos, a prefeitura já pode publicar a licitação.
+
+11
+00:01:03,974 --> 00:01:11,214
+Num cenário ilustrativo, uma obra de 1 milhão de reais que evita um aditivo de 10% economiza 100 mil reais.
+
+12
+00:01:11,514 --> 00:01:16,066
+Menos erro de quantitativo, menos retrabalho e uma licitação mais rápida.
+
+13
+00:01:17,466 --> 00:01:21,868
+V4.7. Inteligência pública, por V4 FábricaGov.
+

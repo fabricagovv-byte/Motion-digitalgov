@@ -1,0 +1,56 @@
+1
+00:00:00,800 --> 00:00:08,253
+Uma prefeitura cuida de saúde, educação, obras, leis e da voz do povo. Quase sempre, em sistemas que não conversam entre si.
+
+2
+00:00:08,653 --> 00:00:13,412
+Chegou a V4.7. Inteligência pública, por V4 FábricaGov.
+
+3
+00:00:13,812 --> 00:00:18,897
+Uma plataforma, seis sistemas e a mesma inteligência artificial conectando tudo.
+
+4
+00:00:19,198 --> 00:00:23,941
+Pesquisa: o povo responde pelo celular, e a IA mostra o que cada bairro mais pede.
+
+5
+00:00:24,140 --> 00:00:29,708
+Saúde: agenda, prontuário e estoque de remédios no mesmo lugar, com alerta antes da falta.
+
+6
+00:00:29,908 --> 00:00:34,604
+Jurídico: pergunte em linguagem simples, e a resposta vem com o artigo da lei.
+
+7
+00:00:34,804 --> 00:00:39,947
+Aprendizagem: cada aluno no seu ritmo, com uma tutora de IA e o professor no comando.
+
+8
+00:00:40,146 --> 00:00:45,914
+Obras: fotos e medidas pelo celular, e a IA prepara quantitativos e orçamento para a licitação.
+
+9
+00:00:46,115 --> 00:00:52,352
+E o Engenheiro 7.3 acompanha a obra da ideia à entrega, com cronograma e custos em tempo real.
+
+10
+00:00:52,752 --> 00:00:58,072
+Tudo conectado: o que a pesquisa revela vira prioridade na saúde, na escola e nas obras.
+
+11
+00:00:58,372 --> 00:01:04,726
+Menos papel, menos retrabalho e decisões com dados. É assim que a V4.7 ajuda a economizar.
+
+12
+00:01:05,026 --> 00:01:11,607
+A inteligência artificial sugere. Quem decide são as pessoas. Com segurança e LGPD desde o projeto.
+
+13
+00:01:11,906 --> 00:01:16,735
+Fale com a V4 FábricaGov e leve a V4.7 para a sua cidade.
+
+14
+00:01:17,936 --> 00:01:22,338
+V4.7. Inteligência pública, por V4 FábricaGov.
+

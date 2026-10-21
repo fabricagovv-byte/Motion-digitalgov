@@ -1,0 +1,52 @@
+1
+00:00:00,800 --> 00:00:08,381
+Cada aluno aprende de um jeito, mas a sala de aula costuma andar num ritmo só. E quem fica para trás nem sempre é visto a tempo.
+
+2
+00:00:08,781 --> 00:00:16,896
+A V4.7 Aprendizagem Digital leva a escola para o celular do aluno, e funciona até com internet fraca ou sem conexão.
+
+3
+00:00:17,196 --> 00:00:23,134
+Cada estudante recebe uma trilha personalizada, no seu nível, com conteúdos alinhados à BNCC.
+
+4
+00:00:23,434 --> 00:00:29,522
+Errou? A IA tutora explica de outro jeito, com um exemplo do dia a dia, e cria novos exercícios na hora.
+
+5
+00:00:29,822 --> 00:00:35,233
+Metas, medalhas e sequências de estudo deixam o aprendizado mais leve e motivador.
+
+6
+00:00:35,534 --> 00:00:40,363
+O professor vê o painel da turma: quem está com dificuldade, e em qual habilidade.
+
+7
+00:00:40,663 --> 00:00:45,642
+Com um toque, ele monta um reforço para o grupo certo. A IA apoia, e o professor conduz.
+
+8
+00:00:45,942 --> 00:00:51,689
+A Secretaria de Educação acompanha a rede inteira, por escola e por habilidade, em tempo real.
+
+9
+00:00:51,989 --> 00:00:55,695
+As famílias recebem relatórios simples, direto no celular.
+
+10
+00:00:55,995 --> 00:01:01,059
+E os servidores públicos também aprendem: cursos de capacitação com certificado.
+
+11
+00:01:01,359 --> 00:01:11,180
+Num cenário ilustrativo, uma rede com 5 mil alunos que troca 20 folhas impressas por mês, por aluno, por material digital, deixa de imprimir 100 mil folhas todo mês.
+
+12
+00:01:11,480 --> 00:01:16,437
+Tudo com segurança e LGPD, porque dados de estudantes merecem proteção.
+
+13
+00:01:17,838 --> 00:01:22,240
+V4.7. Inteligência pública, por V4 FábricaGov.
+

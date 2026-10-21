@@ -1,0 +1,52 @@
+1
+00:00:00,800 --> 00:00:08,808
+Na prefeitura, cada parecer começa com horas de pesquisa: leis, decretos, jurisprudência e prazos espalhados em papéis e planilhas.
+
+2
+00:00:09,108 --> 00:00:16,426
+Com o Sistema Jurídico V4.7, o servidor pergunta em linguagem simples, e a IA responde com base na lei.
+
+3
+00:00:16,726 --> 00:00:27,870
+Toda resposta cita o artigo exato. A Lei 14.133 manda que, ao fim da fase preparatória, o processo passe pelo controle prévio de legalidade da assessoria jurídica.
+
+4
+00:00:28,170 --> 00:00:33,085
+Um clique abre o texto oficial, com o trecho destacado. A fonte fica sempre à vista.
+
+5
+00:00:33,385 --> 00:00:42,630
+Na análise de editais e contratos, a IA confere item por item: estudo técnico preliminar, termo de referência, orçamento estimado e análise de riscos.
+
+6
+00:00:42,830 --> 00:00:47,894
+O que falta aparece em destaque, com a sugestão de correção e o artigo que a fundamenta.
+
+7
+00:00:48,195 --> 00:00:57,125
+Os prazos processuais ficam num só painel: o sistema conta em dias úteis, considera o prazo em dobro da Fazenda Pública e avisa antes do vencimento.
+
+8
+00:00:57,425 --> 00:01:03,961
+Pareceres, ofícios e minutas de contrato saem a partir dos modelos do órgão, já com as citações conferidas.
+
+9
+00:01:04,261 --> 00:01:11,373
+A base reúne leis federais, estaduais e municipais. Quando uma norma muda, os documentos afetados recebem um alerta.
+
+10
+00:01:11,673 --> 00:01:20,509
+E a palavra final é sempre do procurador: a IA sugere, o advogado revisa, assina e decide. Tudo fica registrado, com acesso seguro e LGPD.
+
+11
+00:01:20,810 --> 00:01:29,607
+Num cenário ilustrativo: se a pesquisa de um parecer cai de 4 horas para 1, com 40 pareceres por mês, são 120 horas devolvidas à equipe.
+
+12
+00:01:29,907 --> 00:01:34,630
+Procuradorias, câmaras e secretarias com mais segurança jurídica, em menos tempo.
+
+13
+00:01:36,029 --> 00:01:40,431
+V4.7. Inteligência pública, por V4 FábricaGov.
+

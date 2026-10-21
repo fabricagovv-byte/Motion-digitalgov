@@ -1,0 +1,52 @@
+1
+00:00:00,800 --> 00:00:07,739
+Toda prefeitura precisa ouvir a população. Mas pesquisa no papel demora semanas e chega velha na mesa do gestor.
+
+2
+00:00:08,139 --> 00:00:14,710
+Com a V4.7, a pesquisa começa em minutos: você descreve o objetivo e a IA monta o questionário.
+
+3
+00:00:15,010 --> 00:00:21,183
+Perguntas fechadas, escalas de satisfação e espaço para a pessoa responder com as próprias palavras.
+
+4
+00:00:21,483 --> 00:00:27,635
+Os entrevistadores coletam pelo celular, mesmo sem internet, e cada resposta fica ligada ao bairro.
+
+5
+00:00:27,935 --> 00:00:32,295
+Quando o sinal volta, tudo sincroniza e o painel atualiza em tempo real.
+
+6
+00:00:32,595 --> 00:00:37,744
+O mapa de calor mostra onde a satisfação cai e onde cada problema aparece mais.
+
+7
+00:00:38,045 --> 00:00:42,170
+Filtros por idade, região e tema mostram o que cada grupo pensa.
+
+8
+00:00:42,470 --> 00:00:47,326
+A IA lê as respostas abertas, agrupa os pedidos e resume o que o povo mais pede.
+
+9
+00:00:47,626 --> 00:00:52,349
+Depois, sugere prioridades. Quem decide é a gestão, agora com dados na mão.
+
+10
+00:00:52,749 --> 00:00:58,511
+Toda semana, um relatório automático chega pronto, com gráficos e comparação com a semana anterior.
+
+11
+00:00:58,910 --> 00:01:09,158
+Num cenário ilustrativo, mil questionários a 5 minutos de digitação cada somam mais de 80 horas de trabalho. Na V4.7, os dados já chegam tabulados.
+
+12
+00:01:09,558 --> 00:01:14,793
+E com segurança: respostas anonimizadas e dados tratados conforme a LGPD.
+
+13
+00:01:16,293 --> 00:01:20,695
+V4.7. Inteligência pública, por V4 FábricaGov.
+

@@ -1,0 +1,52 @@
+1
+00:00:00,800 --> 00:00:07,720
+Na saúde pública, cada minuto de espera pesa. Filas longas, papéis espalhados e remédio que falta na hora errada.
+
+2
+00:00:08,120 --> 00:00:12,864
+O Sistema de Saúde V4.7 reúne tudo em uma só plataforma.
+
+3
+00:00:13,164 --> 00:00:18,704
+O cidadão agenda a consulta pelo celular e acompanha a fila em tempo real, sem sair de casa.
+
+4
+00:00:19,004 --> 00:00:25,412
+Na UBS ou no hospital, o profissional abre o prontuário eletrônico único, com histórico, exames e receitas.
+
+5
+00:00:25,713 --> 00:00:31,609
+O estoque de medicamentos é controlado unidade por unidade, com alerta de falta e de validade.
+
+6
+00:00:31,909 --> 00:00:37,229
+O gestor acompanha tudo em um painel: atendimentos, filas e o mapa da cidade por bairro.
+
+7
+00:00:37,529 --> 00:00:43,062
+A IA aponta tendências. Por exemplo: os casos de dengue estão subindo no bairro Vila Nova.
+
+8
+00:00:43,262 --> 00:00:48,667
+E sugere ações, como reforçar o mutirão contra o mosquito. Quem decide é sempre o gestor.
+
+9
+00:00:48,968 --> 00:00:55,758
+Com a telessaúde, o paciente conversa com o médico por vídeo, e as orientações ficam registradas no prontuário.
+
+10
+00:00:56,057 --> 00:01:02,785
+Tudo se conecta aos sistemas de saúde que o município já usa, com segurança e LGPD para dados sensíveis.
+
+11
+00:01:03,185 --> 00:01:13,561
+Cenário ilustrativo: 1.000 consultas por mês, com 15% de faltas. Se o lembrete reduzir as faltas pela metade, são 75 consultas a mais por mês.
+
+12
+00:01:13,962 --> 00:01:18,002
+Menos fila, menos desperdício e mais cuidado para quem precisa.
+
+13
+00:01:19,402 --> 00:01:23,804
+V4.7. Inteligência pública, por V4 FábricaGov.
+

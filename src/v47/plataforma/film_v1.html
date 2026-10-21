@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Plataforma</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+.sys-ttl{font-size:150px}
+.feat{position:absolute;display:flex;align-items:center;gap:16px;font-size:34px;font-weight:700;background:var(--ink2);border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:16px;padding:20px 28px;white-space:nowrap}
+.feat i{width:16px;height:16px;border-radius:50%;background:var(--acc)}
+.silo{position:absolute;width:380px;height:250px;background:#1A1C22;border:1px solid #2E323C;border-radius:18px;overflow:hidden}
+.silo .h{height:44px;background:#22252C;display:flex;align-items:center;padding:0 18px;font-size:22px;font-weight:700;color:#A9ADB8;letter-spacing:2px}
+.silo .l{height:14px;border-radius:7px;background:#2A2E37;margin:16px 18px 0}
+.node{position:absolute;width:230px;height:230px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#1A1C22;border:4px solid var(--c);box-shadow:0 0 50px color-mix(in srgb,var(--c) 40%,transparent)}
+.node b{font-size:28px;font-weight:800;text-align:center;line-height:1.1}
+.ui-row{display:flex;align-items:center;gap:14px;background:#22252C;border-radius:14px;padding:16px 18px;margin:0 22px 14px;font-size:22px;font-weight:600}
+.dot{width:14px;height:14px;border-radius:50%;flex:none}
+.bubble{border-radius:18px;padding:18px 22px;font-size:24px;line-height:1.35;max-width:640px}
+.ico{width:64px;height:64px}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1: sistemas que não conversam -->
+<div class="sc" id="s1"><div class="cam"><div class="grid-bg"></div>
+ <svg class="abs" width="1920" height="1080" id="cab1"></svg>
+ <div id="silos1"></div>
+ <div class="abs anton" id="t1" style="left:0;right:0;top:820px;text-align:center;font-size:84px;color:#F4F1EA">Sistemas que <span style="color:#FF5A5A">não conversam</span></div>
+</div></div>
+
+<!-- 2: logo -->
+<div class="sc" id="s2"><div class="cam"><div class="grid-bg"></div>
+ <div class="glow" id="g2" style="left:560px;top:180px;width:800px;height:700px;background:#D9A441"></div>
+ <div class="abs" id="lg2" style="left:330px;top:250px"></div>
+ <div class="abs" id="tg2" style="left:0;right:0;top:820px;text-align:center;font-size:44px;font-weight:700;letter-spacing:14px;color:#F4F1EA"></div>
+ <div class="abs" id="by2" style="left:0;right:0;top:890px;text-align:center;font-size:30px;font-weight:600;letter-spacing:6px;color:#D9A441">por V4 FábricaGov</div>
+</div></div>
+
+<!-- 3: hub -->
+<div class="sc" id="s3"><div class="cam"><div class="grid-bg"></div>
+ <svg class="abs" width="1920" height="1080" id="hub3"></svg>
+ <div id="nodes3"></div>
+ <div class="abs" id="core3" style="left:980px;top:440px;width:300px;height:300px;border-radius:50%;background:#111216;border:4px solid #D9A441;display:flex;align-items:center;justify-content:center;box-shadow:0 0 90px #D9A44166"><img src="../kit/assets/v47_mark_white.png" style="width:220px" alt=""></div>
+ <div class="abs anton" id="t3" style="left:96px;top:150px;font-size:72px;width:560px">1 plataforma<br><span class="gold">6 sistemas</span></div>
+ <div class="abs" id="t3b" style="left:96px;top:880px;width:520px;font-size:30px;font-weight:600;color:#A9ADB8;line-height:1.4">A mesma inteligência artificial conectando tudo</div>
+</div></div>
+
+<!-- 4-9: sistemas -->
+<div class="sc" id="s4"><div class="cam"><div class="grid-bg"></div><div class="glow" style="left:1100px;top:150px;width:800px;height:800px;background:#2EC4E6"></div>
+ <div class="abs eb" style="left:96px;top:250px;color:#2EC4E6">Sistema 01</div><div class="abs anton sys-ttl" id="t4" style="left:90px;top:300px">Pesquisa</div>
+ <div class="feat" id="f4a" style="left:96px;top:520px;--acc:#2EC4E6"><i></i>Resposta pelo celular</div>
+ <div class="feat" id="f4b" style="left:96px;top:620px;--acc:#2EC4E6"><i></i>Mapa por bairro</div>
+ <div class="feat" id="f4c" style="left:96px;top:720px;--acc:#2EC4E6"><i></i>IA resume o que o povo pede</div>
+ <div id="ph4"></div>
+ <div class="abs panel" id="hm4" style="left:1450px;top:330px;width:380px;padding:24px"><div class="lbl" style="margin-bottom:14px">Pedidos por bairro</div><div id="hmg4" style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px"></div></div>
+</div></div>
+
+<div class="sc" id="s5"><div class="cam"><div class="grid-bg"></div><div class="glow" style="left:1100px;top:150px;width:800px;height:800px;background:#2BD99F"></div>
+ <div class="abs eb" style="left:96px;top:250px;color:#2BD99F">Sistema 02</div><div class="abs anton sys-ttl" id="t5" style="left:90px;top:300px">Saúde</div>
+ <div class="feat" id="f5a" style="left:96px;top:520px;--acc:#2BD99F"><i></i>Agenda e fila transparente</div>
+ <div class="feat" id="f5b" style="left:96px;top:620px;--acc:#2BD99F"><i></i>Prontuário unificado</div>
+ <div class="feat" id="f5c" style="left:96px;top:720px;--acc:#2BD99F"><i></i>Alerta antes da falta de remédio</div>
+ <div id="ph5"></div>
+ <div class="abs panel" id="al5" style="left:1420px;top:640px;width:420px;padding:26px;border-left:6px solid #FFB020"><div style="font-size:24px;font-weight:800;color:#FFB020">⚠ Estoque baixo</div><div style="font-size:24px;font-weight:600;margin-top:8px">Dipirona 500 mg · UBS Centro</div><div class="lbl" style="margin-top:6px">acaba em ~6 dias</div></div>
+</div></div>
+
+<div class="sc" id="s6"><div class="cam"><div class="grid-bg"></div><div class="glow" style="left:1000px;top:150px;width:800px;height:800px;background:#8B7CF6"></div>
+ <div class="abs eb" style="left:96px;top:250px;color:#8B7CF6">Sistema 03</div><div class="abs anton sys-ttl" id="t6" style="left:90px;top:300px">Jurídico</div>
+ <div class="feat" id="f6a" style="left:96px;top:520px;--acc:#8B7CF6"><i></i>Pergunta em linguagem simples</div>
+ <div class="feat" id="f6b" style="left:96px;top:620px;--acc:#8B7CF6"><i></i>Resposta com o artigo da lei</div>
+ <div class="feat" id="f6c" style="left:96px;top:720px;--acc:#8B7CF6"><i></i>Revisão do procurador</div>
+ <div id="lp6"></div>
+</div></div>
+
+<div class="sc" id="s7"><div class="cam"><div class="grid-bg"></div><div class="glow" style="left:1100px;top:150px;width:800px;height:800px;background:#FF5DA2"></div>
+ <div class="abs eb" style="left:96px;top:250px;color:#FF5DA2">Sistema 04</div><div class="abs anton sys-ttl" id="t7" style="left:90px;top:300px">Aprendizagem</div>
+ <div class="feat" id="f7a" style="left:96px;top:520px;--acc:#FF5DA2"><i></i>Cada aluno no seu ritmo</div>
+ <div class="feat" id="f7b" style="left:96px;top:620px;--acc:#FF5DA2"><i></i>Tutora de IA</div>
+ <div class="feat" id="f7c" style="left:96px;top:720px;--acc:#FF5DA2"><i></i>Professor no comando</div>
+ <div id="ph7"></div>
+ <div class="abs" id="md7" style="left:1520px;top:250px;width:150px;height:150px;border-radius:50%;background:#FF5DA2;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:64px;color:#111216;box-shadow:0 0 50px #FF5DA288">★</div>
+</div></div>
+
+<div class="sc" id="s8"><div class="cam"><div class="grid-bg"></div><div class="glow" style="left:1100px;top:150px;width:800px;height:800px;background:#FF7A2F"></div>
+ <div class="abs eb" style="left:96px;top:250px;color:#FF7A2F">Sistema 05</div><div class="abs anton sys-ttl" id="t8" style="left:90px;top:300px">Obras</div>
+ <div class="feat" id="f8a" style="left:96px;top:520px;--acc:#FF7A2F"><i></i>Fotos e medidas pelo celular</div>
+ <div class="feat" id="f8b" style="left:96px;top:620px;--acc:#FF7A2F"><i></i>Quantitativos e orçamento</div>
+ <div class="feat" id="f8c" style="left:96px;top:720px;--acc:#FF7A2F"><i></i>Pronto para a licitação</div>
+ <div id="ph8"></div>
+ <div class="abs panel" id="q8" style="left:1440px;top:600px;width:400px;padding:24px"><div class="lbl">Orçamento estimado</div><div class="kpi" id="qv8" style="font-size:64px;color:#FF7A2F;margin-top:6px">R$ 0</div><div class="lbl" style="margin-top:6px;font-size:20px">valor ilustrativo · validado por engenheiro</div></div>
+</div></div>
+
+<div class="sc" id="s9"><div class="cam"><div class="grid-bg"></div><div class="glow" style="left:1000px;top:150px;width:800px;height:800px;background:#4D8BFF"></div>
+ <div class="abs eb" style="left:96px;top:250px;color:#4D8BFF">Sistema 06</div><div class="abs anton sys-ttl" id="t9" style="left:90px;top:320px;font-size:118px">Engenheiro <span style="color:#4D8BFF">7.3</span></div>
+ <div class="feat" id="f9a" style="left:96px;top:520px;--acc:#4D8BFF"><i></i>Da ideia à entrega</div>
+ <div class="feat" id="f9b" style="left:96px;top:620px;--acc:#4D8BFF"><i></i>Cronograma em tempo real</div>
+ <div class="feat" id="f9c" style="left:96px;top:720px;--acc:#4D8BFF"><i></i>Custos sob controle</div>
+ <div id="lp9"></div>
+</div></div>
+
+<!-- 10: tudo conectado -->
+<div class="sc" id="s10"><div class="cam"><div class="grid-bg"></div>
+ <svg class="abs" width="1920" height="1080" id="flow10"></svg>
+ <div class="abs anton" id="t10" style="left:96px;top:150px;font-size:96px">Tudo <span class="gold">conectado</span></div>
+ <div class="abs panel" id="p10" style="left:120px;top:420px;width:470px;padding:30px;border-left:6px solid #2EC4E6"><div class="lbl">Pesquisa revelou</div><div style="font-size:34px;font-weight:800;margin-top:8px;line-height:1.25">Bairro Esperança pede mais saúde, escola e asfalto</div><div class="lbl" style="margin-top:10px;font-size:20px">exemplo ilustrativo</div></div>
+ <div class="abs panel" id="d10a" style="left:1260px;top:300px;width:540px;padding:26px;border-left:6px solid #2BD99F"><div style="font-size:30px;font-weight:800;color:#2BD99F">Saúde</div><div style="font-size:26px;font-weight:600;margin-top:6px">Mutirão de consultas no bairro</div></div>
+ <div class="abs panel" id="d10b" style="left:1260px;top:500px;width:540px;padding:26px;border-left:6px solid #FF5DA2"><div style="font-size:30px;font-weight:800;color:#FF5DA2">Escola</div><div style="font-size:26px;font-weight:600;margin-top:6px">Reforço nas turmas com dificuldade</div></div>
+ <div class="abs panel" id="d10c" style="left:1260px;top:700px;width:540px;padding:26px;border-left:6px solid #FF7A2F"><div style="font-size:30px;font-weight:800;color:#FF7A2F">Obras</div><div style="font-size:26px;font-weight:600;margin-top:6px">Pavimentação entra no planejamento</div></div>
+</div></div>
+
+<!-- 11: economia -->
+<div class="sc" id="s11"><div class="cam"><div class="grid-bg"></div>
+ <div class="abs anton" id="t11" style="left:0;right:0;top:170px;text-align:center;font-size:96px">Onde a cidade <span class="gold">economiza</span></div>
+ <div class="abs" style="left:150px;top:400px;width:1620px;display:flex;gap:40px">
+  <div class="panel" id="e11a" style="flex:1;padding:44px;border-top:8px solid #2EC4E6"><svg class="ico" viewBox="0 0 64 64"><rect x="14" y="8" width="36" height="48" rx="4" fill="none" stroke="#2EC4E6" stroke-width="5"/><path d="M8 56 L56 8" stroke="#FF5A5A" stroke-width="6"/></svg><div class="anton" style="font-size:64px;margin-top:20px">Menos papel</div><div class="lbl" style="margin-top:12px;font-size:28px">processos e documentos digitais</div></div>
+  <div class="panel" id="e11b" style="flex:1;padding:44px;border-top:8px solid #FF7A2F"><svg class="ico" viewBox="0 0 64 64"><path d="M50 22 A20 20 0 1 0 52 40" fill="none" stroke="#FF7A2F" stroke-width="6"/><path d="M42 20 L52 22 L50 10" fill="none" stroke="#FF7A2F" stroke-width="6"/></svg><div class="anton" style="font-size:64px;margin-top:20px">Menos retrabalho</div><div class="lbl" style="margin-top:12px;font-size:28px">dados certos desde o início</div></div>
+  <div class="panel" id="e11c" style="flex:1;padding:44px;border-top:8px solid #D9A441"><svg class="ico" viewBox="0 0 64 64"><rect x="8" y="36" width="10" height="20" fill="#D9A441"/><rect x="27" y="24" width="10" height="32" fill="#D9A441"/><rect x="46" y="10" width="10" height="46" fill="#D9A441"/></svg><div class="anton" style="font-size:64px;margin-top:20px">Decisões com dados</div><div class="lbl" style="margin-top:12px;font-size:28px">prioridade para o que o povo precisa</div></div>
+ </div>
+</div></div>
+
+<!-- 12: IA sugere, pessoas decidem -->
+<div class="sc" id="s12"><div class="cam"><div class="grid-bg"></div>
+ <div class="abs" style="left:150px;top:260px;width:1620px;display:flex;gap:40px;align-items:stretch">
+  <div class="panel" id="a12" style="flex:1;padding:56px;text-align:center"><div class="eb" style="color:#D9A441">Inteligência artificial</div><div class="anton" style="font-size:120px;margin-top:20px">Sugere</div></div>
+  <div class="panel" id="b12" style="flex:1;padding:56px;text-align:center;border-color:#D9A441"><div class="eb" style="color:#D9A441">Pessoas</div><div class="anton" style="font-size:120px;margin-top:20px;color:#D9A441">Decidem</div></div>
+ </div>
+ <div class="abs" id="sh12" style="left:0;right:0;top:640px;display:flex;justify-content:center;gap:24px">
+  <div class="chip" style="font-size:30px"><i style="background:#2BD99F"></i>Segurança</div><div class="chip" style="font-size:30px"><i style="background:#2BD99F"></i>LGPD desde o projeto</div><div class="chip" style="font-size:30px"><i style="background:#2BD99F"></i>Acesso por perfil</div>
+ </div>
+</div></div>
+
+<!-- 13: contato -->
+<div class="sc" id="s13"><div class="cam"><div class="grid-bg"></div><div class="glow" style="left:600px;top:250px;width:700px;height:600px;background:#D9A441"></div>
+ <div class="abs anton" id="t13" style="left:0;right:0;top:170px;text-align:center;font-size:96px">Leve a V4.7 para a <span class="gold">sua cidade</span></div>
+ <div class="abs panel" id="c13" style="left:460px;top:400px;width:1000px;padding:50px 60px;display:flex;flex-direction:column;gap:26px">
+  <div style="font-size:40px;font-weight:700"><span class="gold">WhatsApp</span> · (31) 99827-7323</div>
+  <div style="font-size:40px;font-weight:700"><span class="gold">E-mail</span> · fabricagovv@gmail.com</div>
+  <div style="font-size:40px;font-weight:700"><span class="gold">Instagram</span> · @Grupo_v4_fabricagovv</div>
+  <div class="lbl" style="font-size:28px">Sede: Alvorada de Minas – MG</div>
+ </div>
+</div></div>
+
+<!-- 14: logo final -->
+<div class="sc" id="s14"><div class="cam"><div class="grid-bg"></div>
+ <div class="glow" style="left:560px;top:180px;width:800px;height:700px;background:#D9A441"></div>
+ <div class="abs" id="lg14" style="left:330px;top:230px"></div>
+ <div class="abs" id="tg14" style="left:0;right:0;top:800px;text-align:center;font-size:44px;font-weight:700;letter-spacing:14px">INTELIGÊNCIA PÚBLICA</div>
+ <div class="abs" id="by14" style="left:0;right:0;top:870px;text-align:center;font-size:30px;font-weight:600;letter-spacing:6px;color:#D9A441">por V4 FábricaGov</div>
+ <div class="abs" id="sy14" style="left:0;right:0;top:950px;display:flex;justify-content:center;gap:18px"></div>
+</div></div>
+
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const {$, cl, eo, spr, rise, pop, slam, typed, count, draw, Wd} = K;
+const SYS=[['Pesquisa','#2EC4E6'],['Saúde','#2BD99F'],['Jurídico','#8B7CF6'],['Aprendizagem','#FF5DA2'],['Obras','#FF7A2F'],['Engenheiro 7.3','#4D8BFF']];
+const ACC={1:'#FF5A5A',2:'#D9A441',3:'#D9A441',4:'#2EC4E6',5:'#2BD99F',6:'#8B7CF6',7:'#FF5DA2',8:'#FF7A2F',9:'#4D8BFF',10:'#D9A441',11:'#D9A441',12:'#2BD99F',13:'#D9A441',14:'#D9A441'};
+const SILO=[['SAÚDE',140,170],['ESCOLA',760,120],['OBRAS',1380,170],['JURÍDICO',300,500],['PESQUISA',1100,470],['FINANÇAS',1560,520]];
+const NODE=[];
+function build(){
+ // silos
+ $('silos1').innerHTML=SILO.map(([n,x,y],i)=>`<div class="silo" id="si${i}" style="left:${x}px;top:${y}px"><div class="h">${n}</div><div class="l" style="width:70%"></div><div class="l" style="width:50%"></div><div class="l" style="width:80%"></div><div class="l" style="width:40%"></div></div>`).join('');
+ let c='';[[0,1],[1,2],[0,3],[3,4],[4,5],[2,5],[1,4]].forEach(([a,b],i)=>{const A=SILO[a],B=SILO[b];c+=`<path id="cb${i}" d="M${A[1]+190} ${A[2]+125} L${(A[1]+B[1])/2+190} ${(A[2]+B[2])/2+125+40}" stroke="#FF5A5A" stroke-width="4" stroke-dasharray="14 12" fill="none"/><path d="M${B[1]+190} ${B[2]+125} L${(A[1]+B[1])/2+190+30} ${(A[2]+B[2])/2+125+60}" stroke="#FF5A5A" stroke-width="4" stroke-dasharray="14 12" fill="none" opacity=".7"/>`});
+ $('cab1').innerHTML=c;
+ // logo
+ $('lg2').innerHTML=K.logoSVG('L2'); $('lg14').innerHTML=K.logoSVG('L14');
+ $('sy14').innerHTML=SYS.map(([n,col])=>`<div class="chip" style="font-size:22px;padding:10px 18px"><i style="background:${col}"></i>${n}</div>`).join('');
+ // hub
+ const cx=1130,cy=590,R=1; let h='';
+ SYS.forEach(([n,col],i)=>{const a=-Math.PI/2+i*Math.PI/3; const x=cx+Math.cos(a)*560, y=cy+Math.sin(a)*330; NODE.push([x,y]);
+  h+=`<path id="hl${i}" d="M${cx} ${cy} L${x} ${y}" stroke="${col}" stroke-width="5" fill="none" opacity=".8"/>`;
+  for(let q=0;q<3;q++)h+=`<circle id="hp${i}_${q}" r="9" fill="${col}"/>`;});
+ $('hub3').innerHTML=h;
+ $('nodes3').innerHTML=SYS.map(([n,col],i)=>`<div class="node" id="nd${i}" style="--c:${col};left:${NODE[i][0]-115}px;top:${NODE[i][1]-115}px"><div style="width:22px;height:22px;border-radius:50%;background:${col}"></div><b>${n.replace(' ','<br>')}</b></div>`).join('');
+ // pesquisa phone
+ $('ph4').innerHTML=K.phone('P4',`<div style="padding:84px 26px 0"><div class="lbl" style="font-size:20px">Pesquisa · Bairro Centro</div><div style="font-size:30px;font-weight:800;margin:12px 0 22px;line-height:1.2">O que a prefeitura deve priorizar?</div>${['Saúde','Asfalto','Escola','Segurança'].map((o,i)=>`<div style="position:relative;background:#22252C;border-radius:14px;margin-bottom:14px;padding:18px;font-size:24px;font-weight:700;overflow:hidden"><div id="pb4${i}" style="position:absolute;left:0;top:0;bottom:0;width:0;background:#2EC4E633"></div><span style="position:relative">${o}</span><span id="pv4${i}" style="position:relative;float:right;color:#2EC4E6">0%</span></div>`).join('')}<div class="btn" id="bt4" style="display:block;text-align:center;margin-top:18px">Enviar resposta</div></div>`,980,120,.95);
+ let g='';for(let i=0;i<36;i++)g+=`<div id="hc${i}" style="aspect-ratio:1;border-radius:6px;background:#2EC4E6;opacity:.1"></div>`;$('hmg4').innerHTML=g;
+ // saúde phone
+ $('ph5').innerHTML=K.phone('P5',`<div style="padding:84px 26px 0"><div class="lbl" style="font-size:20px">Minha agenda</div><div style="font-size:32px;font-weight:800;margin:10px 0 20px">Consultas</div>${[['08:30','Clínico geral','UBS Centro'],['10:00','Pediatria','UBS Vila Nova'],['14:15','Vacinação','UBS Esperança']].map(([h,e,u],i)=>`<div id="ag5${i}" style="background:#22252C;border-radius:16px;padding:18px;margin-bottom:14px;border-left:5px solid #2BD99F"><div style="font-size:26px;font-weight:800">${h} · ${e}</div><div class="lbl" style="font-size:20px;margin-top:4px">${u}</div></div>`).join('')}<div style="background:#2BD99F22;border-radius:16px;padding:18px;margin-top:6px"><div class="lbl" style="font-size:20px">Sua posição na fila</div><div class="kpi" id="fi5" style="font-size:60px;color:#2BD99F">12º</div></div></div>`,960,120,.95);
+ // jurídico laptop
+ $('lp6').innerHTML=K.laptop('L6','v47.app/juridico',`<div style="padding:34px 40px;display:flex;flex-direction:column;gap:22px"><div class="bubble" id="q6" style="align-self:flex-end;background:#8B7CF6;color:#111216;font-weight:700;min-height:70px"></div><div class="bubble" id="r6" style="background:#22252C"><div style="font-size:22px;font-weight:800;color:#8B7CF6;margin-bottom:8px">Resposta com fonte</div><div id="rt6" style="font-size:24px"></div><div id="art6" style="margin-top:16px;border-left:5px solid #8B7CF6;background:#8B7CF61A;padding:14px 18px;font-size:22px;font-weight:600">Lei nº 14.133/2021 · Art. 18 — fase preparatória: planejamento da contratação</div></div><div class="chip" id="rv6" style="align-self:flex-start;font-size:22px"><i style="background:#FFB020"></i>Aguardando revisão do procurador</div></div>`,880,180,920,640);
+ // aprendizagem phone
+ $('ph7').innerHTML=K.phone('P7',`<div style="padding:84px 26px 0"><div class="lbl" style="font-size:20px">Matemática · 5º ano</div><div style="height:14px;border-radius:7px;background:#22252C;margin:12px 0 22px;overflow:hidden"><div id="pg7" style="height:100%;width:0;background:#FF5DA2"></div></div><div style="font-size:34px;font-weight:800;margin-bottom:20px">Quanto é 3/4 de 20?</div>${['12','15','18'].map((o,i)=>`<div id="op7${i}" style="background:#22252C;border-radius:14px;padding:18px;margin-bottom:12px;font-size:28px;font-weight:800">${o}</div>`).join('')}<div class="bubble" id="tu7" style="background:#FF5DA222;font-size:22px;margin-top:10px;max-width:none"><b style="color:#FF5DA2">Tutora IA:</b> divida 20 em 4 partes e pegue 3.</div></div>`,960,120,.95);
+ // obras phone (câmera com medida)
+ $('ph8').innerHTML=K.phone('P8',`<div style="position:absolute;inset:0;background:linear-gradient(180deg,#5C7A99 0%,#9BB0BF 45%,#7A8C5A 46%,#5E7044 100%)"></div><svg style="position:absolute;inset:0" width="390" height="840" viewBox="0 0 390 840"><path d="M40 560 L350 520 L370 700 L20 740Z" fill="#8C9A62" stroke="#FFFFFF66" stroke-width="2"/><path id="m8a" d="M40 560 L350 520" stroke="#FF7A2F" stroke-width="6" fill="none"/><path id="m8b" d="M350 520 L370 700" stroke="#FF7A2F" stroke-width="6" fill="none"/><circle cx="40" cy="560" r="10" fill="#FFF"/><circle cx="350" cy="520" r="10" fill="#FFF"/><circle cx="370" cy="700" r="10" fill="#FFF"/></svg><div id="mt8a" style="position:absolute;left:130px;top:470px;background:#111216;color:#FF7A2F;font-weight:800;font-size:26px;padding:6px 14px;border-radius:10px">24,60 m</div><div id="mt8b" style="position:absolute;left:250px;top:600px;background:#111216;color:#FF7A2F;font-weight:800;font-size:26px;padding:6px 14px;border-radius:10px">18,20 m</div><div style="position:absolute;left:0;right:0;bottom:40px;display:flex;justify-content:center"><div id="sh8" style="width:90px;height:90px;border-radius:50%;border:6px solid #FFF;background:#FFFFFF55"></div></div>`,960,120,.95);
+ // engenheiro laptop (curva S)
+ $('lp9').innerHTML=K.laptop('L9','v47.app/engenheiro-7-3',`<div style="padding:30px 36px"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="lbl">Escola Municipal · obra</div><div style="font-size:30px;font-weight:800">Cronograma físico-financeiro</div></div><div class="kpi" id="pc9" style="font-size:72px;color:#4D8BFF">0%</div></div><svg width="840" height="360" viewBox="0 0 840 360" style="margin-top:16px"><g stroke="#2E323C">${[0,1,2,3,4].map(i=>`<line x1="0" y1="${30+i*75}" x2="840" y2="${30+i*75}"/>`).join('')}</g><path id="cv9a" d="M0 330 C200 325 300 250 420 180 C540 110 640 45 840 35" stroke="#A9ADB8" stroke-width="5" stroke-dasharray="12 10" fill="none"/><path id="cv9b" d="M0 330 C200 328 300 262 420 196" stroke="#4D8BFF" stroke-width="7" fill="none"/></svg><div style="display:flex;gap:18px;margin-top:6px"><div class="chip" style="font-size:20px"><i style="background:#A9ADB8"></i>Previsto</div><div class="chip" style="font-size:20px"><i style="background:#4D8BFF"></i>Realizado</div><div class="chip" id="ok9" style="font-size:20px"><i style="background:#2BD99F"></i>Custos dentro do previsto</div></div></div>`,860,190,960,620);
+ // fluxo 10
+ let f='';[[600,520,1260,350,'#2BD99F'],[600,560,1260,550,'#FF5DA2'],[600,600,1260,750,'#FF7A2F']].forEach(([x1,y1,x2,y2,col],i)=>{f+=`<path id="fl${i}" d="M${x1} ${y1} C${x1+300} ${y1} ${x2-300} ${y2} ${x2} ${y2}" stroke="${col}" stroke-width="5" fill="none"/><circle id="fp${i}" r="10" fill="${col}"/>`});$('flow10').innerHTML=f;
+}
+function along(path,p){const L=path.getTotalLength();return path.getPointAtLength(L*cl(p))}
+function feats(k,ids,words){ids.forEach((id,i)=>K.slideX($(id),K.S.TL&&0||0,0));}
+function scene(k,t,lt){
+ K.S.opt.accent=ACC[k];document.documentElement.style.setProperty('--acc',ACC[k]);
+ K.note([4,5,6,7,8,9,10].includes(k)?'Interface e dados ilustrativos':'');K.src('');
+ const SC=K.S.SC;
+ if(k===1){SILO.forEach((s,i)=>{const e=$('si'+i);pop(e,t,.2+i*.12);e.style.transform+=` translate(${Math.sin(lt*1.3+i)*6}px,${Math.cos(lt*1.1+i)*6}px)`;});
+  for(let i=0;i<7;i++){const e=$('cb'+i);e.style.opacity=(Math.sin(lt*9+i*2)>.2&&t>Wd(1,'não conversam')-.4)?.9:.15;}
+  rise($('t1'),t,Wd(1,'quase')-.2,60,.7)}
+ if(k===2){K.logoAnim('L2',t,SC[1]+.25);$('g2').style.opacity=.35*cl((lt-.5)/1);typed($('tg2'),'INTELIGÊNCIA PÚBLICA',t,Wd(2,'inteligência')-.1,26,false);rise($('by2'),t,Wd(2,'por v4')-.1,20)}
+ if(k===3){pop($('core3'),t,SC[2]+.2);$('core3').style.transform+=` scale(${1+.03*Math.sin(lt*4)})`;
+  SYS.forEach((s,i)=>{const t0=Wd(3,'seis')-.3+i*.12;draw($('hl'+i),t,t0,.5);pop($('nd'+i),t,t0+.3);
+   for(let q=0;q<3;q++){const c=$(`hp${i}_${q}`);const u=(lt*.5+q/3+i*.07)%1;const P=along($('hl'+i),t>Wd(3,'conectando')-.3?u:0);c.setAttribute('cx',P.x);c.setAttribute('cy',P.y);c.style.opacity=t>Wd(3,'conectando')-.3?1:0;}});
+  rise($('t3'),t,SC[2]+.3);rise($('t3b'),t,Wd(3,'mesma')-.3,30)}
+ if(k>=4&&k<=9){const ttl=$('t'+k);slam(ttl,t,SC[k-1]+.3);
+  const W={4:['celular','mostra','pede'],5:['agenda','prontuário','alerta'],6:['pergunte','resposta','lei'],7:['ritmo','tutora','professor'],8:['fotos','quantitativos','licitação'],9:['ideia','cronograma','custos']}[k];
+  ['a','b','c'].forEach((x,i)=>K.slideX($('f'+k+x),t,Wd(k,W[i])-.3,-80,.5))}
+ if(k===4){rise($('P4'),t,SC[3]+.4,80,.7);$('P4').style.transform+=' scale(.95)';const v=[42,31,18,9];v.forEach((p,i)=>{const t0=Wd(4,'responde')+i*.15;const q=eo((t-t0)/.9);$('pb4'+i).style.width=(p*q)+'%';$('pv4'+i).textContent=Math.round(p*q)+'%'});
+  pop($('hm4'),t,Wd(4,'mostra')-.4);const r=K.mul(5);for(let i=0;i<36;i++){const v2=r();$('hc'+i).style.opacity=(.12+.85*v2*eo((t-Wd(4,'bairro')+.2-(i%6)*.04)/.6)).toFixed(2)}
+  $('bt4').style.transform=`scale(${t>Wd(4,'celular')+.2&&t<Wd(4,'celular')+.4?.94:1})`}
+ if(k===5){rise($('P5'),t,SC[4]+.4,80,.7);$('P5').style.transform+=' scale(.95)';for(let i=0;i<3;i++)rise($('ag5'+i),t,Wd(5,'agenda')+i*.2,30,.4);
+  const p=eo((t-Wd(5,'prontuário'))/1.5);$('fi5').textContent=Math.round(12-9*p)+'º';pop($('al5'),t,Wd(5,'alerta')-.3)}
+ if(k===6){rise($('L6'),t,SC[5]+.4,80,.7);typed($('q6'),'Preciso de estudo técnico antes de licitar uma obra?',t,Wd(6,'pergunte')-.1,30);
+  typed($('rt6'),'Sim. O planejamento da contratação começa na fase preparatória, com estudo técnico preliminar.',t,Wd(6,'resposta')-.2,34,false);
+  $('r6').style.opacity=cl((t-Wd(6,'resposta')+.3)/.3);pop($('art6'),t,Wd(6,'artigo')-.2);pop($('rv6'),t,Wd(6,'lei')+.6)}
+ if(k===7){rise($('P7'),t,SC[6]+.4,80,.7);$('P7').style.transform+=' scale(.95)';$('pg7').style.width=(30+50*eo((t-Wd(7,'ritmo'))/1.2))+'%';
+  const ch=Wd(7,'aluno');$('op70').style.background=t>ch+.5&&t<Wd(7,'tutora')?'#FF5A5A55':'#22252C';$('op71').style.background=t>Wd(7,'tutora')+.8?'#2BD99F55':'#22252C';
+  rise($('tu7'),t,Wd(7,'tutora')-.2,20,.4);pop($('md7'),t,Wd(7,'professor')-.1);$('md7').style.transform+=` rotate(${Math.sin(lt*3)*8}deg)`}
+ if(k===8){rise($('P8'),t,SC[7]+.4,80,.7);$('P8').style.transform+=' scale(.95)';draw($('m8a'),t,Wd(8,'medidas')-.3,.6);draw($('m8b'),t,Wd(8,'medidas'),.6);
+  pop($('mt8a'),t,Wd(8,'medidas')+.2);pop($('mt8b'),t,Wd(8,'medidas')+.5);const sh=Wd(8,'fotos');$('sh8').style.background=t>sh&&t<sh+.15?'#FFFFFF':'#FFFFFF55';
+  pop($('q8'),t,Wd(8,'orçamento')-.4);count($('qv8'),t,Wd(8,'orçamento')-.3,1.2,486300,{pre:'R$ '})}
+ if(k===9){rise($('L9'),t,SC[8]+.4,80,.7);draw($('cv9a'),t,Wd(9,'ideia')-.2,1.0);draw($('cv9b'),t,Wd(9,'cronograma')-.4,1.0);
+  count($('pc9'),t,Wd(9,'cronograma')-.4,1.0,46,{suf:'%'});pop($('ok9'),t,Wd(9,'custos')-.2)}
+ if(k===10){rise($('t10'),t,SC[9]+.3);pop($('p10'),t,Wd(10,'pesquisa')-.3);
+  [['d10a','saúde'],['d10b','escola'],['d10c','obras']].forEach(([id,w],i)=>{const t0=Wd(10,w)-.6;draw($('fl'+i),t,t0,.5);const P=along($('fl'+i),eo((t-t0)/.5));const c=$('fp'+i);c.setAttribute('cx',P.x);c.setAttribute('cy',P.y);c.style.opacity=t>t0?1:0;K.slideX($(id),t,t0+.4,80,.4)})}
+ if(k===11){slam($('t11'),t,SC[10]+.3);[['e11a','papel'],['e11b','retrabalho'],['e11c','decisões']].forEach(([id,w])=>pop($(id),t,Wd(11,w)-.3))}
+ if(k===12){K.slideX($('a12'),t,Wd(12,'sugere')-.4,-120,.5);K.slideX($('b12'),t,Wd(12,'decide')-.4,120,.5);rise($('sh12'),t,Wd(12,'segurança')-.3,30)}
+ if(k===13){rise($('t13'),t,SC[12]+.3);pop($('c13'),t,Wd(13,'fale')-.1)}
+ if(k===14){K.logoAnim('L14',t,SC[13]+.2);typed($('tg14'),'INTELIGÊNCIA PÚBLICA',t,Wd(14,'inteligência')-.1,26,false);rise($('by14'),t,Wd(14,'por v4')-.1,20);rise($('sy14'),t,Wd(14,'por v4')+.8,20)}
+}
+K.boot({system:'Plataforma',accent:'#D9A441',hideHud:[2,14],build,scene});
+</script>
+</body>
+</html>

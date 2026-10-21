@@ -9,7 +9,7 @@ FILM = os.getcwd(); NAME = os.path.basename(FILM)
 KIT = os.path.dirname(os.path.abspath(__file__))
 KDIR = os.path.join(KIT, "../../../voices/kokoro")
 spec = importlib.util.spec_from_file_location("lines", os.path.join(FILM, "lines.py")); L = importlib.util.module_from_spec(spec); spec.loader.exec_module(L)
-VOICE = getattr(L, "VOICE", "pm_alex"); SPEED = getattr(L, "SPEED", 1.08)
+VOICE = getattr(L, "VOICE", "pf_dora"); SPEED = getattr(L, "SPEED", 1.05)
 START = getattr(L, "START", 0.8); BEFORE_END = getattr(L, "BEFORE_END", 1.0); TAIL = getattr(L, "TAIL", 4.0)
 OUT = os.path.join(KIT, f"../../../build/v47_{NAME}/voice")
 FX = ("silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"

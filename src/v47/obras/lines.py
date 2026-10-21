@@ -1,5 +1,5 @@
 # Falas do filme "V4.7 · Sistema de Obras": id, legenda, texto para o TTS (grafia fonética), pausa depois (s)
-SPEED = 1.08
+SPEED = 1.05
 LINES = [
     ("n1", "Toda obra pública começa no papel. E quando a medida está errada, o problema aparece depois: aditivo, atraso e retrabalho.",
            "Toda obra pública começa no papel. E quando a medida está errada, o problema aparece depois: aditivo, atraso, e retrabalho.", 0.6),

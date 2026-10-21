@@ -51,20 +51,22 @@ const K = (() => {
     ['p', '742,370 812,370 812,440 742,440', 'gold', 0, 200],
     ['s', '840,40 1080,40 1080,104 948,440 856,440 984,112 840,112', 'gold', 300, 0],
   ];
-  function logoSVG(id, fg = '#F4F1EA', gold = '#D9A441') {
-    let s = `<svg id="${id}" viewBox="-60 -40 1300 520" width="1300" height="520" style="overflow:visible">`;
-    LOGO.forEach(([n, pts, c]) => { s += `<polygon data-n="${n}" points="${pts}" fill="${c === 'gold' ? gold : fg}"/>`; });
-    s += `<g data-n="net"><line x1="1080" y1="40" x2="1150" y2="0" stroke="${gold}" stroke-width="7"/><line x1="1080" y1="40" x2="1168" y2="80" stroke="${gold}" stroke-width="7"/><line x1="1150" y1="0" x2="1168" y2="80" stroke="${gold}" stroke-width="7"/><circle cx="1150" cy="0" r="16" fill="${gold}"/><circle cx="1168" cy="80" r="16" fill="${gold}"/><circle cx="1080" cy="40" r="20" fill="${fg}" stroke="${gold}" stroke-width="7"/></g></svg>`;
-    return s;
+  // logo enviada pelo cliente (recolorida: letras brancas + ponto dourado), revelada com brilho
+  const LOGO_IMG = '../kit/assets/nova/v47_logo_branca_transp.png';
+  function logoSVG(id) {
+    const m = `-webkit-mask:url(${LOGO_IMG}) left 30px top 10px/1240px auto no-repeat;mask:url(${LOGO_IMG}) left 30px top 10px/1240px auto no-repeat`;
+    return `<div id="${id}" style="position:relative;width:1300px;height:540px">
+      <img data-n="img" src="${LOGO_IMG}" alt="V4.7" style="position:absolute;left:30px;top:10px;width:1240px;filter:drop-shadow(0 20px 40px #000a)">
+      <div data-n="sw" style="position:absolute;inset:0;${m};background:linear-gradient(100deg,transparent 0%,transparent 42%,#ffffffee 50%,transparent 58%,transparent 100%);background-size:300% 100%;mix-blend-mode:screen"></div></div>`;
   }
-  function logoAnim(id, t, t0) {   // monta as peças em ~1,3 s
-    const svg = $(id); if (!svg) return;
-    svg.querySelectorAll('[data-n]').forEach(el => {
-      const n = el.dataset.n; const i = LOGO.findIndex(x => x[0] === n);
-      if (n === 'net') { const p = spr((t - t0 - 1.0) / .8); el.style.opacity = cl((t - t0 - 1.0) / .15); el.setAttribute('transform', `translate(1080 40) scale(${p}) translate(-1080 -40)`); return; }
-      const [, , , dx, dy] = LOGO[i]; const p = eo((t - t0 - i * .12) / .55);
-      el.style.opacity = cl((t - t0 - i * .12) / .2); el.setAttribute('transform', `translate(${dx * (1 - p)} ${dy * (1 - p)})`);
-    });
+  function logoAnim(id, t, t0) {   // revela da esquerda p/ direita, assenta com mola e passa um brilho
+    const el = $(id); if (!el) return;
+    const img = el.querySelector('[data-n=img]'), sw = el.querySelector('[data-n=sw]');
+    const u = t - t0, r = eio(u / .9);
+    img.style.clipPath = `inset(0 ${100 - 100 * r}% 0 0)`;
+    img.style.opacity = cl(u / .2);
+    el.style.transform = `scale(${1.08 - .08 * spr(u / 1.1)})`; el.style.transformOrigin = '50% 50%';
+    const p = cl((u - .9) / 1.1); sw.style.backgroundPosition = `${100 - 100 * p}% 0`; sw.style.opacity = p > 0 && p < 1 ? 1 : 0;
   }
 
   // ---------- transições em mosaico ----------

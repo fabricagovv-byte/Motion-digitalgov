@@ -3,81 +3,81 @@
   {
    "id": "n1",
    "start": 0.8,
-   "dur": 6.739,
+   "dur": 6.784,
    "caption": "Toda prefeitura precisa ouvir a população. Mas pesquisa no papel demora semanas e chega velha na mesa do gestor."
   },
   {
    "id": "n2",
-   "start": 8.139,
-   "dur": 6.371,
+   "start": 8.184,
+   "dur": 6.443,
    "caption": "Com a V4.7, a pesquisa começa em minutos: você descreve o objetivo e a IA monta o questionário."
   },
   {
    "id": "n3",
-   "start": 15.01,
-   "dur": 5.973,
+   "start": 15.127,
+   "dur": 6.016,
    "caption": "Perguntas fechadas, escalas de satisfação e espaço para a pessoa responder com as próprias palavras."
   },
   {
    "id": "n4",
-   "start": 21.483,
-   "dur": 5.952,
+   "start": 21.643,
+   "dur": 5.947,
    "caption": "Os entrevistadores coletam pelo celular, mesmo sem internet, e cada resposta fica ligada ao bairro."
   },
   {
    "id": "n5",
-   "start": 27.935,
-   "dur": 4.16,
+   "start": 28.09,
+   "dur": 4.151,
    "caption": "Quando o sinal volta, tudo sincroniza e o painel atualiza em tempo real."
   },
   {
    "id": "n6",
-   "start": 32.595,
-   "dur": 4.949,
+   "start": 32.741,
+   "dur": 4.971,
    "caption": "O mapa de calor mostra onde a satisfação cai e onde cada problema aparece mais."
   },
   {
    "id": "n7",
-   "start": 38.045,
-   "dur": 3.925,
+   "start": 38.212,
+   "dur": 3.797,
    "caption": "Filtros por idade, região e tema mostram o que cada grupo pensa."
   },
   {
    "id": "n8",
-   "start": 42.47,
-   "dur": 4.656,
+   "start": 42.509,
+   "dur": 4.736,
    "caption": "A IA lê as respostas abertas, agrupa os pedidos e resume o que o povo mais pede."
   },
   {
    "id": "n9",
-   "start": 47.626,
-   "dur": 4.523,
+   "start": 47.745,
+   "dur": 4.416,
    "caption": "Depois, sugere prioridades. Quem decide é a gestão, agora com dados na mão."
   },
   {
    "id": "n10",
-   "start": 52.749,
-   "dur": 5.562,
+   "start": 52.761,
+   "dur": 5.634,
    "caption": "Toda semana, um relatório automático chega pronto, com gráficos e comparação com a semana anterior."
   },
   {
    "id": "n11",
-   "start": 58.91,
-   "dur": 10.048,
+   "start": 58.996,
+   "dur": 10.176,
    "caption": "Num cenário ilustrativo, mil questionários a 5 minutos de digitação cada somam mais de 80 horas de trabalho. Na V4.7, os dados já chegam tabulados."
   },
   {
    "id": "n12",
-   "start": 69.558,
-   "dur": 5.035,
+   "start": 69.772,
+   "dur": 5.013,
    "caption": "E com segurança: respostas anonimizadas e dados tratados conforme a LGPD."
   },
   {
    "id": "n13",
-   "start": 76.293,
-   "dur": 4.202,
+   "start": 76.485,
+   "dur": 4.252,
    "caption": "V4.7. Inteligência pública, por V4 FábricaGov."
   }
  ],
- "end": 84.5
+ "end": 84.74
 }

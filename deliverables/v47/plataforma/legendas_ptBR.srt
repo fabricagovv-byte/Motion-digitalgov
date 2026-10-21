@@ -1,56 +1,64 @@
 1
-00:00:00,800 --> 00:00:08,253
+00:00:00,800 --> 00:00:08,317
 Uma prefeitura cuida de saúde, educação, obras, leis e da voz do povo. Quase sempre, em sistemas que não conversam entre si.
 
 2
-00:00:08,653 --> 00:00:13,412
-Chegou a V4.7. Inteligência pública, por V4 FábricaGov.
+00:00:08,717 --> 00:00:15,829
+Por isso nasceu a V4.7: uma inteligência artificial feita para a gestão pública, por V4 FábricaGov.
 
 3
-00:00:13,812 --> 00:00:18,897
-Uma plataforma, seis sistemas e a mesma inteligência artificial conectando tudo.
+00:00:16,230 --> 00:00:26,393
+A V4.7 lê dados, documentos e pedidos da população, entende o contexto da sua cidade e transforma tudo em respostas, alertas e documentos prontos.
 
 4
-00:00:19,198 --> 00:00:23,941
-Pesquisa: o povo responde pelo celular, e a IA mostra o que cada bairro mais pede.
+00:00:26,693 --> 00:00:33,224
+Funciona em quatro passos: coleta os dados, entende o que eles dizem, sugere o melhor caminho, e o gestor decide.
 
 5
-00:00:24,140 --> 00:00:29,708
-Saúde: agenda, prontuário e estoque de remédios no mesmo lugar, com alerta antes da falta.
+00:00:33,524 --> 00:00:37,479
+Sobre essa inteligência, rodam seis sistemas, todos conectados.
 
 6
-00:00:29,908 --> 00:00:34,604
-Jurídico: pergunte em linguagem simples, e a resposta vem com o artigo da lei.
+00:00:37,779 --> 00:00:48,646
+O Sistema de Pesquisa é o ouvido da cidade. Ele cria questionários, coleta respostas pelo celular, e a IA lê cada resposta, até as abertas, para mostrar o que cada bairro mais precisa.
 
 7
-00:00:34,804 --> 00:00:39,947
-Aprendizagem: cada aluno no seu ritmo, com uma tutora de IA e o professor no comando.
+00:00:48,945 --> 00:00:58,574
+O Sistema de Saúde organiza agenda, fila, prontuário e estoque de remédios. A IA avisa antes de faltar medicamento e aponta onde os casos estão aumentando.
 
 8
-00:00:40,146 --> 00:00:45,914
-Obras: fotos e medidas pelo celular, e a IA prepara quantitativos e orçamento para a licitação.
+00:00:58,875 --> 00:01:10,552
+O Sistema Jurídico é um assistente para procuradorias e secretarias. Você pergunta em linguagem simples, e a IA responde citando o artigo da lei, confere editais e contratos e controla prazos.
 
 9
-00:00:46,115 --> 00:00:52,352
-E o Engenheiro 7.3 acompanha a obra da ideia à entrega, com cronograma e custos em tempo real.
+00:01:10,852 --> 00:01:20,396
+O Sistema de Aprendizagem leva a escola para o celular. A IA é uma tutora que explica de outro jeito quando o aluno erra, e mostra ao professor quem precisa de ajuda.
 
 10
-00:00:52,752 --> 00:00:58,072
-Tudo conectado: o que a pesquisa revela vira prioridade na saúde, na escola e nas obras.
+00:01:20,696 --> 00:01:31,349
+O Sistema de Obras transforma fotos e medidas feitas pelo celular em quantitativos, orçamento com a tabela SINAPI e documentos da licitação. O engenheiro confere e assina.
 
 11
-00:00:58,372 --> 00:01:04,726
-Menos papel, menos retrabalho e decisões com dados. É assim que a V4.7 ajuda a economizar.
+00:01:31,650 --> 00:01:41,450
+E o Engenheiro 7.3 acompanha a obra da ideia à entrega: projeto, orçamento, diário de obra, cronograma e custos em tempo real, com alerta antes do atraso.
 
 12
-00:01:05,026 --> 00:01:11,607
-A inteligência artificial sugere. Quem decide são as pessoas. Com segurança e LGPD desde o projeto.
+00:01:41,850 --> 00:01:47,213
+Tudo conectado: o que a pesquisa revela vira prioridade na saúde, na escola e nas obras.
 
 13
-00:01:11,906 --> 00:01:16,735
-Fale com a V4 FábricaGov e leve a V4.7 para a sua cidade.
+00:01:47,513 --> 00:01:53,890
+Menos papel, menos retrabalho e decisões com dados. É assim que a V4.7 ajuda a economizar.
 
 14
-00:01:17,936 --> 00:01:22,338
+00:01:54,189 --> 00:02:00,810
+A inteligência artificial sugere. Quem decide são as pessoas. Com segurança e LGPD desde o projeto.
+
+15
+00:02:01,111 --> 00:02:05,940
+Fale com a V4 FábricaGov e leve a V4.7 para a sua cidade.
+
+16
+00:02:07,140 --> 00:02:11,592
 V4.7. Inteligência pública, por V4 FábricaGov.
 

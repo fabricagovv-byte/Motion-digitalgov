@@ -3,81 +3,81 @@
   {
    "id": "n1",
    "start": 0.8,
-   "dur": 7.808,
+   "dur": 7.829,
    "caption": "Na prefeitura, cada parecer começa com horas de pesquisa: leis, decretos, jurisprudência e prazos espalhados em papéis e planilhas."
   },
   {
    "id": "n2",
-   "start": 9.108,
-   "dur": 7.118,
+   "start": 9.129,
+   "dur": 7.245,
    "caption": "Com o Sistema Jurídico V4.7, o servidor pergunta em linguagem simples, e a IA responde com base na lei."
   },
   {
    "id": "n3",
-   "start": 16.726,
-   "dur": 10.944,
+   "start": 16.875,
+   "dur": 10.965,
    "caption": "Toda resposta cita o artigo exato. A Lei 14.133 manda que, ao fim da fase preparatória, o processo passe pelo controle prévio de legalidade da assessoria jurídica."
   },
   {
    "id": "n4",
-   "start": 28.17,
-   "dur": 4.715,
+   "start": 28.34,
+   "dur": 4.779,
    "caption": "Um clique abre o texto oficial, com o trecho destacado. A fonte fica sempre à vista."
   },
   {
    "id": "n5",
-   "start": 33.385,
+   "start": 33.619,
    "dur": 9.045,
    "caption": "Na análise de editais e contratos, a IA confere item por item: estudo técnico preliminar, termo de referência, orçamento estimado e análise de riscos."
   },
   {
    "id": "n6",
-   "start": 42.83,
-   "dur": 4.864,
+   "start": 43.064,
+   "dur": 4.885,
    "caption": "O que falta aparece em destaque, com a sugestão de correção e o artigo que a fundamenta."
   },
   {
    "id": "n7",
-   "start": 48.195,
-   "dur": 8.73,
+   "start": 48.45,
+   "dur": 8.811,
    "caption": "Os prazos processuais ficam num só painel: o sistema conta em dias úteis, considera o prazo em dobro da Fazenda Pública e avisa antes do vencimento."
   },
   {
    "id": "n8",
-   "start": 57.425,
-   "dur": 6.336,
+   "start": 57.761,
+   "dur": 6.379,
    "caption": "Pareceres, ofícios e minutas de contrato saem a partir dos modelos do órgão, já com as citações conferidas."
   },
   {
    "id": "n9",
-   "start": 64.261,
-   "dur": 6.912,
+   "start": 64.639,
+   "dur": 6.848,
    "caption": "A base reúne leis federais, estaduais e municipais. Quando uma norma muda, os documentos afetados recebem um alerta."
   },
   {
    "id": "n10",
-   "start": 71.673,
-   "dur": 8.636,
+   "start": 71.987,
+   "dur": 8.807,
    "caption": "E a palavra final é sempre do procurador: a IA sugere, o advogado revisa, assina e decide. Tudo fica registrado, com acesso seguro e LGPD."
   },
   {
    "id": "n11",
-   "start": 80.81,
-   "dur": 8.597,
+   "start": 81.294,
+   "dur": 8.683,
    "caption": "Num cenário ilustrativo: se a pesquisa de um parecer cai de 4 horas para 1, com 40 pareceres por mês, são 120 horas devolvidas à equipe."
   },
   {
    "id": "n12",
-   "start": 89.907,
-   "dur": 4.523,
+   "start": 90.477,
+   "dur": 4.693,
    "caption": "Procuradorias, câmaras e secretarias com mais segurança jurídica, em menos tempo."
   },
   {
    "id": "n13",
-   "start": 96.029,
-   "dur": 4.202,
+   "start": 96.77,
+   "dur": 4.252,
    "caption": "V4.7. Inteligência pública, por V4 FábricaGov."
   }
  ],
- "end": 104.23
+ "end": 105.02
 }

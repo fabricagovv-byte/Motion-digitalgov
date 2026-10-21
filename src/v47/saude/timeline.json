@@ -3,81 +3,81 @@
   {
    "id": "n1",
    "start": 0.8,
-   "dur": 6.72,
+   "dur": 6.805,
    "caption": "Na saúde pública, cada minuto de espera pesa. Filas longas, papéis espalhados e remédio que falta na hora errada."
   },
   {
    "id": "n2",
-   "start": 8.12,
-   "dur": 4.544,
+   "start": 8.205,
+   "dur": 4.48,
    "caption": "O Sistema de Saúde V4.7 reúne tudo em uma só plataforma."
   },
   {
    "id": "n3",
-   "start": 13.164,
-   "dur": 5.34,
+   "start": 13.185,
+   "dur": 5.291,
    "caption": "O cidadão agenda a consulta pelo celular e acompanha a fila em tempo real, sem sair de casa."
   },
   {
    "id": "n4",
-   "start": 19.004,
-   "dur": 6.208,
+   "start": 18.976,
+   "dur": 6.315,
    "caption": "Na UBS ou no hospital, o profissional abre o prontuário eletrônico único, com histórico, exames e receitas."
   },
   {
    "id": "n5",
-   "start": 25.713,
-   "dur": 5.696,
+   "start": 25.791,
+   "dur": 5.717,
    "caption": "O estoque de medicamentos é controlado unidade por unidade, com alerta de falta e de validade."
   },
   {
    "id": "n6",
-   "start": 31.909,
-   "dur": 5.12,
+   "start": 32.008,
+   "dur": 5.141,
    "caption": "O gestor acompanha tudo em um painel: atendimentos, filas e o mapa da cidade por bairro."
   },
   {
    "id": "n7",
-   "start": 37.529,
+   "start": 37.65,
    "dur": 5.333,
    "caption": "A IA aponta tendências. Por exemplo: os casos de dengue estão subindo no bairro Vila Nova."
   },
   {
    "id": "n8",
-   "start": 43.262,
-   "dur": 5.205,
+   "start": 43.383,
+   "dur": 5.245,
    "caption": "E sugere ações, como reforçar o mutirão contra o mosquito. Quem decide é sempre o gestor."
   },
   {
    "id": "n9",
-   "start": 48.968,
-   "dur": 6.59,
+   "start": 49.128,
+   "dur": 6.571,
    "caption": "Com a telessaúde, o paciente conversa com o médico por vídeo, e as orientações ficam registradas no prontuário."
   },
   {
    "id": "n10",
-   "start": 56.057,
-   "dur": 6.528,
+   "start": 56.199,
+   "dur": 6.613,
    "caption": "Tudo se conecta aos sistemas de saúde que o município já usa, com segurança e LGPD para dados sensíveis."
   },
   {
    "id": "n11",
-   "start": 63.185,
-   "dur": 10.176,
+   "start": 63.412,
+   "dur": 10.219,
    "caption": "Cenário ilustrativo: 1.000 consultas por mês, com 15% de faltas. Se o lembrete reduzir as faltas pela metade, são 75 consultas a mais por mês."
   },
   {
    "id": "n12",
-   "start": 73.962,
-   "dur": 3.84,
+   "start": 74.231,
+   "dur": 3.797,
    "caption": "Menos fila, menos desperdício e mais cuidado para quem precisa."
   },
   {
    "id": "n13",
-   "start": 79.402,
-   "dur": 4.202,
+   "start": 79.629,
+   "dur": 4.252,
    "caption": "V4.7. Inteligência pública, por V4 FábricaGov."
   }
  ],
- "end": 87.6
+ "end": 87.88
 }

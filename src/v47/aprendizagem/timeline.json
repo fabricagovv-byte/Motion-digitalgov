@@ -3,81 +3,81 @@
   {
    "id": "n1",
    "start": 0.8,
-   "dur": 7.381,
+   "dur": 7.488,
    "caption": "Cada aluno aprende de um jeito, mas a sala de aula costuma andar num ritmo só. E quem fica para trás nem sempre é visto a tempo."
   },
   {
    "id": "n2",
-   "start": 8.781,
-   "dur": 7.915,
+   "start": 8.888,
+   "dur": 7.893,
    "caption": "A V4.7 Aprendizagem Digital leva a escola para o celular do aluno, e funciona até com internet fraca ou sem conexão."
   },
   {
    "id": "n3",
-   "start": 17.196,
-   "dur": 5.738,
+   "start": 17.282,
+   "dur": 5.717,
    "caption": "Cada estudante recebe uma trilha personalizada, no seu nível, com conteúdos alinhados à BNCC."
   },
   {
    "id": "n4",
-   "start": 23.434,
-   "dur": 5.888,
+   "start": 23.499,
+   "dur": 5.824,
    "caption": "Errou? A IA tutora explica de outro jeito, com um exemplo do dia a dia, e cria novos exercícios na hora."
   },
   {
    "id": "n5",
-   "start": 29.822,
-   "dur": 5.211,
+   "start": 29.823,
+   "dur": 5.242,
    "caption": "Metas, medalhas e sequências de estudo deixam o aprendizado mais leve e motivador."
   },
   {
    "id": "n6",
-   "start": 35.534,
-   "dur": 4.629,
+   "start": 35.565,
+   "dur": 4.651,
    "caption": "O professor vê o painel da turma: quem está com dificuldade, e em qual habilidade."
   },
   {
    "id": "n7",
-   "start": 40.663,
-   "dur": 4.779,
+   "start": 40.715,
+   "dur": 4.843,
    "caption": "Com um toque, ele monta um reforço para o grupo certo. A IA apoia, e o professor conduz."
   },
   {
    "id": "n8",
-   "start": 45.942,
-   "dur": 5.547,
+   "start": 46.058,
+   "dur": 5.504,
    "caption": "A Secretaria de Educação acompanha a rede inteira, por escola e por habilidade, em tempo real."
   },
   {
    "id": "n9",
-   "start": 51.989,
-   "dur": 3.506,
+   "start": 52.062,
+   "dur": 3.418,
    "caption": "As famílias recebem relatórios simples, direto no celular."
   },
   {
    "id": "n10",
-   "start": 55.995,
-   "dur": 4.864,
+   "start": 55.981,
+   "dur": 4.928,
    "caption": "E os servidores públicos também aprendem: cursos de capacitação com certificado."
   },
   {
    "id": "n11",
-   "start": 61.359,
-   "dur": 9.621,
+   "start": 61.409,
+   "dur": 9.792,
    "caption": "Num cenário ilustrativo, uma rede com 5 mil alunos que troca 20 folhas impressas por mês, por aluno, por material digital, deixa de imprimir 100 mil folhas todo mês."
   },
   {
    "id": "n12",
-   "start": 71.48,
-   "dur": 4.757,
+   "start": 71.701,
+   "dur": 4.715,
    "caption": "Tudo com segurança e LGPD, porque dados de estudantes merecem proteção."
   },
   {
    "id": "n13",
-   "start": 77.838,
-   "dur": 4.202,
+   "start": 78.015,
+   "dur": 4.252,
    "caption": "V4.7. Inteligência pública, por V4 FábricaGov."
   }
  ],
- "end": 86.04
+ "end": 86.27
 }

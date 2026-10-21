@@ -1,0 +1,83 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.8,
+   "dur": 6.917,
+   "caption": "Toda obra pública começa no papel. E quando a medida está errada, o problema aparece depois: aditivo, atraso e retrabalho."
+  },
+  {
+   "id": "n2",
+   "start": 8.317,
+   "dur": 7.019,
+   "caption": "Com o Sistema de Obras da V4.7, tudo começa no celular. O servidor vai até o local e fotografa o terreno."
+  },
+  {
+   "id": "n3",
+   "start": 15.835,
+   "dur": 5.226,
+   "caption": "A câmera mede na hora: largura, comprimento e área. Cada cota fica registrada na foto."
+  },
+  {
+   "id": "n4",
+   "start": 21.561,
+   "dur": 5.056,
+   "caption": "Depois, é só falar o que a prefeitura quer: quero uma praça com quadra, bancos e iluminação."
+  },
+  {
+   "id": "n5",
+   "start": 27.117,
+   "dur": 6.827,
+   "caption": "A IA entende o pedido e desenha a proposta: os caminhos, a quadra, os bancos e os postes, tudo na medida do terreno."
+  },
+  {
+   "id": "n6",
+   "start": 34.444,
+   "dur": 5.867,
+   "caption": "Em seguida, levanta os quantitativos: metros quadrados de piso, metros de meio-fio, número de postes."
+  },
+  {
+   "id": "n7",
+   "start": 40.811,
+   "dur": 6.699,
+   "caption": "E monta o orçamento com a referência oficial de preços do SINAPI, como pede a Lei 14.133."
+  },
+  {
+   "id": "n8",
+   "start": 48.01,
+   "dur": 6.528,
+   "caption": "Os documentos da fase preparatória saem prontos: estudo técnico preliminar, termo de referência e cronograma."
+  },
+  {
+   "id": "n9",
+   "start": 55.038,
+   "dur": 4.288,
+   "caption": "A IA estima. O engenheiro responsável confere, ajusta e assina, com ART."
+  },
+  {
+   "id": "n10",
+   "start": 59.826,
+   "dur": 3.648,
+   "caption": "Com os dados certos, a prefeitura já pode publicar a licitação."
+  },
+  {
+   "id": "n11",
+   "start": 63.974,
+   "dur": 7.04,
+   "caption": "Num cenário ilustrativo, uma obra de 1 milhão de reais que evita um aditivo de 10% economiza 100 mil reais."
+  },
+  {
+   "id": "n12",
+   "start": 71.514,
+   "dur": 4.352,
+   "caption": "Menos erro de quantitativo, menos retrabalho e uma licitação mais rápida."
+  },
+  {
+   "id": "n13",
+   "start": 77.466,
+   "dur": 4.202,
+   "caption": "V4.7. Inteligência pública, por V4 FábricaGov."
+  }
+ ],
+ "end": 85.67
+}

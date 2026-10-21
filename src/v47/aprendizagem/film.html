@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Aprendizagem Digital</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+.ttl{font-family:Anton,sans-serif;text-transform:uppercase;line-height:.95;font-size:104px}
+.sub{font-size:34px;font-weight:500;color:#C9CCD4;line-height:1.35}
+.app{position:absolute;inset:0;padding:70px 26px 26px;font-family:Inter,sans-serif}
+.app h4{font-size:26px;font-weight:700}
+.opt{border:2px solid #3A3E48;border-radius:16px;padding:16px 20px;font-size:28px;font-weight:700;margin-top:14px;background:#20232A}
+.bub{border-radius:20px;padding:16px 20px;font-size:22px;line-height:1.35;font-weight:500}
+.cell{width:84px;height:36px;border-radius:8px;background:#24272F}
+.hrow{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.hname{width:190px;font-size:22px;font-weight:600;color:#C9CCD4}
+.medal{position:absolute;width:190px;height:190px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Anton,sans-serif;font-size:60px;color:#111216}
+.stu{position:absolute;width:150px;padding:16px;border-radius:16px;background:#24272F;border:1px solid #3A3E48;font-size:22px;font-weight:700;text-align:center}
+.crs{background:#20232A;border:1px solid #3A3E48;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.crs b{font-size:26px}
+.pb{height:12px;border-radius:6px;background:#2E323C;overflow:hidden}
+.pb i{display:block;height:100%;width:0;background:var(--acc)}
+.sheet{position:absolute;width:150px;height:200px;background:#F4F1EA;border-radius:6px;box-shadow:0 8px 20px #0006}
+.sheet:after{content:'';position:absolute;left:18px;right:18px;top:30px;height:110px;background:repeating-linear-gradient(#C9C3B6 0 6px,transparent 6px 20px)}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1: problema -->
+<div class="sc" id="s1"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:1100px;top:300px;width:700px;height:600px;background:#FF5DA2;opacity:.18"></div>
+ <div class="abs eb" id="e1" style="left:120px;top:170px">O DESAFIO</div>
+ <div class="abs ttl" id="t1" style="left:120px;top:230px;width:900px">Cada aluno aprende de um jeito</div>
+ <div class="abs sub" id="u1" style="left:120px;top:500px;width:760px">Mas a turma anda num ritmo só. E quem fica para trás nem sempre é visto a tempo.</div>
+ <div class="abs panel" style="left:1020px;top:190px;width:780px;height:700px;padding:40px">
+  <div class="lbl">RITMO DA TURMA</div>
+  <div class="abs" style="left:40px;top:96px;width:700px;height:14px;border-radius:7px;background:#2E323C"><div id="pace1" style="height:100%;width:0;border-radius:7px;background:#D9A441"></div></div>
+  <div class="abs" id="dots1" style="left:40px;top:150px;width:700px;height:500px"></div>
+ </div>
+ <div class="abs chip" id="k1" style="left:1240px;top:900px"><i style="background:#FF4D4D"></i>4 alunos ficando para trás</div>
+</div></div>
+
+<!-- 2: celular / offline -->
+<div class="sc" id="s2"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:1000px;top:150px;width:800px;height:800px;background:#FF5DA2;opacity:.22"></div>
+ <div class="abs eb" id="e2" style="left:120px;top:200px">V4.7 · APRENDIZAGEM DIGITAL</div>
+ <div class="abs ttl" id="t2" style="left:120px;top:260px;width:820px">A escola no celular do aluno</div>
+ <div class="abs" style="left:120px;top:560px;display:flex;flex-direction:column;gap:18px">
+  <div class="chip" id="c2a"><i></i>Funciona com internet fraca</div>
+  <div class="chip" id="c2b"><i></i>Conteúdos baixados para estudar sem conexão</div>
+  <div class="chip" id="c2c"><i></i>Sincroniza quando a rede volta</div>
+ </div>
+ <div id="ph2"></div>
+ <div class="abs" id="sig2" style="left:120px;top:800px;display:flex;align-items:flex-end;gap:8px;height:70px"></div>
+ <div class="abs" id="off2" style="left:240px;top:810px;background:#FF5DA2;color:#111216;border-radius:999px;padding:12px 24px;font-size:24px;font-weight:800">MODO OFFLINE ATIVO</div>
+</div></div>
+
+<!-- 3: trilha -->
+<div class="sc" id="s3"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e3" style="left:120px;top:150px">TRILHA PERSONALIZADA</div>
+ <div class="abs ttl" id="t3" style="left:120px;top:210px;width:1100px">Cada um no seu nível</div>
+ <svg class="abs" width="1920" height="1080" viewBox="0 0 1920 1080" style="left:0;top:0">
+  <path id="path3" d="M180 880 C420 880 420 640 660 640 C900 640 900 860 1140 860 C1380 860 1380 560 1620 560 C1720 560 1760 470 1760 420" stroke="#FF5DA2" stroke-width="10" fill="none" stroke-linecap="round"/>
+ </svg>
+ <div id="nodes3"></div>
+ <div class="abs chip" id="lv3" style="left:1340px;top:200px;font-size:30px"><i></i>Nível <span id="lvn3">2</span></div>
+ <div class="abs chip" id="bn3" style="left:1340px;top:280px"><i style="background:#D9A441"></i>Alinhado à BNCC</div>
+ <div class="abs panel" id="cd3" style="left:1160px;top:640px;width:420px;padding:24px">
+  <div class="lbl">PRÓXIMA ETAPA</div><div style="font-size:30px;font-weight:700;margin-top:8px">Frações equivalentes</div>
+  <div class="pb" style="margin-top:16px"><i id="pb3"></i></div>
+ </div>
+</div></div>
+
+<!-- 4: IA tutora -->
+<div class="sc" id="s4"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:200px;top:200px;width:700px;height:700px;background:#FF5DA2;opacity:.18"></div>
+ <div id="ph4"></div>
+ <div class="abs eb" id="e4" style="left:880px;top:160px">IA TUTORA</div>
+ <div class="abs ttl" id="t4" style="left:880px;top:220px;width:920px;font-size:92px">Errou? Ela explica de outro jeito</div>
+ <div class="abs panel" id="chat4" style="left:880px;top:450px;width:900px;height:460px;padding:30px;display:flex;flex-direction:column;gap:18px">
+  <div class="bub" id="b4a" style="align-self:flex-end;background:#2E323C;max-width:560px">Não entendi por que deu 4/4.</div>
+  <div style="display:flex;gap:24px;align-items:flex-start">
+   <div class="bub" id="b4b" style="background:#FF5DA2;color:#111216;width:560px;min-height:120px"></div>
+   <svg id="pz4" width="200" height="200" viewBox="-100 -100 200 200"><circle r="90" fill="#2E323C"/><g id="sl4"></g><circle r="90" fill="none" stroke="#F4F1EA" stroke-width="4"/><path d="M0 -90 L0 90 M-90 0 L90 0" stroke="#F4F1EA" stroke-width="4"/></svg>
+  </div>
+  <div class="abs chip" id="nx4" style="left:30px;bottom:30px"><i style="background:#2BD99F"></i>3 novos exercícios criados para você</div>
+ </div>
+</div></div>
+
+<!-- 5: gamificação -->
+<div class="sc" id="s5"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e5" style="left:120px;top:160px">GAMIFICAÇÃO</div>
+ <div class="abs ttl" id="t5" style="left:120px;top:220px;width:900px">Aprender fica mais leve</div>
+ <div class="medal" id="m5a" style="left:140px;top:560px;background:#D9A441">1º</div>
+ <div class="medal" id="m5b" style="left:380px;top:560px;background:#FF5DA2">★</div>
+ <div class="medal" id="m5c" style="left:620px;top:560px;background:#2EC4E6">10</div>
+ <div class="abs lbl" style="left:140px;top:780px;width:700px">Medalhas por meta cumprida</div>
+ <div class="abs panel" id="st5" style="left:1000px;top:200px;width:780px;padding:36px">
+  <div class="lbl">SEQUÊNCIA DE ESTUDO</div>
+  <div style="display:flex;align-items:baseline;gap:20px;margin-top:10px"><div class="kpi" id="n5" style="color:#FF5DA2">0</div><div style="font-size:34px;font-weight:700">dias seguidos</div></div>
+  <div id="days5" style="display:flex;gap:10px;margin-top:20px"></div>
+ </div>
+ <div class="abs panel" id="xp5" style="left:1000px;top:560px;width:780px;padding:36px">
+  <div class="lbl">META DA SEMANA</div>
+  <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:30px;font-weight:700"><span>Exercícios</span><span id="xpn5">0 / 40</span></div>
+  <div class="pb" style="height:26px;border-radius:13px;margin-top:16px"><i id="xpb5" style="background:linear-gradient(90deg,#FF5DA2,#D9A441)"></i></div>
+ </div>
+</div></div>
+
+<!-- 6: painel do professor -->
+<div class="sc" id="s6"><div class="cam">
+ <div class="abs eb" id="e6" style="left:120px;top:140px">PAINEL DO PROFESSOR</div>
+ <div class="abs ttl" id="t6" style="left:120px;top:195px;font-size:80px;width:1700px">Quem tem dificuldade, e em quê</div>
+ <div id="lp6"></div>
+</div></div>
+
+<!-- 7: reforço -->
+<div class="sc" id="s7"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e7" style="left:120px;top:150px">REFORÇO EM UM TOQUE</div>
+ <div class="abs ttl" id="t7" style="left:120px;top:205px;width:1300px;font-size:92px">O grupo certo, na hora certa</div>
+ <div class="abs panel" id="box7" style="left:820px;top:440px;width:620px;height:480px;padding:30px;border:2px dashed #FF5DA2">
+  <div class="lbl">GRUPO DE REFORÇO · FRAÇÕES</div>
+  <div class="abs btn" id="bt7" style="left:30px;bottom:30px">Enviar atividade</div>
+ </div>
+ <div class="stu" id="g7a" style="left:160px;top:520px">Bruno</div>
+ <div class="stu" id="g7b" style="left:160px;top:620px">Davi</div>
+ <div class="stu" id="g7c" style="left:160px;top:720px">Lara</div>
+ <div class="stu" id="g7d" style="left:160px;top:820px">Igor</div>
+ <div class="abs panel" id="toast7" style="left:1500px;top:480px;width:330px;padding:26px;border-left:6px solid #2BD99F">
+  <div style="font-size:26px;font-weight:700">Atividade enviada</div><div class="lbl" style="margin-top:6px">para 4 alunos</div>
+ </div>
+ <div class="abs chip" id="r7" style="left:1180px;top:340px;font-size:26px"><i style="background:#D9A441"></i>A IA apoia · o professor conduz</div>
+</div></div>
+
+<!-- 8: secretaria -->
+<div class="sc" id="s8"><div class="cam">
+ <div class="abs eb" id="e8" style="left:120px;top:140px">SECRETARIA DE EDUCAÇÃO</div>
+ <div class="abs ttl" id="t8" style="left:120px;top:195px;font-size:80px;width:1700px">A rede inteira em tempo real</div>
+ <div id="lp8"></div>
+</div></div>
+
+<!-- 9: famílias -->
+<div class="sc" id="s9"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:900px;top:200px;width:700px;height:700px;background:#FF5DA2;opacity:.18"></div>
+ <div class="abs eb" id="e9" style="left:120px;top:200px">FAMÍLIAS</div>
+ <div class="abs ttl" id="t9" style="left:120px;top:260px;width:760px">Relatórios simples, direto no celular</div>
+ <div class="abs sub" id="u9" style="left:120px;top:600px;width:700px">Pais e responsáveis acompanham o que o filho estudou e onde pode melhorar.</div>
+ <div id="ph9"></div>
+</div></div>
+
+<!-- 10: servidores -->
+<div class="sc" id="s10"><div class="cam">
+ <div class="abs eb" id="e10" style="left:120px;top:140px">CAPACITAÇÃO DE SERVIDORES</div>
+ <div class="abs ttl" id="t10" style="left:120px;top:195px;font-size:80px;width:1700px">Servidores também aprendem</div>
+ <div id="lp10"></div>
+ <div class="abs panel" id="cert10" style="left:1180px;top:430px;width:620px;height:430px;padding:40px;background:#F4F1EA;color:#111216;border:6px solid #D9A441">
+  <div style="font-size:22px;font-weight:700;letter-spacing:6px;color:#8A6A22">CERTIFICADO</div>
+  <div class="anton" style="font-size:52px;margin-top:20px;line-height:1.05">Atendimento ao cidadão</div>
+  <div style="font-size:24px;margin-top:20px;font-weight:600">Concluído por: Servidor(a) exemplo</div>
+  <div style="font-size:22px;margin-top:6px;color:#555">Carga horária: 20 h</div>
+  <div class="abs" id="seal10" style="right:36px;bottom:30px;width:120px;height:120px;border-radius:50%;background:#D9A441;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:34px;color:#111216">V4.7</div>
+ </div>
+</div></div>
+
+<!-- 11: economia -->
+<div class="sc" id="s11"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e11" style="left:120px;top:150px">ECONOMIA · CENÁRIO ILUSTRATIVO</div>
+ <div class="abs ttl" id="t11" style="left:120px;top:205px;font-size:88px;width:1700px">Menos papel, mais aprendizado</div>
+ <div class="abs" style="left:120px;top:430px;display:flex;align-items:center;gap:40px">
+  <div class="panel" id="f11a" style="padding:34px 40px"><div class="kpi" id="n11a">0</div><div class="lbl" style="margin-top:8px">alunos na rede</div></div>
+  <div class="anton" id="x11a" style="font-size:90px;color:#A9ADB8">×</div>
+  <div class="panel" id="f11b" style="padding:34px 40px"><div class="kpi" id="n11b">0</div><div class="lbl" style="margin-top:8px">folhas por aluno/mês</div></div>
+  <div class="anton" id="x11b" style="font-size:90px;color:#A9ADB8">=</div>
+  <div class="panel" id="f11c" style="padding:34px 40px;border:2px solid #FF5DA2"><div class="kpi" id="n11c" style="color:#FF5DA2">0</div><div class="lbl" style="margin-top:8px">folhas a menos por mês</div></div>
+ </div>
+ <div id="sheets11"></div>
+ <div class="abs" id="c11" style="left:120px;top:900px;font-size:24px;font-weight:600;color:#C9CCD4">Conta ilustrativa: 5.000 × 20 = 100.000 folhas por mês. Os números reais dependem de cada rede.</div>
+</div></div>
+
+<!-- 12: segurança -->
+<div class="sc" id="s12"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:700px;top:250px;width:600px;height:600px;background:#FF5DA2;opacity:.2"></div>
+ <svg class="abs" id="sh12" width="420" height="500" viewBox="0 0 420 500" style="left:750px;top:300px">
+  <path id="shp12" d="M210 20 L380 90 L380 240 C380 360 300 440 210 480 C120 440 40 360 40 240 L40 90 Z" fill="#1A1C22" stroke="#FF5DA2" stroke-width="10"/>
+  <rect x="150" y="230" width="120" height="100" rx="14" fill="#FF5DA2"/><path d="M170 230 L170 195 A40 40 0 0 1 250 195 L250 230" fill="none" stroke="#FF5DA2" stroke-width="16"/><circle cx="210" cy="275" r="14" fill="#111216"/>
+ </svg>
+ <div class="abs eb" id="e12" style="left:0;right:0;top:160px;text-align:center">SEGURANÇA</div>
+ <div class="abs ttl" id="t12" style="left:0;right:0;top:210px;text-align:center;font-size:80px">Dados de estudantes protegidos</div>
+ <div class="abs chip" id="c12a" style="left:200px;top:450px"><i></i>LGPD</div>
+ <div class="abs chip" id="c12b" style="left:180px;top:620px"><i></i>Acesso por perfil</div>
+ <div class="abs chip" id="c12c" style="left:1290px;top:450px"><i></i>Registro de acessos</div>
+ <div class="abs chip" id="c12d" style="left:1290px;top:620px"><i></i>Só a escola e a família veem</div>
+</div></div>
+
+<!-- 13: logo -->
+<div class="sc" id="s13"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:660px;top:240px;width:600px;height:600px;background:#FF5DA2;opacity:.18"></div>
+ <div class="abs" id="lg13" style="left:310px;top:200px"></div>
+ <div class="abs" id="tg13" style="left:0;right:0;top:770px;text-align:center;font-size:40px;font-weight:700;letter-spacing:14px">INTELIGÊNCIA PÚBLICA</div>
+ <div class="abs" id="sy13" style="left:0;right:0;top:840px;text-align:center;font-size:30px;font-weight:700;letter-spacing:10px;color:#FF5DA2">APRENDIZAGEM DIGITAL</div>
+</div></div>
+
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const {$,cl,eo,eio,spr,mul,rise,slideX,pop,slam,count,typed,draw,fade,Wd,note,src}=K;
+const A='#FF5DA2';
+let dots=[],nodes=[],cells=[],bars8=[],days=[];
+function build(){
+ // 1: turma
+ const d1=$('dots1');const r=mul(4);
+ for(let i=0;i<30;i++){const x=(i%6)*118+20,y=Math.floor(i/6)*96+10;const e=document.createElement('div');e.className='abs';e.style.cssText=`left:${x}px;top:${y}px;width:64px;height:64px;border-radius:50%;background:#3A3E48;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#111216`;d1.appendChild(e);dots.push({e,lag:[3,10,17,26].includes(i),d:r()*.6})}
+ // 2: celular
+ $('ph2').innerHTML=K.phone('p2',`<div class="app"><div style="font-size:22px;color:#A9ADB8;font-weight:600">Olá,</div><h4 style="font-size:40px">Ana 👋</h4>
+  <div style="margin-top:24px;background:#FF5DA2;color:#111216;border-radius:22px;padding:22px"><div style="font-size:22px;font-weight:700">Trilha de hoje</div><div style="font-size:30px;font-weight:800;margin-top:6px">Frações</div><div class="pb" style="margin-top:14px;background:#ffffff55"><i id="pp2" style="background:#111216"></i></div></div>
+  <div id="ls2" style="margin-top:20px;display:flex;flex-direction:column;gap:14px">${['Vídeo curto · 3 min','Exercícios · 8','Desafio da semana'].map((x,i)=>`<div style="background:#20232A;border:1px solid #3A3E48;border-radius:16px;padding:18px;font-size:22px;font-weight:600;display:flex;justify-content:space-between"><span>${x}</span><span style="color:#2BD99F">⬇ salvo</span></div>`).join('')}</div></div>`,1180,120,1);
+ let s='';for(let i=0;i<4;i++)s+=`<div class="sb2" style="width:18px;height:${18+i*16}px;border-radius:4px;background:#F4F1EA"></div>`;$('sig2').innerHTML=s;
+ // 3: trilha nós
+ const p=$('path3');const L=p.getTotalLength();const n3=$('nodes3');
+ for(let i=0;i<7;i++){const pt=p.getPointAtLength(L*i/6);const e=document.createElement('div');e.className='abs';e.style.cssText=`left:${pt.x-38}px;top:${pt.y-38}px;width:76px;height:76px;border-radius:50%;background:#24272F;border:4px solid #3A3E48;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:34px;color:#A9ADB8`;e.textContent=i+1;n3.appendChild(e);nodes.push(e)}
+ // 4: celular exercício
+ $('ph4').innerHTML=K.phone('p4',`<div class="app"><div class="lbl">EXERCÍCIO 3 DE 8</div><h4 style="font-size:34px;margin-top:14px;line-height:1.2">Quanto é<br><span style="font-family:Anton;font-size:72px">3/4 + 1/4</span> ?</h4>
+  <div class="opt" id="o4a">4/8</div><div class="opt" id="o4b">1</div><div class="opt" id="o4c">4/16</div>
+  <div id="fb4" style="margin-top:22px;background:#FF4D4D22;border:2px solid #FF4D4D;color:#FF8A8A;border-radius:16px;padding:16px;font-size:22px;font-weight:700">Quase! Vamos ver de outro jeito.</div></div>`,250,110,1);
+ let sl='';for(let i=0;i<4;i++){const a0=-Math.PI/2+i*Math.PI/2,a1=a0+Math.PI/2;sl+=`<path class="slc" d="M0 0 L${90*Math.cos(a0)} ${90*Math.sin(a0)} A90 90 0 0 1 ${90*Math.cos(a1)} ${90*Math.sin(a1)} Z" fill="${i<3?'#FF5DA2':'#D9A441'}" opacity="0"/>`}$('sl4').innerHTML=sl;
+ // 5: dias
+ const dd=$('days5');for(let i=0;i<12;i++){const e=document.createElement('div');e.style.cssText='width:46px;height:46px;border-radius:12px;background:#2E323C';dd.appendChild(e);days.push(e)}
+ // 6: heatmap no notebook
+ const skills=['Leitura','Frações','Geometria','Escrita','Problemas','Ciências'];
+ const names=['Ana','Bruno','Carla','Davi','Elisa','Felipe','Lara','Igor'];
+ const r6=mul(9);let hm=`<div style="padding:30px 36px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px"><div style="font-size:28px;font-weight:700">Turma 5º ano B</div><div class="chip" style="font-size:20px"><i></i>Atualizado agora</div></div>
+  <div class="hrow"><div class="hname"></div>${skills.map(s=>`<div style="width:110px;font-size:20px;font-weight:700;color:#A9ADB8;text-align:center">${s}</div>`).join('')}</div>`;
+ names.forEach((nm,ri)=>{hm+=`<div class="hrow" id="hr6_${ri}"><div class="hname">${nm}</div>`;skills.forEach((s,ci)=>{let v=.42+.58*r6();if([1,3,6,7].includes(ri)&&ci===1)v=.12;if(ri===4&&ci===4)v=.2;hm+=`<div class="cell" data-v="${v.toFixed(2)}" style="width:110px"></div>`});hm+='</div>'});
+ hm+=`<div style="display:flex;gap:26px;margin-top:20px;font-size:20px;font-weight:600;color:#A9ADB8"><span><b style="display:inline-block;width:18px;height:18px;border-radius:4px;background:#FF4D4D;vertical-align:middle"></b> precisa de apoio</span><span><b style="display:inline-block;width:18px;height:18px;border-radius:4px;background:#D9A441;vertical-align:middle"></b> em progresso</span><span><b style="display:inline-block;width:18px;height:18px;border-radius:4px;background:#2BD99F;vertical-align:middle"></b> domina</span></div></div>`;
+ $('lp6').innerHTML=K.laptop('L6','v47.app/professor/turma-5b',hm,120,330,1000,640)+`<div class="abs panel" id="al6" style="left:1170px;top:360px;width:630px;padding:32px;border-left:6px solid #FF4D4D"><div class="lbl">ALERTA DA TURMA</div><div style="font-size:34px;font-weight:800;margin-top:10px">4 alunos com dificuldade em Frações</div><div class="sub" style="font-size:26px;margin-top:12px">Bruno, Davi, Lara e Igor erraram 3 ou mais exercícios desta habilidade.</div></div>
+  <div class="abs panel" id="sg6" style="left:1170px;top:680px;width:630px;padding:32px"><div class="lbl">SUGESTÃO DA IA</div><div style="font-size:28px;font-weight:700;margin-top:10px">Reforço com material concreto: pizza e régua de frações</div></div>`;
+ document.querySelectorAll('#L6 .cell').forEach(c=>cells.push(c));
+ // 8: secretaria
+ const sch=[['E.M. Centro',.82],['E.M. Vila Nova',.64],['E.M. Rural Sul',.48],['E.M. Jardim',.71],['E.M. Santa Luzia',.57]];
+ let d8=`<div style="padding:30px 36px;display:grid;grid-template-columns:1fr 1fr;gap:30px">
+  <div><div style="font-size:26px;font-weight:700;margin-bottom:18px">Habilidades dominadas por escola</div>${sch.map(([n,v],i)=>`<div style="display:flex;align-items:center;gap:14px;margin-bottom:16px"><div style="width:220px;font-size:21px;font-weight:600;color:#C9CCD4">${n}</div><div style="flex:1;height:34px;background:#24272F;border-radius:8px;overflow:hidden"><div class="b8" data-v="${v}" style="height:100%;width:0;background:${i===2?'#FF4D4D':'#FF5DA2'}"></div></div><div class="v8" style="width:70px;font-size:22px;font-weight:700;text-align:right">0%</div></div>`).join('')}</div>
+  <div><div style="font-size:26px;font-weight:700;margin-bottom:18px">Evolução da rede (mês a mês)</div><svg width="560" height="300" viewBox="0 0 560 300"><g stroke="#2E323C" stroke-width="2"><line x1="0" y1="60" x2="560" y2="60"/><line x1="0" y1="140" x2="560" y2="140"/><line x1="0" y1="220" x2="560" y2="220"/></g><path id="ln8" d="M10 250 L100 232 L190 214 L280 196 L370 160 L460 140 L550 104" stroke="#FF5DA2" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path id="ln8b" d="M10 260 L100 252 L190 240 L280 236 L370 222 L460 210 L550 196" stroke="#D9A441" stroke-width="6" fill="none" stroke-dasharray="1 0" stroke-linecap="round"/></svg>
+   <div style="display:flex;gap:24px;font-size:20px;font-weight:600;color:#A9ADB8"><span style="color:#FF5DA2">● Matemática</span><span style="color:#D9A441">● Leitura</span></div></div></div>`;
+ $('lp8').innerHTML=K.laptop('L8','v47.app/secretaria/rede',d8,120,330,1260,640)+
+  `<div class="abs panel" id="k8a" style="left:1430px;top:330px;width:370px;padding:28px"><div class="lbl">ESCOLAS</div><div class="kpi" id="n8a">0</div></div>
+   <div class="abs panel" id="k8b" style="left:1430px;top:540px;width:370px;padding:28px"><div class="lbl">ALUNOS ATIVOS HOJE</div><div class="kpi" id="n8b" style="color:#FF5DA2">0</div></div>
+   <div class="abs panel" id="k8c" style="left:1430px;top:750px;width:370px;padding:28px;border-left:6px solid #FF4D4D"><div class="lbl">ESCOLA EM ATENÇÃO</div><div style="font-size:30px;font-weight:800;margin-top:8px">E.M. Rural Sul</div></div>`;
+ // 9: família
+ $('ph9').innerHTML=K.phone('p9',`<div class="app" style="padding-top:80px"><div id="nt9" style="background:#2E323C;border-radius:20px;padding:18px;display:flex;gap:14px;align-items:center"><div style="width:52px;height:52px;border-radius:12px;background:#FF5DA2;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:22px;color:#111216">4.7</div><div><div style="font-size:20px;font-weight:700">Relatório semanal</div><div style="font-size:20px;color:#A9ADB8">Ana · 5º ano B</div></div></div>
+  <div style="display:flex;flex-direction:column;gap:14px;margin-top:22px">
+   <div class="rc9" style="background:#20232A;border-radius:18px;padding:18px"><div class="lbl" style="font-size:20px">ESTUDOU</div><div style="font-size:30px;font-weight:800">4 dias na semana</div></div>
+   <div class="rc9" style="background:#20232A;border-radius:18px;padding:18px"><div class="lbl" style="font-size:20px">AVANÇOU EM</div><div style="font-size:30px;font-weight:800;color:#2BD99F">Frações ↑</div></div>
+   <div class="rc9" style="background:#20232A;border-radius:18px;padding:18px"><div class="lbl" style="font-size:20px">DICA PARA CASA</div><div style="font-size:24px;font-weight:700">Ler 15 minutos juntos</div></div>
+  </div></div>`,1200,120,1);
+ // 10: cursos
+ const crs=[['Licitações e contratos',.8],['Atendimento ao cidadão',1],['LGPD no serviço público',.55],['Planilhas no dia a dia',.35]];
+ $('lp10').innerHTML=K.laptop('L10','v47.app/capacitacao',`<div style="padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:22px">${crs.map(([n,v],i)=>`<div class="crs"><div style="width:56px;height:56px;border-radius:14px;background:${['#2EC4E6','#FF5DA2','#8B7CF6','#D9A441'][i]}"></div><b>${n}</b><div class="pb"><i class="cb10" data-v="${v}"></i></div><div class="lbl" style="font-size:20px">${v>=1?'Concluído':'Em andamento'}</div></div>`).join('')}</div>`,120,330,980,600);
+}
+function scene(k,t,lt){
+ const SC=K.S.SC;
+ note([2,4,6,7,8,9,10].includes(k)?'Interface ilustrativa':(k===11?'Cenário ilustrativo':''));src('');
+ if(k===1){rise($('e1'),t,.6);rise($('t1'),t,.8,70,.8);rise($('u1'),t,Wd(1,'mas a sala')-.2);
+  const pc=eo((t-1.2)/6);$('pace1').style.width=(700*pc)+'px';
+  dots.forEach((d,i)=>{const p=cl((t-1+d.d)/.4);d.e.style.opacity=p;const lagT=Wd(1,'fica para trás')-.3;
+   if(d.lag&&t>lagT){const q=eo((t-lagT)/.6);d.e.style.background='#FF4D4D';d.e.style.transform=`translateY(${q*14}px) scale(${1-.15*q})`;d.e.textContent='!'}
+   else{d.e.style.background=t>2.5?'#FF5DA2':'#3A3E48';d.e.style.transform='none';d.e.textContent=''}});
+  pop($('k1'),t,Wd(1,'nem sempre')-.2)}
+ if(k===2){rise($('e2'),t,SC[1]+.2);rise($('t2'),t,SC[1]+.35,70,.8);slideX($('p2'),t,SC[1]+.3,200,.8);
+  $('pp2').style.width=(60*eo((lt-1)/2))+'%';
+  ['c2a','c2b','c2c'].forEach((c,i)=>slideX($(c),t,Wd(2,i===0?'celular':(i===1?'internet fraca':'sem conexão'))-.2+i*.15,-60));
+  const fw=Wd(2,'internet fraca')-.2;const bars=document.querySelectorAll('.sb2');const lv=t<fw?4:t<fw+.7?3:t<fw+1.4?2:t<Wd(2,'sem conexão')?1:0;
+  bars.forEach((b,i)=>b.style.background=i<lv?'#F4F1EA':'#3A3E48');pop($('off2'),t,Wd(2,'sem conexão')-.1)}
+ if(k===3){rise($('e3'),t,SC[2]+.2);rise($('t3'),t,SC[2]+.35,70,.8);draw($('path3'),t,SC[2]+.3,2.6);
+  nodes.forEach((n,i)=>{const t0=SC[2]+.4+i*.38;pop(n,t,t0,.3);const done=t>t0+.4&&i<4;n.style.background=done?A:(i===4&&t>t0+.4?'#D9A441':'#24272F');n.style.color=done||i===4?'#111216':'#A9ADB8';n.style.borderColor=done?A:'#3A3E48'});
+  pop($('lv3'),t,Wd(3,'nível')-.3);$('lvn3').textContent=t>Wd(3,'nível')+.4?'3':'2';pop($('bn3'),t,Wd(3,'bncc')-.3);
+  rise($('cd3'),t,Wd(3,'personalizada')-.2);$('pb3').style.width=(35*eo((t-Wd(3,'personalizada'))/1.5))+'%'}
+ if(k===4){const te=Wd(4,'errou')-.1;slideX($('p4'),t,SC[3]+.1,-200,.7);
+  ['o4a','o4b','o4c'].forEach(o=>{$(o).style.borderColor='#3A3E48';$(o).style.background='#20232A'});
+  if(t>te){$('o4a').style.borderColor='#FF4D4D';$('o4a').style.background='#FF4D4D33'}
+  const ok=Wd(4,'novos exercícios')-.3;if(t>ok){$('o4b').style.borderColor='#2BD99F';$('o4b').style.background='#2BD99F33'}
+  fade($('fb4'),t,te+.2,.3);rise($('e4'),t,SC[3]+.3);rise($('t4'),t,SC[3]+.45,60,.7);rise($('chat4'),t,Wd(4,'explica')-.5,40,.5);
+  rise($('b4a'),t,Wd(4,'explica')-.3,20,.4);
+  const txt='Imagine uma pizza em 4 pedaços. Você comeu 3 e depois mais 1: comeu a pizza inteira! 3/4 + 1/4 = 4/4 = 1.';typed($('b4b'),txt,t,Wd(4,'outro jeito')-.1,30);$('b4b').style.opacity=cl((t-Wd(4,'outro jeito')+.2)/.2);
+  const ex=Wd(4,'exemplo')-.2;document.querySelectorAll('#sl4 .slc').forEach((s,i)=>s.setAttribute('opacity',cl((t-ex-i*.35)/.25)));fade($('pz4'),t,ex-.3,.3);
+  pop($('nx4'),t,ok)}
+ if(k===5){rise($('e5'),t,SC[4]+.2);rise($('t5'),t,SC[4]+.35,70,.8);
+  [['m5a','metas'],['m5b','medalhas'],['m5c','sequências']].forEach(([m,w],i)=>{const t0=Wd(5,w)-.3;pop($(m),t,t0,.3);$(m).style.transform+=` rotate(${(1-eo((t-t0)/.6))*-90}deg)`});
+  rise($('st5'),t,Wd(5,'sequências')-.5,40);const t0=Wd(5,'sequências')-.2;const n=Math.round(12*eo((t-t0)/1.6));$('n5').textContent=n;days.forEach((d,i)=>d.style.background=i<n?A:'#2E323C');
+  rise($('xp5'),t,Wd(5,'leve')-.6,40);const x=eo((t-Wd(5,'leve')+.3)/1.4);$('xpb5').style.width=(90*x)+'%';$('xpn5').textContent=Math.round(36*x)+' / 40'}
+ if(k===6){rise($('e6'),t,SC[5]+.2);rise($('t6'),t,SC[5]+.35,60,.7);rise($('L6'),t,SC[5]+.3,80,.7);
+  cells.forEach((c,i)=>{const v=+c.dataset.v;const p=cl((t-SC[5]-.8-i*.025)/.25);const col=v<.3?'#FF4D4D':v<.62?'#D9A441':'#2BD99F';c.style.background=p>0?col:'#24272F';c.style.opacity=.25+.75*p});
+  const hl=Wd(6,'qual habilidade')-.3;[1,3,6,7].forEach(r=>{const e=$('hr6_'+r);const p=cl((t-hl)/.3);e.style.background=p>0?`rgba(255,77,77,${.12*p})`:'transparent';e.style.borderRadius='10px'});
+  slideX($('al6'),t,Wd(6,'dificuldade')-.2,80);slideX($('sg6'),t,hl+.6,80)}
+ if(k===7){rise($('e7'),t,SC[6]+.2);rise($('t7'),t,SC[6]+.35,60,.7);rise($('box7'),t,SC[6]+.5,40);
+  const gs=['g7a','g7b','g7c','g7d'];gs.forEach((g,i)=>{const e=$(g);const t0=Wd(7,'monta')-.2+i*.18;const p=eo((t-t0)/.6);const x0=160,y0=520+i*100,x1=860+(i%2)*280,y1=530+Math.floor(i/2)*110;
+   e.style.opacity=cl((t-SC[6]-.3-i*.08)/.3);e.style.left=(x0+(x1-x0)*p)+'px';e.style.top=(y0+(y1-y0)*p)+'px';e.style.borderColor=p>.9?A:'#3A3E48'});
+  const bt=Wd(7,'grupo certo')+.1;const press=t>bt&&t<bt+.25;$('bt7').style.transform=press?'scale(.92)':'scale(1)';fade($('bt7'),t,Wd(7,'monta'),.3);
+  slideX($('toast7'),t,bt+.3,60);pop($('r7'),t,Wd(7,'a ia apoia')-.2)}
+ if(k===8){rise($('e8'),t,SC[7]+.2);rise($('t8'),t,SC[7]+.35,60,.7);rise($('L8'),t,SC[7]+.3,80,.7);
+  document.querySelectorAll('#L8 .b8').forEach((b,i)=>{const t0=Wd(8,'por escola')-.4+i*.15;const p=eo((t-t0)/.9);const v=+b.dataset.v;b.style.width=(v*100*p)+'%';b.parentNode.nextElementSibling.textContent=Math.round(v*100*p)+'%'});
+  draw($('ln8'),t,Wd(8,'habilidade')-.3,1.6);draw($('ln8b'),t,Wd(8,'habilidade')-.1,1.6);
+  ['k8a','k8b','k8c'].forEach((x,i)=>slideX($(x),t,SC[7]+.8+i*.3,80));count($('n8a'),t,SC[7]+.9,1.2,24);count($('n8b'),t,SC[7]+1.2,1.6,3812);
+  const pulse=Wd(8,'tempo real');if(t>pulse){$('k8c').style.boxShadow=`0 0 0 ${6+6*Math.sin((t-pulse)*6)}px #FF4D4D33`}}
+ if(k===9){rise($('e9'),t,SC[8]+.2);rise($('t9'),t,SC[8]+.35,70,.8);rise($('u9'),t,Wd(9,'simples')-.2);slideX($('p9'),t,SC[8]+.2,200,.8);
+  const nt=$('nt9');const p=eo((t-Wd(9,'recebem')+.2)/.5);nt.style.transform=`translateY(${-140*(1-p)}px)`;nt.style.opacity=p;
+  document.querySelectorAll('#p9 .rc9').forEach((c,i)=>rise(c,t,Wd(9,'relatórios')+i*.3,30,.45))}
+ if(k===10){rise($('e10'),t,SC[9]+.2);rise($('t10'),t,SC[9]+.35,60,.7);rise($('L10'),t,SC[9]+.3,80,.7);
+  document.querySelectorAll('#L10 .cb10').forEach((b,i)=>{b.style.width=(+b.dataset.v*100*eo((t-SC[9]-.9-i*.2)/1.2))+'%'});
+  const tc=Wd(10,'capacitação')+.2;const p=eo((t-tc)/.6);const c=$('cert10');c.style.opacity=cl((t-tc)/.2);c.style.transform=`translateY(${(1-p)*120}px) rotate(${(1-p)*-6}deg)`;slam($('seal10'),t,tc+.6)}
+ if(k===11){rise($('e11'),t,SC[10]+.2);rise($('t11'),t,SC[10]+.35,60,.7);
+  const a=Wd(11,'5 mil')-.3,b=Wd(11,'20 folhas')-.3,c=Wd(11,'100 mil')-.3;
+  pop($('f11a'),t,a);count($('n11a'),t,a,.9,5000);fade($('x11a'),t,b-.2);pop($('f11b'),t,b);count($('n11b'),t,b,.7,20);fade($('x11b'),t,c-.2);pop($('f11c'),t,c);count($('n11c'),t,c,1.2,100000);
+  document.querySelectorAll('#sheets11 .sheet').forEach((s,i)=>{const t0=b+.2+i*.05;const u=t-t0;const fall=t>c?eo((t-c-i*.02)/.6):0;
+   s.style.opacity=u>0?(1-fall):0;s.style.transform=`translate(${(i%12)*8}px,${u>0?Math.min(0,-300+u*900):-300}px) rotate(${(i%5-2)*4+fall*40}deg) scale(${1-fall*.5})`});
+  rise($('c11'),t,c+1.2,20)}
+ if(k===12){rise($('e12'),t,SC[11]+.2);rise($('t12'),t,SC[11]+.35,60,.7);pop($('sh12'),t,SC[11]+.5,.4);draw($('shp12'),t,SC[11]+.5,1.2);
+  [['c12a','lgpd'],['c12b','segurança'],['c12c','dados'],['c12d','proteção']].forEach(([c,w],i)=>pop($(c),t,Wd(12,w)-.3+i*.05))}
+ if(k===13){K.logoAnim('logo13',t,SC[12]+.3);rise($('tg13'),t,SC[12]+1.4,30);rise($('sy13'),t,SC[12]+1.8,30)}
+}
+// folhas da cena 11 (montadas depois do build para ficarem atrás dos textos)
+K.boot({system:'APRENDIZAGEM DIGITAL',accent:A,hideHud:[13],build(){build();$('lg13').innerHTML=K.logoSVG('logo13');
+  let s='';for(let i=0;i<36;i++)s+=`<div class="sheet" style="left:${1240+(i%6)*70}px;top:${700+Math.floor(i/6)*-60}px"></div>`;$('sheets11').innerHTML=s},scene});
+</script>
+</body>
+</html>

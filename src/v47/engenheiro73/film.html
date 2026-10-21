@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Engenheiro 7.3</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+.bp{position:absolute;inset:0;background:#0C1426}
+.bp:before{content:'';position:absolute;inset:0;background-image:linear-gradient(#4D8BFF14 1px,transparent 1px),linear-gradient(90deg,#4D8BFF14 1px,transparent 1px);background-size:40px 40px}
+.bp:after{content:'';position:absolute;inset:0;background-image:linear-gradient(#4D8BFF22 1px,transparent 1px),linear-gradient(90deg,#4D8BFF22 1px,transparent 1px);background-size:200px 200px}
+.pipe{position:absolute;left:300px;right:300px;top:118px;height:74px;display:flex;align-items:center;justify-content:space-between}
+.pipe .ln{position:absolute;left:30px;right:30px;top:30px;height:4px;background:#2E323C;border-radius:2px}
+.pipe .lf{position:absolute;left:30px;top:30px;height:4px;background:var(--acc);border-radius:2px}
+.pipe .st{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;width:60px}
+.pipe .st i{width:26px;height:26px;border-radius:50%;background:#1A1C22;border:4px solid #3A3E48;display:block;margin-top:4px}
+.pipe .st span{font-size:20px;font-weight:700;color:#7E8494;white-space:nowrap}
+.pipe .st.done i{background:var(--acc);border-color:var(--acc)}
+.pipe .st.cur i{background:#F4F1EA;border-color:var(--acc);box-shadow:0 0 0 8px #4D8BFF44}
+.pipe .st.cur span{color:#F4F1EA}
+.pipe .st.done span{color:#B9C6E6}
+.warn{position:absolute;width:440px;padding:26px 30px;border-radius:18px;background:#2A1416;border:2px solid #FF5A5F;color:#FFD9DA;font-size:30px;font-weight:700;display:flex;gap:16px;align-items:center}
+.warn b{width:40px;height:40px;border-radius:50%;background:#FF5A5F;color:#2A1416;display:flex;align-items:center;justify-content:center;font-size:28px;flex:none}
+.card{background:var(--ink2);border:1px solid var(--line);border-radius:20px;padding:26px 30px}
+.card .k{font-size:22px;font-weight:600;color:var(--mute)}
+.card .v{font-family:Anton,sans-serif;font-size:58px;margin-top:6px;line-height:1}
+.row{display:grid;grid-template-columns:2.6fr .7fr .8fr 1.1fr 1.3fr;gap:0;font-size:24px;padding:16px 22px;border-bottom:1px solid #2E323C}
+.row.h{font-weight:700;color:var(--mute);font-size:21px;letter-spacing:1px;text-transform:uppercase}
+.doc{position:absolute;width:300px;height:380px;background:#F4F1EA;color:#111216;border-radius:14px;padding:30px 26px;box-shadow:0 30px 60px #000a}
+.doc h4{font-size:28px;font-weight:700;line-height:1.15}
+.doc .l{height:10px;border-radius:5px;background:#C9CBD1;margin-top:14px}
+.doc .ok{position:absolute;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#2BB673;color:#fff;font-size:34px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.entry{display:flex;gap:18px;align-items:center;background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:18px 22px;font-size:26px;font-weight:600}
+.entry .tm{font-size:21px;color:var(--mute);font-weight:600;min-width:120px}
+.entry .dot{width:16px;height:16px;border-radius:50%;background:var(--acc);flex:none}
+.alert{position:absolute;left:0;width:840px;border-radius:20px;padding:26px 30px;display:flex;flex-direction:column;gap:10px}
+.alert .t{font-size:32px;font-weight:700}
+.alert .s{font-size:24px;font-weight:600}
+.eq{font-family:Anton,sans-serif;font-size:120px;line-height:1}
+.bubble{position:absolute;border-radius:24px;padding:22px 24px;font-size:24px;font-weight:600;line-height:1.35}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1: problema -->
+<div class="sc" id="s1"><div class="cam"><div class="bp"></div>
+ <svg class="abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <path id="p1path" d="M300 560 C600 470 800 650 960 560 C1120 470 1320 650 1620 560" stroke="#4D8BFF" stroke-width="6" fill="none" stroke-dasharray="18 14"/>
+  <g transform="translate(220 560)"><g id="p1bulb" style="transform-box:fill-box;transform-origin:center"><circle r="78" fill="#1A2A4A" stroke="#4D8BFF" stroke-width="4"/><path d="M-26 22 C-48 0 -40 -48 0 -50 C40 -48 48 0 26 22 L22 40 L-22 40Z" fill="#D9A441"/><rect x="-18" y="44" width="36" height="12" rx="4" fill="#F4F1EA"/></g></g>
+  <g transform="translate(1700 560)"><g id="p1rib" style="transform-box:fill-box;transform-origin:center"><circle r="78" fill="#1A2A4A" stroke="#4D8BFF" stroke-width="4"/><rect x="-46" y="-6" width="92" height="12" fill="#FF5A5F"/><path d="M0 0 L-30 40 L-14 42 Z M0 0 L30 40 L14 42Z" fill="#FF5A5F"/><circle r="12" fill="#FF5A5F"/><path d="M-50 -46 L-10 -16 M-50 -16 L-10 -46" stroke="#F4F1EA" stroke-width="6" stroke-linecap="round"/></g></g>
+ </svg>
+ <div class="abs eb" id="e1" style="left:120px;top:150px">DA IDEIA À INAUGURAÇÃO</div>
+ <div class="abs anton" id="t1" style="left:116px;top:200px;font-size:96px;width:1500px">Muita coisa se perde <span class="acc">no caminho</span></div>
+ <div class="abs" style="left:150px;top:700px;font-size:26px;font-weight:700;color:#B9C6E6" id="l1a">IDEIA</div>
+ <div class="abs" style="left:1590px;top:700px;font-size:26px;font-weight:700;color:#B9C6E6;width:240px;text-align:center" id="l1b">INAUGURAÇÃO</div>
+ <div class="warn" id="w1a" style="left:330px;top:340px"><b>!</b>Projeto incompleto</div>
+ <div class="warn" id="w1b" style="left:780px;top:690px"><b>!</b>Orçamento furado</div>
+ <div class="warn" id="w1c" style="left:1170px;top:360px"><b>!</b>Atraso</div>
+ <div class="warn" id="w1d" style="left:1260px;top:740px;width:340px"><b>!</b>Aditivo</div>
+</div></div>
+
+<!-- 2: apresentação -->
+<div class="sc" id="s2"><div class="cam"><div class="bp"></div>
+ <div class="glow" style="left:610px;top:180px;width:700px;height:700px;background:#4D8BFF"></div>
+ <svg class="abs" id="hat2" width="300" height="220" viewBox="0 0 300 220" style="left:810px;top:180px"><path d="M30 170 C30 80 90 30 150 30 C210 30 270 80 270 170Z" fill="#D9A441"/><rect x="10" y="166" width="280" height="30" rx="10" fill="#B8852F"/><rect x="135" y="30" width="30" height="140" rx="8" fill="#F0BE5A"/><path d="M60 170 C60 110 95 70 128 58" stroke="#F0BE5A" stroke-width="10" fill="none" stroke-linecap="round"/></svg>
+ <div class="abs anton" id="t2" style="left:0;right:0;top:420px;text-align:center;font-size:150px">Engenheiro <span class="acc">7.3</span></div>
+ <div class="abs" id="d2" style="left:0;right:0;top:590px;text-align:center;font-size:40px;font-weight:600;color:#B9C6E6">a obra de ponta a ponta, da ideia à entrega</div>
+ <div class="abs chip" id="c2a" style="left:470px;top:690px;font-size:30px;padding:18px 32px"><i></i>Inteligência artificial</div>
+ <div class="abs chip" id="c2b" style="left:1030px;top:690px;font-size:30px;padding:18px 32px"><i style="background:#D9A441"></i>Equipe de engenharia</div>
+ <div class="pipe" id="pipe2" style="top:820px"></div>
+</div></div>
+
+<!-- 3: ideia -->
+<div class="sc" id="s3"><div class="cam"><div class="bp"></div>
+ <div class="pipe" id="pipe3"></div>
+ <div class="abs eb" id="e3" style="left:120px;top:260px">01 · IDEIA</div>
+ <div class="abs anton" id="t3" style="left:116px;top:310px;font-size:88px;width:720px">A prefeitura diz o que precisa</div>
+ <div class="abs" id="ph3"></div>
+ <svg class="abs" id="sk3" width="540" height="398" viewBox="0 0 760 560" style="left:1300px;top:380px">
+  <g stroke="#4D8BFF" stroke-width="4" fill="none" stroke-dasharray="14 10">
+   <path class="d3" d="M40 520 L720 520"/><path class="d3" d="M80 520 L80 240 L680 240 L680 520"/><path class="d3" d="M60 250 L380 90 L700 250"/>
+   <path class="d3" d="M330 520 L330 400 L430 400 L430 520"/>
+  </g>
+  <g fill="#4D8BFF33" stroke="#4D8BFF" stroke-width="3"><rect class="w3" x="120" y="290" width="80" height="70"/><rect class="w3" x="220" y="290" width="80" height="70"/><rect class="w3" x="460" y="290" width="80" height="70"/><rect class="w3" x="560" y="290" width="80" height="70"/><rect class="w3" x="120" y="400" width="80" height="70"/><rect class="w3" x="560" y="400" width="80" height="70"/></g>
+ </svg>
+ <div class="abs" id="lb3" style="left:1330px;top:800px;font-size:26px;font-weight:700;color:#B9C6E6">Escola · 6 salas de aula (esboço)</div>
+</div></div>
+
+<!-- 4: viabilidade -->
+<div class="sc" id="s4"><div class="cam"><div class="bp"></div>
+ <div class="pipe" id="pipe4"></div>
+ <div class="abs eb" id="e4" style="left:120px;top:260px">02 · ESTUDO DE VIABILIDADE</div>
+ <svg class="abs" id="lot4" width="760" height="560" viewBox="0 0 760 560" style="left:110px;top:330px">
+  <rect x="0" y="0" width="760" height="560" rx="22" fill="#111A2E" stroke="#2E3B5C"/>
+  <path d="M40 80 C200 40 300 120 420 60 C520 20 640 70 720 120" stroke="#2E3B5C" stroke-width="18" fill="none"/>
+  <path id="lotp" d="M170 170 L590 150 L620 440 L150 460Z" fill="#4D8BFF22" stroke="#4D8BFF" stroke-width="5"/>
+  <g stroke="#D9A441" stroke-width="3"><path class="c4" d="M170 120 L590 100"/><path class="c4" d="M170 108 L170 132 M590 88 L590 112"/><path class="c4" d="M660 150 L690 440"/><path class="c4" d="M648 152 L672 148 M678 442 L702 438"/></g>
+  <circle id="pin4" cx="385" cy="300" r="18" fill="#D9A441"/>
+ </svg>
+ <div class="abs" id="m4a" style="left:430px;top:400px;font-size:26px;font-weight:700;color:#D9A441">40 m</div>
+ <div class="abs" id="m4b" style="left:810px;top:600px;font-size:26px;font-weight:700;color:#D9A441">29 m</div>
+ <div class="abs" style="left:960px;top:330px;width:840px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+  <div class="card" id="k4a"><div class="k">Terreno</div><div class="v">1.160 m²</div></div>
+  <div class="card" id="k4b"><div class="k">Demanda</div><div class="v">180 alunos</div></div>
+  <div class="card" id="k4c"><div class="k">Custo estimado</div><div class="v acc">R$ 1,2 mi</div></div>
+  <div class="card" id="k4d"><div class="k">Prazo</div><div class="v">12 meses</div></div>
+ </div>
+ <div class="abs" id="v4" style="left:960px;top:740px;width:840px;display:flex;align-items:center;gap:24px;background:#12301F;border:2px solid #2BB673;border-radius:20px;padding:22px 30px"><div style="width:56px;height:56px;border-radius:50%;background:#2BB673;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700;color:#0C1426">✓</div><div style="font-size:34px;font-weight:700;color:#CFF5DF">Viável · segue para o projeto</div></div>
+</div></div>
+
+<!-- 5: projeto -->
+<div class="sc" id="s5"><div class="cam"><div class="bp"></div>
+ <div class="pipe" id="pipe5"></div>
+ <div class="abs eb" id="e5" style="left:120px;top:260px">03 · PROJETO</div>
+ <svg class="abs" width="1060" height="620" viewBox="0 0 1060 620" style="left:110px;top:320px">
+  <g stroke="#E8EEFF" stroke-width="6" fill="none">
+   <path class="d5" d="M40 60 L1020 60 L1020 560 L40 560 Z"/>
+   <path class="d5" d="M40 260 L1020 260 M40 360 L1020 360"/>
+   <path class="d5" d="M366 60 L366 260 M693 60 L693 260 M366 360 L366 560 M693 360 L693 560"/>
+  </g>
+  <g stroke="#0C1426" stroke-width="10"><path class="g5" d="M180 260 L240 260 M500 260 L560 260 M830 260 L890 260 M180 360 L240 360 M500 360 L560 360 M830 360 L890 360"/></g>
+  <g stroke="#D9A441" stroke-width="3"><path class="q5" d="M40 30 L1020 30 M40 18 L40 42 M1020 18 L1020 42"/><path class="q5" d="M1045 60 L1045 560 M1033 60 L1057 60 M1033 560 L1057 560"/></g>
+ </svg>
+ <div class="abs" id="q5a" style="left:600px;top:302px;font-size:22px;font-weight:700;color:#D9A441;background:#0C1426;padding:0 10px">32,0 m</div>
+ <div class="abs" id="q5b" style="left:1172px;top:600px;font-size:22px;font-weight:700;color:#D9A441">16,5 m</div>
+ <div class="abs" style="left:110px;top:320px;width:1060px;height:620px" id="rooms5">
+  <div class="abs r5" style="left:110px;top:140px;font-size:26px;font-weight:700;color:#B9C6E6">Sala 1</div><div class="abs r5" style="left:436px;top:140px;font-size:26px;font-weight:700;color:#B9C6E6">Sala 2</div><div class="abs r5" style="left:763px;top:140px;font-size:26px;font-weight:700;color:#B9C6E6">Sala 3</div>
+  <div class="abs r5" style="left:110px;top:440px;font-size:26px;font-weight:700;color:#B9C6E6">Sala 4</div><div class="abs r5" style="left:436px;top:440px;font-size:26px;font-weight:700;color:#B9C6E6">Sala 5</div><div class="abs r5" style="left:763px;top:440px;font-size:26px;font-weight:700;color:#B9C6E6">Sala 6</div>
+  <div class="abs r5" style="left:430px;top:290px;font-size:24px;font-weight:700;color:#7E8494">CIRCULAÇÃO</div>
+ </div>
+ <div class="abs" style="left:1260px;top:330px;width:560px;display:flex;flex-direction:column;gap:18px">
+  <div class="abs eb" style="position:relative;color:var(--mute)">CAMADAS DO PROJETO</div>
+  <div class="entry ly5"><div class="dot"></div>Arquitetura</div>
+  <div class="entry ly5"><div class="dot" style="background:#D9A441"></div>Estrutura</div>
+  <div class="entry ly5"><div class="dot" style="background:#2BD99F"></div>Elétrica</div>
+  <div class="entry ly5"><div class="dot" style="background:#2EC4E6"></div>Hidráulica</div>
+  <div class="entry ly5"><div class="dot" style="background:#B9C6E6"></div>Memorial descritivo</div>
+ </div>
+ <div class="abs chip" id="ok5" style="left:1260px;top:830px;font-size:28px;background:#12301F;border-color:#2BB673"><i style="background:#2BB673"></i>Conferido pela equipe de engenharia</div>
+</div></div>
+
+<!-- 6: orçamento -->
+<div class="sc" id="s6"><div class="cam"><div class="bp"></div>
+ <div class="pipe" id="pipe6"></div>
+ <div class="abs eb" id="e6" style="left:120px;top:250px">04 · ORÇAMENTO</div>
+ <div class="abs panel" id="tb6" style="left:120px;top:310px;width:1160px;overflow:hidden">
+  <div class="row h"><div>Item</div><div>Unid.</div><div>Qtd.</div><div>Preço ref.</div><div>Total</div></div>
+  <div class="row r6"><div>Fundação em concreto armado</div><div>m³</div><div>86</div><div>R$ 1.950</div><div>R$ 167.700</div></div>
+  <div class="row r6"><div>Estrutura (pilares e vigas)</div><div>m³</div><div>74</div><div>R$ 2.300</div><div>R$ 170.200</div></div>
+  <div class="row r6"><div>Alvenaria de vedação</div><div>m²</div><div>1.420</div><div>R$ 95</div><div>R$ 134.900</div></div>
+  <div class="row r6"><div>Cobertura</div><div>m²</div><div>560</div><div>R$ 260</div><div>R$ 145.600</div></div>
+  <div class="row r6"><div>Instalações elétricas</div><div>vb</div><div>1</div><div>R$ 118.000</div><div>R$ 118.000</div></div>
+  <div class="row r6"><div>Instalações hidráulicas</div><div>vb</div><div>1</div><div>R$ 96.000</div><div>R$ 96.000</div></div>
+  <div class="row r6" style="color:var(--mute)"><div>Demais itens (…)</div><div></div><div></div><div></div><div>R$ 367.600</div></div>
+ </div>
+ <div class="abs card" id="tot6" style="left:1340px;top:310px;width:460px"><div class="k">Total da obra</div><div class="v acc" id="n6" style="font-size:72px">R$ 0</div></div>
+ <div class="abs card" id="ref6" style="left:1340px;top:520px;width:460px"><div class="k">Base de preços</div><div style="font-size:30px;font-weight:700;margin-top:10px;line-height:1.3">Tabelas oficiais de referência (ex.: SINAPI)</div></div>
+ <div class="abs card" id="bdi6" style="left:1340px;top:740px;width:460px"><div class="k">Cada item com</div><div style="font-size:30px;font-weight:700;margin-top:10px">código, unidade e fonte</div></div>
+</div></div>
+
+<!-- 7: licitação -->
+<div class="sc" id="s7"><div class="cam"><div class="bp"></div>
+ <div class="pipe" id="pipe7"></div>
+ <div class="abs eb" id="e7" style="left:120px;top:250px">05 · LICITAÇÃO</div>
+ <div class="abs anton" id="t7" style="left:116px;top:300px;font-size:84px;width:1700px">Documentos completos, <span class="acc">quantidades certas</span></div>
+ <div class="doc" id="d7a" style="left:190px;top:470px"><h4>Termo de referência</h4><div class="l"></div><div class="l" style="width:80%"></div><div class="l"></div><div class="l" style="width:60%"></div><div class="ok">✓</div></div>
+ <div class="doc" id="d7b" style="left:570px;top:470px"><h4>Projeto básico</h4><div class="l"></div><div class="l" style="width:70%"></div><div class="l"></div><div class="l" style="width:85%"></div><div class="ok">✓</div></div>
+ <div class="doc" id="d7c" style="left:950px;top:470px"><h4>Planilha orçamentária</h4><div class="l"></div><div class="l" style="width:90%"></div><div class="l" style="width:75%"></div><div class="ok">✓</div></div>
+ <div class="doc" id="d7d" style="left:1330px;top:470px"><h4>Cronograma físico-financeiro</h4><div class="l" style="width:65%"></div><div class="l"></div><div class="l" style="width:80%"></div><div class="ok">✓</div></div>
+ <div class="abs" id="st7" style="left:700px;top:560px;width:520px;padding:24px 0;border:8px solid #2BB673;border-radius:18px;color:#2BB673;font-family:Anton,sans-serif;font-size:72px;text-align:center;background:#0C1426EE;text-transform:uppercase">Pronto para licitar</div>
+</div></div>
+
+<!-- 8: diário de obra -->
+<div class="sc" id="s8"><div class="cam"><div class="bp"></div>
+ <div class="pipe" id="pipe8"></div>
+ <div class="abs eb" id="e8" style="left:120px;top:250px">06 · EXECUÇÃO · DIÁRIO DE OBRA DIGITAL</div>
+ <div class="abs" id="ph8"></div>
+ <div class="abs" style="left:640px;top:330px;width:560px;display:flex;flex-direction:column;gap:16px">
+  <div class="entry e8"><div class="tm">08:12</div><div class="dot" style="background:#2BB673"></div>Fundação concluída</div>
+  <div class="entry e8"><div class="tm">10:40</div><div class="dot"></div>Foto do canteiro · 4 fotos</div>
+  <div class="entry e8"><div class="tm">14:05</div><div class="dot" style="background:#D9A441"></div>Medição nº 3 enviada</div>
+  <div class="entry e8"><div class="tm">16:30</div><div class="dot" style="background:#2BB673"></div>Pilares do bloco A ✓</div>
+  <div class="entry e8"><div class="tm">17:50</div><div class="dot"></div>Clima: sem chuva · equipe: 18</div>
+ </div>
+ <svg class="abs" width="580" height="600" viewBox="0 0 580 600" style="left:1260px;top:300px">
+  <rect x="0" y="0" width="580" height="600" rx="22" fill="#111A2E" stroke="#2E3B5C"/>
+  <text x="0" y="0" fill="none"> </text>
+  <g id="tw8">
+   <rect class="tw" x="60" y="500" width="460" height="40" fill="#7E8494"/>
+   <g class="tw" fill="#B9C6E6"><rect x="80" y="320" width="26" height="180"/><rect x="200" y="320" width="26" height="180"/><rect x="354" y="320" width="26" height="180"/><rect x="474" y="320" width="26" height="180"/></g>
+   <rect class="tw" x="60" y="300" width="460" height="24" fill="#D9A441"/>
+   <g class="tw" fill="#4D8BFF66" stroke="#4D8BFF" stroke-width="3"><rect x="106" y="340" width="94" height="160"/><rect x="226" y="340" width="128" height="160"/><rect x="380" y="340" width="94" height="160"/></g>
+   <g class="tw" fill="#B9C6E6"><rect x="80" y="140" width="26" height="160"/><rect x="200" y="140" width="26" height="160"/><rect x="354" y="140" width="26" height="160"/><rect x="474" y="140" width="26" height="160"/></g>
+   <path class="tw" d="M40 140 L290 60 L540 140Z" fill="#9E4524"/>
+  </g>
+ </svg>
+ <div class="abs" style="left:1290px;top:330px;font-size:22px;font-weight:700;color:#B9C6E6">GÊMEO DIGITAL DA OBRA</div>
+ <div class="abs" id="pc8" style="left:1290px;top:850px;font-size:30px;font-weight:700;color:#F4F1EA">0% concluído</div>
+</div></div>
+
+<!-- 9: curva S -->
+<div class="sc" id="s9"><div class="cam"><div class="bp"></div>
+ <div class="pipe" id="pipe9"></div>
+ <div class="abs eb" id="e9" style="left:120px;top:250px">CRONOGRAMA FÍSICO-FINANCEIRO</div>
+ <div class="abs panel" style="left:120px;top:310px;width:1180px;height:620px"></div>
+ <svg class="abs" width="1180" height="620" viewBox="0 0 1180 620" style="left:120px;top:310px">
+  <g stroke="#2E323C" stroke-width="2"><path d="M100 80 L1120 80 M100 200 L1120 200 M100 320 L1120 320 M100 440 L1120 440"/></g>
+  <path d="M100 540 L1120 540 M100 540 L100 60" stroke="#7E8494" stroke-width="3"/>
+  <path id="cp9" d="M100 540 C350 530 450 420 610 300 C760 180 860 100 1120 80" stroke="#B9C6E6" stroke-width="6" fill="none" stroke-dasharray="16 12"/>
+  <path id="cr9" d="M100 540 C320 534 430 440 560 340 C620 296 680 262 730 236" stroke="#4D8BFF" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path id="hoje9" d="M730 60 L730 540" stroke="#D9A441" stroke-width="3" stroke-dasharray="8 8"/>
+  <circle id="dot9" cx="730" cy="236" r="16" fill="#4D8BFF" stroke="#F4F1EA" stroke-width="5"/>
+ </svg>
+ <div class="abs" style="left:150px;top:860px;font-size:22px;font-weight:700;color:#7E8494;width:1120px;display:flex;justify-content:space-between"><span>Mês 1</span><span>Mês 3</span><span>Mês 6</span><span>Mês 9</span><span>Mês 12</span></div>
+ <div class="abs" id="lg9" style="left:220px;top:340px;display:flex;gap:30px;font-size:24px;font-weight:700"><span style="color:#B9C6E6">- - Previsto</span><span class="acc">━ Realizado</span></div>
+ <div class="abs" id="hl9" style="left:770px;top:600px;font-size:24px;font-weight:700;color:#D9A441;background:#0C1426;padding:4px 10px">HOJE · mês 7</div>
+ <div class="abs" style="left:1360px;top:310px;width:440px;display:flex;flex-direction:column;gap:22px">
+  <div class="card" id="k9a"><div class="k">Previsto até hoje</div><div class="v" id="n9a">0%</div></div>
+  <div class="card" id="k9b"><div class="k">Realizado</div><div class="v acc" id="n9b">0%</div></div>
+  <div class="card" id="k9c"><div class="k">Gasto x orçado</div><div class="v" id="n9c" style="color:#2BB673">R$ 0</div></div>
+ </div>
+</div></div>
+
+<!-- 10: alertas -->
+<div class="sc" id="s10"><div class="cam"><div class="bp"></div>
+ <div class="pipe" id="pipe10"></div>
+ <div class="abs eb" id="e10" style="left:120px;top:250px">ALERTAS EM TEMPO REAL</div>
+ <svg class="abs" id="bell10" width="220" height="240" viewBox="0 0 220 240" style="left:1500px;top:320px"><path d="M110 20 C60 20 40 60 40 110 L40 160 L20 190 L200 190 L180 160 L180 110 C180 60 160 20 110 20Z" fill="#D9A441"/><circle cx="110" cy="210" r="22" fill="#D9A441"/><circle cx="180" cy="50" r="30" fill="#FF5A5F"/><text x="0" y="0" fill="none"> </text></svg>
+ <div class="abs" style="left:120px;top:320px;width:1300px;height:620px">
+  <div class="alert" id="a10a" style="top:0;background:#2E2410;border:2px solid #D9A441"><div class="t" style="color:#F7D58C">⚠ Atraso de 6 dias na estrutura do bloco B</div><div class="s" style="color:#E6D3A8">Causa provável: entrega de aço · Sugestão: turno extra na semana 31</div></div>
+  <div class="alert" id="a10b" style="top:170px;background:#2A1416;border:2px solid #FF5A5F"><div class="t" style="color:#FFC2C4">▲ Custo do aço 4% acima do orçado</div><div class="s" style="color:#F2B7B9">Sugestão: revisar fornecedor e quantitativos antes da medição 5</div></div>
+  <div class="alert" id="a10c" style="top:340px;background:#12301F;border:2px solid #2BB673"><div class="t" style="color:#CFF5DF">✓ Plano de recuperação aprovado pelo engenheiro</div><div class="s" style="color:#A8E3C2">Prazo final mantido · custo dentro da margem</div></div>
+ </div>
+</div></div>
+
+<!-- 11: economia 1 -->
+<div class="sc" id="s11"><div class="cam"><div class="bp"></div>
+ <div class="abs eb" id="e11" style="left:0;right:0;top:200px;text-align:center;color:#D9A441">CENÁRIO ILUSTRATIVO</div>
+ <div class="abs anton" id="t11" style="left:0;right:0;top:250px;text-align:center;font-size:84px">Atraso evitado é dinheiro poupado</div>
+ <div class="abs" style="left:0;right:0;top:450px;display:flex;justify-content:center;align-items:center;gap:40px">
+  <div id="q11a" style="text-align:center"><div class="eq">3</div><div class="lbl" style="font-size:28px">meses de atraso evitados</div></div>
+  <div class="eq" id="x11" style="color:#7E8494">×</div>
+  <div id="q11b" style="text-align:center"><div class="eq">R$ 50 mil</div><div class="lbl" style="font-size:28px">custo de cada mês de atraso</div></div>
+  <div class="eq" id="i11" style="color:#7E8494">=</div>
+  <div id="q11c" style="text-align:center"><div class="eq acc" id="n11">R$ 150 mil</div><div class="lbl" style="font-size:28px">economizados</div></div>
+ </div>
+ <div class="abs" id="cal11" style="left:0;right:0;top:720px;display:flex;justify-content:center;gap:14px"></div>
+</div></div>
+
+<!-- 12: economia 2 -->
+<div class="sc" id="s12"><div class="cam"><div class="bp"></div>
+ <div class="abs eb" id="e12" style="left:0;right:0;top:200px;text-align:center;color:#D9A441">CENÁRIO ILUSTRATIVO</div>
+ <div class="abs" style="left:0;right:0;top:290px;display:flex;justify-content:center;align-items:center;gap:40px">
+  <div id="q12a" style="text-align:center"><div class="eq">10%</div><div class="lbl" style="font-size:28px">de aditivo evitado</div></div>
+  <div class="eq" id="x12" style="color:#7E8494">×</div>
+  <div id="q12b" style="text-align:center"><div class="eq">R$ 1,2 mi</div><div class="lbl" style="font-size:28px">valor da obra</div></div>
+  <div class="eq" id="i12" style="color:#7E8494">=</div>
+  <div id="q12c" style="text-align:center"><div class="eq acc">R$ 120 mil</div><div class="lbl" style="font-size:28px">poupados</div></div>
+ </div>
+ <div class="abs panel" id="tot12" style="left:560px;top:600px;width:800px;padding:34px 44px;display:flex;align-items:center;justify-content:space-between;border:2px solid #4D8BFF">
+  <div><div class="lbl" style="font-size:26px">Economia no cenário</div><div style="font-size:26px;font-weight:600;color:#B9C6E6;margin-top:6px">R$ 150 mil + R$ 120 mil</div></div>
+  <div class="kpi acc" id="n12">R$ 0</div>
+ </div>
+ <div class="abs" id="nt12" style="left:0;right:0;top:820px;text-align:center;font-size:24px;font-weight:600;color:var(--mute)">Valores hipotéticos para mostrar a conta. O resultado real depende de cada obra.</div>
+</div></div>
+
+<!-- 13: entrega -->
+<div class="sc" id="s13"><div class="cam"><div class="bp"></div>
+ <div class="pipe" id="pipe13"></div>
+ <div class="abs eb" id="e13" style="left:120px;top:250px">07 · ENTREGA E PRESTAÇÃO DE CONTAS</div>
+ <svg class="abs" width="720" height="560" viewBox="0 0 720 560" style="left:110px;top:330px">
+  <rect x="0" y="0" width="720" height="560" rx="22" fill="#111A2E" stroke="#2E3B5C"/>
+  <rect x="80" y="440" width="560" height="30" fill="#7E8494"/>
+  <rect x="100" y="230" width="520" height="210" fill="#E8EEFF"/>
+  <path d="M70 236 L360 120 L650 236Z" fill="#9E4524"/>
+  <g fill="#4D8BFF"><rect x="140" y="270" width="80" height="70"/><rect x="250" y="270" width="80" height="70"/><rect x="390" y="270" width="80" height="70"/><rect x="500" y="270" width="80" height="70"/></g>
+  <rect x="320" y="350" width="80" height="90" fill="#1A1C22"/>
+  <path id="rib13" d="M40 400 L680 400" stroke="#FF5A5F" stroke-width="16"/>
+  <g id="bow13"><path d="M360 400 L320 370 L320 430Z M360 400 L400 370 L400 430Z" fill="#FF5A5F"/><circle cx="360" cy="400" r="14" fill="#C9393E"/></g>
+ </svg>
+ <div class="abs" id="lb13" style="left:150px;top:910px;font-size:26px;font-weight:700;color:#B9C6E6">Escola entregue · 100%</div>
+ <div class="abs" id="lap13"></div>
+ <div class="abs chip" id="c13a" style="left:900px;top:870px;font-size:26px"><i></i>Cidadão</div>
+ <div class="abs chip" id="c13b" style="left:1110px;top:870px;font-size:26px"><i style="background:#D9A441"></i>Tribunal de Contas</div>
+ <div class="abs chip" id="c13c" style="left:1430px;top:870px;font-size:26px"><i style="background:#2BD99F"></i>Câmara Municipal</div>
+</div></div>
+
+<!-- 14: responsabilidade -->
+<div class="sc" id="s14"><div class="cam"><div class="bp"></div>
+ <div class="glow" style="left:1100px;top:250px;width:600px;height:600px;background:#D9A441"></div>
+ <div class="abs eb" id="e14" style="left:120px;top:250px">RESPONSABILIDADE TÉCNICA</div>
+ <div class="abs anton" id="t14a" style="left:116px;top:310px;font-size:110px">A IA <span class="acc">apoia</span>.</div>
+ <div class="abs anton" id="t14b" style="left:116px;top:440px;font-size:110px;width:1000px">Engenheiros <span class="gold">assinam</span>.</div>
+ <div class="abs chip" id="c14a" style="left:120px;top:640px;font-size:30px;padding:18px 30px"><i style="background:#D9A441"></i>Registro no CREA</div>
+ <div class="abs chip" id="c14b" style="left:500px;top:640px;font-size:30px;padding:18px 30px"><i style="background:#D9A441"></i>ART de cada etapa</div>
+ <div class="abs panel" id="sg14" style="left:1160px;top:320px;width:620px;height:520px;background:#F4F1EA;color:#111216;padding:44px">
+  <div style="font-size:26px;font-weight:700;letter-spacing:3px;color:#5A5E68">ANOTAÇÃO DE RESPONSABILIDADE TÉCNICA</div>
+  <div style="height:12px;border-radius:6px;background:#D4D6DB;margin-top:30px"></div><div style="height:12px;border-radius:6px;background:#D4D6DB;margin-top:16px;width:80%"></div><div style="height:12px;border-radius:6px;background:#D4D6DB;margin-top:16px;width:90%"></div>
+  <svg width="520" height="180" viewBox="0 0 520 180" style="position:absolute;left:50px;top:240px"><path id="sig14" d="M20 120 C60 40 90 40 100 110 C110 160 140 60 170 70 C200 80 180 140 220 120 C260 100 270 50 300 60 C330 70 310 130 350 120 C390 110 420 80 500 90" stroke="#1C3D8F" stroke-width="7" fill="none" stroke-linecap="round"/></svg>
+  <div style="position:absolute;left:44px;right:44px;bottom:70px;height:3px;background:#111216"></div>
+  <div style="position:absolute;left:44px;bottom:30px;font-size:24px;font-weight:700">Engenheiro(a) responsável</div>
+ </div>
+</div></div>
+
+<!-- 15: logo -->
+<div class="sc" id="s15"><div class="cam"><div class="grid-bg"></div>
+ <div class="glow" style="left:560px;top:160px;width:800px;height:700px;background:#4D8BFF;opacity:.22"></div>
+ <div class="abs" id="lg15" style="left:310px;top:200px"></div>
+ <div class="abs" id="tg15" style="left:0;right:0;top:760px;text-align:center;font-size:30px;font-weight:700;letter-spacing:12px;color:#F4F1EA">INTELIGÊNCIA PÚBLICA</div>
+ <div class="abs anton" id="sb15" style="left:0;right:0;top:830px;text-align:center;font-size:56px;color:#4D8BFF">Engenheiro 7.3 · da ideia à obra</div>
+</div></div>
+
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const {$, cl, eo, eio, spr, rise, pop, slam, fade, typed, count, draw, slideX} = K;
+const STAGES = ['Ideia', 'Viabilidade', 'Projeto', 'Orçamento', 'Licitação', 'Execução', 'Entrega'];
+const PIPE_STAGE = {3: 0, 4: 1, 5: 2, 6: 3, 7: 4, 8: 5, 9: 5, 10: 5, 13: 6};
+function buildPipe(id) {
+  const el = $(id); el.innerHTML = '<div class="ln"></div><div class="lf"></div>' + STAGES.map(s => `<div class="st"><i></i><span>${s}</span></div>`).join('');
+}
+function pipeAnim(id, cur, t, t0, prev) {    // prev: estágio anterior (anima o avanço)
+  const el = $(id); const sts = el.querySelectorAll('.st'); const W = 1320 - 60;
+  const p = eo((t - t0) / .7); const pos = prev + (cur - prev) * p;
+  el.querySelector('.lf').style.width = (W * pos / 6) + 'px';
+  sts.forEach((s, i) => { s.className = 'st' + (i < Math.round(pos) || (i <= pos - .001 && i < cur) ? ' done' : '') + (i === cur && p > .6 ? ' cur' : ''); });
+}
+function build() {
+  ['pipe2', 'pipe3', 'pipe4', 'pipe5', 'pipe6', 'pipe7', 'pipe8', 'pipe9', 'pipe10', 'pipe13'].forEach(buildPipe);
+  $('ph3').innerHTML = K.phone('p3', `<div style="padding:90px 26px 26px;display:flex;flex-direction:column;gap:20px;height:100%">
+    <div style="display:flex;align-items:center;gap:14px"><div style="width:52px;height:52px;border-radius:50%;background:#4D8BFF"></div><div><div style="font-size:24px;font-weight:700">Engenheiro 7.3</div><div style="font-size:20px;color:#2BB673;font-weight:600">online</div></div></div>
+    <div class="bubble" id="b3a" style="position:relative;background:#2A3350;align-self:flex-end;width:330px">Precisamos de uma escola com 6 salas de aula no bairro Centro.</div>
+    <div class="bubble" id="b3b" style="position:relative;background:#24272F;width:330px">Entendido! Vou montar o estudo de viabilidade: terreno, demanda, custo e prazo.</div>
+    <div class="bubble" id="b3c" style="position:relative;background:#24272F;width:220px;padding:16px 24px"><span id="dots3">●●●</span></div></div>`, 860, 260, .86);
+  $('ph8').innerHTML = K.phone('p8', `<div style="position:absolute;inset:0;background:#7FA0C8"></div>
+    <svg style="position:absolute;left:0;top:0" width="394" height="840" viewBox="0 0 394 840"><rect y="520" width="394" height="320" fill="#8A6B4E"/><g fill="#B9C6E6"><rect x="60" y="300" width="18" height="220"/><rect x="170" y="300" width="18" height="220"/><rect x="280" y="300" width="18" height="220"/></g><rect x="40" y="290" width="280" height="16" fill="#D9A441"/><path d="M330 520 L330 120 L340 120 L340 520Z M200 130 L380 130 L380 140 L200 140Z" fill="#D9A441"/><path d="M220 140 L220 230" stroke="#111216" stroke-width="3"/><rect x="205" y="230" width="30" height="20" fill="#9E4524"/></svg>
+    <div id="fl8" style="position:absolute;inset:0;background:#fff;opacity:0"></div>
+    <div style="position:absolute;left:24px;right:24px;top:70px;display:flex;justify-content:space-between;font-size:20px;font-weight:700;color:#fff"><span>● REC</span><span>📍 GPS ok</span></div>
+    <div style="position:absolute;left:0;right:0;bottom:40px;display:flex;justify-content:center"><div style="width:96px;height:96px;border-radius:50%;border:8px solid #fff;background:#ffffff55"></div></div>`, 120, 300, .72);
+  $('lap13').innerHTML = K.laptop('l13', 'transparencia.prefeitura.gov.br/obras', `<div style="padding:28px 34px;display:flex;flex-direction:column;gap:18px">
+    <div style="font-size:30px;font-weight:700">Escola Municipal · 6 salas</div>
+    <div style="display:flex;gap:16px"><div class="card" style="flex:1;padding:18px 22px"><div class="k" style="font-size:20px">Executado</div><div class="v acc" style="font-size:44px">100%</div></div><div class="card" style="flex:1;padding:18px 22px"><div class="k" style="font-size:20px">Gasto</div><div class="v" style="font-size:44px">R$ 1,19 mi</div></div><div class="card" style="flex:1;padding:18px 22px"><div class="k" style="font-size:20px">Fotos</div><div class="v" style="font-size:44px">412</div></div></div>
+    <div style="display:flex;gap:12px">${[0,1,2,3,4].map(i=>`<div style="flex:1;height:90px;border-radius:10px;background:${['#7FA0C8','#8A6B4E','#B9C6E6','#9E4524','#4D8BFF'][i]}"></div>`).join('')}</div>
+    <div style="font-size:22px;color:var(--mute);font-weight:600">Medições, contratos e diário de obra publicados</div></div>`, 900, 330, 900, 500);
+  $('lg15').innerHTML = K.logoSVG('logo15');
+  $('cal11').innerHTML = Array.from({length: 12}, (_, i) => `<div class="m11" style="width:96px;height:96px;border-radius:14px;background:#1A1C22;border:2px solid #2E323C;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#7E8494">M${i + 1}</div>`).join('');
+}
+const W = (k, w, o = 0) => K.Wd(k, w, o);
+function scene(k, t, lt) {
+  const SC = K.S.SC; const s0 = SC[k - 1];
+  K.note(k === 15 ? '' : (k === 11 || k === 12) ? 'Cenário ilustrativo' : 'Interface ilustrativa');
+  K.src('');
+  if (k === 1) {
+    draw($('p1path'), t, .3, 2.2); pop($('p1bulb'), t, .2); pop($('p1rib'), t, 1.2);
+    rise($('e1'), t, .4); rise($('t1'), t, W(1, 'mas') - .2, 60, .7); fade($('l1a'), t, .5); fade($('l1b'), t, 1.4);
+    ['projeto incompleto', 'orçamento furado', 'atraso', 'aditivo'].forEach((w, i) => {
+      const el = $('w1' + 'abcd'[i]); const t0 = W(1, w) - .3; pop(el, t, t0);
+      const sh = t > t0 && t < t0 + .5 ? Math.sin((t - t0) * 60) * 8 * (1 - (t - t0) / .5) : 0;
+      el.style.transform += ` translateX(${sh}px)`;
+    });
+  }
+  if (k === 2) {
+    pop($('hat2'), t, s0 + .3); slam($('t2'), t, W(2, 'engenheiro') - .1); rise($('d2'), t, W(2, 'ponta') - .3);
+    pop($('c2a'), t, W(2, 'inteligência') - .2); pop($('c2b'), t, W(2, 'equipe') - .2);
+    $('pipe2').style.opacity = cl((t - W(2, 'equipe') - .6) / .4);
+    pipeAnim('pipe2', 6, t, W(2, 'equipe') + .6, 0);
+    $('pipe2').querySelectorAll('.st').forEach((e, i) => { e.style.opacity = cl((t - W(2, 'equipe') - .6 - i * .12) / .2); });
+  }
+  if (k >= 3 && k <= 13 && PIPE_STAGE[k] !== undefined) {
+    const cur = PIPE_STAGE[k], prev = PIPE_STAGE[k - 1] !== undefined ? PIPE_STAGE[k - 1] : Math.max(0, cur - 1);
+    pipeAnim('pipe' + k, cur, t, s0 + .3, k === 3 ? 0 : prev);
+  }
+  if (k === 3) {
+    rise($('e3'), t, s0 + .3); rise($('t3'), t, s0 + .45, 60, .7);
+    const p3 = $('p3'); p3.style.opacity = cl((lt - .2) / .4); p3.style.transform = `scale(.86) translateY(${(1 - eo((lt - .2) / .7)) * 120}px)`;
+    rise($('b3a'), t, W(3, 'diz') - .3, 30); fade($('b3c'), t, W(3, 'exemplo') - .5); $('b3c').style.display = t < W(3, 'seis') + .3 ? 'block' : 'none';
+    $('dots3').style.opacity = .4 + .6 * Math.abs(Math.sin(lt * 5));
+    rise($('b3b'), t, W(3, 'seis') + .3, 30); if (t < W(3, 'seis') + .3) $('b3b').style.opacity = 0;
+    document.querySelectorAll('#s3 .d3').forEach((p, i) => draw(p, t, W(3, 'escola') - .4 + i * .25, .8));
+    document.querySelectorAll('#s3 .w3').forEach((r, i) => { r.style.opacity = cl((t - W(3, 'seis') - i * .1) / .2); });
+    rise($('lb3'), t, W(3, 'salas'), 20);
+  }
+  if (k === 4) {
+    rise($('e4'), t, s0 + .3); const l = $('lot4'); l.style.opacity = cl((lt - .2) / .4);
+    draw($('lotp'), t, W(4, 'terreno') - .4, 1.0); document.querySelectorAll('#s4 .c4').forEach((p, i) => draw(p, t, W(4, 'terreno') + .3 + i * .1, .5));
+    fade($('m4a'), t, W(4, 'terreno') + .6); fade($('m4b'), t, W(4, 'terreno') + .8);
+    $('pin4').setAttribute('r', 18 + 6 * Math.max(0, Math.sin(lt * 4)));
+    [['k4a', 'terreno'], ['k4b', 'demanda'], ['k4c', 'custo'], ['k4d', 'prazo']].forEach(([id, w]) => pop($(id), t, W(4, w) - .3));
+    slideX($('v4'), t, W(4, 'prazo') + .7, 60);
+  }
+  if (k === 5) {
+    rise($('e5'), t, s0 + .3);
+    document.querySelectorAll('#s5 .d5').forEach((p, i) => draw(p, t, s0 + .4 + i * .35, 1.0));
+    document.querySelectorAll('#s5 .g5').forEach(p => { p.style.opacity = cl((lt - 1.6) / .3); });
+    document.querySelectorAll('#s5 .q5').forEach((p, i) => draw(p, t, W(5, 'cortes') + i * .2, .6));
+    fade($('q5a'), t, W(5, 'cortes') + .3); fade($('q5b'), t, W(5, 'cortes') + .5);
+    document.querySelectorAll('#s5 .r5').forEach((e, i) => fade(e, t, W(5, 'plantas') + i * .12, .3));
+    document.querySelectorAll('#s5 .ly5').forEach((e, i) => slideX(e, t, W(5, 'plantas') - .2 + i * .3, 60));
+    pop($('ok5'), t, W(5, 'conferidos') - .2);
+  }
+  if (k === 6) {
+    rise($('e6'), t, s0 + .3); rise($('tb6'), t, s0 + .3, 40);
+    const rows = document.querySelectorAll('#s6 .r6'); rows.forEach((r, i) => slideX(r, t, W(6, 'item') - .2 + i * .32, 40));
+    pop($('tot6'), t, W(6, 'item') - .2); count($('n6'), t, W(6, 'item'), 2.6, 1200000, {pre: 'R$ '});
+    pop($('ref6'), t, W(6, 'tabelas') - .3); pop($('bdi6'), t, W(6, 'referência') + .3);
+  }
+  if (k === 7) {
+    rise($('e7'), t, s0 + .3); rise($('t7'), t, W(7, 'documentos') - .3, 50, .7);
+    ['d7a', 'd7b', 'd7c', 'd7d'].forEach((id, i) => { const el = $(id); const t0 = W(7, 'documentos') + i * .25; const p = eo((t - t0) / .6); el.style.opacity = cl((t - t0) / .2); el.style.transform = `translateY(${(1 - p) * 160}px) rotate(${(1 - p) * (i % 2 ? 6 : -6)}deg)`; const ok = el.querySelector('.ok'); ok.style.transform = `scale(${spr(t - t0 - .5)})`; });
+    slam($('st7'), t, W(7, 'certas') + .2); $('st7').style.transform += ' rotate(-6deg)';
+  }
+  if (k === 8) {
+    rise($('e8'), t, s0 + .3); const p8 = $('p8'); p8.style.opacity = cl((lt - .1) / .4); p8.style.transform = `scale(.72) translateY(${(1 - eo((lt - .1) / .6)) * 100}px)`;
+    const tf = W(8, 'fotos') - .1; $('fl8').style.opacity = t > tf ? Math.max(0, 1 - (t - tf) / .35) : 0;
+    document.querySelectorAll('#s8 .e8').forEach((e, i) => slideX(e, t, W(8, 'digital') - .3 + i * .45, 60));
+    const tws = document.querySelectorAll('#tw8 .tw'); const start = s0 + .6, span = (W(8, 'registrada') + .6) - start;
+    tws.forEach((e, i) => { const t0 = start + span * i / tws.length; const p = eo((t - t0) / .5); e.style.opacity = cl((t - t0) / .2); e.setAttribute('transform', `translate(0 ${(1 - p) * -60})`); });
+    const pct = Math.round(cl((t - start) / span) * 60); $('pc8').textContent = pct + '% concluído';
+  }
+  if (k === 9) {
+    rise($('e9'), t, s0 + .3); draw($('cp9'), t, W(9, 'previsto') - .4, 1.6); draw($('cr9'), t, W(9, 'realizado') - .3, 1.6);
+    fade($('lg9'), t, W(9, 'previsto') - .2); const td = W(9, 'realizado') + 1.3; fade($('hoje9'), t, td); fade($('hl9'), t, td);
+    $('dot9').style.opacity = cl((t - td) / .2); $('dot9').setAttribute('r', 16 + 5 * Math.max(0, Math.sin(lt * 5)));
+    pop($('k9a'), t, W(9, 'previsto') - .2); count($('n9a'), t, W(9, 'previsto'), 1.2, 62, {suf: '%'});
+    pop($('k9b'), t, W(9, 'realizado') - .2); count($('n9b'), t, W(9, 'realizado'), 1.2, 60, {suf: '%'});
+    pop($('k9c'), t, W(9, 'todos') - .2); count($('n9c'), t, W(9, 'todos'), 1.2, 734000, {pre: 'R$ '});
+  }
+  if (k === 10) {
+    rise($('e10'), t, s0 + .3); pop($('bell10'), t, s0 + .3); $('bell10').style.transform += ` rotate(${Math.sin(lt * 18) * 10 * Math.exp(-((lt % 2.5)) * 2)}deg)`;
+    slideX($('a10a'), t, W(10, 'atrasa') - .3, -80); slideX($('a10b'), t, W(10, 'custo') - .2, -80); slideX($('a10c'), t, W(10, 'antes') - .1, -80);
+  }
+  if (k === 11) {
+    rise($('e11'), t, s0 + .3); rise($('t11'), t, s0 + .5, 50, .7);
+    pop($('q11a'), t, W(11, 'cada') - .2); fade($('x11'), t, W(11, 'custa') - .3); pop($('q11b'), t, W(11, 'r$ 50') - .3); fade($('i11'), t, W(11, 'evitar') - .2); pop($('q11c'), t, W(11, 'economiza') - .2);
+    document.querySelectorAll('#s11 .m11').forEach((m, i) => { fade(m, t, s0 + .6 + i * .05, .2); const red = i >= 9 && t > W(11, 'três') - .2; const g = red && t > W(11, 'economiza'); m.style.background = g ? '#12301F' : red ? '#2A1416' : '#1A1C22'; m.style.borderColor = g ? '#2BB673' : red ? '#FF5A5F' : '#2E323C'; m.style.color = g ? '#CFF5DF' : red ? '#FFC2C4' : '#7E8494'; });
+  }
+  if (k === 12) {
+    rise($('e12'), t, s0 + .3); pop($('q12a'), t, W(12, '10%') - .3); fade($('x12'), t, W(12, 'numa') - .3); pop($('q12b'), t, W(12, 'r$ 1,2') - .3); fade($('i12'), t, W(12, 'poupa') - .3); pop($('q12c'), t, W(12, 'poupa') - .1);
+    rise($('tot12'), t, W(12, 'r$ 120') + .2, 40); count($('n12'), t, W(12, 'r$ 120') + .4, 1.2, 270, {pre: 'R$ ', suf: ' mil'}); fade($('nt12'), t, W(12, 'r$ 120') + .8);
+  }
+  if (k === 13) {
+    rise($('e13'), t, s0 + .3); const cut = W(13, 'entrega') + .4;
+    $('rib13').style.opacity = t < cut ? 1 : 0; $('bow13').style.opacity = t < cut ? 1 : Math.max(0, 1 - (t - cut) / .3);
+    $('bow13').setAttribute('transform', t < cut ? '' : `translate(0 ${(t - cut) * 300})`);
+    fade($('lb13'), t, cut + .2);
+    const l = $('l13'); l.style.opacity = cl((t - W(13, 'registrado') + .3) / .4); l.style.transform = `translateY(${(1 - eo((t - W(13, 'registrado') + .3) / .7)) * 80}px)`;
+    pop($('c13a'), t, W(13, 'cidadão') - .2); pop($('c13b'), t, W(13, 'órgãos') - .3); pop($('c13c'), t, W(13, 'controle') - .1);
+  }
+  if (k === 14) {
+    rise($('e14'), t, s0 + .3); slam($('t14a'), t, W(14, 'a ia') - .1); slam($('t14b'), t, W(14, 'quem assina') - .1);
+    pop($('c14a'), t, W(14, 'crea') - .3); pop($('c14b'), t, W(14, 'art') - .2);
+    rise($('sg14'), t, s0 + .5, 60, .7); draw($('sig14'), t, W(14, 'assina') + .2, 1.4);
+  }
+  if (k === 15) {
+    K.logoAnim('logo15', t, s0 + .3); rise($('tg15'), t, s0 + 1.6, 30); rise($('sb15'), t, s0 + 2.0, 30);
+  }
+}
+K.boot({system: 'ENGENHEIRO 7.3', accent: '#4D8BFF', build, scene, hideHud: [15]});
+</script>
+</body>
+</html>

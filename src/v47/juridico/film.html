@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Sistema Jurídico</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+.paper{position:absolute;width:270px;padding:22px 24px;border-radius:14px;background:#F4F1EA;color:#111216;box-shadow:0 20px 40px #0009}
+.paper b{display:block;font-size:26px;font-weight:700}
+.paper i{display:block;height:10px;border-radius:5px;background:#C9C4B8;margin-top:12px}
+.side{position:absolute;left:0;top:0;bottom:0;width:250px;background:#15171C;border-right:1px solid var(--line);padding:28px 22px}
+.side .it{font-size:22px;font-weight:600;color:var(--mute);padding:14px 16px;border-radius:12px;margin-bottom:6px}
+.side .it.on{background:#8B7CF622;color:var(--paper)}
+.bub{position:absolute;border-radius:22px;padding:22px 28px;font-size:26px;line-height:1.4;font-weight:500}
+.bub.u{background:var(--acc);color:#111216;border-bottom-right-radius:6px}
+.bub.a{background:var(--ink3);border:1px solid var(--line);border-bottom-left-radius:6px}
+.cite{display:inline-flex;align-items:center;gap:10px;background:#8B7CF62E;border:1px solid #8B7CF6;color:#D9D3FF;border-radius:999px;padding:10px 20px;font-size:22px;font-weight:700}
+.law{font-family:Georgia,serif;font-size:30px;line-height:1.55;color:#E9E6DE}
+mark{background:transparent;color:inherit;padding:0 4px;border-radius:6px}
+.ln{height:14px;border-radius:7px;background:#2E323C;margin:16px 0}
+.row{display:flex;align-items:center;gap:22px;padding:18px 24px;border-bottom:1px solid var(--line);font-size:24px}
+.ck{width:44px;height:44px;border-radius:12px;border:2px solid #3A3E48;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;flex:none}
+.cur{position:absolute;width:44px;height:44px;z-index:30;filter:drop-shadow(0 6px 10px #000a)}
+.node{position:absolute;width:300px;padding:30px;border-radius:22px;background:var(--ink2);border:2px solid var(--line);text-align:center}
+.node b{display:block;font-size:34px;font-weight:700}
+.node span{display:block;font-size:22px;color:var(--mute);margin-top:8px;font-weight:600}
+.log{display:flex;gap:26px;padding:16px 26px;border-bottom:1px solid var(--line);font-size:24px;font-weight:500}
+.log b{color:var(--acc);font-weight:700;width:90px}
+.lawt{background:var(--ink3);border:1px solid var(--line);border-radius:14px;padding:16px 20px;font-size:22px;font-weight:600;margin-bottom:14px}
+.ic{width:110px;height:110px;border-radius:28px;background:#8B7CF622;display:flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1 · problema -->
+<div class="sc" id="s1"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:1100px;top:80px;width:800px;height:700px;background:#C2410C;opacity:.22"></div>
+ <div class="abs eb" id="e1" style="left:120px;top:190px;color:#F59E6B">O problema</div>
+ <div class="abs anton" id="t1" style="left:120px;top:240px;font-size:118px;width:1000px">Horas de pesquisa<br>para cada <span style="color:#F59E6B">parecer</span></div>
+ <div class="abs panel" id="clk1" style="left:1240px;top:200px;width:560px;padding:40px 44px">
+  <div class="lbl">Tempo de pesquisa por parecer</div>
+  <div class="kpi" id="k1" style="font-size:140px;margin-top:14px;color:#F59E6B">00:00</div>
+  <div class="lbl" style="margin-top:10px">horas · cenário ilustrativo</div>
+ </div>
+ <div id="papers1"></div>
+</div></div>
+
+<!-- 2 · pergunta -->
+<div class="sc" id="s2"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:900px;top:200px;width:900px;height:800px;background:var(--acc);opacity:.22"></div>
+ <div class="abs eb" id="e2" style="left:120px;top:300px">Assistente jurídico</div>
+ <div class="abs anton" id="t2" style="left:120px;top:350px;font-size:104px;width:600px">Pergunte em<br><span class="acc">linguagem</span><br>simples</div>
+ <div class="abs" id="d2" style="left:124px;top:720px;width:540px;font-size:28px;line-height:1.45;color:var(--mute);font-weight:500">A resposta vem com base na lei, e com a fonte.</div>
+ <div id="lap2"></div>
+</div></div>
+
+<!-- 3 · resposta com artigo -->
+<div class="sc" id="s3"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs panel" id="chat3" style="left:110px;top:170px;width:960px;height:780px;overflow:hidden">
+  <div style="padding:26px 34px;border-bottom:1px solid var(--line);font-size:24px;font-weight:700">Assistente jurídico <span class="mute" style="font-weight:500">· V4.7</span></div>
+  <div class="bub u" id="u3" style="right:34px;top:110px;width:640px">Preciso de parecer jurídico antes de publicar o edital?</div>
+  <div class="bub a" id="a3" style="left:34px;top:290px;width:820px;min-height:240px"><span id="a3t"></span></div>
+  <div class="abs" id="c3" style="left:34px;top:600px"><span class="cite">§ Lei 14.133/2021 · art. 53</span></div>
+  <div class="abs" id="c3b" style="left:420px;top:600px"><span class="cite" style="background:#2BD99F22;border-color:#2BD99F;color:#BFF5E0">✓ Fonte verificada</span></div>
+ </div>
+ <div class="abs panel" id="law3" style="left:1130px;top:170px;width:680px;padding:40px 44px">
+  <div class="eb" style="font-size:20px">Lei nº 14.133/2021</div>
+  <div class="anton" style="font-size:64px;margin:12px 0 24px">Art. 53</div>
+  <div class="law">Ao final da fase preparatória, o processo licitatório seguirá para o órgão de assessoramento jurídico da Administração, que realizará <mark id="m3">controle prévio de legalidade</mark> mediante análise jurídica da contratação.</div>
+ </div>
+</div></div>
+
+<!-- 4 · texto oficial -->
+<div class="sc" id="s4"><div class="cam">
+ <div class="grid-bg"></div>
+ <div id="lap4"></div>
+ <div class="abs" id="b4" style="left:1300px;top:860px;background:#2BD99F;color:#111216;border-radius:999px;padding:18px 34px;font-size:28px;font-weight:800">✓ Fonte rastreável</div>
+</div></div>
+
+<!-- 5 · checklist -->
+<div class="sc" id="s5"><div class="cam">
+ <div class="grid-bg"></div>
+ <div id="lap5"></div>
+ <div class="abs panel" id="chk5" style="left:1060px;top:170px;width:750px;overflow:hidden">
+  <div style="padding:28px 30px;border-bottom:1px solid var(--line)"><div class="eb" style="font-size:20px">Checklist de conformidade</div><div style="font-size:28px;font-weight:700;margin-top:8px">Lei 14.133/2021 · art. 18</div></div>
+  <div class="row" id="r5a"><div class="ck">✓</div>Estudo técnico preliminar</div>
+  <div class="row" id="r5b"><div class="ck">✓</div>Termo de referência</div>
+  <div class="row" id="r5c"><div class="ck">✓</div>Orçamento estimado</div>
+  <div class="row" id="r5d"><div class="ck">!</div>Análise de riscos</div>
+  <div style="padding:26px 30px;display:flex;align-items:center;gap:24px"><div class="kpi" id="k5" style="font-size:72px">0/4</div><div class="lbl">itens em conformidade</div></div>
+ </div>
+</div></div>
+
+<!-- 6 · o que falta -->
+<div class="sc" id="s6"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:200px;top:200px;width:800px;height:600px;background:#F59E0B;opacity:.15"></div>
+ <div class="abs panel" id="al6" style="left:120px;top:190px;width:860px;padding:40px 44px;border:2px solid #F59E0B">
+  <div style="display:flex;align-items:center;gap:20px"><div class="ck" style="background:#F59E0B;border-color:#F59E0B;color:#111216">!</div><div style="font-size:36px;font-weight:700">Análise de riscos não encontrada</div></div>
+  <div style="margin-top:26px"><span class="cite">§ Lei 14.133/2021 · art. 18, X</span></div>
+  <div class="law" style="margin-top:26px;font-size:28px">A fase preparatória deve abordar <mark id="m6">a análise dos riscos</mark> que possam comprometer o sucesso da licitação e a boa execução contratual.</div>
+ </div>
+ <div class="abs panel" id="sg6" style="left:1040px;top:190px;width:760px;padding:40px 44px">
+  <div class="eb" style="font-size:20px">Sugestão da IA</div>
+  <div style="font-size:30px;line-height:1.45;font-weight:500;margin-top:18px">Incluir no processo um mapa de riscos com probabilidade, impacto, responsável e medida de prevenção.</div>
+  <div style="display:flex;gap:18px;margin-top:30px"><div class="btn" id="bt6">Aplicar sugestão</div><div class="chip" style="font-size:22px">Ver modelo</div></div>
+ </div>
+ <div class="abs" id="st6" style="left:1040px;top:640px;width:760px" ><div class="chip" style="font-size:24px"><i style="background:#F59E0B"></i>Aguardando revisão do procurador</div></div>
+ <svg class="cur" id="cur6" viewBox="0 0 44 44"><path d="M6 4 L6 36 L15 27 L21 40 L27 37 L21 25 L34 25Z" fill="#F4F1EA" stroke="#111216" stroke-width="2"/></svg>
+</div></div>
+
+<!-- 7 · prazos -->
+<div class="sc" id="s7"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e7" style="left:120px;top:150px">Controle de prazos</div>
+ <div class="abs panel" id="tb7" style="left:110px;top:200px;width:1060px;overflow:hidden">
+  <div class="row" style="color:var(--mute);font-weight:700;font-size:22px"><div style="flex:none;width:250px">Processo</div><div style="flex:none;width:260px">Ato</div><div style="flex:none;width:220px">Prazo</div><div>Andamento</div></div>
+  <div class="row" id="p7a"><div style="flex:none;width:250px;font-weight:700">0012/2026</div><div style="flex:none;width:260px">Contestação</div><div style="flex:none;width:220px">30 dias úteis</div><div style="flex:1;height:14px;border-radius:7px;background:#2E323C"><div id="pb7a" style="height:14px;border-radius:7px;background:var(--acc);width:0"></div></div></div>
+  <div class="row" id="p7b"><div style="flex:none;width:250px;font-weight:700">0047/2026</div><div style="flex:none;width:260px">Recurso</div><div style="flex:none;width:220px">30 dias úteis</div><div style="flex:1;height:14px;border-radius:7px;background:#2E323C"><div id="pb7b" style="height:14px;border-radius:7px;background:#F59E0B;width:0"></div></div></div>
+  <div class="row" id="p7c"><div style="flex:none;width:250px;font-weight:700">0103/2026</div><div style="flex:none;width:260px">Manifestação</div><div style="flex:none;width:220px">10 dias úteis</div><div style="flex:1;height:14px;border-radius:7px;background:#2E323C"><div id="pb7c" style="height:14px;border-radius:7px;background:var(--acc);width:0"></div></div></div>
+  <div class="row" id="p7d" style="border-bottom:none"><div style="flex:none;width:250px;font-weight:700">0128/2026</div><div style="flex:none;width:260px">Embargos</div><div style="flex:none;width:220px">10 dias úteis</div><div style="flex:1;height:14px;border-radius:7px;background:#2E323C"><div id="pb7d" style="height:14px;border-radius:7px;background:var(--acc);width:0"></div></div></div>
+ </div>
+ <div class="abs panel" id="cal7" style="left:1230px;top:200px;width:580px;padding:30px 34px">
+  <div class="lbl">Contagem automática</div>
+  <div style="display:flex;align-items:baseline;gap:16px;margin-top:12px"><div class="kpi" style="font-size:80px" id="k7a">15</div><div style="font-size:30px;font-weight:700">× 2 =</div><div class="kpi acc" style="font-size:80px" id="k7b">30</div></div>
+  <div style="font-size:24px;font-weight:600;color:var(--mute);margin-top:6px">dias úteis · prazo em dobro</div>
+  <div id="grid7" style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:22px"></div>
+ </div>
+ <div class="abs panel" id="al7" style="left:1230px;top:770px;width:580px;padding:24px 30px;border:2px solid #F59E0B;display:flex;align-items:center;gap:22px">
+  <svg width="54" height="54" viewBox="0 0 54 54" id="bell7"><path d="M27 6 C17 6 13 14 13 22 L13 33 L8 40 L46 40 L41 33 L41 22 C41 14 37 6 27 6Z" fill="#F59E0B"/><circle cx="27" cy="45" r="5" fill="#F59E0B"/></svg>
+  <div><div style="font-size:28px;font-weight:800">Recurso 0047/2026</div><div style="font-size:24px;color:var(--mute);font-weight:600">vence em 3 dias úteis</div></div>
+ </div>
+</div></div>
+
+<!-- 8 · documentos a partir de modelos -->
+<div class="sc" id="s8"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e8" style="left:120px;top:150px">Modelos do órgão</div>
+ <div class="abs panel" id="m8a" style="left:120px;top:210px;width:520px;padding:30px 34px;display:flex;align-items:center;gap:24px"><div class="ic"><svg width="56" height="56" viewBox="0 0 56 56"><rect x="10" y="6" width="36" height="44" rx="4" fill="none" stroke="#8B7CF6" stroke-width="4"/><path d="M18 20h20M18 28h20M18 36h12" stroke="#8B7CF6" stroke-width="4"/></svg></div><div style="font-size:32px;font-weight:700">Parecer jurídico</div></div>
+ <div class="abs panel" id="m8b" style="left:120px;top:420px;width:520px;padding:30px 34px;display:flex;align-items:center;gap:24px"><div class="ic"><svg width="56" height="56" viewBox="0 0 56 56"><rect x="6" y="12" width="44" height="32" rx="4" fill="none" stroke="#8B7CF6" stroke-width="4"/><path d="M6 14 L28 30 L50 14" fill="none" stroke="#8B7CF6" stroke-width="4"/></svg></div><div style="font-size:32px;font-weight:700">Ofício</div></div>
+ <div class="abs panel" id="m8c" style="left:120px;top:630px;width:520px;padding:30px 34px;display:flex;align-items:center;gap:24px"><div class="ic"><svg width="56" height="56" viewBox="0 0 56 56"><rect x="10" y="6" width="36" height="44" rx="4" fill="none" stroke="#8B7CF6" stroke-width="4"/><path d="M18 40 C22 32 26 44 30 36 S36 38 40 34" fill="none" stroke="#8B7CF6" stroke-width="4"/></svg></div><div style="font-size:32px;font-weight:700">Minuta de contrato</div></div>
+ <svg class="abs" width="1920" height="1080" style="left:0;top:0;pointer-events:none"><path id="cn8" d="M650 290 C760 290 760 470 880 470" stroke="#8B7CF6" stroke-width="4" fill="none" stroke-dasharray="10 10"/></svg>
+ <div class="abs" id="doc8" style="left:890px;top:170px;width:900px;height:790px;background:#F4F1EA;color:#111216;border-radius:18px;padding:50px 60px;box-shadow:0 30px 60px #000a;overflow:hidden">
+  <div style="font-size:22px;font-weight:700;letter-spacing:4px;color:#6B6458">PROCURADORIA-GERAL DO MUNICÍPIO</div>
+  <div style="font-size:40px;font-weight:800;margin-top:12px">PARECER JURÍDICO Nº __/2026</div>
+  <div id="dt8" style="font-family:Georgia,serif;font-size:26px;line-height:1.6;margin-top:26px;min-height:320px"></div>
+  <div id="cc8" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:20px"></div>
+  <div style="position:absolute;left:60px;bottom:40px;display:flex;align-items:center;gap:18px"><div class="kpi" id="k8" style="font-size:64px;color:#5B4FD6">0/3</div><div style="font-size:24px;font-weight:700;color:#6B6458">citações conferidas</div></div>
+ </div>
+</div></div>
+
+<!-- 9 · base de leis -->
+<div class="sc" id="s9"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e9" style="left:120px;top:150px">Base de legislação</div>
+ <div class="abs" style="left:120px;top:210px;display:flex;gap:28px">
+  <div class="panel" id="col9a" style="width:340px;padding:26px"><div style="font-size:30px;font-weight:800;margin-bottom:18px">Federal</div><div class="lawt">Constituição Federal</div><div class="lawt">Lei 14.133/2021</div><div class="lawt">Código de Processo Civil</div><div class="lawt">LGPD · Lei 13.709/2018</div></div>
+  <div class="panel" id="col9b" style="width:340px;padding:26px"><div style="font-size:30px;font-weight:800;margin-bottom:18px">Estadual</div><div class="lawt">Constituição Estadual</div><div class="lawt">Leis estaduais</div><div class="lawt">Decretos estaduais</div><div class="lawt">Normas do TCE</div></div>
+  <div class="panel" id="col9c" style="width:340px;padding:26px"><div style="font-size:30px;font-weight:800;margin-bottom:18px">Municipal</div><div class="lawt">Lei Orgânica</div><div class="lawt">Leis municipais</div><div class="lawt" id="chg9" style="border:2px solid #F59E0B">Decreto municipal ✎ alterado</div><div class="lawt">Portarias</div></div>
+ </div>
+ <svg class="abs" width="1920" height="1080" style="left:0;top:0;pointer-events:none">
+  <path id="w9a" d="M1180 482 C1230 560 1240 300 1380 300" stroke="#F59E0B" stroke-width="4" fill="none"/>
+  <path id="w9b" d="M1180 482 C1230 560 1240 530 1380 530" stroke="#F59E0B" stroke-width="4" fill="none"/>
+  <path id="w9c" d="M1180 482 C1230 560 1240 760 1380 760" stroke="#F59E0B" stroke-width="4" fill="none"/>
+ </svg>
+ <div class="abs panel" id="d9a" style="left:1390px;top:240px;width:420px;padding:22px 26px"><div style="font-size:26px;font-weight:700">Parecer 031/2026</div><div class="chip" style="font-size:20px;margin-top:12px"><i style="background:#F59E0B"></i>Revisar</div></div>
+ <div class="abs panel" id="d9b" style="left:1390px;top:470px;width:420px;padding:22px 26px"><div style="font-size:26px;font-weight:700">Minuta de contrato 12</div><div class="chip" style="font-size:20px;margin-top:12px"><i style="background:#F59E0B"></i>Revisar</div></div>
+ <div class="abs panel" id="d9c" style="left:1390px;top:700px;width:420px;padding:22px 26px"><div style="font-size:26px;font-weight:700">Edital 007/2026</div><div class="chip" style="font-size:20px;margin-top:12px"><i style="background:#F59E0B"></i>Revisar</div></div>
+</div></div>
+
+<!-- 10 · revisão humana -->
+<div class="sc" id="s10"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e10" style="left:120px;top:150px">A palavra final é do procurador</div>
+ <div class="node" id="n10a" style="left:120px;top:220px"><b class="acc">IA sugere</b><span>minuta com fontes</span></div>
+ <div class="node" id="n10b" style="left:560px;top:220px"><b>Advogado revisa</b><span>confere e ajusta</span></div>
+ <div class="node" id="n10c" style="left:1000px;top:220px"><b>Assina</b><span>assinatura digital</span></div>
+ <div class="node" id="n10d" style="left:1440px;top:220px;border-color:#D9A441"><b class="gold">Decide</b><span>responsabilidade humana</span></div>
+ <svg class="abs" width="1920" height="1080" style="left:0;top:0;pointer-events:none"><g stroke="#8B7CF6" stroke-width="5" fill="none"><path id="a10a" d="M425 300 L555 300"/><path id="a10b" d="M865 300 L995 300"/><path id="a10c" d="M1305 300 L1435 300"/></g></svg>
+ <div class="abs panel" id="lg10" style="left:120px;top:480px;width:1180px;overflow:hidden">
+  <div class="log" style="color:var(--mute);font-weight:700;font-size:22px"><b style="color:var(--mute)">Hora</b>Registro de auditoria</div>
+  <div class="log" id="l10a"><b>09:12</b>Minuta gerada pela IA, com 3 citações</div>
+  <div class="log" id="l10b"><b>09:40</b>Revisada e ajustada pelo procurador</div>
+  <div class="log" id="l10c"><b>10:05</b>Assinada digitalmente</div>
+  <div class="log" id="l10d" style="border-bottom:none"><b>10:06</b>Acesso registrado · somente perfis autorizados</div>
+ </div>
+ <div class="abs panel" id="lk10" style="left:1360px;top:480px;width:440px;padding:40px;text-align:center">
+  <svg width="110" height="120" viewBox="0 0 110 120"><path d="M30 52 L30 36 C30 8 80 8 80 36 L80 52" fill="none" stroke="#D9A441" stroke-width="10"/><rect x="14" y="52" width="82" height="62" rx="12" fill="#D9A441"/><circle cx="55" cy="80" r="9" fill="#111216"/><rect x="51" y="82" width="8" height="18" fill="#111216"/></svg>
+  <div style="font-size:32px;font-weight:800;margin-top:16px">Acesso seguro</div><div style="font-size:26px;font-weight:600;color:var(--mute);margin-top:6px">LGPD · Lei 13.709/2018</div>
+ </div>
+</div></div>
+
+<!-- 11 · economia -->
+<div class="sc" id="s11"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs" id="tag11" style="left:120px;top:150px"><span class="chip" style="color:#D9A441;border-color:#D9A441"><i style="background:#D9A441"></i>Cenário ilustrativo</span></div>
+ <div class="abs anton" id="t11" style="left:120px;top:230px;font-size:96px">Quanto tempo volta para a equipe</div>
+ <div class="abs panel" id="br11" style="left:120px;top:400px;width:860px;padding:40px 44px">
+  <div class="lbl">Pesquisa por parecer</div>
+  <div style="display:flex;align-items:center;gap:24px;margin-top:26px"><div style="width:130px;font-size:28px;font-weight:700">Antes</div><div id="bb11a" style="height:60px;width:0;border-radius:10px;background:#5A5F6B"></div><div class="kpi" style="font-size:56px" id="v11a">4 h</div></div>
+  <div style="display:flex;align-items:center;gap:24px;margin-top:22px"><div style="width:130px;font-size:28px;font-weight:700">Depois</div><div id="bb11b" style="height:60px;width:0;border-radius:10px;background:var(--acc)"></div><div class="kpi acc" style="font-size:56px" id="v11b">1 h</div></div>
+ </div>
+ <div class="abs panel" id="eq11" style="left:1040px;top:400px;width:760px;padding:40px 44px">
+  <div style="display:flex;align-items:baseline;gap:18px;flex-wrap:wrap"><div class="kpi" style="font-size:72px">3 h</div><div style="font-size:30px;font-weight:700">×</div><div class="kpi" style="font-size:72px">40</div><div style="font-size:26px;font-weight:600;color:var(--mute)">pareceres/mês</div></div>
+  <div style="height:2px;background:var(--line);margin:26px 0"></div>
+  <div style="display:flex;align-items:baseline;gap:18px"><div class="kpi gold" style="font-size:150px" id="k11">0 h</div><div style="font-size:30px;font-weight:700;color:var(--mute)">por mês</div></div>
+ </div>
+</div></div>
+
+<!-- 12 · para quem -->
+<div class="sc" id="s12"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:600px;top:500px;width:900px;height:600px;background:var(--acc);opacity:.18"></div>
+ <div class="abs" style="left:120px;top:190px;width:1680px;display:flex;gap:36px">
+  <div class="panel" id="c12a" style="flex:1;padding:44px;display:flex;align-items:center;gap:30px"><div class="ic"><svg width="64" height="64" viewBox="0 0 64 64"><path d="M32 8 L32 56 M14 56 L50 56 M10 20 L54 20" stroke="#8B7CF6" stroke-width="5"/><path d="M10 20 L2 38 L18 38Z M54 20 L46 38 L62 38Z" fill="#8B7CF6"/></svg></div><div style="font-size:38px;font-weight:800">Procuradorias</div></div>
+  <div class="panel" id="c12b" style="flex:1;padding:44px;display:flex;align-items:center;gap:30px"><div class="ic"><svg width="64" height="64" viewBox="0 0 64 64"><path d="M6 24 L32 8 L58 24Z" fill="#8B7CF6"/><path d="M14 28v22M26 28v22M38 28v22M50 28v22M6 56h52" stroke="#8B7CF6" stroke-width="5"/></svg></div><div style="font-size:38px;font-weight:800">Câmaras</div></div>
+  <div class="panel" id="c12c" style="flex:1;padding:44px;display:flex;align-items:center;gap:30px"><div class="ic"><svg width="64" height="64" viewBox="0 0 64 64"><path d="M6 16 L26 16 L30 22 L58 22 L58 54 L6 54Z" fill="none" stroke="#8B7CF6" stroke-width="5"/></svg></div><div style="font-size:38px;font-weight:800">Secretarias</div></div>
+ </div>
+ <div class="abs anton" id="t12" style="left:0;right:0;top:520px;text-align:center;font-size:120px">Mais <span class="acc">segurança jurídica</span>,<br>em menos tempo</div>
+</div></div>
+
+<!-- 13 · logo -->
+<div class="sc" id="s13"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:560px;top:200px;width:800px;height:600px;background:var(--acc);opacity:.2"></div>
+ <div class="abs" id="lg13" style="left:310px;top:150px;transform:scale(1);transform-origin:0 0"></div>
+ <div class="abs" id="sy13" style="left:0;right:0;top:720px;text-align:center"><span class="anton acc" style="font-size:72px">Sistema Jurídico</span></div>
+ <div class="abs" id="tg13" style="left:0;right:0;top:820px;text-align:center;font-size:32px;font-weight:600;letter-spacing:6px;color:var(--mute)">INTELIGÊNCIA PÚBLICA · POR V4 FÁBRICAGOV</div>
+</div></div>
+
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const {$, cl, eo, eio, spr, mul, Wd, rise, slideX, pop, slam, fade, count, typed, draw} = K;
+const kf = (t, arr) => { if (t <= arr[0][0]) return arr[0].slice(1); for (let i = 1; i < arr.length; i++) if (t < arr[i][0]) { const p = eio((t - arr[i - 1][0]) / (arr[i][0] - arr[i - 1][0])); return arr[i].slice(1).map((v, j) => arr[i - 1][j + 1] + (v - arr[i - 1][j + 1]) * p); } return arr[arr.length - 1].slice(1); };
+const SIDE = on => `<div class="side"><div style="font-family:Anton;font-size:34px;margin-bottom:26px">V4.7 <span style="color:#8B7CF6">Jurídico</span></div>${['Assistente', 'Editais e contratos', 'Prazos', 'Documentos', 'Legislação'].map((x, i) => `<div class="it ${i === on ? 'on' : ''}">${x}</div>`).join('')}</div>`;
+const CUR = id => `<svg class="cur" id="${id}" viewBox="0 0 44 44"><path d="M6 4 L6 36 L15 27 L21 40 L27 37 L21 25 L34 25Z" fill="#F4F1EA" stroke="#111216" stroke-width="2"/></svg>`;
+const PAP = [];
+const Q2 = 'Preciso de parecer jurídico antes de publicar o edital?';
+const A3 = 'Sim. Ao final da fase preparatória, o processo segue para a assessoria jurídica, que faz o controle prévio de legalidade da contratação.';
+const D8 = 'Trata-se de consulta sobre a regularidade da fase preparatória do Edital 007/2026. Nos termos do art. 53 da Lei 14.133/2021, cabe a esta Procuradoria o controle prévio de legalidade. Verificam-se o estudo técnico preliminar, o termo de referência e o orçamento estimado, conforme o art. 18…';
+
+function build() {
+  const box = $('papers1'); const r = mul(23);
+  const labels = ['Lei', 'Decreto', 'Jurisprudência', 'Prazo', 'Portaria', 'Parecer', 'Planilha', 'Ofício'];
+  labels.forEach((l, i) => { const d = document.createElement('div'); d.className = 'paper'; d.innerHTML = `<b>${l}</b><i style="width:90%"></i><i style="width:70%"></i><i style="width:80%"></i>`; box.appendChild(d);
+    PAP.push({ d, x: 120 + (i % 4) * 430 + Math.floor(i / 4) * 190 + r() * 40, y: 560 + Math.floor(i / 4) * 230 + r() * 30, rot: (r() - .5) * 18, w: r() * 6.28 }); });
+  $('lap2').innerHTML = K.laptop('l2', 'v47.gov.br/juridico/assistente', SIDE(0) +
+    `<div class="abs" style="left:250px;right:0;top:0;padding:24px 34px;border-bottom:1px solid #2E323C;font-size:24px;font-weight:700">Nova consulta</div>
+     <div class="bub u" id="u2" style="right:34px;top:120px;width:560px">${Q2}</div>
+     <div class="bub a" id="ty2" style="left:290px;top:330px;width:150px;text-align:center;font-size:34px;letter-spacing:6px">•••</div>
+     <div class="abs" style="left:290px;right:34px;bottom:30px;height:84px;border-radius:18px;background:#0E0F13;border:1px solid #2E323C;padding:24px 26px;font-size:26px;color:#F4F1EA" id="in2"></div>` + CUR('cur2'), 760, 160, 1060, 780);
+  $('lap4').innerHTML = K.laptop('l4', 'planalto.gov.br · Lei nº 14.133, de 1º de abril de 2021',
+    `<div class="abs" id="pg4" style="left:330px;top:40px;width:900px;background:#F4F1EA;color:#111216;border-radius:12px;padding:50px 60px;transform-origin:120px 420px">
+       <div style="font-size:22px;font-weight:700;letter-spacing:3px;color:#6B6458">PRESIDÊNCIA DA REPÚBLICA</div>
+       <div style="font-size:34px;font-weight:800;margin-top:10px">LEI Nº 14.133, DE 1º DE ABRIL DE 2021</div>
+       <div style="font-size:22px;color:#6B6458;margin-top:8px;font-weight:600">Lei de Licitações e Contratos Administrativos</div>
+       <div class="ln" style="background:#D8D2C4;width:95%"></div><div class="ln" style="background:#D8D2C4;width:88%"></div><div class="ln" style="background:#D8D2C4;width:91%"></div>
+       <div style="font-family:Georgia,serif;font-size:26px;line-height:1.6;margin-top:18px"><b>Art. 53.</b> Ao final da fase preparatória, o processo licitatório seguirá para o órgão de assessoramento jurídico da Administração, que realizará <span id="hl4" style="border-radius:6px;padding:0 4px">controle prévio de legalidade mediante análise jurídica da contratação</span>.</div>
+       <div class="ln" style="background:#D8D2C4;width:93%;margin-top:26px"></div><div class="ln" style="background:#D8D2C4;width:84%"></div>
+     </div>
+     <div class="abs" style="left:30px;top:40px;width:260px"><div class="lbl" style="margin-bottom:16px">Citações</div><div class="cite" id="ct4" style="font-size:20px">Art. 53 · caput</div><div class="btn" id="op4" style="margin-top:22px;font-size:20px;padding:14px 20px">Abrir texto oficial</div></div>` + CUR('cur4'), 200, 140, 1520, 820);
+  $('lap5').innerHTML = K.laptop('l5', 'v47.gov.br/juridico/editais/007-2026',
+    `<div class="abs" style="left:40px;top:30px;right:40px;bottom:30px;background:#F4F1EA;color:#111216;border-radius:12px;padding:40px 46px;overflow:hidden">
+      <div style="font-size:30px;font-weight:800">EDITAL Nº 007/2026</div><div style="font-size:22px;color:#6B6458;font-weight:600;margin-top:6px">Pregão eletrônico · processo administrativo</div>
+      ${['1. Objeto', '2. Estudo técnico preliminar', '3. Termo de referência', '4. Orçamento estimado', '5. Condições de participação', '6. Julgamento das propostas'].map((s, i) => `<div style="margin-top:22px"><div style="font-size:24px;font-weight:700" id="sec5_${i}">${s}</div><div class="ln" style="background:#D8D2C4;width:${80 + (i * 7) % 18}%;margin:10px 0"></div></div>`).join('')}
+      <div id="scan5" class="abs" style="left:0;right:0;height:6px;background:#8B7CF6;box-shadow:0 0 30px #8B7CF6"></div>
+    </div>`, 110, 160, 900, 800);
+  const g = $('grid7'); let h = '';
+  for (let i = 0; i < 21; i++) { const we = i % 7 >= 5; h += `<div class="d7" data-we="${we ? 1 : 0}" style="height:40px;border-radius:8px;background:${we ? '#1A1C22' : '#2E323C'};font-size:20px;font-weight:700;color:${we ? '#5A5F6B' : '#A9ADB8'};display:flex;align-items:center;justify-content:center">${i + 1}</div>`; }
+  g.innerHTML = h;
+  ['Lei 14.133/2021, art. 53 ✓', 'Lei 14.133/2021, art. 18 ✓', 'Edital 007/2026 ✓'].forEach((c, i) => { $('cc8').insertAdjacentHTML('beforeend', `<span class="cite cc" style="background:#5B4FD61F;border-color:#5B4FD6;color:#3A2FB0">${c}</span>`); });
+  $('lg13').innerHTML = K.logoSVG('logo13');
+}
+
+function scene(k, t, lt) {
+  K.note(''); K.src('');
+  if (k === 1) {
+    rise($('e1'), t, .4); rise($('t1'), t, .6, 70, .8); pop($('clk1'), t, Wd(1, 'horas') - .3);
+    const p = eo((t - Wd(1, 'horas')) / 3.4); const m = Math.round(240 * p); $('k1').textContent = String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+    const ws = ['leis', 'decretos', 'jurisprudência', 'prazos', 'papéis', 'papéis', 'planilhas', 'planilhas'];
+    PAP.forEach((P, i) => { const t0 = Wd(1, ws[i]) - .3 + (i % 2) * .25; const p = spr(t - t0); const a = cl((t - t0) / .2);
+      P.d.style.opacity = a; P.d.style.left = P.x + 'px'; P.d.style.top = P.y + 'px';
+      P.d.style.transform = `translate(${Math.sin(lt * .8 + P.w) * 14}px,${(1 - p) * 220 + Math.cos(lt * .7 + P.w) * 10}px) rotate(${P.rot + Math.sin(lt + P.w) * 3}deg)`; });
+    K.note('Cenário ilustrativo');
+  }
+  if (k === 2) {
+    rise($('e2'), t, K.S.SC[1] + .3); rise($('t2'), t, K.S.SC[1] + .45, 60, .7); rise($('d2'), t, Wd(2, 'responde') - .2);
+    slideX($('l2'), t, K.S.SC[1] + .2, 160, .8);
+    const tq = Wd(2, 'servidor') - .2; typed($('in2'), Q2, t, tq, 30);
+    const send = tq + Q2.length / 30 + .25;
+    const c = kf(t, [[tq, 980, 640], [send - .5, 980, 640], [send, 1000, 690], [send + 1, 1000, 690]]);
+    const cur = $('cur2'); cur.style.left = c[0] + 'px'; cur.style.top = c[1] + 'px'; cur.style.opacity = cl((t - tq) / .3); cur.style.transform = `scale(${Math.abs(t - send) < .12 ? .8 : 1})`;
+    const u = $('u2'); if (t > send) { $('in2').textContent = ''; } pop(u, t, send + .05);
+    const ty = $('ty2'); ty.style.opacity = t > send + .5 ? (.5 + .5 * Math.sin(t * 8)) : 0;
+    K.note('Interface ilustrativa');
+  }
+  if (k === 3) {
+    rise($('chat3'), t, K.S.SC[2] + .1, 40); pop($('u3'), t, K.S.SC[2] + .3);
+    const ta = K.S.SC[2] + .7; typed($('a3t'), A3, t, ta, 34); fade($('a3'), t, ta - .1, .2);
+    pop($('c3'), t, Wd(3, '14.133') - .3); pop($('c3b'), t, Wd(3, '14.133') + .5);
+    slideX($('law3'), t, Wd(3, '14.133') - .1, 120, .7);
+    const m = $('m3'); const p = eo((t - Wd(3, 'controle prévio')) / .7); m.style.background = `linear-gradient(90deg,#8B7CF6AA ${p * 100}%,transparent ${p * 100}%)`;
+    K.note('Interface ilustrativa'); K.src('Lei 14.133/2021, art. 53 (texto oficial)');
+  }
+  if (k === 4) {
+    const l = $('l4'); rise(l, t, K.S.SC[3] + .1, 60);
+    const tc = Wd(4, 'clique') - .1;
+    const c = kf(t, [[K.S.SC[3] + .3, 900, 700], [tc, 200, 150], [tc + 1, 200, 150]]);
+    const cur = $('cur4'); cur.style.left = c[0] + 'px'; cur.style.top = c[1] + 'px'; cur.style.transform = `scale(${Math.abs(t - tc) < .12 ? .8 : 1})`;
+    $('op4').style.transform = `scale(${Math.abs(t - tc) < .12 ? .94 : 1})`;
+    const pg = $('pg4'); const o = eo((t - tc - .1) / .5); pg.style.opacity = o;
+    const z = eio((t - Wd(4, 'destacado') + .2) / 1.0); pg.style.transform = `translateY(${(1 - o) * 40}px) scale(${1 + .16 * z})`;
+    const hp = eo((t - Wd(4, 'destacado') + .1) / .8); $('hl4').style.background = `linear-gradient(90deg,#8B7CF699 ${hp * 100}%,transparent ${hp * 100}%)`;
+    pop($('b4'), t, Wd(4, 'fonte') - .2);
+    K.note('Interface ilustrativa'); K.src('Fonte: Lei nº 14.133/2021, art. 53 · planalto.gov.br');
+  }
+  if (k === 5) {
+    rise($('l5'), t, K.S.SC[4] + .1, 60); slideX($('chk5'), t, K.S.SC[4] + .3, 120, .7);
+    const s0 = Wd(5, 'item por item') - .3, s1 = Wd(5, 'riscos') + .6;
+    const sc = $('scan5'); sc.style.top = (40 + 620 * cl((t - s0) / (s1 - s0))) + 'px'; sc.style.opacity = t > s0 && t < s1 + .3 ? 1 : 0;
+    const ws = ['estudo', 'termo', 'orçamento', 'análise de riscos']; let n = 0;
+    ['r5a', 'r5b', 'r5c', 'r5d'].forEach((id, i) => { const t0 = Wd(5, ws[i]) - .1; const on = t > t0; const ck = $(id).querySelector('.ck');
+      const bad = i === 3; if (on && !bad) n++;
+      ck.style.background = on ? (bad ? '#F59E0B' : '#2BD99F') : 'transparent'; ck.style.borderColor = on ? (bad ? '#F59E0B' : '#2BD99F') : '#3A3E48'; ck.style.color = on ? '#111216' : 'transparent';
+      ck.style.transform = `scale(${on ? .7 + .3 * spr(t - t0) : 1})`; $(id).style.background = on && bad ? '#F59E0B1A' : 'transparent'; });
+    $('k5').textContent = n + '/4';
+    K.note('Interface ilustrativa'); K.src('Itens da fase preparatória: Lei 14.133/2021, art. 18');
+  }
+  if (k === 6) {
+    pop($('al6'), t, K.S.SC[5] + .2, .85); const mp = eo((t - Wd(6, 'artigo') + .2) / .7); $('m6').style.background = `linear-gradient(90deg,#F59E0B88 ${mp * 100}%,transparent ${mp * 100}%)`;
+    slideX($('sg6'), t, Wd(6, 'sugestão') - .3, 120, .7);
+    const tc = Wd(6, 'fundamenta') + .3;
+    const c = kf(t, [[Wd(6, 'sugestão'), 1700, 900], [tc, 1140, 560], [tc + 2, 1140, 560]]);
+    const cur = $('cur6'); cur.style.left = c[0] + 'px'; cur.style.top = c[1] + 'px'; cur.style.opacity = cl((t - Wd(6, 'sugestão')) / .3);
+    $('bt6').style.transform = `scale(${Math.abs(t - tc) < .12 ? .92 : 1})`; rise($('st6'), t, tc + .3, 30);
+    K.note('Interface ilustrativa'); K.src('Lei 14.133/2021, art. 18, inciso X');
+  }
+  if (k === 7) {
+    rise($('e7'), t, K.S.SC[6] + .2); rise($('tb7'), t, K.S.SC[6] + .3, 50);
+    ['p7a', 'p7b', 'p7c', 'p7d'].forEach((id, i) => { const t0 = K.S.SC[6] + .5 + i * .15; fade($(id), t, t0, .3); K.bar($('pb' + id.slice(1)), t, t0 + .2, 1.2, 'width', [150, 200, 80, 170][i]); });
+    pop($('cal7'), t, Wd(7, 'dias úteis') - .3);
+    const d0 = Wd(7, 'dias úteis'); document.querySelectorAll('#grid7 .d7').forEach((e, i) => { const on = t > d0 + i * .05 && e.dataset.we === '0'; e.style.background = on ? '#8B7CF6' : (e.dataset.we === '1' ? '#1A1C22' : '#2E323C'); e.style.color = on ? '#111216' : (e.dataset.we === '1' ? '#5A5F6B' : '#A9ADB8'); });
+    const td = Wd(7, 'dobro') - .2; count($('k7b'), t, td, .8, 30); $('k7b').style.opacity = cl((t - td) / .2) * .9 + .1;
+    const ta = Wd(7, 'avisa') - .2; slideX($('al7'), t, ta, 100, .5); $('bell7').style.transform = `rotate(${t > ta ? Math.sin((t - ta) * 18) * 14 * Math.exp(-(t - ta) * 1.5) : 0}deg)`; $('bell7').style.transformOrigin = '27px 8px';
+    K.note('Processos e datas ilustrativos'); K.src('CPC: art. 183 (prazo em dobro da Fazenda Pública) e art. 219 (dias úteis)');
+  }
+  if (k === 8) {
+    rise($('e8'), t, K.S.SC[7] + .2);
+    ['m8a', 'm8b', 'm8c'].forEach((id, i) => { slideX($(id), t, Wd(8, ['pareceres', 'ofícios', 'minutas'][i]) - .3, -80, .5); });
+    const sel = Wd(8, 'modelos') - .2; $('m8a').style.borderColor = t > sel ? '#8B7CF6' : '#2E323C'; $('m8a').style.boxShadow = t > sel ? '0 0 0 3px #8B7CF655, 0 30px 60px #0008' : '';
+    draw($('cn8'), t, sel, .5); $('cn8').style.strokeDasharray = '';
+    const d = $('doc8'); rise(d, t, sel + .2, 60); typed($('dt8'), D8, t, sel + .5, 95, false);
+    const tc = Wd(8, 'citações') - .2; let n = 0; document.querySelectorAll('#cc8 .cc').forEach((e, i) => { const t0 = tc + i * .35; pop(e, t, t0); if (t > t0) n++; }); $('k8').textContent = n + '/3';
+    K.note('Interface ilustrativa · modelo genérico');
+  }
+  if (k === 9) {
+    rise($('e9'), t, K.S.SC[8] + .2);
+    [['col9a', 'federais'], ['col9b', 'estaduais'], ['col9c', 'municipais']].forEach(([id, w]) => rise($(id), t, Wd(9, w) - .35, 60, .6));
+    const tm = Wd(9, 'muda') - .2; const c = $('chg9'); const pl = t > tm ? .5 + .5 * Math.sin((t - tm) * 7) : 0; c.style.boxShadow = `0 0 ${30 * pl}px #F59E0B`; c.style.background = t > tm ? '#F59E0B22' : 'var(--ink3)';
+    ['w9a', 'w9b', 'w9c'].forEach((id, i) => draw($(id), t, Wd(9, 'afetados') - .4 + i * .15, .6));
+    ['d9a', 'd9b', 'd9c'].forEach((id, i) => pop($(id), t, Wd(9, 'afetados') + .1 + i * .15));
+    K.note('Interface ilustrativa · documentos ilustrativos');
+  }
+  if (k === 10) {
+    rise($('e10'), t, K.S.SC[9] + .2);
+    [['n10a', 'sugere'], ['n10b', 'revisa'], ['n10c', 'assina'], ['n10d', 'decide']].forEach(([id, w], i) => { pop($(id), t, Wd(10, w) - .25); });
+    [['a10a', 'revisa'], ['a10b', 'assina'], ['a10c', 'decide']].forEach(([id, w]) => draw($(id), t, Wd(10, w) - .5, .3));
+    const t0 = Wd(10, 'registrado') - .5; ['l10a', 'l10b', 'l10c', 'l10d'].forEach((id, i) => slideX($(id), t, t0 + i * .2, 60, .4)); rise($('lg10'), t, t0 - .2, 40);
+    pop($('lk10'), t, Wd(10, 'seguro') - .3);
+    K.note('Interface ilustrativa'); K.src('LGPD: Lei 13.709/2018');
+  }
+  if (k === 11) {
+    pop($('tag11'), t, K.S.SC[10] + .2); rise($('t11'), t, K.S.SC[10] + .35, 60, .7); rise($('br11'), t, Wd(11, '4 horas') - .4, 50);
+    K.bar($('bb11a'), t, Wd(11, '4 horas') - .3, .8, 'width', 480); K.bar($('bb11b'), t, Wd(11, 'para 1') - .2, .6, 'width', 120);
+    $('v11a').style.opacity = cl((t - Wd(11, '4 horas')) / .3); $('v11b').style.opacity = cl((t - Wd(11, 'para 1')) / .3);
+    pop($('eq11'), t, Wd(11, '40') - .3, .8); count($('k11'), t, Wd(11, '120') - .3, 1.0, 120, { suf: ' h' });
+    K.note('Conta ilustrativa, não é resultado medido');
+  }
+  if (k === 12) {
+    [['c12a', 'procuradorias'], ['c12b', 'câmaras'], ['c12c', 'secretarias']].forEach(([id, w]) => pop($(id), t, Wd(12, w) - .3));
+    slam($('t12'), t, Wd(12, 'segurança') - .25);
+  }
+  if (k === 13) {
+    K.logoAnim('logo13', t, K.S.SC[12] + .2); const s = $('lg13'); s.style.transform = `scale(${.9 + .02 * lt / 6})`;
+    rise($('sy13'), t, K.S.SC[12] + 1.5, 40); rise($('tg13'), t, Wd(13, 'inteligência') - .1, 30);
+  }
+}
+K.boot({ system: 'Sistema Jurídico', accent: '#8B7CF6', build, scene, hideHud: [13] });
+</script>
+</body>
+</html>

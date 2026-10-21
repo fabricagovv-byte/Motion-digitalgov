@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Sistema de Obras</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+.ttl{font-family:Anton,sans-serif;text-transform:uppercase;font-size:92px;line-height:.98;letter-spacing:.5px}
+.sub{font-size:32px;font-weight:500;color:var(--mute);line-height:1.4}
+.tbl{width:100%;border-collapse:collapse;font-size:26px}
+.tbl th{font-size:20px;letter-spacing:3px;text-transform:uppercase;color:var(--mute);text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);font-weight:700}
+.tbl td{padding:16px 18px;border-bottom:1px solid #ffffff10;font-weight:500}
+.tbl td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.stamp{font-family:Anton,sans-serif;text-transform:uppercase;font-size:64px;padding:10px 34px;border:6px solid #FF5A4E;color:#FF5A4E;border-radius:14px;letter-spacing:2px}
+.doc{background:#F4F1EA;color:#111216;border-radius:18px;padding:34px;box-shadow:0 30px 60px #000a}
+.doc h4{font-size:28px;font-weight:700;margin-bottom:6px}
+.doc .ln{height:12px;border-radius:6px;background:#D6D1C6;margin-top:14px}
+.ck{display:flex;align-items:center;gap:18px;font-size:32px;font-weight:600}
+.ck b{width:44px;height:44px;border-radius:50%;background:var(--acc);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:28px}
+.big{font-family:Anton,sans-serif;font-size:120px;line-height:1}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- S1 problema -->
+<div class="sc" id="s1"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:1100px;top:250px;width:700px;height:700px;background:#FF5A4E"></div>
+ <div class="abs eb" id="e1" style="left:120px;top:200px">O problema</div>
+ <div class="abs ttl" id="t1" style="left:116px;top:260px;width:900px">Toda obra pública começa no papel</div>
+ <div class="abs doc" id="d1" style="left:1080px;top:180px;width:640px">
+  <h4>Planilha de quantitativos</h4>
+  <div style="font-size:22px;color:#5A5D66;margin-bottom:10px">Praça municipal · levantamento manual</div>
+  <table class="tbl" style="font-size:24px;color:#111216">
+   <tr><td style="border-color:#0001">Piso</td><td class="n" style="border-color:#0001">320 m²</td></tr>
+   <tr><td style="border-color:#0001">Meio-fio</td><td class="n" id="w1" style="border-color:#0001">60 m</td></tr>
+   <tr><td style="border-color:#0001">Postes</td><td class="n" style="border-color:#0001">4 un</td></tr>
+   <tr><td style="border-color:#0001">Área total</td><td class="n" id="w2" style="border-color:#0001">500 m²</td></tr>
+  </table>
+  <svg class="abs" id="x1" width="640" height="420" viewBox="0 0 640 420" style="left:0;top:0"><ellipse cx="530" cy="234" rx="70" ry="34" fill="none" stroke="#FF5A4E" stroke-width="6"/><ellipse cx="530" cy="366" rx="80" ry="34" fill="none" stroke="#FF5A4E" stroke-width="6"/></svg>
+ </div>
+ <div class="abs" style="left:120px;top:640px;display:flex;gap:28px">
+  <div class="stamp" id="p1a">Aditivo</div><div class="stamp" id="p1b">Atraso</div><div class="stamp" id="p1c">Retrabalho</div>
+ </div>
+ <div class="abs" id="m1" style="left:124px;top:520px;font-size:34px;font-weight:600;color:#FF8A80">Medida errada no começo, problema no fim</div>
+</div></div>
+
+<!-- S2 celular fotografa -->
+<div class="sc" id="s2"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:900px;top:150px;width:800px;height:800px;background:var(--acc)"></div>
+ <div class="abs eb" id="e2" style="left:120px;top:250px">Sistema de Obras V4.7</div>
+ <div class="abs ttl" id="t2" style="left:116px;top:310px;width:820px">Tudo começa no <span class="acc">celular</span></div>
+ <div class="abs sub" id="u2" style="left:120px;top:560px;width:700px">O servidor vai até o local e fotografa o terreno.</div>
+ <div class="abs" id="ph2" style="left:1150px;top:100px"></div>
+ <div class="abs" id="fl2" style="left:0;top:0;width:1920px;height:1080px;background:#fff;opacity:0"></div>
+</div></div>
+
+<!-- S3 medição AR -->
+<div class="sc" id="s3"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs panel" id="v3" style="left:120px;top:150px;width:1160px;height:780px;overflow:hidden;padding:0">
+  <div id="ph3" style="position:absolute;inset:0"></div>
+  <svg class="abs" width="1160" height="780" viewBox="0 0 1160 780" style="left:0;top:0">
+   <polygon id="ar3" points="250,560 930,560 830,250 340,250" fill="#FF7A2F" opacity="0"/>
+   <path id="la3" d="M250 560 L930 560" stroke="#FF7A2F" stroke-width="6" fill="none"/>
+   <path id="lb3" d="M930 560 L830 250" stroke="#FF7A2F" stroke-width="6" fill="none"/>
+   <path id="lc3" d="M830 250 L340 250" stroke="#FF7A2F" stroke-width="6" fill="none" stroke-dasharray="14 10"/>
+   <path id="ld3" d="M340 250 L250 560" stroke="#FF7A2F" stroke-width="6" fill="none" stroke-dasharray="14 10"/>
+   <g id="dots3" fill="#fff" stroke="#FF7A2F" stroke-width="6"><circle cx="250" cy="560" r="14"/><circle cx="930" cy="560" r="14"/><circle cx="830" cy="250" r="14"/><circle cx="340" cy="250" r="14"/></g>
+   <g stroke="#ffffffaa" stroke-width="3" fill="none"><path d="M560 380 l40 0 M580 360 l0 40"/></g>
+  </svg>
+  <div class="abs chip" id="q3a" style="left:470px;top:590px;background:#111216ee">32,0 m</div>
+  <div class="abs chip" id="q3b" style="left:900px;top:380px;background:#111216ee">24,5 m</div>
+  <div class="abs" id="q3c" style="left:440px;top:360px;font-family:Anton;font-size:84px;color:#fff;text-shadow:0 4px 20px #000a">0 m²</div>
+  <div class="abs" style="left:30px;top:24px;font-size:22px;font-weight:700;letter-spacing:4px;color:#fff;background:#111216cc;padding:8px 16px;border-radius:10px">● MEDIÇÃO</div>
+ </div>
+ <div class="abs" style="left:1340px;top:200px;display:flex;flex-direction:column;gap:26px;width:460px">
+  <div class="abs eb" id="e3" style="position:relative">Medição na hora</div>
+  <div class="panel" id="k3a" style="padding:26px 30px"><div class="lbl">Largura</div><div class="kpi" id="n3a" style="font-size:72px">0 m</div></div>
+  <div class="panel" id="k3b" style="padding:26px 30px"><div class="lbl">Comprimento</div><div class="kpi" id="n3b" style="font-size:72px">0 m</div></div>
+  <div class="panel" id="k3c" style="padding:26px 30px;border-color:var(--acc)"><div class="lbl">Área</div><div class="kpi acc" id="n3c" style="font-size:72px">0 m²</div></div>
+ </div>
+</div></div>
+
+<!-- S4 voz -->
+<div class="sc" id="s4"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:200px;top:300px;width:700px;height:700px;background:var(--acc)"></div>
+ <div class="abs" id="ph4" style="left:240px;top:100px"></div>
+ <div class="abs eb" id="e4" style="left:880px;top:200px">Fale o que a prefeitura quer</div>
+ <div class="abs panel" id="b4" style="left:880px;top:260px;width:900px;padding:40px 44px">
+  <div class="lbl" style="margin-bottom:12px">Pedido por voz</div>
+  <div id="tx4" style="font-size:46px;font-weight:600;line-height:1.3;min-height:120px"></div>
+ </div>
+ <div class="abs lbl" id="l4" style="left:884px;top:560px">A IA identificou:</div>
+ <div class="abs" style="left:880px;top:610px;display:flex;gap:18px;flex-wrap:wrap;width:900px">
+  <div class="chip" id="g4a"><i></i>Praça</div><div class="chip" id="g4b"><i></i>Quadra</div><div class="chip" id="g4c"><i></i>Bancos</div><div class="chip" id="g4d"><i></i>Iluminação</div><div class="chip" id="g4e"><i style="background:var(--gold)"></i>Terreno: 784 m²</div>
+ </div>
+</div></div>
+
+<!-- S5 IA desenha -->
+<div class="sc" id="s5"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e5" style="left:120px;top:140px">A IA desenha a proposta</div>
+ <div class="abs panel" id="c5" style="left:120px;top:200px;width:1180px;height:760px;padding:0;overflow:hidden;background:#151821">
+  <svg class="abs" width="1180" height="760" viewBox="0 0 1180 760" style="left:0;top:0">
+   <defs><pattern id="gp" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0 L0 0 0 40" fill="none" stroke="#ffffff0d" stroke-width="2"/></pattern>
+    <radialGradient id="lg5"><stop offset="0" stop-color="#FFD27A" stop-opacity=".55"/><stop offset="1" stop-color="#FFD27A" stop-opacity="0"/></radialGradient></defs>
+   <rect width="1180" height="760" fill="url(#gp)"/>
+   <path id="tr5" d="M110 660 L1070 660 L960 110 L230 110 Z" fill="#2B3A2A" stroke="#8FB36A" stroke-width="5"/>
+   <path id="pa5" d="M590 660 L590 110 M170 400 L1015 400" stroke="#C9B48F" stroke-width="44" fill="none" stroke-linecap="round"/>
+   <g id="qd5"><rect x="660" y="160" width="250" height="190" fill="#1F6E8C" stroke="#fff" stroke-width="5"/><path d="M785 160 L785 350" stroke="#fff" stroke-width="4"/><circle cx="785" cy="255" r="34" fill="none" stroke="#fff" stroke-width="4"/></g>
+   <g id="bc5" fill="#D9A441"><rect x="280" y="440" width="90" height="26" rx="6"/><rect x="420" y="440" width="90" height="26" rx="6"/><rect x="280" y="330" width="90" height="26" rx="6"/><rect x="420" y="330" width="90" height="26" rx="6"/><rect x="680" y="440" width="90" height="26" rx="6"/><rect x="820" y="440" width="90" height="26" rx="6"/></g>
+   <g id="pl5"></g>
+   <g id="tre5" fill="#4F8A3A"><circle cx="330" cy="560" r="40"/><circle cx="460" cy="575" r="34"/><circle cx="760" cy="560" r="40"/><circle cx="900" cy="575" r="34"/><circle cx="330" cy="200" r="34"/><circle cx="460" cy="190" r="30"/></g>
+  </svg>
+  <div class="abs" style="left:24px;top:20px;font-size:22px;font-weight:700;color:#fff;background:#111216cc;padding:8px 16px;border-radius:10px">Planta baixa · escala 1:200</div>
+ </div>
+ <div class="abs" style="left:1360px;top:200px;width:440px;display:flex;flex-direction:column;gap:16px">
+  <div class="lbl">Camadas</div>
+  <div class="panel ck" id="y5a" style="padding:20px 24px;font-size:28px"><b>✓</b>Terreno</div>
+  <div class="panel ck" id="y5b" style="padding:20px 24px;font-size:28px"><b>✓</b>Caminhos</div>
+  <div class="panel ck" id="y5c" style="padding:20px 24px;font-size:28px"><b>✓</b>Quadra</div>
+  <div class="panel ck" id="y5d" style="padding:20px 24px;font-size:28px"><b>✓</b>Bancos</div>
+  <div class="panel ck" id="y5e" style="padding:20px 24px;font-size:28px"><b>✓</b>Postes de luz</div>
+ </div>
+</div></div>
+
+<!-- S6 quantitativos -->
+<div class="sc" id="s6"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e6" style="left:120px;top:140px">Levantamento de quantitativos</div>
+ <div class="abs ttl" id="t6" style="left:116px;top:200px;font-size:80px">Tudo contado, item por item</div>
+ <div class="abs panel" id="p6" style="left:120px;top:330px;width:1680px;padding:24px 30px">
+  <table class="tbl"><tr><th>Item</th><th>Unidade</th><th style="text-align:right">Quantidade</th><th style="width:420px">Origem</th></tr>
+   <tr id="r6a"><td>Piso intertravado</td><td>m²</td><td class="n" id="v6a">0</td><td class="mute">medido na planta</td></tr>
+   <tr id="r6b"><td>Meio-fio de concreto</td><td>m</td><td class="n" id="v6b">0</td><td class="mute">perímetro dos caminhos</td></tr>
+   <tr id="r6c"><td>Grama em placas</td><td>m²</td><td class="n" id="v6c">0</td><td class="mute">área verde</td></tr>
+   <tr id="r6d"><td>Quadra poliesportiva (piso)</td><td>m²</td><td class="n" id="v6d">0</td><td class="mute">quadra 25 × 19 m</td></tr>
+   <tr id="r6e"><td>Poste com luminária LED</td><td>un</td><td class="n" id="v6e">0</td><td class="mute">iluminação</td></tr>
+   <tr id="r6f"><td>Banco de concreto</td><td>un</td><td class="n" id="v6f">0</td><td class="mute">mobiliário</td></tr>
+  </table>
+ </div>
+</div></div>
+
+<!-- S7 orçamento SINAPI -->
+<div class="sc" id="s7"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e7" style="left:120px;top:140px">Orçamento com referência oficial</div>
+ <div class="abs panel" id="p7" style="left:120px;top:200px;width:1100px;padding:24px 30px">
+  <table class="tbl" style="font-size:24px"><tr><th>Item</th><th>Referência</th><th style="text-align:right">Total</th></tr>
+   <tr id="r7a"><td>Piso intertravado</td><td class="acc">SINAPI</td><td class="n" id="v7a">R$ 0</td></tr>
+   <tr id="r7b"><td>Meio-fio de concreto</td><td class="acc">SINAPI</td><td class="n" id="v7b">R$ 0</td></tr>
+   <tr id="r7c"><td>Grama em placas</td><td class="acc">SINAPI</td><td class="n" id="v7c">R$ 0</td></tr>
+   <tr id="r7d"><td>Quadra poliesportiva</td><td class="acc">SINAPI</td><td class="n" id="v7d">R$ 0</td></tr>
+   <tr id="r7e"><td>Iluminação LED</td><td class="acc">SINAPI</td><td class="n" id="v7e">R$ 0</td></tr>
+   <tr id="r7f"><td>Mobiliário</td><td class="acc">SINAPI</td><td class="n" id="v7f">R$ 0</td></tr>
+  </table>
+ </div>
+ <div class="abs panel" id="k7" style="left:1280px;top:200px;width:520px;padding:40px;border-color:var(--acc)">
+  <div class="lbl">Valor estimado</div>
+  <div class="big acc" id="n7" style="font-size:96px;margin-top:10px;white-space:nowrap">R$ 0</div>
+  <div class="lbl" style="margin-top:12px">com composições de custo</div>
+ </div>
+ <div class="abs panel" id="l7" style="left:1280px;top:560px;width:520px;padding:30px 36px">
+  <div style="font-size:26px;font-weight:700">Lei 14.133/2021</div>
+  <div style="font-size:24px;color:var(--mute);margin-top:8px;line-height:1.4">Art. 23, § 2º: em obras, o valor estimado usa referências como o SINAPI.</div>
+ </div>
+</div></div>
+
+<!-- S8 documentos -->
+<div class="sc" id="s8"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e8" style="left:120px;top:140px">Fase preparatória pronta</div>
+ <div class="abs ttl" id="t8" style="left:116px;top:200px;font-size:80px">Documentos gerados</div>
+ <div class="abs doc" id="d8a" style="left:120px;top:340px;width:500px;height:560px">
+  <div style="font-size:20px;font-weight:700;letter-spacing:3px;color:#B4521E">DOCUMENTO 1</div><h4 style="font-size:34px;margin-top:8px">Estudo Técnico Preliminar</h4>
+  <div id="ln8a"></div></div>
+ <div class="abs doc" id="d8b" style="left:660px;top:340px;width:500px;height:560px">
+  <div style="font-size:20px;font-weight:700;letter-spacing:3px;color:#B4521E">DOCUMENTO 2</div><h4 style="font-size:34px;margin-top:8px">Termo de Referência</h4>
+  <div id="ln8b"></div></div>
+ <div class="abs doc" id="d8c" style="left:1200px;top:340px;width:600px;height:560px">
+  <div style="font-size:20px;font-weight:700;letter-spacing:3px;color:#B4521E">DOCUMENTO 3</div><h4 style="font-size:34px;margin-top:8px">Cronograma</h4>
+  <div id="gt8" style="margin-top:20px"></div></div>
+</div></div>
+
+<!-- S9 engenheiro valida -->
+<div class="sc" id="s9"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs" style="left:120px;top:250px;display:flex;align-items:center;gap:40px">
+  <div class="panel" id="a9" style="padding:40px 50px;text-align:center;width:460px"><div class="lbl">IA</div><div class="anton" style="font-size:100px;margin-top:8px">Estima</div></div>
+  <div id="ar9" style="font-family:Anton;font-size:100px;color:var(--acc)">→</div>
+  <div class="panel" id="b9" style="padding:40px 50px;text-align:center;width:560px;border-color:var(--acc)"><div class="lbl">Engenheiro responsável</div><div class="anton acc" style="font-size:100px;margin-top:8px">Valida</div></div>
+ </div>
+ <div class="abs doc" id="d9" style="left:1340px;top:170px;width:460px;height:620px">
+  <h4>Orçamento · Praça municipal</h4><div class="ln"></div><div class="ln" style="width:80%"></div><div class="ln"></div><div class="ln" style="width:60%"></div>
+  <svg width="392" height="140" viewBox="0 0 392 140" style="margin-top:60px"><path id="sg9" d="M20 100 C60 20 90 130 130 70 C160 30 180 120 220 80 C250 50 270 100 300 70 C320 50 340 90 372 60" stroke="#1B2A6B" stroke-width="5" fill="none" stroke-linecap="round"/><line x1="10" y1="124" x2="382" y2="124" stroke="#111216" stroke-width="2"/></svg>
+  <div style="font-size:22px;color:#5A5D66;margin-top:6px">Engenheiro(a) responsável · CREA</div>
+ </div>
+ <div class="abs" id="st9" style="left:1430px;top:770px;transform-origin:50% 50%"><div class="stamp" style="color:var(--acc);border-color:var(--acc);background:#111216">ART · CREA</div></div>
+ <div class="abs" id="w9" style="left:124px;top:560px;width:1100px;font-size:36px;font-weight:600;line-height:1.45">Confere, ajusta e assina. A responsabilidade técnica é do engenheiro, com <span class="acc">ART</span>.</div>
+ <div class="abs" style="left:124px;top:700px;display:flex;gap:18px"><div class="chip" id="c9a"><i></i>Confere</div><div class="chip" id="c9b"><i></i>Ajusta</div><div class="chip" id="c9c"><i></i>Assina</div></div>
+</div></div>
+
+<!-- S10 publicar -->
+<div class="sc" id="s10"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:1100px;top:250px;width:700px;height:700px;background:var(--acc)"></div>
+ <div class="abs eb" id="e10" style="left:120px;top:200px">Com os dados certos</div>
+ <div class="abs" style="left:120px;top:280px;display:flex;flex-direction:column;gap:26px">
+  <div class="ck" id="k10a"><b>✓</b>Estudo técnico preliminar</div>
+  <div class="ck" id="k10b"><b>✓</b>Termo de referência e projeto básico</div>
+  <div class="ck" id="k10c"><b>✓</b>Orçamento com SINAPI</div>
+  <div class="ck" id="k10d"><b>✓</b>Cronograma</div>
+  <div class="ck" id="k10e"><b>✓</b>ART do engenheiro</div>
+ </div>
+ <div class="abs" id="cf10" style="left:0;top:0;width:1920px;height:1080px"></div>
+ <div class="abs" id="bt10" style="left:1110px;top:400px;width:620px;text-align:center;background:var(--acc);color:#111216;border-radius:26px;padding:44px 20px;font-family:Anton;font-size:72px;text-transform:uppercase;box-shadow:0 20px 60px #FF7A2F66">Publicar licitação</div>
+ <div class="abs" id="ok10" style="left:1110px;top:620px;width:620px;text-align:center;font-size:36px;font-weight:700">Edital publicado ✓</div>
+</div></div>
+
+<!-- S11 economia -->
+<div class="sc" id="s11"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e11" style="left:120px;top:140px">Como economiza · cenário ilustrativo</div>
+ <div class="abs" style="left:120px;top:220px;display:flex;align-items:center;gap:30px">
+  <div class="panel" id="a11" style="padding:30px 40px"><div class="lbl">Obra</div><div class="kpi" style="font-size:84px">R$ 1 mi</div></div>
+  <div class="anton" id="x11" style="font-size:84px;color:var(--mute)">×</div>
+  <div class="panel" id="b11" style="padding:30px 40px"><div class="lbl">Aditivo evitado</div><div class="kpi" style="font-size:84px">10%</div></div>
+  <div class="anton" id="q11" style="font-size:84px;color:var(--mute)">=</div>
+  <div class="panel" id="c11" style="padding:30px 40px;border-color:var(--acc)"><div class="lbl">Economia</div><div class="kpi acc" id="n11" style="font-size:84px">R$ 0</div></div>
+ </div>
+ <div class="abs" style="left:120px;top:520px;width:1680px;display:flex;flex-direction:column;gap:30px">
+  <div style="display:flex;align-items:center;gap:30px"><div style="width:360px;font-size:30px;font-weight:600">Com aditivo</div><div id="bb11a" style="height:80px;width:0;background:#FF5A4E;border-radius:10px"></div><div class="anton" id="vb11a" style="font-size:56px">R$ 1,1 mi</div></div>
+  <div style="display:flex;align-items:center;gap:30px"><div style="width:360px;font-size:30px;font-weight:600">Planejada com V4.7</div><div id="bb11b" style="height:80px;width:0;background:var(--acc);border-radius:10px"></div><div class="anton" id="vb11b" style="font-size:56px">R$ 1,0 mi</div></div>
+ </div>
+ <div class="abs lbl" id="f11" style="left:120px;top:800px">Conta simples para ilustrar: R$ 1.000.000 × 10% = R$ 100.000. Não é média de mercado.</div>
+</div></div>
+
+<!-- S12 benefícios -->
+<div class="sc" id="s12"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e12" style="left:120px;top:200px">O que a prefeitura ganha</div>
+ <div class="abs" style="left:120px;top:280px;width:1680px;display:flex;gap:36px">
+  <div class="panel" id="c12a" style="flex:1;padding:50px 44px;border-top:8px solid var(--acc)">
+   <svg width="110" height="110" viewBox="0 0 110 110"><rect x="14" y="14" width="82" height="82" rx="14" fill="none" stroke="#FF7A2F" stroke-width="8"/><path d="M34 56 L50 72 L80 38" stroke="#FF7A2F" stroke-width="9" fill="none" stroke-linecap="round"/></svg>
+   <div class="anton" style="font-size:64px;margin-top:24px">Menos erro de quantitativo</div></div>
+  <div class="panel" id="c12b" style="flex:1;padding:50px 44px;border-top:8px solid var(--gold)">
+   <svg width="110" height="110" viewBox="0 0 110 110"><path d="M80 30 A34 34 0 1 0 88 66" stroke="#D9A441" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M68 24 L84 30 L78 46" stroke="#D9A441" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M30 80 L80 30" stroke="#D9A441" stroke-width="9"/></svg>
+   <div class="anton" style="font-size:64px;margin-top:24px">Menos retrabalho</div></div>
+  <div class="panel" id="c12c" style="flex:1;padding:50px 44px;border-top:8px solid #F4F1EA">
+   <svg width="110" height="110" viewBox="0 0 110 110"><circle cx="55" cy="58" r="40" fill="none" stroke="#F4F1EA" stroke-width="8"/><path d="M55 58 L55 32 M55 58 L74 70" stroke="#F4F1EA" stroke-width="8" stroke-linecap="round"/><path d="M44 10 L66 10" stroke="#F4F1EA" stroke-width="8"/></svg>
+   <div class="anton" style="font-size:64px;margin-top:24px">Licitação mais rápida</div></div>
+ </div>
+</div></div>
+
+<!-- S13 logo -->
+<div class="sc" id="s13"><div class="cam">
+ <div class="glow" style="left:610px;top:140px;width:700px;height:700px;background:var(--acc);opacity:.18"></div>
+ <div class="abs" id="lg13" style="left:310px;top:200px"></div>
+ <div class="abs" id="sb13" style="left:0;right:0;top:760px;text-align:center"><span class="anton acc" style="font-size:80px">Sistema de Obras</span></div>
+ <div class="abs" id="tg13" style="left:0;right:0;top:880px;text-align:center;font-size:30px;font-weight:700;letter-spacing:12px;color:var(--mute)">INTELIGÊNCIA PÚBLICA · POR V4 FÁBRICAGOV</div>
+</div></div>
+
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const {$, cl, eo, eio, spr, Wd, rise, slideX, pop, slam, count, typed, draw, fade} = K;
+const T = (k, w, o = 0) => Wd(k, w, o);
+// foto ilustrada do terreno (SVG) reutilizada no celular e no visor AR
+function terrain(w, h) {
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1160 780" preserveAspectRatio="xMidYMid slice" style="display:block">
+  <defs><linearGradient id="sk${w}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FB6D8"/><stop offset="1" stop-color="#D9E6EE"/></linearGradient></defs>
+  <rect width="1160" height="300" fill="url(#sk${w})"/>
+  <path d="M0 240 C200 200 380 230 600 210 C820 190 1000 230 1160 215 L1160 300 L0 300Z" fill="#7C9A6A"/>
+  <rect x="0" y="290" width="1160" height="490" fill="#8DA45F"/>
+  <path d="M0 640 L1160 640 L1160 780 L0 780Z" fill="#6B6E73"/><path d="M0 700 L1160 700" stroke="#E6E1D3" stroke-width="8" stroke-dasharray="60 40"/>
+  <path d="M0 610 L1160 610 L1160 640 L0 640Z" fill="#B8B3A8"/>
+  <g fill="#A3B86F" opacity=".7"><circle cx="420" cy="420" r="60"/><circle cx="700" cy="470" r="70"/><circle cx="560" cy="350" r="45"/></g>
+  <g fill="#3F6B34"><circle cx="120" cy="250" r="60"/><circle cx="190" cy="230" r="44"/><circle cx="1030" cy="240" r="62"/><circle cx="960" cy="250" r="40"/></g>
+  <g fill="#5A4636"><rect x="114" y="270" width="12" height="60"/><rect x="1024" y="260" width="12" height="70"/></g>
+  <rect x="610" y="150" width="140" height="90" fill="#C9B9A2"/><path d="M600 150 L680 100 L760 150Z" fill="#9E4524"/>
+  </svg>`;
+}
+const PHONE_UI = (id, body) => `<div style="position:absolute;inset:0;background:#0E0F13">${body}</div>`;
+
+K.boot({
+  system: 'SISTEMA DE OBRAS', accent: '#FF7A2F', hideHud: [13],
+  build() {
+    $('ph2').innerHTML = K.phone('p2', PHONE_UI('u', `<div style="position:absolute;inset:0">${terrain(394, 844)}</div>
+      <div id="vf2" style="position:absolute;left:40px;top:180px;width:314px;height:420px;border:4px solid #fff;border-radius:18px"></div>
+      <div style="position:absolute;left:0;right:0;top:64px;text-align:center;font-size:20px;font-weight:700;color:#fff;letter-spacing:3px">FOTO DO LOCAL</div>
+      <div style="position:absolute;left:0;right:0;bottom:40px;display:flex;justify-content:center"><div id="sh2" style="width:96px;height:96px;border-radius:50%;background:#fff;border:8px solid #ffffff66"></div></div>
+      <div id="tk2" style="position:absolute;left:24px;bottom:56px;width:70px;height:70px;border-radius:14px;overflow:hidden;border:3px solid #fff;opacity:0">${terrain(70, 70)}</div>`), 0, 0, 1);
+    $('ph3').innerHTML = terrain(1160, 780);
+    $('ph4').innerHTML = K.phone('p4', PHONE_UI('u', `<div style="padding:110px 34px 0;font-size:24px;font-weight:700;color:#fff">Nova solicitação</div>
+      <div style="margin:20px 34px;border-radius:18px;overflow:hidden;height:220px">${terrain(326, 220)}</div>
+      <div style="margin:0 34px;font-size:20px;color:#A9ADB8">Terreno · 784 m² · 4 cotas</div>
+      <svg id="wv4" width="394" height="160" viewBox="0 0 394 160" style="position:absolute;left:0;top:470px"></svg>
+      <div id="mc4" style="position:absolute;left:147px;bottom:60px;width:100px;height:100px;border-radius:50%;background:#FF7A2F;display:flex;align-items:center;justify-content:center">
+       <svg width="44" height="56" viewBox="0 0 44 56"><rect x="12" y="2" width="20" height="34" rx="10" fill="#111216"/><path d="M4 26 a18 18 0 0 0 36 0 M22 44 v10" stroke="#111216" stroke-width="5" fill="none"/></svg></div>`), 0, 0, 1);
+    let pl = ''; [[250, 150], [930, 150], [210, 620], [1000, 620], [590, 300], [590, 520], [400, 400], [790, 400]].forEach(([x, y], i) => {
+      pl += `<g class="po" data-i="${i}"><circle cx="${x}" cy="${y}" r="70" fill="url(#lg5)"/><circle cx="${x}" cy="${y}" r="12" fill="#FFE3A3" stroke="#fff" stroke-width="3"/></g>`; });
+    $('pl5').innerHTML = pl;
+    const lines = (n, seed) => { let s = ''; const r = K.mul(seed); for (let i = 0; i < n; i++) s += `<div class="ln" data-w="${55 + r() * 45}" style="width:0%"></div>`; return s; };
+    $('ln8a').innerHTML = lines(12, 3); $('ln8b').innerHTML = lines(12, 5);
+    const G = [['Serviços preliminares', 0, 2], ['Pavimentação', 1, 4], ['Quadra', 3, 3], ['Iluminação', 4, 3], ['Paisagismo', 6, 2]];
+    $('gt8').innerHTML = G.map(([n, a, d], i) => `<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><div style="width:220px;font-size:20px;font-weight:600">${n}</div><div style="position:relative;flex:1;height:30px;background:#E6E1D6;border-radius:6px"><div class="gb" style="position:absolute;left:${a / 8 * 100}%;width:0%;top:0;bottom:0;background:#FF7A2F;border-radius:6px" data-w="${d / 8 * 100}"></div></div></div>`).join('') +
+      `<div style="display:flex;justify-content:space-between;margin-left:232px;font-size:20px;color:#5A5D66"><span>mês 1</span><span>mês 4</span><span>mês 8</span></div>`;
+    let cf = ''; const r = K.mul(9); for (let i = 0; i < 60; i++) cf += `<div class="cf" data-x="${1420 + (r() - .5) * 500}" data-v="${300 + r() * 500}" data-a="${r() * 6.28}" style="position:absolute;left:0;top:0;width:${10 + r() * 12}px;height:${18 + r() * 14}px;border-radius:3px;background:${['#FF7A2F', '#D9A441', '#F4F1EA'][i % 3]}"></div>`;
+    $('cf10').innerHTML = cf;
+    $('lg13').innerHTML = K.logoSVG('lg');
+  },
+  scene(k, t, lt) {
+    const SC = K.S.SC;
+    K.note(k === 13 ? '' : 'Interface ilustrativa'); K.src('');
+    if (k === 1) {
+      rise($('e1'), t, .4); rise($('t1'), t, .6, 70, .8); slideX($('d1'), t, 1.0, 120, .8);
+      const e = T(1, 'medida está errada', -.2); $('x1').style.opacity = cl((t - e) / .3);
+      $('w1').style.color = t > e ? '#D23B30' : ''; $('w2').style.color = t > e ? '#D23B30' : '';
+      rise($('m1'), t, e + .2);
+      [['p1a', 'aditivo'], ['p1b', 'atraso'], ['p1c', 'retrabalho']].forEach(([id, w]) => { const t0 = T(1, w, -.15); slam($(id), t, t0); $(id).style.transform += ` rotate(${-4 + (id.charCodeAt(2) % 3) * 3}deg)`; });
+    }
+    if (k === 2) {
+      rise($('e2'), t, SC[1] + .3); rise($('t2'), t, T(2, 'tudo começa', -.3), 70, .8); rise($('u2'), t, T(2, 'o servidor', -.3));
+      const pi = eo((lt - .1) / .9); $('ph2').style.transform = `translateY(${(1 - pi) * 700}px) rotate(${(1 - pi) * 8}deg)`;
+      const sh = T(2, 'fotografa', .1); const f = t - sh;
+      $('fl2').style.opacity = f > 0 ? Math.max(0, .85 - f * 3) : 0;
+      $('sh2').style.transform = `scale(${f > 0 && f < .2 ? .85 : 1})`;
+      pop($('tk2'), t, sh + .15);
+      $('vf2').style.borderColor = f > 0 ? '#FF7A2F' : '#fff';
+    }
+    if (k === 3) {
+      const s3 = SC[2]; pop($('v3'), t, s3 + .05, .92);
+      const pts = $('dots3').children; for (let i = 0; i < 4; i++) { const t0 = s3 + .5 + i * .25; pts[i].style.opacity = cl((t - t0) / .1); pts[i].setAttribute('r', 14 * (t < t0 ? 0 : .6 + .4 * spr(t - t0))); }
+      const a = T(3, 'largura', -.2), b = T(3, 'comprimento', -.2), c = T(3, 'área', -.25);
+      draw($('la3'), t, a, .6); draw($('lc3'), t, a + .2, .6); draw($('lb3'), t, b, .6); draw($('ld3'), t, b + .2, .6);
+      pop($('q3a'), t, a + .5); pop($('q3b'), t, b + .5);
+      $('ar3').setAttribute('opacity', .32 * cl((t - c) / .5)); fade($('q3c'), t, c, .3); count($('q3c'), t, c, 1.0, 784, { suf: ' m²' });
+      rise($('e3'), t, s3 + .3);
+      rise($('k3a'), t, a); count($('n3a'), t, a, .8, 32, { suf: ' m', dec: 1 });
+      rise($('k3b'), t, b); count($('n3b'), t, b, .8, 24.5, { suf: ' m', dec: 1 });
+      rise($('k3c'), t, c); count($('n3c'), t, c, 1.0, 784, { suf: ' m²' });
+      $('v3').style.transform += ` scale(${1 + .04 * cl((t - T(3, 'cada cota')) / 2)})`;
+    }
+    if (k === 4) {
+      const s4 = SC[3]; const pi = eo((lt - .05) / .8); $('ph4').style.transform = `translateX(${(1 - pi) * -600}px)`;
+      rise($('e4'), t, s4 + .3); rise($('b4'), t, s4 + .45);
+      const q = T(4, 'quero uma', -.1); typed($('tx4'), '“Quero uma praça com quadra, bancos e iluminação.”', t, q, 22);
+      const speaking = t > q && t < T(4, 'iluminação', .7);
+      let s = ''; for (let i = 0; i < 34; i++) { const h = speaking ? 12 + 60 * Math.abs(Math.sin(t * 9 + i * .7) * Math.sin(t * 3.3 + i * .23)) : 6; s += `<rect x="${20 + i * 10.6}" y="${80 - h / 2}" width="6" height="${h}" rx="3" fill="#FF7A2F"/>`; }
+      $('wv4').innerHTML = s;
+      $('mc4').style.transform = `scale(${speaking ? 1 + .08 * Math.sin(t * 12) : 1})`;
+      $('mc4').style.boxShadow = speaking ? `0 0 0 ${18 + 10 * Math.sin(t * 6)}px #FF7A2F33` : 'none';
+      rise($('l4'), t, T(4, 'praça', .2));
+      [['g4a', 'praça'], ['g4b', 'quadra'], ['g4c', 'bancos'], ['g4d', 'iluminação']].forEach(([id, w]) => pop($(id), t, T(4, w, .25)));
+      pop($('g4e'), t, T(4, 'iluminação', .9));
+    }
+    if (k === 5) {
+      const s5 = SC[4]; rise($('e5'), t, s5 + .3); pop($('c5'), t, s5 + .1, .94);
+      const a = s5 + .5, b = T(5, 'caminhos', -.2), c = T(5, 'quadra', -.2), d = T(5, 'bancos', -.2), e = T(5, 'postes', -.2);
+      draw($('tr5'), t, a, .9); $('tr5').style.fillOpacity = cl((t - a - .6) / .4);
+      draw($('pa5'), t, b, .8);
+      const q = $('qd5'); q.style.opacity = cl((t - c) / .2); q.setAttribute('transform', `translate(785 255) scale(${t < c ? 0 : spr((t - c) * 1.2)}) translate(-785 -255)`);
+      [...$('bc5').children].forEach((r, i) => { const t0 = d + i * .08; r.style.opacity = cl((t - t0) / .15); r.setAttribute('transform', `translate(0 ${(1 - eo((t - t0) / .3)) * -30})`); });
+      document.querySelectorAll('#pl5 .po').forEach((g, i) => { const t0 = e + i * .09; g.style.opacity = cl((t - t0) / .2); g.firstChild.setAttribute('r', 70 * eo((t - t0) / .5) * (1 + .06 * Math.sin(t * 5 + i))); });
+      [...$('tre5').children].forEach((r, i) => { const t0 = T(5, 'medida do terreno', -.3) + i * .06; r.style.opacity = cl((t - t0) / .2); });
+      [['y5a', a], ['y5b', b], ['y5c', c], ['y5d', d], ['y5e', e]].forEach(([id, t0]) => slideX($(id), t, t0 + .2, 60, .4));
+      $('c5').style.transform += ` scale(${1 + .03 * cl(lt / 6)})`;
+    }
+    if (k === 6) {
+      const s6 = SC[5]; rise($('e6'), t, s6 + .3); rise($('t6'), t, s6 + .45, 60, .7); rise($('p6'), t, s6 + .6, 40);
+      const R = [['r6a', 'v6a', 'piso', 412], ['r6b', 'v6b', 'meio-fio', 118], ['r6c', 'v6c', 'metros quadrados', 236], ['r6d', 'v6d', 'quadrados de piso', 475], ['r6e', 'v6e', 'postes', 8], ['r6f', 'v6f', 'número', 6]];
+      R.forEach(([r, v, w, val]) => { const t0 = T(6, w, -.3); slideX($(r), t, t0, 60, .4); count($(v), t, t0, .7, val); });
+    }
+    if (k === 7) {
+      const s7 = SC[6]; rise($('e7'), t, s7 + .3); rise($('p7'), t, s7 + .45, 40);
+      const V = [52740, 9440, 14160, 171000, 61600, 15600]; const ids = ['a', 'b', 'c', 'd', 'e', 'f'];
+      const t0 = T(7, 'orçamento', -.2);
+      let sum = 0; ids.forEach((x, i) => { const ti = t0 + i * .32; slideX($('r7' + x), t, ti, 40, .35); const p = eo((t - ti) / .6); $('v7' + x).textContent = 'R$ ' + K.fmt(V[i] * p); sum += V[i] * p; });
+      pop($('k7'), t, t0 + .1); $('n7').textContent = 'R$ ' + K.fmt(sum);
+      rise($('l7'), t, T(7, 'lei', -.3));
+      K.src('Lei 14.133/2021, art. 23, § 2º (SINAPI/SICRO para obras e serviços de engenharia). Valores ilustrativos.');
+    }
+    if (k === 8) {
+      const s8 = SC[7]; rise($('e8'), t, s8 + .3); rise($('t8'), t, s8 + .45, 60, .7);
+      const ta = T(8, 'estudo', -.3), tb = T(8, 'termo', -.3), tc = T(8, 'cronograma', -.3);
+      [['d8a', ta, 'ln8a'], ['d8b', tb, 'ln8b']].forEach(([d, t0, ln]) => { rise($(d), t, t0, 80, .5); [...$(ln).children].forEach((e, i) => { e.style.width = (+e.dataset.w * eo((t - t0 - .3 - i * .06) / .25)) + '%'; }); });
+      rise($('d8c'), t, tc, 80, .5);
+      document.querySelectorAll('#gt8 .gb').forEach((e, i) => { e.style.width = (+e.dataset.w * eo((t - tc - .3 - i * .15) / .4)) + '%'; });
+      K.src('Lei 14.133/2021, art. 18: fase preparatória com estudo técnico preliminar, termo de referência ou projeto básico e orçamento estimado.');
+    }
+    if (k === 9) {
+      const s9 = SC[8]; const a = T(9, 'a ia estima', -.2), b = T(9, 'o engenheiro', -.2);
+      pop($('a9'), t, a); fade($('ar9'), t, b - .1, .3); pop($('b9'), t, b);
+      rise($('d9'), t, s9 + .2, 80);
+      [['c9a', 'confere'], ['c9b', 'ajusta'], ['c9c', 'assina']].forEach(([id, w]) => pop($(id), t, T(9, w, -.2)));
+      draw($('sg9'), t, T(9, 'assina', -.1), .9);
+      const st = T(9, 'com art', -.1); slam($('st9'), t, st); $('st9').style.transform += ' rotate(-8deg)';
+      rise($('w9'), t, b + .4);
+    }
+    if (k === 10) {
+      const s10 = SC[9]; rise($('e10'), t, s10 + .3);
+      ['a', 'b', 'c', 'd', 'e'].forEach((x, i) => slideX($('k10' + x), t, s10 + .4 + i * .18, -60, .4));
+      const pb = T(10, 'publicar', -.1); pop($('bt10'), t, s10 + .9);
+      const press = t - pb; if (press > 0 && press < .25) $('bt10').style.transform = `scale(${.92})`;
+      $('bt10').style.background = press > .25 ? '#F4F1EA' : '#FF7A2F';
+      rise($('ok10'), t, pb + .35);
+      document.querySelectorAll('#cf10 .cf').forEach(e => { const u = t - pb - .3; if (u < 0) { e.style.opacity = 0; return; } e.style.opacity = cl(1.6 - u); const a = +e.dataset.a;
+        e.style.transform = `translate(${+e.dataset.x + Math.cos(a) * u * 260}px,${470 - +e.dataset.v * u + 520 * u * u}px) rotate(${u * 400 + a * 60}deg)`; });
+    }
+    if (k === 11) {
+      const s11 = SC[10]; rise($('e11'), t, s11 + .3);
+      const a = T(11, 'uma obra', -.2), b = T(11, 'aditivo', -.2), c = T(11, 'economiza', -.2);
+      pop($('a11'), t, a); fade($('x11'), t, b - .1); pop($('b11'), t, b); fade($('q11'), t, c - .1); pop($('c11'), t, c);
+      count($('n11'), t, c, 1.0, 100, { pre: 'R$ ', suf: ' mil' });
+      K.bar($('bb11a'), t, a + .4, .9, 'width', 990); K.bar($('bb11b'), t, c, .9, 'width', 900);
+      fade($('vb11a'), t, a + .9); fade($('vb11b'), t, c + .6); rise($('f11'), t, c + .8);
+      K.note('Cenário ilustrativo');
+    }
+    if (k === 12) {
+      const s12 = SC[11]; rise($('e12'), t, s12 + .3);
+      [['c12a', 'menos erro'], ['c12b', 'retrabalho'], ['c12c', 'licitação']].forEach(([id, w]) => rise($(id), t, T(12, w, -.3), 90, .6));
+    }
+    if (k === 13) {
+      const s13 = SC[12]; K.logoAnim('lg', t, s13 + .3);
+      rise($('sb13'), t, s13 + 1.6, 40); rise($('tg13'), t, s13 + 2.0, 30);
+    }
+  }
+});
+</script>
+</body>
+</html>

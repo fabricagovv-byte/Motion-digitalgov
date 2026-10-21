@@ -1,0 +1,83 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.8,
+   "dur": 6.72,
+   "caption": "Na saúde pública, cada minuto de espera pesa. Filas longas, papéis espalhados e remédio que falta na hora errada."
+  },
+  {
+   "id": "n2",
+   "start": 8.12,
+   "dur": 4.544,
+   "caption": "O Sistema de Saúde V4.7 reúne tudo em uma só plataforma."
+  },
+  {
+   "id": "n3",
+   "start": 13.164,
+   "dur": 5.34,
+   "caption": "O cidadão agenda a consulta pelo celular e acompanha a fila em tempo real, sem sair de casa."
+  },
+  {
+   "id": "n4",
+   "start": 19.004,
+   "dur": 6.208,
+   "caption": "Na UBS ou no hospital, o profissional abre o prontuário eletrônico único, com histórico, exames e receitas."
+  },
+  {
+   "id": "n5",
+   "start": 25.713,
+   "dur": 5.696,
+   "caption": "O estoque de medicamentos é controlado unidade por unidade, com alerta de falta e de validade."
+  },
+  {
+   "id": "n6",
+   "start": 31.909,
+   "dur": 5.12,
+   "caption": "O gestor acompanha tudo em um painel: atendimentos, filas e o mapa da cidade por bairro."
+  },
+  {
+   "id": "n7",
+   "start": 37.529,
+   "dur": 5.333,
+   "caption": "A IA aponta tendências. Por exemplo: os casos de dengue estão subindo no bairro Vila Nova."
+  },
+  {
+   "id": "n8",
+   "start": 43.262,
+   "dur": 5.205,
+   "caption": "E sugere ações, como reforçar o mutirão contra o mosquito. Quem decide é sempre o gestor."
+  },
+  {
+   "id": "n9",
+   "start": 48.968,
+   "dur": 6.59,
+   "caption": "Com a telessaúde, o paciente conversa com o médico por vídeo, e as orientações ficam registradas no prontuário."
+  },
+  {
+   "id": "n10",
+   "start": 56.057,
+   "dur": 6.528,
+   "caption": "Tudo se conecta aos sistemas de saúde que o município já usa, com segurança e LGPD para dados sensíveis."
+  },
+  {
+   "id": "n11",
+   "start": 63.185,
+   "dur": 10.176,
+   "caption": "Cenário ilustrativo: 1.000 consultas por mês, com 15% de faltas. Se o lembrete reduzir as faltas pela metade, são 75 consultas a mais por mês."
+  },
+  {
+   "id": "n12",
+   "start": 73.962,
+   "dur": 3.84,
+   "caption": "Menos fila, menos desperdício e mais cuidado para quem precisa."
+  },
+  {
+   "id": "n13",
+   "start": 79.402,
+   "dur": 4.202,
+   "caption": "V4.7. Inteligência pública, por V4 FábricaGov."
+  }
+ ],
+ "end": 87.6
+}

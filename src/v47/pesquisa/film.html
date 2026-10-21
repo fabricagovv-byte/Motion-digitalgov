@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Sistema de Pesquisa</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+.qcard{background:var(--ink2);border:1px solid var(--line);border-radius:18px;padding:22px 26px;width:520px}
+.qcard b{color:var(--acc);font-family:Anton;font-size:30px;margin-right:12px}
+.qcard span{font-size:24px;font-weight:600}
+.opt{display:flex;align-items:center;gap:14px;font-size:24px;font-weight:500;margin-top:14px}
+.opt i{width:26px;height:26px;border-radius:50%;border:3px solid #5A5F6B;display:inline-block;flex:none}
+.opt.on i{border-color:var(--acc);background:radial-gradient(circle,var(--acc) 0 45%,transparent 50%)}
+.paper{position:absolute;width:240px;height:320px;background:#ECE8DF;border-radius:6px;box-shadow:0 14px 30px #0007;padding:26px 22px}
+.paper div{height:10px;background:#C9C3B6;border-radius:5px;margin-bottom:16px}
+.bub{position:absolute;left:0;background:var(--ink3);border:1px solid var(--line);border-radius:18px 18px 18px 4px;padding:14px 22px;font-size:24px;font-weight:500;white-space:nowrap}
+.cl{background:var(--ink2);border:1px solid var(--line);border-left:8px solid var(--acc);border-radius:16px;padding:20px 26px;width:600px;display:flex;justify-content:space-between;align-items:center}
+.cl span{font-size:30px;font-weight:700}
+.cl b{font-family:Anton;font-size:52px;color:var(--acc)}
+.fchip{display:inline-block;border-radius:999px;padding:12px 22px;font-size:22px;font-weight:700;background:var(--ink3);border:2px solid var(--line);color:var(--mute);margin:0 10px 12px 0}
+.fchip.on{background:var(--acc);border-color:var(--acc);color:var(--ink)}
+.bar7{display:flex;align-items:center;gap:20px;margin-bottom:26px}
+.bar7 .n{width:210px;font-size:26px;font-weight:700}
+.bar7 .b{height:52px;border-radius:10px;background:var(--acc)}
+.bar7 .v{font-family:Anton;font-size:40px}
+.cur{position:absolute;width:44px;height:56px;z-index:30;pointer-events:none}
+.ring{position:absolute;width:80px;height:80px;border-radius:50%;border:4px solid var(--acc);z-index:29}
+.prow{display:flex;align-items:center;gap:24px;background:var(--ink2);border:1px solid var(--line);border-radius:18px;padding:22px 28px;margin-bottom:22px;width:1000px}
+.prow .k{font-family:Anton;font-size:56px;color:var(--acc);width:60px}
+.prow .t{font-size:30px;font-weight:700;width:420px}
+.prow .bb{flex:1;height:22px;border-radius:11px;background:var(--ink3);overflow:hidden}
+.prow .bb div{height:100%;background:linear-gradient(90deg,var(--acc),#D9A441);width:0}
+.page{position:absolute;width:420px;height:560px;background:#F4F1EA;border-radius:14px;box-shadow:0 30px 60px #000a;padding:30px;color:var(--ink);transform-origin:50% 100%}
+.page h4{font-size:26px;font-weight:800;margin-bottom:16px}
+.fld{display:flex;justify-content:space-between;font-size:26px;padding:14px 0;border-bottom:1px solid var(--line)}
+.fld span{color:var(--mute);font-weight:600}.fld b{font-weight:700}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1 · problema -->
+<div class="sc" id="s1"><div class="cam">
+ <div class="grid-bg"></div><div class="glow" style="left:1100px;top:250px;width:700px;height:700px;background:#D9A441;opacity:.18"></div>
+ <div id="papers1"></div>
+ <div class="abs eb" id="e1" style="left:120px;top:170px">O PROBLEMA</div>
+ <div class="abs anton" id="t1a" style="left:116px;top:220px;font-size:130px">Ouvir a população</div>
+ <div class="abs anton" id="t1b" style="left:116px;top:350px;font-size:130px;color:var(--gold)">leva semanas</div>
+ <div class="abs panel" id="cal1" style="left:120px;top:560px;width:400px;padding:34px 40px">
+  <div class="lbl">PESQUISA NO PAPEL</div>
+  <div style="display:flex;align-items:baseline;gap:18px;margin-top:6px"><div class="kpi" id="wk1" style="color:var(--gold)">1</div><div style="font-size:34px;font-weight:700">semanas</div></div>
+  <div class="lbl" style="margin-top:6px">para ter o resultado</div>
+ </div>
+ <div class="abs panel" id="desk1" style="left:580px;top:600px;width:440px;padding:30px 34px">
+  <div class="lbl">MESA DO GESTOR</div>
+  <div style="font-size:30px;font-weight:700;margin-top:10px">Relatório de opinião</div>
+  <div class="mute" style="font-size:24px;margin-top:4px">dados de dois meses atrás</div>
+  <div class="abs" id="stamp1" style="right:-30px;top:-34px;border:5px solid #E5484D;color:#E5484D;font-family:Anton;font-size:40px;padding:6px 18px;border-radius:10px;transform:rotate(-10deg)">DESATUALIZADO</div>
+ </div>
+</div></div>
+
+<!-- 2 · IA monta o questionário -->
+<div class="sc" id="s2"><div class="cam">
+ <div class="grid-bg"></div><div class="glow" style="left:1300px;top:200px;width:600px;height:600px;background:var(--acc)"></div>
+ <div id="lp2wrap"></div>
+ <div class="abs" id="q2" style="left:1290px;top:200px;display:flex;flex-direction:column;gap:20px"></div>
+ <svg class="cur" id="cur2" viewBox="0 0 44 56"><path d="M4 2 L4 46 L16 35 L24 54 L32 50 L24 32 L40 32Z" fill="#F4F1EA" stroke="#111216" stroke-width="3"/></svg>
+ <div class="ring" id="rg2"></div>
+</div></div>
+
+<!-- 3 · tipos de pergunta -->
+<div class="sc" id="s3"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e3" style="left:120px;top:170px">TIPOS DE PERGUNTA</div>
+ <div class="abs anton" id="t3" style="left:116px;top:220px;font-size:96px">Cada resposta no formato certo</div>
+ <div class="abs panel" id="c3a" style="left:120px;top:400px;width:520px;padding:34px">
+  <div class="eb" style="font-size:22px">Fechada</div>
+  <div style="font-size:28px;font-weight:700;margin:14px 0 6px">Qual serviço mais precisa melhorar?</div>
+  <div class="opt" id="o3a"><i></i>Saúde</div><div class="opt" id="o3b"><i></i>Iluminação</div><div class="opt" id="o3c"><i></i>Transporte</div><div class="opt" id="o3d"><i></i>Limpeza</div>
+ </div>
+ <div class="abs panel" id="c3b" style="left:700px;top:400px;width:520px;padding:34px">
+  <div class="eb" style="font-size:22px">Escala de satisfação</div>
+  <div style="font-size:28px;font-weight:700;margin:14px 0 26px">Como avalia o posto de saúde?</div>
+  <div id="sc3" style="display:flex;gap:14px"></div>
+  <div style="display:flex;justify-content:space-between;margin-top:14px" class="lbl"><span>Muito ruim</span><span>Ótimo</span></div>
+ </div>
+ <div class="abs panel" id="c3c" style="left:1280px;top:400px;width:520px;padding:34px">
+  <div class="eb" style="font-size:22px">Aberta</div>
+  <div style="font-size:28px;font-weight:700;margin:14px 0 20px">O que a prefeitura deveria fazer primeiro?</div>
+  <div style="background:var(--ink);border:2px solid var(--acc);border-radius:14px;padding:20px;min-height:130px;font-size:28px;font-weight:500" id="ty3"></div>
+ </div>
+</div></div>
+
+<!-- 4 · coleta offline -->
+<div class="sc" id="s4"><div class="cam">
+ <div class="grid-bg"></div>
+ <div id="ph4wrap"></div>
+ <div class="abs eb" id="e4" style="left:720px;top:170px">COLETA EM CAMPO</div>
+ <div class="abs anton" id="t4" style="left:716px;top:220px;font-size:96px">Funciona sem internet</div>
+ <svg class="abs" id="map4" width="1080" height="560" viewBox="0 0 1080 560" style="left:720px;top:380px">
+  <rect width="1080" height="560" rx="24" fill="#16181E" stroke="#2E323C"/>
+  <g stroke="#2A2E38" stroke-width="18" stroke-linecap="round"><path d="M0 180 L1080 140"/><path d="M0 400 L1080 430"/><path d="M260 0 L300 560"/><path d="M640 0 L600 560"/><path d="M880 0 L940 560"/></g>
+  <g stroke="#23262E" stroke-width="8"><path d="M0 290 L1080 290"/><path d="M450 0 L460 560"/><path d="M120 0 L140 560"/><path d="M760 0 L770 560"/></g>
+  <text x="80" y="120" fill="#5A5F6B" font-size="22" font-family="Inter" font-weight="700">VILA NOVA</text>
+  <text x="680" y="110" fill="#5A5F6B" font-size="22" font-family="Inter" font-weight="700">JARDIM</text>
+  <text x="80" y="520" fill="#5A5F6B" font-size="22" font-family="Inter" font-weight="700">SÃO JOSÉ</text>
+  <path id="route4" d="M140 470 C220 380 300 360 380 300 C470 230 520 260 560 250" stroke="#2EC4E6" stroke-width="6" fill="none" stroke-dasharray="4 14" stroke-linecap="round"/>
+  <g id="dots4"></g>
+  <circle id="pr4" cx="560" cy="250" r="30" fill="none" stroke="#2EC4E6" stroke-width="4"/>
+  <path id="pin4" d="M560 250 c-26 -34 -26 -64 0 -64 c26 0 26 30 0 64z" fill="#2EC4E6"/>
+  <circle cx="560" cy="210" r="10" fill="#111216" id="pind4"/>
+ </svg>
+ <div class="abs chip" id="lb4" style="left:1320px;top:560px;font-size:24px"><i></i>Bairro Centro · GPS</div>
+</div></div>
+
+<!-- 5 · sincroniza -->
+<div class="sc" id="s5"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs anton" id="t5" style="left:120px;top:170px;font-size:96px">Sincroniza e atualiza <span class="acc">ao vivo</span></div>
+ <div id="ph5wrap"></div>
+ <svg class="abs" width="1920" height="1080" viewBox="0 0 1920 1080" style="left:0;top:0">
+  <path id="w5a" d="M470 640 C560 560 640 520 760 520" stroke="#2E323C" stroke-width="6" fill="none"/>
+  <path id="w5b" d="M1000 520 C1060 520 1080 560 1110 600" stroke="#2E323C" stroke-width="6" fill="none"/>
+  <g id="fl5"></g>
+  <g id="cloud5" transform="translate(880 520)"><path d="M-110 50 C-170 50 -170 -30 -110 -30 C-100 -90 -20 -100 10 -50 C40 -90 120 -70 110 -10 C170 -10 170 50 110 50Z" fill="#1A1C22" stroke="#2EC4E6" stroke-width="5"/><path d="M-20 10 L0 -20 L20 10 M0 -20 L0 30" stroke="#2EC4E6" stroke-width="6" fill="none" stroke-linecap="round"/></g>
+ </svg>
+ <div id="lp5wrap"></div>
+</div></div>
+
+<!-- 6 · mapa de calor -->
+<div class="sc" id="s6"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e6" style="left:120px;top:170px">MAPA DE CALOR</div>
+ <div class="abs anton" id="t6" style="left:116px;top:220px;font-size:96px;width:560px">Onde a satisfação cai</div>
+ <div class="abs" id="lg6" style="left:120px;top:560px;width:520px">
+  <div class="lbl">Satisfação por bairro</div>
+  <div style="height:22px;border-radius:11px;margin:12px 0;background:linear-gradient(90deg,#E5484D,#D9A441,#2EC4E6)"></div>
+  <div style="display:flex;justify-content:space-between" class="lbl"><span>baixa</span><span>alta</span></div>
+ </div>
+ <div class="abs panel" id="tip6" style="left:120px;top:720px;width:520px;padding:26px 30px;border-left:8px solid #E5484D">
+  <div style="font-size:30px;font-weight:800">Vila Nova</div>
+  <div style="font-size:26px;margin-top:6px">Satisfação: <b id="tv6">41%</b></div>
+  <div style="font-size:26px;margin-top:4px" class="mute">Problema nº 1: iluminação</div>
+ </div>
+ <svg class="abs" id="map6" width="1100" height="800" viewBox="0 0 1100 800" style="left:700px;top:170px"></svg>
+</div></div>
+
+<!-- 7 · filtros -->
+<div class="sc" id="s7"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs anton" id="t7" style="left:120px;top:170px;font-size:96px">Cada grupo, <span class="acc">sua visão</span></div>
+ <div class="abs panel" id="pn7" style="left:120px;top:330px;width:1680px;height:600px;padding:44px;display:flex;gap:60px">
+  <div style="width:520px">
+   <div class="lbl" style="margin-bottom:12px">IDADE</div><div><span class="fchip" id="f7a">16–29</span><span class="fchip">30–59</span><span class="fchip">60+</span></div>
+   <div class="lbl" style="margin:20px 0 12px">REGIÃO</div><div><span class="fchip" id="f7b">Norte</span><span class="fchip">Centro</span><span class="fchip">Sul</span></div>
+   <div class="lbl" style="margin:20px 0 12px">TEMA</div><div><span class="fchip" id="f7c">Saúde</span><span class="fchip">Educação</span><span class="fchip">Obras</span></div>
+  </div>
+  <div style="flex:1">
+   <div class="lbl" style="margin-bottom:24px" id="cap7">PRINCIPAIS PEDIDOS · todos os entrevistados</div>
+   <div id="bars7"></div>
+  </div>
+ </div>
+</div></div>
+
+<!-- 8 · IA lê respostas abertas -->
+<div class="sc" id="s8"><div class="cam">
+ <div class="grid-bg"></div><div class="glow" style="left:620px;top:300px;width:600px;height:600px;background:var(--acc)"></div>
+ <div class="abs eb" id="e8" style="left:120px;top:170px">RESPOSTAS ABERTAS</div>
+ <div class="abs anton" id="t8" style="left:116px;top:220px;font-size:96px">A IA lê, agrupa e resume</div>
+ <div class="abs" id="bubs8" style="left:120px;top:400px;width:520px;height:540px;overflow:hidden"></div>
+ <svg class="abs" width="360" height="360" viewBox="-180 -180 360 360" style="left:740px;top:440px" id="core8">
+  <circle r="150" fill="none" stroke="#2EC4E6" stroke-width="3" stroke-dasharray="10 14" id="r8a"/>
+  <circle r="115" fill="none" stroke="#D9A441" stroke-width="3" stroke-dasharray="40 20" id="r8b"/>
+  <circle r="80" fill="#1A1C22" stroke="#2EC4E6" stroke-width="5"/>
+  <text x="0" y="16" text-anchor="middle" font-family="Anton" font-size="56" fill="#2EC4E6">IA</text>
+ </svg>
+ <div class="abs" id="fly8"></div>
+ <div class="abs" style="left:1200px;top:400px;display:flex;flex-direction:column;gap:20px">
+  <div class="cl" id="k8a"><span>Iluminação pública</span><b id="n8a">0</b></div>
+  <div class="cl" id="k8b"><span>Atendimento de saúde</span><b id="n8b">0</b></div>
+  <div class="cl" id="k8c"><span>Pavimentação</span><b id="n8c">0</b></div>
+  <div class="panel" id="sm8" style="width:600px;padding:24px 28px;font-size:26px;line-height:1.4;min-height:150px"><span class="acc" style="font-weight:800">Resumo da IA: </span><span id="ty8"></span></div>
+ </div>
+</div></div>
+
+<!-- 9 · prioridades -->
+<div class="sc" id="s9"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs anton" id="t9" style="left:120px;top:170px;font-size:96px">A IA sugere. <span class="gold">A gestão decide.</span></div>
+ <div class="abs" id="lst9" style="left:120px;top:340px">
+  <div class="prow" id="p9a"><div class="k">1</div><div class="t">Iluminação perto de escolas</div><div class="bb"><div id="b9a"></div></div></div>
+  <div class="prow" id="p9b"><div class="k">2</div><div class="t">Médico no posto à noite</div><div class="bb"><div id="b9b"></div></div></div>
+  <div class="prow" id="p9c"><div class="k">3</div><div class="t">Tapa-buracos na rua principal</div><div class="bb"><div id="b9c"></div></div></div>
+  <div class="lbl" style="margin-top:6px">Barras: impacto estimado pela IA (pedidos × gravidade)</div>
+ </div>
+ <div class="abs panel" id="dec9" style="left:1220px;top:340px;width:580px;height:440px;padding:36px">
+  <div class="lbl">DECISÃO DA GESTÃO</div>
+  <div style="font-size:30px;font-weight:700;margin:16px 0 26px">Prioridade 1: iluminação perto de escolas</div>
+  <div style="display:flex;gap:16px"><div class="btn" id="ok9">Aprovar</div><div class="btn" style="background:var(--ink3);color:var(--paper)">Ajustar</div></div>
+  <div class="abs" id="st9" style="left:60px;top:300px;border:5px solid #2BD99F;color:#2BD99F;font-family:Anton;font-size:44px;padding:6px 20px;border-radius:10px;transform:rotate(-6deg)">APROVADO PELA GESTÃO</div>
+ </div>
+ <svg class="cur" id="cur9" viewBox="0 0 44 56"><path d="M4 2 L4 46 L16 35 L24 54 L32 50 L24 32 L40 32Z" fill="#F4F1EA" stroke="#111216" stroke-width="3"/></svg>
+ <div class="ring" id="rg9"></div>
+</div></div>
+
+<!-- 10 · relatório semanal -->
+<div class="sc" id="s10"><div class="cam">
+ <div class="grid-bg"></div><div class="glow" style="left:900px;top:300px;width:700px;height:700px;background:var(--acc);opacity:.2"></div>
+ <div class="abs eb" id="e10" style="left:120px;top:170px">TODA SEMANA</div>
+ <div class="abs anton" id="t10" style="left:116px;top:220px;font-size:96px;width:700px">Relatório pronto, automático</div>
+ <div class="abs panel" id="kp10" style="left:120px;top:560px;width:600px;padding:34px 40px">
+  <div class="lbl">SATISFAÇÃO GERAL</div>
+  <div style="display:flex;align-items:baseline;gap:20px;margin-top:8px"><div class="kpi" id="v10">68</div><div style="font-size:34px;font-weight:800;color:#2BD99F" id="d10">+4 pts</div></div>
+  <div class="lbl" style="margin-top:6px">comparado com a semana anterior</div>
+ </div>
+ <div class="page" id="pg10a" style="left:940px;top:300px"><h4>Relatório semanal</h4><svg width="360" height="200" viewBox="0 0 360 200"><g fill="#2EC4E6"><rect x="10" y="80" width="50" height="120" rx="6"/><rect x="80" y="40" width="50" height="160" rx="6"/><rect x="150" y="110" width="50" height="90" rx="6"/><rect x="220" y="60" width="50" height="140" rx="6"/><rect x="290" y="130" width="50" height="70" rx="6"/></g></svg><div style="height:14px;background:#D9D4C8;border-radius:7px;margin:24px 0 14px"></div><div style="height:14px;width:70%;background:#D9D4C8;border-radius:7px"></div></div>
+ <div class="page" id="pg10b" style="left:1170px;top:300px"><h4>Por bairro</h4><svg width="360" height="240" viewBox="0 0 360 240"><circle cx="180" cy="120" r="90" fill="none" stroke="#E2DED4" stroke-width="40"/><circle cx="180" cy="120" r="90" fill="none" stroke="#2EC4E6" stroke-width="40" stroke-dasharray="380 600" transform="rotate(-90 180 120)"/><circle cx="180" cy="120" r="90" fill="none" stroke="#D9A441" stroke-width="40" stroke-dasharray="120 600" stroke-dashoffset="-380" transform="rotate(-90 180 120)"/></svg></div>
+ <div class="page" id="pg10c" style="left:1400px;top:300px"><h4>Evolução</h4><svg width="360" height="240" viewBox="0 0 360 240"><path d="M10 200 L80 170 L150 180 L220 120 L290 100 L350 60" stroke="#2EC4E6" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><div style="height:14px;background:#D9D4C8;border-radius:7px;margin:24px 0 14px"></div><div style="height:14px;width:60%;background:#D9D4C8;border-radius:7px"></div></div>
+</div></div>
+
+<!-- 11 · economia (cenário ilustrativo) -->
+<div class="sc" id="s11"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs" id="bd11" style="left:120px;top:170px;background:#D9A441;color:#111216;border-radius:999px;padding:12px 26px;font-size:24px;font-weight:800;letter-spacing:4px">CENÁRIO ILUSTRATIVO</div>
+ <div class="abs" style="left:120px;top:280px;display:flex;align-items:center;gap:36px">
+  <div id="q11a"><div class="kpi">1.000</div><div class="lbl">questionários</div></div>
+  <div class="anton mute" id="x11a" style="font-size:80px">×</div>
+  <div id="q11b"><div class="kpi">5 min</div><div class="lbl">de digitação cada</div></div>
+  <div class="anton mute" id="x11b" style="font-size:80px">=</div>
+  <div id="q11c"><div class="kpi">5.000 min</div><div class="lbl">de trabalho</div></div>
+  <div class="anton mute" id="x11c" style="font-size:80px">≈</div>
+  <div id="q11d"><div class="kpi gold">83 h</div><div class="lbl">mais de 80 horas</div></div>
+ </div>
+ <div class="abs" style="left:120px;top:620px;width:1680px">
+  <div style="display:flex;align-items:center;gap:30px;margin-bottom:34px"><div style="width:380px;font-size:30px;font-weight:700">Tabulação manual</div><div id="b11a" style="height:70px;width:0;background:#D9A441;border-radius:12px"></div><div class="anton" id="v11a" style="font-size:52px">83 h</div></div>
+  <div style="display:flex;align-items:center;gap:30px"><div style="width:380px;font-size:30px;font-weight:700">Coleta na V4.7</div><div id="b11b" style="height:70px;width:0;background:var(--acc);border-radius:12px"></div><div style="font-size:32px;font-weight:800" class="acc" id="v11b">dados já tabulados na coleta</div></div>
+ </div>
+</div></div>
+
+<!-- 12 · segurança / LGPD -->
+<div class="sc" id="s12"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e12" style="left:120px;top:170px">SEGURANÇA</div>
+ <div class="abs anton" id="t12" style="left:116px;top:220px;font-size:96px">Respostas anonimizadas</div>
+ <div class="abs panel" id="a12" style="left:120px;top:400px;width:620px;padding:34px">
+  <div class="lbl" style="margin-bottom:10px">ANTES</div>
+  <div class="fld"><span>Nome</span><b id="f12a">Maria S.</b></div>
+  <div class="fld"><span>Endereço</span><b id="f12b">Rua das Flores, 120</b></div>
+  <div class="fld"><span>Idade</span><b id="f12c">34 anos</b></div>
+  <div class="fld" style="border:none"><span>Resposta</span><b>“Mais luz na praça”</b></div>
+ </div>
+ <svg class="abs" id="ar12" width="200" height="80" viewBox="0 0 200 80" style="left:770px;top:600px"><path d="M10 40 L170 40 M140 12 L176 40 L140 68" stroke="#2EC4E6" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="abs panel" id="b12" style="left:1000px;top:400px;width:620px;padding:34px;border-color:#2EC4E6">
+  <div class="lbl acc" style="margin-bottom:10px">DEPOIS</div>
+  <div class="fld"><span>Identificador</span><b class="acc">#4821</b></div>
+  <div class="fld"><span>Bairro</span><b>Centro</b></div>
+  <div class="fld"><span>Faixa etária</span><b>30–39</b></div>
+  <div class="fld" style="border:none"><span>Resposta</span><b>“Mais luz na praça”</b></div>
+ </div>
+ <svg class="abs" id="sh12" width="180" height="210" viewBox="0 0 180 210" style="left:1660px;top:470px"><path d="M90 6 L170 36 L170 100 C170 150 130 186 90 204 C50 186 10 150 10 100 L10 36Z" fill="#1A1C22" stroke="#2EC4E6" stroke-width="7"/><rect x="58" y="96" width="64" height="54" rx="8" fill="#2EC4E6"/><path d="M70 96 L70 80 C70 56 110 56 110 80 L110 96" stroke="#2EC4E6" stroke-width="9" fill="none"/></svg>
+ <div class="abs" style="left:120px;top:880px;display:flex;gap:18px">
+  <div class="chip" id="c12a"><i></i>Acesso por perfil</div><div class="chip" id="c12b"><i></i>Registro de acessos</div><div class="chip" id="c12c"><i></i>Conforme a LGPD</div>
+ </div>
+</div></div>
+
+<!-- 13 · logo -->
+<div class="sc" id="s13"><div class="cam">
+ <div class="grid-bg"></div><div class="glow" style="left:610px;top:140px;width:700px;height:700px;background:var(--acc);opacity:.22"></div>
+ <div class="abs" id="lg13" style="left:310px;top:170px;transform:scale(.92);transform-origin:50% 0"></div>
+ <div class="abs eb" id="e13" style="left:0;right:0;top:720px;text-align:center;font-size:34px">Sistema de Pesquisa</div>
+ <div class="abs" id="tg13" style="left:0;right:0;top:790px;text-align:center;font-size:36px;font-weight:600">Inteligência pública, por <span class="gold" style="font-weight:800">V4 FábricaGov</span></div>
+</div></div>
+
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const $=K.$, W=K.Wd, cl=K.cl, eo=K.eo;
+let SCN;
+const CUR=(el,x,y)=>{el.style.left=x+'px';el.style.top=y+'px'};
+function cursorPath(cur,ring,t,pts){ // pts: [[t,x,y,click?],...]
+ let x=pts[0][1],y=pts[0][2];
+ for(let i=1;i<pts.length;i++){const [t0,x0,y0]=pts[i-1],[t1,x1,y1]=pts[i];if(t>=t0){const p=K.eio((t-t0)/(t1-t0));x=x0+(x1-x0)*p;y=y0+(y1-y0)*p}}
+ CUR(cur,x,y);cur.style.opacity=cl((t-pts[0][0]+.3)/.3);
+ let rs=0,ro=0;for(const p of pts){if(p[3]){const u=t-p[0];if(u>0&&u<.6){rs=.3+u*1.6;ro=1-u/.6;ring.style.left=(p[1]-36)+'px';ring.style.top=(p[2]-36)+'px'}}}
+ ring.style.transform=`scale(${rs})`;ring.style.opacity=ro;
+}
+const BUBS=['Rua escura perto da escola','Falta pediatra no posto','Buraco na rua principal','Poste queimado há meses','Posto sem médico à noite','Asfalto quebrado no bairro','Mais luz na praça','Demora para marcar consulta','Lombada na avenida','Iluminação no ponto de ônibus'];
+const BAIRROS=[['Centro',.82],['Vila Nova',.41],['Jardim',.74],['São José',.55],['Boa Vista',.68],['Industrial',.47],['Santa Luzia',.79],['Alto',.6],['Ponte',.36],['Rural Norte',.52],['Lagoa',.71],['Esperança',.44]];
+function heat(v){const a=[229,72,77],b=[217,164,65],c=[46,196,230];const m=v<.6?a.map((x,i)=>x+(b[i]-x)*cl((v-.3)/.3)):b.map((x,i)=>x+(c[i]-x)*cl((v-.6)/.25));return `rgb(${m.map(Math.round).join(',')})`}
+const CATS=['Saúde','Segurança','Iluminação','Transporte','Limpeza'];
+const FV=[[62,48,55,40,30],[78,40,52,58,26],[70,36,74,50,22],[88,30,66,44,20]]; // valores ilustrativos por estado de filtro
+
+K.boot({system:'Sistema de Pesquisa',accent:'#2EC4E6',hideHud:[13],
+build(){
+ // papéis caindo
+ let h='';const r=K.mul(4);for(let i=0;i<14;i++){h+=`<div class="paper" id="pp${i}" style="left:${1080+r()*520}px;top:0" data-r="${(r()-.5)*30}" data-y="${560-i*16+r()*30}"><div></div><div style="width:70%"></div><div></div><div style="width:50%"></div><div></div><div style="width:80%"></div></div>`}$('papers1').innerHTML=h;
+ // laptop 2
+ $('lp2wrap').innerHTML=K.laptop('lp2','v47.gov.br/pesquisas/nova',`<div style="padding:40px 46px">
+  <div class="lbl">NOVA PESQUISA</div><div style="font-size:40px;font-weight:800;margin:10px 0 26px">Descreva o objetivo</div>
+  <div style="background:var(--ink);border:2px solid var(--line);border-radius:16px;padding:24px;height:190px;font-size:30px;font-weight:500;line-height:1.4" id="pr2"></div>
+  <div style="display:flex;gap:16px;margin-top:28px;align-items:center"><div class="btn" id="bt2">Gerar com IA ✦</div><div class="lbl" id="gn2">IA montando o questionário…</div></div>
+  <div style="margin-top:26px;height:14px;border-radius:7px;background:var(--ink3);overflow:hidden"><div id="pb2" style="height:100%;width:0;background:var(--acc)"></div></div>
+  <div style="display:flex;gap:14px;margin-top:30px"><span class="chip" id="ch2a">Público: moradores</span><span class="chip" id="ch2b">12 perguntas</span><span class="chip" id="ch2c">~6 min</span></div>
+ </div>`,120,180,1100,740);
+ const Q=['Como avalia o atendimento no posto de saúde?','Qual o maior problema do seu bairro?','De 1 a 5, como avalia a limpeza urbana?','O que a prefeitura deveria fazer primeiro?'];
+ $('q2').innerHTML=Q.map((q,i)=>`<div class="qcard" id="qq${i}"><b>${String(i+1).padStart(2,'0')}</b><span>${q}</span></div>`).join('');
+ // escala
+ $('sc3').innerHTML=[1,2,3,4,5].map(i=>`<div id="st3${i}" style="flex:1;height:84px;border-radius:14px;background:var(--ink3);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:40px">${i}</div>`).join('');
+ // celular 4
+ $('ph4wrap').innerHTML=K.phone('ph4',`<div style="padding:70px 26px 20px">
+  <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:24px;font-weight:800">Pesquisa Saúde</div><div id="of4" style="background:#F2994A;color:#111216;border-radius:999px;padding:6px 14px;font-size:20px;font-weight:800">OFFLINE</div></div>
+  <div class="lbl" style="margin-top:26px">BAIRRO</div><div style="background:var(--ink);border-radius:12px;padding:16px;font-size:24px;font-weight:700;margin-top:8px" id="gp4">Detectando…</div>
+  <div class="lbl" style="margin-top:22px">PERGUNTA 3 DE 12</div><div style="font-size:26px;font-weight:700;margin:8px 0 6px">Como avalia o posto de saúde?</div>
+  ${['Ótimo','Bom','Regular','Ruim'].map((o,i)=>`<div class="opt" id="o4${i}" style="font-size:24px"><i></i>${o}</div>`).join('')}
+  <div class="btn" id="sv4" style="display:block;text-align:center;margin-top:30px">Salvar resposta</div>
+  <div style="margin-top:24px;font-size:22px;font-weight:600" class="mute">Salvas no aparelho: <b id="ct4" style="color:var(--paper)">0</b></div>
+ </div>`,160,140,.97);
+ let d='';const r2=K.mul(9);for(let i=0;i<9;i++)d+=`<circle class="d4" cx="${150+i*48+r2()*20}" cy="${460-i*25+r2()*30}" r="9" fill="#2EC4E6" opacity="0"/>`;$('dots4').innerHTML=d;
+ // sync
+ $('ph5wrap').innerHTML=K.phone('ph5',`<div style="padding:70px 26px"><div style="display:flex;justify-content:space-between"><div style="font-size:24px;font-weight:800">Pesquisa Saúde</div><div id="of5" style="background:#F2994A;color:#111216;border-radius:999px;padding:6px 14px;font-size:20px;font-weight:800">OFFLINE</div></div>
+  <div style="margin-top:40px;font-size:24px;font-weight:600" class="mute">Enviando respostas</div><div class="kpi" id="ct5" style="font-size:90px;margin-top:6px">12</div>
+  <div style="margin-top:16px;height:14px;border-radius:7px;background:var(--ink3);overflow:hidden"><div id="pb5" style="height:100%;width:0;background:#2BD99F"></div></div></div>`,140,330,.72);
+ $('lp5wrap').innerHTML=K.laptop('lp5','v47.gov.br/painel',`<div style="padding:30px 34px">
+  <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:30px;font-weight:800">Painel da pesquisa</div><div style="display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;color:#E5484D"><span id="lv5" style="width:16px;height:16px;border-radius:50%;background:#E5484D;display:inline-block"></span>AO VIVO</div></div>
+  <div style="display:flex;gap:20px;margin-top:22px">
+   <div class="panel" style="flex:1;padding:20px;background:var(--ink3)"><div class="lbl">Respostas</div><div class="kpi" id="k5a" style="font-size:64px">0</div></div>
+   <div class="panel" style="flex:1;padding:20px;background:var(--ink3)"><div class="lbl">Bairros</div><div class="kpi" id="k5b" style="font-size:64px">0</div></div>
+   <div class="panel" style="flex:1;padding:20px;background:var(--ink3)"><div class="lbl">Satisfação</div><div class="kpi acc" id="k5c" style="font-size:64px">0%</div></div>
+  </div>
+  <svg width="700" height="240" viewBox="0 0 700 240" style="margin-top:20px"><g stroke="#2E323C" stroke-width="2"><line x1="0" y1="60" x2="700" y2="60"/><line x1="0" y1="130" x2="700" y2="130"/><line x1="0" y1="200" x2="700" y2="200"/></g><path id="ln5" d="M0 210 L80 190 L160 196 L240 150 L320 160 L400 110 L480 120 L560 70 L640 80 L700 40" stroke="#2EC4E6" stroke-width="7" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg>
+ </div>`,1110,330,760,560);
+ let f='';for(let i=0;i<8;i++)f+=`<circle class="fl5" r="9" fill="#2EC4E6"/>`;$('fl5').innerHTML=f;
+ // mapa de calor: polígonos irregulares em grade 4x3
+ let m='';const r3=K.mul(21);const PX=[],PY=[];
+ for(let y=0;y<=3;y++)for(let x=0;x<=4;x++){PX.push(30+x*260+(x%4?(r3()-.5)*90:0));PY.push(30+y*245+(y%3?(r3()-.5)*80:0))}
+ const P=(x,y)=>`${PX[y*5+x]},${PY[y*5+x]}`;
+ BAIRROS.forEach(([n,v],i)=>{const x=i%4,y=Math.floor(i/4);const cx=(PX[y*5+x]+PX[y*5+x+1]+PX[(y+1)*5+x]+PX[(y+1)*5+x+1])/4,cy=(PY[y*5+x]+PY[y*5+x+1]+PY[(y+1)*5+x]+PY[(y+1)*5+x+1])/4;
+  m+=`<polygon class="bz" id="bz${i}" points="${P(x,y)} ${P(x+1,y)} ${P(x+1,y+1)} ${P(x,y+1)}" fill="#1A1C22" stroke="#111216" stroke-width="8"/><text x="${cx}" y="${cy+8}" text-anchor="middle" font-family="Inter" font-weight="800" font-size="24" fill="#F4F1EA" class="bzt">${n}</text>`});
+ m+=`<circle id="hl6" cx="0" cy="0" r="0" fill="none" stroke="#F4F1EA" stroke-width="5"/>`;$('map6').innerHTML=m;
+ // barras 7
+ $('bars7').innerHTML=CATS.map((c,i)=>`<div class="bar7"><div class="n">${c}</div><div class="b" id="b7${i}"></div><div class="v" id="v7${i}">0%</div></div>`).join('');
+ // bolhas 8
+ $('bubs8').innerHTML=BUBS.map((b,i)=>`<div class="bub" id="bb${i}">${b}</div>`).join('');
+ $('fly8').innerHTML=BUBS.slice(0,6).map((b,i)=>`<div class="bub abs" id="fy${i}" style="font-size:20px;opacity:0">${b}</div>`).join('');
+ // logo
+ $('lg13').innerHTML=K.logoSVG('logo13');
+},
+scene(k,t,lt){
+ const S=K.S.SC;
+ if(k===1){K.note('');K.src('');
+  for(let i=0;i<14;i++){const e=$('pp'+i);const t0=.2+i*.12;const p=eo((t-t0)/.6);e.style.opacity=cl((t-t0)/.1);e.style.transform=`translateY(${-400+p*(+e.dataset.y+400)}px) rotate(${e.dataset.r*p}deg)`}
+  K.rise($('e1'),t,.3);K.slideX($('t1a'),t,.5,-80);K.slam($('t1b'),t,W(1,'demora')-.1);
+  K.rise($('cal1'),t,W(1,'demora')-.3);const wk=Math.round(1+5*eo((t-W(1,'semanas')+.2)/1.2));$('wk1').textContent=t<W(1,'semanas')-.2?1:wk;
+  K.rise($('desk1'),t,W(1,'mesa')-.4);K.slam($('stamp1'),t,W(1,'velha')-.05);}
+ if(k===2){K.note('Interface ilustrativa');
+  K.rise($('lp2'),t,S[1]+.1,60);K.typed($('pr2'),'Medir a satisfação dos moradores com a saúde em cada bairro',t,W(2,'descreve')-.4,30);
+  const tc=W(2,'monta')-.5;cursorPath($('cur2'),$('rg2'),t,[[S[1]+.3,900,980],[tc-.6,900,980],[tc,240,640,1]]);
+  $('bt2').style.transform=`scale(${t>tc&&t<tc+.2?.94:1})`;
+  $('gn2').style.opacity=cl((t-tc)/.2);$('pb2').style.width=(100*eo((t-tc)/2.4))+'%';
+  for(let i=0;i<4;i++)K.slideX($('qq'+i),t,tc+.4+i*.45,80);
+  ['ch2a','ch2b','ch2c'].forEach((c,i)=>K.pop($(c),t,tc+2.2+i*.15));}
+ if(k===3){K.note('Interface ilustrativa');K.rise($('e3'),t,S[2]+.2);K.rise($('t3'),t,S[2]+.35);
+  K.rise($('c3a'),t,W(3,'fechadas')-.4,80);K.rise($('c3b'),t,W(3,'escalas')-.4,80);K.rise($('c3c'),t,W(3,'espaço')-.4,80);
+  ['o3a','o3b','o3c','o3d'].forEach((o,i)=>$(o).classList.toggle('on',i===1&&t>W(3,'fechadas')+.5));
+  for(let i=1;i<=5;i++){const on=t>W(3,'escalas')+.2+i*.18&&i<=4;const e=$('st3'+i);e.style.background=on?'#2EC4E6':'#24272F';e.style.color=on?'#111216':'#F4F1EA'}
+  K.typed($('ty3'),'Médico no posto à noite e mais luz nas ruas.',t,W(3,'próprias')-.6,24);}
+ if(k===4){K.note('Interface ilustrativa');K.rise($('ph4'),t,S[3]+.1,80);$('ph4').style.transform+=' scale(.97)';
+  K.rise($('e4'),t,S[3]+.2);K.rise($('t4'),t,W(4,'sem internet')-.6);K.rise($('map4'),t,W(4,'celular')-.2,40);
+  const tb=W(4,'bairro')-.8;$('gp4').textContent=t<tb?'Detectando…':'Centro (GPS)';$('gp4').style.color=t<tb?'#A9ADB8':'#2EC4E6';
+  K.draw($('route4'),t,W(4,'coletam'),2.2);document.querySelectorAll('.d4').forEach((e,i)=>e.setAttribute('opacity',cl((t-W(4,'coletam')-.3-i*.22)/.2)));
+  const pp=K.spr((t-tb)/1);$('pin4').setAttribute('transform',`translate(560 250) scale(${t<tb?0:pp}) translate(-560 -250)`);$('pind4').setAttribute('opacity',t<tb?0:1);
+  const u=(t-tb)%1.2;$('pr4').setAttribute('r',30+u*60);$('pr4').setAttribute('opacity',t<tb?0:1-u/1.2);K.pop($('lb4'),t,tb+.3);
+  [0,1,2,3].forEach(i=>$('o4'+i).classList.toggle('on',i===1&&t>W(4,'coletam')+.3));
+  const ns=Math.floor(cl((t-W(4,'internet'))/3)*12);$('ct4').textContent=t<W(4,'internet')?0:ns;$('sv4').style.transform=`scale(${(t-W(4,'internet'))%.25<.08&&ns<12&&t>W(4,'internet')?.95:1})`;}
+ if(k===5){K.note('Interface ilustrativa');K.rise($('t5'),t,S[4]+.2);K.rise($('ph5'),t,S[4]+.1,60);$('ph5').style.transform+=' scale(.72)';K.rise($('lp5'),t,S[4]+.3,60);
+  const tv=W(5,'volta')-.1;const on=t>tv;$('of5').textContent=on?'ONLINE':'OFFLINE';$('of5').style.background=on?'#2BD99F':'#F2994A';
+  $('pb5').style.width=(100*eo((t-tv)/1.8))+'%';$('ct5').textContent=Math.max(0,Math.round(12*(1-eo((t-tv)/1.8))));
+  ['w5a','w5b'].forEach(w=>$(w).setAttribute('stroke',on?'#2EC4E6':'#2E323C'));
+  document.querySelectorAll('.fl5').forEach((c,i)=>{const pa=i<4?$('w5a'):$('w5b');const L=pa.getTotalLength();const u=((t-tv)*.8+i*.25)%1;const pt=pa.getPointAtLength(L*u);c.setAttribute('cx',pt.x);c.setAttribute('cy',pt.y);c.setAttribute('opacity',on?1:0)});
+  $('cloud5').setAttribute('transform',`translate(880 520) scale(${1+(on?.06*Math.sin((t-tv)*8)*Math.exp(-(t-tv)):0)})`);
+  const tp=W(5,'painel')-.3;K.count($('k5a'),t,tp,2.2,1248);K.count($('k5b'),t,tp,1.6,12);K.count($('k5c'),t,tp,2,63,{suf:'%'});K.draw($('ln5'),t,tp,2.2);
+  $('lv5').style.opacity=.4+.6*Math.abs(Math.sin(t*4));}
+ if(k===6){K.note('Dados ilustrativos');K.rise($('e6'),t,S[5]+.2);K.rise($('t6'),t,S[5]+.35);K.rise($('map6'),t,S[5]+.2,40);
+  const th=W(6,'mapa')-.2;BAIRROS.forEach(([n,v],i)=>{const p=cl((t-th-i*.1)/.4);const e=$('bz'+i);e.setAttribute('fill',p<=0?'#1A1C22':heat(v));e.setAttribute('fill-opacity',.25+.75*p)});
+  K.rise($('lg6'),t,th+.6);const tt=W(6,'satisfação cai')-.2;K.slideX($('tip6'),t,tt,-60);K.count($('tv6'),t,tt,.8,41,{suf:'%'});
+  const b=$('bz1').getBBox();const hl=$('hl6');hl.setAttribute('cx',b.x+b.width/2);hl.setAttribute('cy',b.y+b.height/2);hl.setAttribute('r',t<tt?0:110+10*Math.sin(t*5));
+  BAIRROS.forEach(([n,v],i)=>{if(v<.5){const e=$('bz'+i);e.setAttribute('stroke',t>W(6,'problema')-.2&&Math.sin(t*6)>0?'#F4F1EA':'#111216')}});}
+ if(k===7){K.note('Dados ilustrativos');K.rise($('t7'),t,S[6]+.2);K.rise($('pn7'),t,S[6]+.3,60);
+  const ta=W(7,'idade')-.1,tb=W(7,'região')-.1,tc=W(7,'tema')-.1;
+  $('f7a').classList.toggle('on',t>ta);$('f7b').classList.toggle('on',t>tb);$('f7c').classList.toggle('on',t>tc);
+  const st=t>tc?3:t>tb?2:t>ta?1:0;const t0=[S[6]+.6,ta,tb,tc][st];const prev=FV[Math.max(0,st-1)];const cur=FV[st];
+  const p=st===0?eo((t-t0)/1):eo((t-t0)/.7);
+  $('cap7').textContent=['PRINCIPAIS PEDIDOS · todos os entrevistados','PRINCIPAIS PEDIDOS · 16 a 29 anos','PRINCIPAIS PEDIDOS · 16 a 29 anos · Norte','PRINCIPAIS PEDIDOS · 16 a 29 anos · Norte · Saúde'][st];
+  CATS.forEach((c,i)=>{const v=st===0?cur[i]*p:prev[i]+(cur[i]-prev[i])*p;$('b7'+i).style.width=(v/100*820)+'px';$('v7'+i).textContent=Math.round(v)+'%'});}
+ if(k===8){K.note('Dados ilustrativos');K.rise($('e8'),t,S[7]+.2);K.rise($('t8'),t,S[7]+.35);
+  BUBS.forEach((b,i)=>{const e=$('bb'+i);const y=i*76-((t-S[7])*60)%760;e.style.top=((y%760)+760)%760+'px';e.style.opacity=cl((t-S[7]-.3-i*.08)/.3)});
+  $('r8a').setAttribute('transform',`rotate(${t*40})`);$('r8b').setAttribute('transform',`rotate(${-t*60})`);K.pop($('core8'),t,W(8,'lê')-.5,.5);
+  for(let i=0;i<6;i++){const e=$('fy'+i);const t0=W(8,'lê')+i*.35;const u=cl((t-t0)/.9);e.style.opacity=u>0&&u<1?1-u*u:0;e.style.left=(300+u*560)+'px';e.style.top=(500+i*60+u*(120-i*60))+'px';e.style.transform=`scale(${1-u*.7})`}
+  const tg=W(8,'agrupa')-.2;[['k8a','n8a',312],['k8b','n8b',248],['k8c','n8c',205]].forEach(([c,n,v],i)=>{K.slideX($(c),t,tg+i*.3,80);K.count($(n),t,tg+i*.3,1.2,v)});
+  K.rise($('sm8'),t,W(8,'resume')-.4);K.typed($('ty8'),'moradores pedem mais iluminação perto de escolas e médico no posto à noite.',t,W(8,'resume')-.2,34);}
+ if(k===9){K.note('Interface ilustrativa · dados ilustrativos');K.rise($('t9'),t,S[8]+.2);
+  const tp=W(9,'prioridades')-.4;['p9a','p9b','p9c'].forEach((p,i)=>K.slideX($(p),t,tp+i*.25,-80));[['b9a',92],['b9b',78],['b9c',64]].forEach(([b,v],i)=>{$(b).style.width=(v*eo((t-tp-.4-i*.25)/.9))+'%'});
+  const td=W(9,'decide')-.5;K.rise($('dec9'),t,td-.3,60);const tc=W(9,'gestão')+.1;
+  cursorPath($('cur9'),$('rg9'),t,[[td-.2,1700,980],[tc-.7,1700,980],[tc,1330,530,1]]);
+  $('ok9').style.transform=`scale(${t>tc&&t<tc+.2?.94:1})`;K.slam($('st9'),t,tc+.35);}
+ if(k===10){K.note('Interface ilustrativa · dados ilustrativos');K.rise($('e10'),t,S[9]+.2);K.rise($('t10'),t,S[9]+.35);
+  [['pg10a',-14,-120],['pg10b',0,0],['pg10c',14,120]].forEach(([p,r,x],i)=>{const u=eo((t-W(10,'relatório')+.3-i*.15)/.8);const e=$(p);e.style.opacity=cl(u*3);e.style.transform=`translate(${-x*(1-u)*2}px,${(1-u)*300}px) rotate(${r*u}deg)`});
+  const tk=W(10,'comparação')-.4;K.rise($('kp10'),t,tk-.3);$('v10').textContent=t<tk?68:Math.round(68+4*eo((t-tk)/1));K.pop($('d10'),t,tk+.9);}
+ if(k===11){K.note('Cenário ilustrativo · conta: 1.000 × 5 min = 5.000 min ≈ 83 h');K.pop($('bd11'),t,S[10]+.2);
+  K.slam($('q11a'),t,W(11,'mil')-.2);K.fade($('x11a'),t,W(11,'5 minutos')-.4);K.slam($('q11b'),t,W(11,'5 minutos')-.2);
+  K.fade($('x11b'),t,W(11,'somam')-.2);K.slam($('q11c'),t,W(11,'somam'));K.fade($('x11c'),t,W(11,'80 horas')-.4);K.slam($('q11d'),t,W(11,'80 horas')-.2);
+  const tb=W(11,'80 horas')+.2;$('b11a').style.width=(1000*eo((t-tb)/1))+'px';K.fade($('v11a'),t,tb+.8);
+  const tc=W(11,'tabulados')-.8;$('b11b').style.width=(40*eo((t-tc)/.6))+'px';K.rise($('v11b'),t,tc+.2,20);}
+ if(k===12){K.note('');K.rise($('e12'),t,S[11]+.2);K.rise($('t12'),t,W(12,'anonimizadas')-.6);K.rise($('a12'),t,S[11]+.3,60);
+  const ta=W(12,'anonimizadas')-.1;K.draw($('ar12').querySelector('path'),t,ta,.6);K.rise($('b12'),t,ta+.3,60);
+  ['f12a','f12b','f12c'].forEach((f,i)=>{const e=$(f);const on=t>ta+.4+i*.2;e.style.textDecoration=on?'line-through':'none';e.style.color=on?'#5A5F6B':'#F4F1EA'});
+  K.pop($('sh12'),t,W(12,'dados')-.3);['c12a','c12b','c12c'].forEach((c,i)=>K.pop($(c),t,W(12,'dados')+i*.2));}
+ if(k===13){K.note('');K.src('');K.logoAnim('logo13',t,S[12]+.2);K.rise($('e13'),t,S[12]+1.5);K.rise($('tg13'),t,W(13,'inteligência')-.2);}
+}});
+</script>
+</body>
+</html>

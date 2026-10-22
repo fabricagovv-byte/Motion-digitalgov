@@ -37,3 +37,25 @@ Isso é só uma prévia do Sistema de Pesquisa da V4.7. 👀
 📲 Quer ouvir a sua cidade assim? Chame no WhatsApp: (31) 99827-7323
 
 #V47 #V4FabricaGov #InteligenciaArtificial #GestaoPublica #Prefeitura #PesquisaDeOpiniao #ParticipacaoPopular #DadosAbertos #CidadesInteligentes #GovTech #Inovacao
+
+---
+
+## Reel · Obras pelo chat: a ponte (V4.7)
+
+E se uma ponte começasse com uma mensagem? 🌉💬
+
+Na V4.7, a prefeitura manda a planta pronta no chat e fala: "Quero construir uma ponte aqui." 🎙️
+O drone levanta o local e a IA responde na hora com:
+📏 as medidas (vão, extensão, largura e altura livre)
+🧊 uma prévia da ponte em 3D
+🧱 o que precisa: concreto, aço, estacas, formas e mais
+🚜 os equipamentos da obra
+📊 quantitativos e preços com referência SINAPI
+📄 todos os documentos em um pacote completo
+
+O engenheiro valida com ART, e a obra fica pronta para licitar. ✅
+
+Isso é só uma prévia do Sistema de Obras da V4.7. 👀
+📲 Quer na sua cidade? Chame no WhatsApp: (31) 99827-7323
+
+#V47 #V4FabricaGov #InteligenciaArtificial #GestaoPublica #Prefeitura #ObrasPublicas #Ponte #Engenharia #Licitacao #SINAPI #Drone #GovTech #Inovacao

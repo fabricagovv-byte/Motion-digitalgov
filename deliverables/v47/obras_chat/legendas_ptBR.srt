@@ -1,0 +1,51 @@
+1
+00:00:00,150 --> 00:00:02,100
+E se uma ponte começasse com uma mensagem?
+
+2
+00:00:02,250 --> 00:00:04,500
+O drone sobrevoa o córrego e levanta as duas margens.
+
+3
+00:00:04,650 --> 00:00:06,500
+A IA mede o local: vão de 18,40 m e travessia de 24 m.
+
+4
+00:00:06,700 --> 00:00:07,800
+No chat, a prefeitura manda a planta pronta.
+
+5
+00:00:08,000 --> 00:00:10,300
+"Quero construir uma ponte aqui."
+
+6
+00:00:10,500 --> 00:00:12,600
+A IA confere as medidas com o drone e a planta.
+
+7
+00:00:12,700 --> 00:00:14,800
+E mostra uma prévia da ponte em 3D.
+
+8
+00:00:14,900 --> 00:00:16,600
+Diz o que precisa: concreto, aço, estacas, formas e mais.
+
+9
+00:00:16,700 --> 00:00:18,400
+Lista os equipamentos da obra.
+
+10
+00:00:18,500 --> 00:00:21,600
+Faz os quantitativos e os preços com referência SINAPI.
+
+11
+00:00:21,700 --> 00:00:23,900
+E entrega todos os documentos em um pacote completo.
+
+12
+00:00:24,000 --> 00:00:25,900
+O engenheiro valida com ART, e a obra fica pronta para licitar.
+
+13
+00:00:26,000 --> 00:00:27,900
+V4.7 · Prévia do Sistema de Obras.

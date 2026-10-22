@@ -1,0 +1,59 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.9,
+   "dur": 1.346,
+   "caption": "Faça o seu sistema."
+  },
+  {
+   "id": "n2",
+   "start": 2.696,
+   "dur": 1.707,
+   "caption": "O seu sistema operacional."
+  },
+  {
+   "id": "n3",
+   "start": 4.853,
+   "dur": 1.088,
+   "caption": "O seu software."
+  },
+  {
+   "id": "n4",
+   "start": 6.341,
+   "dur": 0.981,
+   "caption": "Do seu jeito."
+  },
+  {
+   "id": "n5",
+   "start": 7.723,
+   "dur": 1.045,
+   "caption": "Com a V4."
+  },
+  {
+   "id": "n6",
+   "start": 9.468,
+   "dur": 4.16,
+   "caption": "Atenção: quem comprar até o dia 30 ganha 70% de desconto."
+  },
+  {
+   "id": "n7",
+   "start": 14.128,
+   "dur": 2.347,
+   "caption": "Setenta por cento. Só até o dia 30."
+  },
+  {
+   "id": "n8",
+   "start": 16.975,
+   "dur": 4.288,
+   "caption": "Chame no WhatsApp: (31) 99827-7323."
+  },
+  {
+   "id": "n9",
+   "start": 22.763,
+   "dur": 2.816,
+   "caption": "V4 FábricaGov. O seu software começa aqui."
+  }
+ ],
+ "end": 29.08
+}

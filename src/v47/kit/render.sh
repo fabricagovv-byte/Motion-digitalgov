@@ -4,7 +4,7 @@
 # SKIP_TTS=1 reaproveita a narração; SKIP_FRAMES=1 reaproveita os quadros.
 set -euo pipefail
 FILM=$(basename "$PWD"); KIT=$(cd ../kit && pwd); FPS=${1:-60}; J=${J:-2}
-OUT=../../../build/v47_$FILM; FR=$OUT/frames; DEL=../../../deliverables/v47/$FILM
+OUT=../../../build/v47_$FILM; FR=$OUT/frames; DEL=../../../deliverables/v47/$FILM; [ -n "${VH:-}" ] && [ "${VH}" -gt "${VW:-1920}" ] && FR=$OUT/frames_v
 TITLE=${TITLE:-V47_$FILM}
 mkdir -p "$FR" "$DEL"
 [ -n "${SKIP_TTS:-}" ] || python3 "$KIT/narration.py"
@@ -31,7 +31,7 @@ cp "$OUT/legendas_ptBR.srt" "$DEL/"
 VF="scale=in_range=pc:out_range=tv:out_color_matrix=bt709,format=yuv420p"
 ENC=(-c:v libx264 -preset slow -crf 17 -color_range tv -colorspace bt709 -color_primaries bt709 -color_trc bt709 -c:a aac -b:a 256k -movflags +faststart)
 ffmpeg -loglevel error -y -framerate "$FPS" -i "$FR/f%05d.jpg" -i "$OUT/mix_final_48k24.wav" -map 0:v -map 1:a -vf "$VF" "${ENC[@]}" "$DEL/${TITLE}_1080p.mp4"
-STY="FontName=Inter,FontSize=15,PrimaryColour=&H00EAF1F4,OutlineColour=&H00161211,BackColour=&H30161211,BorderStyle=4,Outline=0,Shadow=0,MarginV=24,Bold=1"
+STY="FontName=Inter,FontSize=15,PrimaryColour=&H00EAF1F4,OutlineColour=&H00161211,BackColour=&H30161211,BorderStyle=4,Outline=0,Shadow=0,MarginV=${MARGINV:-24},Bold=1"
 ffmpeg -loglevel error -y -i "$DEL/${TITLE}_1080p.mp4" -vf "subtitles=$DEL/legendas_ptBR.srt:fontsdir=/usr/share/fonts/opentype/inter:force_style='$STY'" "${ENC[@]}" "$DEL/${TITLE}_1080p_legendado.mp4"
 python3 -c "
 import json;tl=json.load(open('timeline.json'))

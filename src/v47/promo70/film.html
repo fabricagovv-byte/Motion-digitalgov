@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 · Promoção 70% · tipografia animada</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+html,body{width:auto;height:auto}
+#stage{background:#111216}
+.bg{position:absolute;inset:0}
+.row{position:absolute;left:0;white-space:nowrap;font-family:Anton,sans-serif;text-transform:uppercase;line-height:1;text-align:center}
+.row span{display:inline-block;transform-origin:50% 60%}
+.pill{position:absolute;left:50%;transform:translateX(-50%);border-radius:999px;font-weight:800;letter-spacing:4px;white-space:nowrap}
+#code{position:absolute;inset:0;font-family:monospace;font-size:26px;color:#D9A44133;white-space:pre;line-height:1.5;overflow:hidden}
+.ring{position:absolute;border-radius:50%;border:6px solid #D9A441;left:50%;top:50%}
+</style>
+</head>
+<body>
+<div id="stage">
+ <div class="bg" id="bg"></div>
+ <div class="grid-bg" id="grid"></div>
+ <div id="code"></div>
+ <div class="glow" id="glow" style="background:#D9A441"></div>
+ <div id="rows"></div>
+ <img id="logo" src="assets/v4_logo_white.png" alt="V4 FábricaGov" style="position:absolute;left:50%;opacity:0">
+ <div class="ring" id="ring"></div>
+ <div class="pill" id="pill"></div>
+ <div id="flash" style="position:absolute;inset:0;background:#F4F1EA;opacity:0"></div>
+ <div id="wipe" style="position:absolute;top:-20%;height:140%;width:40%;background:#D9A441;transform:skewX(-14deg);left:-60%"></div>
+ <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0"></div>
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const {$, cl, eo, eio, spr, mul} = K;
+const Q = new URLSearchParams(location.search);
+const W = +(Q.get('w') || 1920), H = +(Q.get('h') || 1080), V = H > W;
+Object.assign($('stage').style, {width: W + 'px', height: H + 'px'});
+document.body.style.background = '#000';
+const INK = '#111216', GOLD = '#D9A441', PAPER = '#F4F1EA', GREEN = '#25D366';
+const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&$<>/{}';
+let TL, LN, SC = [];
+const Wd = (k, w, off = 0) => { const l = LN[k - 1]; const c = l.caption.toLowerCase(); const i = c.indexOf(w.toLowerCase()); return l.start + l.dur * (i < 0 ? 0 : i / c.length) + off; };
+
+// cenas: linhas de texto (L = deitado, P = em pé). fx: assemble | drop | decode | slide | pop
+const S = [
+ {bg: INK, L: [['FAÇA O SEU', 'faça', 'assemble', PAPER], ['SISTEMA', 'sistema', 'assemble', GOLD]],
+           P: [['FAÇA', 'faça', 'assemble', PAPER], ['O SEU', 'o seu', 'drop', PAPER], ['SISTEMA', 'sistema', 'assemble', GOLD]]},
+ {bg: GOLD, L: [['O SEU SISTEMA', 'seu', 'slide', INK], ['OPERACIONAL', 'operacional', 'decode', PAPER]],
+            P: [['O SEU', 'seu', 'slide', INK], ['SISTEMA', 'sistema', 'slide', INK], ['OPERA-', 'operacional', 'decode', PAPER], ['CIONAL', 'operacional', 'decode', PAPER]]},
+ {bg: INK, code: true, L: [['O SEU', 'o seu', 'drop', PAPER], ['SOFTWARE', 'software', 'decode', GOLD]],
+           P: [['O SEU', 'o seu', 'drop', PAPER], ['SOFT', 'software', 'decode', GOLD], ['WARE', 'software', 'decode', GOLD]]},
+ {bg: PAPER, L: [['DO SEU', 'do seu', 'slide', INK], ['JEITO', 'jeito', 'drop', GOLD]],
+             P: [['DO', 'do seu', 'slide', INK], ['SEU', 'seu', 'slide', INK], ['JEITO', 'jeito', 'drop', GOLD]]},
+ {bg: INK, logo: true, L: [['COM A', 'com a', 'assemble', PAPER]], P: [['COM A', 'com a', 'assemble', PAPER]]},
+ {bg: INK, L: [['QUEM COMPRAR', 'quem', 'slide', PAPER], ['ATÉ O DIA 30', 'até o dia', 'assemble', PAPER], ['70% OFF', '70%', 'pop', GOLD]], tag: ['ATENÇÃO', 'atenção'],
+           P: [['QUEM', 'quem', 'slide', PAPER], ['COMPRAR', 'comprar', 'slide', PAPER], ['ATÉ O DIA 30', 'até o dia', 'assemble', PAPER], ['70%', '70%', 'pop', GOLD], ['OFF', 'desconto', 'drop', GOLD]]},
+ {bg: GOLD, big70: true, L: [['70%', 'setenta', 'pop', INK], ['SÓ ATÉ O DIA 30', 'só até', 'decode', PAPER]],
+            P: [['70%', 'setenta', 'pop', INK], ['SÓ ATÉ', 'só até', 'decode', PAPER], ['O DIA 30', 'dia', 'decode', PAPER]]},
+ {bg: INK, L: [['CHAME NO', 'chame', 'slide', PAPER], ['WHATSAPP', 'whatsapp', 'assemble', GREEN], ['(31) 99827-7323', '(31)', 'decode', PAPER]],
+           P: [['CHAME NO', 'chame', 'slide', PAPER], ['WHATSAPP', 'whatsapp', 'assemble', GREEN], ['(31)', '(31)', 'decode', PAPER], ['99827-7323', '(31)', 'decode', PAPER]]},
+ {bg: INK, logo: true, end: true, L: [['O SEU SOFTWARE', 'o seu', 'assemble', PAPER], ['COMEÇA AQUI', 'começa', 'assemble', GOLD]],
+           P: [['O SEU', 'o seu', 'assemble', PAPER], ['SOFTWARE', 'software', 'assemble', PAPER], ['COMEÇA AQUI', 'começa', 'assemble', GOLD]]},
+];
+
+// mede e monta as linhas de cada cena
+const meas = document.createElement('span'); meas.style.cssText = 'position:absolute;visibility:hidden;font-family:Anton;font-size:100px;white-space:nowrap;text-transform:uppercase'; document.body.appendChild(meas);
+const mw = s => { meas.textContent = s; return meas.getBoundingClientRect().width; };
+function layout() {
+  const box = $('rows');
+  S.forEach((sc, si) => {
+    const rows = V ? sc.P : sc.L;
+    const maxW = W * (V ? .86 : .82);
+    let top = sc.logo ? (V ? .26 : .18) : (V ? .14 : .12), bottom = sc.logo ? (V ? .40 : .36) : (V ? .84 : .86);
+    if (sc.end) { top = V ? .52 : .56; bottom = V ? .84 : .86; }
+    if (sc.tag) top += V ? .06 : .1;
+    let sizes = rows.map(([txt]) => Math.min(100 * maxW / mw(txt), H * (V ? .17 : .3)));
+    const gap = H * .015, avail = H * (bottom - top);
+    let tot = sizes.reduce((a, b) => a + b * .98, 0) + gap * (rows.length - 1);
+    if (tot > avail) { sizes = sizes.map(s => s * avail / tot); tot = avail; }
+    let y = H * top + (avail - tot) / 2;
+    sc.els = rows.map(([txt, w, fx, col], ri) => {
+      const d = document.createElement('div'); d.className = 'row'; d.style.cssText += `top:${y}px;width:${W}px;font-size:${sizes[ri]}px;color:${col}`;
+      y += sizes[ri] * .98 + gap;
+      const r = mul(si * 100 + ri * 7 + 3);
+      const letters = [...txt].map(ch => { const s = document.createElement('span'); s.textContent = ch === ' ' ? ' ' : ch; d.appendChild(s); return {s, ch, r: [r(), r(), r(), r(), r()]}; });
+      box.appendChild(d);
+      letters.forEach(L => { L.w = L.s.getBoundingClientRect().width; L.s.style.width = L.w + 'px'; });
+      return {d, w, fx, col, letters, size: sizes[ri]};
+    });
+  });
+  const lw = V ? W * .84 : W * .5; const lg = $('logo'); lg.style.width = lw + 'px'; lg.style.marginLeft = (-lw / 2) + 'px';
+  let code = ''; const rr = mul(9); const toks = ['const', 'app', '=', 'sistema(', ')', '{', '}', '=>', 'v4.build', 'modulos', '[', ']', ';', 'api', 'login', 'painel', 'deploy()', 'import', 'from'];
+  for (let i = 0; i < 80; i++) { let l = ''; for (let j = 0; j < 14; j++) l += toks[Math.floor(rr() * toks.length)] + ' '; code += ' '.repeat(Math.floor(rr() * 20)) + l + '\n'; }
+  $('code').textContent = code;
+}
+
+function animRow(R, t, t0, tEnd, ri) {
+  R.d.style.display = 'block';
+  const n = R.letters.length;
+  R.letters.forEach((L, i) => {
+    const [r1, r2, r3, r4, r5] = L.r; const s = L.s;
+    let u, x = 0, y = 0, rot = 0, sc = 1, op = 1, ch = L.ch, col = '';
+    if (R.fx === 'assemble') { u = t - t0 - i * .028; const p = eo(u / .55); x = (r1 - .5) * W * .7 * (1 - p); y = (r2 - .5) * H * .8 * (1 - p); rot = (r3 - .5) * 400 * (1 - p); sc = .3 + .7 * p; op = cl(u / .12); }
+    else if (R.fx === 'drop') { u = t - t0 - i * .045; const p = spr(u * 1.3); y = -H * .5 * (1 - p); op = cl(u / .08); rot = (r3 - .5) * 30 * (1 - cl(u / .5)); }
+    else if (R.fx === 'slide') { u = t - t0 - i * .018; const p = eo(u / .45); x = (ri % 2 ? 1 : -1) * W * .6 * (1 - p); op = cl(u / .1); }
+    else if (R.fx === 'pop') { u = t - t0 - i * .06; const p = spr(u * 1.2); sc = u < 0 ? 0 : p; op = cl(u / .06); rot = (r3 - .5) * 40 * (1 - cl(u / .6)); }
+    else if (R.fx === 'decode') { u = t - t0; const res = .22 + i * .045; op = cl((u - i * .012) / .06); if (u < res && L.ch !== ' ') { ch = CHARS[Math.floor((r4 * 997 + Math.floor(t * 30) * 13 + i * 7) % CHARS.length)]; col = GOLD; if (R.col === GOLD) col = PAPER; } }
+    // saída: as letras se espalham
+    const ue = t - (tEnd - .3);
+    if (ue > 0 && !(R.keep)) { const p = eio(ue / .3); x += (r4 - .5) * W * .9 * p; y += (r5 - .5) * H * .9 * p; rot += (r1 - .5) * 500 * p; sc *= 1 + .8 * p; op *= 1 - p; }
+    s.style.opacity = op; s.style.transform = `translate(${x}px,${y}px) rotate(${rot}deg) scale(${sc})`;
+    if (s.textContent !== (ch === ' ' ? ' ' : ch)) s.textContent = ch === ' ' ? ' ' : ch;
+    s.style.color = col;
+  });
+}
+
+const BEAT = .42;
+function seek(t) {
+  let k = 1; for (let i = 0; i < SC.length; i++) if (t >= SC[i]) k = i + 1;
+  const sc = S[k - 1], t0s = SC[k - 1], tEnd = k < SC.length ? SC[k] : TL.end + 5, lt = t - t0s;
+  // fundo
+  $('stage').style.background = sc.bg; $('bg').style.background = sc.bg;
+  $('grid').style.opacity = sc.bg === INK ? 1 : .35;
+  const F = SC[SC.length - 1], OFF = F % BEAT, ph = ((t - OFF) % BEAT + BEAT) % BEAT / BEAT;
+  const gl = $('glow'); const gs = Math.min(W, H) * .9;
+  Object.assign(gl.style, {width: gs + 'px', height: gs + 'px', left: (W - gs) / 2 + 'px', top: (H - gs) / 2 + 'px', opacity: sc.bg === INK ? (.18 + .14 * Math.exp(-ph * 5)) : 0});
+  $('code').style.opacity = sc.code ? 1 : 0; $('code').style.transform = `translateY(${-lt * 120}px)`;
+  // linhas
+  S.forEach(s2 => s2.els.forEach(R => R.d.style.display = 'none'));
+  sc.els.forEach((R, ri) => { R.keep = !!sc.end; animRow(R, t, Wd(k, R.w) - .25, tEnd, ri); });
+  // logo V4
+  const lg = $('logo');
+  if (sc.logo) {
+    const tl = sc.end ? t0s + .25 : Wd(k, 'v4') - .2; const u = t - tl; const p = cl(u / .3);
+    const lh = lg.getBoundingClientRect().height / (lg._s || 1);
+    const top = sc.end ? H * (V ? .3 : .25) : H * (V ? .5 : .52);
+    const s = 1.6 - .6 * eo(p) + (p >= 1 ? .03 * Math.exp(-(u - .3) * 7) * Math.sin((u - .3) * 28) : 0); lg._s = 1;
+    Object.assign(lg.style, {top: (top - lg.naturalHeight * (parseFloat(lg.style.width) / lg.naturalWidth) / 2) + 'px', opacity: cl(u / .1), transform: `scale(${s})`});
+    const ue = t - (tEnd - .3); if (ue > 0 && !sc.end) lg.style.opacity = 1 - cl(ue / .25);
+    const rg = $('ring'); const rp = cl(u / .7); const rs = Math.min(W, H) * (.2 + 1.1 * eo(rp));
+    Object.assign(rg.style, {width: rs + 'px', height: rs + 'px', marginLeft: -rs / 2 + 'px', marginTop: (top - H / 2) - rs / 2 + 'px', opacity: u > 0 ? (1 - rp) : 0});
+  } else { lg.style.opacity = 0; $('ring').style.opacity = 0; }
+  // etiqueta "ATENÇÃO" e selo final
+  const pill = $('pill');
+  if (sc.tag) { const u = t - (Wd(k, sc.tag[1]) - .2); pill.textContent = sc.tag[0]; Object.assign(pill.style, {top: H * (V ? .1 : .1) + 'px', background: '#E5484D', color: PAPER, fontSize: (V ? 46 : 40) + 'px', padding: '14px 40px', opacity: cl(u / .1) * (Math.floor(lt * 6) % 2 ? 1 : .55), transform: `translateX(-50%) scale(${.5 + .5 * spr(u)})`}); }
+  else if (sc.end) { const u = t - Wd(k, 'começa') - .6; pill.textContent = '70% OFF · ATÉ O DIA 30'; Object.assign(pill.style, {top: H * (V ? .88 : .89) + 'px', background: GOLD, color: INK, fontSize: (V ? 40 : 34) + 'px', padding: '14px 36px', opacity: cl(u / .2), transform: `translateX(-50%) scale(${.6 + .4 * spr(u)})`}); }
+  else pill.style.opacity = 0;
+  // flash no corte e faixa dourada passando
+  let fl = 0; for (let i = 1; i < SC.length; i++) { const u = t - SC[i]; if (u > -.02 && u < .2) fl = Math.max(fl, .55 * (1 - u / .2)); }
+  $('flash').style.opacity = fl;
+  let wx = -60; for (let i = 1; i < SC.length; i++) { const u = (t - (SC[i] - .22)) / .38; if (u > 0 && u < 1) wx = -60 + 180 * eio(u); }
+  $('wipe').style.left = wx + '%'; $('wipe').style.background = sc.bg === GOLD ? INK : GOLD;
+  $('fade').style.opacity = cl((t - (TL.end - .8)) / .8);
+}
+window.seek = seek;
+fetch('timeline.json').then(r => r.json()).then(j => {
+  TL = j; LN = j.lines; SC = LN.map((l, i) => i === 0 ? 0 : l.start - .3);
+  Promise.all(['40px Anton', '800 20px Inter'].map(f => document.fonts.load(f))).then(() => document.fonts.ready)
+    .then(() => new Promise(r => { const i = $('logo'); i.complete ? r() : i.onload = r; }))
+    .then(() => { layout(); seek(0); window.ready = true;
+      if (!Q.has('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % TL.end); requestAnimationFrame(loop); }; loop(); } });
+});
+</script>
+</body>
+</html>

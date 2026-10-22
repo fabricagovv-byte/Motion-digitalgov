@@ -11,12 +11,13 @@ let pw;
 try { pw = require('playwright'); } catch { pw = require('/opt/node22/lib/node_modules/playwright'); }
 
 const PORT = process.env.PORT || 8765;
-const NAME = process.env.FILM; const URL = `http://127.0.0.1:${PORT}/${NAME}/film.html?render=1`;
+const NAME = process.env.FILM; const VW = +(process.env.VW || 1920), VH = +(process.env.VH || 1080);
+const URL = `http://127.0.0.1:${PORT}/${NAME}/film.html?render=1&w=${VW}&h=${VH}`;
 const [mode, ...args] = process.argv.slice(2);
 
 async function open() {
   const browser = await pw.chromium.launch({ args: ['--force-color-profile=srgb', '--font-render-hinting=none', '--disable-threaded-animation'] });
-  const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport: { width: VW, height: VH }, deviceScaleFactor: 1 });
   await page.goto(URL);
   await page.waitForFunction(() => window.ready === true, null, { timeout: 30000 });
   return { browser, page };

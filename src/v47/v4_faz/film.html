@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>O que a V4 faz + a nova IA V4.7</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+#stage{background:#7A7A7C;font-family:Inter}
+.sc{display:none;position:absolute;inset:0;overflow:hidden}
+.studio{position:absolute;inset:0;background:radial-gradient(60% 45% at 50% 100%,#D9A44188 0%,#D9A44100 70%),linear-gradient(#8E8E90 0%,#6C6C6F 55%,#4A4A4D 100%)}
+.cap{position:absolute;left:0;right:0;text-align:center;font-size:44px;font-weight:700;color:#F4F1EA;letter-spacing:-.5px}
+.cap span{color:#E7B04E}
+.ch{display:inline-block;font-weight:700;font-size:230px;letter-spacing:-6px;line-height:1;background:linear-gradient(180deg,#FFFFFF 0%,#D8D8DC 30%,#8B8D93 52%,#E9E9EC 70%,#9C9EA4 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #6A6C72) drop-shadow(0 4px 0 #55575C) drop-shadow(0 6px 0 #45474B) drop-shadow(0 18px 24px #0006)}
+.ball{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF1C8 0%,#F2C76B 22%,#D9A441 55%,#9C6A12 100%);box-shadow:0 0 50px #D9A44199}
+.crd{position:absolute;border-radius:28px;overflow:hidden;font-family:Inter}
+.lb{position:absolute;font-size:22px;font-weight:600;color:#8A8780}
+.slot{display:inline-block;height:230px;overflow:hidden;vertical-align:top}
+.slot div{height:230px;line-height:230px}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1: letras cromadas -->
+<div class="sc" id="s1"><div class="studio"></div>
+ <div class="abs" id="w1" style="left:0;right:0;top:330px;text-align:center;white-space:nowrap"></div>
+</div>
+
+<!-- 2-3: bola quicando, depois recua até o painel -->
+<div class="sc" id="s2"><div class="studio"></div>
+ <div class="abs" id="ui2" style="left:0;top:0;width:1920px;height:1080px;transform-origin:50% 42%">
+  <div class="abs" id="frame2" style="left:-30px;top:-20px;width:1980px;height:1120px;border-radius:0;background:#1F2024;opacity:0"></div>
+  <div class="abs" id="view2" style="left:0;top:0;width:1920px;height:1080px;overflow:hidden;border-radius:0">
+   <div class="studio"></div>
+   <svg class="abs" id="trail2" width="1920" height="1080"></svg>
+   <div class="abs" id="floor2" style="left:220px;top:760px;width:1480px;height:3px;background:#EDEDED88"></div>
+   <div class="ball" id="ball2"></div>
+  </div>
+  <div class="abs" id="top2" style="left:0;top:-80px;width:1920px;height:70px;display:flex;align-items:center;gap:40px;padding:0 40px;font-size:24px;font-weight:600;color:#A9ADB8"><b style="color:#F4F1EA">V4 Studio</b><span>Arquivo</span><span>Editar</span><span>Exibir</span><span style="margin-left:auto;color:#E7B04E">● Ao vivo</span></div>
+  <div class="abs" id="ed2" style="left:0;top:1100px;width:1920px;height:420px;background:#17181C;border-top:1px solid #2E323C">
+   <div class="abs" style="left:40px;top:30px;width:330px;font-size:24px;font-weight:600;color:#A9ADB8;line-height:2.1">▸ Cadastro<br>▸ Painel<br><span style="color:#E7B04E">▾ Relatórios</span><br>▸ Usuários</div>
+   <svg class="abs" width="1440" height="360" style="left:420px;top:30px"><g stroke="#2E323C"><line x1="0" y1="60" x2="1440" y2="60"/><line x1="0" y1="180" x2="1440" y2="180"/><line x1="0" y1="300" x2="1440" y2="300"/></g>
+    <path id="cv2" d="M20 320 C 360 320 420 60 760 60 S 1200 120 1420 80" stroke="#E7B04E" stroke-width="6" fill="none"/><circle id="cp2" r="12" fill="#F4F1EA"/></svg>
+  </div>
+ </div>
+ <div class="cap" id="c2a" style="top:860px">Sistemas <span>sob medida.</span></div>
+ <div class="cap" id="c2b" style="top:620px">Painéis <span>e apps.</span></div>
+</div>
+
+<!-- 4: transforma em botão e em integração -->
+<div class="sc" id="s4"><div class="studio"></div>
+ <div class="abs" id="tg4" style="left:810px;top:420px;width:300px;height:150px;border-radius:75px;background:#3A3B40;box-shadow:inset 0 4px 12px #0007"></div>
+ <div class="ball" id="b4"></div>
+ <svg class="abs" id="ring4" width="400" height="400" viewBox="0 0 400 400" style="left:760px;top:295px"></svg>
+ <div class="cap" id="c4a" style="top:680px">Automação.</div>
+ <div class="cap" id="c4b" style="top:680px">Integração <span>de dados.</span></div>
+ <div class="abs" id="fill4" style="background:#D9A441"></div>
+</div>
+
+<!-- 5: mural de cartões -->
+<div class="sc" id="s5" style="background:#ECEAE4">
+ <div class="abs" id="wall5" style="left:0;top:0;width:2600px;height:1400px">
+  <div class="lb" style="left:140px;top:250px">Nova IA</div>
+  <div class="abs" style="left:140px;top:280px;font-size:200px;font-weight:700;letter-spacing:-8px;color:#111216">V4.7</div>
+  <div class="lb" style="left:820px;top:160px">Assistente</div>
+  <div class="crd" style="left:820px;top:190px;width:560px;height:330px;background:#D9A441;box-shadow:0 30px 60px #D9A44166"><div id="dots5" class="abs" style="left:170px;top:120px;display:flex;gap:34px"><i style="width:56px;height:56px;border-radius:50%;background:#FFF"></i><i style="width:56px;height:56px;border-radius:50%;background:#FFF"></i><i style="width:56px;height:56px;border-radius:50%;background:#FFF"></i></div></div>
+  <div class="lb" style="left:1500px;top:160px">Dados</div>
+  <svg class="abs" id="cube5" width="280" height="300" viewBox="-140 -150 280 300" style="left:1480px;top:200px"></svg>
+  <div class="lb" style="left:140px;top:600px">Segurança</div>
+  <div class="crd" style="left:140px;top:630px;width:560px;height:250px;background:repeating-linear-gradient(-55deg,#111216 0 22px,#ECEAE4 22px 44px,#D9A441 44px 66px,#ECEAE4 66px 88px)"></div>
+  <div class="lb" style="left:820px;top:600px">Relatórios</div>
+  <div id="bars5" class="abs" style="left:820px;top:640px;width:560px;height:240px;display:flex;align-items:flex-end;gap:12px"></div>
+  <div class="lb" style="left:1500px;top:600px">Previsões</div>
+  <svg class="abs" width="520" height="250" style="left:1480px;top:630px"><path id="pr5" d="M10 200 C 140 200 160 40 280 120 S 420 220 500 60" stroke="#111216" stroke-width="7" fill="none"/><circle id="pc5" r="12" fill="#D9A441"/></svg>
+ </div>
+</div>
+
+<!-- 6: números girando -->
+<div class="sc" id="s6" style="background:#F4F2EC">
+ <div class="abs" style="left:520px;top:400px;display:flex;align-items:center;gap:50px">
+  <div style="font-size:230px;font-weight:700;letter-spacing:-6px;color:#111216;white-space:nowrap"><span class="slot" id="d6a"></span><span class="slot" id="d6b" style="color:#D9A441"></span></div>
+  <div><div id="t6a" style="font-size:52px;font-weight:700;color:#111216"></div><div id="t6b" style="font-size:30px;font-weight:600;color:#9A968C;margin-top:6px"></div></div>
+ </div>
+</div>
+
+<!-- 7: nome e a nova IA -->
+<div class="sc" id="s7" style="background:#E6E4DE">
+ <div class="abs" id="n7" style="left:0;right:0;top:330px;text-align:center;font-size:150px;font-weight:700;letter-spacing:-5px;color:#2A2B30;white-space:nowrap"></div>
+ <div class="abs" id="lg7" style="left:735px;top:560px;width:450px;height:188px;background:#111216;-webkit-mask:url(../kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;mask:url(../kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat"></div>
+ <div class="abs" id="dt7" style="width:34px;height:34px;border-radius:50%;background:#D9A441"></div>
+ <div class="abs" id="sb7" style="left:0;right:0;top:780px;text-align:center;font-size:34px;font-weight:600;color:#6B6860">apresenta a sua nova inteligência artificial</div>
+</div>
+
+<div class="abs" id="fade" style="inset:0;background:#000;opacity:0;pointer-events:none"></div>
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const {$, cl, eo, eio, spr, mul} = K;
+const T = {s1: 0, s2: 3.0, s3: 5.6, s4: 8.2, s5: 10.6, s6: 13.6, s7: 16.4, end: 20.2};
+const DUR = T.end;
+const WORD = 'SOFTWARE';
+function build() {
+  $('w1').innerHTML = [...WORD].map((c, i) => `<span class="ch" id="L${i}">${c}</span>`).join('');
+  let b = ''; [40, 70, 55, 90, 65, 110, 80, 130, 95, 150, 120, 170].forEach((h, i) => b += `<div id="bb${i}" data-h="${h}" style="flex:1;background:${i % 3 === 2 ? '#D9A441' : '#111216'};border-radius:6px 6px 0 0;height:0"></div>`); $('bars5').innerHTML = b;
+  $('d6a').innerHTML = '<div id="r6a"></div>'; $('d6b').innerHTML = '<div id="r6b"></div>';
+  let r = ''; for (let i = 0; i < 24; i++) r += `<line x1="200" y1="40" x2="200" y2="90" stroke="#E7B04E" stroke-width="10" stroke-linecap="round" transform="rotate(${i * 15} 200 200)" opacity="${(i + 1) / 24}"/>`; $('ring4').innerHTML = r;
+}
+function show(k) { ['s1', 's2', 's4', 's5', 's6', 's7'].forEach(id => $(id).style.display = id === k ? 'block' : 'none'); }
+// trajetória da bola (quiques que diminuem)
+function bounce(u) { const hops = [[260, 760, 520, .62], [520, 760, 360, .52], [740, 760, 240, .44], [930, 760, 150, .36], [1080, 760, 90, .3], [1190, 760, 50, .26]];
+  let t0 = 0, x0 = 260; for (let i = 1; i < hops.length; i++) { const [, , h, d] = hops[i]; if (u < t0 + d) { const p = (u - t0) / d; const x = x0 + (hops[i][0] - x0) * p; const y = 760 - h * 4 * p * (1 - p); return {x, y, p, i}; } t0 += d; x0 = hops[i][0]; }
+  return {x: x0, y: 760, p: 1, i: hops.length}; }
+function seek(t) {
+  if (t < T.s2) { show('s1'); const lt = t;
+    [...WORD].forEach((c, i) => { const e = $('L' + i); const u = lt - .25 - i * .1; const p = spr(u * 1.15); let y = -700 * (1 - p), rx = 70 * (1 - cl(u / .6)), op = cl(u / .05);
+      if (lt > 2.0 && c !== 'O') { const v = eio((lt - 2.0 - Math.abs(i - 4) * .04) / .45); y += 60 * v; op *= 1 - v; e.style.filter = `blur(${8 * v}px)`; }
+      if (c === 'O') { const v = eio((lt - 2.2) / .5); e.style.background = v > 0 ? `radial-gradient(circle at 40% 35%,#FFF1C8,#E7B04E 40%,#9C6A12)` : ''; e.style.webkitBackgroundClip = 'text'; e.style.transform = `translateY(${y}px) rotateX(${rx}deg) scale(${1 + .15 * v})`; e.style.opacity = op; return; }
+      e.style.transform = `translateY(${y}px) rotateX(${rx}deg)`; e.style.opacity = op; });
+    $('w1').style.transform = `scale(${1.05 - .05 * eo(lt / 2)})`; }
+  else if (t < T.s4) { show('s2'); const lt = t - T.s2;
+    const b = bounce(lt * 1.0); let bx = b.x + 100, by = b.y - 70, sx = 1, sy = 1;
+    if (lt < .35) { const p = eio(lt / .35); bx = 960 + (360 - 960) * p; by = 440 + (690 - 440) * p; }
+    const near = 1 - cl(Math.abs(b.y - 760) / 40); sx = 1 + .35 * near * (b.i < 6 ? 1 : 0); sy = 1 - .3 * near * (b.i < 6 ? 1 : 0);
+    if (lt > 2.6) { bx = 1290 + Math.sin(lt * 2) * 6; by = 690; sx = sy = 1; }
+    const S = 140; Object.assign($('ball2').style, {width: S + 'px', height: S + 'px', left: bx - S / 2 + 'px', top: by - S / 2 + (1 - sy) * S / 2 + 'px', transform: `scale(${sx},${sy})`});
+    // rastro pontilhado
+    let s = ''; for (let q = 0; q < 60; q++) { const u = lt * 1.0 - q * .03; if (u < .35 || u > 2.6) continue; const c = bounce(u); s += `<circle cx="${c.x + 100}" cy="${c.y - 70}" r="4" fill="#F4F1EA" opacity="${.7 - q / 90}"/>`; } $('trail2').innerHTML = s;
+    // recuo da câmera até o painel
+    const z = eio((t - T.s3) / 1.1); $('ui2').style.transform = `scale(${1 - .38 * z}) translateY(${-60 * z}px)`;
+    $('view2').style.borderRadius = 30 * z + 'px'; $('frame2').style.opacity = z; $('top2').style.top = (-80 + 60 * z) + 'px'; $('ed2').style.top = (1100 - 0 * z) + 'px';
+    const L = $('cv2').getTotalLength(); $('cv2').style.strokeDasharray = L; $('cv2').style.strokeDashoffset = L * (1 - eio((t - T.s3 - .8) / 1.4)); const P = $('cv2').getPointAtLength(L * eio((t - T.s3 - .8) / 1.4)); $('cp2').setAttribute('cx', P.x); $('cp2').setAttribute('cy', P.y);
+    $('c2a').style.opacity = cl((lt - .7) / .3) * (1 - cl((t - T.s3) / .25)); $('c2b').style.opacity = cl((t - T.s3 - 1.0) / .3);
+    $('c2a').innerHTML = 'Sistemas <span>sob medida.</span>'; }
+  else if (t < T.s5) { show('s4'); const lt = t - T.s4;
+    // bola entra no botão e liga
+    const on = eio((lt - .55) / .35); const bx = 885 + 150 * on; Object.assign($('b4').style, {width: '130px', height: '130px', left: bx - 65 + 'px', top: 430 + 'px', transform: `scale(${1 + .15 * Math.sin(on * Math.PI)},${1 - .1 * Math.sin(on * Math.PI)})`});
+    $('tg4').style.background = on > .5 ? '#E7B04E' : '#3A3B40'; $('b4').style.background = on > .5 ? 'radial-gradient(circle at 35% 30%,#FFFFFF,#ECECEC 60%,#BDBDBD)' : '';
+    const m = eio((lt - 1.25) / .35); $('tg4').style.opacity = 1 - m; $('b4').style.opacity = 1 - m;
+    $('ring4').style.opacity = m; $('ring4').style.transform = `rotate(${lt * 260}deg) scale(${.6 + .4 * m})`;
+    $('c4a').style.opacity = cl((lt - .2) / .25) * (1 - m); $('c4b').style.opacity = cl((lt - 1.4) / .25);
+    const f = eio((lt - 2.0) / .4); const R = 2400 * f; Object.assign($('fill4').style, {width: R + 'px', height: R + 'px', left: 960 - R / 2 + 'px', top: 495 - R / 2 + 'px', borderRadius: '50%', opacity: f > 0 ? 1 : 0}); }
+  else if (t < T.s6) { show('s5'); const lt = t - T.s5;
+    const p = eio(lt / 2.6); const x = -40 - 560 * p, y = -60 - 160 * Math.sin(p * Math.PI) * .4; const sc = 1.25 - .25 * eo(lt / .8);
+    const vel = Math.abs(560 * (Math.PI / 2.6) * Math.sin(Math.PI * cl(lt / 2.6)) / 2);
+    $('wall5').style.transform = `translate(${x}px,${y}px) scale(${sc})`; $('wall5').style.filter = `blur(${Math.min(10, vel / 60)}px)`;
+    // cartão dourado que "sai" do preenchimento
+    const dots = $('dots5').children; for (let i = 0; i < 3; i++) dots[i].style.transform = `translateY(${-24 * Math.max(0, Math.sin(lt * 7 - i * .7))}px)`;
+    let c = ''; const a = lt * 1.4; const V = [[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1], [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]].map(([X, Y, Z]) => { const x1 = X * Math.cos(a) - Z * Math.sin(a), z1 = X * Math.sin(a) + Z * Math.cos(a); const y1 = Y * Math.cos(.5) - z1 * Math.sin(.5); return [x1 * 80, y1 * 80]; });
+    [[0, 1, 2, 3, '#ECEAE4'], [4, 5, 6, 7, '#D9A441'], [0, 1, 5, 4, '#111216'], [1, 2, 6, 5, '#F7F5F0']].forEach(f => c += `<path d="M${f.slice(0, 4).map(i => V[i].join(' ')).join(' L')}Z" fill="${f[4]}" stroke="#111216" stroke-width="3" opacity=".95"/>`); $('cube5').innerHTML = c;
+    for (let i = 0; i < 12; i++) { const e = $('bb' + i); e.style.height = (+e.dataset.h * (1 + .25 * Math.sin(lt * 4 + i)) * eo((lt - .2 - i * .04) / .5)) + 'px'; }
+    const pr = $('pr5'); const L = pr.getTotalLength(); const P = pr.getPointAtLength(L * ((lt * .5) % 1)); $('pc5').setAttribute('cx', P.x); $('pc5').setAttribute('cy', P.y); }
+  else if (t < T.s7) { show('s6'); const lt = t - T.s6;
+    const SET = [['+17', 'portais públicos.', 'feitos pela V4'], ['+35', 'clientes.', 'empresas e órgãos'], ['6', 'sistemas.', 'em uma só plataforma'], ['1', 'nova IA.', 'a V4.7']];
+    const idx = Math.min(3, Math.floor(lt / .7)); const ph = lt - idx * .7; const [n, a, b] = SET[idx];
+    const roll = (el, str) => { el.parentElement.style.display = str ? 'inline-block' : 'none'; if (!str) return; const r = mul(idx * 9 + str.length); const sp = Math.max(0, 1 - ph / .3); let s = ''; for (let q = 0; q < 6; q++) s += `<div>${q === 5 ? str : Math.floor(r() * 9)}</div>`; el.innerHTML = s; el.style.transform = `translateY(${-230 * 5 * eo(ph / .3)}px)`; el.parentElement.style.filter = `blur(${sp * 6}px)`; };
+    roll($('r6a'), n.slice(0, -1) || ''); roll($('r6b'), n.slice(-1));
+    $('t6a').textContent = a; $('t6b').textContent = b; $('t6a').style.opacity = cl((ph - .15) / .2); $('t6b').style.opacity = cl((ph - .25) / .2); }
+  else { show('s7'); const lt = t - T.s7;
+    const name = 'V4 FábricaGov'; const r = mul(3); $('n7').innerHTML = [...name].map((c, i) => { const u = lt - i * .04; const p = eo(u / .45); const rx = (r() - .5) * 600, ry = (r() - .5) * 300; return `<span style="display:inline-block;opacity:${cl(u / .1)};transform:translate(${rx * (1 - p)}px,${ry * (1 - p)}px) rotate(${(r() - .5) * 90 * (1 - p)}deg);color:${i < 2 ? '#D9A441' : '#2A2B30'}">${c === ' ' ? '&nbsp;' : c}</span>`; }).join('');
+    const lp = spr((lt - 1.2) * 1.1); $('lg7').style.transform = `scale(${Math.max(0, lp)})`; $('lg7').style.opacity = cl((lt - 1.2) / .1);
+    const dp = spr((lt - 1.7) * 1.4); Object.assign($('dt7').style, {left: 735 + 450 * .672 - 17 + 'px', top: 560 + 188 * .757 - 17 + 'px', transform: `scale(${Math.max(0, dp)})`});
+    $('sb7').style.opacity = cl((lt - 2.0) / .4); $('sb7').style.transform = `translateY(${16 * (1 - eo((lt - 2.0) / .5))}px)`; }
+  $('fade').style.opacity = t < .2 ? 1 - t / .2 : cl((t - (DUR - .8)) / .8);
+}
+window.seek = seek;
+Promise.all(['700 20px Inter', '600 20px Inter'].map(f => document.fonts.load(f))).then(() => { build(); seek(0); window.ready = true;
+  if (!location.search.includes('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); }; loop(); } });
+</script>
+</body>
+</html>

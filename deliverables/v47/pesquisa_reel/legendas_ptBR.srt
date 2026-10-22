@@ -1,0 +1,47 @@
+1
+00:00:00,150 --> 00:00:01,950
+A prefeitura sabe o que o povo quer?
+
+2
+00:00:02,050 --> 00:00:04,550
+Agentes de pesquisa vão a campo, bairro por bairro.
+
+3
+00:00:04,650 --> 00:00:06,550
+Cada resposta entra pelo celular, com local e horário, mesmo sem internet.
+
+4
+00:00:07,050 --> 00:00:10,550
+"Aqui falta iluminação na praça e médico no posto à noite."
+
+5
+00:00:10,650 --> 00:00:12,350
+As respostas sincronizam com a V4.7.
+
+6
+00:00:12,450 --> 00:00:14,750
+A IA lê as respostas abertas e agrupa por tema.
+
+7
+00:00:14,850 --> 00:00:16,750
+O mapa de calor mostra onde cada pedido pesa mais.
+
+8
+00:00:16,850 --> 00:00:18,750
+E a IA sugere as prioridades.
+
+9
+00:00:18,850 --> 00:00:20,550
+O relatório semanal sai pronto.
+
+10
+00:00:20,650 --> 00:00:22,150
+Quem decide é a gestão.
+
+11
+00:00:22,250 --> 00:00:24,550
+Quer ouvir sua cidade assim? Chame no WhatsApp (31) 99827-7323.
+
+12
+00:00:24,650 --> 00:00:26,400
+V4.7 · Prévia do Sistema de Pesquisa.

@@ -59,3 +59,25 @@ Isso é só uma prévia do Sistema de Obras da V4.7. 👀
 📲 Quer na sua cidade? Chame no WhatsApp: (31) 99827-7323
 
 #V47 #V4FabricaGov #InteligenciaArtificial #GestaoPublica #Prefeitura #ObrasPublicas #Ponte #Engenharia #Licitacao #SINAPI #Drone #GovTech #Inovacao
+
+---
+
+## Reel vertical — Todos os sistemas da V4.7 (9:16)
+
+A nova IA para municípios e empresas chegou. 🚀
+
+6 sistemas. 1 conversa. Você pergunta, a V4.7 responde com dados:
+📊 Pesquisa — o que a população mais pede
+💊 Saúde — alerta de estoque antes de faltar remédio
+⚖️ Jurídico — documentos da licitação com base na Lei 14.133/2021
+📚 Aprendizagem — onde cada turma tem dificuldade
+🏗️ Obras — da planta ao orçamento estimado (SINAPI)
+👷 Engenheiro 7.3 — acompanhamento da obra e risco de atraso
+
+A IA sugere. As pessoas decidem. 🔒 Segurança e LGPD desde o projeto.
+
+👉 Comente "V4.7" ou chame no WhatsApp (31) 99827-7323 e veja uma demonstração.
+
+*Valores e dados do vídeo são ilustrativos. Projetos validados por engenheiro responsável (ART).*
+
+#V47 #InteligenciaArtificial #GestaoPublica #Prefeituras #Municipios #Empresas #GovTech #V4FabricaGov

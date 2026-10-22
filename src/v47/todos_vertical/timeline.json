@@ -1,0 +1,65 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.6,
+   "dur": 3.797,
+   "caption": "A nova IA para municípios e empresas chegou: a V4.7."
+  },
+  {
+   "id": "n2",
+   "start": 4.897,
+   "dur": 3.2,
+   "caption": "Seis sistemas em uma só conversa. Veja na prática."
+  },
+  {
+   "id": "n3",
+   "start": 8.697,
+   "dur": 5.568,
+   "caption": "Na Pesquisa, você pergunta o que o povo pede, e a IA mostra os temas e a prioridade de cada bairro."
+  },
+  {
+   "id": "n4",
+   "start": 14.966,
+   "dur": 4.672,
+   "caption": "Na Saúde, ela avisa antes de faltar remédio e já sugere o remanejamento."
+  },
+  {
+   "id": "n5",
+   "start": 20.338,
+   "dur": 4.011,
+   "caption": "No Jurídico, responde citando o artigo da lei, e o procurador revisa."
+  },
+  {
+   "id": "n6",
+   "start": 25.048,
+   "dur": 4.416,
+   "caption": "Na Aprendizagem, mostra quem precisa de ajuda e cria a trilha de reforço."
+  },
+  {
+   "id": "n7",
+   "start": 30.165,
+   "dur": 5.696,
+   "caption": "Em Obras, você manda a planta e diz o que quer construir. A IA mede, orça e entrega os documentos."
+  },
+  {
+   "id": "n8",
+   "start": 36.561,
+   "dur": 4.245,
+   "caption": "E o Engenheiro 7.3 acompanha a obra e avisa antes do atraso."
+  },
+  {
+   "id": "n9",
+   "start": 41.506,
+   "dur": 4.651,
+   "caption": "Tudo conectado, com segurança e LGPD. A IA sugere, as pessoas decidem."
+  },
+  {
+   "id": "n10",
+   "start": 47.757,
+   "dur": 5.687,
+   "caption": "V4.7. A nova IA para municípios e empresas chegou. Fale com a V4 FábricaGov."
+  }
+ ],
+ "end": 56.64
+}

@@ -110,7 +110,7 @@ def blip(f=1200, d=0.09):
 
 
 def typing(n=12, gap=.06):
-    out = np.zeros(int(SR * (n * gap + .1)))
+    out = np.zeros(int(SR * (n * gap * 1.2 + .1)))
     for q in range(n):
         c = lowpass(rng.standard_normal(int(SR * .03)), 4000) * np.exp(-ta(.03) * 120) * .5
         i = int(q * gap * SR * (0.8 + 0.4 * rng.random())); out[i:i + len(c)] += c[: len(out) - i]

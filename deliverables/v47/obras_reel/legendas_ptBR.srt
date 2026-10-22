@@ -1,0 +1,47 @@
+1
+00:00:00,200 --> 00:00:02,550
+O drone sobrevoa o terreno e tira as fotos aéreas.
+
+2
+00:00:02,650 --> 00:00:04,550
+A IA monta o mapa aéreo e mede o lote: 24,60 m por 18,20 m.
+
+3
+00:00:04,650 --> 00:00:06,550
+Na aba Medidas, tudo fica registrado: frente, lateral, perímetro e área.
+
+4
+00:00:07,050 --> 00:00:10,000
+"Quero uma praça com quadra, bancos e iluminação."
+
+5
+00:00:10,050 --> 00:00:11,750
+A IA desenha a planta da praça.
+
+6
+00:00:11,850 --> 00:00:13,750
+E monta o projeto em 3D.
+
+7
+00:00:13,850 --> 00:00:15,750
+Calcula os quantitativos, item por item.
+
+8
+00:00:15,850 --> 00:00:17,350
+Faz o orçamento estimado com referência SINAPI.
+
+9
+00:00:17,450 --> 00:00:18,950
+Gera os documentos, e o engenheiro valida com ART.
+
+10
+00:00:19,050 --> 00:00:21,350
+E entrega o documento completo, em volume único.
+
+11
+00:00:21,450 --> 00:00:22,950
+A prefeitura publica a licitação com dados certos.
+
+12
+00:00:23,050 --> 00:00:25,000
+V4.7 · Prévia do Sistema de Obras.

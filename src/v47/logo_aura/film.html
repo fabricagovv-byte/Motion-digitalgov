@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · logo animada estilo aura</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+html,body{width:auto;height:auto;background:#000}
+#stage{background:#06060A;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(110px);mix-blend-mode:screen}
+.pt{position:absolute;border-radius:50%;background:#FFE9B8}
+#rays{position:absolute;border-radius:50%;background:conic-gradient(from 0deg,#D9A44100,#D9A44133,#D9A44100 8%,#8F7CFF22 14%,#D9A44100 20%,#F2C76B33 27%,#D9A44100 33%,#D9A44100 50%,#6B4BFF22 58%,#D9A44100 64%,#F2C76B2a 72%,#D9A44100 80%,#D9A44133 90%,#D9A44100);-webkit-mask:radial-gradient(circle,#000 0%,#0008 35%,transparent 70%);mask:radial-gradient(circle,#000 0%,#0008 35%,transparent 70%)}
+.halo{position:absolute;border-radius:50%;border:3px solid #F2C76B;box-shadow:0 0 40px #D9A441,inset 0 0 40px #D9A44188}
+#logo,#logoGlow,#logoGlow2{position:absolute}
+#tag{position:absolute;left:0;right:0;text-align:center;font-family:Inter;font-weight:700;color:#F4F1EA;white-space:nowrap}
+#tag span{display:inline-block}
+#by{position:absolute;left:0;right:0;text-align:center;font-family:Inter;font-weight:600;color:#D9A441}
+#vig{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 45%,#000000cc 100%)}
+#fade{position:absolute;inset:0;background:#000}
+#flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%,#FFF6DD,#F2C76B00 60%);mix-blend-mode:screen}
+</style>
+</head>
+<body>
+<div id="stage">
+ <div id="blobs"></div>
+ <div id="scrim" style="position:absolute;inset:0"></div>
+ <div id="rays"></div>
+ <div id="pts"></div>
+ <div class="halo" id="h1"></div><div class="halo" id="h2"></div>
+ <img id="logoGlow2" src="../kit/assets/nova/v47_logo_branca_transp.png" alt="">
+ <img id="logoGlow" src="../kit/assets/nova/v47_logo_branca_transp.png" alt="">
+ <img id="logo" src="../kit/assets/nova/v47_logo_branca_transp.png" alt="V4.7">
+ <div id="shine"></div>
+ <div id="dot"></div>
+ <div id="tag"></div>
+ <div id="by">por V4 FábricaGov</div>
+ <div id="flash"></div>
+ <div id="vig"></div>
+ <div id="fade"></div>
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const {$, cl, eo, eio, spr, mul} = K;
+const Q = new URLSearchParams(location.search);
+const W = +(Q.get('w') || 1920), H = +(Q.get('h') || 1080), V = H > W, DUR = 10;
+Object.assign($('stage').style, {width: W + 'px', height: H + 'px', position: 'relative'});
+const M = Math.min(W, H);
+const LW = V ? W * .82 : W * .5, LH = LW * 485 / 1160, CX = W / 2, CY = H * (V ? .44 : .45);
+const LX = CX - LW / 2, LY = CY - LH / 2;
+const DOT = [LX + LW * .672, LY + LH * .757];
+const BL = [['#D9A441', .9, .00, .42], ['#F2C76B', .7, 1.7, .30], ['#6B4BFF', .75, 3.1, .36], ['#1FB5A8', .6, 4.4, .26], ['#B3541E', .55, 5.6, .30]];
+const P = []; const r = mul(47);
+function build() {
+  $('blobs').innerHTML = BL.map((b, i) => `<div class="blob" id="b${i}" style="width:${M * b[1]}px;height:${M * b[1]}px;background:${b[0]}"></div>`).join('');
+  let s = ''; for (let i = 0; i < 160; i++) { const p = {x: r() * W, y: r() * H, s: 2 + r() * 5, sp: 20 + r() * 60, ph: r() * 6.28, d: r() * .6, a: r() * 6.28, rad: M * (.25 + r() * .45)}; P.push(p); s += `<div class="pt" id="p${i}" style="width:${p.s}px;height:${p.s}px"></div>`; } $('pts').innerHTML = s;
+  const R = M * (V ? 1.3 : 1.1); Object.assign($('rays').style, {width: R + 'px', height: R + 'px', left: CX - R / 2 + 'px', top: CY - R / 2 + 'px'});
+  $('scrim').style.background = `radial-gradient(ellipse ${LW * .75}px ${LH * .9}px at ${CX}px ${CY}px,#06060Acc 0%,#06060A88 50%,transparent 100%)`;
+  for (const id of ['logo', 'logoGlow', 'logoGlow2']) Object.assign($(id).style, {left: LX + 'px', top: LY + 'px', width: LW + 'px'});
+  $('logoGlow').style.filter = 'blur(18px) brightness(1.6) sepia(1) saturate(3) hue-rotate(-12deg)';
+  $('logoGlow2').style.filter = 'blur(60px) brightness(2) sepia(1) saturate(4) hue-rotate(-15deg)';
+  const img = '../kit/assets/nova/v47_logo_branca_transp.png';
+  Object.assign($('shine').style, {position: 'absolute', left: LX + 'px', top: LY + 'px', width: LW + 'px', height: LH + 'px', WebkitMask: `url(${img}) 0 0/100% 100% no-repeat`, mask: `url(${img}) 0 0/100% 100% no-repeat`, background: 'linear-gradient(105deg,transparent 0%,transparent 44%,#FFF8E6 50%,transparent 56%,transparent 100%)', backgroundSize: '300% 100%', mixBlendMode: 'screen'});
+  const ds = LW * .16; Object.assign($('dot').style, {position: 'absolute', width: ds + 'px', height: ds + 'px', left: DOT[0] - ds / 2 + 'px', top: DOT[1] - ds / 2 + 'px', borderRadius: '50%', background: 'radial-gradient(circle,#FFE7A8 0%,#D9A44199 30%,#D9A44100 70%)', mixBlendMode: 'screen'});
+  const txt = 'INTELIGÊNCIA PÚBLICA'; $('tag').innerHTML = [...txt].map(c => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+  const fs = V ? W * .04 : W * .024; Object.assign($('tag').style, {top: LY + LH + M * (V ? .1 : .08) + 'px', fontSize: fs + 'px'});
+  Object.assign($('by').style, {top: LY + LH + M * (V ? .1 : .08) + fs * 1.9 + 'px', fontSize: fs * .62 + 'px', letterSpacing: fs * .18 + 'px'});
+}
+function seek(t) {
+  // fundo de aura: manchas de luz em movimento lento
+  const on = eo((t - .1) / 2.2);
+  BL.forEach((b, i) => { const e = $('b' + i); const a = t * .35 + b[2]; const rx = (V ? W * .28 : W * .26), ry = (V ? H * .16 : H * .2);
+    const x = CX + Math.cos(a) * rx * (i % 2 ? 1 : -.8) - M * b[1] / 2, y = CY + Math.sin(a * 1.3) * ry - M * b[1] / 2;
+    e.style.transform = `translate(${x}px,${y}px) scale(${1 + .12 * Math.sin(t * 1.1 + i)})`; e.style.opacity = on * b[3] * (t > 3.2 ? 1 + .25 * Math.exp(-(t - 3.2) * 2) : 1); });
+  // raios girando
+  $('rays').style.transform = `rotate(${t * 9}deg) scale(${.8 + .3 * eo((t - 2.6) / 1.5)})`; $('rays').style.opacity = cl((t - 2.4) / 1.2) * (.9 + .1 * Math.sin(t * 2));
+  // partículas: sobem flutuando, se juntam no centro e explodem na revelação
+  P.forEach((p, i) => { const e = $('p' + i); let x, y, op, sc = 1;
+    if (t < 3.1) { const g = eio((t - 1.2 - p.d) / 1.8); const fx = p.x + Math.sin(t * .8 + p.ph) * 30, fy = ((p.y - t * p.sp) % H + H) % H;
+      x = fx + (CX - fx) * g; y = fy + (CY - fy) * g; op = cl(t / .8) * (.35 + .65 * Math.abs(Math.sin(t * 2 + p.ph))) * (1 - g * .3); sc = 1 + g; }
+    else { const u = t - 3.1; const R = p.rad * eo(u / 1.6); x = CX + Math.cos(p.a) * R + Math.sin(t + p.ph) * 12; y = CY + Math.sin(p.a) * R * .7 - u * p.sp * .4; op = (1 - cl(u / 5.5)) * (.4 + .6 * Math.abs(Math.sin(t * 3 + p.ph))); }
+    e.style.transform = `translate(${x}px,${y}px) scale(${sc})`; e.style.opacity = op; });
+  // halos que pulsam a partir do centro
+  [['h1', 3.05], ['h2', 3.35]].forEach(([id, t0]) => { const u = t - t0; const s = M * (.15 + 1.2 * eo(u / 1.8)); Object.assign($(id).style, {width: s + 'px', height: s * (V ? 1 : .62) + 'px', left: CX - s / 2 + 'px', top: CY - s * (V ? 1 : .62) / 2 + 'px', opacity: u > 0 ? (1 - cl(u / 1.8)) * .8 : 0}); });
+  // logo nasce do brilho
+  const u = t - 3.0, p = eo(u / 1.4);
+  const lg = $('logo'); lg.style.opacity = cl(u / .5); lg.style.filter = `blur(${24 * (1 - p)}px) brightness(${1 + 2.5 * (1 - p)})`; lg.style.transform = `scale(${1.12 - .12 * p})`;
+  const br = .55 + .25 * Math.sin(t * 2.2);
+  $('logoGlow').style.opacity = cl(u / .6) * br; $('logoGlow').style.transform = `scale(${1.12 - .12 * p})`;
+  $('logoGlow2').style.opacity = cl(u / .6) * (.5 + .3 * Math.sin(t * 1.6 + 1)); $('logoGlow2').style.transform = `scale(${1.2 - .12 * p})`;
+  $('scrim').style.opacity = cl((t - 2.6) / 1.2);
+  $('flash').style.opacity = u > 0 ? .9 * Math.exp(-u * 3) : 0;
+  // reflexo passando
+  const sp = cl((t - 4.6) / 1.2); $('shine').style.backgroundPosition = `${100 - 100 * eio(sp)}% 0`; $('shine').style.opacity = sp > 0 && sp < 1 ? 1 : 0;
+  // ponto dourado aceso
+  const dp = t - 4.0; $('dot').style.opacity = dp > 0 ? (.6 + .4 * Math.sin(t * 3.4)) * cl(dp / .4) : 0; $('dot').style.transform = `scale(${1 + .2 * Math.sin(t * 3.4)})`;
+  // frase letra por letra, com espaçamento que fecha
+  const sp2 = [...$('tag').children]; const n = sp2.length;
+  sp2.forEach((s, i) => { const v = t - 5.2 - Math.abs(i - n / 2) * .045; s.style.opacity = cl(v / .5); s.style.filter = `blur(${8 * (1 - cl(v / .6))}px)`; s.style.transform = `translateY(${12 * (1 - eo(v / .6))}px)`; });
+  $('tag').style.letterSpacing = (M * (V ? .012 : .016) + M * .02 * (1 - eo((t - 5.2) / 2))) + 'px';
+  $('by').style.opacity = cl((t - 6.3) / .8);
+  $('fade').style.opacity = t < .4 ? 1 - t / .4 : cl((t - (DUR - .9)) / .9);
+}
+window.seek = seek;
+Promise.all(['700 20px Inter', '600 20px Inter'].map(f => document.fonts.load(f))).then(() => Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => i.onload = r))))
+  .then(() => { build(); seek(0); window.ready = true;
+    if (!Q.has('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); }; loop(); } });
+</script>
+</body>
+</html>

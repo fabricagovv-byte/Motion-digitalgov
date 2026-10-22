@@ -1,0 +1,40 @@
+1
+00:00:00,600 --> 00:00:04,597
+A nova IA para municípios e empresas chegou: a V4.7.
+
+2
+00:00:04,897 --> 00:00:08,297
+Seis sistemas em uma só conversa. Veja na prática.
+
+3
+00:00:08,697 --> 00:00:14,465
+Na Pesquisa, você pergunta o que o povo pede, e a IA mostra os temas e a prioridade de cada bairro.
+
+4
+00:00:14,966 --> 00:00:19,838
+Na Saúde, ela avisa antes de faltar remédio e já sugere o remanejamento.
+
+5
+00:00:20,338 --> 00:00:24,549
+No Jurídico, responde citando o artigo da lei, e o procurador revisa.
+
+6
+00:00:25,048 --> 00:00:29,664
+Na Aprendizagem, mostra quem precisa de ajuda e cria a trilha de reforço.
+
+7
+00:00:30,165 --> 00:00:36,061
+Em Obras, você manda a planta e diz o que quer construir. A IA mede, orça e entrega os documentos.
+
+8
+00:00:36,561 --> 00:00:41,006
+E o Engenheiro 7.3 acompanha a obra e avisa antes do atraso.
+
+9
+00:00:41,506 --> 00:00:46,357
+Tudo conectado, com segurança e LGPD. A IA sugere, as pessoas decidem.
+
+10
+00:00:47,757 --> 00:00:53,644
+V4.7. A nova IA para municípios e empresas chegou. Fale com a V4 FábricaGov.
+

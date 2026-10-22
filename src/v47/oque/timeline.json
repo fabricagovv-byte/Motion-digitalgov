@@ -1,0 +1,83 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.8,
+   "dur": 6.976,
+   "caption": "Você já ouviu falar da V4.7? Em poucos minutos, vamos explicar o que ela é e como ajuda a sua cidade."
+  },
+  {
+   "id": "n2",
+   "start": 8.376,
+   "dur": 6.357,
+   "caption": "A V4.7 é uma inteligência artificial criada pela V4 FábricaGov para a gestão pública."
+  },
+  {
+   "id": "n3",
+   "start": 15.334,
+   "dur": 5.376,
+   "caption": "Pense nela como uma assistente que trabalha junto com a prefeitura, 24 horas por dia."
+  },
+  {
+   "id": "n4",
+   "start": 21.21,
+   "dur": 6.635,
+   "caption": "Ela reúne informações que hoje ficam espalhadas: planilhas, sistemas, documentos, leis e os pedidos da população."
+  },
+  {
+   "id": "n5",
+   "start": 28.344,
+   "dur": 6.165,
+   "caption": "Com esses dados, a V4.7 entende o que acontece em cada bairro, em cada escola e em cada obra."
+  },
+  {
+   "id": "n6",
+   "start": 35.01,
+   "dur": 5.995,
+   "caption": "E faz três coisas: responde perguntas, avisa sobre problemas antes que cresçam, e prepara documentos."
+  },
+  {
+   "id": "n7",
+   "start": 41.605,
+   "dur": 6.354,
+   "caption": "Por exemplo: o secretário pergunta quantas consultas estão atrasadas, e recebe a resposta na hora, com gráfico."
+  },
+  {
+   "id": "n8",
+   "start": 48.459,
+   "dur": 5.013,
+   "caption": "Ou recebe um alerta: o estoque de vacinas de uma unidade deve acabar em cinco dias."
+  },
+  {
+   "id": "n9",
+   "start": 53.972,
+   "dur": 6.229,
+   "caption": "Ou pede um termo de referência, e a V4.7 monta o rascunho com base na lei, para a equipe revisar."
+  },
+  {
+   "id": "n10",
+   "start": 60.801,
+   "dur": 7.36,
+   "caption": "Tudo isso acontece em seis sistemas: Pesquisa, Saúde, Jurídico, Aprendizagem, Obras e o Engenheiro 7.3."
+  },
+  {
+   "id": "n11",
+   "start": 68.761,
+   "dur": 7.381,
+   "caption": "A IA sugere, mas quem decide são as pessoas. E cada dado é protegido, com acesso por perfil e LGPD desde o projeto."
+  },
+  {
+   "id": "n12",
+   "start": 76.742,
+   "dur": 5.845,
+   "caption": "A implantação é por etapas: diagnóstico, integração dos dados, treinamento da equipe e acompanhamento."
+  },
+  {
+   "id": "n13",
+   "start": 84.188,
+   "dur": 4.252,
+   "caption": "V4.7. Inteligência pública, por V4 FábricaGov."
+  }
+ ],
+ "end": 92.44
+}

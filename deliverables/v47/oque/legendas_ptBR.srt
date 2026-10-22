@@ -1,0 +1,52 @@
+1
+00:00:00,800 --> 00:00:07,976
+Você já ouviu falar da V4.7? Em poucos minutos, vamos explicar o que ela é e como ajuda a sua cidade.
+
+2
+00:00:08,376 --> 00:00:14,933
+A V4.7 é uma inteligência artificial criada pela V4 FábricaGov para a gestão pública.
+
+3
+00:00:15,334 --> 00:00:20,910
+Pense nela como uma assistente que trabalha junto com a prefeitura, 24 horas por dia.
+
+4
+00:00:21,210 --> 00:00:28,045
+Ela reúne informações que hoje ficam espalhadas: planilhas, sistemas, documentos, leis e os pedidos da população.
+
+5
+00:00:28,344 --> 00:00:34,709
+Com esses dados, a V4.7 entende o que acontece em cada bairro, em cada escola e em cada obra.
+
+6
+00:00:35,010 --> 00:00:41,205
+E faz três coisas: responde perguntas, avisa sobre problemas antes que cresçam, e prepara documentos.
+
+7
+00:00:41,605 --> 00:00:48,159
+Por exemplo: o secretário pergunta quantas consultas estão atrasadas, e recebe a resposta na hora, com gráfico.
+
+8
+00:00:48,459 --> 00:00:53,672
+Ou recebe um alerta: o estoque de vacinas de uma unidade deve acabar em cinco dias.
+
+9
+00:00:53,972 --> 00:01:00,401
+Ou pede um termo de referência, e a V4.7 monta o rascunho com base na lei, para a equipe revisar.
+
+10
+00:01:00,801 --> 00:01:08,361
+Tudo isso acontece em seis sistemas: Pesquisa, Saúde, Jurídico, Aprendizagem, Obras e o Engenheiro 7.3.
+
+11
+00:01:08,761 --> 00:01:16,342
+A IA sugere, mas quem decide são as pessoas. E cada dado é protegido, com acesso por perfil e LGPD desde o projeto.
+
+12
+00:01:16,742 --> 00:01:22,787
+A implantação é por etapas: diagnóstico, integração dos dados, treinamento da equipe e acompanhamento.
+
+13
+00:01:24,188 --> 00:01:28,640
+V4.7. Inteligência pública, por V4 FábricaGov.
+

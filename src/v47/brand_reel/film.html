@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · reel de identidade de marca</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+#stage{background:#000}
+.sc{display:none;position:absolute;inset:0;overflow:hidden}
+.lmask{position:absolute;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.card{position:absolute;border-radius:26px;padding:28px 30px;box-shadow:0 30px 60px #0003;font-family:Inter;display:flex;flex-direction:column;justify-content:space-between}
+.card b{font-size:30px;font-weight:700}.card span{font-size:22px;font-weight:600;opacity:.75}
+.nav a{font-size:22px;font-weight:600;color:#3A3D45;margin-left:40px}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1: esfera dourada -->
+<div class="sc" id="s1">
+ <div class="abs" id="l1" style="inset:-20%;background:radial-gradient(40% 50% at 30% 50%,#1D3BFF55,transparent 70%),radial-gradient(35% 45% at 70% 55%,#D9A44166,transparent 70%),#020205"></div>
+ <div class="abs" id="sph1" style="left:860px;top:440px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF6D8 0%,#F2C76B 18%,#D9A441 45%,#8A5E14 80%,#3B2706 100%);box-shadow:0 0 120px #D9A44188,inset -12px -18px 40px #0006"></div>
+</div>
+
+<!-- 2: piso de grade branco + logo brilhante -->
+<div class="sc" id="s2" style="background:#FAFAF7">
+ <div class="abs" style="left:-50%;width:200%;top:560px;height:900px;perspective:600px"><div id="floor2" style="position:absolute;inset:0;background-image:linear-gradient(#11121618 2px,transparent 2px),linear-gradient(90deg,#11121618 2px,transparent 2px);background-size:120px 120px;transform:rotateX(72deg);transform-origin:50% 0"></div></div>
+ <div class="abs" style="left:0;right:0;top:0;height:700px;background:linear-gradient(#FAFAF7 55%,#FAFAF700)"></div>
+ <div class="abs" id="sh2" style="left:760px;top:760px;width:400px;height:40px;border-radius:50%;background:#11121633;filter:blur(14px)"></div>
+ <div class="lmask" id="lg2" style="left:610px;top:300px;width:700px;height:293px;background:linear-gradient(115deg,#2A2C33 0%,#8C8F98 18%,#F2F2F4 30%,#5E616A 44%,#C9CCD3 58%,#2F3239 72%,#B9BCC4 86%,#3A3D45 100%);filter:drop-shadow(0 24px 30px #0004)"></div>
+</div>
+
+<!-- 3: vetor com pontos de âncora -->
+<div class="sc" id="s3" style="background:#050507">
+ <svg class="abs" id="vec3" width="1920" height="1080"></svg>
+ <svg class="abs" id="cur3" width="60" height="60" viewBox="0 0 44 44"><path d="M4 2 L4 34 L13 26 L19 40 L25 37 L19 24 L31 24Z" fill="#E9ECF5" stroke="#111216" stroke-width="2"/></svg>
+</div>
+
+<!-- 4: cor da marca, padrão de ícones e bolha líquida -->
+<div class="sc" id="s4" style="background:#D9A441">
+ <div id="pat4" class="abs" style="inset:-30%"></div>
+ <div class="lmask" id="lg4" style="left:760px;top:438px;width:400px;height:167px;background:#111216"></div>
+ <div class="abs" id="dot4" style="width:44px;height:44px;border-radius:50%;background:#111216;left:938px;top:518px;opacity:0"></div>
+ <div class="abs" id="blob4" style="background:#FAFAF7"></div>
+</div>
+
+<!-- 5: logo cromada girando -->
+<div class="sc" id="s5" style="background:radial-gradient(70% 60% at 50% 0%,#5A5E6A 0%,#1A1C22 45%,#07070A 100%)">
+ <div class="abs" style="left:0;right:0;top:0;bottom:0;perspective:1400px"><div id="rot5" style="position:absolute;left:560px;top:330px;width:800px;height:335px;transform-style:preserve-3d">
+  <div class="lmask" id="ch5" style="inset:0;width:800px;height:335px"></div></div></div>
+ <div class="lmask" id="rf5" style="left:560px;top:690px;width:800px;height:335px;transform:scaleY(-1);opacity:.14;-webkit-mask-image:none"></div>
+</div>
+
+<!-- 6: paleta de cores -->
+<div class="sc" id="s6" style="background:#F6F5F1">
+ <div class="card" id="c6a" style="width:300px;height:250px;background:#111216;color:#F4F1EA"><b>Grafite</b><span>#111216</span></div>
+ <div class="card" id="c6b" style="width:380px;height:330px;background:#D9A441;color:#111216"><b>Dourado</b><span>#D9A441</span></div>
+ <div class="card" id="c6c" style="width:280px;height:230px;background:#FFFFFF;color:#111216;border:1px solid #E3E0D8"><b>Creme</b><span>#F4F1EA</span></div>
+ <div class="card" id="c6d" style="width:260px;height:220px;background:#2EC4E6;color:#111216"><b>Ciano</b><span>#2EC4E6</span></div>
+ <div class="card" id="c6e" style="width:330px;height:200px;background:#FFFFFF;color:#111216;border:1px solid #E3E0D8"><b style="font-family:Anton;font-size:56px;font-weight:400">Aa</b><span>Anton · Inter</span></div>
+ <div class="lmask" id="lg6" style="width:420px;height:176px;background:#111216"></div>
+</div>
+
+<!-- 7: zoom com desfoque de movimento -->
+<div class="sc" id="s7" style="background:#FAFAF7">
+ <div class="lmask" id="lg7" style="width:1600px;height:669px;background:#111216"></div>
+</div>
+
+<!-- 8: site -->
+<div class="sc" id="s8" style="background:#ECEAE4">
+ <div class="abs" id="site8" style="left:160px;top:110px;width:1600px;height:1100px;background:#FFFFFF;border-radius:36px;box-shadow:0 40px 90px #0002;overflow:hidden;transform-origin:20% 20%">
+  <div class="abs nav" style="left:70px;right:70px;top:50px;display:flex;align-items:center"><div class="lmask" id="nl8" style="position:relative;width:150px;height:63px;background:#111216"></div><div style="flex:1"></div><a>Sistemas</a><a>Como funciona</a><a>Cidades</a><a>Contato</a><div style="margin-left:40px;background:#111216;color:#F4F1EA;border-radius:999px;padding:14px 28px;font-size:22px;font-weight:700">Fale com a V4</div></div>
+  <div class="abs" id="h8" style="left:70px;top:230px;width:1100px;font-family:Inter;font-weight:600;font-size:96px;line-height:1.08;color:#111216;letter-spacing:-2px"></div>
+  <div class="abs" id="b8" style="left:70px;top:720px;display:flex;gap:20px"><div style="background:#D9A441;color:#111216;border-radius:999px;padding:22px 40px;font-size:28px;font-weight:700">Conhecer a V4.7</div><div style="border:2px solid #111216;border-radius:999px;padding:20px 40px;font-size:28px;font-weight:700;color:#111216">Ver os 6 sistemas</div></div>
+  <div class="abs" id="g8" style="left:1180px;top:240px;width:340px;height:420px;border-radius:30px;background:radial-gradient(circle at 30% 30%,#F2C76B,#D9A441 40%,#6B4BFF 100%);filter:saturate(1.1)"></div>
+ </div>
+</div>
+
+<!-- 9: final -->
+<div class="sc" id="s9" style="background:#030305">
+ <div class="abs" id="gl9" style="left:560px;top:250px;width:800px;height:520px;border-radius:50%;background:radial-gradient(#D9A44155,#6B4BFF22 50%,transparent 70%);filter:blur(40px)"></div>
+ <div class="lmask" id="ch9" style="left:660px;top:380px;width:600px;height:251px"></div>
+ <div class="abs" id="tx9" style="left:0;right:0;top:700px;text-align:center;font-family:Inter;font-weight:700;font-size:34px;letter-spacing:12px;color:#F4F1EA">INTELIGÊNCIA PÚBLICA</div>
+ <div class="abs" id="by9" style="left:0;right:0;top:760px;text-align:center;font-family:Inter;font-weight:600;font-size:24px;letter-spacing:6px;color:#D9A441">por V4 FábricaGov</div>
+</div>
+
+<div class="abs" id="flash" style="inset:0;background:#FFFFFF;opacity:0;pointer-events:none"></div>
+<div class="abs" id="fade" style="inset:0;background:#000;opacity:0;pointer-events:none"></div>
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const {$, cl, eo, eio, spr, mul} = K;
+const B = 60 / 128;                                         // uma batida (128 bpm)
+const CUT = [0, 4, 8, 14, 22, 26, 32, 34, 41, 46].map(b => b * B);  // inícios das cenas, em batidas
+const DUR = CUT[CUT.length - 1] + .6;
+const LOGO_W = '../kit/assets/nova/v47_logo_branca_transp.png', LOGO_D = '../kit/assets/nova/v47_logo_escura_transp.png';
+const CHROME = 'linear-gradient(115deg,#5B5F68 0%,#F4F5F7 12%,#9EA2AB 24%,#FFFFFF 33%,#6B6F78 45%,#E8EAEE 58%,#8C9099 70%,#FFFFFF 80%,#4C5058 100%)';
+let CT;
+function mask(el, url) { el.style.webkitMaskImage = `url(${url})`; el.style.maskImage = `url(${url})`; }
+function build(ct) {
+  CT = ct;
+  ['lg2', 'lg4', 'ch5', 'rf5', 'lg6', 'lg7', 'nl8', 'ch9'].forEach(id => mask($(id), LOGO_W));
+  ['ch5', 'rf5', 'ch9'].forEach(id => { $(id).style.background = CHROME; $(id).style.backgroundSize = '300% 100%'; });
+  $('rf5').style.webkitMaskImage = `linear-gradient(transparent 40%,#000),url(${LOGO_W})`; $('rf5').style.webkitMaskComposite = 'source-in';
+  // vetor: contornos em escala de tela
+  const k = 1500 / ct.w; let s = '<defs><linearGradient id="vf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B1D23"/><stop offset="1" stop-color="#2C2F37"/></linearGradient></defs><g id="vg">';
+  ct.shapes.forEach((sh, i) => { s += `<path id="vp${i}" d="M${sh.d.map(p => (p[0] * k).toFixed(1) + ' ' + (p[1] * k).toFixed(1)).join(' L')} Z" fill="url(#vf)" stroke="#E9ECF5" stroke-width="3"/>`; });
+  ct.shapes.forEach((sh, i) => sh.a.forEach((p, j) => { s += `<rect class="anc" data-i="${i}" data-j="${j}" x="${p[0] * k - 9}" y="${p[1] * k - 9}" width="18" height="18" fill="#2F6BFF" stroke="#FFFFFF" stroke-width="3"/>`; }));
+  s += '<line id="hd3" stroke="#2F6BFF" stroke-width="3"/><circle id="hc3" r="9" fill="#FFFFFF" stroke="#2F6BFF" stroke-width="3"/></g>'; $('vec3').innerHTML = s; CT.k = k;
+  // padrão de ícones
+  let p = ''; for (let y = 0; y < 9; y++) for (let x = 0; x < 9; x++) p += `<div class="lmask pi" style="left:${x * 330 + (y % 2) * 165}px;top:${y * 190}px;width:220px;height:92px;background:#111216;-webkit-mask-image:url(${LOGO_W});mask-image:url(${LOGO_W})"></div>`;
+  $('pat4').innerHTML = p;
+}
+function show(k) { for (let i = 1; i <= 9; i++) $('s' + i).style.display = i === k ? 'block' : 'none'; }
+function seek(t) {
+  let k = 1; for (let i = 0; i < CUT.length - 1; i++) if (t >= CUT[i]) k = i + 1; show(k);
+  const lt = t - CUT[k - 1], d = CUT[k] - CUT[k - 1];
+  if (k === 1) { $('l1').style.transform = `translateX(${-120 + 240 * eio(lt / d)}px) scale(${1 + .1 * lt})`; const p = spr(lt * 1.1 - .2); $('sph1').style.transform = `scale(${Math.max(0, p)})`;
+    $('sph1').style.background = `radial-gradient(circle at ${35 + 10 * Math.sin(lt * 3)}% ${30 + 6 * Math.cos(lt * 3)}%,#FFF6D8 0%,#F2C76B 18%,#D9A441 45%,#8A5E14 80%,#3B2706 100%)`; }
+  if (k === 2) { $('floor2').style.backgroundPosition = `0 ${lt * 160}px`; const bob = Math.sin(lt * 3) * 14; const p = eo(lt / .5);
+    $('lg2').style.transform = `translateY(${bob - 80 * (1 - p)}px) perspective(900px) rotateY(${Math.sin(lt * 2) * 14}deg) scale(${.85 + .15 * p})`; $('lg2').style.opacity = cl(lt / .2);
+    $('lg2').style.backgroundPosition = `${lt * 60}% 0`; $('lg2').style.backgroundSize = '200% 100%'; $('sh2').style.transform = `scale(${1 - bob / 80})`; }
+  if (k === 3) { const g = $('vg'); const k2 = CT.k; const z = 1.9 + .3 * eio(lt / d); const px = -40 - (1500 * z - 1920 + 160) * eio(lt / d); g.setAttribute('transform', `translate(${px} ${540 - (CT.h * k2 * z) / 2}) scale(${z})`);
+    CT.shapes.forEach((sh, i) => { const pe = $('vp' + i); const L = pe.getTotalLength(); pe.style.strokeDasharray = L; pe.style.strokeDashoffset = L * (1 - eo((lt - i * .08) / .8)); pe.style.fillOpacity = cl((lt - .7) / .5); });
+    document.querySelectorAll('#vec3 .anc').forEach((r, n) => r.style.opacity = cl((lt - .3 - n * .012) / .15));
+    // cursor puxando um ponto do 7
+    const sh = CT.shapes[CT.shapes.length - 1]; const a = sh.a[2]; const ax = a[0] * k2, ay = a[1] * k2; const M = g.getCTM();
+    const drag = eio((lt - 1.4) / .8) * 40; const hx = ax + 90 + drag, hy = ay - 60;
+    const P = new DOMPoint(hx, hy).matrixTransform(M); const st = eo((lt - .6) / .7);
+    $('cur3').style.transform = `translate(${1500 + (P.x - 1500) * st}px,${900 + (P.y - 900) * st}px)`;
+    $('hd3').setAttribute('x1', ax); $('hd3').setAttribute('y1', ay); $('hd3').setAttribute('x2', hx); $('hd3').setAttribute('y2', hy); $('hc3').setAttribute('cx', hx); $('hc3').setAttribute('cy', hy);
+    $('hd3').style.opacity = $('hc3').style.opacity = cl((lt - 1.2) / .2); }
+  if (k === 4) { const t1 = 2 * B, t2 = 4 * B, t3 = 6.6 * B;
+    const sh = lt < t1 ? 1 : 1 - eio((lt - t1) / (.6 * B)); $('lg4').style.transform = `scale(${sh})`; $('lg4').style.opacity = sh > .02 ? 1 : 0;
+    const dp = lt > t1 && lt < t2 ? spr((lt - t1) * 2) : 0; $('dot4').style.opacity = dp ? 1 : 0; $('dot4').style.transform = `scale(${dp * (1 + 2 * eio((lt - t2 + .3) / .3))})`;
+    const pp = lt > t2 ? 1 : 0; document.querySelectorAll('#pat4 .pi').forEach((e, i) => { e.style.opacity = pp; e.style.transform = `scale(${spr((lt - t2) * 2 - (i % 9) * .03)})`; });
+    $('pat4').style.transform = `translate(${-(lt - t2) * 90}px,${-(lt - t2) * 60}px) rotate(-8deg)`;
+    const bp = eio((lt - t3) / (1.4 * B)); const R = 2600 * bp; Object.assign($('blob4').style, {width: R + 'px', height: R * .8 + 'px', left: 1500 - R / 2 + 'px', top: 780 - R * .4 + 'px', borderRadius: `${40 + 15 * Math.sin(lt * 9)}% ${60 - 10 * Math.sin(lt * 7)}% ${50 + 12 * Math.cos(lt * 8)}% ${45}% / 50% 45% 60% 50%`, opacity: bp > 0 ? 1 : 0}); }
+  if (k === 5) { const ang = -35 + 70 * eio(lt / d); $('rot5').style.transform = `rotateY(${ang}deg) rotateX(${6 * Math.sin(lt * 2)}deg)`; $('ch5').style.backgroundPosition = `${50 + ang * 1.4}% 0`;
+    $('rf5').style.backgroundPosition = `${50 + ang * 1.4}% 0`; $('rf5').style.transform = `scaleY(-1) perspective(1400px) rotateY(${-ang}deg)`; $('ch5').style.filter = `drop-shadow(0 0 ${20 + 10 * Math.sin(lt * 4)}px #FFFFFF22)`; }
+  if (k === 6) { const pos = [['c6a', 380, 330, -900, 0], ['c6b', 1180, 160, 0, -800], ['c6c', 1340, 640, 900, 0], ['c6d', 300, 700, 0, 800], ['c6e', 720, 760, 0, 700]];
+    pos.forEach(([id, x, y, dx, dy], i) => { const p = eo((lt - i * .12) / .55); const fl = Math.sin(lt * 1.6 + i) * 10; $(id).style.transform = `translate(${x + dx * (1 - p)}px,${y + dy * (1 - p) + fl}px) rotate(${(i % 2 ? 4 : -4) * (1 - p) + Math.sin(lt + i) * 1.5}deg)`; });
+    const p = spr(lt * 1.2); $('lg6').style.transform = `translate(750px,430px) scale(${p})`; }
+  if (k === 7) { const p = eio(lt / d); const s = 3.2 - 2.4 * p; const x = 160 - 1400 * (1 - p) * (1 - p); const v = Math.abs(1400 * 2 * (1 - p)) / 1400;
+    $('lg7').style.transform = `translate(${x}px,${206}px) scale(${s})`; $('lg7').style.filter = `blur(${Math.min(30, v * 18)}px)`; }
+  if (k === 8) { const lines = ['Inteligência pública', 'para cidades que', 'decidem com dados.']; $('h8').innerHTML = lines.map((l, i) => { const p = cl((lt - .2 - i * .25) / .45); return `<div style="opacity:${p};filter:blur(${10 * (1 - p)}px);transform:translateY(${30 * (1 - eo(p))}px)">${l}</div>`; }).join('');
+    $('b8').style.opacity = cl((lt - 1.1) / .3); $('g8').style.transform = `rotate(${lt * 8}deg) scale(${.9 + .1 * Math.sin(lt * 2)})`;
+    const z = lt < 1.8 ? 1.25 - .25 * eo(lt / 1.2) : 1 + .35 * eio((lt - 1.8) / 1.4); $('site8').style.transform = `scale(${z}) translateY(${-60 * eio((lt - 1.8) / 1.4)}px)`; }
+  if (k === 9) { const p = eo(lt / 1); $('ch9').style.transform = `scale(${.8 + .2 * p})`; $('ch9').style.opacity = p; $('ch9').style.backgroundPosition = `${100 - lt * 40}% 0`;
+    $('gl9').style.opacity = .6 + .3 * Math.sin(lt * 2); $('tx9').style.opacity = cl((lt - .5) / .5); $('tx9').style.letterSpacing = (12 + 14 * (1 - eo((lt - .5) / 1.2))) + 'px'; $('by9').style.opacity = cl((lt - 1.1) / .5); }
+  // flash nos cortes "duros"
+  let fl = 0; [2, 4, 5, 7, 8].forEach(i => { const u = t - CUT[i - 1]; if (u >= 0 && u < .12) fl = .6 * (1 - u / .12); }); $('flash').style.opacity = fl;
+  $('fade').style.opacity = t < .25 ? 1 - t / .25 : cl((t - (DUR - .7)) / .7);
+}
+window.seek = seek; window.DUR = DUR;
+fetch('contours.json').then(r => r.json()).then(ct => Promise.all(['700 20px Inter', '600 20px Inter', '40px Anton'].map(f => document.fonts.load(f))).then(() => {
+  const im = new Image(); im.src = LOGO_W; return new Promise(r => { im.onload = r; }); }).then(() => { build(ct); seek(0); window.ready = true;
+  if (!location.search.includes('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); }; loop(); } }));
+</script>
+</body>
+</html>

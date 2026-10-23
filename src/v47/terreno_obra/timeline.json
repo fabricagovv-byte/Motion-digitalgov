@@ -1,0 +1,71 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.8,
+   "dur": 5.355,
+   "caption": "Este é o terreno. Agora veja a V4.7 transformar ele em obra, do zero à entrega."
+  },
+  {
+   "id": "n2",
+   "start": 6.755,
+   "dur": 4.565,
+   "caption": "Primeiro, o drone mede: frente, lateral e área, com cada ponto registrado."
+  },
+  {
+   "id": "n3",
+   "start": 11.82,
+   "dur": 5.653,
+   "caption": "A construtora diz: quero um condomínio de 12 casas. E a IA desenha o projeto na medida do terreno."
+  },
+  {
+   "id": "n4",
+   "start": 17.974,
+   "dur": 5.091,
+   "caption": "Em seguida, monta o orçamento com preços de referência e o cronograma, etapa por etapa."
+  },
+  {
+   "id": "n5",
+   "start": 23.565,
+   "dur": 3.307,
+   "caption": "Meses 1 e 2: limpeza, terraplenagem e fundações."
+  },
+  {
+   "id": "n6",
+   "start": 27.272,
+   "dur": 6.123,
+   "caption": "Meses 3 a 6: estrutura e alvenaria. O Engenheiro 7.3 compara o previsto com o realizado."
+  },
+  {
+   "id": "n7",
+   "start": 33.794,
+   "dur": 4.949,
+   "caption": "Meses 7 a 10: cobertura, rua e instalações. Os alertas chegam antes do atraso."
+  },
+  {
+   "id": "n8",
+   "start": 39.144,
+   "dur": 3.904,
+   "caption": "Meses 11 e 12: acabamento, paisagismo e entrega das chaves."
+  },
+  {
+   "id": "n9",
+   "start": 43.648,
+   "dur": 5.12,
+   "caption": "No cenário ilustrativo, o tempo médio de uma obra assim cai de 14 para 12 meses."
+  },
+  {
+   "id": "n10",
+   "start": 49.268,
+   "dur": 6.997,
+   "caption": "E a economia chega a 144 mil reais: quantitativos certos, menos retrabalho e compras na hora certa."
+  },
+  {
+   "id": "n11",
+   "start": 57.865,
+   "dur": 5.76,
+   "caption": "A IA sugere, o engenheiro decide. V4.7 para construtoras. Peça sua demonstração."
+  }
+ ],
+ "end": 67.63
+}

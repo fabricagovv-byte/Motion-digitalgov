@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Do terreno à obra</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+.ttl{font-family:Anton,sans-serif;text-transform:uppercase;font-size:92px;line-height:.98;letter-spacing:.5px}
+.sub{font-size:34px;font-weight:500;color:var(--mute);line-height:1.4}
+.tr{background:transparent!important}
+.glass{position:absolute;background:#111216e6;border:1px solid #3A3E48;border-radius:22px;box-shadow:0 30px 60px #0009;padding:30px 36px}
+.big{font-family:Anton,sans-serif;font-size:120px;line-height:1}
+.gr{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.gr span{width:300px;font-size:24px;font-weight:600}
+.gr div{position:relative;flex:1;height:30px;background:#24272F;border-radius:8px}
+.gr i{position:absolute;top:0;bottom:0;border-radius:8px;background:var(--acc);width:0}
+.gr b{width:130px;text-align:right;font-size:24px;font-variant-numeric:tabular-nums}
+.kv{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #2E323C;padding:24px 0;font-size:34px}
+.kv span{color:var(--mute);font-weight:500}.kv b{font-family:Anton,sans-serif;font-size:56px;font-weight:400}
+.lab{position:absolute;background:#111216e6;color:#F4F1EA;border:2px solid var(--acc);border-radius:12px;padding:8px 18px;font-size:26px;font-weight:700;white-space:nowrap;transform:translate(-50%,-50%)}
+</style>
+</head>
+<body>
+<div id="stage">
+ <div id="site" style="position:absolute;left:0;top:-200px;width:1920px;height:1440px;transform-origin:947px 784px">
+  <img src="img/terreno_4x.jpg" alt="" style="position:absolute;left:0;top:0;width:1920px;height:1440px">
+  <svg id="sv" viewBox="0 0 588 441" preserveAspectRatio="none" style="position:absolute;left:0;top:0;width:1920px;height:1440px"></svg>
+  <div id="labs" style="position:absolute;inset:0"></div>
+ </div>
+ <div id="dim" style="position:absolute;inset:0;background:#111216;opacity:0"></div>
+ <div id="vig" style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 55%,#000a 100%)"></div>
+
+<div class="sc tr" id="s1"><div class="cam">
+ <div class="abs" style="left:0;top:0;width:1100px;height:1080px;background:linear-gradient(90deg,#111216ee,#11121600)"></div>
+ <div class="abs eb" id="e1" style="left:120px;top:250px">Terreno real · V4.7 para construtoras</div>
+ <div class="abs ttl" id="t1" style="left:116px;top:310px;width:900px;font-size:130px">Este é o terreno.</div>
+ <div class="abs sub" id="u1" style="left:120px;top:620px;width:760px;color:#E4E0D7;font-size:40px;font-weight:600">Do zero à entrega das chaves.</div>
+</div></div>
+
+<div class="sc tr" id="s2"><div class="cam">
+ <div class="glass" id="g2" style="left:120px;top:150px;width:520px"><div class="eb">Passo 1 · Drone</div><div style="font-size:40px;font-weight:700;margin-top:10px">Medição do terreno</div><div class="lbl" style="margin-top:8px;font-size:22px">medidas ilustrativas</div></div>
+</div></div>
+
+<div class="sc tr" id="s3"><div class="cam">
+ <div class="glass" id="g3" style="left:120px;top:150px;width:640px"><div class="eb">Passo 2 · Projeto</div><div id="q3" style="font-size:38px;font-weight:700;margin-top:12px;line-height:1.3;min-height:100px"></div><div id="d3" class="lbl" style="margin-top:10px;font-size:26px">12 casas · lotes de 20 × 32 m · rua interna</div></div>
+</div></div>
+
+<div class="sc tr" id="s4"><div class="cam">
+ <div class="glass" id="g4" style="left:120px;top:150px;width:1680px;padding:36px 44px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><div class="eb">Passo 3 · Orçamento e cronograma</div><div class="lbl">meses 1 → 12</div></div>
+  <div id="gt4" style="margin-top:26px"></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;border-top:1px solid #2E323C;padding-top:20px">
+   <div class="lbl" style="font-size:26px">Custo estimado · referência SINAPI · valores ilustrativos</div>
+   <div class="big acc" id="n4" style="font-size:80px;white-space:nowrap">R$ 0</div></div>
+ </div>
+</div></div>
+
+<div class="sc tr" id="s5"><div class="cam"></div></div>
+<div class="sc tr" id="s6"><div class="cam"></div></div>
+<div class="sc tr" id="s7"><div class="cam"></div></div>
+<div class="sc tr" id="s8"><div class="cam"></div></div>
+
+<div id="hudc" style="position:absolute;inset:0;opacity:0">
+ <div class="glass" style="left:120px;top:140px;width:560px">
+  <div class="lbl" style="letter-spacing:3px;text-transform:uppercase">Cronograma</div>
+  <div style="display:flex;align-items:baseline;gap:16px;margin-top:6px"><div class="big" id="mo" style="font-size:96px">MÊS 1</div><div class="lbl" style="font-size:28px">de 12</div></div>
+  <div id="st" style="font-size:32px;font-weight:700;color:var(--acc);margin-top:4px">Terraplenagem</div>
+  <div style="display:flex;gap:6px;margin-top:18px" id="ticks"></div>
+ </div>
+ <div class="glass" id="e73" style="left:1340px;top:140px;width:460px">
+  <div class="lbl" style="letter-spacing:3px;text-transform:uppercase;color:#5B8CFF">Engenheiro 7.3</div>
+  <div style="display:flex;justify-content:space-between;font-size:28px;margin-top:14px"><span class="mute">Previsto</span><b id="pv">0%</b></div>
+  <div style="display:flex;justify-content:space-between;font-size:28px;margin-top:8px"><span class="mute">Realizado</span><b id="rz" style="color:#2FBF8F">0%</b></div>
+  <div id="al" style="margin-top:16px;background:#3A2A10;border-left:6px solid #FFB020;border-radius:10px;padding:14px 16px;font-size:24px;font-weight:700;color:#F2C46B;opacity:0">⚠ Chuva prevista na sem. 30: antecipar cobertura do bloco B</div>
+ </div>
+</div>
+
+<div class="sc" id="s9"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e9" style="left:120px;top:150px">Tempo médio da obra · cenário ilustrativo</div>
+ <div class="abs ttl" id="t9" style="left:116px;top:200px;width:1700px;font-size:84px">2 meses a menos de canteiro</div>
+ <div class="abs" style="left:120px;top:400px;width:1680px">
+  <div class="lbl" id="x9" style="margin-bottom:12px;font-size:28px">Jeito tradicional</div>
+  <div style="display:flex;align-items:center;gap:24px"><div id="b9a" style="height:84px;width:0;background:#7D818C;border-radius:12px"></div><div class="big" id="n9a" style="font-size:72px">0 meses</div></div>
+  <div class="lbl" id="y9" style="margin:40px 0 12px;font-size:28px">Com a V4.7</div>
+  <div style="display:flex;align-items:center;gap:24px"><div id="b9b" style="height:84px;width:0;background:var(--acc);border-radius:12px"></div><div class="big acc" id="n9b" style="font-size:72px">0 meses</div></div>
+ </div>
+</div></div>
+
+<div class="sc" id="s10"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:1100px;top:300px;width:700px;height:600px;background:var(--acc)"></div>
+ <div class="abs eb" id="e10" style="left:120px;top:150px">Economia para a construtora · cenário ilustrativo</div>
+ <div class="abs" style="left:120px;top:250px;width:960px">
+  <div class="kv" id="k10a"><span>Quantitativos certos (3%)</span><b>R$ 54 mil</b></div>
+  <div class="kv" id="k10b"><span>Menos retrabalho (3%)</span><b>R$ 54 mil</b></div>
+  <div class="kv" id="k10c"><span>Compras na hora certa (2%)</span><b>R$ 36 mil</b></div>
+  <div class="lbl" style="margin-top:24px;font-size:24px">Base: obra de R$ 1,8 milhão · 12 casas</div>
+ </div>
+ <div class="abs panel" id="k10d" style="left:1160px;top:300px;width:640px;padding:48px;border-color:var(--acc)">
+  <div class="lbl" style="letter-spacing:3px;text-transform:uppercase">Economia total</div>
+  <div class="big acc" id="n10" style="font-size:110px;margin-top:14px;white-space:nowrap">R$ 0</div>
+  <div class="lbl" style="margin-top:10px;font-size:26px">8% do custo da obra</div>
+ </div>
+</div></div>
+
+<div class="sc" id="s11"><div class="cam">
+ <div class="glow" style="left:560px;top:150px;width:800px;height:600px;background:var(--acc)"></div>
+ <div class="abs" id="lg11" style="left:310px;top:60px"></div>
+ <div class="abs ttl" id="tg11" style="left:0;top:640px;width:1920px;text-align:center;font-size:70px">A IA sugere. <span class="acc">O engenheiro decide.</span></div>
+ <div class="abs" id="wa11" style="left:660px;top:770px;width:600px;text-align:center;background:#F4F1EA;color:#111216;border-radius:999px;padding:20px 0;font-size:36px;font-weight:700">● WhatsApp (31) 99827-7323</div>
+</div></div>
+
+</div>
+<script src="../kit/kit.js"></script>
+<script>
+const { $, cl, eo, eio, rise, slideX, pop, slam, fade, count, typed, draw } = K; const T = K.Wd;
+const A = [102, 199], B = [341, 168], C = [552, 247], D = [172, 346];
+const L = (p, q, s) => [p[0] + (q[0] - p[0]) * s, p[1] + (q[1] - p[1]) * s];
+const P = (u, v) => L(L(A, B, u), L(D, C, u), v);
+const sc = (u, v) => { const a = P(u, v), b = P(u + .01, v); return Math.hypot(b[0] - a[0], b[1] - a[1]) / .01; };
+const up = (p, h) => [p[0], p[1] - h];
+const pts = a => a.map(p => p[0].toFixed(2) + ',' + p[1].toFixed(2)).join(' ');
+const poly = (a, f, o = 1, s = '', sw = 0) => `<polygon points="${pts(a)}" fill="${f}" fill-opacity="${o}" ${s ? `stroke="${s}" stroke-width="${sw}"` : ''}/>`;
+const mix = (c1, c2, p) => { const h = c => [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16)); const a = h(c1), b = h(c2); return 'rgb(' + a.map((x, i) => Math.round(x + (b[i] - x) * cl(p))).join(',') + ')'; };
+// 12 casas: 2 fileiras × 6, rua interna no meio
+const HOUSES = []; for (let r = 0; r < 2; r++) for (let c = 0; c < 6; c++) { const u0 = c / 6 + .035, u1 = (c + 1) / 6 - .035; const v0 = r ? .63 : .13, v1 = r ? .83 : .33; HOUSES.push({ r, c, u0, u1, v0, v1, k: r * 6 + c }); }
+const LOTS = []; for (let r = 0; r < 2; r++) for (let c = 0; c < 6; c++) LOTS.push([P(c / 6, r ? .56 : .03), P((c + 1) / 6, r ? .56 : .03), P((c + 1) / 6, r ? .97 : .42), P(c / 6, r ? .97 : .42)]);
+const M = m => 3 / 120;  // metros → unidade u
+function house(H, m, look) {
+  const { u0, u1, v0, v1, k } = H; let s = '';
+  const q = [P(u0, v0), P(u1, v0), P(u1, v1), P(u0, v1)]; const S = sc((u0 + u1) / 2, (v0 + v1) / 2) * 1.35;
+  const st = k * .06;
+  const fnd = cl((m - 1 - st) / .6), wall = cl((m - 2.2 - st * 2) / 3.2), roof = cl((m - 6.2 - st * 2) / 1.8), fin = cl((m - 10 - st) / 1.4);
+  if (look) s += poly(q, '#FF7A2F', .35 * look, '#FF7A2F', .8);
+  if (fnd <= 0) return s;
+  s += poly(q, '#9C9A94', fnd);
+  const h = S * (3 / 120) * eo(wall);
+  if (h > .05) {
+    const t = q.map(p => up(p, h)); const wc = m < 5.2 ? '#B9B5AC' : mix('#B9B5AC', '#F1E7D3', (m - 5.2) / 1.2);
+    const faces = [[0, 1, '.62'], [1, 2, '.78'], [2, 3, '1'], [3, 0, '.7']].map(([a, b, sh]) => ({ f: [q[a], q[b], t[b], t[a]], y: (q[a][1] + q[b][1]) / 2, sh }));
+    faces.sort((x, y) => x.y - y.y).forEach(F => { s += poly(F.f, wc, 1); s += poly(F.f, '#000', 1 - F.sh); });
+    // aberturas na fachada da frente
+    if (fin > 0) { const F = (a, z) => up(L(q[3], q[2], a), h * z); const rect = (a0, a1, z0, z1, c) => poly([F(a0, z0), F(a1, z0), F(a1, z1), F(a0, z1)], c, fin);
+      s += rect(.42, .58, 0, .72, '#5A3B24'); s += rect(.12, .32, .35, .75, '#2E4A66'); s += rect(.68, .88, .35, .75, '#2E4A66'); }
+    if (roof <= 0) s += poly(t, '#A9A59C', 1);
+    else {
+      const rh = S * (1.8 / 120) * eo(roof); const vm = (v0 + v1) / 2; const R0 = up(P(u0, vm), h + rh), R1 = up(P(u1, vm), h + rh);
+      const rc = '#C0532E';
+      s += poly([t[0], t[1], R1, R0], rc, 1); s += poly([t[0], t[1], R1, R0], '#000', .3);
+      s += poly([t[0], t[3], R0], wc, 1); s += poly([t[0], t[3], R0], '#000', .3); s += poly([t[1], t[2], R1], wc, 1); s += poly([t[1], t[2], R1], '#000', .22);
+      s += poly([t[3], t[2], R1, R0], rc, 1);
+    }
+  }
+  return s;
+}
+function site(t, o) {
+  let s = '';
+  const quad = [A, B, C, D];
+  if (o.scan) { s += `<polygon points="${pts(quad)}" fill="#FF7A2F" fill-opacity="${.12 * o.scan}" stroke="#FF7A2F" stroke-width="2.2" stroke-dasharray="${900 * o.scan} 900"/>`;
+    if (o.sweep > 0 && o.sweep < 1) { const a = P(o.sweep, 0), b = P(o.sweep, 1); s += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#FFD2B3" stroke-width="2.5" opacity=".9"/>`; } }
+  const m = o.m ?? -1;
+  if (m >= 0) {
+    const tp = cl(m / 1); s += poly(quad, '#8A6A45', .28 * tp);
+    // lotes / cercas
+    if (m > 10.2) LOTS.forEach(l => s += `<polygon points="${pts(l)}" fill="#6E9B4A" fill-opacity="${.5 * cl((m - 10.2) / 1)}" stroke="#F4F1EA" stroke-opacity="${.7 * cl((m - 10.2) / 1)}" stroke-width=".7"/>`);
+    // rua interna
+    const ru = cl((m - 8) / 1.2); if (ru > 0) { const rd = [P(0, .44), P(ru, .44), P(ru, .55), P(0, .55)]; s += poly(rd, '#3A3D44', 1); if (ru > .3) { const a = P(0, .495), b = P(ru, .495); s += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#F2C46B" stroke-width=".9" stroke-dasharray="4 4"/>`; } }
+  }
+  if (o.plan) { LOTS.forEach(l => s += `<polygon points="${pts(l)}" fill="none" stroke="#F4F1EA" stroke-width=".8" stroke-dasharray="3 3" opacity="${o.plan}"/>`); s += poly([P(0, .44), P(1, .44), P(1, .55), P(0, .55)], '#3A3D44', .7 * o.plan); }
+  // casas, das mais distantes para as mais próximas
+  const hs = HOUSES.slice().sort((a, b) => a.v0 - b.v0 || a.u0 - b.u0);
+  hs.forEach(H => { const look = o.plan ? cl((o.plan * 14 - H.k) / 2) : 0; s += house(H, m, look); });
+  // grua
+  if (m > 2 && m < 9.5) { const g = Math.min(cl((m - 2) / .5), cl((9.5 - m) / .5)); const b0 = P(.5, .5), S = sc(.5, .5); const top = up(b0, S * .17 * g), ang = t * .35;
+    const j1 = [top[0] + Math.cos(ang) * S * .22, top[1] + Math.sin(ang) * S * .06], j0 = [top[0] - Math.cos(ang) * S * .07, top[1] - Math.sin(ang) * S * .02];
+    s += `<g stroke="#F2B01E" stroke-width="2.2" opacity="${g}"><line x1="${b0[0]}" y1="${b0[1]}" x2="${top[0]}" y2="${top[1]}"/><line x1="${j0[0]}" y1="${j0[1]}" x2="${j1[0]}" y2="${j1[1]}" stroke-width="1.6"/><line x1="${j1[0]}" y1="${j1[1]}" x2="${j1[0]}" y2="${j1[1] + 14}" stroke="#ccc" stroke-width=".6"/></g>`; }
+  // árvores
+  if (m > 10.6) { const g = cl((m - 10.6) / 1); for (let i = 0; i < 12; i++) for (const v of [.425, .565]) { const p = P((i + .5) / 12, v); const r = sc(.5, v) * .012 * eo(g); s += `<circle cx="${p[0]}" cy="${p[1] - r}" r="${r}" fill="#3F7A3A"/><circle cx="${p[0] - r * .3}" cy="${p[1] - r * 1.3}" r="${r * .5}" fill="#5E9E4E"/>`; } }
+  if (o.drone !== undefined) { const p = P(o.drone, .5 + .4 * Math.sin(o.drone * 9)); const y = p[1] - 30; s += `<g transform="translate(${p[0]} ${y})"><line x1="-9" y1="-9" x2="9" y2="9" stroke="#222" stroke-width="2"/><line x1="-9" y1="9" x2="9" y2="-9" stroke="#222" stroke-width="2"/>${[[-9, -9], [9, 9], [-9, 9], [9, -9]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="5" fill="#ffffff55" stroke="#fff" stroke-width=".6"/>`).join('')}<circle r="3.5" fill="#FF7A2F"/></g><ellipse cx="${p[0]}" cy="${p[1]}" rx="8" ry="3" fill="#0005"/>`; }
+  $('sv').innerHTML = s;
+}
+const toScr = p => [p[0] / 588 * 1920, p[1] / 441 * 1440];
+function labels(list) { $('labs').innerHTML = list.map(([p, txt, o]) => { const q = toScr(p); return `<div class="lab" style="left:${q[0]}px;top:${q[1]}px;opacity:${o}">${txt}</div>`; }).join(''); }
+const STG = [[0, 'Limpeza e terraplenagem'], [1, 'Fundações'], [2.2, 'Estrutura e alvenaria'], [6.2, 'Cobertura'], [8, 'Rua e instalações'], [10, 'Acabamento e paisagismo'], [11.6, 'Entrega das chaves']];
+const GT = [['Terraplenagem', 0, 1, 90000], ['Fundações', 1, 1.2, 216000], ['Estrutura e alvenaria', 2.2, 3.8, 594000], ['Cobertura', 6.2, 2, 216000], ['Rua e instalações', 8, 2, 324000], ['Acabamento', 10, 2, 360000]];
+K.boot({
+  system: 'V4.7 · CONSTRUTORAS', accent: '#FF7A2F', hideHud: [1, 11], noCam: true, noCut: [2, 3, 4, 5, 6, 7, 8],
+  build() {
+    $('gt4').innerHTML = GT.map(([n, a, d, v], i) => `<div class="gr"><span>${n}</span><div><i id="gb${i}" style="left:${a / 12 * 100}%" data-w="${d / 12 * 100}"></i></div><b id="gv${i}">R$ ${K.fmt(v / 1000)} mil</b></div>`).join('');
+    $('ticks').innerHTML = Array.from({ length: 12 }, (_, i) => `<div id="tk${i}" style="flex:1;height:14px;border-radius:4px;background:#2E323C"></div>`).join('');
+    $('lg11').innerHTML = K.logoSVG('lg');
+  },
+  scene(k, t, lt) {
+    const SC = K.S.SC; const s = SC[k - 1];
+    const onSite = k <= 8; $('site').style.display = onSite ? 'block' : 'none'; $('vig').style.display = onSite ? 'block' : 'none';
+    // câmera sobre o terreno
+    let z = 1;
+    if (k === 1) z = 1 + .08 * eo(lt / 6); else if (k === 2) z = 1.08 + .12 * eo(lt / 3); else if (k <= 4) z = 1.2; else if (k <= 8) z = 1.2 + .18 * eio((t - SC[4]) / (SC[7] - SC[4])) - .18 * eio((t - T(8, 'entrega', -.6)) / 1.6);
+    $('site').style.transform = `scale(${z})`;
+    $('dim').style.opacity = onSite ? (k === 4 ? .55 * cl(lt / .5) : 0) : 0;
+    // mês da obra
+    let m = -1;
+    if (k >= 5 && k <= 8) { const seg = [[SC[4], 0], [SC[5], 2], [SC[6], 6], [SC[7], 10], [T(8, 'entrega', 0), 12]]; m = 12; for (let i = 0; i < seg.length - 1; i++) if (t < seg[i + 1][0]) { m = seg[i][1] + (seg[i + 1][1] - seg[i][1]) * (t - seg[i][0]) / (seg[i + 1][0] - seg[i][0]); break; } }
+    const o = { m };
+    if (k === 2) { o.scan = eo((lt - .3) / 1.6); o.sweep = (lt - 1.2) / 2.4; o.drone = cl((lt - .1) / 4); }
+    if (k === 3) o.plan = cl((t - T(3, 'desenha', -.3)) / 1.4);
+    if (k === 4) o.plan = 1;
+    site(t, o);
+    // rótulos de medida
+    if (k === 2) { const a = T(2, 'frente', -.2), b = T(2, 'lateral', -.2), c = T(2, 'área', -.2);
+      labels([[L(A, B, .5), 'Frente 120 m', cl((t - a) / .3)], [L(B, C, .5), 'Lateral 65 m', cl((t - b) / .3)], [P(.5, .5), 'Área ≈ 7.800 m²', cl((t - c) / .3)]]); }
+    else labels([]);
+    K.note(k <= 8 ? 'Foto do terreno + projeto ilustrativo' : 'Cenário ilustrativo'); K.src('');
+    if (k === 1) { rise($('e1'), t, .3); rise($('t1'), t, .5, 80, .9); rise($('u1'), t, T(1, 'do zero', -.3)); }
+    if (k === 2) slideX($('g2'), t, s + .3, -60, .5);
+    if (k === 3) { slideX($('g3'), t, s + .3, -60, .5); typed($('q3'), '“Quero um condomínio de 12 casas.”', t, T(3, 'quero um', -.1), 20); fade($('d3'), t, T(3, 'desenha', .3)); }
+    if (k === 4) { rise($('g4'), t, s + .3, 60, .6); const t0 = T(4, 'monta', -.2); let sum = 0;
+      GT.forEach((g, i) => { const ti = t0 + i * .3; const e = $('gb' + i); e.style.width = (+e.dataset.w * eo((t - ti) / .5)) + '%'; $('gv' + i).style.opacity = cl((t - ti) / .3); sum += g[3] * eo((t - ti) / .6); });
+      $('n4').textContent = 'R$ ' + K.fmt(sum); }
+    // HUD da obra
+    $('hudc').style.opacity = k >= 5 && k <= 8 ? Math.min(cl((t - SC[4]) / .4), 1 - cl((t - (SC[8] - .6)) / .4)) : 0;
+    if (m >= 0) { const mi = Math.min(12, Math.floor(m) + 1); $('mo').textContent = 'MÊS ' + mi; let nm = STG[0][1]; STG.forEach(([a, n]) => { if (m >= a) nm = n; }); $('st').textContent = nm;
+      for (let i = 0; i < 12; i++) $('tk' + i).style.background = i < Math.floor(m) ? '#FF7A2F' : i === Math.floor(m) ? '#FF7A2F88' : '#2E323C';
+      const pv = Math.round(100 * m / 12); $('pv').textContent = pv + '%'; $('rz').textContent = Math.min(100, pv + (m > 1 && m < 11.5 ? 1 : 0)) + '%';
+      $('al').style.opacity = k === 7 ? cl((t - T(7, 'alertas', -.2)) / .3) : 0; $('e73').style.opacity = 1; }
+    if (k === 9) { rise($('e9'), t, s + .3); rise($('t9'), t, s + .45, 60, .7); const a = T(9, '14', -.3), b = T(9, '12', -.3);
+      fade($('x9'), t, a - .2); K.bar($('b9a'), t, a, .9, 'width', 1260); count($('n9a'), t, a, .9, 14, { suf: ' meses' });
+      fade($('y9'), t, b - .2); K.bar($('b9b'), t, b, .9, 'width', 1080); count($('n9b'), t, b, .9, 12, { suf: ' meses' }); }
+    if (k === 10) { rise($('e10'), t, s + .3); [['k10a', 'quantitativos'], ['k10b', 'menos retrabalho'], ['k10c', 'compras']].forEach(([id, w]) => slideX($(id), t, T(10, w, -.3), 60, .4));
+      pop($('k10d'), t, T(10, 'economia', -.2)); count($('n10'), t, T(10, 'economia', -.1), 1.4, 144000, { pre: 'R$ ' }); }
+    if (k === 11) { K.logoAnim('lg', t, s + .2); rise($('tg11'), t, s + .8, 40); pop($('wa11'), t, T(11, 'peça', -.2)); }
+  }
+});
+</script>
+</body>
+</html>

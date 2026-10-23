@@ -1,0 +1,26 @@
+# Falas do filme "V4.7 · Do terreno à obra": id, legenda, texto para o TTS (grafia fonética), pausa depois (s)
+SPEED = 1.05
+LINES = [
+    ("n1", "Este é o terreno. Agora veja a V4.7 transformar ele em obra, do zero à entrega.",
+           "Este é o terreno. Agora, veja a vê quatro ponto sete transformar ele em obra, do zero à entrega.", 0.6),
+    ("n2", "Primeiro, o drone mede: frente, lateral e área, com cada ponto registrado.",
+           "Primeiro, o drone mede: frente, lateral, e área, com cada ponto registrado.", 0.5),
+    ("n3", "A construtora diz: quero um condomínio de 12 casas. E a IA desenha o projeto na medida do terreno.",
+           "A construtora diz: quero um condomínio de doze casas. E a i á desenha o projeto, na medida do terreno.", 0.5),
+    ("n4", "Em seguida, monta o orçamento com preços de referência e o cronograma, etapa por etapa.",
+           "Em seguida, monta o orçamento com preços de referência, e o cronograma, etapa por etapa.", 0.5),
+    ("n5", "Meses 1 e 2: limpeza, terraplenagem e fundações.",
+           "Meses um e dois: limpeza, terraplenagem, e fundações.", 0.4),
+    ("n6", "Meses 3 a 6: estrutura e alvenaria. O Engenheiro 7.3 compara o previsto com o realizado.",
+           "Meses três a seis: estrutura e alvenaria. O Engenheiro sete ponto três compara o previsto com o realizado.", 0.4),
+    ("n7", "Meses 7 a 10: cobertura, rua e instalações. Os alertas chegam antes do atraso.",
+           "Meses sete a dez: cobertura, rua, e instalações. Os alertas chegam antes do atraso.", 0.4),
+    ("n8", "Meses 11 e 12: acabamento, paisagismo e entrega das chaves.",
+           "Meses onze e doze: acabamento, paisagismo, e entrega das chaves.", 0.6),
+    ("n9", "No cenário ilustrativo, o tempo médio de uma obra assim cai de 14 para 12 meses.",
+           "No cenário ilustrativo, o tempo médio de uma obra assim cai de catorze para doze meses.", 0.5),
+    ("n10", "E a economia chega a 144 mil reais: quantitativos certos, menos retrabalho e compras na hora certa.",
+            "E a economia chega a cento e quarenta e quatro mil reais: quantitativos certos, menos retrabalho, e compras na hora certa.", 0.6),
+    ("n11", "A IA sugere, o engenheiro decide. V4.7 para construtoras. Peça sua demonstração.",
+            "A i á sugere, o engenheiro decide. Vê quatro ponto sete para construtoras. Peça sua demonstração.", 0.0),
+]

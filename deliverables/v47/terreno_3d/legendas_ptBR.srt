@@ -1,0 +1,48 @@
+1
+00:00:00,800 --> 00:00:06,077
+Este é o terreno. Veja a V4.7 transformar ele em obra, do zero à entrega.
+
+2
+00:00:06,477 --> 00:00:11,712
+Primeiro, o drone mede o terreno: frente, lateral e área, com cada ponto registrado.
+
+3
+00:00:12,012 --> 00:00:17,737
+A construtora pede: quero um condomínio de 12 casas. E a IA projeta tudo na medida do terreno.
+
+4
+00:00:18,038 --> 00:00:23,358
+Depois vem o planejamento: orçamento, cronograma, equipe e compras, etapa por etapa.
+
+5
+00:00:23,658 --> 00:00:26,674
+Meses 1 e 2: terraplenagem e fundações.
+
+6
+00:00:26,874 --> 00:00:33,282
+Meses 3 a 6: estrutura e alvenaria. O Engenheiro 7.3 acompanha o previsto e o realizado.
+
+7
+00:00:33,482 --> 00:00:38,525
+Meses 7 a 10: telhado, rua e instalações. Os alertas chegam antes do atraso.
+
+8
+00:00:38,725 --> 00:00:42,146
+Meses 11 e 12: acabamento, pintura e paisagismo.
+
+9
+00:00:42,446 --> 00:00:45,185
+Obra entregue: 12 casas prontas, no prazo.
+
+10
+00:00:48,185 --> 00:00:58,049
+Quanto custa planejar uma obra assim? No mercado, cerca de 168 mil reais. Na V4.7, 60% a menos: 67 mil reais.
+
+11
+00:00:58,449 --> 00:01:02,084
+E o tempo médio da obra cai de 14 para 12 meses.
+
+12
+00:01:03,384 --> 00:01:07,232
+V4.7 para construtoras. Peça sua demonstração.
+

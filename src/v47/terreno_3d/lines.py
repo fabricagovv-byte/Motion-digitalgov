@@ -1,0 +1,28 @@
+# Falas do filme "V4.7 · Do terreno à obra (3D)": id, legenda, texto para o TTS (grafia fonética), pausa depois (s)
+SPEED = 1.05
+LINES = [
+    ("n1", "Este é o terreno. Veja a V4.7 transformar ele em obra, do zero à entrega.",
+           "Este é o terreno. Veja a vê quatro ponto sete transformar ele em obra, do zero à entrega.", 0.6),
+    ("n2", "Primeiro, o drone mede o terreno: frente, lateral e área, com cada ponto registrado.",
+           "Primeiro, o drone mede o terreno: frente, lateral, e área, com cada ponto registrado.", 0.5),
+    ("n3", "A construtora pede: quero um condomínio de 12 casas. E a IA projeta tudo na medida do terreno.",
+           "A construtora pede: quero um condomínio de doze casas. E a i á projeta tudo, na medida do terreno.", 0.5),
+    ("n4", "Depois vem o planejamento: orçamento, cronograma, equipe e compras, etapa por etapa.",
+           "Depois, vem o planejamento: orçamento, cronograma, equipe, e compras, etapa por etapa.", 0.5),
+    ("n5", "Meses 1 e 2: terraplenagem e fundações.",
+           "Meses um e dois: terraplenagem, e fundações.", 0.4),
+    ("n6", "Meses 3 a 6: estrutura e alvenaria. O Engenheiro 7.3 acompanha o previsto e o realizado.",
+           "Meses três a seis: estrutura e alvenaria. O Engenheiro sete ponto três acompanha o previsto e o realizado.", 0.4),
+    ("n7", "Meses 7 a 10: telhado, rua e instalações. Os alertas chegam antes do atraso.",
+           "Meses sete a dez: telhado, rua, e instalações. Os alertas chegam antes do atraso.", 0.4),
+    ("n8", "Meses 11 e 12: acabamento, pintura e paisagismo.",
+           "Meses onze e doze: acabamento, pintura, e paisagismo.", 0.5),
+    ("n9", "Obra entregue: 12 casas prontas, no prazo.",
+           "Obra entregue: doze casas prontas, no prazo.", 3.2),
+    ("n10", "Quanto custa planejar uma obra assim? No mercado, cerca de 168 mil reais. Na V4.7, 60% a menos: 67 mil reais.",
+            "Quanto custa planejar uma obra assim? No mercado, cerca de cento e sessenta e oito mil reais. Na vê quatro ponto sete, sessenta por cento a menos: sessenta e sete mil reais.", 0.6),
+    ("n11", "E o tempo médio da obra cai de 14 para 12 meses.",
+            "E o tempo médio da obra cai de catorze para doze meses.", 0.5),
+    ("n12", "V4.7 para construtoras. Peça sua demonstração.",
+            "Vê quatro ponto sete para construtoras. Peça sua demonstração.", 0.0),
+]

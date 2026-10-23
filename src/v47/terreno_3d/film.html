@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Do terreno à obra 3D</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+.ttl{font-family:Anton,sans-serif;text-transform:uppercase;font-size:92px;line-height:.98;letter-spacing:.5px}
+.sub{font-size:34px;font-weight:500;color:var(--mute);line-height:1.4}
+.tr{background:transparent!important}
+.glass{position:absolute;background:#111216e6;border:1px solid #3A3E48;border-radius:22px;box-shadow:0 30px 60px #0009;padding:30px 36px}
+.big{font-family:Anton,sans-serif;font-size:120px;line-height:1}
+.gr{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.gr span{width:300px;font-size:24px;font-weight:600}
+.gr div{position:relative;flex:1;height:28px;background:#24272F;border-radius:8px}
+.gr i{position:absolute;top:0;bottom:0;border-radius:8px;background:var(--acc);width:0}
+.gr b{width:150px;text-align:right;font-size:24px;font-variant-numeric:tabular-nums}
+.lab{position:absolute;background:#111216e6;color:#F4F1EA;border:2px solid var(--acc);border-radius:12px;padding:8px 18px;font-size:26px;font-weight:700;white-space:nowrap;transform:translate(-50%,-50%)}
+.ct{width:100%;border-collapse:collapse;font-size:32px}
+.ct th{font-size:20px;letter-spacing:3px;text-transform:uppercase;color:var(--mute);text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);font-weight:700}
+.ct td{padding:20px 18px;border-bottom:1px solid #ffffff12;font-weight:600}
+.ct .n{text-align:right;font-variant-numeric:tabular-nums}
+.ct .old{color:#8D919B;position:relative}
+.ct .old i{position:absolute;left:10%;top:50%;height:4px;background:#FF5A4E;width:0}
+.ct .nw{color:var(--acc);font-weight:800}
+.tag60{display:inline-block;background:#2FBF8F;color:#0E1F18;border-radius:999px;padding:4px 14px;font-size:22px;font-weight:800;margin-left:10px}
+.chip3{display:inline-block;background:#24272F;border:1px solid #3A3E48;border-radius:999px;padding:8px 18px;font-size:22px;font-weight:700;margin:0 8px 10px 0}
+</style>
+</head>
+<body>
+<div id="stage">
+ <div id="site" style="position:absolute;left:0;top:-200px;width:1920px;height:1440px;transform-origin:953px 784px">
+  <div id="sky" style="position:absolute;inset:0;background:linear-gradient(180deg,#8FB8E0 0%,#CFE0EE 45%,#E9E4D6 100%);opacity:0"></div>
+  <img id="photo" src="img/terreno_4x.jpg" alt="" style="position:absolute;left:0;top:0;width:1920px;height:1440px">
+  <canvas id="gl" width="1920" height="1440" style="position:absolute;left:0;top:0;width:1920px;height:1440px"></canvas>
+  <div id="labs" style="position:absolute;inset:0"></div>
+ </div>
+ <div id="dim" style="position:absolute;inset:0;background:#111216;opacity:0"></div>
+ <div id="vig" style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 55%,#0009 100%)"></div>
+
+<div class="sc tr" id="s1"><div class="cam">
+ <div class="abs" style="left:0;top:0;width:1100px;height:1080px;background:linear-gradient(90deg,#111216ee,#11121600)"></div>
+ <div class="abs eb" id="e1" style="left:120px;top:250px">Terreno real · V4.7 para construtoras</div>
+ <div class="abs ttl" id="t1" style="left:116px;top:310px;width:900px;font-size:130px">Este é o terreno.</div>
+ <div class="abs sub" id="u1" style="left:120px;top:620px;width:760px;color:#E4E0D7;font-size:40px;font-weight:600">Do zero à entrega das chaves.</div>
+</div></div>
+<div class="sc tr" id="s2"><div class="cam">
+ <div class="glass" id="g2" style="left:120px;top:150px;width:520px"><div class="eb">Passo 1 · Drone</div><div style="font-size:40px;font-weight:700;margin-top:10px">Medição do terreno</div><div class="lbl" style="margin-top:8px;font-size:22px">medidas ilustrativas</div></div>
+</div></div>
+<div class="sc tr" id="s3"><div class="cam">
+ <div class="glass" id="g3" style="left:120px;top:150px;width:660px"><div class="eb">Passo 2 · Projeto</div><div id="q3" style="font-size:38px;font-weight:700;margin-top:12px;line-height:1.3;min-height:100px"></div><div id="d3" class="lbl" style="margin-top:10px;font-size:26px">12 casas de 90 m² · lotes de 16 × 38 m · rua interna</div></div>
+</div></div>
+<div class="sc tr" id="s4"><div class="cam">
+ <div class="glass" id="g4" style="left:120px;top:140px;width:1680px;padding:34px 44px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><div class="eb">Passo 3 · Planejamento da obra</div><div class="lbl">meses 1 → 12</div></div>
+  <div style="display:flex;gap:44px;margin-top:24px">
+   <div style="flex:1" id="gt4"></div>
+   <div style="width:420px">
+    <div class="lbl" style="letter-spacing:3px;text-transform:uppercase;font-size:20px;margin-bottom:12px">Equipe</div>
+    <div id="eq4"><span class="chip3">2 engenheiros</span><span class="chip3">1 mestre de obras</span><span class="chip3">24 operários</span></div>
+    <div class="lbl" style="letter-spacing:3px;text-transform:uppercase;font-size:20px;margin:16px 0 12px">Compras</div>
+    <div id="cp4"><span class="chip3">Cimento · mês 1</span><span class="chip3">Aço · mês 2</span><span class="chip3">Telhas · mês 6</span><span class="chip3">Pisos · mês 9</span></div>
+   </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;border-top:1px solid #2E323C;padding-top:18px">
+   <div class="lbl" style="font-size:26px">Custo estimado da obra · referência SINAPI · valores ilustrativos</div>
+   <div class="big acc" id="n4" style="font-size:76px;white-space:nowrap">R$ 0</div></div>
+ </div>
+</div></div>
+<div class="sc tr" id="s5"><div class="cam"></div></div>
+<div class="sc tr" id="s6"><div class="cam"></div></div>
+<div class="sc tr" id="s7"><div class="cam"></div></div>
+<div class="sc tr" id="s8"><div class="cam"></div></div>
+<div class="sc tr" id="s9"><div class="cam">
+ <div class="glass" id="g9" style="left:120px;top:150px;width:620px"><div class="eb" style="color:#2FBF8F">Obra entregue</div><div class="big" style="font-size:96px;margin-top:10px">12 casas</div><div class="lbl" style="font-size:28px;margin-top:6px">no prazo · mês 12</div></div>
+</div></div>
+
+<div id="hudc" style="position:absolute;inset:0;opacity:0">
+ <div class="glass" style="left:120px;top:140px;width:560px">
+  <div class="lbl" style="letter-spacing:3px;text-transform:uppercase">Cronograma</div>
+  <div style="display:flex;align-items:baseline;gap:16px;margin-top:6px"><div class="big" id="mo" style="font-size:96px">MÊS 1</div><div class="lbl" style="font-size:28px">de 12</div></div>
+  <div id="st" style="font-size:32px;font-weight:700;color:var(--acc);margin-top:4px">Terraplenagem</div>
+  <div style="display:flex;gap:6px;margin-top:18px" id="ticks"></div>
+ </div>
+ <div class="glass" id="e73" style="left:1340px;top:140px;width:460px">
+  <div class="lbl" style="letter-spacing:3px;text-transform:uppercase;color:#5B8CFF">Engenheiro 7.3</div>
+  <div style="display:flex;justify-content:space-between;font-size:28px;margin-top:14px"><span class="mute">Previsto</span><b id="pv">0%</b></div>
+  <div style="display:flex;justify-content:space-between;font-size:28px;margin-top:8px"><span class="mute">Realizado</span><b id="rz" style="color:#2FBF8F">0%</b></div>
+  <div id="al" style="margin-top:16px;background:#3A2A10;border-left:6px solid #FFB020;border-radius:10px;padding:14px 16px;font-size:24px;font-weight:700;color:#F2C46B;opacity:0">⚠ Chuva prevista na semana 30: antecipar o telhado da fileira B</div>
+ </div>
+</div>
+
+<div class="sc" id="s10"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="glow" style="left:1200px;top:500px;width:700px;height:500px;background:#2FBF8F"></div>
+ <div class="abs eb" id="e10" style="left:120px;top:140px">Quanto custa planejar esta obra</div>
+ <div class="abs ttl" id="t10" style="left:116px;top:190px;width:1700px;font-size:80px">Mercado × V4.7 <span style="color:#2FBF8F">· 60% a menos</span></div>
+ <div class="abs panel" id="p10" style="left:120px;top:320px;width:1680px;padding:20px 30px">
+  <table class="ct"><tr><th style="width:44%">Serviço de planejamento</th><th class="n" style="width:22%">Mercado</th><th class="n" style="width:34%">Na V4.7</th></tr>
+  <tbody id="tb10"></tbody>
+  <tr id="tt10" style="background:#ffffff08"><td style="font-weight:800">Total</td><td class="n old" style="font-weight:800">R$ 168.000<i></i></td><td class="n nw" style="font-size:44px;font-family:Anton;font-weight:400"><span id="n10">R$ 0</span><span class="tag60">−60%</span></td></tr></table>
+ </div>
+ <div class="abs lbl" id="f10" style="left:120px;top:900px;width:1680px;font-size:22px">Valores de mercado estimados para uma obra de R$ 2,4 milhões · ilustrativos · economia de R$ 100.800 só no planejamento</div>
+</div></div>
+
+<div class="sc" id="s11"><div class="cam">
+ <div class="grid-bg"></div>
+ <div class="abs eb" id="e11" style="left:120px;top:150px">Tempo médio da obra · cenário ilustrativo</div>
+ <div class="abs ttl" id="t11" style="left:116px;top:200px;width:1700px;font-size:84px">2 meses a menos de canteiro</div>
+ <div class="abs" style="left:120px;top:400px;width:1680px">
+  <div class="lbl" style="margin-bottom:12px;font-size:28px">Jeito tradicional</div>
+  <div style="display:flex;align-items:center;gap:24px"><div id="b11a" style="height:84px;width:0;background:#7D818C;border-radius:12px"></div><div class="big" id="n11a" style="font-size:72px;white-space:nowrap">0 meses</div></div>
+  <div class="lbl" style="margin:40px 0 12px;font-size:28px">Com a V4.7</div>
+  <div style="display:flex;align-items:center;gap:24px"><div id="b11b" style="height:84px;width:0;background:var(--acc);border-radius:12px"></div><div class="big acc" id="n11b" style="font-size:72px;white-space:nowrap">0 meses</div></div>
+ </div>
+</div></div>
+
+<div class="sc" id="s12"><div class="cam">
+ <div class="glow" style="left:560px;top:150px;width:800px;height:600px;background:var(--acc)"></div>
+ <div class="abs" id="lg12" style="left:310px;top:60px"></div>
+ <div class="abs ttl" id="tg12" style="left:0;top:640px;width:1920px;text-align:center;font-size:70px">V4.7 para <span class="acc">construtoras</span></div>
+ <div class="abs" id="wa12" style="left:660px;top:770px;width:600px;text-align:center;background:#F4F1EA;color:#111216;border-radius:999px;padding:20px 0;font-size:36px;font-weight:700">● WhatsApp (31) 99827-7323</div>
+</div></div>
+</div>
+
+<script src="../kit/kit.js"></script>
+<script type="module">
+import * as THREE from '../kit/vendor/three.module.min.js';
+const { $, cl, eo, eio, spr, rise, slideX, pop, fade, count, typed } = K; const T = K.Wd;
+const CAM = await fetch('camera.json').then(r => r.json());
+const W = CAM.W, DP = CAM.D, CX = W / 2, CZ = DP / 2;
+// ---------- renderer / cena ----------
+const renderer = new THREE.WebGLRenderer({ canvas: $('gl'), antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(1920, 1440, false);
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05; renderer.outputColorSpace = THREE.SRGBColorSpace;
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(2 * Math.atan(CAM.cy / CAM.f) * 180 / Math.PI, 588 / 441, .5, 3000);
+{ const R = CAM.R, t = CAM.t; const Rt = [[R[0][0], R[1][0], R[2][0]], [R[0][1], R[1][1], R[2][1]], [R[0][2], R[1][2], R[2][2]]];
+  const C = [0, 1, 2].map(i => -(Rt[i][0] * t[0] + Rt[i][1] * t[1] + Rt[i][2] * t[2]));
+  const M = new THREE.Matrix4().set(Rt[0][0], -Rt[0][1], -Rt[0][2], C[0], Rt[1][0], -Rt[1][1], -Rt[1][2], C[1], Rt[2][0], -Rt[2][1], -Rt[2][2], C[2], 0, 0, 0, 1);
+  M.decompose(camera.position, camera.quaternion, camera.scale); }
+const P0 = camera.position.clone(), Q0 = camera.quaternion.clone();
+scene.add(new THREE.HemisphereLight(0xdfe9f5, 0x6b5a40, 1.1));
+const sun = new THREE.DirectionalLight(0xfff1dc, 2.6); sun.position.set(CX + 70, 90, CZ - 60); sun.target.position.set(CX, 0, CZ);
+sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -90, right: 90, top: 90, bottom: -90, near: 10, far: 300 }); sun.shadow.bias = -.0005; sun.shadow.normalBias = .03;
+scene.add(sun, sun.target);
+// ---------- texturas procedurais ----------
+const rnd = K.mul(7);
+function tex(w, h, draw, rx = 1, ry = 1) { const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rx, ry); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t; }
+const noise = (g, w, h, base, n, a) => { g.fillStyle = base; g.fillRect(0, 0, w, h); for (let i = 0; i < n; i++) { g.fillStyle = `rgba(${rnd() < .5 ? '0,0,0' : '255,255,255'},${a * rnd()})`; g.fillRect(rnd() * w, rnd() * h, 2 + rnd() * 3, 2 + rnd() * 3); } };
+const tTile = tex(256, 256, (g, w, h) => { g.fillStyle = '#8E3A20'; g.fillRect(0, 0, w, h); for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) { const x = c * 32 + (r % 2) * 16, y = r * 32; const gr = g.createLinearGradient(0, y, 0, y + 32); const tint = 150 + rnd() * 40; gr.addColorStop(0, `rgb(${tint + 40},${tint * .42},${tint * .25})`); gr.addColorStop(1, `rgb(${tint * .7},${tint * .3},${tint * .17})`); g.fillStyle = gr; g.beginPath(); g.roundRect(x + 1, y + 1, 30, 30, [2, 2, 12, 12]); g.fill(); g.fillRect(x - 32 + 1, y + 1, 30, 30); } }, 3, 2);
+const tBrick = tex(256, 256, (g, w, h) => { g.fillStyle = '#CDC3B4'; g.fillRect(0, 0, w, h); for (let r = 0; r < 16; r++) for (let c = -1; c < 9; c++) { const x = c * 32 + (r % 2) * 16, y = r * 16; const v = 150 + rnd() * 50; g.fillStyle = `rgb(${v + 30},${v * .48},${v * .3})`; g.fillRect(x + 1.5, y + 1.5, 29, 13); } }, 3, 1.5);
+const tGrass = tex(256, 256, (g, w, h) => noise(g, w, h, '#5E8F3E', 4000, .18), 8, 8);
+const tAsph = tex(256, 256, (g, w, h) => noise(g, w, h, '#3B3E44', 3000, .12), 10, 2);
+const tDirt = tex(256, 256, (g, w, h) => noise(g, w, h, '#8C6B48', 4000, .2), 12, 12);
+const tConc = tex(128, 128, (g, w, h) => noise(g, w, h, '#A9A6A0', 1500, .12), 2, 2);
+const M = (o) => new THREE.MeshStandardMaterial(Object.assign({ roughness: .9, metalness: 0 }, o));
+const mats = { conc: M({ map: tConc }), brick: M({ map: tBrick }), paint: M({ color: 0xF2EADB, transparent: true, opacity: 0 }), paintB: M({ color: 0xF2EADB }),
+  tile: M({ map: tTile, roughness: .75 }), frame: M({ color: 0xFAFAF7 }), glass: M({ color: 0x2C4660, roughness: .15, metalness: .3 }), door: M({ color: 0x6B4426 }),
+  grass: M({ map: tGrass, transparent: true, opacity: 0 }), asph: M({ map: tAsph }), side: M({ color: 0xC9C5BC }), dirt: M({ map: tDirt, transparent: true, opacity: 0 }),
+  trunk: M({ color: 0x6B4A2E }), leaf: M({ color: 0x4D7F36, flatShading: true }), leaf2: M({ color: 0x6B9A48, flatShading: true }), yellow: M({ color: 0xF2B01E, roughness: .6 }), dark: M({ color: 0x2A2C31 }),
+  car1: M({ color: 0xB0B6BF, roughness: .35, metalness: .4 }), car2: M({ color: 0x8E2B25, roughness: .35, metalness: .4 }), car3: M({ color: 0x1F3B5C, roughness: .35, metalness: .4 }), lamp: M({ color: 0x55585E }), bulb: M({ color: 0xFFF2C4, emissive: 0xFFE3A0, emissiveIntensity: .6 }) };
+const box = (w, h, d, m, x = 0, y = 0, z = 0, sh = true) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); o.position.set(x, y, z); o.castShadow = sh; o.receiveShadow = true; return o; };
+// pega-sombra sobre a foto + chão para a volta aérea
+const catcher = new THREE.Mesh(new THREE.PlaneGeometry(W + 30, DP + 30), new THREE.ShadowMaterial({ opacity: .38 })); catcher.rotation.x = -Math.PI / 2; catcher.position.set(CX, .02, CZ); catcher.receiveShadow = true; scene.add(catcher);
+const groundM = M({ map: tex(256, 256, (g, w, h) => noise(g, w, h, '#7E8F4E', 5000, .2), 60, 60), transparent: true, opacity: 0 });
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(900, 900), groundM); ground.rotation.x = -Math.PI / 2; ground.position.set(CX, -.06, CZ); ground.receiveShadow = true; scene.add(ground);
+const dirt = new THREE.Mesh(new THREE.PlaneGeometry(W, DP), mats.dirt); dirt.rotation.x = -Math.PI / 2; dirt.position.set(CX, .03, CZ); dirt.receiveShadow = true; scene.add(dirt);
+// ---------- rua interna ----------
+const road = new THREE.Group(); scene.add(road);
+{ const a = box(W, .06, 8, mats.asph, CX, .05, 50, false); const s1 = box(W, .14, 2, mats.side, CX, .07, 45, false), s2 = box(W, .14, 2, mats.side, CX, .07, 55, false); road.add(a, s1, s2);
+  for (let i = 0; i < 16; i++) road.add(box(3, .07, .25, M({ color: 0xF2C46B }), 3 + i * 6, .09, 50, false)); }
+const lamps = []; for (let i = 0; i < 6; i++) { const g = new THREE.Group(); g.add(box(.2, 6, .2, mats.lamp, 0, 3, 0), box(1.6, .15, .15, mats.lamp, .7, 6, 0), box(.6, .15, .4, mats.bulb, 1.4, 5.9, 0, false)); g.position.set(8 + i * 16, 0, i % 2 ? 56 : 44); g.rotation.y = i % 2 ? Math.PI / 2 : -Math.PI / 2; scene.add(g); lamps.push(g); }
+// ---------- casas ----------
+const HOUSES = [];
+function makeHouse(k, x, z, flip) {
+  const g = new THREE.Group(); g.position.set(x, 0, z); g.rotation.y = flip ? Math.PI : 0; scene.add(g);
+  const H = { k, g, pm: mats.paint.clone() };
+  H.slab = box(10.6, .35, 9.6, mats.conc, 0, .175, 0); g.add(H.slab);
+  H.cols = new THREE.Group(); g.add(H.cols); [[-5, -4.5], [0, -4.5], [5, -4.5], [-5, 4.5], [0, 4.5], [5, 4.5]].forEach(([a, b]) => H.cols.add(box(.3, 3, .3, mats.conc, a, 1.85, b)));
+  H.walls = new THREE.Group(); g.add(H.walls); H.paint = new THREE.Group(); g.add(H.paint);
+  const wl = (w, d, x, z) => { H.walls.add(box(w, 3, d, mats.brick, x, 1.85, z)); const p = box(w + .04, 3.02, d + .04, H.pm, x, 1.85, z, false); H.paint.add(p); };
+  wl(10, .22, 0, 4.5); wl(10, .22, 0, -4.5); wl(.22, 9, 5, 0); wl(.22, 9, -5, 0);
+  // telhado de duas águas
+  const sh = new THREE.Shape(); sh.moveTo(-5.6, 0); sh.lineTo(5.6, 0); sh.lineTo(0, 2.4); sh.lineTo(-5.6, 0);
+  const rg = new THREE.ExtrudeGeometry(sh, { depth: 11.2, bevelEnabled: false }); rg.translate(0, 0, -5.6);
+  H.roof = new THREE.Mesh(rg, [mats.paintB, mats.tile]); H.roof.rotation.y = Math.PI / 2; H.roof.position.set(0, 3.35, 0); H.roof.castShadow = true; H.roof.receiveShadow = true;
+  H.roofG = new THREE.Group(); H.roofG.add(H.roof); g.add(H.roofG);
+  // aberturas e varanda
+  H.fin = new THREE.Group(); g.add(H.fin);
+  const win = (x, y, z, w, h, side) => { const f = box(side ? .12 : w + .2, h + .2, side ? w + .2 : .12, mats.frame, x, y, z, false); const gl = box(side ? .14 : w, h, side ? w : .14, mats.glass, x, y, z, false); H.fin.add(f, gl); };
+  H.fin.add(box(1.1, 2.2, .14, mats.door, 0, 1.45, 4.62, false));
+  win(-3, 2, 4.62, 1.8, 1.2); win(3, 2, 4.62, 1.8, 1.2); win(-3, 2, -4.62, 1.4, 1); win(3, 2, -4.62, 1.4, 1); win(5.12, 2, 0, 1.6, 1.1, 1); win(-5.12, 2, 0, 1.6, 1.1, 1);
+  H.fin.add(box(4, .2, 2.2, mats.conc, 0, .45, 5.6), box(.2, 2.7, .2, mats.frame, -1.8, 1.8, 6.5), box(.2, 2.7, .2, mats.frame, 1.8, 1.8, 6.5), box(4.4, .2, 2.6, mats.frame, 0, 3.2, 5.6));
+  // lote: grama, calçada da garagem, muro baixo, carro e árvore
+  H.lot = new THREE.Group(); g.add(H.lot);
+  const lawn = new THREE.Mesh(new THREE.PlaneGeometry(15.6, 16), mats.grass); lawn.rotation.x = -Math.PI / 2; lawn.position.set(0, .04, 2.5); lawn.receiveShadow = true; H.lot.add(lawn);
+  H.fence = new THREE.Group(); g.add(H.fence); H.fence.add(box(3, .1, 8, mats.side, 4.5, .08, 10, false)); H.fence.add(box(15.6, .9, .18, mats.paintB, 0, .45, 13.9), box(.18, .9, 16, mats.paintB, 7.8, .45, 6), box(.18, .9, 16, mats.paintB, -7.8, .45, 6));
+  H.car = new THREE.Group(); g.add(H.car); const cm = [mats.car1, mats.car2, mats.car3][k % 3];
+  H.car.add(box(1.9, .8, 4.2, cm, 0, .65, 0), box(1.7, .7, 2.2, cm, 0, 1.35, -.2), box(1.72, .55, 2, mats.glass, 0, 1.37, -.2, false)); [[-.95, 1.3], [.95, 1.3], [-.95, -1.3], [.95, -1.3]].forEach(([a, b]) => H.car.add(box(.25, .6, .6, mats.dark, a, .3, b, false)));
+  H.car.position.set(4.5, 0, 11);
+  H.tree = new THREE.Group(); g.add(H.tree); H.tree.add(box(.35, 2.4, .35, mats.trunk, 0, 1.2, 0)); const fl = new THREE.Mesh(new THREE.IcosahedronGeometry(2, 0), k % 2 ? mats.leaf : mats.leaf2); fl.position.y = 3.4; fl.castShadow = true; H.tree.add(fl); H.tree.position.set(-4.5, 0, 10.5);
+  HOUSES.push(H); return H;
+}
+for (let r = 0; r < 2; r++) for (let c = 0; c < 6; c++) makeHouse(r * 6 + c, 8 + c * 16, r ? 77 : 25, !!r);
+HOUSES.forEach(H => H.g.scale.setScalar(1.12));
+// fantasmas do projeto + linhas dos lotes
+const ghosts = new THREE.Group(); scene.add(ghosts);
+const gm = new THREE.MeshBasicMaterial({ color: 0xFF7A2F, transparent: true, opacity: .35, depthWrite: false }), em = new THREE.LineBasicMaterial({ color: 0xFF9A5A });
+HOUSES.forEach(H => { const gg = new THREE.Group(); gg.position.copy(H.g.position); const b = new THREE.Mesh(new THREE.BoxGeometry(10, 5.6, 9), gm); b.position.y = 2.8; const e = new THREE.LineSegments(new THREE.EdgesGeometry(b.geometry), em); e.position.y = 2.8; gg.add(b, e); ghosts.add(gg); H.ghost = gg; });
+const lotLines = new THREE.Group(); scene.add(lotLines); const lm = new THREE.LineDashedMaterial({ color: 0xF4F1EA, dashSize: 1.2, gapSize: .8, transparent: true, opacity: 0 });
+for (let r = 0; r < 2; r++) for (let c = 0; c < 6; c++) { const z0 = r ? 56 : 2, z1 = r ? 99 : 44, x0 = c * 16, x1 = x0 + 16; const geo = new THREE.BufferGeometry().setFromPoints([[x0, z0], [x1, z0], [x1, z1], [x0, z1], [x0, z0]].map(([x, z]) => new THREE.Vector3(x, .1, z))); const l = new THREE.Line(geo, lm); l.computeLineDistances(); lotLines.add(l); }
+const ghostRoad = new THREE.Mesh(new THREE.PlaneGeometry(W, 12), new THREE.MeshBasicMaterial({ color: 0x3A3D44, transparent: true, opacity: 0 })); ghostRoad.rotation.x = -Math.PI / 2; ghostRoad.position.set(CX, .08, 50); scene.add(ghostRoad);
+// contorno do terreno (drone)
+const outline = new THREE.Line(new THREE.BufferGeometry().setFromPoints([[0, 0], [W, 0], [W, DP], [0, DP], [0, 0]].map(([x, z]) => new THREE.Vector3(x, .15, z))), new THREE.LineBasicMaterial({ color: 0xFF7A2F, linewidth: 3 })); scene.add(outline);
+const outlineFill = new THREE.Mesh(new THREE.PlaneGeometry(W, DP), new THREE.MeshBasicMaterial({ color: 0xFF7A2F, transparent: true, opacity: 0, depthWrite: false })); outlineFill.rotation.x = -Math.PI / 2; outlineFill.position.set(CX, .12, CZ); scene.add(outlineFill);
+const sweep = new THREE.Mesh(new THREE.PlaneGeometry(DP, 14), new THREE.MeshBasicMaterial({ color: 0xFFD2B3, transparent: true, opacity: .35, side: THREE.DoubleSide, depthWrite: false })); sweep.rotation.y = Math.PI / 2; scene.add(sweep);
+// drone
+const drone = new THREE.Group(); scene.add(drone); drone.add(box(1.4, .4, 1.4, mats.dark)); const rotors = [];
+[[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach(([a, b]) => { const arm = box(2.2, .12, .2, mats.dark, a * .8, 0, b * .8); arm.rotation.y = a * b > 0 ? -Math.PI / 4 : Math.PI / 4; drone.add(arm); const r = new THREE.Mesh(new THREE.BoxGeometry(1.6, .04, .16), M({ color: 0xdddddd })); r.position.set(a * 1.5, .3, b * 1.5); drone.add(r); rotors.push(r); });
+drone.add(box(.3, .3, .3, M({ color: 0xFF7A2F, emissive: 0xFF7A2F, emissiveIntensity: .5 }), 0, -.3, .6, false)); drone.scale.setScalar(2.2);
+// grua e caminhões
+const crane = new THREE.Group(); scene.add(crane); crane.position.set(CX + 2, 0, 50);
+crane.add(box(1.2, 26, 1.2, mats.yellow, 0, 13, 0)); const jib = new THREE.Group(); jib.position.y = 26; crane.add(jib);
+jib.add(box(30, .9, .9, mats.yellow, 11, 0, 0), box(9, .9, .9, mats.yellow, -5, 0, 0), box(2.5, 2, 2.5, mats.dark, -8, -.6, 0), box(1.8, 1.6, 1.8, M({ color: 0xF4F1EA }), 1.2, -1.2, 0), box(.08, 10, .08, mats.dark, 18, -5, 0, false), box(1, 1, 1, mats.conc, 18, -10, 0));
+const truck = new THREE.Group(); scene.add(truck); truck.add(box(2.4, 1.6, 2.4, M({ color: 0xE9E6DF }), 0, 1.3, 3), box(2.4, .5, 8, mats.dark, 0, .55, 0)); const drum = new THREE.Mesh(new THREE.CylinderGeometry(1.2, .9, 4.6, 12), M({ color: 0xE4782E })); drum.rotation.x = Math.PI / 2 - .2; drum.position.set(0, 2.2, -1.2); drum.castShadow = true; truck.add(drum);
+// árvores em volta (só na volta aérea)
+const ring = new THREE.Group(); scene.add(ring); const rr = K.mul(21);
+for (let i = 0; i < 70; i++) { const a = rr() * Math.PI * 2, d = 80 + rr() * 120; const tg = new THREE.Group(); tg.add(box(.4, 3, .4, mats.trunk, 0, 1.5, 0)); const f = new THREE.Mesh(new THREE.IcosahedronGeometry(2.4 + rr() * 1.6, 0), rr() < .5 ? mats.leaf : mats.leaf2); f.position.y = 4; f.castShadow = true; tg.add(f); tg.position.set(CX + Math.cos(a) * d, 0, CZ + Math.sin(a) * d * .8); ring.add(tg); }
+// ---------- utilidades ----------
+const V = new THREE.Vector3();
+const scr = (x, y, z) => { V.set(x, y, z).project(camera); return [(V.x + 1) / 2 * 1920, (1 - V.y) / 2 * 1440]; };
+const labels = list => { $('labs').innerHTML = list.map(([p, txt, o]) => { const q = scr(...p); return `<div class="lab" style="left:${q[0]}px;top:${q[1]}px;opacity:${o}">${txt}</div>`; }).join(''); };
+const sy = (o, s) => { o.visible = s > .001; o.scale.y = Math.max(.001, s); };
+const STG = [[0, 'Limpeza e terraplenagem'], [1, 'Fundações'], [2.2, 'Estrutura'], [3.4, 'Alvenaria'], [6.2, 'Telhado'], [8, 'Rua e instalações'], [10, 'Pintura e acabamento'], [11.2, 'Paisagismo']];
+const GT = [['Terraplenagem', 0, 1, 120000], ['Fundações', 1, 1.2, 288000], ['Estrutura e alvenaria', 2.2, 3.8, 792000], ['Telhado', 6.2, 2, 288000], ['Rua e instalações', 8, 2, 432000], ['Acabamento', 10, 2, 480000]];
+const CT = [['Levantamento com drone', 8000], ['Projeto e quantitativos', 72000], ['Orçamento e cronograma', 24000], ['Acompanhamento (12 meses)', 64000]];
+function world(t, m, o) {
+  // estado da obra no mês m (−1 = terreno vazio)
+  mats.dirt.opacity = .55 * cl(m / 1);
+  HOUSES.forEach(H => { const st = H.k * .07;
+    const f = eo(cl((m - 1 - st) / .7)); H.slab.visible = f > 0; H.slab.scale.set(1, Math.max(.01, f), 1);
+    sy(H.cols, eo(cl((m - 2.2 - st) / 1))); H.cols.position.y = 0;
+    const w = cl((m - 3.4 - st * 2) / 2.6); sy(H.walls, w); H.walls.position.y = .35 * (1 - w);
+    const r = eo(cl((m - 6.2 - st * 2) / 1.4)); H.roofG.visible = r > 0; H.roofG.position.y = 7 * (1 - r); H.roofG.scale.setScalar(.9 + .1 * r);
+    const p = cl((m - 10 - st) / .8); H.paint.visible = p > 0; H.pm.opacity = p;
+    H.walls.visible = H.walls.visible && p < 1;
+    const fn = eo(cl((m - 10.4 - st) / .5)); H.fin.visible = fn > 0; H.fin.scale.setScalar(Math.max(.01, fn));
+    sy(H.fence, eo(cl((m - 11 - st) / .6))); H.tree.visible = m > 11.2; H.tree.scale.setScalar(Math.max(.01, eo(cl((m - 11.2 - st) / .6))));
+    const c = cl((m - 11.5 - st) / .6); H.car.visible = c > 0; H.car.position.z = 11 + 18 * (1 - eo(c)) * (H.k < 6 ? 1 : 1);
+    H.ghost.visible = o.plan > 0; const gp = cl((o.plan * 14 - H.k) / 2); H.ghost.scale.set(1, Math.max(.01, eo(gp)), 1); H.ghost.visible = gp > 0; });
+  mats.grass.opacity = cl((m - 10.8) / .8);
+  const rd = cl((m - 8) / 1.2); road.visible = rd > 0; road.scale.x = Math.max(.01, rd);
+  lamps.forEach((l, i) => { const s = eo(cl((m - 9.2 - i * .1) / .5)); l.visible = s > 0; l.scale.set(1, Math.max(.01, s), 1); });
+  lm.opacity = Math.max(o.plan ? .9 * o.plan : 0, .7 * cl((m - 10.8) / .6)) * (m > 11.6 ? 0 : 1); ghostRoad.material.opacity = .65 * (o.plan || 0);
+  const cr = Math.min(cl((m - 2) / .5), cl((9.6 - m) / .5)); crane.visible = cr > 0; crane.scale.set(1, Math.max(.01, cr), 1); jib.rotation.y = t * .3;
+  const tk = Math.min(cl((m - .5) / .3), cl((7 - m) / .3)); truck.visible = tk > 0; const tx = ((t * 6) % 160) - 30; truck.position.set(tx, 0, -9); truck.rotation.y = Math.PI / 2; drum.rotation.y = t * 3;
+}
+const TL0 = { m: -1, plan: 0 };
+K.boot({
+  system: 'V4.7 · CONSTRUTORAS', accent: '#FF7A2F', hideHud: [1, 9, 12], noCam: true, noCut: [2, 3, 4, 5, 6, 7, 8, 9],
+  build() {
+    $('gt4').innerHTML = GT.map(([n, a, d, v], i) => `<div class="gr"><span>${n}</span><div><i id="gb${i}" style="left:${a / 12 * 100}%" data-w="${d / 12 * 100}"></i></div><b id="gv${i}">R$ ${K.fmt(v / 1000)} mil</b></div>`).join('');
+    $('ticks').innerHTML = Array.from({ length: 12 }, (_, i) => `<div id="tk${i}" style="flex:1;height:14px;border-radius:4px;background:#2E323C"></div>`).join('');
+    $('tb10').innerHTML = CT.map(([n, v], i) => `<tr id="r10${i}"><td>${n}</td><td class="n old">R$ ${K.fmt(v)}<i></i></td><td class="n nw">R$ ${K.fmt(v * .4)}<span class="tag60">−60%</span></td></tr>`).join('');
+    $('lg12').innerHTML = K.logoSVG('lg');
+  },
+  scene(k, t, lt) {
+    const SC = K.S.SC; const s = SC[k - 1];
+    const onSite = k <= 9; $('site').style.display = onSite ? 'block' : 'none'; $('vig').style.display = onSite ? 'block' : 'none';
+    let m = -1;
+    if (k >= 5 && k <= 9) { const seg = [[SC[4], 0], [SC[5], 2], [SC[6], 6], [SC[7], 10], [SC[8] - .2, 12]]; m = 12; for (let i = 0; i < seg.length - 1; i++) if (t < seg[i + 1][0]) { m = seg[i][1] + (seg[i + 1][1] - seg[i][1]) * (t - seg[i][0]) / (seg[i + 1][0] - seg[i][0]); break; } }
+    const o = { plan: k === 3 ? cl((t - T(3, 'projeta', -.4)) / 1.4) : k === 4 ? 1 : 0 };
+    // drone e varredura
+    drone.visible = k === 2; sweep.visible = k === 2 && lt > 1 && lt < 4;
+    if (k === 2) { const p = cl((lt - .1) / 4.4); drone.position.set(-8 + (W + 16) * p, 30, CZ + 25 * Math.sin(p * 7)); drone.rotation.y = .3 * Math.sin(p * 9); rotors.forEach((r, i) => r.rotation.y = t * 40 + i);
+      sweep.position.set(W * cl((lt - 1) / 3), 7, CZ); }
+    const os = k === 2 ? eo((lt - .3) / 1.6) : k === 3 ? 1 - cl(lt / .6) : 0; outline.visible = os > 0; outline.geometry.setDrawRange(0, Math.max(2, Math.ceil(5 * os))); outlineFill.material.opacity = .14 * os;
+    world(t, m, o);
+    // câmera: casada com a foto; na entrega sobe e dá a volta no condomínio
+    let ph = 1;
+    if (k === 9) { const u = eio(cl((t - SC[8] - .3) / (SC[9] - SC[8] - .3))); ph = 1 - cl((t - SC[8] - .3) / .9);
+      const c = new THREE.Vector3(CX, 0, CZ); const d0 = P0.clone().sub(c); const a0 = Math.atan2(d0.z, d0.x), r0 = Math.hypot(d0.x, d0.z);
+      const a = a0 - 1.1 * u, r = r0 * (1 - .32 * u), h = P0.y * (1 - .45 * u);
+      camera.position.set(c.x + Math.cos(a) * r, h, c.z + Math.sin(a) * r);
+      const look = new THREE.PerspectiveCamera(); look.position.copy(camera.position); look.lookAt(CX, 2, CZ + 4); camera.quaternion.copy(Q0).slerp(look.quaternion, cl(u * 3));
+    } else { camera.position.copy(P0); camera.quaternion.copy(Q0); }
+    $('photo').style.opacity = ph; $('sky').style.opacity = 1 - ph; groundM.opacity = 1 - ph; catcher.visible = ph > .02; ring.visible = ph < .98;
+    ring.scale.setScalar(Math.max(.01, 1 - ph));
+    renderer.render(scene, camera);
+    // zoom 2D só sobre a foto
+    let z = 1; if (k === 1) z = 1 + .06 * eo(lt / 6); else if (k === 2) z = 1.06 + .1 * eo(lt / 3); else if (k <= 8) z = 1.16 + (k >= 5 ? .14 * eio((t - SC[4]) / (SC[8] - SC[4])) : 0); else z = 1.3 - .3 * eio(cl((t - SC[8]) / 1.2));
+    $('site').style.transform = `scale(${z})`;
+    $('dim').style.opacity = k === 4 ? .55 * cl(lt / .5) : 0;
+    if (k === 2) { const a = T(2, 'frente', -.2), b = T(2, 'lateral', -.2), c = T(2, 'área', -.2); labels([[[CX, 0, 0], 'Frente 96 m', cl((t - a) / .3)], [[W, 0, CZ], 'Lateral 101 m', cl((t - b) / .3)], [[CX, 0, CZ], 'Área ≈ 9.700 m²', cl((t - c) / .3)]]); } else labels([]);
+    K.note(k <= 9 ? 'Foto do terreno + projeto 3D ilustrativo' : 'Valores ilustrativos'); K.src('');
+    if (k === 1) { rise($('e1'), t, .3); rise($('t1'), t, .5, 80, .9); rise($('u1'), t, T(1, 'do zero', -.3)); }
+    if (k === 2) slideX($('g2'), t, s + .3, -60, .5);
+    if (k === 3) { slideX($('g3'), t, s + .3, -60, .5); typed($('q3'), '“Quero um condomínio de 12 casas.”', t, T(3, 'quero um', -.1), 20); fade($('d3'), t, T(3, 'projeta', .3)); }
+    if (k === 4) { rise($('g4'), t, s + .3, 60, .6); const t0 = T(4, 'orçamento', -.2); let sum = 0;
+      GT.forEach((g, i) => { const ti = t0 + i * .25; const e = $('gb' + i); e.style.width = (+e.dataset.w * eo((t - ti) / .5)) + '%'; $('gv' + i).style.opacity = cl((t - ti) / .3); sum += g[3] * eo((t - ti) / .6); });
+      $('n4').textContent = 'R$ ' + K.fmt(sum); [...$('eq4').children].forEach((e, i) => pop(e, t, T(4, 'equipe', -.2) + i * .12)); [...$('cp4').children].forEach((e, i) => pop(e, t, T(4, 'compras', -.2) + i * .12)); }
+    $('hudc').style.opacity = k >= 5 && k <= 8 ? Math.min(cl((t - SC[4]) / .4), 1 - cl((t - (SC[8] - .5)) / .4)) : 0;
+    if (m >= 0 && k <= 8) { const mi = Math.min(12, Math.floor(m) + 1); $('mo').textContent = 'MÊS ' + mi; let nm = STG[0][1]; STG.forEach(([a, n]) => { if (m >= a) nm = n; }); $('st').textContent = nm;
+      for (let i = 0; i < 12; i++) $('tk' + i).style.background = i < Math.floor(m) ? '#FF7A2F' : i === Math.floor(m) ? '#FF7A2F88' : '#2E323C';
+      const pv = Math.round(100 * m / 12); $('pv').textContent = pv + '%'; $('rz').textContent = Math.min(100, pv + (m > 1 && m < 11.5 ? 1 : 0)) + '%';
+      $('al').style.opacity = k === 7 ? cl((t - T(7, 'alertas', -.2)) / .3) : 0; }
+    if (k === 9) rise($('g9'), t, T(9, 'obra entregue', -.1), 50, .6);
+    if (k === 10) { rise($('e10'), t, s + .3); rise($('t10'), t, s + .45, 60, .7); rise($('p10'), t, s + .6, 50, .6);
+      const a = T(10, 'no mercado', -.2), b = T(10, 'na v4.7', -.2);
+      CT.forEach((c, i) => { slideX($('r10' + i), t, s + .8 + i * .25, 40, .35); const ln = document.querySelector(`#r10${i} .old i`); ln.style.width = (80 * eo((t - b - i * .12) / .4)) + '%'; document.querySelector(`#r10${i} .nw`).style.opacity = cl((t - b - .2 - i * .12) / .3); });
+      fade($('tt10'), t, a); document.querySelector('#tt10 .old i').style.width = (80 * eo((t - b - .6) / .4)) + '%'; count($('n10'), t, T(10, '60%', -.1), 1.2, 67200, { pre: 'R$ ' }); fade($('f10'), t, T(10, '67', .2)); }
+    if (k === 11) { rise($('e11'), t, s + .3); rise($('t11'), t, s + .45, 60, .7); const a = T(11, '14', -.3), b = T(11, '12', -.3);
+      K.bar($('b11a'), t, a, .9, 'width', 1260); count($('n11a'), t, a, .9, 14, { suf: ' meses' }); K.bar($('b11b'), t, b, .9, 'width', 1080); count($('n11b'), t, b, .9, 12, { suf: ' meses' }); }
+    if (k === 12) { K.logoAnim('lg', t, s + .2); rise($('tg12'), t, s + .8, 40); pop($('wa12'), t, T(12, 'peça', -.2)); }
+  }
+});
+</script>
+</body>
+</html>

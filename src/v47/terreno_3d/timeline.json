@@ -1,0 +1,77 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 0.8,
+   "dur": 5.077,
+   "caption": "Este é o terreno. Veja a V4.7 transformar ele em obra, do zero à entrega."
+  },
+  {
+   "id": "n2",
+   "start": 6.477,
+   "dur": 5.035,
+   "caption": "Primeiro, o drone mede o terreno: frente, lateral e área, com cada ponto registrado."
+  },
+  {
+   "id": "n3",
+   "start": 12.012,
+   "dur": 5.525,
+   "caption": "A construtora pede: quero um condomínio de 12 casas. E a IA projeta tudo na medida do terreno."
+  },
+  {
+   "id": "n4",
+   "start": 18.038,
+   "dur": 5.12,
+   "caption": "Depois vem o planejamento: orçamento, cronograma, equipe e compras, etapa por etapa."
+  },
+  {
+   "id": "n5",
+   "start": 23.658,
+   "dur": 2.816,
+   "caption": "Meses 1 e 2: terraplenagem e fundações."
+  },
+  {
+   "id": "n6",
+   "start": 26.874,
+   "dur": 6.208,
+   "caption": "Meses 3 a 6: estrutura e alvenaria. O Engenheiro 7.3 acompanha o previsto e o realizado."
+  },
+  {
+   "id": "n7",
+   "start": 33.482,
+   "dur": 4.843,
+   "caption": "Meses 7 a 10: telhado, rua e instalações. Os alertas chegam antes do atraso."
+  },
+  {
+   "id": "n8",
+   "start": 38.725,
+   "dur": 3.221,
+   "caption": "Meses 11 e 12: acabamento, pintura e paisagismo."
+  },
+  {
+   "id": "n9",
+   "start": 42.446,
+   "dur": 2.539,
+   "caption": "Obra entregue: 12 casas prontas, no prazo."
+  },
+  {
+   "id": "n10",
+   "start": 48.185,
+   "dur": 9.664,
+   "caption": "Quanto custa planejar uma obra assim? No mercado, cerca de 168 mil reais. Na V4.7, 60% a menos: 67 mil reais."
+  },
+  {
+   "id": "n11",
+   "start": 58.449,
+   "dur": 3.435,
+   "caption": "E o tempo médio da obra cai de 14 para 12 meses."
+  },
+  {
+   "id": "n12",
+   "start": 63.384,
+   "dur": 3.648,
+   "caption": "V4.7 para construtoras. Peça sua demonstração."
+  }
+ ],
+ "end": 71.03
+}

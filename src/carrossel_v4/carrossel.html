@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 FábricaGov · Carrossel Quem somos</title>
+<style>
+@font-face{font-family:Anton;src:url(../v47/kit/fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-700-normal.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:10800px;height:1350px;overflow:hidden;background:#111216}
+#pano{position:relative;width:10800px;height:1350px;font-family:Inter,sans-serif;color:#F4F1EA;
+ background:linear-gradient(90deg,#111216 0%,#15161B 20%,#1A1610 38%,#111216 52%,#141821 70%,#111216 88%,#18140E 100%)}
+.a{position:absolute}
+.ant{font-family:Anton,sans-serif;text-transform:uppercase;letter-spacing:.5px;line-height:.98}
+.eb{font-weight:700;font-size:26px;letter-spacing:7px;text-transform:uppercase;color:#D9A441}
+.body{font-size:38px;line-height:1.42;color:#C9C4BA;font-weight:500}
+.gold{color:#D9A441}
+.num{position:absolute;top:70px;font-size:24px;font-weight:700;letter-spacing:4px;color:#8E8A82}
+.tag{position:absolute;bottom:70px;font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#8E8A82}
+.card{position:absolute;background:#1B1C22;border:1px solid #2E3038;border-radius:28px;padding:40px}
+.card h3{font-size:40px;font-weight:700;margin-bottom:10px}
+.card p{font-size:30px;line-height:1.4;color:#C9C4BA}
+.chip{display:inline-block;border:2px solid #3A3D46;border-radius:999px;padding:14px 26px;font-size:30px;font-weight:700;margin:0 12px 16px 0;background:#1B1C22}
+.glow{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35}
+.step{position:absolute;width:420px}
+.step b{display:block;font-family:Anton;font-size:96px;color:#D9A441;line-height:1}
+.step h3{font-size:40px;font-weight:700;margin-top:8px}
+.step p{font-size:28px;line-height:1.4;color:#C9C4BA;margin-top:6px}
+</style>
+</head>
+<body>
+<div id="pano">
+ <!-- luzes de fundo -->
+ <div class="glow" style="left:500px;top:300px;width:900px;height:900px;background:#D9A441"></div>
+ <div class="glow" style="left:3900px;top:200px;width:800px;height:800px;background:#D9A441;opacity:.25"></div>
+ <div class="glow" style="left:6200px;top:500px;width:900px;height:700px;background:#FF7A2F;opacity:.22"></div>
+ <div class="glow" style="left:9400px;top:300px;width:900px;height:900px;background:#D9A441;opacity:.3"></div>
+
+ <!-- linha dourada que atravessa todos os slides -->
+ <svg class="a" style="left:0;top:0" width="10800" height="1350" viewBox="0 0 10800 1350">
+  <path d="M -20 1180 C 400 1180 700 1230 1080 1150 S 1700 950 2160 1060 S 2900 1260 3240 1180 S 3900 1000 4320 1100 S 5000 1250 5400 1200 S 6100 1010 6480 1090 S 7100 1250 7560 1180 S 8200 1060 8640 1000 S 9400 1120 9720 1150 S 10500 1100 10820 1120" stroke="#D9A441" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M -20 1210 C 400 1210 700 1260 1080 1180 S 1700 980 2160 1090 S 2900 1290 3240 1210 S 3900 1030 4320 1130 S 5000 1280 5400 1230 S 6100 1040 6480 1120 S 7100 1280 7560 1210 S 8200 1090 8640 1030 S 9400 1150 9720 1180 S 10500 1130 10820 1150" stroke="#D9A441" stroke-width="2" fill="none" opacity=".35"/>
+  <g fill="#D9A441"><circle cx="1080" cy="1150" r="12"/><circle cx="2160" cy="1060" r="12"/><circle cx="3240" cy="1180" r="12"/><circle cx="4320" cy="1100" r="12"/><circle cx="6480" cy="1090" r="12"/><circle cx="7560" cy="1180" r="12"/><circle cx="8640" cy="1000" r="12"/><circle cx="9720" cy="1150" r="12"/></g>
+ </svg>
+
+ <!-- 01 capa -->
+ <div class="a ant" style="left:330px;top:-40px;font-size:1150px;color:transparent;-webkit-text-stroke:3px #D9A44155;letter-spacing:-20px">V4</div>
+ <div class="num" style="left:90px">01 / 10</div>
+ <div class="a eb" style="left:90px;top:300px">Prazer,</div>
+ <img class="a" src="assets/v4_logo_white.png" alt="V4 FábricaGov" style="left:90px;top:370px;width:900px">
+ <div class="a ant" style="left:86px;top:620px;font-size:170px;width:950px">Quem é <span class="gold">a V4?</span></div>
+ <div class="a" style="left:90px;top:1000px;background:#D9A441;color:#111216;border-radius:999px;padding:20px 36px;font-size:30px;font-weight:700">Arraste para conhecer →</div>
+
+ <!-- 02 quem somos -->
+ <div class="num" style="left:1170px">02 / 10</div>
+ <div class="a eb" style="left:1170px;top:260px">Quem somos</div>
+ <div class="a ant" style="left:1166px;top:320px;font-size:140px;width:900px">Uma softhouse <span class="gold">mineira.</span></div>
+ <div class="a body" style="left:1170px;top:660px;width:860px">Criamos software e inteligência artificial para prefeituras e empresas, com sede em Minas Gerais.</div>
+ <div class="a" style="left:1170px;top:930px;display:flex;align-items:center;gap:16px;background:#1B1C22;border:1px solid #3A3D46;border-radius:999px;padding:18px 32px;font-size:30px;font-weight:700">
+  <svg width="30" height="40" viewBox="0 0 30 40"><path d="M15 0C7 0 0 6.5 0 15c0 11 15 25 15 25s15-14 15-25C30 6.5 23 0 15 0zm0 21a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="#D9A441"/></svg>Alvorada de Minas · MG</div>
+
+ <!-- 03 propósito -->
+ <div class="num" style="left:2250px">03 / 10</div>
+ <div class="a eb" style="left:2250px;top:260px">Nosso propósito</div>
+ <div class="a ant" style="left:2246px;top:320px;font-size:150px;width:900px">Tecnologia que chega <span class="gold">na ponta.</span></div>
+ <div class="a" style="left:2250px;top:840px;display:flex;flex-direction:column;gap:18px;font-size:40px;font-weight:700">
+  <div>→ no posto de saúde</div><div>→ na sala de aula</div><div>→ na obra da cidade</div><div>→ na mesa do gestor</div></div>
+
+ <!-- 04 o que fazemos -->
+ <div class="num" style="left:3330px">04 / 10</div>
+ <div class="a eb" style="left:3330px;top:200px">O que fazemos</div>
+ <div class="a ant" style="left:3326px;top:250px;font-size:120px;width:900px">4 frentes</div>
+ <div class="card" style="left:3330px;top:430px;width:900px;padding:34px 40px"><h3><span class="gold">01</span> · Software sob medida</h3><p>Sistemas e apps feitos para a rotina pública.</p></div>
+ <div class="card" style="left:3330px;top:610px;width:900px;padding:34px 40px"><h3><span class="gold">02</span> · Inteligência artificial V4.7</h3><p>6 sistemas de IA para municípios e empresas.</p></div>
+ <div class="card" style="left:3330px;top:790px;width:900px;padding:34px 40px"><h3><span class="gold">03</span> · Documentos e GED</h3><p>Digitalização, restauração e acervo organizado.</p></div>
+ <div class="card" style="left:3330px;top:970px;width:900px;padding:34px 40px"><h3><span class="gold">04</span> · Comunicação</h3><p>Vídeos, apresentações e campanhas públicas.</p></div>
+
+ <!-- 05 V4.7 (dourado) -->
+ <div class="a" style="left:4320px;top:0;width:1080px;height:1350px;background:linear-gradient(160deg,#E2B055,#D9A441 50%,#B9862C)"></div>
+ <div class="num" style="left:4410px;color:#5A4318">05 / 10</div>
+ <div class="a eb" style="left:4410px;top:200px;color:#111216">Nossa IA</div>
+ <img class="a" src="assets/v47_logo_escura_transp.png" alt="V4.7" style="left:4400px;top:270px;width:880px">
+ <div class="a ant" style="left:4406px;top:680px;font-size:96px;width:900px;color:#111216">A nova IA para municípios e empresas chegou.</div>
+ <div class="a" style="left:4410px;top:1000px;width:900px;font-size:32px;font-weight:700;color:#111216">Pesquisa · Saúde · Jurídico · Aprendizagem · Obras · Engenheiro 7.3</div>
+
+ <!-- 06 IA de Obras -->
+ <div class="num" style="left:5490px">06 / 10</div>
+ <div class="a eb" style="left:5490px;top:200px;color:#FF8A4A">Destaque · IA de Obras</div>
+ <div class="a ant" style="left:5486px;top:250px;font-size:120px;width:900px">Da foto ao edital.<br><span style="color:#FF8A4A">Do edital à obra.</span></div>
+ <div class="a" style="left:5490px;top:560px;width:900px;height:381px;border-radius:28px;overflow:hidden;border:1px solid #3A3D46;box-shadow:0 40px 80px #0009"><img src="assets/condo.jpg" alt="Condomínio de 12 casas em 3D" style="width:100%;height:100%;object-fit:cover"></div>
+ <div class="a body" style="left:5490px;top:975px;width:900px;font-size:32px">O drone mede, a IA projeta, orça e acompanha a obra mês a mês.</div>
+
+ <!-- 07 os 6 sistemas -->
+ <div class="num" style="left:6570px">07 / 10</div>
+ <div class="a eb" style="left:6570px;top:200px">Os 6 sistemas V4.7</div>
+ <div class="a" style="left:6570px;top:270px;width:900px;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+  <div class="card" style="position:relative;padding:30px"><h3>Pesquisa</h3><p>O que a população mais pede.</p></div>
+  <div class="card" style="position:relative;padding:30px"><h3>Saúde</h3><p>Remédio antes de faltar.</p></div>
+  <div class="card" style="position:relative;padding:30px"><h3>Jurídico</h3><p>Resposta com a lei citada.</p></div>
+  <div class="card" style="position:relative;padding:30px"><h3>Aprendizagem</h3><p>Reforço para cada turma.</p></div>
+  <div class="card" style="position:relative;padding:30px;border-color:#FF7A2F"><h3 style="color:#FF8A4A">Obras</h3><p>Medidas, orçamento e documentos.</p></div>
+  <div class="card" style="position:relative;padding:30px"><h3>Engenheiro 7.3</h3><p>Obra no prazo e no custo.</p></div>
+ </div>
+
+ <!-- 08 para quem -->
+ <div class="num" style="left:7650px">08 / 10</div>
+ <div class="a eb" style="left:7650px;top:200px">Para quem</div>
+ <div class="a ant" style="left:7646px;top:250px;font-size:120px;width:900px">Quem decide e quem constrói</div>
+ <div class="a" style="left:7650px;top:560px;width:900px;display:flex;flex-direction:column;gap:22px">
+  <div class="card" style="position:relative;padding:32px 40px"><h3><span class="gold">●</span> Prefeituras</h3><p>Saúde, educação, obras e gestão com dados.</p></div>
+  <div class="card" style="position:relative;padding:32px 40px"><h3><span class="gold">●</span> Câmaras e consórcios</h3><p>Transparência e pesquisa com a população.</p></div>
+  <div class="card" style="position:relative;padding:32px 40px"><h3><span class="gold">●</span> Construtoras e empresas</h3><p>Propostas mais rápidas e obra sob controle.</p></div>
+ </div>
+
+ <!-- 09 como trabalhamos -->
+ <div class="num" style="left:8730px">09 / 10</div>
+ <div class="a eb" style="left:8730px;top:200px">Como trabalhamos</div>
+ <div class="a ant" style="left:8726px;top:250px;font-size:110px;width:900px">A IA sugere. <span class="gold">As pessoas decidem.</span></div>
+ <div class="step" style="left:8730px;top:520px"><b>1</b><h3>Diagnóstico</h3><p>Entendemos a rotina.</p></div>
+ <div class="step" style="left:9200px;top:520px"><b>2</b><h3>Piloto</h3><p>Um caso real primeiro.</p></div>
+ <div class="step" style="left:8730px;top:740px"><b>3</b><h3>Implantação</h3><p>Dados e treinamento.</p></div>
+ <div class="step" style="left:9200px;top:740px"><b>4</b><h3>Suporte</h3><p>Do lado da equipe.</p></div>
+
+ <!-- 10 contato -->
+ <div class="num" style="left:9810px">10 / 10</div>
+ <img class="a" src="assets/v4_logo_white.png" alt="V4 FábricaGov" style="left:9810px;top:200px;width:900px">
+ <div class="a ant" style="left:9806px;top:420px;font-size:150px;width:900px">Vamos <span class="gold">conversar?</span></div>
+ <div class="a" style="left:9810px;top:790px;background:#F4F1EA;color:#111216;border-radius:999px;padding:22px 40px;font-size:38px;font-weight:700">WhatsApp (31) 99827-7323</div>
+ <div class="a body" style="left:9810px;top:910px;width:900px;font-size:32px">fabricagovv@gmail.com<br>@Grupo_v4_fabricagovv<br>Alvorada de Minas · MG</div>
+ <div class="a" style="left:9810px;top:1070px;font-size:24px;color:#8E8A82">CNPJ 24.361.188/0001-61</div>
+
+ <!-- rodapé de marca em cada slide -->
+ <div id="tags"></div>
+</div>
+<script>
+let s = ''; for (let i = 0; i < 10; i++) { if (i === 4) continue; s += `<div class="tag" style="left:${i * 1080 + 90}px">V4 FábricaGov · Softhouse</div>`; if (i < 9) s += `<div class="tag" style="left:${i * 1080 + 830}px;color:#D9A441">→</div>`; }
+document.getElementById('tags').innerHTML = s;
+Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = r; i.onerror = r; }))).then(() => document.fonts.ready).then(() => { window.ready = true; });
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Black Friday IA de Obras (vertical)</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+html,body{width:auto;height:auto;background:#000}
+#stage{width:1080px;height:1920px;background:#08080A;font-family:Inter;overflow:hidden}
+.sc{display:none;position:absolute;inset:0;overflow:hidden;background:transparent}
+.ant{font-family:Anton,sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:1px}
+.lm{position:absolute;-webkit-mask:url(../kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;mask:url(../kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;background:linear-gradient(120deg,#8C8C8C,#FFFFFF 40%,#B5B5B5 55%,#FFFFFF 70%,#9A9A9A)}
+.band{position:absolute;left:0;width:1080px;height:84px;overflow:hidden;background:#D9A441;color:#08080A;display:flex;align-items:center}
+.band div{white-space:nowrap;font-family:Anton;font-size:52px;letter-spacing:2px}
+.tag{display:inline-block;background:#FF7A2F;color:#08080A;font-family:Anton;font-size:56px;padding:10px 34px;border-radius:14px;letter-spacing:2px}
+.old{position:relative;display:inline-block;font-family:Anton;font-size:130px;color:#8E8A82}
+.old i{position:absolute;left:-10px;top:52%;height:12px;background:#FF3B30;border-radius:6px;width:0;transform:rotate(-6deg)}
+.new{font-family:Anton;font-size:250px;color:#D9A441;line-height:1;text-shadow:0 0 60px #D9A44166}
+.badge{position:absolute;width:300px;height:300px;border-radius:50%;background:#FF3B30;color:#FFF;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Anton;box-shadow:0 20px 60px #FF3B3066}
+.chip{display:inline-flex;align-items:center;gap:14px;background:#17171B;border:2px solid #34343C;border-radius:999px;padding:16px 30px;font-size:36px;font-weight:700;color:#F4F1EA;margin:0 12px 16px 0}
+.flash{position:absolute;inset:0;background:#FFF;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="stage">
+ <div class="abs" id="glow" style="left:90px;top:520px;width:900px;height:900px;border-radius:50%;background:#D9A441;filter:blur(160px);opacity:.25"></div>
+ <div class="band" id="b1" style="top:110px;transform:rotate(-3deg)"><div id="m1"></div></div>
+
+ <div class="sc" id="s1">
+  <div class="abs ant" id="t1a" style="left:0;width:1080px;top:440px;text-align:center;font-size:330px;color:#F4F1EA">BLACK</div>
+  <div class="abs ant" id="t1b" style="left:0;width:1080px;top:740px;text-align:center;font-size:330px;color:transparent;-webkit-text-stroke:6px #D9A441">FRIDAY</div>
+  <div class="lm" id="lg1" style="left:290px;top:1090px;width:500px;height:209px"></div>
+  <div class="abs" id="u1" style="left:0;width:1080px;top:1340px;text-align:center;font-size:46px;font-weight:700;color:#F4F1EA">A maior da nossa história</div>
+ </div>
+
+ <div class="sc" id="s2"><div id="c2"></div></div>
+ <div class="sc" id="s3"><div id="c3"></div></div>
+ <div class="sc" id="s4"><div id="c4"></div></div>
+
+ <div class="sc" id="s5">
+  <div class="abs ant" id="t5a" style="left:0;width:1080px;top:360px;text-align:center;font-size:150px;color:#F4F1EA">ATÉ</div>
+  <div class="abs ant" id="t5b" style="left:0;width:1080px;top:510px;text-align:center;font-size:400px;color:#FF3B30;text-shadow:0 0 80px #FF3B3066">90%</div>
+  <div class="abs ant" id="t5c" style="left:0;width:1080px;top:900px;text-align:center;font-size:150px;color:#D9A441">OFF</div>
+  <div class="abs" style="left:90px;top:1130px;width:900px;text-align:center">
+   <div class="chip" id="c5a">🚁 Drone</div><div class="chip" id="c5b">📊 Orçamento SINAPI</div><div class="chip" id="c5c">📄 Documentos prontos</div>
+  </div>
+ </div>
+
+ <div class="sc" id="s6">
+  <div class="abs ant" id="t6" style="left:0;width:1080px;top:330px;text-align:center;font-size:120px;color:#F4F1EA">Black Friday</div>
+  <div class="lm" id="lg6" style="left:200px;top:480px;width:680px;height:284px"></div>
+  <div class="abs" id="t6b" style="left:0;width:1080px;top:820px;text-align:center;font-size:46px;font-weight:700;color:#D9A441">IA de Obras · até 90% OFF</div>
+  <div class="abs" id="wa" style="left:140px;top:950px;width:800px;text-align:center;background:#25D366;color:#08080A;border-radius:999px;padding:30px 0;font-size:54px;font-weight:800">WhatsApp (31) 99827-7323</div>
+  <div class="abs" id="t6c" style="left:0;width:1080px;top:1110px;text-align:center;font-size:32px;font-weight:600;color:#8E8A82">Condições e prazo da oferta na proposta · V4 FábricaGov</div>
+ </div>
+
+ <div class="band" id="b2" style="top:1470px;transform:rotate(2deg);background:#FF7A2F"><div id="m2"></div></div>
+ <div class="flash" id="fl"></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), eo = x => 1 - Math.pow(1 - cl(x), 3), spr = x => x <= 0 ? 0 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
+let TL, LN;
+const Wd = (k, w, o = 0) => { const l = LN[k - 1]; const c = l.caption.toLowerCase(); const i = c.indexOf(w.toLowerCase()); return l.start + l.dur * (i < 0 ? 0 : i / c.length) + o; };
+const fmt = (n, d = 0) => n.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+const PL = [['MAX', 'Plano Max', 49990, 9990, 0, '-80%', ['Obras ilimitadas', 'Drone incluso', 'Suporte dedicado']], ['MASTER', 'Plano Master', 39990, 7990, 0, '-80%', ['Até 10 obras', 'Drone incluso', 'Engenheiro 7.3']], ['SIMPLES', 'Plano Simples', 2000, 199.99, 2, '-90%', ['1 obra ativa', 'Medidas e orçamento', 'Documentos básicos']]];
+function card(i) {
+  const [tg, , o, n, d, off, ft] = PL[i]; const k = i + 2;
+  return `<div class="abs" style="left:90px;top:330px;font-size:34px;font-weight:700;letter-spacing:6px;color:#D9A441">BLACK FRIDAY · IA DE OBRAS</div>
+  <div class="abs" id="tg${k}" style="left:90px;top:400px"><span class="tag">PLANO ${tg}</span></div>
+  <div class="abs" id="ol${k}" style="left:90px;top:560px"><div style="font-size:40px;font-weight:600;color:#8E8A82;margin-bottom:6px">de</div><span class="old">R$ ${fmt(o, o % 1 ? 2 : 0)}<i id="st${k}"></i></span></div>
+  <div class="abs" id="nw${k}" style="left:84px;top:830px"><div style="font-size:44px;font-weight:700;color:#F4F1EA;margin-bottom:4px">por apenas</div><div class="new"><span style="font-size:110px">R$ </span><span id="nv${k}">${fmt(n, d)}</span></div></div>
+  <div class="badge" id="bd${k}" style="left:700px;top:430px"><div style="font-size:120px;line-height:1">${off}</div><div style="font-size:40px">OFF</div></div>
+  <div class="abs" id="ft${k}" style="left:90px;top:1160px;width:920px">${ft.map((f, j) => `<div class="chip" id="f${k}${j}">✓ ${f}</div>`).join('')}</div>`;
+}
+function build() {
+  const txt = ' BLACK FRIDAY V4.7 ★ ATÉ 90% OFF ★ IA DE OBRAS ★'.repeat(12);
+  $('m1').textContent = txt; $('m2').textContent = txt;
+  for (let i = 0; i < 3; i++) $('c' + (i + 2)).innerHTML = card(i);
+}
+function slam(el, t, t0) { const u = t - t0, p = cl(u / .3); el.style.opacity = cl(u / .1); el.style.transform = `scale(${1.6 - .6 * eo(p) + (p >= 1 ? .04 * Math.exp(-(u - .3) * 7) * Math.sin((u - .3) * 32) : 0)})`; }
+function pop(el, t, t0) { el.style.opacity = cl((t - t0) / .12); el.style.transform = `scale(${t < t0 ? .5 : .5 + .5 * spr(t - t0)})`; }
+function rise(el, t, t0, dy = 60) { const p = cl((t - t0) / .45); el.style.opacity = p; el.style.transform = `translateY(${(1 - eo(p)) * dy}px)`; }
+function seek(t) {
+  const SC = LN.map((l, i) => i ? l.start - .25 : 0); let k = 1; SC.forEach((s, i) => { if (t >= s) k = i + 1; });
+  for (let i = 1; i <= 6; i++) $('s' + i).style.display = i === k ? 'block' : 'none';
+  const s = SC[k - 1];
+  $('m1').style.transform = `translateX(${-(t * 260) % 2400}px)`; $('m2').style.transform = `translateX(${-2400 + (t * 260) % 2400}px)`;
+  $('glow').style.opacity = .2 + .08 * Math.sin(t * 3);
+  // flash em cada corte
+  let fl = 0; SC.forEach(c => { const u = t - c; if (u >= 0 && u < .25) fl = Math.max(fl, .7 * (1 - u / .25)); }); $('fl').style.opacity = fl;
+  const sh = Math.max(0, 1 - (t - s) / .35); $('stage').style.transform = sh > 0 && k > 1 ? `translate(${Math.sin(t * 90) * 10 * sh}px,${Math.cos(t * 70) * 10 * sh}px)` : '';
+  if (k === 1) { slam($('t1a'), t, .3); slam($('t1b'), t, .75); const p = cl((t - 1.4) / .9); $('lg1').style.clipPath = `inset(0 ${100 - 100 * eo(p)}% 0 0)`; $('lg1').style.backgroundPosition = `${-200 + 400 * cl((t - 2.2) / 1.2)}px 0`; rise($('u1'), t, Wd(1, 'a maior', -.2)); }
+  if (k >= 2 && k <= 4) {
+    const n = k; const a = Wd(n, ['', '', 'max: de', 'master: de', 'simples: de'][n], -.15), b = Wd(n, 'por', -.15);
+    rise($('tg' + n), t, s + .15); rise($('ol' + n), t, a, 40); $('st' + n).style.width = (110 * eo((t - a - .5) / .3)) + '%';
+    slam($('nw' + n), t, b); $('nw' + n).style.transformOrigin = '0 50%';
+    pop($('bd' + n), t, b + .35); $('bd' + n).style.transform += ` rotate(${-12 + 4 * Math.sin(t * 4)}deg)`;
+    for (let j = 0; j < 3; j++) pop($('f' + n + j), t, b + .9 + j * .18);
+  }
+  if (k === 5) { slam($('t5a'), t, s + .1); slam($('t5b'), t, Wd(5, '90%', -.2)); slam($('t5c'), t, Wd(5, 'de desconto', -.1));
+    [['c5a', 'drone'], ['c5b', 'orçamento'], ['c5c', 'documentos']].forEach(([id, w]) => pop($(id), t, Wd(5, w, -.15))); }
+  if (k === 6) { rise($('t6'), t, s + .1); const p = cl((t - s - .3) / .8); $('lg6').style.clipPath = `inset(0 ${100 - 100 * eo(p)}% 0 0)`; $('lg6').style.backgroundPosition = `${-300 + 600 * cl((t - s - 1) / 1.4)}px 0`;
+    rise($('t6b'), t, s + .7); pop($('wa'), t, Wd(6, 'whatsapp', -.2)); $('wa').style.boxShadow = `0 0 0 ${10 + 10 * Math.abs(Math.sin(t * 4))}px #25D36633`; rise($('t6c'), t, s + 1.6, 20); }
+  $('stage').style.opacity = 1 - cl((t - (TL.end - .8)) / .8);
+}
+window.seek = seek;
+fetch('timeline.json').then(r => r.json()).then(j => { TL = j; LN = j.lines; return Promise.all(['600 20px Inter', '700 20px Inter', '40px Anton'].map(f => document.fonts.load(f))); })
+  .then(() => { build(); seek(0); window.ready = true; if (!location.search.includes('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % TL.end); requestAnimationFrame(loop); }; loop(); } });
+</script>
+</body>
+</html>

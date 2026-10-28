@@ -1,0 +1,31 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Black Friday V4.7 · post</title>
+<style>
+@font-face{font-family:Anton;src:url(../kit/fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;src:url(../kit/fonts/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../kit/fonts/inter-latin-700-normal.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#08080A;font-family:Inter;color:#F4F1EA}
+#p{position:relative;width:1080px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#2A1E08 0%,#08080A 60%)}
+.band{position:absolute;left:-40px;width:1160px;height:70px;background:#D9A441;color:#08080A;font-family:Anton;font-size:42px;letter-spacing:2px;white-space:nowrap;display:flex;align-items:center;overflow:hidden}
+.lm{-webkit-mask:url(../kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;background:linear-gradient(120deg,#8C8C8C,#FFF 40%,#B5B5B5 55%,#FFF 70%,#9A9A9A)}
+.h{font-family:Anton;text-transform:uppercase;line-height:.92;text-align:center}
+.row{display:flex;align-items:center;gap:24px;background:#141418;border:2px solid #2C2C33;border-radius:28px;padding:26px 30px;margin:0 60px 20px}
+.row .tg{width:200px;font-family:Anton;font-size:44px;color:#FF7A2F}
+.row .od{font-family:Anton;font-size:40px;color:#8E8A82;text-decoration:line-through;text-decoration-color:#FF3B30;text-decoration-thickness:5px}
+.row .nw{font-family:Anton;font-size:78px;color:#D9A441;margin-left:auto;white-space:nowrap}
+.row .off{background:#FF3B30;color:#FFF;font-family:Anton;font-size:34px;border-radius:999px;padding:6px 16px}
+</style></head><body><div id="p"></div>
+<script>
+const story = location.search.includes('story'), H = story ? 1920 : 1350, p = document.getElementById('p'); p.style.height = H + 'px';
+const T = ' BLACK FRIDAY V4.7 ★ ATÉ 90% OFF ★ IA DE OBRAS ★'.repeat(6);
+const top0 = story ? 260 : 120;
+const plans = [['MAX', '49.990', '9.990', '-80%'], ['MASTER', '39.990', '7.990', '-80%'], ['SIMPLES', '2.000', '199,99', '-90%']];
+p.innerHTML = `<div class="band" style="top:${story ? 120 : 40}px;transform:rotate(-2deg)">${T}</div>
+<div class="h" style="position:absolute;left:0;width:1080px;top:${top0 + 30}px;font-size:${story ? 180 : 170}px">Black <span style="color:transparent;-webkit-text-stroke:5px #D9A441">Friday</span></div>
+<div style="position:absolute;left:0;width:1080px;top:${top0 + (story ? 250 : 230)}px;text-align:center;font-size:40px;font-weight:700;color:#D9A441;letter-spacing:4px">IA DE OBRAS · ATÉ <span style="color:#FF3B30">90% OFF</span></div>
+<div style="position:absolute;left:0;width:1080px;top:${top0 + (story ? 380 : 310)}px">${plans.map(([a, o, n, f]) => `<div class="row"><div class="tg">${a}</div><div><div class="od">R$ ${o}</div><span class="off">${f}</span></div><div class="nw"><span style="font-size:40px">R$ </span>${n}</div></div>`).join('')}</div>
+<div class="lm" style="position:absolute;left:${story ? 320 : 410}px;top:${story ? 1260 : 990}px;width:${story ? 440 : 260}px;height:${story ? 184 : 109}px"></div>
+<div style="position:absolute;left:190px;width:700px;top:${story ? 1520 : 1120}px;text-align:center;background:#25D366;color:#08080A;border-radius:999px;padding:20px 0;font-size:42px;font-weight:700">WhatsApp (31) 99827-7323</div>
+<div style="position:absolute;left:0;width:1080px;top:${story ? 1650 : 1255}px;text-align:center;font-size:24px;font-weight:600;color:#8E8A82">Condições e prazo na proposta · V4 FábricaGov</div>`;
+document.fonts.ready.then(() => window.ready = true);
+</script></body></html>

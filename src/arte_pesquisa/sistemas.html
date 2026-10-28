@@ -1,0 +1,59 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>V4.7 · artes por sistema</title>
+<style>
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-700-normal.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:Inter}
+#a{position:relative;width:1080px;height:1350px;overflow:hidden;background:linear-gradient(#E6E4EE 1px,transparent 1px) 0 0/90px 90px,linear-gradient(90deg,#E6E4EE 1px,transparent 1px) 0 0/90px 90px,#F7F6FB}
+.x{position:absolute}
+.pill{display:flex;align-items:center;gap:14px;border-radius:999px;font-weight:700;color:#fff}
+.lm{-webkit-mask:url(../v47/kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;background:#fff}
+.row{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:600;color:#fff;margin:8px 0}
+.row i{display:block;height:14px;border-radius:7px;background:#ffffffaa}
+.card{background:#ffffff26;border-radius:22px;padding:16px 18px;color:#fff;margin-top:14px}
+.sm{font-size:18px;font-weight:600;opacity:.85}
+.bg{font-size:30px;font-weight:700;margin-top:4px;white-space:nowrap}
+.cta{margin-top:14px;background:#fff;border-radius:18px;padding:15px;text-align:center;font-size:21px;font-weight:700}
+</style></head><body><div id="a"></div>
+<script src="presenter.js"></script>
+<script>
+const S = {
+ pesquisa: { c1: '#8B3DFF', c2: '#5A12D6', top: 'PESQUISAS EM TEMPO REAL', t: 'Ouvir a cidade<br>nunca foi tão fácil!', pill: 'RESPOSTAS POR APP E WHATSAPP', side: 'Crie a pesquisa e deixe <b>a IA organizar o resto.</b>', ic: ['📊', '💬', '✅'],
+  ph: `<div class="card"><div class="sm">Pesquisa · Vila Nova</div><div class="bg">312 respostas</div><div style="height:10px;border-radius:5px;background:#ffffff40;margin-top:12px"><div style="width:78%;height:100%;border-radius:5px;background:#fff"></div></div></div><div class="card"><div class="row"><span style="width:108px">Iluminação</span><i style="width:90px"></i>38%</div><div class="row"><span style="width:108px">Saúde</span><i style="width:64px"></i>27%</div><div class="row"><span style="width:108px">Asfalto</span><i style="width:50px"></i>21%</div></div><div class="cta">Responder pesquisa</div>` },
+ saude: { c1: '#1FC48A', c2: '#0B7A55', top: 'ALERTAS DE ESTOQUE', t: 'Remédio certo,<br>na hora certa!', pill: 'ESTOQUE DE TODAS AS UBS', side: 'A IA avisa <b>antes de faltar.</b>', ic: ['💊', '🔔', '✅'],
+  ph: `<div class="card"><div class="sm">⚠ Alerta · UBS Centro</div><div class="bg">Dipirona 500 mg</div><div class="sm" style="margin-top:6px">acaba em ~5 dias</div><div style="height:10px;border-radius:5px;background:#ffffff40;margin-top:12px"><div style="width:22%;height:100%;border-radius:5px;background:#FFB020"></div></div></div><div class="card"><div class="sm">Sugestão da IA</div><div style="font-size:21px;font-weight:700;margin-top:6px;line-height:1.3">Remanejar 400 comprimidos da UBS Vila Nova</div></div><div class="cta">Aprovar remanejamento</div>` },
+ juridico: { c1: '#5B6CFF', c2: '#2A33B8', top: 'RESPOSTAS COM A LEI CITADA', t: 'Licitação segura<br>ficou fácil!', pill: 'REVISÃO DA PROCURADORIA', side: 'Pergunte e receba <b>a resposta com a fonte.</b>', ic: ['⚖️', '📄', '✅'],
+  ph: `<div class="card" style="background:#ffffff40"><div style="font-size:20px;font-weight:700;line-height:1.3">Que documentos preciso antes de licitar?</div></div><div class="card"><div class="row">✓ Estudo técnico preliminar</div><div class="row">✓ Termo de referência</div><div class="row">✓ Orçamento estimado</div><div class="sm" style="margin-top:8px">Lei 14.133/2021 · art. 18</div></div><div class="cta">Ver documento completo</div>` },
+ aprendizagem: { c1: '#F0578E', c2: '#B5245A', top: 'REFORÇO PARA CADA TURMA', t: 'Cada aluno<br>aprendendo mais!', pill: 'TRILHAS DE REFORÇO', side: 'A IA mostra <b>onde cada turma precisa de ajuda.</b>', ic: ['📚', '🎯', '✅'],
+  ph: `<div class="card"><div class="sm">Turma 5º B · Matemática</div><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:12px">${['#2FBF8F','#E5484D','#FFC24B','#2FBF8F','#FFC24B','#2FBF8F','#E5484D','#2FBF8F','#FFC24B','#2FBF8F','#FFC24B','#E5484D','#2FBF8F','#2FBF8F','#FFC24B'].map(c => `<div style="height:26px;border-radius:6px;background:${c}"></div>`).join('')}</div></div><div class="card"><div style="font-size:21px;font-weight:700;line-height:1.3">4 alunos com dificuldade em frações</div></div><div class="cta">Criar trilha de reforço</div>` },
+ obras: { c1: '#FF8A3D', c2: '#D2520C', top: 'DRONE + ORÇAMENTO SINAPI', t: 'Obra planejada<br>nunca foi tão fácil!', pill: 'DOCUMENTOS PRONTOS', side: 'Fale o que quer construir e <b>a IA monta o resto.</b>', ic: ['🏗️', '🚁', '✅'],
+  ph: `<div class="card"><div class="sm">Ponte sobre o córrego</div><div class="row"><span style="width:120px">Vão livre</span>18,40 m</div><div class="row"><span style="width:120px">Concreto</span>140 m³</div></div><div class="card"><div class="sm">Total estimado (SINAPI)</div><div class="bg">R$ 340.060</div></div><div class="cta">Baixar documentos</div>` },
+ engenheiro: { c1: '#3D8BFF', c2: '#1747C4', top: 'ACOMPANHAMENTO DA OBRA', t: 'Sua obra no prazo<br>e no custo!', pill: 'ALERTAS DE ATRASO', side: 'A IA avisa <b>antes do atraso.</b>', ic: ['👷', '📈', '✅'],
+  ph: `<div class="card"><div class="sm">Creche Centro · avanço</div><svg width="230" height="90" viewBox="0 0 230 90" style="margin-top:8px"><path d="M0 85 C60 83 90 50 120 38 C150 26 190 10 230 6" stroke="#ffffff88" stroke-width="3" stroke-dasharray="6 5" fill="none"/><path d="M0 85 C60 84 90 58 120 48" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg><div class="row"><span style="width:110px">Realizado</span>46%</div><div class="row"><span style="width:110px">Previsto</span>52%</div></div><div class="card" style="background:#FFB02055"><div style="font-size:19px;font-weight:700;line-height:1.3">⚠ Risco de atraso de 6 dias</div></div><div class="cta">Ver sugestão da IA</div>` },
+};
+const k = new URLSearchParams(location.search).get('s') || 'pesquisa', d = S[k];
+document.getElementById('a').innerHTML = `
+ <svg class="x" style="left:20px;top:150px" width="1040" height="1000" viewBox="0 0 1040 1000"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${d.c1}"/><stop offset="1" stop-color="${d.c2}"/></linearGradient></defs><path d="M380 40 Q520 -20 660 40 L900 150 Q1010 200 1000 330 L980 640 Q970 760 860 820 L620 960 Q520 1010 420 960 L170 840 Q60 780 50 660 L30 360 Q20 230 140 170Z" fill="url(#g)"/></svg>
+ <div class="x" style="left:250px;top:60px;width:580px;height:74px;background:#E9E7F2;border-radius:999px"></div>
+ <div class="x pill" style="left:258px;top:68px;height:58px;padding:0 26px 0 12px;background:${d.c2};font-size:20px;letter-spacing:1px"><span style="width:58px;height:34px;border-radius:17px;background:#fff;display:flex;align-items:center;padding:0 5px"><span style="width:26px;height:26px;border-radius:50%;background:${d.c2}"></span></span>${d.top}</div>
+ <div class="x lm" style="left:720px;top:78px;width:84px;height:36px;background:${d.c2}"></div>
+ <div class="x" id="pp" style="left:250px;top:110px;width:840px;height:1120px"></div>
+ <div class="x" style="left:70px;top:540px;width:330px;height:640px;background:#16131F;border-radius:46px;padding:12px;transform:rotate(-6deg);box-shadow:0 40px 80px #0005">
+  <div style="width:100%;height:100%;border-radius:36px;overflow:hidden;background:linear-gradient(170deg,${d.c1},${d.c2});padding:40px 20px">
+   <div style="display:flex;justify-content:space-between;align-items:center;color:#fff"><div class="lm" style="width:80px;height:34px"></div><div style="font-size:18px;font-weight:600">online</div></div>
+   <div style="color:${d.c2}">${d.ph}</div></div></div>
+ <div class="x" style="left:520px;top:840px;display:flex">${d.ic.map((e, i) => `<div style="width:84px;height:84px;border-radius:50%;background:${i === 1 ? '#F1ECFF' : '#fff'};box-shadow:0 10px 30px #0003;${i ? 'margin-left:-22px;' : ''}display:flex;align-items:center;justify-content:center;font-size:42px">${e}</div>`).join('')}</div>
+ <div class="x" style="left:200px;top:925px;width:880px;font-size:96px;font-weight:700;line-height:.95;letter-spacing:-5px;color:#fff;text-shadow:0 6px 30px #0006">${d.t}</div>
+ <div class="x pill" style="left:150px;top:1162px;height:60px;padding:0 26px 0 10px;background:${d.c2};font-size:19px"><span style="display:flex"><span style="width:44px;height:44px;border-radius:50%;background:#FFD08A;border:3px solid ${d.c2}"></span><span style="width:44px;height:44px;border-radius:50%;background:#C98D6B;border:3px solid ${d.c2};margin-left:-14px"></span><span style="width:44px;height:44px;border-radius:50%;background:#8D5A3C;border:3px solid ${d.c2};margin-left:-14px"></span></span>${d.pill}</div>
+ <div class="x" style="left:690px;top:1140px;width:265px;font-size:26px;font-weight:500;line-height:1.2;letter-spacing:-1px;color:#fff">${d.side.replace('<b>', '<b style="font-weight:700">')}</div>
+ <div class="x" style="left:0;top:1290px;width:1080px;height:60px;background:linear-gradient(90deg,${d.c1},${d.c2});display:flex;align-items:center;justify-content:center;gap:26px">
+  <div class="lm" style="width:96px;height:40px"></div>${['📱 App', '💬 WhatsApp', '🖥 Painel web'].map(x => `<div style="border:2px solid #fff;border-radius:10px;padding:5px 16px;color:#fff;font-size:19px;font-weight:700">${x}</div>`).join('')}</div>`;
+// foto real em fotos/<sistema>.png (fundo transparente) substitui a ilustração
+const img = new Image(); img.onload = () => { document.getElementById('pp').innerHTML = `<img src="fotos/${k}.png" style="position:absolute;left:0;bottom:0;width:100%;height:100%;object-fit:contain;object-position:bottom">`; done(); };
+img.onerror = () => { const dk = d.c2, md = d.c1;
+  let s = presenterSVG('p').replace(/<image[^>]*mark_d\.png[^>]*\/>/, '').replace('>DIGITALGOV<', '>V4.7<').replace(/#263050/g, dk).replace(/#1d2645/g, dk).replace(/#33407a/g, md).replace(/#2d3a6b/g, md).replace('width="600" height="800"', 'width="840" height="1120"');
+  document.getElementById('pp').innerHTML = s; setPresenter('p', { open: 1, wide: 1, t: 0.6, look: -0.6, brow: 1 }); done(); };
+img.src = `fotos/${k}.png`;
+function done() { document.fonts.ready.then(() => window.ready = true); }
+</script></body></html>

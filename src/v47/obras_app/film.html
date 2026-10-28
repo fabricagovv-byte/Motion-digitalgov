@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Sistema de Obras · o app (vertical)</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+html,body{width:auto;height:auto;background:#000}
+#stage{width:1080px;height:1920px;background:#F5F6F9;font-family:Inter;color:#111216;overflow:hidden}
+.ant{font-family:Anton,sans-serif;text-transform:uppercase;line-height:.95;letter-spacing:.5px}
+.or{color:#F26A1B}
+.ttl{position:absolute;left:0;width:1080px;text-align:center}
+.pill{display:inline-block;background:#F26A1B;color:#fff;font-weight:700;border-radius:14px;padding:12px 34px;font-size:40px}
+.lap{position:absolute}
+.lap .scr{position:absolute;left:0;top:0;right:0;background:#16171B;border-radius:22px 22px 0 0;padding:14px;box-shadow:0 30px 60px #11121633}
+.lap .scr img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:8px;display:block}
+.lap .base{position:absolute;height:26px;background:linear-gradient(#D7D9DE,#A9ACB4);border-radius:0 0 26px 26px}
+#ph{position:absolute;background:#16171B;border-radius:64px;padding:16px;box-shadow:0 50px 100px #1112163a;transform-origin:50% 50%}
+#ph .in{position:relative;width:100%;height:100%;background:#FFF;border-radius:50px;overflow:hidden}
+.hdr{position:absolute;left:0;right:0;top:0;height:150px;background:#F26A1B;color:#fff;padding:64px 34px 0;display:flex;justify-content:space-between;align-items:center}
+.hdr b{font-size:34px}.hdr span{font-size:24px;font-weight:600;opacity:.9}
+.scrn{position:absolute;left:0;right:0;top:150px;bottom:0;padding:30px 30px;display:none}
+.row{display:flex;justify-content:space-between;align-items:center;font-size:26px;padding:16px 0;border-bottom:1px solid #EEE}
+.row b{font-weight:700}
+.chip{display:inline-flex;align-items:center;gap:8px;background:#FFF3EB;border:2px solid #F9C4A2;color:#B24A0C;border-radius:999px;padding:10px 18px;font-size:24px;font-weight:700;margin:0 8px 12px 0}
+.fcard{position:absolute;background:#FFF;border-radius:30px;box-shadow:0 24px 60px #1112162a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.fcard div:first-child{font-size:76px}.fcard div:last-child{font-family:Anton;font-size:40px;text-transform:uppercase}
+.check{position:absolute;background:#FFF;border-radius:28px;box-shadow:0 24px 60px #1112162a;padding:30px 30px}
+.btn{background:#111216;color:#fff;border-radius:18px;padding:20px;text-align:center;font-size:26px;font-weight:700;margin-top:20px}
+.doc{display:flex;align-items:center;gap:16px;font-size:27px;font-weight:600;padding:16px 0;border-bottom:1px solid #EEE}
+.doc i{width:44px;height:44px;border-radius:50%;border:3px solid #DDD;display:flex;align-items:center;justify-content:center;font-style:normal;color:#fff;font-weight:700;font-size:26px}
+</style>
+</head>
+<body>
+<div id="stage">
+ <div class="abs ant" id="bigw" style="left:0;top:980px;font-size:760px;color:#E9EBF0;white-space:nowrap">OBRAS OBRAS</div>
+ <div class="abs" style="left:80px;top:60px;width:420px;height:14px;background:#F26A1B;border-radius:7px" id="bar1"></div>
+ <div class="abs" id="logos" style="left:0;width:1080px;top:110px;display:flex;justify-content:center;align-items:center;gap:28px"><img src="img/v4_logo_dark.png" style="height:64px"><div style="width:2px;height:58px;background:#C9CCD4"></div><img src="img/v47_dark.png" style="height:70px"></div>
+
+ <!-- títulos por cena -->
+ <div class="ttl ant" id="T1a" style="top:240px;font-size:150px">Sistema de <span class="or">Obras</span></div>
+ <div class="ttl ant" id="T1b" style="top:400px;font-size:104px">+ IA para sua obra</div>
+ <div class="ttl" id="T1c" style="top:540px"><span class="pill">Utilidades:</span></div>
+ <div class="ttl ant" id="T2" style="top:250px;font-size:150px"><span class="or">Medidas</span><br>com drone</div>
+ <div class="ttl ant" id="T3" style="top:250px;font-size:150px">Fale o que<br><span class="or">precisa</span></div>
+ <div class="ttl ant" id="T4" style="top:250px;font-size:150px"><span class="or">Orçamento</span><br>SINAPI</div>
+ <div class="ttl ant" id="T5" style="top:250px;font-size:150px"><span class="or">Documentos</span><br>prontos</div>
+ <div class="ttl ant" id="T6" style="top:250px;font-size:150px">Obra no<br><span class="or">prazo</span></div>
+ <div class="ttl ant" id="T7a" style="top:250px;font-size:92px">Ideal para prefeituras,</div>
+ <div class="ttl ant" id="T7b" style="top:350px;font-size:92px"><span class="or">construtoras</span> e empresas</div>
+ <div class="abs" id="T7c" style="left:130px;width:820px;top:480px;text-align:center;background:#111216;color:#F5F6F9;border-radius:16px;padding:16px 0;font-size:38px;font-weight:600">Adeus planilhas e <b style="color:#F2A06B">processos lentos</b></div>
+ <div class="ttl ant" id="T7d" style="top:1520px;font-size:40px"><span class="or">Completo</span>, simples e seguro · <span class="or">a IA sugere</span>, você decide</div>
+
+ <!-- notebook -->
+ <div class="lap" id="lap" style="left:140px;top:700px;width:800px;height:540px"><div class="scr" style="height:514px"><img id="lapimg" src="img/condo.jpg"></div><div class="base" style="left:-56px;right:-56px;top:514px"></div></div>
+ <div class="check" id="chk" style="left:700px;top:660px;width:340px">
+  <div style="position:absolute;right:-20px;top:-30px;width:80px;height:80px;border-radius:20px;background:#F26A1B;color:#fff;font-size:50px;font-weight:700;display:flex;align-items:center;justify-content:center">✓</div>
+  <div style="font-size:25px;line-height:1.8;font-weight:600;color:#33353D">· Medidas com drone<br>· Lista do que precisa<br>· Orçamento SINAPI<br>· Documentos prontos<br>· Acompanhamento</div></div>
+
+ <!-- cartões flutuantes -->
+ <div class="fcard" id="fL" style="left:40px;top:900px;width:230px;height:250px"><div id="fLi">📐</div><div id="fLt">Medidas</div></div>
+ <div class="fcard" id="fR" style="left:810px;top:1100px;width:230px;height:250px;background:#111216;color:#fff"><div id="fRi">🚁</div><div id="fRt" style="color:#F2A06B">Drone</div></div>
+
+ <!-- celular com o app -->
+ <div id="ph" style="left:290px;top:560px;width:500px;height:1000px"><div class="in">
+  <div class="hdr"><b>V4.7 · Obras</b><span>● online</span></div>
+  <div class="scrn" id="sc0">
+   <div style="font-size:24px;font-weight:600;color:#888">Minhas obras</div>
+   <div class="row"><b>Ponte do córrego</b><span style="color:#F26A1B;font-weight:700">projeto</span></div>
+   <div class="row"><b>Praça Vila Nova</b><span style="color:#2FBF8F;font-weight:700">em obra</span></div>
+   <div class="row"><b>Creche Centro</b><span style="color:#2F6BFF;font-weight:700">46%</span></div>
+   <div class="btn" style="background:#F26A1B">+ Nova obra</div></div>
+  <div class="scrn" id="sc2" style="padding:0">
+   <div style="position:relative;height:470px;overflow:hidden"><img src="img/rio.jpg" id="map" style="width:100%;height:100%;object-fit:cover"><div id="drone" style="position:absolute;font-size:64px">🚁</div>
+    <svg width="468" height="470" style="position:absolute;left:0;top:0"><line id="mline" x1="90" y1="300" x2="370" y2="170" stroke="#F26A1B" stroke-width="6" stroke-dasharray="10 8"/></svg></div>
+   <div style="padding:20px 30px"><div class="row"><span>Vão livre</span><b id="m1">0</b></div><div class="row"><span>Extensão</span><b id="m2">0</b></div><div class="row" style="border:0"><span>Largura</span><b id="m3">0</b></div></div></div>
+  <div class="scrn" id="sc3">
+   <div style="display:flex;justify-content:center;margin-top:10px"><div id="mic" style="width:150px;height:150px;border-radius:50%;background:#F26A1B;display:flex;align-items:center;justify-content:center;font-size:70px">🎙️</div></div>
+   <svg id="wave" width="440" height="80" style="display:block;margin:20px auto 0"></svg>
+   <div id="quote" style="font-size:32px;font-weight:700;margin:16px 0 22px;min-height:84px;line-height:1.3"></div>
+   <div id="chips"><span class="chip">✓ Concreto</span><span class="chip">✓ Aço CA-50</span><span class="chip">✓ Estacas</span><span class="chip">✓ Formas</span><span class="chip">✓ Guarda-corpo</span><span class="chip">✓ Aterro</span></div></div>
+  <div class="scrn" id="sc4">
+   <div style="font-size:24px;font-weight:600;color:#888">Planilha · ref. SINAPI</div>
+   <div id="qt"></div>
+   <div style="margin-top:24px;background:#FFF3EB;border-radius:20px;padding:20px 24px"><div style="font-size:22px;font-weight:600;color:#B24A0C">TOTAL ESTIMADO</div><div id="tot" style="font-family:Anton;font-size:72px;color:#F26A1B">R$ 0</div></div>
+   <div style="font-size:18px;color:#999;margin-top:8px">valores ilustrativos</div></div>
+  <div class="scrn" id="sc5">
+   <div style="font-size:24px;font-weight:600;color:#888">Fase preparatória · Lei 14.133</div>
+   <div id="docs"></div><div class="btn" id="dl">⬇ Baixar pacote completo</div></div>
+  <div class="scrn" id="sc6">
+   <div style="font-size:24px;font-weight:600;color:#888">Creche Centro · avanço</div>
+   <svg width="440" height="260" style="display:block;margin-top:16px"><g stroke="#EEE" stroke-width="2"><line x1="0" y1="40" x2="440" y2="40"/><line x1="0" y1="140" x2="440" y2="140"/><line x1="0" y1="240" x2="440" y2="240"/></g>
+    <path id="pp6" d="M0 245 C110 240 160 150 220 115 C280 80 350 30 440 22" stroke="#B0B3BB" stroke-width="5" stroke-dasharray="12 9" fill="none"/>
+    <path id="pr6" d="M0 245 C110 242 160 170 220 140" stroke="#2F6BFF" stroke-width="10" fill="none" stroke-linecap="round"/></svg>
+   <div class="row"><span>Realizado</span><b id="r6">0%</b></div><div class="row"><span>Previsto</span><b id="p6">0%</b></div>
+   <div id="al6" style="margin-top:20px;background:#FFF4E5;border-left:8px solid #FFB020;border-radius:14px;padding:18px 20px;font-size:25px;font-weight:700;color:#8A5A00">⚠ Risco de atraso de 6 dias · reforçar a equipe</div></div>
+ </div></div>
+
+ <!-- encerramento -->
+ <div class="abs" id="end" style="inset:0;background:#111216;opacity:0">
+  <img src="img/v4_logo_white.png" style="position:absolute;left:140px;top:360px;width:800px">
+  <div class="lm" style="position:absolute;left:340px;top:560px;width:400px;height:167px;-webkit-mask:url(../kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;background:linear-gradient(120deg,#8C8C8C,#FFF 40%,#B5B5B5 55%,#FFF 70%,#9A9A9A)"></div>
+  <div class="ttl ant" style="top:800px;font-size:150px;color:#F5F6F9">Vamos<br><span style="color:#F26A1B">conversar?</span></div>
+  <div style="position:absolute;left:150px;width:780px;top:1150px;text-align:center;background:#25D366;color:#111216;border-radius:999px;padding:28px 0;font-size:50px;font-weight:700" id="wa">WhatsApp (31) 99827-7323</div>
+  <div class="ttl" style="top:1300px;font-size:36px;font-weight:700;color:#F2A06B">Peça sua demonstração →</div></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), eo = x => 1 - Math.pow(1 - cl(x), 3), eio = x => { x = cl(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }, spr = x => x <= 0 ? 0 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
+const fmt = (n, d = 0) => n.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+let TL, LN;
+const Wd = (k, w, o = 0) => { const l = LN[k - 1]; const c = l.caption.toLowerCase(); const i = c.indexOf(w.toLowerCase()); return l.start + l.dur * (i < 0 ? 0 : i / c.length) + o; };
+const QT = [['Concreto', 86800], ['Aço CA-50', 137200], ['Formas', 49400], ['Estacas', 40320], ['Guarda-corpo', 18240], ['Aterro', 8100]];
+const DOCS = ['Estudo Técnico Preliminar', 'Termo de Referência', 'Projeto básico', 'Planilha orçamentária', 'Cronograma'];
+function build() {
+  $('qt').innerHTML = QT.map((q, i) => `<div class="row" id="q${i}"><span>${q[0]}</span><b>R$ ${fmt(q[1])}</b></div>`).join('');
+  $('docs').innerHTML = DOCS.map((d, i) => `<div class="doc" id="d${i}"><i id="di${i}">✓</i>${d}</div>`).join('');
+}
+const show = (id, on) => { $(id).style.display = on ? 'block' : 'none'; };
+function rise(el, t, t0, dy = 60, d = .5) { const p = cl((t - t0) / d); el.style.opacity = p; el.style.transform = `translateY(${(1 - eo(p)) * dy}px)`; }
+function pop(el, t, t0, base = '') { el.style.opacity = cl((t - t0) / .12); el.style.transform = `${base} scale(${t < t0 ? .5 : .5 + .5 * spr(t - t0)})`; }
+const _L = new Map(); function draw(p, t, t0, d) { let L = _L.get(p); if (!L) { L = p.getTotalLength(); _L.set(p, L); p.style.strokeDasharray = L; } p.style.strokeDashoffset = L * (1 - eio((t - t0) / d)); }
+function seek(t) {
+  const SC = LN.map((l, i) => i ? l.start - .3 : 0); let k = 1; SC.forEach((s, i) => { if (t >= s) k = i + 1; }); const s = SC[k - 1], lt = t - s;
+  $('bigw').style.transform = `translateX(${-(t * 40) % 1600}px)`;
+  ['T1a', 'T1b', 'T1c', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7a', 'T7b', 'T7c', 'T7d'].forEach(id => $(id).style.opacity = 0);
+  const T = (id, d = 0) => rise($(id), t, s + .15 + d, 70, .5);
+  // celular: posição por cena
+  let px = 290, py = 600, pw = 500, ph = 1000, pr = 0;
+  if (k === 1) { px = 70; py = 980; pw = 280; ph = 560; pr = -6; }
+  if (k === 7) { px = 760; py = 1000; pw = 260; ph = 520; pr = 6; }
+  const ent = k === 1 ? eo((t - 1.0) / .7) : k === 7 ? eo(lt / .6) : eo(lt / .5);
+  const P = $('ph'); P.style.left = px + 'px'; P.style.top = py + 'px'; P.style.width = pw + 'px'; P.style.height = ph + 'px';
+  P.style.transform = `translateY(${(1 - ent) * 300}px) rotate(${pr}deg)`; P.style.opacity = k === 8 ? 0 : ent;
+  const inS = P.querySelector('.in'); inS.style.zoom = pw / 500;
+  ['sc0', 'sc2', 'sc3', 'sc4', 'sc5', 'sc6'].forEach(id => show(id, false)); if (k <= 7) show(k === 1 || k === 7 ? 'sc0' : 'sc' + k, true);
+  // notebook
+  const lapOn = k === 1 || k === 7; $('lap').style.opacity = lapOn ? eo((t - (k === 1 ? .7 : s + .3)) / .6) : 0; $('lap').style.transform = `translateY(${(1 - ($('lap').style.opacity * 1)) * 120}px)`;
+  $('lap').style.top = (k === 7 ? 700 : 700) + 'px'; $('lapimg').src = k === 7 ? 'img/ui_docs.jpg' : 'img/condo.jpg';
+  $('chk').style.opacity = 0; $('fL').style.opacity = 0; $('fR').style.opacity = 0; $('T7d').style.opacity = 0;
+  const FC = { 2: ['📐', 'Medidas', '🚁', 'Drone'], 3: ['🎙️', 'Por voz', '📋', 'Itens'], 4: ['R$', 'Preços', '📊', 'SINAPI'], 5: ['📄', 'ETP', '📑', 'TR'], 6: ['📈', 'Avanço', '👷', '7.3'] };
+  if (FC[k]) { $('fLi').textContent = FC[k][0]; $('fLt').textContent = FC[k][1]; $('fRi').textContent = FC[k][2]; $('fRt').textContent = FC[k][3]; pop($('fL'), t, s + .6, 'rotate(-6deg)'); pop($('fR'), t, s + .8, 'rotate(5deg)'); }
+  if (k === 1) { rise($('T1a'), t, .2, 70); rise($('T1b'), t, .5, 70); rise($('T1c'), t, .8, 40); pop($('chk'), t, 1.6, 'rotate(3deg)'); }
+  if (k === 2) { T('T2'); const a = s + .8; const dp = cl((t - s - .3) / 2.4); $('drone').style.left = (30 + dp * 330) + 'px'; $('drone').style.top = (330 - dp * 220 + 20 * Math.sin(t * 3)) + 'px';
+    draw($('mline'), t, a, .8); [['m1', 18.4, ' m', 2], ['m2', 24, ' m', 2], ['m3', 9, ' m', 2]].forEach(([id, v, u, d], i) => { const p = eo((t - a - .3 - i * .4) / .7); $(id).textContent = fmt(v * p, d) + u; }); }
+  if (k === 3) { T('T3'); const q = '“Quero construir uma ponte aqui.”', t0 = s + .6, n = cl(Math.floor((t - t0) * 24), 0, q.length); $('quote').textContent = q.slice(0, n);
+    const sp = t > t0 && t < t0 + 1.6; let w = ''; for (let i = 0; i < 34; i++) { const h = sp ? 10 + 60 * Math.abs(Math.sin(t * 9 + i * .7) * Math.sin(t * 3.1 + i * .3)) : 6; w += `<rect x="${i * 13}" y="${40 - h / 2}" width="7" height="${h}" rx="3" fill="#F26A1B"/>`; } $('wave').innerHTML = w;
+    $('mic').style.transform = `scale(${sp ? 1 + .06 * Math.sin(t * 12) : 1})`; [...$('chips').children].forEach((c, i) => pop(c, t, Wd(3, 'ia monta', -.2) + i * .15)); }
+  if (k === 4) { T('T4'); let sum = 0; QT.forEach((q, i) => { const ti = s + .6 + i * .3; const r = $('q' + i); r.style.opacity = cl((t - ti) / .2); r.style.transform = `translateX(${(1 - eo((t - ti) / .35)) * 40}px)`; sum += q[1] * eo((t - ti) / .6); }); $('tot').textContent = 'R$ ' + fmt(sum); }
+  if (k === 5) { T('T5'); DOCS.forEach((d, i) => { const ti = s + .6 + i * .35; const on = t > ti; $('di' + i).style.background = on ? '#2FBF8F' : 'transparent'; $('di' + i).style.borderColor = on ? '#2FBF8F' : '#DDD'; $('di' + i).style.transform = `scale(${on ? .6 + .4 * spr(t - ti) : 1})`; });
+    pop($('dl'), t, s + 2.4); }
+  if (k === 6) { T('T6'); draw($('pp6'), t, s + .4, 1.2); draw($('pr6'), t, s + .9, 1.2); const p = eo((t - s - .9) / 1.2); $('r6').textContent = Math.round(46 * p) + '%'; $('p6').textContent = Math.round(52 * eo((t - s - .4) / 1.2)) + '%';
+    const a = Wd(6, 'avisa', -.2); $('al6').style.opacity = cl((t - a) / .2); $('al6').style.transform = `translateX(${(1 - eo((t - a) / .4)) * 60}px)`; }
+  if (k === 7) { T('T7a'); T('T7b', .15); rise($('T7c'), t, s + .45, 40); rise($('T7d'), t, s + 1.0, 30); }
+  $('end').style.opacity = k === 8 ? cl(lt / .4) : 0; if (k === 8) { $('wa').style.transform = `scale(${t < s + .6 ? .5 : .5 + .5 * spr(t - s - .6)})`; }
+  $('stage').style.opacity = 1 - cl((t - (TL.end - .8)) / .8);
+}
+window.seek = seek;
+fetch('timeline.json').then(r => r.json()).then(j => { TL = j; LN = j.lines; return Promise.all(['600 20px Inter', '700 20px Inter', '40px Anton'].map(f => document.fonts.load(f))); })
+  .then(() => { build(); seek(0); window.ready = true; if (!location.search.includes('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % TL.end); requestAnimationFrame(loop); }; loop(); } });
+</script>
+</body>
+</html>

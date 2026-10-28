@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 Tecnologia Brasil · kit de identidade</title>
+<style>
+@font-face{font-family:Anton;src:url(../v47/kit/fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-700-normal.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:Inter;background:#111216}
+#a{position:relative;width:1080px;height:1350px;overflow:hidden}
+.x{position:absolute}
+.mk{-webkit-mask:url(assets/v4_mark_white.png) 0 0/100% 100% no-repeat;mask:url(assets/v4_mark_white.png) 0 0/100% 100% no-repeat}
+.blk{position:absolute;width:270px;height:270px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+</style>
+</head>
+<body><div id="a"></div>
+<script src="../apresentadora/presenter.js"></script>
+<script>
+const INK = '#111216', INK2 = '#1B1C22', GOLD = '#D9A441', PAPER = '#F4F1EA';
+// marca: V4 + TECNOLOGIA BRASIL + DigitalGov · setor de tecnologia
+const lockup = (s = 1, fg = PAPER, ac = GOLD) => `<div style="display:flex;align-items:center;gap:${18 * s}px">
+  <div class="mk" style="width:${110 * s}px;height:${59 * s}px;background:${fg}"></div>
+  <div style="width:${2 * s}px;height:${56 * s}px;background:${ac}"></div>
+  <div><div style="font-family:Anton;font-size:${34 * s}px;letter-spacing:${2 * s}px;color:${fg};line-height:1">TECNOLOGIA BRASIL</div>
+  <div style="font-size:${13 * s}px;font-weight:700;letter-spacing:${3.2 * s}px;color:${ac};margin-top:${6 * s}px">DIGITALGOV · SETOR DE TECNOLOGIA</div></div></div>`;
+// padrão de blocos da marca
+const shape = (k, c, bg) => ({
+  mark: `<div class="mk" style="width:170px;height:92px;background:${c}"></div>`,
+  ring: `<div style="width:150px;height:150px;border-radius:50%;border:30px solid ${c}"></div>`,
+  arc: `<div style="width:200px;height:100px;border-radius:0 0 100px 100px;border:30px solid ${c};border-top:none;margin-top:-60px"></div>`,
+  four: `<div style="font-family:Anton;font-size:250px;color:${c};line-height:1">4</div>`,
+  bars: `<div style="display:flex;gap:18px">${[0, 1, 2].map(() => `<div style="width:26px;height:150px;background:${c};transform:skewX(-20deg)"></div>`).join('')}</div>`,
+  dot: `<div style="width:90px;height:90px;border-radius:50%;background:${c}"></div>`,
+}[k]);
+const blk = (x, y, k, bg, c) => `<div class="blk" style="left:${x}px;top:${y}px;background:${bg}">${shape(k, c, bg)}</div>`;
+// papel timbrado preto (A4 em escala)
+const letter = (w, dark = true) => { const s = w / 600, h = 848 * s, bg = dark ? INK : '#FBFAF6', fg = dark ? PAPER : INK, ln = dark ? '#34363E' : '#DDD8CC';
+  return `<div style="position:relative;width:${w}px;height:${h}px;background:${bg};box-shadow:0 ${30 * s}px ${70 * s}px #0008;overflow:hidden">
+   <div style="position:absolute;right:${-60 * s}px;top:${-60 * s}px;width:${260 * s}px;height:${260 * s}px;border-radius:50%;border:${34 * s}px solid ${GOLD}22"></div>
+   <div style="position:absolute;left:${48 * s}px;top:${50 * s}px">${lockup(.62 * s, fg)}</div>
+   <div style="position:absolute;left:${48 * s}px;right:${48 * s}px;top:${118 * s}px;height:${3 * s}px;background:${GOLD}"></div>
+   <div style="position:absolute;left:${48 * s}px;top:${160 * s}px;width:${504 * s}px">${[1, .92, .97, .7, 0, 1, .95, .88, .98, .6, 0, .96, .9, .5].map(v => v ? `<div style="height:${7 * s}px;width:${v * 100}%;background:${ln};border-radius:${4 * s}px;margin-bottom:${13 * s}px"></div>` : `<div style="height:${14 * s}px"></div>`).join('')}</div>
+   <div class="mk" style="position:absolute;left:${170 * s}px;top:${420 * s}px;width:${260 * s}px;height:${140 * s}px;background:${dark ? '#1A1B20' : '#F1EEE6'}"></div>
+   <div style="position:absolute;left:0;right:0;bottom:0;height:${70 * s}px;background:${GOLD};display:flex;align-items:center;justify-content:space-between;padding:0 ${48 * s}px;font-size:${11 * s}px;font-weight:700;color:${INK}">
+    <span>(31) 99827-7323</span><span>fabricagovv@gmail.com</span><span>Alvorada de Minas · MG</span></div></div>`; };
+const laptop = (w, img) => { const s = w / 760; return `<div style="position:relative;width:${w}px;height:${520 * s}px">
+  <div style="position:absolute;left:0;top:0;right:0;height:${490 * s}px;background:#16171B;border-radius:${22 * s}px ${22 * s}px 0 0;padding:${14 * s}px;box-shadow:0 ${30 * s}px ${60 * s}px #0007"><img src="${img}" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:${8 * s}px;display:block"></div>
+  <div style="position:absolute;left:${-50 * s}px;right:${-50 * s}px;top:${490 * s}px;height:${28 * s}px;background:linear-gradient(#D7D9DE,#9DA0A8);border-radius:0 0 ${28 * s}px ${28 * s}px"></div>
+  <div class="mk" style="position:absolute;left:${w / 2 - 22 * s}px;top:${495 * s}px;width:${44 * s}px;height:${24 * s}px;background:#6E717A"></div></div>`; };
+const shirt = (w, back = false) => { const s = w / 600; return `<div style="position:relative;width:${w}px;height:${640 * s}px">
+  <svg width="${w}" height="${640 * s}" viewBox="0 0 600 640" style="position:absolute;left:0;top:0;filter:drop-shadow(0 ${24 * s}px ${40 * s}px #0008)"><path d="M210 20 Q300 70 390 20 L560 100 L520 250 L455 225 L455 620 L145 620 L145 225 L80 250 L40 100Z" fill="${INK2}"/><path d="M210 20 Q300 70 390 20" stroke="${GOLD}" stroke-width="10" fill="none"/><path d="M80 250 L145 225 M455 225 L520 250" stroke="#2A2C33" stroke-width="4"/></svg>
+  ${back ? `<div class="mk" style="position:absolute;left:${190 * s}px;top:${160 * s}px;width:${220 * s}px;height:${119 * s}px;background:${GOLD}"></div><div style="position:absolute;left:0;width:${w}px;top:${300 * s}px;text-align:center;font-family:Anton;font-size:${34 * s}px;letter-spacing:${2 * s}px;color:${PAPER}">TECNOLOGIA BRASIL</div><div style="position:absolute;left:0;width:${w}px;top:${352 * s}px;text-align:center;font-size:${11 * s}px;font-weight:700;letter-spacing:${2.5 * s}px;color:${GOLD}">DIGITALGOV · SETOR DE TECNOLOGIA</div>`
+   : `<div style="position:absolute;left:${318 * s}px;top:${150 * s}px">${lockup(.3 * s)}</div>`}</div>`; };
+const pen = (len) => { const s = len / 800; return `<div style="position:relative;width:${len}px;height:${70 * s}px;filter:drop-shadow(0 ${16 * s}px ${20 * s}px #0009)">
+  <svg width="${len}" height="${70 * s}" viewBox="0 0 800 70"><defs><linearGradient id="pb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A3C44"/><stop offset=".45" stop-color="#16171B"/><stop offset="1" stop-color="#050506"/></linearGradient><linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F5D28A"/><stop offset=".5" stop-color="#D9A441"/><stop offset="1" stop-color="#8E6420"/></linearGradient></defs>
+  <path d="M60 18 L640 18 L640 52 L60 52 Q40 52 40 35 Q40 18 60 18Z" fill="url(#pb)"/><path d="M640 18 L700 26 L700 44 L640 52Z" fill="url(#pg)"/><path d="M700 26 L790 35 L700 44Z" fill="#2A2C33"/><circle cx="788" cy="35" r="3" fill="#888"/>
+  <rect x="80" y="8" width="230" height="12" rx="6" fill="url(#pg)"/><rect x="300" y="8" width="16" height="24" rx="4" fill="url(#pg)"/><rect x="560" y="18" width="12" height="34" fill="url(#pg)"/></svg>
+  <div style="position:absolute;left:${340 * s}px;top:${24 * s}px;font-family:Anton;font-size:${20 * s}px;letter-spacing:${3 * s}px;color:${GOLD}">V4 TECNOLOGIA BRASIL</div></div>`; };
+const card = (w, front) => { const s = w / 500; return front
+  ? `<div style="position:relative;width:${w}px;height:${286 * s}px;background:${INK};border-radius:${16 * s}px;box-shadow:0 ${20 * s}px ${40 * s}px #0008;overflow:hidden;display:flex;align-items:center;justify-content:center"><div style="position:absolute;left:0;bottom:0;width:100%;height:${10 * s}px;background:${GOLD}"></div>${lockup(.72 * s)}</div>`
+  : `<div style="position:relative;width:${w}px;height:${286 * s}px;background:${GOLD};border-radius:${16 * s}px;box-shadow:0 ${20 * s}px ${40 * s}px #0008;overflow:hidden;padding:${34 * s}px ${36 * s}px;color:${INK}">
+   <div class="mk" style="position:absolute;right:${-30 * s}px;bottom:${-20 * s}px;width:${220 * s}px;height:${119 * s}px;background:#C8922F"></div>
+   <div style="font-family:Anton;font-size:${30 * s}px;letter-spacing:${1 * s}px">WARLEY LUCIANO</div><div style="font-size:${14 * s}px;font-weight:700;margin-top:${4 * s}px">Administrador e Gerente Geral · DigitalGov</div>
+   <div style="font-size:${15 * s}px;font-weight:600;line-height:1.7;margin-top:${26 * s}px">(31) 99827-7323<br>digitalgovadm@gmail.com<br>Alvorada de Minas · MG</div></div>`; };
+const person = (w) => { let s = presenterSVG('pp').replace(/<image[^>]*mark_d\.png[^>]*\/>/, '').replace(/<text[^>]*>DIGITALGOV<\/text>/, `<text x="405" y="660" text-anchor="middle" font-family="Anton" font-size="40" fill="${GOLD}">V4</text><text x="405" y="684" text-anchor="middle" font-family="Inter" font-weight="700" font-size="11" letter-spacing="2" fill="${PAPER}">TECNOLOGIA</text>`)
+   .replace(/#263050/g, INK2).replace(/#1d2645/g, '#0C0D10').replace(/#33407a/g, GOLD).replace(/#2d3a6b/g, '#26282F').replace('width="600" height="800"', `width="${w}" height="${w * 4 / 3}"`); return s; };
+
+const I = new URLSearchParams(location.search).get('i') || 'composicao';
+const A = document.getElementById('a');
+const G = (x, y, r, html, sc = 1) => `<div class="x" style="left:${x}px;top:${y}px;transform:rotate(${r}deg) scale(${sc});transform-origin:0 0">${html}</div>`;
+const tag = (t, dark = true) => `<div class="x" style="left:70px;top:1220px;font-size:24px;font-weight:700;letter-spacing:5px;color:${dark ? '#8E8A82' : '#6B675F'}">${t}</div><div class="x" style="right:70px;top:1206px">${lockup(.6, dark ? PAPER : INK)}</div>`;
+let H = '';
+if (I === 'composicao') {
+  H = `<div class="x" style="inset:0;background:${GOLD}"></div>
+   ${blk(0, 250, 'mark', INK, GOLD)}${blk(0, 520, 'arc', GOLD, INK)}${blk(270, 520, 'bars', INK, GOLD)}${blk(810, 250, 'ring', INK, GOLD)}${blk(810, 520, 'four', GOLD, INK)}
+   <div class="x" style="left:270px;top:250px;width:540px;height:270px;background:${PAPER}"></div><div class="x" style="left:540px;top:520px;width:270px;height:270px;background:${INK}"></div>
+   ${G(330, 90, -4, letter(400))}${G(240, 470, -16, card(250, true))}${G(560, 150, 6, card(240, false))}${G(380, 660, -30, pen(460))}
+   <div class="x" style="left:0;top:790px;width:540px;height:560px;background:${PAPER}"></div><div class="x" style="left:540px;top:790px;width:540px;height:560px;background:${INK}"></div>
+   <div class="mk x" style="left:600px;top:900px;width:440px;height:237px;background:#1D1E24"></div>
+   <div class="x" style="left:-20px;top:780px">${person(560)}</div>
+   ${G(570, 980, 0, laptop(470, 'assets/ui_docs.jpg'))}`;
+} else if (I === 'timbrado') {
+  H = `<div class="x" style="inset:0;background:${GOLD}"></div>${blk(0, 0, 'mark', INK, GOLD)}${blk(810, 1080, 'ring', INK, GOLD)}${blk(810, 0, 'bars', GOLD, INK)}
+   ${G(560, 260, 6, letter(420, false))}${G(150, 200, -4, letter(560))}
+   <div class="x" style="left:70px;top:1150px;font-family:Anton;font-size:64px;color:${INK}">PAPEL TIMBRADO</div><div class="x" style="left:70px;top:1230px;font-size:24px;font-weight:700;letter-spacing:4px;color:${INK}">PRETO · E VERSÃO CLARA PARA IMPRESSÃO</div>`;
+} else if (I === 'computador') {
+  H = `<div class="x" style="inset:0;background:radial-gradient(circle at 50% 40%,#2A2210,${INK} 65%)"></div>${blk(0, 0, 'mark', GOLD, INK)}${blk(810, 0, 'ring', INK2, GOLD)}
+   <div class="x" style="left:70px;top:300px;font-family:Anton;font-size:96px;color:${PAPER};line-height:1">NOSSO SISTEMA<br><span style="color:${GOLD}">NA SUA TELA</span></div>
+   ${G(120, 560, 0, laptop(840, 'assets/ui_docs.jpg'))}${tag('COMPUTADOR · V4.7')}`;
+} else if (I === 'uniforme') {
+  H = `<div class="x" style="inset:0;background:${PAPER}"></div>${blk(0, 0, 'bars', GOLD, INK)}${blk(810, 0, 'mark', INK, GOLD)}
+   ${G(30, 330, -4, shirt(520))}${G(540, 360, 4, shirt(510, true))}
+   <div class="x" style="left:310px;top:110px;font-family:Anton;font-size:90px;color:${INK}">UNIFORME</div>${tag('FRENTE E COSTAS', false)}`;
+} else if (I === 'caneta') {
+  H = `<div class="x" style="inset:0;background:${INK}"></div>${G(160, 380, 8, letter(520))}${blk(810, 1080, 'four', GOLD, INK)}${blk(0, 0, 'ring', GOLD, INK)}
+   ${G(90, 1000, -38, pen(980))}<div class="x" style="left:620px;top:120px;font-family:Anton;font-size:90px;color:${GOLD};text-align:right;width:390px">CANETA</div>`;
+} else if (I === 'cartao') {
+  H = `<div class="x" style="inset:0;background:${PAPER}"></div>${blk(810, 0, 'mark', INK, GOLD)}${blk(0, 1080, 'arc', GOLD, INK)}
+   ${G(120, 330, -6, card(640, true))}${G(320, 690, 5, card(640, false))}
+   <div class="x" style="left:70px;top:150px;font-family:Anton;font-size:90px;color:${INK}">CARTÃO DE VISITA</div>`;
+} else if (I === 'pessoa') {
+  H = `<div class="x" style="left:0;top:0;width:540px;height:1350px;background:${PAPER}"></div><div class="x" style="left:540px;top:0;width:540px;height:1350px;background:${INK}"></div>
+   <div class="mk x" style="left:520px;top:300px;width:620px;height:334px;background:#1D1E24"></div>
+   <div class="x" style="left:90px;top:300px">${person(900)}</div>
+   <div class="x" style="left:70px;top:110px;font-family:Anton;font-size:84px;color:${INK}">NOSSA <span style="color:${GOLD}">EQUIPE</span></div>
+   <div class="x" style="left:0;top:1230px;width:1080px;height:120px;background:${GOLD};display:flex;align-items:center;justify-content:center">${lockup(.8, INK, INK)}</div>`;
+}
+A.innerHTML = H;
+if (document.getElementById('pp')) setPresenter('pp', { open: .6, wide: 1, t: .6, look: .4, brow: 1, wave: I === 'pessoa' ? 1 : 0 });
+Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = r; i.onerror = r; }))).then(() => document.fonts.ready).then(() => window.ready = true);
+</script>
+</body>
+</html>

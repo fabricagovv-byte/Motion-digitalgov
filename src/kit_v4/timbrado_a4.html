@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 Tecnologia Brasil · papel timbrado A4</title>
+<style>
+@font-face{font-family:Anton;src:url(../v47/kit/fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-700-normal.woff2);font-weight:700}
+@page{size:A4;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:794px;height:1123px;overflow:hidden}
+body{font-family:Inter;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pg{position:relative;width:794px;height:1123px;overflow:hidden}
+.mk{-webkit-mask:url(assets/v4_mark_white.png) 0 0/100% 100% no-repeat;mask:url(assets/v4_mark_white.png) 0 0/100% 100% no-repeat}
+.x{position:absolute}
+</style>
+</head>
+<body>
+<div class="pg" id="pg"></div>
+<script>
+const dark = !location.search.includes('claro');
+const INK = '#111216', GOLD = '#D9A441', PAPER = '#F4F1EA', bg = dark ? INK : '#FFFFFF', fg = dark ? PAPER : INK;
+document.getElementById('pg').style.background = bg;
+document.getElementById('pg').innerHTML = `
+ <div class="x" style="right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;border:40px solid ${GOLD}${dark ? '22' : '18'}"></div>
+ <div class="x" style="left:60px;top:56px;display:flex;align-items:center;gap:14px">
+  <div class="mk" style="width:86px;height:46px;background:${fg}"></div><div style="width:2px;height:44px;background:${GOLD}"></div>
+  <div><div style="font-family:Anton;font-size:27px;letter-spacing:1.5px;color:${fg};line-height:1">TECNOLOGIA BRASIL</div>
+  <div style="font-size:10px;font-weight:700;letter-spacing:2.6px;color:${GOLD};margin-top:5px">DIGITALGOV · SETOR DE TECNOLOGIA</div></div></div>
+ <div class="x" style="left:60px;right:60px;top:134px;height:3px;background:${GOLD}"></div>
+ <div class="mk x" style="left:247px;top:470px;width:300px;height:162px;background:${dark ? '#17181D' : '#F5F3EE'}"></div>
+ <div class="x" style="left:0;right:0;bottom:0;height:64px;background:${GOLD};display:flex;align-items:center;justify-content:space-between;padding:0 60px;font-size:11px;font-weight:700;color:${INK}">
+  <span>(31) 99827-7323</span><span>fabricagovv@gmail.com</span><span>@Grupo_v4_fabricagovv</span><span>Alvorada de Minas · MG</span></div>
+ <div class="x" style="left:60px;bottom:76px;font-size:9px;font-weight:500;color:${dark ? '#8E8A82' : '#6B675F'}">V4 FábricaGov · CNPJ 24.361.188/0001-61</div>`;
+document.fonts.ready.then(() => window.ready = true);
+</script>
+</body>
+</html>

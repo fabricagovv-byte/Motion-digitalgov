@@ -1,0 +1,82 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>V4 · 100 artes</title>
+<style>
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-700-normal.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:Inter}
+#a{position:relative;width:1080px;height:1350px;overflow:hidden}
+.x{position:absolute}
+.pill{display:flex;align-items:center;gap:14px;border-radius:999px;font-weight:700;color:#fff;white-space:nowrap}
+.lm{-webkit-mask:url(../v47/kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;background:#fff}
+.v4{-webkit-mask:url(v4_mark_white.png) 0 0/100% 100% no-repeat;background:#fff}
+.row{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:600;color:#fff;margin:8px 0;white-space:nowrap}
+.row i{display:block;height:14px;border-radius:7px;background:#ffffffaa}
+.card{background:#ffffff26;border-radius:22px;padding:16px 18px;color:#fff;margin-top:14px}
+.sm{font-size:18px;font-weight:600;opacity:.85}
+.bg{font-size:30px;font-weight:700;margin-top:4px;white-space:nowrap}
+.cta{margin-top:14px;background:#fff;border-radius:18px;padding:15px;text-align:center;font-size:21px;font-weight:700}
+#hl div{white-space:nowrap}
+</style></head><body><div id="a"></div>
+<script src="dados.js"></script>
+<script>
+const PH = {
+ pesquisa: `<div class="card"><div class="sm">Pesquisa · Vila Nova</div><div class="bg">312 respostas</div><div style="height:10px;border-radius:5px;background:#ffffff40;margin-top:12px"><div style="width:78%;height:100%;border-radius:5px;background:#fff"></div></div></div><div class="card"><div class="row"><span style="width:108px">Iluminação</span><i style="width:90px"></i>38%</div><div class="row"><span style="width:108px">Saúde</span><i style="width:64px"></i>27%</div><div class="row"><span style="width:108px">Asfalto</span><i style="width:50px"></i>21%</div></div><div class="cta">Responder pesquisa</div>`,
+ saude: `<div class="card"><div class="sm">⚠ Alerta · UBS Centro</div><div class="bg">Dipirona 500 mg</div><div class="sm" style="margin-top:6px">acaba em ~5 dias</div><div style="height:10px;border-radius:5px;background:#ffffff40;margin-top:12px"><div style="width:22%;height:100%;border-radius:5px;background:#FFB020"></div></div></div><div class="card"><div class="sm">Sugestão da IA</div><div style="font-size:21px;font-weight:700;margin-top:6px;line-height:1.3">Remanejar 400 comprimidos da UBS Vila Nova</div></div><div class="cta">Aprovar</div>`,
+ juridico: `<div class="card" style="background:#ffffff40"><div style="font-size:20px;font-weight:700;line-height:1.3">Que documentos preciso antes de licitar?</div></div><div class="card"><div class="row">✓ Estudo técnico preliminar</div><div class="row">✓ Termo de referência</div><div class="row">✓ Orçamento estimado</div><div class="sm" style="margin-top:8px">Lei 14.133/2021 · art. 18</div></div><div class="cta">Ver documento</div>`,
+ aprendizagem: `<div class="card"><div class="sm">Turma 5º B · Matemática</div><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:12px">${['#2FBF8F','#E5484D','#FFC24B','#2FBF8F','#FFC24B','#2FBF8F','#E5484D','#2FBF8F','#FFC24B','#2FBF8F','#FFC24B','#E5484D','#2FBF8F','#2FBF8F','#FFC24B'].map(c => `<div style="height:26px;border-radius:6px;background:${c}"></div>`).join('')}</div></div><div class="card"><div style="font-size:21px;font-weight:700;line-height:1.3">4 alunos com dificuldade em frações</div></div><div class="cta">Criar reforço</div>`,
+ obras: `<div class="card"><div class="sm">Ponte sobre o córrego</div><div class="row"><span style="width:120px">Vão livre</span>18,40 m</div><div class="row"><span style="width:120px">Concreto</span>140 m³</div></div><div class="card"><div class="sm">Total estimado (SINAPI)</div><div class="bg">R$ 340.060</div></div><div class="cta">Baixar documentos</div>`,
+ engenheiro: `<div class="card"><div class="sm">Creche Centro · avanço</div><svg width="230" height="90" viewBox="0 0 230 90" style="margin-top:8px"><path d="M0 85 C60 83 90 50 120 38 C150 26 190 10 230 6" stroke="#ffffff88" stroke-width="3" stroke-dasharray="6 5" fill="none"/><path d="M0 85 C60 84 90 58 120 48" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg><div class="row"><span style="width:110px">Realizado</span>46%</div><div class="row"><span style="width:110px">Previsto</span>52%</div></div><div class="card" style="background:#FFB02055"><div style="font-size:19px;font-weight:700">⚠ Risco de atraso</div></div><div class="cta">Ver sugestão</div>`,
+ v4: `<div class="card"><div class="sm">Seus sistemas</div>${[['Pesquisa', '#8B3DFF'], ['Saúde', '#1FC48A'], ['Jurídico', '#5B6CFF'], ['Aprendizagem', '#F0578E'], ['Obras', '#FF8A3D'], ['Engenheiro 7.3', '#3D8BFF']].map(([n, c]) => `<div class="row"><span style="width:16px;height:16px;border-radius:50%;background:${c};border:2px solid #fff"></span>${n}</div>`).join('')}</div><div class="cta">Abrir painel</div>`,
+};
+window.it = null; const q = new URLSearchParams(location.search), N = +(q.get("n") || 0), it = window.it = LISTA[N], d = SIS[it.k], [topo, tit, tag, side] = it.a;
+const mir = N % 2 === 1, dark = it.k === 'v4' || N % 5 === 3, rnd = (s => () => (s = (s * 9301 + 49297) % 233280) / 233280)(N * 7 + 3);
+const bgc = dark ? '#111216' : '#F7F6FB', grid = dark ? '#1C1D24' : '#E6E4EE', track = dark ? '#22232B' : '#E9E7F2';
+const L = v => mir ? 1080 - v : v;
+const shape = N % 3 === 2
+ ? `<circle cx="520" cy="470" r="455" fill="url(#g)"/>`
+ : `<path d="M380 40 Q520 -20 660 40 L900 150 Q1010 200 1000 330 L980 640 Q970 760 860 820 L620 960 Q520 1010 420 960 L170 840 Q60 780 50 660 L30 360 Q20 230 140 170Z" fill="url(#g)"/>`;
+// painel do sistema (fica no lugar da foto até ela chegar)
+const bars = Array.from({ length: 7 }, () => 30 + rnd() * 70);
+const chart = N % 4 < 2
+ ? `<div style="display:flex;align-items:flex-end;gap:14px;height:150px">${bars.map((h, i) => `<div style="flex:1;height:${h}%;border-radius:10px 10px 4px 4px;background:${i === 5 ? d.c2 : d.c1 + '55'}"></div>`).join('')}</div>`
+ : `<svg width="100%" height="150" viewBox="0 0 520 150" preserveAspectRatio="none"><path d="M0 140 ${bars.map((h, i) => `L${(i + 1) * 74} ${150 - h * 1.35}`).join(' ')} L520 150 L0 150Z" fill="${d.c1}33"/><path d="M0 140 ${bars.map((h, i) => `L${(i + 1) * 74} ${150 - h * 1.35}`).join(' ')}" stroke="${d.c2}" stroke-width="6" fill="none" stroke-linejoin="round"/></svg>`;
+const hero = `<div class="x" id="hero" style="left:${mir ? 70 : 430}px;top:215px;width:580px;background:#fff;border-radius:34px;padding:30px 32px;box-shadow:0 40px 90px #0004;transform:rotate(${mir ? -3 : 3}deg)">
+  <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:26px;font-weight:700;color:#16131F">${d.nome} · painel</div><div style="font-size:16px;font-weight:700;color:${d.c2};background:${d.c1}22;border-radius:99px;padding:6px 14px">● ao vivo</div></div>
+  <div style="display:flex;gap:14px;margin:22px 0">${d.kpi.map(([l, v]) => `<div style="flex:1;background:#F4F3F8;border-radius:18px;padding:14px 16px"><div style="font-size:16px;font-weight:600;color:#6B6880">${l}</div><div style="font-size:30px;font-weight:700;color:${d.c2};white-space:nowrap">${v}</div></div>`).join('')}</div>
+  ${chart}<div style="font-size:13px;color:#9A97AA;margin-top:10px">valores ilustrativos</div></div>`;
+const tl = tit.split('|');
+document.getElementById('a').style.background = `linear-gradient(${grid} 1px,transparent 1px) 0 0/90px 90px,linear-gradient(90deg,${grid} 1px,transparent 1px) 0 0/90px 90px,${bgc}`;
+document.getElementById('a').innerHTML = `
+ <svg class="x" style="left:20px;top:150px;${mir ? 'transform:scaleX(-1)' : ''}" width="1040" height="1000" viewBox="0 0 1040 1000"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${d.c1}"/><stop offset="1" stop-color="${d.c2}"/></linearGradient></defs>${shape}</svg>
+ <div class="x" style="left:0;top:880px;width:1080px;height:400px;background:linear-gradient(${d.c2}00,${d.c2}EE 45%,${d.c2})"></div>
+ <div class="x" id="pp" style="left:${mir ? 0 : 240}px;top:120px;width:840px;height:1030px"></div>
+ ${hero}
+ <div class="x" id="tp" style="left:50%;top:60px;transform:translateX(-50%);height:74px;background:${track};border-radius:999px;display:flex;align-items:center;padding:0 30px 0 8px;gap:26px">
+  <div class="pill" style="height:58px;padding:0 26px 0 12px;background:${d.c2};font-size:20px;letter-spacing:1px"><span style="width:58px;height:34px;border-radius:17px;background:#fff;display:flex;align-items:center;padding:0 5px"><span style="width:26px;height:26px;border-radius:50%;background:${d.c2}"></span></span>${topo}</div>
+  <div class="lm" style="width:84px;height:36px;background:${dark ? '#fff' : d.c2}"></div></div>
+ <div class="x" id="ph" style="left:${mir ? 680 : 70}px;top:390px;width:330px;height:640px;background:#16131F;border-radius:46px;padding:12px;transform-origin:50% 0;transform:scale(.86) rotate(${mir ? 6 : -6}deg);box-shadow:0 40px 80px #0005">
+  <div style="width:100%;height:100%;border-radius:36px;overflow:hidden;background:linear-gradient(170deg,${d.c1},${d.c2});padding:40px 20px">
+   <div style="display:flex;justify-content:space-between;align-items:center;color:#fff"><div class="lm" style="width:80px;height:34px"></div><div style="font-size:18px;font-weight:600">online</div></div>
+   <div style="color:${d.c2}">${PH[it.k]}</div></div></div>
+ <div class="x" style="left:${mir ? 330 : 520}px;top:760px;display:flex">${d.ic.map((e, i) => `<div style="width:84px;height:84px;border-radius:50%;background:${i === 1 ? '#F1ECFF' : '#fff'};box-shadow:0 10px 30px #0003;${i ? 'margin-left:-22px;' : ''}display:flex;align-items:center;justify-content:center;font-size:42px">${e}</div>`).join('')}</div>
+ <div class="x" id="hl" style="left:${mir ? 70 : 150}px;top:880px;width:860px;font-size:104px;font-weight:700;line-height:.98;letter-spacing:-5px;color:#fff;text-shadow:0 6px 30px #0006;text-align:${mir ? 'left' : 'left'}">${tl.map(s => `<div>${s}</div>`).join('')}</div>
+ <div class="x pill" id="tg" style="left:${mir ? 70 : 150}px;top:1150px;height:60px;padding:0 26px 0 22px;background:#ffffff26;border:2px solid #ffffff66;font-size:19px;letter-spacing:.5px"><span style="width:14px;height:14px;border-radius:50%;background:#fff"></span>${tag}</div>
+ <div class="x" id="sd" style="right:${mir ? 70 : 60}px;top:1132px;width:330px;font-size:26px;font-weight:500;line-height:1.2;letter-spacing:-.5px;color:#fff">${side}</div>
+ <div class="x" style="left:0;top:1272px;width:1080px;height:78px;background:${dark ? '#111216' : `linear-gradient(90deg,${d.c1},${d.c2})`};display:flex;align-items:center;justify-content:center;gap:24px;color:#fff;font-weight:700;font-size:19px">
+  <div class="v4" style="width:70px;height:38px;${dark ? `background:${d.c1}` : ''}"></div><div class="lm" style="width:84px;height:36px"></div>
+  <div style="border:2px solid #fff;border-radius:10px;padding:6px 16px">💬 (31) 99827-7323</div><div style="border:2px solid #fff;border-radius:10px;padding:6px 16px">@Grupo_v4_fabricagovv</div></div>`;
+// ajusta o título para caber em 2 linhas e na largura
+function fit() {
+ const h = document.getElementById('hl'); let f = 104; const maxW = 860;
+ while (f > 60 && [...h.children].some(c => c.scrollWidth > maxW)) { f -= 2; h.style.fontSize = f + 'px'; h.style.letterSpacing = (-f / 21) + 'px'; }
+ h.style.top = (1120 - h.offsetHeight) + 'px';
+ const s = document.getElementById('sd'), t = document.getElementById('tg'); let fs = 26;
+ while (fs > 18 && (s.offsetHeight > 70 || (!mir && s.getBoundingClientRect().left < t.getBoundingClientRect().right + 20) || (mir && false))) { fs -= 1; s.style.fontSize = fs + 'px'; }
+ if (mir) { t.style.left = 'auto'; t.style.right = '70px'; s.style.right = 'auto'; s.style.left = '70px'; while (fs > 18 && (s.offsetHeight > 70 || s.getBoundingClientRect().right > t.getBoundingClientRect().left - 20)) { fs -= 1; s.style.fontSize = fs + 'px'; } }
+}
+// foto real: fotos/<sistema>_<n>.png ou fotos/<sistema>.png (PNG recortado, fundo transparente)
+function tryImg(srcs) { if (!srcs.length) return done(); const img = new Image(); img.onload = () => { document.getElementById('hero').style.display = 'none'; document.getElementById('pp').innerHTML = `<img src="${img.src}" style="position:absolute;left:0;bottom:0;width:100%;height:100%;object-fit:contain;object-position:bottom">`; done(); }; img.onerror = () => tryImg(srcs.slice(1)); img.src = srcs[0]; }
+function done() { document.fonts.ready.then(() => { fit(); window.ready = true; }); }
+tryImg([`fotos/${it.k}_${it.j + 1}.png`, `fotos/${it.k}.png`]);
+</script></body></html>

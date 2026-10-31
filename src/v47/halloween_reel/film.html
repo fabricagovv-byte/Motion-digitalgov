@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 · Halloween · reel vertical</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+@font-face{font-family:Creep;src:url(fonts/creepster-latin-400-normal.woff2)}
+html,body{width:auto;height:auto;background:#000}
+#stage{width:1080px;height:1920px;background:#0D0918;font-family:Inter;overflow:hidden}
+.t{position:absolute;left:60px;right:60px;text-align:center}
+.cr{font-family:Creep;letter-spacing:2px;line-height:.95;color:#FF8A1F;text-shadow:0 0 30px #FF6A0088,0 6px 0 #6B2A00}
+.v4{-webkit-mask:url(img/v4_mark_white.png) 0 0/100% 100% no-repeat;background:#F4F1EA}
+.lm{-webkit-mask:url(../kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;background:#F4F1EA}
+</style>
+</head>
+<body>
+<div id="stage">
+ <svg id="sv" class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+ <div class="abs" id="hd" style="left:60px;top:70px;display:flex;align-items:center;gap:18px"><div class="v4" style="width:110px;height:60px"></div><div style="width:2px;height:50px;background:#D9A441"></div><div class="lm" style="width:116px;height:48px"></div></div>
+ <div class="t cr" id="t1" style="top:560px;font-size:200px">Halloween</div>
+ <div class="t" id="t2" style="top:790px;font-size:52px;font-weight:700;color:#D9A441;letter-spacing:4px">V4 FÁBRICAGOV</div>
+ <div class="t" id="t3" style="top:880px;font-family:Anton;font-size:180px;color:#F4F1EA;line-height:1">É AMANHÃ!</div>
+ <div class="t" id="t4" style="top:1110px"><span style="display:inline-block;background:#FF8A1F;color:#1B1426;border-radius:999px;padding:20px 48px;font-size:46px;font-weight:700">Venha fantasiado 🦇</span></div>
+ <div class="t cr" id="t5" style="top:600px;font-size:150px">Susto só no<br>Halloween</div>
+ <div class="t" id="t6" style="top:960px;font-size:46px;font-weight:700;color:#F4F1EA">Na gestão, a <span style="color:#FF8A1F">V4.7</span> resolve.</div>
+ <div class="t" id="t7" style="top:1060px;font-size:38px;font-weight:700;color:#D9A441">@Grupo_v4_fabricagovv · (31) 99827-7323</div>
+ <div class="abs" id="fl" style="inset:0;background:#FFE7B8;opacity:0"></div>
+</div>
+<script>const W = 1080, H = 1920;</script>
+<script src="pecas.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), eo = x => 1 - Math.pow(1 - cl(x), 3), spr = x => x <= 0 ? 0 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
+let TL, LN;
+const defs = `<defs><radialGradient id="mg"><stop offset="0" stop-color="#F8E9B8" stop-opacity=".45"/><stop offset="1" stop-color="#F8E9B8" stop-opacity="0"/></radialGradient><radialGradient id="bg" cx="70%" cy="20%" r="90%"><stop offset="0" stop-color="#3A1F5C"/><stop offset=".55" stop-color="#1C1233"/><stop offset="1" stop-color="#0D0918"/></radialGradient><radialGradient id="og" cx="50%" cy="100%" r="70%"><stop offset="0" stop-color="#FF6A00" stop-opacity=".45"/><stop offset="1" stop-color="#FF6A00" stop-opacity="0"/></radialGradient></defs>`;
+function rise(el, t, t0, dy = 60, d = .5) { const p = cl((t - t0) / d); el.style.opacity = p; el.style.transform = `translateY(${(1 - eo(p)) * dy}px)`; }
+function popS(el, t, t0) { el.style.opacity = cl((t - t0) / .1); el.style.transform = `scale(${t < t0 ? .3 : .3 + .7 * spr(t - t0)})`; }
+function seek(t) {
+  const s2 = LN[1].start - .3, s3 = LN[2].start - .4, end = TL.end;
+  const fl = .8 + .2 * Math.sin(t * 17) * Math.sin(t * 5.3);   // brilho das abóboras
+  // morcegos atravessando
+  let bats = ''; for (let i = 0; i < 9; i++) { const sp = 140 + i * 37, x = ((t * sp + i * 260) % 1500) - 200, y = 260 + (i * 173) % 700 + 40 * Math.sin(t * 2 + i); bats += `<g transform="translate(${x} ${y}) scale(1 ${.6 + .4 * Math.abs(Math.sin(t * 10 + i))})">${bat(0, 0, .8 + (i % 3) * .35, -8 + i * 3)}</g>`; }
+  const pu = (x, sc, t0) => { const p = spr(t - t0); return t < t0 ? '' : `<g transform="translate(0 ${(1 - cl(p)) * 200})" opacity="${cl((t - t0) / .15)}">${pumpkin(x, H - 140, sc).replace(/#FFD43B/g, `rgb(255,${180 + 30 * fl},${40 * fl})`)}</g>`; };
+  const gy = H - 300 - 30 * Math.sin(t * 2.2) - (t > s3 ? 0 : 300) * (1 - eo((t - s2 - .4) / .8));
+  const gh = t > s2 + .4 ? `<g opacity="${cl((t - s2 - .4) / .4) * (t > end - 1 ? 1 : 1)}">${ghost(540, gy, 1.2)}</g>` : '';
+  $('sv').innerHTML = defs + `<rect width="${W}" height="${H}" fill="url(#bg)"/>${stars(70)}<rect x="0" y="${H * .45}" width="${W}" height="${H * .55}" fill="url(#og)" opacity="${.7 + .3 * fl}"/>`
+    + `<g transform="translate(0 ${(1 - eo(t / 1.2)) * 300})">${moon(820, 330, 140 + 4 * Math.sin(t * 1.5))}</g>` + web(0, 0, 1, 0) + spider(180, 420 + 120 * eo((t - .5) / 1.2) + 14 * Math.sin(t * 2), 0, 1.3)
+    + bats + hills(H) + tree(100, H - 300, 1.2) + gh + pu(250, 1.25, .3) + pu(820, 1.15, .5) + candy(160, H - 110, .8, '#8B3DFF') + candy(950, H - 100, .7, '#1FC48A');
+  const A = t < s3;
+  ['t1', 't2', 't3', 't4'].forEach(id => $(id).style.display = A ? 'block' : 'none'); ['t5', 't6', 't7'].forEach(id => $(id).style.display = A ? 'none' : 'block');
+  if (A) { const d = cl((t - .6) / .5); $('t1').style.opacity = d; $('t1').style.transform = `translateY(${(1 - spr(t - .6)) * -260}px)`;
+    rise($('t2'), t, 1.0, 40); popS($('t3'), t, LN[0].start + .2); popS($('t4'), t, s2 + .5); }
+  else { popS($('t5'), t, s3 + .15); rise($('t6'), t, s3 + .6, 40); rise($('t7'), t, s3 + 1.0, 30); }
+  $('fl').style.opacity = .5 * cl(1 - Math.abs(t - s3) / .15);   // relâmpago na troca
+  $('stage').style.opacity = 1 - cl((t - (end - .7)) / .7);
+}
+window.seek = seek;
+fetch('timeline.json').then(r => r.json()).then(j => { TL = j; LN = j.lines; return Promise.all(['40px Creep', '40px Anton', '700 20px Inter'].map(f => document.fonts.load(f))); })
+  .then(() => { seek(0); window.ready = true; if (!location.search.includes('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % TL.end); requestAnimationFrame(loop); }; loop(); } });
+</script>
+</body>
+</html>

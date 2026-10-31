@@ -1,0 +1,12 @@
+1
+00:00:01,200 --> 00:00:03,299
+Amanhã tem Halloween na V4!
+
+2
+00:00:03,599 --> 00:00:05,991
+Venha fantasiado e traga a equipe.
+
+3
+00:00:07,291 --> 00:00:10,115
+Na V4.7, susto só no Halloween.
+

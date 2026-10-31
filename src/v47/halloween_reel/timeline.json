@@ -1,0 +1,23 @@
+{
+ "lines": [
+  {
+   "id": "n1",
+   "start": 1.2,
+   "dur": 1.899,
+   "caption": "Amanhã tem Halloween na V4!"
+  },
+  {
+   "id": "n2",
+   "start": 3.599,
+   "dur": 2.192,
+   "caption": "Venha fantasiado e traga a equipe."
+  },
+  {
+   "id": "n3",
+   "start": 7.291,
+   "dur": 2.624,
+   "caption": "Na V4.7, susto só no Halloween."
+  }
+ ],
+ "end": 13.12
+}

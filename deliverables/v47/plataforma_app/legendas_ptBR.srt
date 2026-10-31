@@ -1,0 +1,40 @@
+1
+00:00:00,600 --> 00:00:06,453
+Conheça a plataforma V4.7: todos os sistemas da gestão pública em um só lugar.
+
+2
+00:00:06,653 --> 00:00:11,248
+Na Pesquisa, o cidadão responde pelo celular e o resultado aparece na hora.
+
+3
+00:00:11,448 --> 00:00:15,431
+Na Saúde, você vê qual hospital precisa de quê, antes de faltar.
+
+4
+00:00:15,631 --> 00:00:19,799
+No Jurídico, a IA responde com a lei citada e prepara os pareceres.
+
+5
+00:00:19,999 --> 00:00:24,103
+Na Aprendizagem, cada turma recebe reforço onde mais precisa.
+
+6
+00:00:24,303 --> 00:00:28,812
+No THR, o sistema de obras, você mede, orça pelo SINAPI e licita.
+
+7
+00:00:29,013 --> 00:00:33,373
+O Engenheiro 7.3 acompanha a obra e avisa antes do atraso.
+
+8
+00:00:33,573 --> 00:00:38,658
+A Digitalização transforma papel em arquivo digital, que você encontra em segundos.
+
+9
+00:00:38,858 --> 00:00:42,941
+E tudo se junta no painel do gestor, com a cidade inteira em uma tela.
+
+10
+00:00:44,141 --> 00:00:47,072
+V4.7. Peça sua demonstração.
+

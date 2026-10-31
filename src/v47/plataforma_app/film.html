@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 · Plataforma completa · todos os sistemas abertos (vertical)</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+html,body{width:auto;height:auto;background:#000}
+#stage{width:1080px;height:1920px;background:#F4F5F8;font-family:Inter;color:#111216;overflow:hidden}
+.ant{font-family:Anton,sans-serif;text-transform:uppercase;line-height:.95;letter-spacing:.5px}
+.ttl{position:absolute;left:0;width:1080px;text-align:center}
+/* notebook */
+#lap{position:absolute;left:90px;top:540px;width:900px;height:586px}
+#scr{position:absolute;left:0;top:0;width:900px;height:560px;background:#16171B;border-radius:24px 24px 0 0;padding:14px;box-shadow:0 34px 70px #11121630}
+#app{position:relative;width:872px;height:532px;background:#FAFAFA;border-radius:10px;overflow:hidden;display:flex}
+#base{position:absolute;left:-60px;right:-60px;top:560px;height:26px;background:linear-gradient(#DADCE1,#A8ABB3);border-radius:0 0 26px 26px}
+#side{width:178px;background:#111216;color:#C9CBD3;padding:18px 12px;flex:none}
+#side .nv{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;padding:9px 10px;border-radius:9px;margin-top:4px;white-space:nowrap}
+#main{flex:1;display:flex;flex-direction:column}
+#top{height:54px;border-bottom:1px solid #E7E7EA;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:#fff}
+#top b{font-size:18px}
+.bdg{font-size:12px;font-weight:700;border-radius:99px;padding:4px 10px}
+.ls{position:absolute;left:178px;top:54px;right:0;bottom:0;padding:18px 20px;display:none}
+.cd{background:#fff;border:1px solid #E7E7EA;border-radius:12px;padding:12px 14px}
+.k{font-size:12px;font-weight:600;color:#71717A}.v{font-size:24px;font-weight:700;letter-spacing:-.5px;margin-top:2px;white-space:nowrap}
+.g{display:grid;gap:12px}
+.tr{display:flex;align-items:center;justify-content:space-between;font-size:14px;padding:9px 0;border-bottom:1px solid #F0F0F2;white-space:nowrap}
+.st{font-size:11px;font-weight:700;border-radius:99px;padding:3px 9px}
+/* celular */
+#ph{position:absolute;left:650px;top:930px;width:380px;height:760px;background:#16171B;border-radius:56px;padding:13px;box-shadow:0 50px 100px #1112163a}
+#ph .in{position:relative;width:500px;height:1000px;background:#FFF;border-radius:58px;overflow:hidden;zoom:.708}
+.hdr{position:absolute;left:0;right:0;top:0;height:150px;color:#fff;padding:64px 34px 0;display:flex;justify-content:space-between;align-items:center}
+.hdr b{font-size:32px}.hdr span{font-size:22px;font-weight:600;opacity:.9}
+.ps{position:absolute;left:0;right:0;top:150px;bottom:0;padding:30px;display:none}
+.row{display:flex;justify-content:space-between;align-items:center;font-size:26px;padding:16px 0;border-bottom:1px solid #EEE}
+.btn{color:#fff;border-radius:18px;padding:20px;text-align:center;font-size:26px;font-weight:700;margin-top:20px}
+.op{border:2px solid #E6E6EA;border-radius:18px;padding:18px 20px;font-size:27px;font-weight:600;margin-top:14px}
+.doc{display:flex;align-items:center;gap:16px;font-size:26px;font-weight:600;padding:15px 0;border-bottom:1px solid #EEE}
+.tk{width:42px;height:42px;border-radius:50%;border:3px solid #DDD;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:24px;flex:none}
+/* cartões */
+.fc{position:absolute;left:60px;width:550px;height:196px;background:#fff;border-radius:30px;box-shadow:0 24px 60px #1112161f;display:flex;align-items:center;gap:26px;padding:0 34px}
+.fc .ic{width:110px;height:110px;border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:60px;flex:none}
+.fc .nb{font-family:Anton;font-size:68px;line-height:1;white-space:nowrap}.fc .lb{font-size:27px;font-weight:600;color:#55575F;margin-top:6px;line-height:1.2}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script type="text/x-tpl" id="tpl">
+ <div class="abs ant" id="bigw" style="left:0;top:1060px;font-size:700px;color:#E8E9EE;white-space:nowrap"></div>
+ <div class="abs" id="bar1" style="left:80px;top:60px;width:420px;height:14px;border-radius:7px"></div>
+ <div class="abs" style="left:0;width:1080px;top:104px;display:flex;justify-content:center;align-items:center;gap:28px"><img src="img/v4_logo_dark.png" style="height:60px"><div style="width:2px;height:54px;background:#C9CCD4"></div><img src="img/v47_dark.png" style="height:66px"></div>
+ <div class="ttl ant" id="tt" style="top:228px;font-size:148px;white-space:nowrap;height:150px;line-height:150px"></div>
+ <div class="ttl" id="sub" style="top:400px;font-size:40px;font-weight:600;color:#55575F"></div>
+
+ <div id="lap"><div id="scr"><div id="app">
+  <div id="side"><div style="width:96px;height:40px;margin:2px 0 14px 8px;-webkit-mask:url(../kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;background:#fff"></div><div id="nav"></div></div>
+  <div id="main"><div id="top"><b id="ttop"></b><div style="display:flex;align-items:center;gap:10px"><span class="bdg" id="live">● ao vivo</span><span style="width:30px;height:30px;border-radius:50%;background:#E4E4E7;display:inline-block"></span></div></div></div>
+
+  <!-- 1 hub -->
+  <div class="ls" id="L1"><div class="k a" style="margin-bottom:10px">Seus sistemas</div><div class="g" id="hub" style="grid-template-columns:repeat(4,1fr)"></div></div>
+  <!-- 2 pesquisa -->
+  <div class="ls" id="L2"><div class="g" style="grid-template-columns:repeat(3,1fr)">
+    <div class="cd a"><div class="k">Respostas</div><div class="v" data-n="1204">0</div></div><div class="cd a"><div class="k">Bairros</div><div class="v" data-n="18">0</div></div><div class="cd a"><div class="k">Satisfação</div><div class="v" data-n="78" data-f="pct">0</div></div></div>
+   <div class="g" style="grid-template-columns:1.5fr 1fr;margin-top:12px"><div class="cd a"><div class="k" style="margin-bottom:8px">O que mais falta no bairro?</div>
+    ${[['Saúde',38],['Iluminação',27],['Asfalto',21],['Escola',14]].map(([n,v],i)=>`<div style="display:flex;align-items:center;gap:10px;margin:12px 0;font-size:14px;font-weight:600"><span style="width:84px">${n}</span><div style="flex:1;height:22px;background:#F1EAFF;border-radius:6px"><div data-w="${v*2.2}" style="height:100%;border-radius:6px;background:${i?'#B79BFF':'#8B3DFF'}"></div></div><b style="width:40px">${v}%</b></div>`).join('')}</div>
+    <div class="cd a" style="background:#F6F1FF;border-color:#E4D7FF"><div class="k" style="color:#6D28D9">✨ Resumo da IA</div><div style="font-size:15px;font-weight:600;line-height:1.45;margin-top:8px">Saúde lidera em 12 dos 18 bairros. Vila Nova pede mais iluminação.</div></div></div></div>
+  <!-- 3 saude -->
+  <div class="ls" id="L3"><div class="g" style="grid-template-columns:repeat(3,1fr)"><div class="cd a"><div class="k">Unidades</div><div class="v" data-n="4">0</div></div><div class="cd a"><div class="k">Urgentes</div><div class="v" style="color:#E5484D" data-n="2">0</div></div><div class="cd a"><div class="k">Itens monitorados</div><div class="v" data-n="846">0</div></div></div>
+   <div class="cd a" style="margin-top:12px"><div class="tr" style="color:#71717A;font-weight:600;font-size:12px"><span style="width:200px">Unidade</span><span style="flex:1">Precisa de</span><span>Status</span></div>
+    ${[['Hospital Municipal','Soro 0,9% · Luvas M · Seringas','Urgente','#E5484D'],['UPA Centro','Oxigênio','Urgente','#E5484D'],['UBS Jardim','Insulina','Atenção','#D97706'],['UBS Vila Nova','Estoque em dia','OK','#16A34A']].map(r=>`<div class="tr a"><b style="width:200px">${r[0]}</b><span style="flex:1;color:#52525B">${r[1]}</span><span class="st" style="background:${r[3]}1A;color:${r[3]}">${r[2]}</span></div>`).join('')}</div></div>
+  <!-- 4 juridico -->
+  <div class="ls" id="L4"><div class="g" style="grid-template-columns:1.6fr 1fr;height:100%">
+   <div class="cd" style="display:flex;flex-direction:column;gap:10px"><div class="a" style="align-self:flex-end;background:#4F5BFF;color:#fff;border-radius:14px 14px 4px 14px;padding:10px 14px;font-size:15px;font-weight:600;max-width:80%">Que documentos preciso antes de licitar?</div>
+    <div class="a" style="background:#F4F4F5;border-radius:14px 14px 14px 4px;padding:12px 14px;font-size:14px;line-height:1.5;max-width:92%"><b>Antes de licitar, você precisa de:</b><br>• Estudo Técnico Preliminar<br>• Termo de Referência<br>• Orçamento estimado<div style="margin-top:8px;display:inline-block;background:#EEF0FF;color:#3730A3;border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700">📖 Lei 14.133/2021 · art. 18</div></div></div>
+   <div class="cd"><div class="k a">Pareceres</div>${[['Merenda 2026','Pronto','#16A34A'],['Reforma UBS','Revisão','#D97706'],['Ponte córrego','Pronto','#16A34A'],['Transporte','Rascunho','#71717A']].map(r=>`<div class="tr a"><span>${r[0]}</span><span class="st" style="background:${r[2]}1A;color:${r[2]}">${r[1]}</span></div>`).join('')}</div></div></div>
+  <!-- 5 aprendizagem -->
+  <div class="ls" id="L5"><div class="g" style="grid-template-columns:1.5fr 1fr;height:100%"><div class="cd a"><div class="k" style="margin-bottom:10px">5º B · Matemática · por aluno</div><div id="heat" style="display:grid;grid-template-columns:repeat(8,1fr);gap:6px"></div>
+     <div style="display:flex;gap:14px;margin-top:12px;font-size:12px;font-weight:600;color:#52525B"><span>🟩 domina</span><span>🟨 atenção</span><span>🟥 reforço</span></div></div>
+    <div style="display:flex;flex-direction:column;gap:12px"><div class="cd a"><div class="k">Turmas</div><div class="v" data-n="96">0</div></div><div class="cd a" style="background:#FFF1F5;border-color:#FBCFE0"><div style="font-size:15px;font-weight:700;line-height:1.4">4 alunos com dificuldade em frações</div><div style="margin-top:10px;background:#E5487F;color:#fff;border-radius:8px;padding:7px;text-align:center;font-size:13px;font-weight:700">Criar trilha de reforço</div></div></div></div></div>
+  <!-- 6 THR -->
+  <div class="ls" id="L6"><div class="g" style="grid-template-columns:1.4fr 1fr;height:100%"><div class="cd a"><div class="k" style="margin-bottom:4px">Planilha · ref. SINAPI · Ponte do córrego</div>
+    ${[['Concreto',86800],['Aço CA-50',137200],['Formas',49400],['Estacas',40320],['Guarda-corpo',18240],['Aterro',8100]].map(q=>`<div class="tr a"><span>${q[0]}</span><b>R$ ${q[1].toLocaleString('pt-BR')}</b></div>`).join('')}</div>
+    <div style="display:flex;flex-direction:column;gap:12px"><div class="cd a" style="background:#FFF4EC;border-color:#FAD3B8"><div class="k" style="color:#C2410C">Total estimado</div><div class="v" style="font-size:28px;color:#EA580C" data-n="340060" data-f="brl">R$ 0</div></div>
+     <div class="cd a"><div class="k">Documentos</div>${['ETP','Termo de Referência','Cronograma'].map(d=>`<div class="tr" style="font-size:13px"><span>${d}</span><span class="st" style="background:#16A34A1A;color:#16A34A">pronto</span></div>`).join('')}</div></div></div></div>
+  <!-- 7 engenheiro -->
+  <div class="ls" id="L7"><div class="g" style="grid-template-columns:1.6fr 1fr;height:100%"><div class="cd a"><div class="k">Creche Centro · avanço físico</div>
+    <svg width="380" height="250" viewBox="0 0 380 250" style="margin-top:10px"><g stroke="#EEE"><line x1="0" y1="60" x2="380" y2="60"/><line x1="0" y1="140" x2="380" y2="140"/><line x1="0" y1="220" x2="380" y2="220"/></g><path class="dr" d="M0 228 C90 224 140 140 190 105 C240 70 300 30 380 20" stroke="#A1A1AA" stroke-width="4" stroke-dasharray="10 8" fill="none"/><path class="dr" d="M0 228 C90 226 140 156 190 128" stroke="#2F6BFF" stroke-width="9" fill="none" stroke-linecap="round"/></svg></div>
+    <div style="display:flex;flex-direction:column;gap:12px"><div class="cd a"><div class="k">Realizado</div><div class="v" style="color:#2F6BFF" data-n="46" data-f="pct">0</div></div><div class="cd a"><div class="k">Previsto</div><div class="v" data-n="52" data-f="pct">0</div></div><div class="cd a" style="background:#FFF7E6;border-color:#FCD9A0"><div style="font-size:14px;font-weight:700;color:#92400E;line-height:1.4">⚠ Risco de atraso de 6 dias · reforçar a equipe</div></div></div></div></div>
+  <!-- 8 digitalizacao -->
+  <div class="ls" id="L8"><div class="cd a" style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600;color:#3F3F46">🔍 <span id="q8"></span><span style="width:2px;height:20px;background:#0EA5A4"></span></div>
+   <div class="g" style="grid-template-columns:1.5fr 1fr;margin-top:12px"><div class="cd"><div class="k a">Resultados · 0,8 s</div>
+    ${[['Contrato nº 045/2019 · merenda','pág. 3',1],['Aditivo 01 · contrato 045/2019','pág. 1',0],['Ata de registro 12/2019','pág. 7',0]].map(r=>`<div class="tr a" style="${r[2]?'background:#ECFEFF;margin:0 -8px;padding:9px 8px;border-radius:8px':''}"><span>📄 ${r[0]}</span><span style="color:#71717A">${r[1]}</span></div>`).join('')}</div>
+    <div class="cd"><div class="k a">Pastas</div>${[['Licitações',312],['Contratos',845],['RH',1204],['Obras',96]].map(r=>`<div class="tr a"><span>📁 ${r[0]}</span><b>${r[1].toLocaleString('pt-BR')}</b></div>`).join('')}</div></div></div>
+  <!-- 9 gestor -->
+  <div class="ls" id="L9"><div class="g" style="grid-template-columns:repeat(3,1fr)">
+    ${[['Pesquisa','Satisfação',78,'pct','#8B3DFF'],['Saúde','Alertas',2,'','#1FAA6B'],['Jurídico','Pareceres',21,'','#4F5BFF'],['Aprendizagem','Turmas',96,'','#E5487F'],['THR Obras','Orçado','3,4 mi','txt','#F26A1B'],['Digitalização','Documentos',2457,'','#0EA5A4']].map(c=>`<div class="cd a" style="border-top:4px solid ${c[4]}"><div class="k">${c[0]} · ${c[1]}</div><div class="v" ${c[3]==='txt'?'':`data-n="${c[2]}" data-f="${c[3]}"`}>${c[3]==='txt'?'R$ '+c[2]:'0'}</div></div>`).join('')}</div>
+   <div class="cd a" style="margin-top:12px"><div class="k">Atendimentos na cidade · 12 meses</div><svg width="640" height="120" viewBox="0 0 640 120" style="margin-top:6px"><path class="dr" d="M0 100 L58 92 L116 95 L174 80 L232 76 L290 70 L348 58 L406 60 L464 44 L522 38 L580 26 L640 18" stroke="#D9A441" stroke-width="5" fill="none" stroke-linejoin="round"/></svg></div></div>
+ </div><div id="flash" style="position:absolute;inset:14px;border-radius:10px;background:#fff;opacity:0;pointer-events:none"></div></div><div id="base"></div></div>
+
+ <!-- celular -->
+ <div id="ph"><div class="in"><div class="hdr" id="phh"><b id="pht"></b><span>● online</span></div>
+  <div class="ps" id="P1"><div style="font-size:24px;font-weight:600;color:#888">Meus sistemas</div><div id="pmenu"></div></div>
+  <div class="ps" id="P2"><div style="font-size:22px;font-weight:700;color:#8B3DFF">Pesquisa · Vila Nova</div><div style="font-size:34px;font-weight:700;margin:12px 0 10px;line-height:1.25">O que é mais urgente no seu bairro?</div>
+   ${['💡 Iluminação','🏥 Saúde','🛣️ Asfalto','🏫 Escola'].map((o,i)=>`<div class="op" id="o${i}">${o}</div>`).join('')}<div class="btn" style="background:#8B3DFF">Enviar resposta</div></div>
+  <div class="ps" id="P3"><div class="pa" style="background:#FFF1F1;border-radius:24px;padding:26px"><div style="font-size:22px;font-weight:700;color:#E5484D">⚠ ALERTA · UPA Centro</div><div style="font-size:36px;font-weight:700;margin-top:10px">Oxigênio acaba em ~2 dias</div></div>
+   <div class="pa" style="margin-top:22px;font-size:24px;font-weight:600;color:#888">Sugestão da IA</div><div class="pa" style="font-size:30px;font-weight:700;margin-top:8px;line-height:1.3">Remanejar 6 cilindros do Hospital Municipal</div><div class="btn pa" style="background:#1FAA6B">Aprovar remanejamento</div></div>
+  <div class="ps" id="P4"><div style="font-size:24px;font-weight:600;color:#888">Checklist da licitação</div>${['Estudo Técnico Preliminar','Termo de Referência','Orçamento estimado','Parecer jurídico','Minuta do edital'].map((d,i)=>`<div class="doc"><i class="tk" id="t4${i}">✓</i>${d}</div>`).join('')}<div style="margin-top:18px;font-size:20px;font-weight:700;color:#4F5BFF">📖 Lei 14.133/2021</div></div>
+  <div class="ps" id="P5"><div style="font-size:24px;font-weight:600;color:#888">Trilha de reforço · Ana, 5º B</div>${[['Frações: o que é metade?','feito'],['Frações no dia a dia','feito'],['Somar frações','agora'],['Desafio final','']].map((e,i)=>`<div class="row pa"><span style="font-weight:600">${i+1}. ${e[0]}</span><b style="color:${e[1]==='feito'?'#16A34A':'#E5487F'};font-size:22px">${e[1]}</b></div>`).join('')}<div class="btn pa" style="background:#E5487F">Continuar trilha</div></div>
+  <div class="ps" id="P6" style="padding:0"><div style="position:relative;height:470px;overflow:hidden"><img src="img/rio.jpg" style="width:100%;height:100%;object-fit:cover"><svg width="500" height="470" style="position:absolute;left:0;top:0"><path class="dr" d="M90 300 L390 160" stroke="#F26A1B" stroke-width="7" stroke-dasharray="12 9"/></svg></div>
+   <div style="padding:20px 30px"><div class="row"><span>Vão livre</span><b data-n="18.4" data-f="m">0</b></div><div class="row"><span>Extensão</span><b data-n="24" data-f="m">0</b></div><div class="row" style="border:0"><span>Largura</span><b data-n="9" data-f="m">0</b></div></div></div>
+  <div class="ps" id="P7"><div style="font-size:24px;font-weight:600;color:#888">Diário de obra · hoje</div>${[['🧱','Alvenaria bloco B','concluída'],['🚚','Entrega de aço','14h'],['🌧','Chuva prevista','quinta']].map(r=>`<div class="row pa"><span>${r[0]} ${r[1]}</span><b style="font-size:22px;color:#2F6BFF">${r[2]}</b></div>`).join('')}<div class="pa" style="margin-top:22px;background:#FFF7E6;border-left:8px solid #F59E0B;border-radius:14px;padding:18px 20px;font-size:25px;font-weight:700;color:#92400E">⚠ Risco de atraso · 6 dias</div></div>
+  <div class="ps" id="P8"><div style="position:relative;height:560px;background:#1F2228;border-radius:28px;overflow:hidden"><div style="position:absolute;left:70px;top:60px;width:300px;height:420px;background:#fff;border-radius:6px;transform:rotate(-3deg);padding:30px 26px">${[90,70,85,60,80,50,75].map(w=>`<div style="height:12px;width:${w}%;background:#D4D4D8;border-radius:6px;margin:16px 0"></div>`).join('')}</div>
+    <div id="scan" style="position:absolute;left:40px;right:40px;height:6px;background:#22D3EE;box-shadow:0 0 30px #22D3EE"></div>${['left:40px;top:40px;border-width:6px 0 0 6px','right:40px;top:40px;border-width:6px 6px 0 0','left:40px;bottom:40px;border-width:0 0 6px 6px','right:40px;bottom:40px;border-width:0 6px 6px 0'].map(s=>`<div style="position:absolute;${s};width:60px;height:60px;border-style:solid;border-color:#22D3EE"></div>`).join('')}</div>
+   <div class="btn pa" id="ok8" style="background:#0EA5A4">✓ Digitalizado · pasta Contratos</div></div>
+  <div class="ps" id="P9"><div style="font-size:24px;font-weight:600;color:#888">Avisos de hoje</div>${[['#1FAA6B','Saúde','UPA Centro precisa de oxigênio'],['#F26A1B','THR','Orçamento da ponte pronto'],['#8B3DFF','Pesquisa','312 novas respostas'],['#4F5BFF','Jurídico','Parecer da merenda pronto']].map(r=>`<div class="pa" style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid #EEE"><i style="width:18px;height:18px;border-radius:50%;background:${r[0]};margin-top:8px;flex:none"></i><div><div style="font-size:21px;font-weight:700;color:${r[0]}">${r[1]}</div><div style="font-size:25px;font-weight:600">${r[2]}</div></div></div>`).join('')}</div>
+ </div></div>
+
+ <div class="fc" id="f1" style="top:1190px"><div class="ic" id="f1i"></div><div><div class="nb" id="f1n"></div><div class="lb" id="f1l"></div></div></div>
+ <div class="fc" id="f2" style="top:1416px"><div class="ic" id="f2i"></div><div><div class="nb" id="f2n"></div><div class="lb" id="f2l"></div></div></div>
+ <div class="abs" id="ilu" style="left:60px;top:1630px;font-size:20px;color:#9A9CA5">valores ilustrativos</div>
+
+ <!-- encerramento -->
+ <div class="abs" id="end" style="inset:0;background:#111216;opacity:0">
+  <img src="img/v4_logo_white.png" style="position:absolute;left:190px;top:250px;width:700px">
+  <div style="position:absolute;left:360px;top:430px;width:360px;height:150px;-webkit-mask:url(../kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;background:linear-gradient(120deg,#8C8C8C,#FFF 40%,#B5B5B5 55%,#FFF 70%,#9A9A9A)"></div>
+  <div class="ttl ant" style="top:640px;font-size:140px;color:#F5F6F9">Vamos<br><span style="color:#D9A441">conversar?</span></div>
+  <div id="echips" style="position:absolute;left:90px;width:900px;top:960px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px"></div>
+  <div style="position:absolute;left:150px;width:780px;top:1290px;text-align:center;background:#25D366;color:#111216;border-radius:999px;padding:28px 0;font-size:50px;font-weight:700" id="wa">WhatsApp (31) 99827-7323</div>
+  <div class="ttl" style="top:1440px;font-size:36px;font-weight:700;color:#D9A441">Peça sua demonstração →</div></div>
+</script>
+<script>
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), eo = x => 1 - Math.pow(1 - cl(x), 3), eio = x => { x = cl(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }, spr = x => x <= 0 ? 0 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
+let TL, LN;
+const SYS = [['🏛️', 'Painel do Gestor', '#D9A441'], ['📊', 'Pesquisa', '#8B3DFF'], ['🏥', 'Saúde', '#1FAA6B'], ['⚖️', 'Jurídico', '#4F5BFF'], ['📚', 'Aprendizagem', '#E5487F'], ['🏗️', 'THR · Obras', '#F26A1B'], ['👷', 'Engenheiro 7.3', '#2F6BFF'], ['🗂️', 'Digitalização', '#0EA5A4']];
+// por cena: título, subtítulo, cor, item ativo do menu, palavra de fundo, cartões [ícone, valor, número p/ contar, formato, legenda]
+const S = [
+ ['Plataforma <span>V4.7</span>', 'Todos os sistemas em um só lugar', '#D9A441', 0, 'V4.7 V4.7', ['🧩', '', 8, '', 'sistemas integrados'], ['📱', 'App + Web', 0, 'txt', 'no celular e no computador']],
+ ['<span>Pesquisa</span> digital', 'Resposta pelo celular, resultado na hora', '#8B3DFF', 1, 'PESQUISA', ['📊', '', 1204, '', 'respostas hoje'], ['⏱️', 'Ao vivo', 0, 'txt', 'gráficos automáticos']],
+ ['<span>Saúde</span> em rede', 'Qual hospital precisa de quê', '#1FAA6B', 2, 'SAÚDE', ['🏥', '', 4, '', 'unidades monitoradas'], ['⚠️', '', 2, '', 'alertas urgentes hoje']],
+ ['<span>Jurídico</span> com IA', 'Resposta com a lei citada', '#4F5BFF', 3, 'JURÍDICO', ['⚖️', 'Lei citada', 0, 'txt', 'em toda resposta'], ['📄', '', 21, '', 'pareceres no mês']],
+ ['<span>Aprendizagem</span>', 'Reforço para cada turma', '#E5487F', 4, 'ESCOLA', ['🎯', '', 96, '', 'turmas acompanhadas'], ['📚', '', 18, 'pct', 'precisam de reforço']],
+ ['<span>THR</span> · Obras', 'Medir, orçar e licitar em um app', '#F26A1B', 5, 'THR OBRAS', ['📐', '', 18.4, 'm', 'vão medido no mapa'], ['💰', '', 340060, 'brl', 'orçamento SINAPI']],
+ ['<span>Engenheiro</span> 7.3', 'Aviso antes do atraso', '#2F6BFF', 6, 'OBRA', ['📈', '', 46, 'pct', 'realizado x 52% previsto'], ['🔔', '6 dias', 0, 'txt', 'de risco antecipado']],
+ ['<span>Digitalização</span>', 'Papel vira arquivo digital', '#0EA5A4', 7, 'ARQUIVO', ['🔍', '0,8 s', 0, 'txt', 'para achar um contrato'], ['📁', '', 2457, '', 'documentos digitais']],
+ ['Painel do <span>gestor</span>', 'A cidade inteira em uma tela', '#D9A441', 0, 'GESTÃO', ['🏛️', '1 tela', 0, 'txt', 'todos os sistemas juntos'], ['✅', 'IA sugere', 0, 'txt', 'e você decide']],
+];
+const F = (v, f) => f === 'pct' ? Math.round(v) + '%' : f === 'brl' ? 'R$ ' + Math.round(v).toLocaleString('pt-BR') : f === 'm' ? v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' m' : Math.round(v).toLocaleString('pt-BR');
+const ANIM = [];
+function build() {
+  $('stage').innerHTML = new Function('return `' + $('tpl').textContent + '`')();
+  $('nav').innerHTML = SYS.map((s, i) => `<div class="nv" id="nv${i}"><span>${s[0]}</span>${s[1]}</div>`).join('');
+  $('hub').innerHTML = SYS.map(s => `<div class="cd a" style="border-top:4px solid ${s[2]};height:142px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-size:40px">${s[0]}</div><div style="font-size:15px;font-weight:700;line-height:1.25">${s[1]}</div><div class="st" style="background:${s[2]}1A;color:${s[2]};align-self:flex-start">● ativo</div></div>`).join('');
+  $('pmenu').innerHTML = SYS.slice(1).map(s => `<div class="row pa"><span style="display:flex;align-items:center;gap:16px;font-weight:600"><i style="width:56px;height:56px;border-radius:16px;background:${s[2]}1F;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:30px">${s[0]}</i>${s[1]}</span><b style="color:${s[2]}">›</b></div>`).join('');
+  $('echips').innerHTML = SYS.map(s => `<div class="ec" style="background:${s[2]}22;border:2px solid ${s[2]};color:#F5F6F9;border-radius:999px;padding:14px 26px;font-size:32px;font-weight:700">${s[0]} ${s[1]}</div>`).join('');
+  for (let k = 1; k <= 9; k++) { const L = $('L' + k), P = $('P' + k);
+    ANIM[k] = { a: [...L.querySelectorAll('.a'), ...(P ? P.querySelectorAll('.pa') : [])], n: [...L.querySelectorAll('[data-n]'), ...(P ? P.querySelectorAll('[data-n]') : [])], w: [...L.querySelectorAll('[data-w]')], d: [...L.querySelectorAll('path.dr'), ...(P ? P.querySelectorAll('path.dr') : [])] }; }
+  const cells = ['g', 'g', 'y', 'g', 'r', 'g', 'y', 'g', 'g', 'r', 'g', 'g', 'y', 'g', 'g', 'y', 'g', 'y', 'g', 'r', 'g', 'g', 'g', 'y', 'r', 'g', 'g', 'y', 'g', 'g', 'g', 'g'];
+  $('heat').innerHTML = cells.map((c, i) => `<div class="hc" style="height:34px;border-radius:7px;background:${{ g: '#22C55E', y: '#FACC15', r: '#EF4444' }[c]}"></div>`).join('');
+}
+const _L = new Map(); function draw(p, t, t0, d) { let L = _L.get(p); if (!L) { L = p.getTotalLength(); _L.set(p, L); p.style.strokeDasharray = L; } p.style.strokeDashoffset = L * (1 - eio((t - t0) / d)); }
+function rise(el, t, t0, dy = 60, d = .5) { const p = cl((t - t0) / d); el.style.opacity = p; el.style.transform = `translateY(${(1 - eo(p)) * dy}px)`; }
+function seek(t) {
+  const SC = LN.map((l, i) => i ? l.start - .3 : 0); let k = 1; SC.forEach((s, i) => { if (t >= s) k = i + 1; }); const s = SC[k - 1], lt = t - s;
+  const end = k === 10, sc = S[Math.min(k, 9) - 1], acc = sc[2];
+  $('bigw').textContent = (sc[4] + ' ').repeat(3); $('bigw').style.transform = `translateX(${-(t * 50) % 1400}px)`;
+  $('bar1').style.background = acc;
+  $('tt').innerHTML = sc[0].replace('<span>', `<span style="color:${acc}">`); $('sub').textContent = sc[1];
+  if ($('tt').dataset.k != k) { $('tt').dataset.k = k; let f = 148; $('tt').style.fontSize = f + 'px'; while ($('tt').scrollWidth > 1000 && f > 90) { f -= 4; $('tt').style.fontSize = f + 'px'; } }
+  rise($('tt'), t, s + .1, 70); rise($('sub'), t, s + .3, 40);
+  // notebook
+  const lin = k === 1 ? eo((t - .5) / .7) : 1; $('lap').style.opacity = lin; $('lap').style.transform = `translateY(${(1 - lin) * 160}px) scale(${1 + .015 * Math.max(0, 1 - lt / .35) * (k > 1)})`;
+  $('flash').style.opacity = k > 1 ? .9 * cl(1 - lt / .3) : 0;
+  for (let i = 1; i <= 9; i++) { $('L' + i).style.display = i === Math.min(k, 9) ? 'block' : 'none'; const P = $('P' + i); if (P) P.style.display = i === Math.min(k, 9) ? 'block' : 'none'; }
+  SYS.forEach((x, i) => { const on = i === sc[3]; $('nv' + i).style.background = on ? acc : 'transparent'; $('nv' + i).style.color = on ? '#fff' : '#C9CBD3'; });
+  $('ttop').textContent = k === 1 ? 'Início' : SYS[sc[3]][1] + ' · painel'; $('live').style.background = acc + '1F'; $('live').style.color = acc;
+  // celular
+  const pin = k === 1 ? eo((t - 1.0) / .7) : 1; $('ph').style.opacity = pin; $('ph').style.transform = `translateY(${(1 - pin) * 300}px) rotate(${3 * (1 - pin)}deg)`;
+  $('phh').style.background = acc; $('pht').textContent = k === 1 ? 'V4.7' : SYS[sc[3]][1].replace(' · Obras', '');
+  const P = $('P' + Math.min(k, 9)); P.style.transform = `translateX(${(1 - eo(lt / .45)) * (k > 1 ? 120 : 0)}px)`; P.style.opacity = k > 1 ? cl(lt / .25) : 1;
+  // animações genéricas da cena
+  const A = ANIM[Math.min(k, 9)], b0 = (k === 1 ? 1.1 : s + .35);
+  A.a.forEach((e, i) => rise(e, t, b0 + i * .09, 24, .35));
+  A.n.forEach((e, i) => { const v = +e.dataset.n; e.textContent = F(v * eo((t - b0 - .2 - i * .1) / .9), e.dataset.f || ''); });
+  A.w.forEach((e, i) => e.style.width = e.dataset.w * eo((t - b0 - .3 - i * .12) / .7) + '%');
+  A.d.forEach((e, i) => draw(e, t, b0 + .2 + i * .3, 1.1));
+  if (k === 2) { const sel = t > s + 1.6; $('o1').style.background = sel ? '#8B3DFF' : '#fff'; $('o1').style.color = sel ? '#fff' : '#111216'; $('o1').style.borderColor = sel ? '#8B3DFF' : '#E6E6EA'; }
+  if (k === 4) for (let i = 0; i < 5; i++) { const on = t > s + .7 + i * .35, e = $('t4' + i); e.style.background = on ? '#4F5BFF' : 'transparent'; e.style.borderColor = on ? '#4F5BFF' : '#DDD'; }
+  if (k === 5) [...$('heat').children].forEach((c, i) => { c.style.opacity = cl((t - s - .4 - i * .025) / .2); });
+  if (k === 8) { const q = 'contrato merenda 2019', n = cl(Math.floor((t - s - .4) * 22), 0, q.length); $('q8').textContent = q.slice(0, n); $('scan').style.top = (40 + 470 * (.5 - .5 * Math.cos((t - s) * 3))) + 'px'; $('ok8').style.opacity = cl((t - s - 2.2) / .3); }
+  // cartões
+  [5, 6].forEach((j, i) => { const c = sc[j], id = 'f' + (i + 1); $(id + 'i').textContent = c[0]; $(id + 'i').style.background = acc + '1F'; $(id + 'n').style.color = acc;
+    $(id + 'n').textContent = c[3] === 'txt' ? c[1] : F(c[2] * eo((t - s - .6 - i * .2) / .9), c[3]); $(id + 'l').textContent = c[4];
+    const p = cl((t - (k === 1 ? 1.6 : s + .5) - i * .2) / .4); $(id).style.opacity = p; $(id).style.transform = `translateX(${(1 - eo(p)) * -120}px)`; });
+  $('ilu').style.opacity = k === 1 || end ? 0 : .9;
+  // encerramento
+  $('end').style.opacity = end ? cl(lt / .4) : 0;
+  if (end) { [...$('echips').children].forEach((c, i) => { const p = t - s - .5 - i * .08; c.style.opacity = cl(p / .15); c.style.transform = `scale(${p < 0 ? .5 : .5 + .5 * spr(p)})`; }); $('wa').style.transform = `scale(${t < s + 1.2 ? .5 : .5 + .5 * spr(t - s - 1.2)})`; $('wa').style.opacity = cl((t - s - 1.2) / .15); }
+  $('stage').style.opacity = 1 - cl((t - (TL.end - .8)) / .8);
+}
+window.seek = seek;
+fetch('timeline.json').then(r => r.json()).then(j => { TL = j; LN = j.lines; return Promise.all(['600 20px Inter', '700 20px Inter', '40px Anton'].map(f => document.fonts.load(f))); })
+  .then(() => { build(); seek(0); window.ready = true; if (!location.search.includes('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % TL.end); requestAnimationFrame(loop); }; loop(); } });
+</script>
+</body>
+</html>

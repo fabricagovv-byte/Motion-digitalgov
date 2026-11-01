@@ -1,0 +1,56 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Black Friday V4 · serviços</title>
+<style>
+@font-face{font-family:Anton;src:url(../kit/fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;src:url(../kit/fonts/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../kit/fonts/inter-latin-700-normal.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#08080A;font-family:Inter;color:#F4F1EA}
+#p{position:relative;width:1080px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#2A1E08 0%,#08080A 60%)}
+.band{position:absolute;left:-40px;width:1160px;height:70px;background:#D9A441;color:#08080A;font-family:Anton;font-size:42px;letter-spacing:2px;white-space:nowrap;display:flex;align-items:center;overflow:hidden}
+.lm{-webkit-mask:url(../kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;background:linear-gradient(120deg,#8C8C8C,#FFF 40%,#B5B5B5 55%,#FFF 70%,#9A9A9A)}
+.v4{-webkit-mask:url(../halloween_reel/img/v4_mark_white.png) 0 0/100% 100% no-repeat;background:#F4F1EA}
+.h{font-family:Anton;text-transform:uppercase;line-height:.92;text-align:center;position:absolute;left:0;width:1080px}
+.c{position:absolute;left:0;width:1080px;text-align:center}
+.row{display:flex;align-items:center;gap:22px;background:#141418;border:2px solid #2C2C33;border-radius:28px;padding:22px 30px;margin:0 60px 18px}
+.row .tg{width:230px}.row .tg b{display:block;font-family:Anton;font-size:46px;color:#FF7A2F;font-weight:400;line-height:1}.row .tg span{font-size:20px;color:#B5B0A6;font-weight:600}
+.row .od{font-family:Anton;font-size:38px;color:#8E8A82;text-decoration:line-through;text-decoration-color:#FF3B30;text-decoration-thickness:5px;white-space:nowrap}
+.row .nw{font-family:Anton;font-size:72px;color:#D9A441;margin-left:auto;white-space:nowrap}
+.off{display:inline-block;background:#FF3B30;color:#FFF;font-family:Anton;font-size:30px;border-radius:999px;padding:4px 14px;margin-top:4px}
+.wa{position:absolute;left:190px;width:700px;text-align:center;background:#25D366;color:#08080A;border-radius:999px;padding:20px 0;font-size:42px;font-weight:700}
+</style></head><body><div id="p"></div>
+<script>
+const q = new URLSearchParams(location.search), N = +(q.get('n') || 0), story = q.has('story'), H = story ? 1920 : 1350, p = document.getElementById('p'); p.style.height = H + 'px';
+const T = ' BLACK FRIDAY V4 ★ DADOS A R$ 0,01 ★ HST PELA METADE ★'.repeat(6);
+const Y = v => story ? v + 200 : v;   // story desce o conteúdo
+const band = `<div class="band" style="top:${story ? 120 : 40}px;transform:rotate(-2deg)">${T}</div>`;
+const logos = `<div style="position:absolute;left:0;width:1080px;top:${story ? 1360 : 1010}px;display:flex;justify-content:center;align-items:center;gap:26px"><div class="v4" style="width:150px;height:81px"></div><div style="width:2px;height:70px;background:#D9A441"></div><div class="lm" style="width:190px;height:79px"></div></div>`;
+const cta = `<div class="wa" style="top:${story ? 1520 : 1130}px">WhatsApp (31) 99827-7323</div>`;
+const nota = t => `<div class="c" style="top:${story ? 1650 : 1262}px;font-size:24px;font-weight:600;color:#8E8A82">${t}</div>`;
+const SERV = [['UST', 'Unid. de Serviço Técnico', '70', '64', '-R$ 6'], ['PF', 'Ponto de Função', '250', '200', '-R$ 50'], ['HST', 'Hora de Serviço Técnico', '80', '40', '-50%']];
+const C = [
+ // 0 · vai começar
+ () => band + `<div class="c" style="top:${Y(190)}px;font-size:44px;font-weight:700;color:#D9A441;letter-spacing:6px">VAI COMEÇAR A</div>
+  <div class="h" style="top:${Y(260)}px;font-size:220px">Black<br><span style="color:transparent;-webkit-text-stroke:6px #D9A441">Friday</span></div>
+  <div class="c" style="top:${Y(690)}px;font-size:40px;font-weight:700">Serviços de tecnologia da <span style="color:#D9A441">V4</span></div>
+  <div class="c" style="top:${Y(770)}px"><span style="display:inline-block;background:#FF3B30;color:#fff;font-family:Anton;font-size:56px;border-radius:999px;padding:10px 40px">DADOS A R$ 0,01</span></div>
+  <div class="c" style="top:${Y(880)}px;font-size:34px;font-weight:700;color:#B5B0A6">UST · Ponto de Função · HST · Projetos</div>` + logos + cta + nota('Fique de olho: ofertas por tempo limitado'),
+ // 1 · dados a 1 centavo
+ () => band + `<div class="h" style="top:${Y(170)}px;font-size:150px">Black <span style="color:transparent;-webkit-text-stroke:5px #D9A441">Friday</span></div>
+  <div class="c" style="top:${Y(330)}px;font-size:42px;font-weight:700;color:#D9A441;letter-spacing:2px">TRATAMENTO E ORGANIZAÇÃO DE DADOS</div>
+  <div class="c" style="top:${Y(420)}px;font-family:Anton;font-size:84px;color:#F4F1EA">POR APENAS</div>
+  <div class="c" style="top:${Y(510)}px;font-family:Anton;font-size:300px;line-height:1;color:#D9A441;text-shadow:0 0 60px #D9A44155"><span style="font-size:110px">R$ </span>0,01</div>
+  <div class="c" style="top:${Y(830)}px;font-family:Anton;font-size:64px;color:#FF7A2F">POR REGISTRO</div>
+  <div class="c" style="top:${Y(920)}px;font-size:32px;font-weight:700;color:#B5B0A6">Limpeza · padronização · organização · notas e cadastros</div>` + logos + cta + nota('Valor por registro tratado · condições na proposta'),
+ // 2 · tabela de serviços
+ () => band + `<div class="h" style="top:${Y(140)}px;font-size:150px">Black <span style="color:transparent;-webkit-text-stroke:5px #D9A441">Friday</span></div>
+  <div class="c" style="top:${Y(300)}px;font-size:38px;font-weight:700;color:#D9A441;letter-spacing:3px">SERVIÇOS DE TECNOLOGIA V4</div>
+  <div style="position:absolute;left:0;width:1080px;top:${Y(360)}px">
+   <div class="row" style="border-color:#D9A441"><div class="tg"><b>DADOS</b><span>Tratamento e organização</span></div><div style="font-size:26px;font-weight:700;color:#B5B0A6">por registro</div><div class="nw"><span style="font-size:38px">R$ </span>0,01</div></div>
+   ${SERV.map(([a, d, o, n, f]) => `<div class="row"><div class="tg"><b>${a}</b><span>${d}</span></div><div><div class="od">R$ ${o}</div><span class="off">${f}</span></div><div class="nw"><span style="font-size:38px">R$ </span>${n}</div></div>`).join('')}
+   <div class="row"><div class="tg"><b>PROJETO</b><span>Projeto fechado</span></div><div style="font-size:26px;font-weight:700;color:#B5B0A6">desconto</div><div class="nw">50% OFF</div></div>
+  </div>` + `<div style="position:absolute;left:0;width:1080px;top:${story ? 1400 : 1196}px;display:flex;justify-content:center;align-items:center;gap:18px"><div class="v4" style="width:${story ? 110 : 76}px;height:${story ? 60 : 41}px"></div><div style="width:2px;height:${story ? 50 : 34}px;background:#D9A441"></div><div class="lm" style="width:${story ? 140 : 96}px;height:${story ? 58 : 40}px"></div></div>` + `<div class="wa" style="top:${story ? 1520 : 1110}px;padding:14px 0;font-size:38px">WhatsApp (31) 99827-7323</div>` + (story ? nota("Condições e prazo na proposta") : ""),
+];
+p.innerHTML = C[N]();
+if (N === 2 && !story) { document.querySelectorAll('.row').forEach(r => { r.style.padding = '12px 28px'; r.style.marginBottom = '12px'; }); document.querySelectorAll('.row .nw').forEach(e => e.style.fontSize = '60px'); }
+document.fonts.ready.then(() => window.ready = true);
+</script></body></html>

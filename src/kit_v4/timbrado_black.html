@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 Tecnologia Brasil · papel timbrado black</title>
+<style>
+@font-face{font-family:Anton;src:url(../v47/kit/fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-700-normal.woff2);font-weight:700}
+@page{size:A4;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pg{position:relative;width:794px;height:1123px;overflow:hidden;background:#0B0B0E}
+.x{position:absolute}
+.mk{-webkit-mask:url(assets/v4_mark_white.png) 0 0/100% 100% no-repeat;mask:url(assets/v4_mark_white.png) 0 0/100% 100% no-repeat}
+.lm{-webkit-mask:url(../v47/kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat}
+.body{position:absolute;left:84px;right:84px;top:214px;font-size:12.5px;line-height:1.7;color:#E6E1D6}
+.body p{margin-bottom:12px}
+.body b{color:#F4EBD6}
+</style>
+</head>
+<body>
+<script>
+const q = new URLSearchParams(location.search), exemplo = q.has('exemplo'), fundo = q.has('fundo');
+const G = '#D9A441', GL = '#F2D08A', GD = '#8C6A24';
+const gold = `linear-gradient(90deg,${GD},${GL} 45%,${G} 60%,${GD})`;
+const corner = (l, t, r, b) => { const s = `position:absolute;width:46px;height:46px;border-color:${G};border-style:solid;`; return `<div style="${s}${l}${t}${r}${b}"></div>`; };
+const ic = p => `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${G}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const IC = { wa: '<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>', ig: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="#D9A441"/>', pin: '<path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>' };
+// selo circular com texto em volta
+const selo = `<svg width="112" height="112" viewBox="0 0 112 112"><defs><path id="cc" d="M56 56 m-40 0 a40 40 0 1 1 80 0 a40 40 0 1 1 -80 0"/></defs>
+ <circle cx="56" cy="56" r="53" fill="none" stroke="${G}" stroke-width="1.5"/><circle cx="56" cy="56" r="48" fill="none" stroke="${G}" stroke-width=".7" stroke-dasharray="2 3"/><circle cx="56" cy="56" r="29" fill="none" stroke="${G}" stroke-width="1"/>
+ <text font-family="Inter" font-weight="700" font-size="8.6" letter-spacing="2.2" fill="${G}"><textPath href="#cc">V4 TECNOLOGIA BRASIL · DOCUMENTO OFICIAL ·</textPath></text></svg>`;
+const page = `<div class="pg">
+ <div class="x" style="inset:0;background:radial-gradient(circle at 92% 4%,#D9A44130,transparent 38%),radial-gradient(circle at 0% 100%,#D9A4411c,transparent 40%)"></div>
+ <div class="x" style="inset:0;background:repeating-linear-gradient(135deg,#ffffff05 0 1px,transparent 1px 9px)"></div>
+ <div class="mk x" style="left:207px;top:420px;width:380px;height:203px;background:#D9A441;opacity:.055"></div>
+ <!-- moldura -->
+ <div class="x" style="left:22px;top:22px;right:22px;bottom:22px;border:1px solid #D9A44166"></div>
+ <div class="x" style="left:28px;top:28px;right:28px;bottom:28px;border:.5px solid #D9A44126"></div>
+ ${corner('left:16px;', 'top:16px;', '', '') .replace('border-style:solid;', 'border-style:solid;border-width:3px 0 0 3px;')}
+ ${corner('', 'top:16px;', 'right:16px;', '').replace('border-style:solid;', 'border-style:solid;border-width:3px 3px 0 0;')}
+ ${corner('left:16px;', '', '', 'bottom:16px;').replace('border-style:solid;', 'border-style:solid;border-width:0 0 3px 3px;')}
+ ${corner('', '', 'right:16px;', 'bottom:16px;').replace('border-style:solid;', 'border-style:solid;border-width:0 3px 3px 0;')}
+ <!-- texto vertical lateral -->
+ <div class="x" style="left:-268px;top:540px;width:600px;transform:rotate(-90deg);text-align:center;font-size:8px;font-weight:700;letter-spacing:4.5px;color:#D9A44199">V4 FÁBRICAGOV · CNPJ 24.361.188/0001-61 · ALVORADA DE MINAS · MG</div>
+ <!-- cabeçalho -->
+ <div class="x" style="left:84px;top:62px;display:flex;align-items:center;gap:16px">
+  <div class="mk" style="width:98px;height:52px;background:#F4F1EA"></div>
+  <div style="width:1.5px;height:50px;background:${gold}"></div>
+  <div><div style="font-family:Anton;font-size:27px;letter-spacing:2.5px;line-height:1;color:#F4F1EA">TECNOLOGIA BRASIL</div>
+   <div style="font-size:9px;font-weight:700;letter-spacing:3px;margin-top:7px;background:${gold};-webkit-background-clip:text;color:transparent">DIGITALGOV · SETOR DE TECNOLOGIA</div></div></div>
+ <div class="x" style="right:84px;top:60px;text-align:right">
+  <div style="display:inline-block;border:1px solid ${G};color:${G};font-size:8.5px;font-weight:700;letter-spacing:2.5px;padding:5px 12px;border-radius:2px">DOCUMENTO OFICIAL</div>
+  <div style="margin-top:12px;font-size:9.5px;font-weight:600;color:#B9B3A6;display:flex;gap:8px;justify-content:flex-end;align-items:flex-end">Nº <span style="display:inline-block;width:90px;border-bottom:1px solid #D9A44188"></span></div>
+  <div style="margin-top:8px;font-size:9.5px;font-weight:600;color:#B9B3A6;display:flex;gap:8px;justify-content:flex-end;align-items:flex-end">Data <span style="display:inline-block;width:90px;border-bottom:1px solid #D9A44188"></span></div></div>
+ <!-- filete com losango -->
+ <div class="x" style="left:84px;right:84px;top:160px;height:1px;background:${gold}"></div>
+ <div class="x" style="left:84px;right:84px;top:164px;height:.5px;background:#D9A44155"></div>
+ <div class="x" style="left:391px;top:156px;width:10px;height:10px;background:#0B0B0E;border:1.5px solid ${G};transform:rotate(45deg)"></div>
+ <!-- selo -->
+ <div class="x" style="right:62px;bottom:120px;opacity:.9">${selo}</div>
+ <div class="mk x" style="right:96px;bottom:162px;width:44px;height:24px;background:${G}"></div>
+ <!-- rodapé -->
+ <div class="x" style="left:84px;right:84px;bottom:94px;height:1px;background:${gold}"></div>
+ <div class="x" style="left:84px;right:84px;bottom:48px;display:flex;justify-content:space-between;align-items:center;font-size:9.5px;font-weight:600;color:#E6E1D6">
+  ${[['wa', 'WhatsApp', '(31) 99827-7323'], ['mail', 'E-mail', 'fabricagovv@gmail.com'], ['ig', 'Instagram', '@Grupo_v4_fabricagovv'], ['pin', 'Sede', 'Alvorada de Minas · MG']].map(([k, a, b]) => `<div style="display:flex;align-items:center;gap:8px">${ic(IC[k])}<div><div style="font-size:7.5px;letter-spacing:1.8px;color:${G};font-weight:700">${a.toUpperCase()}</div><div>${b}</div></div></div>`).join('')}</div>
+ <div class="lm x" style="left:372px;bottom:104px;width:50px;height:21px;background:#D9A44199"></div>
+ ${exemplo ? `<div class="body">
+  <p style="text-align:right;margin-bottom:26px">Alvorada de Minas, [dia] de [mês] de [ano].</p>
+  <p><b>Ofício nº [__]/[ano]</b></p>
+  <p>À [nome do órgão ou empresa]<br>A/C [nome e cargo]</p>
+  <p style="margin-top:18px"><b>Assunto:</b> [assunto]</p>
+  <p style="margin-top:18px">Prezado(a) Senhor(a),</p>
+  <p>[Texto do documento. Este é um exemplo de como o conteúdo fica no papel timbrado black da V4 Tecnologia Brasil. Substitua estes parágrafos pelo texto do documento.]</p>
+  <p>[Segundo parágrafo do documento.]</p>
+  <p style="margin-top:22px">Atenciosamente,</p>
+  <p style="margin-top:46px;border-top:1px solid #D9A44188;width:260px;padding-top:6px"><b>Warley Luciano Costa Gomes</b><br>Administrador e Gerente Geral · DigitalGov</p></div>` : ''}
+</div>`;
+document.body.innerHTML = page;
+document.fonts.ready.then(() => window.ready = true);
+</script>
+</body>
+</html>

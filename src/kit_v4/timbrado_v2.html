@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 Tecnologia Brasil · papel timbrado v2</title>
+<style>
+@font-face{font-family:Anton;src:url(../v47/kit/fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../v47/kit/fonts/inter-latin-700-normal.woff2);font-weight:700}
+@page{size:A4;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter;-webkit-print-color-adjust:exact;print-color-adjust:exact;color:#111216}
+.pg{position:relative;width:794px;height:1123px;overflow:hidden;background:#FFFFFF;page-break-after:always}
+.x{position:absolute}
+.mk{-webkit-mask:url(assets/v4_mark_white.png) 0 0/100% 100% no-repeat;mask:url(assets/v4_mark_white.png) 0 0/100% 100% no-repeat}
+.body{position:absolute;left:76px;right:64px;top:196px;font-size:12.5px;line-height:1.65;color:#2A2B31}
+.body p{margin-bottom:12px}
+</style>
+</head>
+<body>
+<script>
+const q = new URLSearchParams(location.search), part = q.get('part') || 'full', exemplo = q.has('exemplo');
+const INK = '#111216', GOLD = '#D9A441';
+const header = `
+ <div class="x" style="left:0;top:0;width:794px;height:8px;background:${INK}"></div>
+ <div class="x" style="left:0;top:8px;width:260px;height:4px;background:${GOLD}"></div>
+ <div class="x" style="left:76px;top:46px;display:flex;align-items:center;gap:16px">
+  <div class="mk" style="width:92px;height:49px;background:${INK}"></div>
+  <div style="width:2px;height:46px;background:${GOLD}"></div>
+  <div><div style="font-family:Anton;font-size:26px;letter-spacing:2px;line-height:1;color:${INK}">TECNOLOGIA BRASIL</div>
+   <div style="font-size:9.5px;font-weight:700;letter-spacing:2.6px;color:#9A7426;margin-top:6px">DIGITALGOV · SETOR DE TECNOLOGIA</div></div></div>
+ <div class="x" style="right:64px;top:52px;text-align:right;font-size:9.5px;line-height:1.7;font-weight:600;color:#55575F">V4 FábricaGov<br>CNPJ 24.361.188/0001-61<br>Alvorada de Minas · MG</div>
+ <div class="x" style="left:76px;right:64px;top:132px;height:1px;background:#E3DFD5"></div>`;
+const footer = `
+ <div class="x" style="left:0;bottom:0;width:794px;height:58px;background:${INK};display:flex;align-items:center;justify-content:space-between;padding:0 64px 0 76px;color:#F4F1EA;font-size:10px;font-weight:600">
+  <span><b style="color:${GOLD}">WhatsApp</b> (31) 99827-7323</span><span><b style="color:${GOLD}">E-mail</b> fabricagovv@gmail.com</span><span><b style="color:${GOLD}">Instagram</b> @Grupo_v4_fabricagovv</span></div>
+ <div class="x" style="right:0;bottom:58px;width:260px;height:4px;background:${GOLD}"></div>`;
+const side = `<div class="x" style="left:40px;top:200px;width:2px;height:720px;background:linear-gradient(${GOLD},${GOLD}00)"></div>
+ <div class="mk x" style="right:-60px;bottom:120px;width:420px;height:224px;background:#F6F3EC"></div>`;
+const carta = `<div class="body">
+ <p style="text-align:right;margin-bottom:26px">Alvorada de Minas, [dia] de [mês] de [ano].</p>
+ <p><b>Ofício nº [__]/[ano]</b></p>
+ <p>À [nome do órgão ou empresa]<br>A/C [nome e cargo]</p>
+ <p style="margin-top:18px"><b>Assunto:</b> [assunto]</p>
+ <p style="margin-top:18px">Prezado(a) Senhor(a),</p>
+ <p>[Texto da carta. Este é um exemplo de como o conteúdo fica no papel timbrado da V4 Tecnologia Brasil. Substitua estes parágrafos pelo texto do documento.]</p>
+ <p>[Segundo parágrafo do documento.]</p>
+ <p style="margin-top:22px">Atenciosamente,</p>
+ <p style="margin-top:46px;border-top:1px solid #C9C4B8;width:260px;padding-top:6px"><b>Warley Luciano Costa Gomes</b><br>Administrador e Gerente Geral · DigitalGov</p></div>`;
+let html = '';
+if (part === 'header') html = `<div class="pg" style="height:150px">${header}</div>`;
+else if (part === 'footer') html = `<div class="pg" style="height:62px"><div class="x" style="left:0;top:0;width:794px;height:4px"></div>${footer.replace('bottom:58px', 'bottom:58px')}</div>`;
+else html = `<div class="pg">${side}${header}${footer}${exemplo ? carta : ''}</div>`;
+document.body.innerHTML = html;
+document.fonts.ready.then(() => window.ready = true);
+</script>
+</body>
+</html>

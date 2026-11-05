@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>DigitalGov · papel timbrado (executivo e técnico)</title>
+<style>
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mono;src:url(fonts/jetbrains-mono-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:Mono;src:url(fonts/jetbrains-mono-latin-600-normal.woff2);font-weight:600}
+@page{size:A4;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Mont;-webkit-print-color-adjust:exact;print-color-adjust:exact;color:#1E2540}
+.pg{position:relative;width:794px;height:1123px;overflow:hidden;background:#FFFFFF}
+.x{position:absolute}
+.mono{font-family:Mono}
+.body p{margin-bottom:11px}
+</style>
+</head>
+<body>
+<script>
+const q = new URLSearchParams(location.search), est = q.get('estilo') || 'exec', exemplo = q.has('exemplo');
+const NAVY = '#263050', DEEP = '#0A1633', MOS = ['#1BB8EA', '#0AA0E0', '#8CC63F', '#FDB913', '#F7931E', '#E91E78', '#7B2D5B'];
+const mosaicStrip = (w, h) => `<div style="display:flex;width:${w}px;height:${h}px">${MOS.map(c => `<div style="flex:1;background:${c}"></div>`).join('')}</div>`;
+// triângulos do mosaico (canto decorativo)
+const tri = (s, op = 1) => { let g = ''; const n = 6; for (let i = 0; i < n; i++) for (let j = 0; j < n - i; j++) { const c = MOS[(i * 3 + j * 2) % MOS.length], x = j * s, y = i * s;
+  g += `<path d="M${x} ${y} L${x + s} ${y} L${x} ${y + s}Z" fill="${c}" opacity="${op}"/>`; if (j < n - i - 1) g += `<path d="M${x + s} ${y} L${x + s} ${y + s} L${x} ${y + s}Z" fill="${MOS[(i * 3 + j * 2 + 3) % MOS.length]}" opacity="${op * .8}"/>`; } return g; };
+const contato = [['WhatsApp', '(31) 99827-7323'], ['E-mail', 'digitalgovadm@gmail.com'], ['Instagram', '@Grupo_v4_fabricagovv']];
+let html = '';
+if (est === 'exec') {
+  html = `<div class="pg">
+  <div class="x" style="left:0;top:0">${mosaicStrip(794, 6)}</div>
+  <img class="x" src="assets/logo_digitalgov.png" style="left:72px;top:50px;height:62px">
+  <div class="x" style="right:72px;top:54px;text-align:right">
+   <div style="font-size:9px;font-weight:700;letter-spacing:3px;color:#8A90A6">DIRETORIA EXECUTIVA</div>
+   <div style="font-size:12px;font-weight:700;color:${NAVY};margin-top:6px">Warley Luciano Costa Gomes</div>
+   <div style="font-size:9.5px;font-weight:500;color:#5A607A;margin-top:2px">Administrador e Gerente Geral</div></div>
+  <div class="x" style="left:72px;right:72px;top:140px;height:1px;background:#E2E5EE"></div>
+  <div class="x" style="left:72px;top:139px;width:64px;height:3px;background:${NAVY}"></div>
+  <svg class="x" style="right:0;bottom:66px" width="132" height="132" viewBox="0 0 132 132"><g transform="translate(132 132) rotate(180)">${tri(22, .9)}</g></svg>
+  <img class="x" src="assets/mark_d.png" style="left:300px;top:380px;width:194px;opacity:.045">
+  <div class="x" style="left:0;bottom:0;width:794px;height:66px;background:${DEEP};display:flex;align-items:center;justify-content:space-between;padding:0 72px;color:#E6E9F2;font-size:9.5px;font-weight:600">
+   ${contato.map(([a, b]) => `<span><span style="color:#1BB8EA;font-weight:700">${a}</span>&nbsp; ${b}</span>`).join('')}</div>
+  <div class="x" style="left:72px;bottom:80px;font-size:8.5px;font-weight:600;color:#8A90A6;letter-spacing:.5px">DigitalGov · Setor de Tecnologia da V4 Tecnologia Brasil · CNPJ 24.361.188/0001-61 · Alvorada de Minas – MG</div>
+  ${exemplo ? `<div class="x body" style="left:72px;right:72px;top:190px;font-size:12px;line-height:1.75;color:#33394F">
+   <p style="text-align:right;margin-bottom:24px">Alvorada de Minas, [dia] de [mês] de [ano].</p>
+   <p><b style="color:${NAVY}">Ofício DG nº [__]/[ano]</b></p>
+   <p>Ao(À) Senhor(a)<br><b>[Nome]</b><br>[Cargo · Órgão ou empresa]</p>
+   <p style="margin-top:16px"><b style="color:${NAVY}">Assunto:</b> [assunto]</p>
+   <p style="margin-top:16px">Prezado(a) Senhor(a),</p>
+   <p>[Texto do documento. Este é um exemplo do papel timbrado executivo da DigitalGov. Substitua estes parágrafos pelo conteúdo.]</p>
+   <p>[Segundo parágrafo.]</p>
+   <p style="margin-top:20px">Atenciosamente,</p>
+   <p style="margin-top:44px;border-top:1px solid #C9CDD9;width:330px;padding-top:6px"><b style="color:${NAVY}">Warley Luciano Costa Gomes</b><br>Administrador e Gerente Geral · DigitalGov</p></div>` : ''}
+  </div>`;
+} else {
+  const grid = `background-image:linear-gradient(#EEF1F6 1px,transparent 1px),linear-gradient(90deg,#EEF1F6 1px,transparent 1px);background-size:18.9px 18.9px`;
+  const campo = (l, v = '') => `<div style="border-bottom:1px solid #D5DAE5;padding:7px 0"><div class="mono" style="font-size:7px;letter-spacing:1.5px;color:#8A90A6">${l}</div><div class="mono" style="font-size:9px;font-weight:600;color:${NAVY};min-height:12px;margin-top:2px">${v}</div></div>`;
+  html = `<div class="pg">
+  <div class="x" style="left:0;top:0;width:794px;height:1123px;${grid};opacity:.9"></div>
+  <div class="x" style="left:0;top:0;width:794px;height:118px;background:#fff;border-bottom:2px solid ${NAVY}"></div>
+  <div class="x" style="left:0;top:0">${mosaicStrip(794, 4)}</div>
+  <img class="x" src="assets/logo_digitalgov.png" style="left:40px;top:30px;height:56px">
+  <div class="x" style="left:250px;top:28px;bottom:auto;height:62px;width:1px;background:#D5DAE5"></div>
+  <div class="x" style="left:268px;top:32px">
+   <div class="mono" style="font-size:8px;letter-spacing:2px;color:#8A90A6">SETOR DE TECNOLOGIA</div>
+   <div style="font-size:19px;font-weight:800;color:${NAVY};margin-top:4px;letter-spacing:.5px">DOCUMENTO TÉCNICO</div>
+   <div class="mono" style="font-size:8.5px;color:#5A607A;margin-top:4px">Engenharia de software · Dados · Infraestrutura</div></div>
+  <div class="x" style="right:40px;top:30px;width:190px;border:1.5px solid ${NAVY}">
+   <div style="display:flex;border-bottom:1px solid ${NAVY}"><div class="mono" style="flex:1;padding:5px 8px;font-size:7px;letter-spacing:1.4px;color:#8A90A6;border-right:1px solid ${NAVY}">CÓDIGO<br><b style="font-size:9px;color:${NAVY};letter-spacing:.5px">DG-TEC-____</b></div><div class="mono" style="width:56px;padding:5px 8px;font-size:7px;letter-spacing:1.4px;color:#8A90A6">REV.<br><b style="font-size:9px;color:${NAVY}">__</b></div></div>
+   <div style="display:flex"><div class="mono" style="flex:1;padding:5px 8px;font-size:7px;letter-spacing:1.4px;color:#8A90A6;border-right:1px solid ${NAVY}">DATA<br><b style="font-size:9px;color:${NAVY}">__/__/____</b></div><div class="mono" style="width:56px;padding:5px 8px;font-size:7px;letter-spacing:1.4px;color:#8A90A6">PÁG.<br><b style="font-size:9px;color:${NAVY}">_/_</b></div></div></div>
+  <!-- coluna de controle -->
+  <div class="x" style="left:0;top:118px;width:150px;bottom:54px;background:#F7F8FB;border-right:1px solid #D5DAE5;padding:18px 16px">
+   <div class="mono" style="font-size:7.5px;font-weight:600;letter-spacing:2px;color:#fff;background:${NAVY};padding:4px 8px;display:inline-block">CONTROLE</div>
+   ${campo('PROJETO')}${campo('CLIENTE')}${campo('RESPONSÁVEL TÉCNICO')}${campo('ELABORADO POR')}${campo('REVISADO POR')}${campo('APROVADO POR')}
+   ${campo('CLASSIFICAÇÃO', '☐ Público  ☐ Interno<br>☐ Restrito')}
+   <div class="mono" style="font-size:7.5px;font-weight:600;letter-spacing:2px;color:#fff;background:${NAVY};padding:4px 8px;display:inline-block;margin-top:22px">HISTÓRICO</div>
+   <div class="mono" style="font-size:7px;color:#5A607A;margin-top:8px;line-height:1.9">REV · DATA · DESCRIÇÃO<br>00 · __/__ · ________<br>01 · __/__ · ________<br>02 · __/__ · ________</div>
+   <svg style="position:absolute;left:16px;bottom:18px" width="88" height="88" viewBox="0 0 132 132">${tri(22, .85)}</svg></div>
+  <div class="x mono" style="left:150px;right:0;bottom:54px;height:22px;display:flex;align-items:center;justify-content:space-between;padding:0 40px 0 24px;font-size:7px;letter-spacing:1.5px;color:#8A90A6;border-top:1px solid #D5DAE5;background:#fff">
+   <span>LGPD · ACESSO CONTROLADO</span><span>DIGITALGOV · CNPJ 24.361.188/0001-61</span></div>
+  <div class="x" style="left:0;bottom:0;width:794px;height:54px;background:${DEEP};display:flex;align-items:center;justify-content:space-between;padding:0 40px;color:#E6E9F2;font-size:9px">
+   ${contato.map(([a, b]) => `<span class="mono"><span style="color:#8CC63F">${a.toLowerCase()}:</span> ${b}</span>`).join('')}<span class="mono" style="color:#8A90A6">Alvorada de Minas – MG</span></div>
+  ${exemplo ? `<div class="x body" style="left:176px;right:40px;top:146px;font-size:11px;line-height:1.7;color:#33394F">
+   <div style="font-size:17px;font-weight:800;color:${NAVY};margin-bottom:4px">[Título do relatório técnico]</div>
+   <div class="mono" style="font-size:8.5px;color:#8A90A6;margin-bottom:18px">DG-TEC-[____] · Rev. 00 · [data]</div>
+   ${[['1', 'Objetivo', '[Descreva o objetivo do documento.]'], ['2', 'Escopo', '[O que está incluído e o que não está.]'], ['3', 'Situação atual', '[Diagnóstico: sistemas, dados e infraestrutura existentes.]'], ['4', 'Solução proposta', '[Arquitetura, tecnologias e integração.]'], ['5', 'Cronograma e medição', '[Etapas, prazos e medição por UST, ponto de função ou hora técnica.]'], ['6', 'Segurança e LGPD', '[Controle de acesso, registro e base legal do tratamento de dados.]']].map(([n, t, d]) => `<div style="display:flex;gap:12px;margin-bottom:12px"><div class="mono" style="font-size:11px;font-weight:600;color:#fff;background:${NAVY};width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex:none">${n}</div><div><div style="font-weight:700;color:${NAVY};font-size:12px">${t}</div><div>${d}</div></div></div>`).join('')}
+   <div style="margin-top:16px;border:1px solid #D5DAE5;background:#fff">
+    <div class="mono" style="display:flex;background:${NAVY};color:#fff;font-size:8px;letter-spacing:1px"><div style="flex:2;padding:6px 10px">ITEM</div><div style="flex:1;padding:6px 10px">UNIDADE</div><div style="flex:1;padding:6px 10px">QTD.</div></div>
+    ${[0, 1, 2].map(() => `<div class="mono" style="display:flex;font-size:9px;border-top:1px solid #E2E5EE"><div style="flex:2;padding:6px 10px">[item]</div><div style="flex:1;padding:6px 10px">[UST/PF/HST]</div><div style="flex:1;padding:6px 10px">[__]</div></div>`).join('')}</div></div>` : ''}
+  </div>`;
+}
+document.body.innerHTML = html;
+Promise.all([...document.images].map(i => i.complete ? 1 : new Promise(r => i.onload = i.onerror = r))).then(() => document.fonts.ready).then(() => window.ready = true);
+</script>
+</body>
+</html>

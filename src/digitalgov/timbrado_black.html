@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>DigitalGov · papel timbrado black, carimbo e proposta para licitação</title>
+<style>
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mono;src:url(fonts/jetbrains-mono-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:Mono;src:url(fonts/jetbrains-mono-latin-600-normal.woff2);font-weight:600}
+@page{size:A4;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Mont;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pg{position:relative;width:794px;height:1123px;overflow:hidden;background:#070B18}
+.x{position:absolute}
+.mono{font-family:Mono}
+.lb{font-family:Mono;font-size:7px;letter-spacing:1.6px;color:#1BB8EA}
+.vl{font-size:10px;font-weight:600;color:#E8ECF5;margin-top:2px}
+.bx{border:1px solid #1BB8EA44;padding:6px 9px;background:#0D1530}
+table{border-collapse:collapse;width:100%}
+th{font-family:Mono;font-size:7.5px;letter-spacing:1.2px;color:#070B18;background:#1BB8EA;padding:6px 7px;text-align:left;font-weight:600}
+td{font-size:9.5px;color:#E8ECF5;padding:6px 7px;border-bottom:1px solid #1BB8EA33}
+</style>
+</head>
+<body>
+<script>
+const q = new URLSearchParams(location.search), modo = q.get('modo') || 'branco';
+const C = '#1BB8EA', MOS = ['#1BB8EA', '#0AA0E0', '#8CC63F', '#FDB913', '#F7931E', '#E91E78', '#7B2D5B'];
+const grad = `linear-gradient(90deg,${MOS.join(',')})`;
+// carimbo circular DigitalGov
+function carimbo(sz = 120, cor = C) { const r = 60; return `<svg width="${sz}" height="${sz}" viewBox="0 0 120 120"><defs><path id="ct" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs>
+ <circle cx="60" cy="60" r="57" fill="none" stroke="${cor}" stroke-width="2.4"/><circle cx="60" cy="60" r="52" fill="none" stroke="${cor}" stroke-width=".9"/><circle cx="60" cy="60" r="33" fill="none" stroke="${cor}" stroke-width="1.4"/>
+ <text font-family="Mont" font-weight="800" font-size="9" letter-spacing="2.1" fill="${cor}"><textPath href="#ct" textLength="270" lengthAdjust="spacing">DIGITALGOV · SETOR DE TECNOLOGIA ·</textPath></text>
+ <image href="assets/mark_d.png" x="48" y="38" width="24" height="31"/>
+ <text x="60" y="81" text-anchor="middle" font-family="Mont" font-weight="800" font-size="5.5" letter-spacing="1.2" fill="${cor}">V4 · BRASIL</text></svg>`; }
+if (modo === 'carimbo') { document.body.style.background = 'transparent'; document.body.innerHTML = `<div id="c" style="width:480px;height:480px">${carimbo(480)}</div>`; }
+else {
+ const corner = b => `<div class="x" style="width:44px;height:44px;border:0 solid ${C};${b}"></div>`;
+ const contato = [['WHATSAPP', '(31) 99827-7323'], ['E-MAIL', 'digitalgovadm@gmail.com'], ['INSTAGRAM', '@Grupo_v4_fabricagovv'], ['SEDE', 'Alvorada de Minas · MG']];
+ const lic = modo === 'licitacao';
+ let corpo = '';
+ if (modo === 'exemplo') corpo = `<div class="x" style="left:80px;right:80px;top:205px;font-size:12px;line-height:1.75;color:#DCE2EE">
+  <p style="text-align:right;margin-bottom:24px">Alvorada de Minas, [dia] de [mês] de [ano].</p>
+  <p style="margin-bottom:11px"><b style="color:${C}">Ofício DG nº [__]/[ano]</b></p>
+  <p style="margin-bottom:11px">Ao(À) Senhor(a)<br><b style="color:#fff">[Nome]</b><br>[Cargo · Órgão ou empresa]</p>
+  <p style="margin:16px 0 11px"><b style="color:${C}">Assunto:</b> [assunto]</p>
+  <p style="margin:16px 0 11px">Prezado(a) Senhor(a),</p>
+  <p style="margin-bottom:11px">[Texto do documento. Este é um exemplo do papel timbrado black da DigitalGov. Substitua estes parágrafos pelo conteúdo.]</p>
+  <p style="margin-top:20px">Atenciosamente,</p>
+  <p style="margin-top:44px;border-top:1px solid ${C}88;width:320px;padding-top:6px"><b style="color:#fff">Warley Luciano Costa Gomes</b><br>Administrador e Gerente Geral · DigitalGov</p></div>`;
+ if (lic) corpo = `<div class="x" style="left:80px;right:80px;top:190px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="lb">ANEXO · MODELO</div><div style="font-size:21px;font-weight:800;color:#fff;letter-spacing:.5px;margin-top:3px">PROPOSTA DE PREÇOS</div></div>
+   <div class="mono" style="font-size:8.5px;color:#9AA6C2;text-align:right">Ref.: Edital nº [____]/[ano]<br>Lei nº 14.133/2021</div></div>
+  <div style="height:2px;background:${grad};margin:8px 0 12px"></div>
+  <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:6px">
+   <div class="bx"><div class="lb">ÓRGÃO / ENTIDADE</div><div class="vl">[nome do órgão]</div></div>
+   <div class="bx"><div class="lb">MODALIDADE · Nº</div><div class="vl">Pregão Eletrônico nº [__]/[ano]</div></div>
+   <div class="bx"><div class="lb">PROCESSO Nº</div><div class="vl">[____]</div></div>
+   <div class="bx" style="grid-column:span 3"><div class="lb">OBJETO</div><div class="vl">[descrição resumida do objeto conforme o edital]</div></div></div>
+  <div class="lb" style="margin:12px 0 6px">PROPONENTE</div>
+  <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:6px">
+   <div class="bx"><div class="lb">RAZÃO SOCIAL</div><div class="vl">[razão social] · DigitalGov</div></div>
+   <div class="bx"><div class="lb">CNPJ</div><div class="vl">24.361.188/0001-61</div></div>
+   <div class="bx"><div class="lb">TELEFONE</div><div class="vl">(31) 99827-7323</div></div>
+   <div class="bx"><div class="lb">ENDEREÇO</div><div class="vl">[endereço] · Alvorada de Minas – MG</div></div>
+   <div class="bx"><div class="lb">E-MAIL</div><div class="vl">digitalgovadm@gmail.com</div></div>
+   <div class="bx"><div class="lb">BANCO · AG. · CONTA</div><div class="vl">[____]</div></div>
+   <div class="bx" style="grid-column:span 3"><div class="lb">REPRESENTANTE LEGAL</div><div class="vl">Warley Luciano Costa Gomes · Administrador e Gerente Geral · CPF [___.___.___-__]</div></div></div>
+  <div class="lb" style="margin:12px 0 6px">ITENS</div>
+  <table><tr><th style="width:7%">ITEM</th><th style="width:43%">DESCRIÇÃO</th><th style="width:10%">UNID.</th><th style="width:8%">QTD.</th><th style="width:16%">VALOR UNIT.</th><th style="width:16%">VALOR TOTAL</th></tr>
+   ${[1, 2, 3, 4].map(i => `<tr><td class="mono">${String(i).padStart(2, '0')}</td><td>[descrição do item]</td><td class="mono">[UST]</td><td class="mono">[__]</td><td class="mono">R$ [____]</td><td class="mono">R$ [____]</td></tr>`).join('')}
+   <tr><td colspan="5" style="text-align:right;font-weight:700;color:${C};border-bottom:0">VALOR GLOBAL</td><td class="mono" style="font-weight:600;color:#fff;border-bottom:0;background:#0D1530">R$ [______]</td></tr></table>
+  <div class="bx" style="margin-top:4px"><div class="lb">VALOR GLOBAL POR EXTENSO</div><div class="vl">[___________________________________]</div></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px">
+   <div class="bx"><div class="lb">VALIDADE DA PROPOSTA</div><div class="vl">[__] dias</div></div>
+   <div class="bx"><div class="lb">PRAZO DE EXECUÇÃO</div><div class="vl">[__] dias</div></div>
+   <div class="bx"><div class="lb">CONDIÇÃO DE PAGAMENTO</div><div class="vl">conforme edital</div></div></div>
+  <div class="lb" style="margin:12px 0 6px">DECLARAÇÕES</div>
+  <div style="font-size:9px;line-height:1.65;color:#C9D1E3">${['Nos preços estão incluídos todos os custos, tributos, encargos e despesas necessários à execução do objeto.', 'Conhecemos e aceitamos todas as condições do edital e de seus anexos.', 'Cumprimos os requisitos de habilitação e as exigências de reserva de cargos previstas em lei.', 'O tratamento de dados pessoais seguirá a Lei nº 13.709/2018 (LGPD).'].map(t => `<div style="display:flex;gap:8px"><span style="color:${C}">■</span>${t}</div>`).join('')}</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:22px">
+   <div class="mono" style="font-size:9px;color:#9AA6C2">[local], [dia] de [mês] de [ano].</div>
+   <div style="text-align:center;width:300px"><div style="border-top:1px solid ${C}99;padding-top:6px;font-size:10px;font-weight:700;color:#fff">Warley Luciano Costa Gomes</div><div style="font-size:8.5px;color:#9AA6C2">Representante legal · DigitalGov</div></div></div></div>`;
+ const pg = `<div class="pg">
+  <div class="x" style="inset:0;background:radial-gradient(circle at 95% 3%,#1BB8EA2e,transparent 36%),radial-gradient(circle at 0% 100%,#E91E7822,transparent 38%)"></div>
+  <div class="x" style="inset:0;background:repeating-linear-gradient(135deg,#ffffff05 0 1px,transparent 1px 9px)"></div>
+  <img class="x" src="assets/mark_d.png" style="left:290px;top:400px;width:214px;opacity:${lic ? .035 : .06};filter:grayscale(.2)">
+  <div class="x" style="left:22px;top:22px;right:22px;bottom:22px;border:1px solid #1BB8EA55"></div>
+  <div class="x" style="left:28px;top:28px;right:28px;bottom:28px;border:.5px solid #1BB8EA22"></div>
+  ${corner('left:16px;top:16px;border-width:3px 0 0 3px')}${corner('right:16px;top:16px;border-width:3px 3px 0 0')}${corner('left:16px;bottom:16px;border-width:0 0 3px 3px')}${corner('right:16px;bottom:16px;border-width:0 3px 3px 0')}
+  <div class="x mono" style="left:-270px;top:545px;width:600px;transform:rotate(-90deg);text-align:center;font-size:7.5px;letter-spacing:4px;color:#1BB8EA99">DIGITALGOV · V4 TECNOLOGIA BRASIL · CNPJ 24.361.188/0001-61</div>
+  <img class="x" src="assets/logo_digitalgov_white.png" style="left:80px;top:56px;height:64px">
+  <div class="x" style="right:80px;top:56px;text-align:right">
+   <div style="display:inline-block;border:1px solid ${C};color:${C};font-size:8.5px;font-weight:700;letter-spacing:2.5px;padding:5px 12px">${lic ? 'LICITAÇÃO' : 'DOCUMENTO OFICIAL'}</div>
+   <div style="margin-top:11px;font-size:9.5px;font-weight:600;color:#B5BED3;display:flex;gap:8px;justify-content:flex-end;align-items:flex-end">Nº <span style="display:inline-block;width:90px;border-bottom:1px solid #1BB8EA88"></span></div>
+   <div style="margin-top:8px;font-size:9.5px;font-weight:600;color:#B5BED3;display:flex;gap:8px;justify-content:flex-end;align-items:flex-end">Data <span style="display:inline-block;width:90px;border-bottom:1px solid #1BB8EA88"></span></div></div>
+  <div class="x" style="left:80px;right:80px;top:150px;height:2px;background:${grad}"></div>
+  <div class="x" style="left:80px;right:80px;top:155px;height:.5px;background:#1BB8EA55"></div>
+  <div class="x" style="left:392px;top:146px;width:10px;height:10px;background:#070B18;border:1.5px solid ${C};transform:rotate(45deg)"></div>
+  <div class="x" style="right:58px;bottom:${lic ? 104 : 118}px;opacity:.92">${carimbo(lic ? 96 : 112)}</div>
+  <div class="x" style="left:80px;right:80px;bottom:92px;height:1px;background:${grad};opacity:.8"></div>
+  <div class="x" style="left:80px;right:80px;bottom:46px;display:flex;justify-content:space-between;font-size:9.5px;font-weight:600;color:#DCE2EE">
+   ${contato.map(([a, b]) => `<div><div class="mono" style="font-size:7px;letter-spacing:1.8px;color:${C}">${a}</div><div>${b}</div></div>`).join('')}</div>
+  ${corpo}</div>`;
+ document.body.innerHTML = pg;
+}
+Promise.all([...document.images].map(i => i.complete ? 1 : new Promise(r => i.onload = i.onerror = r))).then(() => document.fonts.ready).then(() => setTimeout(() => window.ready = true, 150));
+</script>
+</body>
+</html>

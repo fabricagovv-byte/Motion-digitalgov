@@ -1,0 +1,36 @@
+1
+00:00:00,800 --> 00:00:05,459
+Conheça o V4.7 Agro: a sua lavoura inteira na palma da mão.
+
+2
+00:00:05,709 --> 00:00:10,901
+O drone sobrevoa a fazenda e monta a estrutura da lavoura: talhões, área e falhas.
+
+3
+00:00:11,151 --> 00:00:16,556
+Com o mapa pronto, o app calcula a semente e o tempo de plantio de cada talhão.
+
+4
+00:00:16,806 --> 00:00:21,657
+Você vê em que dias vai chover e recebe avisos antes de entrar com a máquina.
+
+5
+00:00:21,907 --> 00:00:26,137
+Equipe, tarefas e atualizações da fazenda ficam no mesmo lugar.
+
+6
+00:00:26,387 --> 00:00:32,518
+No financeiro, você registra custos, ferramentas, horas de máquina, fornecedores e funcionários.
+
+7
+00:00:32,768 --> 00:00:37,781
+E o valor da sua safra se atualiza com o preço do dia, mostrando se subiu ou caiu.
+
+8
+00:00:38,030 --> 00:00:42,497
+Assim você sabe quanto tem, com margem de erro, antes mesmo da colheita.
+
+9
+00:00:43,747 --> 00:00:47,062
+V4.7 Agro. Peça sua demonstração.
+

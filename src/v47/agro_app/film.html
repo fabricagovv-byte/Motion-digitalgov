@@ -20,11 +20,25 @@ html,body{width:auto;height:auto;background:#000}
 .av{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;color:#0D2E10;flex:none}
 .chip{margin-left:auto;font-size:24px;font-weight:700;border-radius:999px;padding:8px 18px;white-space:nowrap}
 .ilu{position:absolute;left:60px;right:60px;top:1590px;font-size:24px;color:#C9D6BE;text-align:center}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-900-normal.woff2);font-weight:900}
+.hl{position:absolute;font-family:Mont;text-shadow:0 8px 30px rgba(0,0,0,.4)}
 </style>
 </head>
 <body>
 <div id="stage"></div>
 <script type="text/x-tpl" id="tpl">
+ <canvas id="bg" class="abs" width="1080" height="1920" style="left:0;top:0"></canvas>
+ <div class="abs" id="ov" style="inset:0;background:linear-gradient(180deg,rgba(8,30,10,.55),rgba(8,30,10,.78) 45%,rgba(8,30,10,.88))"></div>
+ <div class="abs" id="hero" style="inset:0">
+  <div class="abs" style="left:0;right:0;bottom:0;height:900px;background:linear-gradient(rgba(10,26,10,0),rgba(10,26,10,.6) 35%,rgba(10,26,10,.88))"></div>
+  <svg class="abs" id="tri" style="left:0;top:1000px" width="520" height="680" viewBox="0 0 520 680"><polygon points="0,0 480,340 0,680" fill="#2FB34A" opacity=".85"/></svg>
+  <div class="hl" id="h1" style="left:110px;top:1085px;font-size:168px;font-weight:900;letter-spacing:-5px;color:#fff;line-height:.9">produza</div>
+  <svg class="abs" id="mais" style="left:880px;top:1055px" width="200" height="200" viewBox="0 0 190 190"><rect x="70" y="0" width="50" height="190" rx="6" fill="#F7C21B"/><rect x="0" y="70" width="190" height="50" rx="6" fill="#F7C21B"/></svg>
+  <div class="hl" id="h2" style="left:260px;top:1270px;font-size:118px;font-weight:800;letter-spacing:-3px;color:#7CE34F">em menos</div>
+  <div class="hl" id="h3" style="left:380px;top:1385px;font-size:118px;font-weight:800;letter-spacing:-3px;color:#F7C21B">tempo!</div>
+  <div class="abs" id="h4" style="left:0;right:0;top:1560px;text-align:center"><span style="display:inline-block;background:rgba(14,40,16,.65);border:2px solid rgba(255,255,255,.3);border-radius:24px;padding:18px 30px;font-size:34px;font-weight:700;color:#fff">🚜 V4.7 Agro · <b style="color:#F7C21B">drone + gestão</b> da lavoura</span></div>
+ </div>
  <div class="abs" style="left:70px;top:90px;display:flex;align-items:center;gap:26px"><img src="img/v4_logo_white.png" style="height:56px"><div style="width:2px;height:56px;background:rgba(243,246,236,.4)"></div><img src="img/v47.webp" style="height:56px"></div>
  <div class="abs" style="right:70px;top:110px;display:flex;gap:14px"><i style="width:20px;height:20px;border-radius:50%;background:#E6F76B;display:block"></i><i style="width:20px;height:20px;border-radius:50%;background:#E6F76B;display:block"></i><i style="width:20px;height:20px;border-radius:50%;background:#E6F76B;display:block"></i></div>
  <div class="t gt" id="tt" style="top:220px;font-size:128px"></div>
@@ -72,7 +86,7 @@ html,body{width:auto;height:auto;background:#000}
  <div class="ilu" id="ilu">Fazenda de exemplo · valores ilustrativos · preço CEPEA de 26/10/2026</div>
 
  <!-- encerramento -->
- <div class="abs" id="end" style="inset:0;background:linear-gradient(160deg,#0D2E10,#174A18 60%,#2C6E22);opacity:0">
+ <div class="abs" id="end" style="inset:0;background:linear-gradient(180deg,rgba(8,30,10,.35),rgba(8,30,10,.82) 40%,rgba(8,30,10,.92));opacity:0">
   <img src="img/v4_logo_white.png" style="position:absolute;left:190px;top:360px;width:700px">
   <img src="img/v47.webp" style="position:absolute;left:390px;top:520px;width:300px">
   <div class="t gt" style="top:760px;font-size:150px;text-align:center">V4.7 Agro</div>
@@ -80,6 +94,7 @@ html,body{width:auto;height:auto;background:#000}
   <div id="wa" style="position:absolute;left:150px;width:780px;top:1120px;text-align:center;background:#E6F76B;color:#0D2E10;border-radius:999px;padding:30px 0;font-size:50px;font-weight:800">WhatsApp (31) 99827-7323</div>
   <div class="t" style="top:1290px;text-align:center;font-size:38px;font-weight:700;color:#E6F76B">Peça sua demonstração →</div></div>
 </script>
+<script src="campo.js"></script>
 <script>
 const $ = id => document.getElementById(id);
 const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), eo = x => 1 - Math.pow(1 - cl(x), 3), spr = x => x <= 0 ? 0 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
@@ -87,7 +102,7 @@ let TL, LN;
 const S = [['Sua lavoura no celular', 'V4.7 Agro'], ['O drone mapeia tudo', 'Talhões, área e falhas'], ['Semente e plantio', 'Quantidade e tempo por talhão'], ['Chuva e avisos', 'Antes de entrar com a máquina'], ['Equipe e tarefas', 'Tudo atualizado'], ['Financeiro da safra', 'Custos, fornecedores, equipe'], ['Valor da safra hoje', 'Com o preço do dia'], ['Quanto você tem', 'Com margem de erro']];
 const CH = [2, 12, 0, 38, 9, 0, 0, 4, 21, 6], DIAS = ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom', 'seg', 'ter', 'qua'];
 const TALH = [{ p: '110,190 470,150 500,470 140,520', n: 'T1 · 32 ha', c: [300, 330] }, { p: '500,150 860,190 840,500 520,470', n: 'T2 · 28 ha', c: [680, 330] }, { p: '140,540 500,490 520,850 160,880', n: 'T3 · 34 ha', c: [330, 690] }, { p: '520,490 840,520 820,860 540,850', n: 'T4 · 26 ha', c: [680, 690] }];
-const tpl = () => { document.getElementById('stage').innerHTML = new Function('return `' + document.getElementById('tpl').textContent + '`')(); };
+let BG; const tpl = () => { document.getElementById('stage').innerHTML = new Function('return `' + document.getElementById('tpl').textContent + '`')(); };
 function build() {
   // campo visto de cima: linhas de plantio
   let g = `<defs><linearGradient id="ter" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5B8A2E"/><stop offset="1" stop-color="#3E6E22"/></linearGradient></defs><rect width="960" height="1000" fill="url(#ter)"/>`;
@@ -109,7 +124,15 @@ function seek(t) {
   const SC = LN.map((l, i) => i ? l.start - .3 : 0); let k = 1; SC.forEach((s, i) => { if (t >= s) k = i + 1; }); const s = SC[k - 1], lt = t - s, end = k === 9;
   const sc = S[Math.min(k, 8) - 1]; $('tt').textContent = sc[0]; $('plt').textContent = sc[1];
   rise($('tt'), t, s + .05, 70); rise($('pl'), t, s + .3, 30);
-  const vin = k === 1 ? eo((t - .6) / .7) : 1; $('vd').style.opacity = vin; $('vd').style.transform = `translateY(${(1 - vin) * 200}px)`;
+  const k1 = k === 1, endg = k === 9;
+  drawCampo(BG, 1080, 1920, { t, hy: 700, vx: 560, avanco: t * .55,
+    trator: (k1 || endg) ? { x: 540, y: 1000 - (k1 ? 60 * eo(lt / 4) : 0), s: .95 + (k1 ? .12 * cl(lt / 5) : 0) } : null,
+    drone: k1 ? { x: 1250 - cl(t / 5) * 900, y: 300 + 25 * Math.sin(t * 2), s: .75 } : null,
+    folha: { x: 60, y: 120, s: 1.15, r: -.75 } });
+  $('ov').style.opacity = k1 ? 0 : endg ? 0 : (k === 2 ? .55 : 1);
+  $('hero').style.display = k1 ? 'block' : 'none'; $('tt').style.display = $('pl').style.display = (k1 || endg) ? 'none' : 'block'; if (endg) $('vd').style.display = 'none'; else $('vd').style.display = 'block';
+  if (k1) { rise($('h1'), t, .5, 90); $('mais').style.transform = `scale(${t < 1.1 ? 0 : spr(t - 1.1)}) rotate(${(1 - cl((t - 1.1) / .5)) * 90}deg)`; rise($('h2'), t, 1.3, 60); rise($('h3'), t, 1.6, 60); rise($('h4'), t, 2.4, 40); $('tri').style.transform = `translateX(${(1 - eo((t - .3) / .6)) * -520}px)`; }
+  const vin = k === 1 ? 0 : 1; $('vd').style.opacity = vin; $('vd').style.transform = `translateY(${(1 - vin) * 200}px)`;
   for (let i = 1; i <= 8; i++) $('c' + i).style.display = i === Math.min(k, 8) ? 'block' : 'none';
   const C = $('c' + Math.min(k, 8)); C.style.opacity = k > 1 ? cl(lt / .3) : 1;
   [...C.querySelectorAll('.a1,.a3,.a5,.a6')].forEach((e, i) => rise(e, t, (k === 1 ? 1.2 : s + .35) + i * .12, 40, .4));
@@ -127,8 +150,8 @@ function seek(t) {
   $('stage').style.opacity = 1 - cl((t - (TL.end - .8)) / .8);
 }
 window.seek = seek;
-fetch('timeline.json').then(r => r.json()).then(j => { TL = j; LN = j.lines; return Promise.all(['800 20px Inter', '700 20px Inter', '600 20px Inter'].map(f => document.fonts.load(f))); })
-  .then(() => { tpl(); build(); seek(0); window.ready = true; if (!location.search.includes('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % TL.end); requestAnimationFrame(loop); }; loop(); } });
+fetch('timeline.json').then(r => r.json()).then(j => { TL = j; LN = j.lines; return Promise.all(['800 20px Inter', '700 20px Inter', '600 20px Inter', '900 20px Mont', '800 20px Mont'].map(f => document.fonts.load(f))); })
+  .then(() => { tpl(); BG = document.getElementById('bg').getContext('2d'); build(); seek(0); window.ready = true; if (!location.search.includes('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % TL.end); requestAnimationFrame(loop); }; loop(); } });
 </script>
 </body>
 </html>

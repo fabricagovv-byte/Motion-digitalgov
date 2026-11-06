@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4.7 Agro · drone + gestão da lavoura (vertical)</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+html,body{width:auto;height:auto;background:#000}
+#stage{width:1080px;height:1920px;background:linear-gradient(160deg,#0D2E10 0%,#174A18 40%,#2C6E22 75%,#7FA22A 100%);font-family:Inter;color:#F3F6EC;overflow:hidden}
+.t{position:absolute;left:70px;right:70px}
+.gt{font-weight:800;letter-spacing:-4px;line-height:.95;background:linear-gradient(90deg,#FFFFFF 0%,#E4EBDD 50%,#A9C29A 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pill{display:inline-block;border:2px solid #E6F76B;color:#E6F76B;border-radius:999px;padding:12px 30px;font-size:34px;font-weight:600;background:rgba(13,46,16,.55)}
+.vidro{position:absolute;left:60px;right:60px;top:600px;height:960px;background:rgba(240,255,230,.09);border:2px solid rgba(243,246,236,.2);border-radius:44px;backdrop-filter:blur(16px);box-shadow:0 40px 90px rgba(4,20,6,.45);overflow:hidden}
+.cena{position:absolute;inset:0;padding:48px;display:none}
+.k{background:rgba(8,30,10,.55);border:2px solid rgba(243,246,236,.16);border-radius:28px;padding:28px}
+.k .r{font-size:24px;font-weight:600;color:#BFD0B2;letter-spacing:1px;text-transform:uppercase}
+.k .v{font-size:66px;font-weight:800;letter-spacing:-2px;margin-top:6px;white-space:nowrap}
+.k .v small{font-size:30px;font-weight:600;color:#BFD0B2;margin-left:6px}
+.linha{display:flex;align-items:center;gap:20px;font-size:32px;padding:20px 0;border-bottom:2px solid rgba(243,246,236,.12)}
+.av{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;color:#0D2E10;flex:none}
+.chip{margin-left:auto;font-size:24px;font-weight:700;border-radius:999px;padding:8px 18px;white-space:nowrap}
+.ilu{position:absolute;left:60px;right:60px;top:1590px;font-size:24px;color:#C9D6BE;text-align:center}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script type="text/x-tpl" id="tpl">
+ <div class="abs" style="left:70px;top:90px;display:flex;align-items:center;gap:26px"><img src="img/v4_logo_white.png" style="height:56px"><div style="width:2px;height:56px;background:rgba(243,246,236,.4)"></div><img src="img/v47.webp" style="height:56px"></div>
+ <div class="abs" style="right:70px;top:110px;display:flex;gap:14px"><i style="width:20px;height:20px;border-radius:50%;background:#E6F76B;display:block"></i><i style="width:20px;height:20px;border-radius:50%;background:#E6F76B;display:block"></i><i style="width:20px;height:20px;border-radius:50%;background:#E6F76B;display:block"></i></div>
+ <div class="t gt" id="tt" style="top:220px;font-size:128px"></div>
+ <div class="t" id="pl" style="top:505px"><span class="pill" id="plt"></span></div>
+ <div class="vidro" id="vd">
+  <!-- 1 app -->
+  <div class="cena" id="c1"><div style="display:flex;gap:40px;align-items:center;height:100%">
+   <div style="width:400px;height:820px;background:#0B1A0C;border-radius:60px;padding:16px;box-shadow:0 30px 70px rgba(0,0,0,.45);flex:none"><div style="width:100%;height:100%;border-radius:46px;background:linear-gradient(170deg,#2C6E22,#123A14);padding:40px 26px;display:flex;flex-direction:column;gap:18px">
+    <div style="font-size:26px;font-weight:800">V4.7 Agro</div><div style="font-size:20px;color:#C9D6BE">Fazenda Boa Vista</div>
+    <div class="k a1" style="padding:20px"><div class="r" style="font-size:18px">Soja · 120 ha</div><div style="font-size:40px;font-weight:800">4 talhões</div></div>
+    <div class="k a1" style="padding:20px"><div class="r" style="font-size:18px">Chuva amanhã</div><div style="font-size:40px;font-weight:800">12 mm</div></div>
+    <div class="k a1" style="padding:20px"><div class="r" style="font-size:18px">Safra estimada</div><div style="font-size:40px;font-weight:800">R$ 1,12 mi</div></div>
+    <div class="a1" style="background:#E6F76B;color:#123A14;border-radius:18px;padding:16px;text-align:center;font-weight:800;font-size:22px">Abrir mapa do drone</div></div></div>
+   <div style="display:flex;flex-direction:column;gap:22px">${['🚁 Mapa com drone', '🌱 Semente e plantio', '🌧️ Chuva e avisos', '👥 Equipe e tarefas', '💰 Financeiro', '📈 Valor da safra'].map(x => `<div class="a1" style="font-size:36px;font-weight:700;background:rgba(8,30,10,.5);border-radius:22px;padding:20px 26px">${x}</div>`).join('')}</div></div></div>
+  <!-- 2 drone -->
+  <div class="cena" id="c2" style="padding:0"><svg id="campo" width="960" height="1000" viewBox="0 0 960 1000"></svg></div>
+  <!-- 3 semente -->
+  <div class="cena" id="c3"><div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+   ${[['Área plantada', 120, 'ha', ''], ['Semente', 60, 'kg/ha', ''], ['Total de semente', 7.2, 't', 'd1'], ['População', 300, 'mil/ha', ''], ['Plantio', 4, 'dias', ''], ['Ciclo', 115, 'dias', '']].map(([r, v, u, f]) => `<div class="k a3"><div class="r">${r}</div><div class="v"><span data-n="${v}" data-f="${f}">0</span><small>${u}</small></div></div>`).join('')}</div>
+   <div class="a3" style="margin-top:30px;font-size:30px;line-height:1.4;color:#DDE8D3">Talhão 2 com <b style="color:#E6F76B">falha de 1,8 ha</b> no mapa: replantio sugerido.</div></div>
+  <!-- 4 chuva -->
+  <div class="cena" id="c4"><div style="font-size:30px;font-weight:700;margin-bottom:10px">Chuva prevista · próximos 10 dias (mm)</div>
+   <div id="chuva" style="display:flex;align-items:flex-end;gap:14px;height:520px;border-bottom:2px solid rgba(243,246,236,.3);padding-top:40px"></div>
+   <div id="dias" style="display:flex;gap:14px;margin-top:12px"></div>
+   <div id="alerta" style="margin-top:40px;background:rgba(255,179,92,.16);border:2px solid #FFB35C;border-radius:28px;padding:28px;font-size:32px;line-height:1.35"><b style="color:#FFB35C">⚠ Aviso:</b> chuva forte na quinta (38 mm). Adie a pulverização do talhão 2.</div></div>
+  <!-- 5 equipe -->
+  <div class="cena" id="c5"><div style="font-size:30px;font-weight:700;margin-bottom:8px">Tarefas de hoje · Fazenda Boa Vista</div>
+   ${[['JS', '#E6F76B', 'Pulverizar talhão 2', 'João', 'adiado', '#FFB35C'], ['MR', '#9BE36B', 'Revisar plantadeira', 'Marcos', 'feito', '#9BE36B'], ['AN', '#7FD4FF', 'Adubação do talhão 4', 'Ana', 'amanhã', '#7FD4FF'], ['PL', '#F5C3FF', 'Replantio da falha T2', 'Paulo', 'agendado', '#E6F76B']].map(([i, c, t, n, s, sc]) => `<div class="linha a5"><div class="av" style="background:${c}">${i}</div><div><div style="font-weight:700">${t}</div><div style="font-size:24px;color:#BFD0B2">${n}</div></div><span class="chip" style="background:${sc}26;color:${sc}">${s}</span></div>`).join('')}
+   <div class="a5" style="margin-top:30px;font-size:28px;color:#DDE8D3">🔔 3 atualizações novas · equipe com 12 funcionários</div></div>
+  <!-- 6 financeiro -->
+  <div class="cena" id="c6"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:30px;font-weight:700">Custos da safra</div><div style="font-size:26px;color:#BFD0B2">R$ 4.540/ha</div></div>
+   ${[['Fertilizantes', 168000], ['Defensivos', 132000], ['Sementes', 78000], ['Horas de máquina · 720 h', 64800], ['Mão de obra', 54000], ['Outros', 48000]].map(([n, v]) => `<div class="a6" style="margin-top:22px"><div style="display:flex;justify-content:space-between;font-size:28px"><span>${n}</span><b>R$ ${v.toLocaleString('pt-BR')}</b></div><div style="height:18px;border-radius:9px;background:rgba(243,246,236,.12);margin-top:8px"><div class="bw" data-w="${v / 168000 * 100}" style="height:100%;border-radius:9px;background:linear-gradient(90deg,#4C9A30,#E6F76B)"></div></div></div>`).join('')}
+   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:34px">${[['Total', 'R$ 544.800'], ['Fornecedores', '8'], ['Funcionários', '12']].map(([r, v]) => `<div class="k a6" style="padding:20px"><div class="r" style="font-size:20px">${r}</div><div style="font-size:40px;font-weight:800;white-space:nowrap">${v}</div></div>`).join('')}</div></div>
+  <!-- 7 preço -->
+  <div class="cena" id="c7"><div class="k" style="padding:36px"><div class="r">Soja · Paranaguá · saca 60 kg</div><div style="display:flex;align-items:baseline;gap:20px;margin-top:8px"><div style="font-size:96px;font-weight:800;letter-spacing:-3px">R$ <span id="preco">152,41</span></div><div id="var" style="font-size:40px;font-weight:800;color:#9BE36B">▲ 0,32%</div></div>
+    <svg width="840" height="240" viewBox="0 0 840 240" style="margin-top:20px"><path id="spark" d="M0 170 L70 160 L140 175 L210 150 L280 158 L350 130 L420 140 L490 120 L560 128 L630 105 L700 112 L770 95 L840 88" stroke="#E6F76B" stroke-width="7" fill="none" stroke-linejoin="round"/></svg></div>
+   <div class="k" style="margin-top:30px;padding:36px"><div class="r">Valor da sua safra hoje</div><div style="font-size:92px;font-weight:800;letter-spacing:-3px;margin-top:6px">R$ <span id="safra">0</span></div><div style="font-size:28px;color:#BFD0B2">7.320 sacas estimadas × preço do dia</div></div></div>
+  <!-- 8 margem -->
+  <div class="cena" id="c8"><div class="r" style="font-size:26px;font-weight:600;color:#BFD0B2;letter-spacing:1px">QUANTO VOCÊ TEM</div>
+   <div style="font-size:150px;font-weight:800;letter-spacing:-6px;line-height:1;margin-top:16px">R$ 1,12 mi</div><div style="font-size:54px;font-weight:800;color:#E6F76B;margin-top:6px">± 8% de margem de erro</div>
+   <div style="position:relative;height:90px;margin-top:60px"><div style="position:absolute;left:0;right:0;top:36px;height:18px;border-radius:9px;background:rgba(243,246,236,.15)"></div><div id="faixa" style="position:absolute;left:12%;width:76%;top:30px;height:30px;border-radius:15px;background:linear-gradient(90deg,#4C9A30,#E6F76B,#4C9A30)"></div><div style="position:absolute;left:50%;top:14px;width:6px;height:62px;background:#fff;border-radius:3px;transform:translateX(-3px)"></div></div>
+   <div style="display:flex;justify-content:space-between;font-size:30px;font-weight:700"><span>R$ 1,03 mi</span><span>R$ 1,20 mi</span></div>
+   <div class="k" style="margin-top:50px;padding:32px"><div class="r">Margem estimada (safra − custos)</div><div style="font-size:76px;font-weight:800;letter-spacing:-2px;margin-top:6px">≈ R$ 571 mil</div></div></div>
+ </div>
+ <div class="ilu" id="ilu">Fazenda de exemplo · valores ilustrativos · preço CEPEA de 26/10/2026</div>
+
+ <!-- encerramento -->
+ <div class="abs" id="end" style="inset:0;background:linear-gradient(160deg,#0D2E10,#174A18 60%,#2C6E22);opacity:0">
+  <img src="img/v4_logo_white.png" style="position:absolute;left:190px;top:360px;width:700px">
+  <img src="img/v47.webp" style="position:absolute;left:390px;top:520px;width:300px">
+  <div class="t gt" style="top:760px;font-size:150px;text-align:center">V4.7 Agro</div>
+  <div class="t" style="top:960px;text-align:center;font-size:44px;color:#DDE8D3">Drone, gestão e financeiro da lavoura</div>
+  <div id="wa" style="position:absolute;left:150px;width:780px;top:1120px;text-align:center;background:#E6F76B;color:#0D2E10;border-radius:999px;padding:30px 0;font-size:50px;font-weight:800">WhatsApp (31) 99827-7323</div>
+  <div class="t" style="top:1290px;text-align:center;font-size:38px;font-weight:700;color:#E6F76B">Peça sua demonstração →</div></div>
+</script>
+<script>
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), eo = x => 1 - Math.pow(1 - cl(x), 3), spr = x => x <= 0 ? 0 : 1 - Math.exp(-6 * x) * Math.cos(10 * x);
+let TL, LN;
+const S = [['Sua lavoura no celular', 'V4.7 Agro'], ['O drone mapeia tudo', 'Talhões, área e falhas'], ['Semente e plantio', 'Quantidade e tempo por talhão'], ['Chuva e avisos', 'Antes de entrar com a máquina'], ['Equipe e tarefas', 'Tudo atualizado'], ['Financeiro da safra', 'Custos, fornecedores, equipe'], ['Valor da safra hoje', 'Com o preço do dia'], ['Quanto você tem', 'Com margem de erro']];
+const CH = [2, 12, 0, 38, 9, 0, 0, 4, 21, 6], DIAS = ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom', 'seg', 'ter', 'qua'];
+const TALH = [{ p: '110,190 470,150 500,470 140,520', n: 'T1 · 32 ha', c: [300, 330] }, { p: '500,150 860,190 840,500 520,470', n: 'T2 · 28 ha', c: [680, 330] }, { p: '140,540 500,490 520,850 160,880', n: 'T3 · 34 ha', c: [330, 690] }, { p: '520,490 840,520 820,860 540,850', n: 'T4 · 26 ha', c: [680, 690] }];
+const tpl = () => { document.getElementById('stage').innerHTML = new Function('return `' + document.getElementById('tpl').textContent + '`')(); };
+function build() {
+  // campo visto de cima: linhas de plantio
+  let g = `<defs><linearGradient id="ter" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5B8A2E"/><stop offset="1" stop-color="#3E6E22"/></linearGradient></defs><rect width="960" height="1000" fill="url(#ter)"/>`;
+  for (let y = 0; y < 1000; y += 18) g += `<line x1="0" y1="${y}" x2="960" y2="${y + 60}" stroke="#7BAA3C" stroke-width="7" opacity=".55"/>`;
+  g += `<path d="M0 930 C200 900 380 960 560 920 S860 900 960 940 L960 1000 L0 1000Z" fill="#2E5E8C" opacity=".8"/>`;
+  g += `<ellipse cx="610" cy="380" rx="70" ry="40" fill="#8A6A3A" opacity=".85"/>`;
+  TALH.forEach((t, i) => g += `<polygon id="tp${i}" points="${t.p}" fill="rgba(230,247,107,.12)" stroke="#E6F76B" stroke-width="6" stroke-dasharray="2400" stroke-dashoffset="2400"/><g id="tl${i}" opacity="0"><rect x="${t.c[0] - 110}" y="${t.c[1] - 34}" width="220" height="68" rx="34" fill="rgba(13,46,16,.85)"/><text x="${t.c[0]}" y="${t.c[1] + 12}" text-anchor="middle" font-family="Inter" font-weight="800" font-size="32" fill="#F3F6EC">${t.n}</text></g>`);
+  g += `<g id="falha" opacity="0"><circle cx="610" cy="380" r="92" fill="none" stroke="#FF6B5C" stroke-width="6" stroke-dasharray="14 10"/><rect x="520" y="250" width="180" height="50" rx="25" fill="#FF6B5C"/><text x="610" y="285" text-anchor="middle" font-family="Inter" font-weight="800" font-size="26" fill="#fff">falha 1,8 ha</text></g>`;
+  g += `<rect id="scan" x="0" y="0" width="960" height="70" fill="url(#ter)" opacity="0"/><g id="drone"><rect x="-70" y="-6" width="140" height="12" rx="6" fill="#1B1F24"/><rect x="-6" y="-70" width="12" height="140" rx="6" fill="#1B1F24" transform="rotate(45)"/><rect x="-6" y="-70" width="12" height="140" rx="6" fill="#1B1F24" transform="rotate(-45)"/><circle r="26" fill="#2A3038"/><circle r="10" fill="#E6F76B"/>${[[-50, -50], [50, -50], [-50, 50], [50, 50]].map(([x, y]) => `<ellipse cx="${x}" cy="${y}" rx="34" ry="8" fill="rgba(240,240,240,.55)"/>`).join('')}</g>`;
+  g += `<rect id="feixe" x="0" y="0" width="960" height="8" fill="#E6F76B" opacity=".9"/>`;
+  $('campo').innerHTML = g;
+  const mx = Math.max(...CH);
+  $('chuva').innerHTML = CH.map((v, i) => `<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:8px"><div style="font-size:26px;font-weight:700;color:${v > 30 ? '#FFB35C' : '#DDE8D3'}">${v}</div><div class="cb" data-h="${v / mx * 420}" style="width:100%;border-radius:12px 12px 4px 4px;background:${v > 30 ? '#FFB35C' : 'linear-gradient(#7FD4FF,#2E86C8)'}"></div></div>`).join('');
+  $('dias').innerHTML = DIAS.map(d => `<div style="flex:1;text-align:center;font-size:24px;color:#BFD0B2">${d}</div>`).join('');
+}
+function rise(el, t, t0, dy = 50, d = .45) { const p = cl((t - t0) / d); el.style.opacity = p; el.style.transform = `translateY(${(1 - eo(p)) * dy}px)`; }
+const F = (v, f) => f === 'd1' ? v.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : Math.round(v).toLocaleString('pt-BR');
+function seek(t) {
+  const SC = LN.map((l, i) => i ? l.start - .3 : 0); let k = 1; SC.forEach((s, i) => { if (t >= s) k = i + 1; }); const s = SC[k - 1], lt = t - s, end = k === 9;
+  const sc = S[Math.min(k, 8) - 1]; $('tt').textContent = sc[0]; $('plt').textContent = sc[1];
+  rise($('tt'), t, s + .05, 70); rise($('pl'), t, s + .3, 30);
+  const vin = k === 1 ? eo((t - .6) / .7) : 1; $('vd').style.opacity = vin; $('vd').style.transform = `translateY(${(1 - vin) * 200}px)`;
+  for (let i = 1; i <= 8; i++) $('c' + i).style.display = i === Math.min(k, 8) ? 'block' : 'none';
+  const C = $('c' + Math.min(k, 8)); C.style.opacity = k > 1 ? cl(lt / .3) : 1;
+  [...C.querySelectorAll('.a1,.a3,.a5,.a6')].forEach((e, i) => rise(e, t, (k === 1 ? 1.2 : s + .35) + i * .12, 40, .4));
+  if (k === 2) { const p = cl((lt - .2) / 3.2), y = 60 + p * 860, x = 480 + 300 * Math.sin(lt * 1.6);
+    $('drone').setAttribute('transform', `translate(${x} ${y}) scale(.9)`); $('feixe').setAttribute('y', y); $('feixe').setAttribute('opacity', p < 1 ? .85 : 0);
+    TALH.forEach((tl, i) => { const ti = s + .6 + i * .55; $('tp' + i).style.strokeDashoffset = 2400 * (1 - eo((t - ti) / .9)); $('tl' + i).setAttribute('opacity', cl((t - ti - .7) / .3)); });
+    $('falha').setAttribute('opacity', cl((t - s - 3.4) / .3)); }
+  if (k === 3) C.querySelectorAll('[data-n]').forEach((e, i) => e.textContent = F(+e.dataset.n * eo((t - s - .5 - i * .12) / .8), e.dataset.f));
+  if (k === 4) { C.querySelectorAll('.cb').forEach((e, i) => e.style.height = e.dataset.h * eo((t - s - .4 - i * .08) / .6) + 'px'); rise($('alerta'), t, s + 1.8, 40); }
+  if (k === 6) C.querySelectorAll('.bw').forEach((e, i) => e.style.width = e.dataset.w * eo((t - s - .5 - i * .12) / .7) + '%');
+  if (k === 7) { const p = eo((lt - .4) / 1.6); $('safra').textContent = Math.round(1115641 * p).toLocaleString('pt-BR'); const tick = lt > 2.6; $('preco').textContent = tick ? '152,90' : '152,41'; $('var').textContent = tick ? '▲ 0,64%' : '▲ 0,32%'; }
+  if (k === 8) { const p = eo((lt - .3) / .8); $('faixa').style.left = (50 - 38 * p) + '%'; $('faixa').style.width = (76 * p) + '%'; }
+  $('ilu').style.opacity = k >= 3 && !end ? .9 : 0;
+  $('end').style.opacity = end ? cl(lt / .4) : 0; if (end) $('wa').style.transform = `scale(${lt < .6 ? .5 : .5 + .5 * spr(lt - .6)})`;
+  $('stage').style.opacity = 1 - cl((t - (TL.end - .8)) / .8);
+}
+window.seek = seek;
+fetch('timeline.json').then(r => r.json()).then(j => { TL = j; LN = j.lines; return Promise.all(['800 20px Inter', '700 20px Inter', '600 20px Inter'].map(f => document.fonts.load(f))); })
+  .then(() => { tpl(); build(); seek(0); window.ready = true; if (!location.search.includes('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % TL.end); requestAnimationFrame(loop); }; loop(); } });
+</script>
+</body>
+</html>

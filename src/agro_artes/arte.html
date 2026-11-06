@@ -1,0 +1,56 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>V4.7 Agro · artes</title>
+<style>
+@font-face{font-family:Mont;src:url(../digitalgov/fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Mont;src:url(../digitalgov/fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:Mont;src:url(../digitalgov/fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mont;src:url(../digitalgov/fonts/montserrat-latin-900-normal.woff2);font-weight:900}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;font-family:Mont;overflow:hidden}
+#a{position:relative;overflow:hidden}
+.x{position:absolute}
+.l1{color:#FFFFFF;font-weight:900;letter-spacing:-3px;line-height:.92;text-shadow:0 6px 30px rgba(0,0,0,.35)}
+.l2{color:#7CE34F;font-weight:800;letter-spacing:-2px;line-height:.98;text-shadow:0 6px 24px rgba(0,0,0,.35)}
+.l3{color:#F7C21B;font-weight:800;letter-spacing:-2px;line-height:.98;text-shadow:0 6px 24px rgba(0,0,0,.35)}
+.chip{display:inline-flex;align-items:center;gap:14px;background:rgba(14,40,16,.62);border:2px solid rgba(255,255,255,.28);backdrop-filter:blur(10px);border-radius:22px;padding:16px 24px;color:#fff;font-weight:700;white-space:nowrap}
+.chip b{color:#F7C21B}
+.v4{-webkit-mask:url(../artes_100/v4_mark_white.png) 0 0/100% 100% no-repeat;background:#fff}
+.lm{-webkit-mask:url(../v47/kit/assets/nova/v47_logo_branca_transp.png) 0 0/100% 100% no-repeat;background:#fff}
+</style></head><body><div id="a"><canvas id="cv"></canvas></div>
+<script src="campo.js"></script>
+<script>
+const q = new URLSearchParams(location.search), N = +(q.get('n') || 0), story = q.has('story'), W = 1080, H = story ? 1920 : 1350;
+const A = document.getElementById('a'); A.style.width = W + 'px'; A.style.height = H + 'px';
+const cv = document.getElementById('cv'); cv.width = W; cv.height = H; const c = cv.getContext('2d');
+// [linha1, linha2, linha3, mais?, chip, cena]
+const ARTES = [
+ ['produza', 'em menos', 'tempo!', 1, '🚜 V4.7 Agro · <b>drone + gestão</b> da lavoura', 'trator'],
+ ['mapeie', 'sua lavoura', 'com drone', 0, '🛰️ Exemplo: talhão 2 · <b>28 ha</b> · falha de 1,8 ha', 'drone'],
+ ['chuva?', 'você sabe', 'antes!', 0, '🌧️ Quinta: <b>38 mm</b> · adie a pulverização', 'campo'],
+ ['custo da', 'safra no', 'celular', 0, '💰 Exemplo: <b>R$ 4.540/ha</b> · 8 fornecedores', 'trator'],
+ ['quanto vale', 'sua safra', 'hoje?', 0, '📈 Soja Paranaguá <b>R$ 152,41</b> · CEPEA 26/10', 'campo'],
+ ['semente', 'certa em', 'cada talhão', 0, '🌱 Exemplo: <b>60 kg/ha</b> · 7,2 t para 120 ha', 'drone'],
+ ['equipe', 'e tarefas', 'em dia', 0, '👥 Hoje: <b>4 tarefas</b> · 12 funcionários', 'trator'],
+ ['colha', 'mais com', 'menos custo', 1, '✅ Safra estimada <b>R$ 1,12 mi ± 8%</b> (exemplo)', 'campo'],
+];
+const [l1, l2, l3, mais, chip, cena] = ARTES[N % ARTES.length];
+const hy = story ? 620 : 470;
+drawCampo(c, W, H, { t: 1.3, hy, vx: W * .52, avanco: N * .17,
+  trator: cena === 'trator' ? { x: W * .5, y: hy + (story ? 290 : 175), s: story ? .9 : .72 } : null,
+  drone: cena === 'drone' ? { x: W * .62, y: hy - (story ? 230 : 190), s: 1.1 } : null,
+  folha: { x: 70, y: story ? 120 : 90, s: 1.05, r: -.75 } });
+const base = story ? 1080 : 720;
+const fs = l1.length > 8 ? 132 : 158;
+A.insertAdjacentHTML('beforeend', `
+ <div class="x" style="left:0;right:0;bottom:0;height:${H - base + 160}px;background:linear-gradient(rgba(10,26,10,0),rgba(10,26,10,.55) 35%,rgba(10,26,10,.85))"></div>
+ <svg class="x" style="left:0;top:${base - 80}px" width="430" height="560" viewBox="0 0 430 560"><polygon points="0,0 400,280 0,560" fill="#2FB34A" opacity=".82"/></svg>
+ <div class="x" style="left:120px;top:${base}px;width:900px">
+  <div style="display:flex;align-items:center;gap:20px"><div class="l1" style="font-size:${fs}px">${l1}</div>${mais ? `<svg width="190" height="190" viewBox="0 0 190 190" style="margin-top:-20px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.35))"><rect x="70" y="0" width="50" height="190" rx="6" fill="#F7C21B"/><rect x="0" y="70" width="190" height="50" rx="6" fill="#F7C21B"/></svg>` : ''}</div>
+  <div class="l2" style="font-size:${Math.round(fs * .62)}px;margin-top:10px;margin-left:110px">${l2}</div>
+  <div class="l3" style="font-size:${Math.round(fs * .62)}px;margin-left:200px">${l3}</div>
+ </div>
+ <div class="x" style="left:0;right:0;top:${story ? 1500 : 1092}px;text-align:center"><span class="chip" style="font-size:${story ? 32 : 28}px">${chip}</span></div>
+ <div class="x" style="left:0;right:0;top:${story ? 1650 : 1192}px;display:flex;flex-direction:column;align-items:center;gap:10px;color:#fff">
+  <div style="display:flex;align-items:center;gap:18px"><div class="v4" style="width:84px;height:45px"></div><div style="width:2px;height:40px;background:rgba(255,255,255,.6)"></div><div class="lm" style="width:90px;height:38px"></div></div>
+  <div style="font-size:${story ? 30 : 26}px;font-weight:700">Alvorada de Minas · MG · <span style="color:#F7C21B">(31) 99827-7323</span></div></div>`);
+document.fonts.ready.then(() => window.ready = true);
+</script></body></html>

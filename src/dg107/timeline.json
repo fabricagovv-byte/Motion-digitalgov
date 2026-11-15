@@ -1,0 +1,27 @@
+{
+  "fps": 30,
+  "duration": 90.0,
+  "scenes": [
+    { "id": "s1", "start": 0.0, "end": 11.0, "title": "Uma nova era de produtividade" },
+    { "id": "s2", "start": 11.0, "end": 26.0, "title": "Produção inteligente e automatizada" },
+    { "id": "s3", "start": 26.0, "end": 39.0, "title": "Restauração e controle de qualidade" },
+    { "id": "s4", "start": 39.0, "end": 52.5, "title": "Produtividade e prazos" },
+    { "id": "s5", "start": 52.5, "end": 65.5, "title": "Entrega organizada e segura" },
+    { "id": "s6", "start": 65.5, "end": 78.0, "title": "Impacto na operação" },
+    { "id": "s7", "start": 78.0, "end": 90.0, "title": "Resultado final" }
+  ],
+  "narration": [
+    { "id": "d1a", "at": 1.2 },
+    { "id": "d1b", "at": 7.4 },
+    { "id": "d2", "at": 11.6 },
+    { "id": "d3", "at": 26.6 },
+    { "id": "d4", "at": 39.6 },
+    { "id": "d5a", "at": 53.0 },
+    { "id": "d5b", "at": 56.3 },
+    { "id": "d6a", "at": 66.0 },
+    { "id": "d6b", "at": 69.1 },
+    { "id": "d7a", "at": 78.6 },
+    { "id": "d7b", "at": 80.9 }
+  ],
+  "endcard": { "in": 84.0 }
+}

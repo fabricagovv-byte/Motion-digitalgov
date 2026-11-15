@@ -142,3 +142,55 @@ bash src/inst/assemble.sh                   # vídeos finais em deliverables/ins
 
 Prévia de quadros: `node src/render.mjs --film inst --stills 5,15,25 --out build/stills`.
 Cenas: `src/web/inst/i1_open.js` … `i5_end.js`; cenário: `room.js`; objetos e pessoas: `kit.js`; documentos e telas: `docs.js`.
+
+---
+
+# DIGITALGOV 10.7 · Inteligência Documental — Da Produção à Entrega (90 s)
+
+Filme publicitário de **90 s** (1920×1080, 30 fps) que mostra **exclusivamente a plataforma**: interface SaaS em preto grafite,
+azul elétrico e ciano, totalmente em português, com câmera 3D discreta, gráficos dinâmicos e microinterações. Sem pessoas nem ambientes físicos.
+
+## Entregáveis (`deliverables/digitalgov-10.7/`)
+
+| Arquivo | Descrição |
+|---|---|
+| `DIGITALGOV_10.7_90s_1080p.mp4` | Versão principal, H.264 + AAC 320 kb/s, faixa de legenda opcional (pt-BR) |
+| `DIGITALGOV_10.7_90s_1080p_legendado.mp4` | Legendas embutidas (redes sociais / reprodução sem som) |
+| `legendas_ptBR.srt` / `.vtt` | Legendas com o texto literal do roteiro, sincronizadas com a fala |
+| `audio/mix_final.mp3` | Mixagem final (−14 LUFS). WAV 24 bits e stems (narração, trilha, efeitos) são gerados por `assemble.sh` e não ficam no repositório |
+
+## Roteiro técnico
+
+| Tempo | Cena | Imagem |
+|---|---|---|
+| 0:00–0:11 | 1 · Uma nova era de produtividade | Arquivos entram no sistema; painel surge em perspectiva; distribuição automática entre 6 módulos; título "Conheça a DIGITALGOV 10.7" |
+| 0:11–0:26 | 2 · Produção inteligente e automatizada | 5 agentes de IA em paralelo: recebido → analisado → renomeado → separado → classificado → indexado; os 5 impactos do roteiro |
+| 0:26–0:39 | 3 · DIGITALGOV RESTORE AI | Diagnóstico (manchas, nitidez, sombras, desalinhamento), divisor ANTES/DEPOIS, legibilidade, caso duvidoso → validação humana |
+| 0:39–0:52 | 4 · Produtividade e prazos | Os 7 indicadores do roteiro e linha do tempo manual × automatizado |
+| 0:52–1:05 | 5 · DIGITALGOV DELIVERY CENTER | Pacote em pastas, validação, PDF pesquisável e formatos, os 7 recursos, registro de lotes com versão, auditoria e backup |
+| 1:05–1:18 | 6 · Impacto na operação | Painel executivo: processo tradicional (7 etapas) × DIGITALGOV 10.7 (4 etapas); etapas manuais convergem para o processamento paralelo |
+| 1:18–1:30 | 7 · Resultado final | Travelling pelos 7 módulos, lote concluído com validação e comprovante, assinatura |
+
+## Decisões e limites
+
+- **Interface ilustrativa.** As telas foram desenhadas para o filme; não são capturas do produto. Toda tela traz o selo
+  "Ambiente demonstrativo · dados ilustrativos", e cada número é marcado como ilustrativo.
+- **Sem claims de desempenho.** Nenhum percentual de economia nem velocidade apresentada como resultado comprovado. A comparação
+  manual × automatizado é identificada como "representação conceitual · sem escala de tempo medida"; as únicas contagens são as
+  etapas do próprio roteiro (7 × 4).
+- **Narração**: voz neural pt-BR (Piper `pt_BR-cadu-medium`), texto literal do roteiro; 5 tomadas por fala, com a mais inteligível
+  escolhida por transcrição automática (Whisper). Para locução humana, substitua os WAVs em `audio/dg107/narration/` e rode de novo.
+- **Trilha e efeitos** originais, sintetizados (Ré menor, 100 BPM, resolução em Ré maior na assinatura), com ducking sob a voz.
+- **Logo** oficial (`assets/logo-digitalgov.png`) sem alterações, sobre cartão branco na assinatura.
+
+## Como reproduzir
+
+```bash
+python3 src/dg107/narration.py --takes 5 --tempo 1.0 --scale 0.86
+python3 src/dg107/audio.py && python3 src/dg107/subtitles.py
+node src/render.mjs --film dg107 --out build/dg107_frames --workers 4     # 2.700 quadros (~4 min)
+bash src/dg107/assemble.sh
+```
+
+Tempos e posição das falas: `src/dg107/timeline.json`. Cenas: `src/web/dg107/s1.js` … `s7.js`; janela, ícones e utilidades: `util.js`; estilo: `dg107.css`.
+Prévia de quadros: `node src/render.mjs --film dg107 --stills 5,31.5,72 --out build/stills`.

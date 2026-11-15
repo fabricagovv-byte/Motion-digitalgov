@@ -13,7 +13,7 @@ try { ({ chromium } = require('playwright')); } catch { ({ chromium } = require(
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const args = Object.fromEntries(process.argv.slice(2).reduce((a, v, i, arr) => (v.startsWith('--') ? [...a, [v.slice(2), arr[i + 1]?.startsWith('--') || arr[i + 1] === undefined ? '1' : arr[i + 1]]] : a), []));
 const FILM = args.film || 'ged';
-const TL = JSON.parse(fs.readFileSync(path.join(ROOT, FILM === 'inst' ? 'src/inst/timeline.json' : 'src/timeline.json'), 'utf8'));
+const TL = JSON.parse(fs.readFileSync(path.join(ROOT, FILM === 'ged' ? 'src/timeline.json' : `src/${FILM}/timeline.json`), 'utf8'));
 const dpr = parseFloat(args.dpr || '1'), workers = parseInt(args.workers || '4'), out = path.resolve(ROOT, args.out || 'build/frames');
 const fps = TL.fps, from = parseFloat(args.from || '0'), to = parseFloat(args.to || String(TL.duration)), step = parseInt(args.step || '1');
 fs.mkdirSync(out, { recursive: true });
@@ -21,7 +21,7 @@ fs.mkdirSync(out, { recursive: true });
 const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.otf': 'font/otf' };
 const server = http.createServer((req, res) => {
   let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
-  if (p === '/' ) p = FILM === 'inst' ? '/src/web/inst.html' : '/src/web/index.html';
+  if (p === '/' ) p = FILM === 'ged' ? '/src/web/index.html' : `/src/web/${FILM}.html`;
   if (!p.startsWith('/node_modules') && !p.startsWith('/src') && !p.startsWith('/assets')) p = '/src/web' + p;
   const f = path.join(ROOT, p);
   fs.readFile(f, (e, d) => { if (e) { res.writeHead(404); res.end(); return; } res.writeHead(200, { 'Content-Type': MIME[path.extname(f)] || 'application/octet-stream' }); res.end(d); });
@@ -33,7 +33,10 @@ if (args.stills) jobs = args.stills.split(',').map((s) => ({ t: parseFloat(s), n
 else { jobs = []; const f0 = Math.round(from * fps), f1 = Math.round(to * fps);
   for (let f = f0; f < f1; f += step) { const name = `f${String(f).padStart(5, '0')}.jpg`; if (!args.resume || !fs.existsSync(path.join(out, name))) jobs.push({ t: f / fps, name }); } }
 
-const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--disable-gpu-vsync', '--force-color-profile=srgb'] });
+// filmes WebGL usam SwiftShader; o filme dg107 é só DOM/SVG e usa rasterização por software (evita blocos desatualizados na captura)
+const GL = FILM !== 'dg107';
+const browser = await chromium.launch({ args: GL ? ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--disable-gpu-vsync', '--force-color-profile=srgb']
+  : ['--disable-gpu', '--disable-gpu-rasterization', '--disable-partial-raster', '--force-color-profile=srgb'] });
 const q = [...jobs]; let done = 0; const t0 = Date.now();
 async function worker(id) {
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: dpr });
@@ -45,7 +48,7 @@ async function worker(id) {
   const stage = await page.$('#stage');
   while (q.length) {
     const j = q.shift();
-    await page.evaluate((t) => window.renderFrame(t), j.t);
+    await page.evaluate((t) => { window.renderFrame(t); return new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))); }, j.t);   // aguarda a rasterização do quadro
     const file = path.join(out, j.name);
     for (let k = 0; ; k++) {   // tolera lentidão momentânea da máquina
       try { await stage.screenshot({ path: file, timeout: 180000, type: j.name.endsWith('.png') ? 'png' : 'jpeg', ...(j.name.endsWith('.jpg') ? { quality: 95 } : {}) }); break; }

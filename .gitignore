@@ -7,3 +7,7 @@ audio/stems/
 audio/mix_master.wav
 audio/inst/stems/
 audio/inst/mix_master.wav
+audio/dg107/stems/
+audio/dg107/mix_master.wav
+deliverables/digitalgov-10.7/audio/*.wav
+deliverables/digitalgov-10.7/audio/*.flac

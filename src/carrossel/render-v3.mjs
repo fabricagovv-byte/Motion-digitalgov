@@ -66,7 +66,8 @@ const slides = [
 
   { cls: 'who', html: `<div class="pic"><div style="background-image:url(${FOTO})"></div></div>
     ${k(9, 'QUEM ESTÁ POR TRÁS')}
-    <h1 style="font-size:98px">UM JOVEM QUE DECIDIU <em>NÃO ESPERAR.</em></h1>
+    <h1 style="font-size:92px;margin-bottom:24px">UM JOVEM DE <em>14 ANOS</em> QUE DECIDIU NÃO ESPERAR.</h1>
+    <div class="facts"><span>MINEIRO DE ALVORADA DE MINAS</span><span>GERENTE DE TECNOLOGIA DO GRUPO DIGITALGOV</span></div>
     <p class="sm">Não esperei ter a idade perfeita, os recursos perfeitos ou as condições ideais. <b>Comecei com o que tinha. E continuo construindo algo maior.</b></p>` },
 
   { html: `${k(10, 'O IMPACTO FINAL')}
@@ -131,8 +132,9 @@ small{display:block;font-size:20px;font-weight:800;letter-spacing:4px;color:#6d7
 .cover .bg{position:absolute;inset:0;background-size:cover;background-position:center top}
 .cover .shade{position:absolute;inset:0;background:linear-gradient(180deg,#040404d9 0,#04040400 15%,#04040400 34%,#040404b8 46%,#040404f5 55%,#040404 70%)}
 .cover .glow{display:none}
-.who .pic{position:relative;height:530px;flex:none;margin:-14px 0 44px}
-.who .pic div{position:absolute;inset:0;border-radius:6px;background-size:cover;background-position:center 7%}
+.who .pic{position:relative;height:420px;flex:none;margin:-14px 0 40px}
+.facts{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}.facts span{font-size:21px;font-weight:800;letter-spacing:2.5px;color:${G};border:2px solid #c6ff2e80;border-radius:999px;padding:10px 20px}
+.who .pic div{position:absolute;inset:0;border-radius:6px;background-size:cover;background-position:center 9%}
 .who .pic:before,.who .pic:after{content:'';position:absolute;width:64px;height:64px;border:5px solid ${G};z-index:1}
 .who .pic:before{left:-14px;top:-16px;border-right:0;border-bottom:0}.who .pic:after{right:-14px;bottom:-16px;border-left:0;border-top:0}
 `;

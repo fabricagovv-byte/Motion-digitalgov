@@ -1,4 +1,4 @@
-// Carrossel V4 Fábrica GOV (preto premium + verde neon, 1080x1350) -> deliverables/carrossel-v4-fabrica-gov/
+// Carrossel V4 fábricagov (preto premium + verde neon, 1080x1350) -> deliverables/carrossel-v4-fabricagov/
 // Foto original em src/carrossel/foto.jpg (usada sem retoque: apenas enquadramento e degradê por cima).
 import { createRequire } from 'node:module';
 import fs from 'node:fs';
@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const { chromium } = createRequire(import.meta.url)('playwright');
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
-const out = path.resolve(dir, '../../deliverables/carrossel-v4-fabrica-gov');
+const out = path.resolve(dir, '../../deliverables/carrossel-v4-fabricagov');
 const b64 = f => fs.readFileSync(path.join(dir, f)).toString('base64');
 const FOTO = `data:image/jpeg;base64,${b64('foto.jpg')}`;
 const AVATAR = `data:image/png;base64,${b64('avatar.png')}`;
@@ -16,84 +16,69 @@ const N = 10;
 
 const k = (n, t) => `<div class="kicker"><i></i>${String(n).padStart(2, '0')} — ${t}</div>`;
 const slides = [
-  { cls: 'cover dense', pre: `<div class="bg" style="background-image:url(${FOTO})"></div><div class="shade"></div>`,
+  { cls: 'cover', pre: `<div class="bg" style="background-image:url(${FOTO})"></div><div class="shade"></div>`,
     html: `<div class="grow"></div>${k(1, 'CAPA')}
-    <h1 style="font-size:84px;margin-bottom:26px">TENHO <em>14 ANOS.</em><br>SOU DO INTERIOR DE MINAS.<br>E DECIDI CRIAR UMA<br><em>FÁBRICA DE SOFTWARE.</em></h1>
-    <p><b>De Alvorada de Minas para o mundo da tecnologia.</b></p>
-    <p>Uma história que começou com uma ideia e se transformou em um projeto para desenvolver soluções para o setor público.</p>
-    <p class="punch">Essa é a história da V4 Fábrica GOV.</p>` },
+    <h1 style="font-size:92px;margin-bottom:30px">TENHO <em>14 ANOS.</em><br>SOU DO INTERIOR DE MINAS.<br>E DECIDI CRIAR UMA<br><em>FÁBRICA DE SOFTWARE.</em></h1>
+    <p>Essa é a história da <b>V4 fábricagov.</b></p>` },
 
-  { cls: 'dense', html: `${k(2, 'ORIGEM')}
-    <h1 style="font-size:90px">QUEM DISSE QUE A INOVAÇÃO PRECISA NASCER <em>EM UMA CAPITAL?</em></h1>
-    <p>Nasci em uma realidade distante dos grandes centros tecnológicos.</p>
-    <p><b>Sou de Alvorada de Minas, uma pequena cidade mineira.</b></p>
-    <p>Enquanto muitos enxergavam distância dos grandes mercados, eu enxergava a possibilidade de criar algo sem fronteiras.</p>
+  { html: `${k(2, 'ORIGEM')}
+    <h1 style="font-size:128px">QUEM DISSE QUE A INOVAÇÃO PRECISA NASCER <em>EM UMA CAPITAL?</em></h1>
     <div class="grow"></div>
-    <p class="punch">Minha origem nunca precisou limitar o tamanho dos meus sonhos.</p>
-    <div class="place"><i></i>ALVORADA DE MINAS<span>MINAS GERAIS · BRASIL</span></div>` },
+    <p>Sou de Alvorada de Minas, uma pequena cidade mineira.</p>
+    <p class="punch">Minha origem nunca precisou limitar o tamanho dos meus sonhos.</p>` },
 
-  { cls: 'dense', html: `${k(3, 'A IDEIA')}
-    <h1 style="font-size:96px">E SE UMA FÁBRICA DE SOFTWARE NÃO DEPENDESSE <em>APENAS DE PROGRAMADORES?</em></h1>
-    <p>Comecei a pensar em uma estrutura diferente.</p>
-    <p>Uma fábrica onde agentes de inteligência artificial pudessem participar do planejamento, da programação, dos testes e da documentação.</p>
+  { html: `${k(3, 'A IDEIA')}
+    <h1 style="font-size:114px">E SE UMA FÁBRICA DE SOFTWARE NÃO DEPENDESSE <em>APENAS DE PROGRAMADORES?</em></h1>
     <div class="grow"></div>
-    <div class="flow"><div><b>AGENTE</b><span>PLANEJAMENTO</span></div><u>+</u><div><b>AGENTE</b><span>PROGRAMAÇÃO</span></div><u>+</u><div><b>AGENTE</b><span>TESTES</span></div><u>+</u><div><b>AGENTE</b><span>DOCUMENTAÇÃO</span></div></div>
-    <p class="punch">Não apenas uma IA respondendo perguntas. Uma estrutura de agentes trabalhando em conjunto.</p>` },
+    <p>Agentes de inteligência artificial no planejamento, na programação, nos testes e na documentação.</p>
+    <p class="punch">Não uma IA respondendo perguntas. Uma estrutura de agentes trabalhando em conjunto.</p>` },
 
-  { cls: 'dense', html: `${k(4, 'A CRIAÇÃO')}
-    <h1><span class="over">FOI ASSIM QUE SURGIU A</span><em class="hero" style="font-size:210px">V4 FÁBRICA</em><em class="hero" style="font-size:210px">GOV.</em></h1>
+  { html: `${k(4, 'A CRIAÇÃO')}
+    <h1><span class="over">FOI ASSIM QUE SURGIU A</span><em class="hero" style="font-size:196px">V4</em><em class="hero" style="font-size:196px">FÁBRICAGOV.</em></h1>
     <div class="grow"></div>
     <p>Uma proposta de fábrica de software orientada por metodologias, automação e inteligência artificial.</p>
-    <p>Criada para transformar demandas complexas em projetos organizados, com etapas definidas, acompanhamento técnico e entregas verificáveis.</p>
     <p class="punch">A ideia é simples: transformar necessidades em software de verdade.</p>` },
 
-  { cls: 'dense', html: `${k(5, 'O MERCADO')}
-    <h1 style="margin-bottom:30px"><em class="hero" style="font-size:150px;line-height:1.02">MUNICÍPIOS.<br>ESTADOS.<br>UNIÃO.</em><span class="under" style="font-size:62px;margin-top:18px">TRÊS ESFERAS, INÚMERAS DEMANDAS.</span></h1>
-    <div class="cards3"><div><b>PREFEITURAS</b><span>precisam de sistemas.</span></div><div><b>GOVERNOS ESTADUAIS</b><span>precisam modernizar serviços.</span></div><div><b>ÓRGÃOS FEDERAIS</b><span>lidam com operações digitais complexas.</span></div></div>
+  { html: `${k(5, 'O MERCADO')}
+    <h1><em class="hero" style="font-size:190px;line-height:1.02">MUNICÍPIOS.<br>ESTADOS.<br>UNIÃO.</em></h1>
     <div class="grow"></div>
-    <p>A V4 Fábrica GOV foi pensada para atuar nesse cenário, desenvolvendo soluções conforme as necessidades e exigências de cada contratação.</p>
+    <p>Três esferas, inúmeras demandas.</p>
     <p class="punch">Do pequeno município aos grandes projetos públicos.</p>` },
 
-  { cls: 'dense tight', html: `${k(6, 'COMO FUNCIONA')}
-    <h1 style="font-size:72px;margin-bottom:22px">UMA DEMANDA ENTRA. <em>UMA OPERAÇÃO INTELIGENTE COMEÇA.</em></h1>
+  { html: `${k(6, 'COMO FUNCIONA')}
+    <h1 style="font-size:78px;margin-bottom:20px">UMA DEMANDA ENTRA. <em>UMA OPERAÇÃO INTELIGENTE COMEÇA.</em></h1>
+    <div class="grow"></div>
     <div class="dia">
       <div class="box"><b>ÓRGÃO PÚBLICO</b><span>Edital, contrato, ordem de serviço ou demanda</span></div><u>↓</u>
-      <div class="box on"><b>V4 FÁBRICA GOV</b><span>Análise, planejamento e distribuição das tarefas</span></div><u>↓</u>
+      <div class="box on"><b>V4 FÁBRICAGOV</b><span>Análise, planejamento e distribuição das tarefas</span></div><u>↓</u>
       <div class="row3"><div>ARQUITETURA</div><div>CÓDIGO</div><div>TESTES</div></div><u>↓</u>
       <div class="box out"><b>VALIDAÇÃO HUMANA E ENTREGA</b><span>Software testado, documentado e validado conforme os requisitos</span></div>
     </div>
-    <div class="grow"></div>
-    <p>Agentes especializados apoiam o desenvolvimento do banco de dados, backend, frontend, integrações, testes e documentação. Cada etapa passa por critérios de validação e supervisão humana.</p>
-    <p class="punch">Não é simplesmente pedir um código à IA. É organizar uma engenharia de software.</p>` },
+    <div class="grow"></div>` },
 
-  { cls: 'dense', html: `${k(7, 'METODOLOGIA')}
+  { html: `${k(7, 'METODOLOGIA')}
     <h1 style="font-size:92px">A INTELIGÊNCIA ARTIFICIAL EXECUTA. <em>A METODOLOGIA ORGANIZA.</em></h1>
-    <div class="pipe"><span><b>01</b>PLANEJAMENTO</span><span><b>02</b>AGENTES ESPECIALIZADOS</span><span><b>03</b>DESENVOLVIMENTO</span><span><b>04</b>REVISÃO</span><span><b>05</b>TESTES</span><span><b>06</b>SEGURANÇA</span><span class="on"><b>07</b>ENTREGA</span></div>
     <div class="grow"></div>
-    <p>Com acompanhamento de demandas, rastreabilidade e medição de serviços por <b>UST, pontos de função ou horas técnicas</b>, conforme o contrato.</p>
-    <p class="punch">A estratégia é transformar automação em produtividade com controle.</p>` },
-
-  { cls: 'dense', html: `${k(8, 'TECNOLOGIA')}
-    <h1 style="font-size:88px">NÃO É UM ÚNICO AGENTE. <em>É UMA FÁBRICA COM FUNÇÕES ESPECIALIZADAS.</em></h1>
-    <div class="agents"><div><b>AGENTE 01</b>ARQUITETURA</div><div><b>AGENTE 02</b>PROGRAMAÇÃO</div><div><b>AGENTE 03</b>BANCO DE DADOS</div><div><b>AGENTE 04</b>QUALIDADE</div><div><b>AGENTE 05</b>SEGURANÇA</div><div><b>AGENTE 06</b>DOCUMENTAÇÃO</div></div>
-    <div class="human">REVISÃO TÉCNICA · RESPONSABILIDADE HUMANA</div>
+    <div class="steps7"><span>PLANEJAMENTO</span><span>DESENVOLVIMENTO</span><span>REVISÃO</span><span>TESTES</span><span>SEGURANÇA</span><span class="on">ENTREGA</span></div>
     <div class="grow"></div>
-    <p>Todos organizados em fluxos de trabalho, com integração entre as etapas e revisão técnica.</p>
-    <p class="punch">A visão é fazer a tecnologia trabalhar de forma coordenada, sem abrir mão da responsabilidade humana.</p>` },
+    <p class="punch">Automação com produtividade e controle.</p>` },
 
-  { cls: 'who dense tight', html: `<div class="pic"><div style="background-image:url(${FOTO})"></div></div>
+  { html: `${k(8, 'TECNOLOGIA')}
+    <h1 style="font-size:100px">NÃO É UM ÚNICO AGENTE. <em>É UMA FÁBRICA COM FUNÇÕES ESPECIALIZADAS.</em></h1>
+    <div class="grow"></div>
+    <div class="agents"><div>ARQUITETURA</div><div>PROGRAMAÇÃO</div><div>BANCO DE DADOS</div><div>QUALIDADE</div><div>SEGURANÇA</div><div>DOCUMENTAÇÃO</div></div>
+    <div class="grow"></div>
+    <p class="punch">Tecnologia coordenada, sem abrir mão da responsabilidade humana.</p>` },
+
+  { cls: 'who', html: `<div class="pic"><div style="background-image:url(${FOTO})"></div></div>
     ${k(9, 'O FUNDADOR')}
-    <h1 style="font-size:80px;margin-bottom:24px">POR TRÁS DESSA VISÃO, <em>UM JOVEM MINEIRO DE 14 ANOS.</em></h1>
-    <p>Não sou de São Paulo. Não sou do Vale do Silício. <b>Sou de Alvorada de Minas.</b></p>
-    <p>E acredito que uma grande ideia pode surgir em qualquer lugar, independentemente da idade de quem a teve.</p>
-    <p class="punch">Não quero que minha idade seja o maior destaque. Quero que a tecnologia que estou construindo fale por mim.</p>` },
+    <h1 style="font-size:88px">POR TRÁS DESSA VISÃO, <em>UM JOVEM MINEIRO DE 14 ANOS.</em></h1>
+    <p class="punch">Quero que a tecnologia que estou construindo fale por mim.</p>` },
 
-  { cls: 'dense', html: `${k(10, 'ENCERRAMENTO')}
-    <h1 style="font-size:100px">E SE A PRÓXIMA GRANDE INOVAÇÃO DO SETOR PÚBLICO VIESSE <em>DO INTERIOR DE MINAS?</em></h1>
-    <p><b>Tenho 14 anos. Uma origem simples. Uma visão ambiciosa.</b></p>
-    <p>E um projeto que pretende unir inteligência artificial, engenharia de software e transformação digital do governo.</p>
+  { html: `${k(10, 'ENCERRAMENTO')}
+    <h1 style="font-size:112px">E SE A PRÓXIMA GRANDE INOVAÇÃO DO SETOR PÚBLICO VIESSE <em>DO INTERIOR DE MINAS?</em></h1>
     <div class="grow"></div>
-    <div class="cta end"><span>DE ALVORADA DE MINAS PARA O FUTURO DA TECNOLOGIA PÚBLICA</span>V4 FÁBRICA GOV.<small>E isso é só o começo.</small></div>` },
+    <div class="cta end">V4 FÁBRICAGOV.<small>E isso é só o começo.</small></div>` },
 ];
 
 const G = '#c6ff2e';
@@ -188,15 +173,24 @@ p.punch{color:#fff;font-weight:700;border-left:5px solid ${G};padding-left:24px;
 .who.tight .pic{height:400px;margin-bottom:36px}.who.tight .pic div{background-position:center 5%}.who.tight p{font-size:31px}
 .cta.end{font-size:132px;line-height:1.05}.cta.end span{font-size:19px;letter-spacing:3px;margin-bottom:10px}
 .cta.end small{font-family:Inter;font-size:30px;font-weight:800;letter-spacing:0;color:#040404;margin-top:8px}
+
+p+p{margin-top:22px}p.punch{font-size:44px;line-height:1.22;letter-spacing:-.8px}
+.dia .box{flex-direction:column;align-items:flex-start;gap:4px;padding:20px 28px 22px}.dia .box b{font-size:46px}.dia .box span{font-size:26px}
+.dia u{line-height:44px}.row3 div{padding:20px 0;font-size:40px}
+.steps7{display:flex;flex-direction:column}.steps7 span{font-family:Anton;font-size:54px;line-height:1.28;color:#fff;padding-left:26px;border-left:4px solid #ffffff2b}
+.steps7 .on{color:${G};border-color:${G}}
+.agents div{padding:34px 22px;font-size:38px;text-align:left}
+.who .pic{height:470px}.who .pic div{background-position:center 8%}
+.cta.end{font-size:126px}
 `;
 const grain = `<svg class="grain" width="1080" height="1350"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>`;
 
 const page_html = (s, i) => `<!doctype html><meta charset="utf-8"><style>${css}</style><body class="${s.cls || ''}">
 ${s.pre || ''}<div class="glow"></div>${grain}<div class="edge"></div><main>
-<div class="top"><i></i>V4 FÁBRICA GOV<span>${String(i + 1).padStart(2, '0')}<s> / ${N}</s></span></div>
+<div class="top"><i></i>V4 FÁBRICAGOV<span>${String(i + 1).padStart(2, '0')}<s> / ${N}</s></span></div>
 <div class="body">${s.html}</div>
 <div class="bot"><img src="${AVATAR}"><div><div class="n">${NOME}</div><div class="a">${ARROBA}</div></div>
-<div class="dots">${Array.from({ length: N }, (_, j) => `<i class="${j === i ? 'on' : ''}"></i>`).join('')}</div>${i < N - 1 ? '<span class="next">ARRASTE →</span>' : ''}</div></main>`;
+${i < N - 1 ? '<span class="next" style="margin-left:auto">ARRASTE →</span>' : ''}</div></main>`;
 
 fs.mkdirSync(out, { recursive: true });
 const browser = await chromium.launch();

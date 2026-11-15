@@ -4,7 +4,7 @@ Sou de Alvorada de Minas, uma pequena cidade do interior mineiro.
 
 E foi daqui que comecei a desenvolver uma ideia que parecia grande demais: criar uma fábrica de software voltada às necessidades do setor público.
 
-Assim nasceu a visão da V4 FÁBRICA GOV.
+Assim nasceu a visão da V4 FÁBRICAGOV.
 
 Uma estrutura que utiliza metodologias, estratégias e agentes de inteligência artificial para transformar demandas em soluções tecnológicas.
 

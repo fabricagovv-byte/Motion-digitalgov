@@ -91,9 +91,9 @@ p{font-size:44px;line-height:1.26;letter-spacing:-.6px;color:#cfd4db;max-width:9
 .follow{align-self:flex-start;font-family:Anton;font-size:48px;color:#07090c;background:#c8ff2e;padding:22px 40px;border-radius:999px}
 .bot{display:flex;align-items:center;gap:22px;margin-top:40px;font-size:24px;font-weight:700;color:#a3abb5;position:relative}
 .bar{flex:1;height:6px;border-radius:3px;background:#ffffff26;overflow:hidden}.bar i{display:block;height:100%;background:#c8ff2e;width:${(i + 1) * 10}%}
-.cover .bg{position:absolute;inset:0;background-size:cover;background-position:center 20%}
-.cover .shade{position:absolute;inset:0;background:linear-gradient(180deg,#07090ccc 0,#07090c33 22%,#07090c66 42%,#07090cf2 68%,#07090c 100%)}
-.photo .pic{height:470px;margin:-20px 0 44px;border-radius:30px;background-size:cover;background-position:center 20%;border:3px solid #c8ff2e;flex:none}
+.cover .bg{position:absolute;inset:0;background-size:cover;background-position:center top}
+.cover .shade{position:absolute;inset:0;background:linear-gradient(180deg,#07090cd9 0,#07090c00 16%,#07090c00 38%,#07090ccc 52%,#07090cf7 60%,#07090c 100%)}
+.photo .pic{height:630px;margin:-20px 0 44px;border-radius:30px;background-size:cover;background-position:center 6%;border:3px solid #c8ff2e;flex:none}
 </style><body class="${s.cls || ''}">${s.cls === 'cover' ? s.html.split('<div class="grow">')[0] : ''}<main>
 <div class="top"><img src="data:image/png;base64,${b64('avatar.png')}"><div><div class="n">${NOME}</div><div class="a">${ARROBA}</div></div><div class="c">${String(i + 1).padStart(2, '0')}/10</div></div>
 <div class="body">${s.cls === 'cover' ? '<div class="grow">' + s.html.split('<div class="grow">')[1] : s.html}</div>

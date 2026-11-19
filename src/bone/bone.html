@@ -1,0 +1,287 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:#e9e7e3;overflow:hidden}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+</head><body>
+<script type="module">
+// Mockup fotorrealista de boné DigitalGov (6 gomos, aba curva, logo bordada em relevo).
+// Parâmetros via URL: ?cor=branco|marinho&vista=frente34|lado|frente|tras
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const P = new URLSearchParams(location.search);
+// modelo: americano (6 gomos, aba curva) | trucker (frente espuma + tela) | abareta (snapback aba reta) | dad (desestruturado, baixo)
+const MOD = P.get('modelo') || 'americano';
+const COR = P.get('cor') || ({ americano: 'branco', trucker: 'marinho', abareta: 'marinho', dad: 'areia' }[MOD]), VISTA = P.get('vista') || 'frente34';
+const DARK = COR === 'marinho';
+const FAB = { marinho: '#1d2742', branco: '#efeee9', areia: '#d9cfb8' }[COR];
+const FAB_DARK = { marinho: '#141b30', branco: '#d9d7d0', areia: '#c3b89f' }[COR];
+const THREAD_SEAM = { marinho: '#18213a', branco: '#e2e0da', areia: '#cbbfa6' }[COR];
+const FRONT_FAB = MOD === 'trucker' ? '#f1f0ec' : FAB;           // trucker: frente branca em espuma
+const LOGO_DARK = MOD === 'trucker' ? false : DARK;               // fundo da logo é escuro?
+const W = innerWidth, H = innerHeight;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(devicePixelRatio); renderer.setSize(W, H);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = DARK ? 1.2 : 0.85;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const pm = new THREE.PMREMGenerator(renderer);
+scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.45;
+
+// fundo: gradiente de estúdio
+{ const c = document.createElement('canvas'); c.width = 16; c.height = 512; const g = c.getContext('2d');
+  const gr = g.createLinearGradient(0, 0, 0, 512); gr.addColorStop(0, '#f4f3f0'); gr.addColorStop(0.62, '#e4e2dd'); gr.addColorStop(1, '#d3d0ca');
+  g.fillStyle = gr; g.fillRect(0, 0, 16, 512); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; scene.background = t; }
+
+// ---------- utilidades de textura ----------
+const rnd = (() => { let s = 1234567; return () => ((s = (s * 16807) % 2147483647) / 2147483647); })();
+function canvas(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return [c, c.getContext('2d')]; }
+function heightToNormal(hc, strength) {
+  const w = hc.width, h = hc.height, src = hc.getContext('2d').getImageData(0, 0, w, h).data;
+  const [nc, ng] = canvas(w, h); const img = ng.createImageData(w, h), d = img.data;
+  const H = (x, y) => src[(((y + h) % h) * w + ((x + w) % w)) * 4] / 255;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const dx = (H(x + 1, y) - H(x - 1, y)) * strength, dy = (H(x, y + 1) - H(x, y - 1)) * strength;
+    const l = Math.hypot(dx, dy, 1), i = (y * w + x) * 4;
+    d[i] = (-dx / l * 0.5 + 0.5) * 255; d[i + 1] = (dy / l * 0.5 + 0.5) * 255; d[i + 2] = (1 / l * 0.5 + 0.5) * 255; d[i + 3] = 255;
+  }
+  ng.putImageData(img, 0, 0); return nc;
+}
+function tex(c, srgb, rep) { const t = new THREE.CanvasTexture(c); if (srgb) t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = 8; if (rep) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rep[0], rep[1]); } return t; }
+
+// sarja de algodão (relevo diagonal repetível)
+function twill() {
+  const N = 256; const [c, g] = canvas(N, N); g.fillStyle = '#808080'; g.fillRect(0, 0, N, N);
+  const img = g.getImageData(0, 0, N, N), d = img.data;
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+    const p = ((x + y * 2) % 16) / 16; const rib = Math.pow(Math.sin(p * Math.PI), 0.7);
+    const weft = 0.5 + 0.5 * Math.sin(x * Math.PI * 2 / 8) * 0.25;
+    const v = 70 + rib * 120 * weft + (rnd() - 0.5) * 30, i = (y * N + x) * 4; d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255;
+  }
+  g.putImageData(img, 0, 0); return heightToNormal(c, 2.2);
+}
+const twillN = twill();
+
+// ---------- carregamento das logos ----------
+const load = (u) => new Promise((r) => { const i = new Image(); i.onload = () => r(i); i.src = u; });
+const [logo, icone] = await Promise.all([load(LOGO_DARK ? '/build/bone/logo_rgba_branca.png' : '/build/bone/logo_rgba.png'), load('/build/bone/icone_rgba.png')]);
+
+// Bordado: cor com fios em cetim (direção varia por região) + mapa de relevo (puff leve)
+function embroidery(img, outW, padFrac = 0.04) {
+  const s = outW / img.width, w = Math.round(img.width * s), h = Math.round(img.height * s);
+  const pad = Math.round(w * padFrac), cw = w + pad * 2, ch = h + pad * 2;
+  const [c, g] = canvas(cw, ch); g.drawImage(img, pad, pad, w, h);
+  const base = g.getImageData(0, 0, cw, ch), bd = base.data;
+  // altura: alpha borrado (pontos de cetim arredondados)
+  const [hc, hg] = canvas(cw, ch); hg.filter = `blur(${Math.max(1, w / 900)}px)`; hg.drawImage(c, 0, 0);
+  const hd = hg.getImageData(0, 0, cw, ch);
+  const [oc, og] = canvas(cw, ch); const oi = og.createImageData(cw, ch), od = oi.data;
+  const hgt = new Uint8ClampedArray(cw * ch * 4);
+  const T = Math.max(3, w / 420); // espessura do fio em px
+  for (let y = 0; y < ch; y++) for (let x = 0; x < cw; x++) {
+    const i = (y * cw + x) * 4, a = bd[i + 3] / 255; if (a <= 0.01) { hgt[i + 3] = 255; continue; }
+    // direção do ponto: muda por blocos de cor para imitar preenchimento real
+    const hue = (bd[i] * 3 + bd[i + 1] * 5 + bd[i + 2] * 7) % 4;
+    const ang = [0.78, -0.78, 0.35, -0.35][hue];
+    const u = (x * Math.cos(ang) + y * Math.sin(ang)) / T;
+    const fr = u - Math.floor(u), thread = Math.pow(Math.sin(fr * Math.PI), 0.55);
+    const along = (-x * Math.sin(ang) + y * Math.cos(ang)) / (T * 9); const brk = Math.abs((along + Math.floor(u) * 0.37) % 1);
+    const gap = brk < 0.06 ? 0.55 : 1;
+    const sheen = 0.78 + 0.32 * thread * gap;
+    od[i] = Math.min(255, bd[i] * sheen + 8 * thread); od[i + 1] = Math.min(255, bd[i + 1] * sheen + 8 * thread); od[i + 2] = Math.min(255, bd[i + 2] * sheen + 8 * thread);
+    od[i + 3] = bd[i + 3];
+    const hb = hd.data[i + 3] / 255; const v = (hb * 0.75 + thread * gap * 0.25 * a) * 255;
+    hgt[i] = hgt[i + 1] = hgt[i + 2] = v; hgt[i + 3] = 255;
+  }
+  og.putImageData(oi, 0, 0);
+  const [hc2, hg2] = canvas(cw, ch); hg2.putImageData(new ImageData(hgt, cw, ch), 0, 0);
+  return { color: oc, normal: heightToNormal(hc2, 3.0), aspect: cw / ch };
+}
+const embLogo = embroidery(logo, 2400), embIcon = embroidery(icone, 900, 0.08);
+
+// ---------- geometria da copa (6 gomos, estruturada) ----------
+const RX = 0.97, RZ = 1.12, HT = { americano: 1.02, trucker: 1.12, abareta: 1.14, dad: 0.84 }[MOD];
+const FULL = { americano: 0.06, trucker: 0.1, abareta: 0.13, dad: -0.02 }[MOD], WOB = MOD === 'dad' ? 2.6 : 1;
+function crownPoint(th, al, out = new THREE.Vector3()) {
+  // th: azimute (π/2 = frente/+z), al: 0 topo … π/2 borda
+  const front = Math.max(0, Math.sin(th)), back = Math.max(0, -Math.sin(th));
+  const sa = Math.pow(Math.sin(al), 0.78), ca = Math.pow(Math.cos(al), 0.85);
+  let s = sa + (FULL * front - 0.03 * back) * Math.sin(2 * al);       // frente estruturada mais "cheia"
+  const panel = Math.pow(Math.sin(3 * (th + Math.PI / 2)), 2);        // gomos estufam entre as costuras
+  s *= 1 + 0.016 * panel * sa;
+  // pequenas ondulações de tecido
+  const wob = WOB * 0.006 * Math.sin(th * 7 + al * 5) * Math.sin(al * 3) + WOB * 0.004 * Math.sin(th * 13 - al * 9) * sa + (MOD === 'dad' ? 0.012 * front * Math.sin(al * 2) * Math.sin(th * 3) : 0);
+  s += wob;
+  const hy = HT * 0.92 * ca * (1 + (0.06 * front - 0.16 * back) * Math.pow(Math.sin(al), 1.5));
+  return out.set(RX * Math.cos(th) * s, hy, RZ * Math.sin(th) * s);
+}
+function paramGeo(fn, nu, nv, uvfn, skip) {
+  const pos = [], uv = [], idx = [], p = new THREE.Vector3();
+  for (let j = 0; j <= nv; j++) for (let i = 0; i <= nu; i++) {
+    const u = i / nu, v = j / nv; fn(u, v, p); pos.push(p.x, p.y, p.z); const t = uvfn ? uvfn(u, v, p) : [u, v]; uv.push(t[0], t[1]);
+  }
+  for (let j = 0; j < nv; j++) for (let i = 0; i < nu; i++) { if (skip && skip((i + 0.5) / nu, (j + 0.5) / nv)) continue; const a = j * (nu + 1) + i, b = a + 1, c = a + nu + 1, d = c + 1; idx.push(a, c, b, b, c, d); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals(); return g;
+}
+// abertura traseira em arco (snapback)
+const ARCW = 0.36, ARCH = 0.5;
+const archEdge = (dth) => Math.PI / 2 - ARCH * Math.sqrt(Math.max(0, 1 - (dth / ARCW) ** 2));
+const backD = (th) => { let d = th + Math.PI / 2; d = ((d + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI; return d; };
+const CU = (u) => u * Math.PI * 2 - Math.PI / 2, CV = (v) => 0.004 + v * (Math.PI / 2 - 0.004);
+const crownGeo = paramGeo((u, v, p) => crownPoint(CU(u), CV(v), p), 720, 200, null,
+  (u, v) => { const d = backD(CU(u)); return Math.abs(d) < ARCW && CV(v) > archEdge(d); });
+
+// textura de cor da copa: costuras dos gomos com pesponto duplo + ilhoses
+const SEAMS = [0, 1, 2, 3, 4, 5].map((k) => (k / 6)); // u (u=0.5 → frente central)
+function crownTextures() {
+  const Wd = 4096, Hd = 1024; const [c, g] = canvas(Wd, Hd); g.fillStyle = FAB; g.fillRect(0, 0, Wd, Hd);
+  // leve variação/manchado de tecido
+  for (let k = 0; k < 9000; k++) { g.fillStyle = `rgba(${DARK ? '255,255,255' : '0,0,0'},${rnd() * 0.018})`; g.fillRect(rnd() * Wd, rnd() * Hd, 2 + rnd() * 30, 1 + rnd() * 3); }
+  const [hc, hg] = canvas(Wd, Hd); hg.fillStyle = '#808080'; hg.fillRect(0, 0, Wd, Hd);
+  if (MOD === 'trucker') {
+    // gomos traseiros em tela (malha hexagonal) e frente em espuma lisa
+    for (let y = 0; y < Hd; y += 14) for (let x = (y / 14) % 2 ? 7 : 0; x < Wd; x += 14) {
+      if (x > Wd / 3 && x < Wd * 2 / 3) continue;
+      g.fillStyle = '#05070d'; g.beginPath(); g.ellipse(x, y, 4.6, 4.2, 0, 0, 7); g.fill();
+      hg.fillStyle = '#000'; hg.beginPath(); hg.ellipse(x, y, 4.6, 4.2, 0, 0, 7); hg.fill(); }
+    g.fillStyle = FRONT_FAB; g.fillRect(Wd / 3, 0, Wd / 3, Hd); hg.fillStyle = '#808080'; hg.fillRect(Wd / 3, 0, Wd / 3, Hd);
+  }
+  // sombreado de pesponto junto à faixa da borda
+  for (const s0 of [...SEAMS, 1].filter((v) => !(MOD === 'trucker' && v === 0.5))) {
+    const x = s0 * Wd;
+    const gr = g.createLinearGradient(x - 26, 0, x + 26, 0); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(0.5, `rgba(0,0,0,${DARK ? 0.35 : 0.16})`); gr.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = gr; g.fillRect(x - 26, 0, 52, Hd);
+    const hr = hg.createLinearGradient(x - 22, 0, x + 22, 0); hr.addColorStop(0, '#9a9a9a'); hr.addColorStop(0.45, '#bdbdbd'); hr.addColorStop(0.5, '#202020'); hr.addColorStop(0.55, '#bdbdbd'); hr.addColorStop(1, '#9a9a9a');
+    hg.fillStyle = hr; hg.fillRect(x - 22, 0, 44, Hd);
+    // pespontos (dois lados da costura)
+    for (const off of [-15, 15]) for (let y = 30; y < Hd - 6; y += 13) {
+      g.fillStyle = THREAD_SEAM; g.fillRect(x + off - 1.5, y, 3, 8); hg.fillStyle = '#e0e0e0'; hg.fillRect(x + off - 1.5, y, 3, 8);
+    }
+  }
+  // ilhoses nos 4 gomos laterais/traseiros (não nos frontais)
+  for (const k of (MOD === 'trucker' ? [] : [0, 1, 4, 5])) {
+    const x = (SEAMS[k] + 1 / 12) * Wd, y = Hd * 0.2;
+    g.fillStyle = FAB_DARK; g.beginPath(); g.arc(x, y, 30, 0, 7); g.fill();
+    g.fillStyle = '#0c0c0c'; g.beginPath(); g.arc(x, y, 12, 0, 7); g.fill();
+    g.strokeStyle = THREAD_SEAM; g.lineWidth = 3; for (let a = 0; a < 6.28; a += 0.22) { g.beginPath(); g.moveTo(x + Math.cos(a) * 14, y + Math.sin(a) * 14); g.lineTo(x + Math.cos(a) * 27, y + Math.sin(a) * 27); g.stroke(); }
+    hg.fillStyle = '#e8e8e8'; hg.beginPath(); hg.arc(x, y, 30, 0, 7); hg.fill(); hg.fillStyle = '#000'; hg.beginPath(); hg.arc(x, y, 12, 0, 7); hg.fill();
+  }
+  // faixa inferior (fita interna aparente na borda)
+  g.fillStyle = `rgba(0,0,0,${DARK ? 0.25 : 0.08})`; g.fillRect(0, Hd - 10, Wd, 10);
+  return { color: c, normal: heightToNormal(hc, 1.6) };
+}
+const ct = crownTextures();
+
+// material de tecido: cor + sarja (detail) somadas via onBeforeCompile
+function fabricMat(colorCanvas, normalCanvas, opts = {}) {
+  const m = new THREE.MeshPhysicalMaterial({ map: tex(colorCanvas, true), normalMap: tex(normalCanvas, false), normalScale: new THREE.Vector2(0.9, 0.9),
+    roughness: 0.93, sheen: 1.0, sheenRoughness: 0.55, sheenColor: new THREE.Color(DARK ? '#5d6e9c' : '#ffffff'), side: opts.side ?? THREE.FrontSide });
+  const tw = tex(twillN, false, opts.rep || [64, 18]);
+  m.onBeforeCompile = (sh) => {
+    sh.uniforms.twMap = { value: tw }; sh.uniforms.twRep = { value: new THREE.Vector2(...(opts.rep || [64, 18])) };
+    sh.fragmentShader = 'uniform sampler2D twMap; uniform vec2 twRep;\n' + sh.fragmentShader.replace('#include <normal_fragment_maps>',
+      `vec3 mapN = texture2D( normalMap, vNormalMapUv ).xyz * 2.0 - 1.0; mapN.xy *= normalScale;
+       vec3 twN = texture2D( twMap, vNormalMapUv * twRep ).xyz * 2.0 - 1.0; twN.xy *= 1.1;
+       mapN = normalize(vec3(mapN.xy + twN.xy, mapN.z));
+       normal = normalize( tbn * mapN );`);
+  };
+  return m;
+}
+
+const cap = new THREE.Group(); scene.add(cap);
+const crownMat = fabricMat(ct.color, ct.normal, { rep: [70, 16] });
+const crown = new THREE.Mesh(crownGeo, crownMat); crown.castShadow = true; crown.receiveShadow = true; cap.add(crown);
+// interior (forro com fita de suor)
+const inner = new THREE.Mesh(crownGeo, new THREE.MeshStandardMaterial({ color: DARK ? '#0f1424' : '#bdb9b0', roughness: 0.95, side: THREE.BackSide }));
+inner.scale.setScalar(0.992); cap.add(inner);
+// botão do topo
+const btn = new THREE.Mesh(new THREE.SphereGeometry(0.07, 48, 24), crownMat.clone()); btn.material.map = null; btn.material.color.set(FAB);
+btn.scale.set(1, 0.42, 1); btn.position.set(0, HT * 0.92 + 0.008, 0.0); btn.castShadow = true; cap.add(btn);
+
+// ---------- bordados (decalques ajustados à superfície) ----------
+function decal(emb, thC, alC, widthRad, heightAl, lift = 0.006) {
+  // gera uma malha que segue a copa na região [thC±w/2] × [alC±h/2], com UV planar
+  const geo = paramGeo((u, v, p) => {
+    const th = thC + widthRad / 2 - u * widthRad, al = alC - heightAl / 2 + (1 - v) * heightAl; crownPoint(th, al, p);
+    const n = p.clone().normalize(); p.addScaledVector(n, lift);
+  }, 160, 60);
+  const m = new THREE.MeshPhysicalMaterial({ map: tex(emb.color, true), normalMap: tex(emb.normal, false), normalScale: new THREE.Vector2(2.2, 2.2),
+    transparent: true, alphaTest: 0.35, roughness: 0.42, sheen: 0.25, sheenRoughness: 0.35, sheenColor: new THREE.Color('#ffffff'), envMapIntensity: 0.6,
+    polygonOffset: true, polygonOffsetFactor: -4, side: THREE.DoubleSide });
+  const mesh = new THREE.Mesh(geo, m); mesh.castShadow = false; mesh.receiveShadow = true; return mesh;
+}
+// logo frontal: largura angular escolhida para proporção correta no arco frontal
+{ const wRad = MOD === 'dad' ? 1.0 : 1.34, hAl = wRad * (RX * 0.9) / embLogo.aspect / (HT * 1.02);
+  cap.add(decal(embLogo, Math.PI / 2, 1.0, wRad, hAl * 1.02)); }
+// ícone "D" na lateral esquerda
+{ const wRad = 0.36; cap.add(decal(embIcon, Math.PI / 2 + 1.25, 0.98, wRad, wRad * 1.0 / embIcon.aspect * 1.05)); }
+
+// ---------- aba curva ----------
+const BSPAN = 1.1, BR0 = Math.PI / 2 - BSPAN, BR1 = Math.PI / 2 + BSPAN, BL = { americano: 0.82, trucker: 0.84, abareta: 0.9, dad: 0.74 }[MOD];
+const BCURVE = { americano: 0.42, trucker: 0.4, abareta: 0.0, dad: 0.55 }[MOD], BSLOPE = MOD === 'abareta' ? 0.0 : 0.06;
+function brimPoint(u, t, y0, out) {
+  const th = BR0 + u * (BR1 - BR0), sf = (th - Math.PI / 2) / BSPAN;
+  const L = BL * Math.pow(Math.max(0, Math.cos(sf * Math.PI / 2)), 0.42);
+  const rim = crownPoint(th, Math.PI / 2); const dir = new THREE.Vector3(rim.x, 0, rim.z).normalize();
+  const d = t * L;
+  const x = rim.x + dir.x * d * 1.08, z = rim.z + dir.z * d;
+  const fade = Math.min(1, d / 0.3);
+  const y = -BSLOPE * d - BCURVE * x * x * fade + y0;                  // curvatura pré-moldada
+  return out.set(x, y, z);
+}
+function brimTextures(top) {
+  const Wd = 2048, Hd = 1024; const [c, g] = canvas(Wd, Hd); g.fillStyle = top ? FAB : (MOD === 'abareta' ? '#2f4a33' : DARK ? '#3c4a6e' : '#4d5a76'); g.fillRect(0, 0, Wd, Hd);
+  const [hc, hg] = canvas(Wd, Hd); hg.fillStyle = '#808080'; hg.fillRect(0, 0, Wd, Hd);
+  if (top) for (let r = 0; r < (MOD === 'abareta' ? 8 : MOD === 'dad' ? 4 : 7); r++) { const y = Hd * (0.36 + r * 0.092); // pespontos paralelos seguindo o contorno
+    for (let x = 0; x < Wd; x += 15) { g.fillStyle = THREAD_SEAM; g.fillRect(x, y - 2, 10, 4); hg.fillStyle = '#5a5a5a'; hg.fillRect(x, y - 3, 10, 6); } }
+  return { color: c, normal: heightToNormal(hc, 1.2) };
+}
+const bt = brimTextures(true), bb = brimTextures(false);
+const TH = 0.026;
+const brimTop = new THREE.Mesh(paramGeo((u, t, p) => brimPoint(u, t, 0, p), 200, 80), fabricMat(bt.color, bt.normal, { rep: [40, 20] }));
+const brimBot = new THREE.Mesh(paramGeo((u, t, p) => brimPoint(u, t, -TH, p), 200, 80), fabricMat(bb.color, bb.normal, { rep: [40, 20], side: THREE.BackSide }));
+const brimEdge = new THREE.Mesh(paramGeo((u, v, p) => brimPoint(u, 1, -TH * v, p), 200, 4), crownMat);
+for (const m of [brimTop, brimBot, brimEdge]) { m.castShadow = true; m.receiveShadow = true; m.material.side = THREE.DoubleSide; cap.add(m); }
+
+// ---------- ajuste traseiro (snapback) ----------
+{ const plast = MOD === 'dad' ? new THREE.MeshPhysicalMaterial({ color: '#b08d4a', metalness: 1, roughness: 0.3 }) : new THREE.MeshPhysicalMaterial({ color: DARK ? '#10152a' : '#1f2a4d', roughness: 0.35, clearcoat: 0.4 });
+  // viés (acabamento) contornando o arco
+  const pts = []; for (let k = 0; k <= 60; k++) { const d = -ARCW + (2 * ARCW * k) / 60; const p = crownPoint(-Math.PI / 2 + d, Math.min(archEdge(d), Math.PI / 2 - 0.001)); p.multiplyScalar(1.004); pts.push(p); }
+  const bind = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 160, 0.016, 10), crownMat); bind.castShadow = true; cap.add(bind);
+  // tiras plásticas sobrepostas com pinos
+  const strap = (d0, d1, lift, studs, mat = plast) => {
+    const g = paramGeo((u, v, p) => { const d = d0 + u * (d1 - d0), al = Math.PI / 2 - 0.012 - v * 0.085; crownPoint(-Math.PI / 2 + d, al, p); p.addScaledVector(new THREE.Vector3(p.x, 0, p.z).normalize(), lift); }, 60, 4);
+    const m = new THREE.Mesh(g, mat); m.material.side = THREE.DoubleSide; m.castShadow = true; cap.add(m);
+    if (studs) for (let k = 0; k < 7; k++) { const d = d0 + (k + 0.5) / 7 * (d1 - d0); const p = crownPoint(-Math.PI / 2 + d, Math.PI / 2 - 0.055);
+      const n = new THREE.Vector3(p.x, 0, p.z).normalize(); const c = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.016, 0.02, 20), plast);
+      c.position.copy(p).addScaledVector(n, lift + 0.01); c.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), n); cap.add(c); }
+  };
+  if (MOD === 'dad') { const fm = new THREE.MeshStandardMaterial({ color: FAB_DARK, roughness: 0.9 }); strap(-ARCW - 0.04, 0.12, 0.012, false, fm); strap(-0.02, ARCW + 0.04, 0.022, false, fm); strap(0.06, 0.13, 0.034, false); } else { strap(-ARCW - 0.05, 0.2, 0.012, true); strap(-0.05, ARCW + 0.05, 0.026, false); }
+}
+
+// ---------- chão, luzes ----------
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.ShadowMaterial({ opacity: 0.22 }));
+ground.rotation.x = -Math.PI / 2; ground.position.y = -0.62; ground.receiveShadow = true; scene.add(ground);
+const key = new THREE.DirectionalLight('#fff6ec', 3.0); key.position.set(3.2, 6, 4.5); key.castShadow = true;
+key.shadow.mapSize.set(4096, 4096); key.shadow.radius = 9; key.shadow.blurSamples = 24; key.shadow.bias = -0.0004; key.shadow.normalBias = 0.01;
+Object.assign(key.shadow.camera, { left: -3, right: 3, top: 3, bottom: -3, near: 0.5, far: 20 }); scene.add(key);
+const rim = new THREE.DirectionalLight('#dfe8ff', 1.1); rim.position.set(-4, 3, -3); scene.add(rim);
+const fill = new THREE.DirectionalLight('#ffffff', 0.45); fill.position.set(-3, 1, 4); scene.add(fill);
+
+// boné apoiado: leve inclinação para frente (aba encosta)
+cap.rotation.x = -0.02; cap.updateMatrixWorld(true);
+{ const bb = new THREE.Box3().setFromObject(cap); cap.position.y = -0.62 - bb.min.y + 0.002; }
+
+// ---------- câmera ----------
+const cam = new THREE.PerspectiveCamera(26, W / H, 0.1, 50);
+const V = { frente34: [3.0, 1.75, 6.4, -0.05], lado: [-6.2, 1.0, 1.0, 0.1], frente: [0, 1.0, 6.4, 0.18], tras: [-2.6, 2.0, -5.6, 0.25] }[VISTA];
+cam.position.set(V[0], V[1], V[2]); cam.lookAt(0, V[3], 0.35);
+renderer.render(scene, cam);
+window.__ready = true;
+</script></body></html>

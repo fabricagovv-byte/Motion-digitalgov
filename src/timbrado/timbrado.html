@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Papel Timbrado DigitalGov</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root { --navy: #14204a; --navy2: #1f2a4d; --azul: #0b4ea2; --ciano: #0090e0; --tinta: #1d3f8f; --texto: #1c2233; --cinza: #6a7183; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; color: var(--texto); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .folha { position: relative; width: 210mm; height: 297mm; overflow: hidden; background: #fff; }
+
+  /* ---------- cabeçalho ---------- */
+  .topo { position: absolute; left: 0; right: 0; top: 0; height: 38mm; }
+  .faixa { position: absolute; left: 0; right: 0; top: 0; height: 9mm; background: var(--navy); }
+  .faixa::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 92mm;
+    background: repeating-linear-gradient(-55deg, transparent 0 2.2mm, rgba(255,255,255,.95) 2.2mm 2.75mm, transparent 2.75mm 4.4mm, rgba(0,144,224,.9) 4.4mm 4.95mm);
+    -webkit-mask: linear-gradient(90deg, transparent, #000 30%); mask: linear-gradient(90deg, transparent, #000 30%); }
+  .filete { position: absolute; left: 0; right: 0; top: 9mm; height: 1.1mm; background: linear-gradient(90deg, var(--azul), var(--ciano)); }
+  .filete2 { position: absolute; left: 0; right: 0; top: 10.6mm; height: .35mm; background: var(--navy); opacity: .9; }
+  .logo { position: absolute; left: 18mm; top: 16mm; height: 16mm; }
+  .ident { position: absolute; right: 18mm; top: 16.5mm; text-align: right; font-size: 7.4pt; line-height: 1.55; color: var(--cinza); letter-spacing: .01em; }
+  .ident b { display: block; color: var(--navy); font-size: 8.2pt; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .6mm; }
+  .regua { position: absolute; left: 18mm; right: 18mm; top: 36mm; height: .3mm; background: #d5d9e3; }
+
+  /* lateral: listras verticais discretas */
+  .lateral { position: absolute; left: 0; top: 60mm; bottom: 60mm; width: 3.6mm;
+    background: repeating-linear-gradient(180deg, var(--navy) 0 14mm, #fff 14mm 15mm, var(--azul) 15mm 18mm, #fff 18mm 19mm); opacity: .95; }
+
+  /* marca d'água */
+  .agua { position: absolute; right: -28mm; bottom: 34mm; width: 120mm; opacity: .035; filter: grayscale(1); }
+
+  /* ---------- corpo (modelo de ofício) ---------- */
+  .corpo { position: absolute; left: 25mm; right: 20mm; top: 48mm; font-size: 10.4pt; line-height: 1.62; }
+  .ref { display: flex; justify-content: space-between; font-size: 9pt; color: var(--cinza); margin-bottom: 9mm; }
+  .ref strong { color: var(--navy); font-weight: 700; letter-spacing: .03em; }
+  .dest { margin-bottom: 7mm; font-size: 10pt; }
+  .assunto { font-weight: 700; color: var(--navy); margin-bottom: 6mm; letter-spacing: .01em; }
+  .corpo p { margin-bottom: 4mm; text-align: justify; hyphens: auto; }
+  .ph { color: #8a90a0; }
+
+  /* ---------- assinatura + carimbo ---------- */
+  .assin { position: absolute; left: 25mm; top: 196mm; width: 82mm; }
+  .assin .linha { height: .3mm; background: var(--navy2); margin: 15mm 0 2mm; }
+  .assin .nome { font-weight: 700; color: var(--navy); font-size: 10pt; }
+  .assin .cargo { font-size: 8.6pt; color: var(--cinza); }
+  .carimbo { position: absolute; left: 118mm; top: 182mm; width: 58mm; height: 58mm; transform: rotate(-9deg); mix-blend-mode: multiply; }
+
+  .selo-dig { position: absolute; left: 25mm; right: 20mm; top: 238mm; display: flex; gap: 4mm; align-items: center;
+    border: .3mm solid #cfd6e6; border-left: 1.6mm solid var(--azul); padding: 2.6mm 4mm; font-size: 7.6pt; color: #4b5266; background: #f6f8fc; }
+  .selo-dig svg { flex: none; }
+  .selo-dig b { color: var(--navy); }
+
+  /* ---------- rodapé ---------- */
+  .rodape { position: absolute; left: 0; right: 0; bottom: 0; height: 26mm; }
+  .rodape .info { position: absolute; left: 18mm; right: 18mm; top: 0; display: flex; justify-content: space-between; align-items: flex-end; font-size: 7.2pt; color: var(--cinza); line-height: 1.5; }
+  .rodape .info b { color: var(--navy); }
+  .rodape .barra { position: absolute; left: 0; right: 0; bottom: 0; height: 7mm; background: var(--navy); }
+  .rodape .barra::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 70mm;
+    background: repeating-linear-gradient(55deg, transparent 0 2.2mm, rgba(255,255,255,.95) 2.2mm 2.75mm, transparent 2.75mm 4.4mm, rgba(0,144,224,.9) 4.4mm 4.95mm);
+    -webkit-mask: linear-gradient(90deg, #000 60%, transparent); mask: linear-gradient(90deg, #000 60%, transparent); }
+  .rodape .fil { position: absolute; left: 0; right: 0; bottom: 7mm; height: 1.1mm; background: linear-gradient(90deg, var(--ciano), var(--azul)); }
+  .rodape .site { position: absolute; right: 18mm; bottom: 1.6mm; color: #fff; font-size: 7.4pt; font-weight: 600; letter-spacing: .14em; }
+</style></head>
+<body>
+<div class="folha">
+  <div class="topo">
+    <div class="faixa"></div><div class="filete"></div><div class="filete2"></div>
+    <img class="logo" src="/build/bone/logo_rgba.png" alt="DigitalGov">
+    <div class="ident"><b>DigitalGov Tecnologia da Informação Ltda.</b>CNPJ 24.361.188/0001-61<br>Rua Professor Sebastião Carvalho, 252 · Centro<br>Alvorada de Minas · MG · CEP 39140-000</div>
+    <div class="regua"></div>
+  </div>
+  <div class="lateral"></div>
+  <img class="agua" src="/build/bone/icone_rgba.png" alt="">
+
+  <div class="corpo">
+    <div class="ref"><span><strong>OFÍCIO Nº 000/2026</strong> · DG/DIR</span><span>Alvorada de Minas, 19 de novembro de 2026.</span></div>
+    <div class="dest">A Sua Senhoria<br><span class="ph">[Nome do destinatário]</span><br><span class="ph">[Cargo · Órgão / Empresa]</span></div>
+    <div class="assunto">Assunto: <span class="ph" style="font-weight:600">[Descrever o assunto do documento]</span></div>
+    <p>Prezado(a) Senhor(a),</p>
+    <p>Cumprimentando-o(a) cordialmente, a <b>DigitalGov Tecnologia da Informação Ltda.</b> vem, por meio deste, <span class="ph">[apresentar o conteúdo principal do documento, com a solicitação, informação ou proposta a ser comunicada ao destinatário].</span></p>
+    <p><span class="ph">[Segundo parágrafo: detalhamento técnico, prazos, condições ou referências a contratos, processos e anexos pertinentes.]</span></p>
+    <p>Colocamo-nos à disposição para quaisquer esclarecimentos adicionais.</p>
+    <p>Atenciosamente,</p>
+  </div>
+
+  <div class="assin"><div class="linha"></div><div class="nome">DigitalGov Tecnologia da Informação Ltda.</div><div class="cargo">Diretoria · CNPJ 24.361.188/0001-61</div></div>
+
+  <!-- carimbo (tinta azul, textura de impressão real) -->
+  <svg class="carimbo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="tinta" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="7" result="ruido"/>
+        <feColorMatrix in="ruido" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.25 1.38" result="falhas"/>
+        <feComposite in="SourceGraphic" in2="falhas" operator="in" result="tinta1"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="onda"/>
+        <feDisplacementMap in="tinta1" in2="onda" scale="1.4"/>
+      </filter>
+      <path id="arcoSup" d="M 100,100 m -74,0 a 74,74 0 1,1 148,0"/>
+      <path id="arcoInf" d="M 100,100 m -80,0 a 80,80 0 0,0 160,0"/>
+    </defs>
+    <g filter="url(#tinta)" fill="none" stroke="#1d3f8f" opacity=".88">
+      <circle cx="100" cy="100" r="95" stroke-width="3.2"/>
+      <circle cx="100" cy="100" r="89" stroke-width="1.1"/>
+      <circle cx="100" cy="100" r="58" stroke-width="1.6"/>
+      <circle cx="100" cy="100" r="54.5" stroke-width=".7"/>
+      <g fill="#1d3f8f" stroke="none" font-family="Inter, Arial, sans-serif" font-weight="800">
+        <text font-size="15.5" letter-spacing="2.6"><textPath href="#arcoSup" startOffset="50%" text-anchor="middle">GRUPO DIGITALGOV</textPath></text>
+        <text font-size="9.6" letter-spacing="2.1" font-weight="700"><textPath href="#arcoInf" startOffset="50%" text-anchor="middle">TECNOLOGIA DA INFORMAÇÃO</textPath></text>
+        <text x="21" y="104" font-size="11">★</text><text x="167" y="104" font-size="11">★</text>
+        <rect x="30" y="86" width="140" height="28" fill="#1d3f8f"/>
+        <text x="100" y="99" font-size="11.2" text-anchor="middle" fill="#fff" letter-spacing="1.2">DOCUMENTO</text>
+        <text x="100" y="110.5" font-size="11.2" text-anchor="middle" fill="#fff" letter-spacing="1.2">ASSINADO</text>
+        <text x="100" y="80" font-size="5.6" text-anchor="middle" font-weight="700" letter-spacing="1">CNPJ 24.361.188/0001-61</text>
+        <text x="100" y="129" font-size="9" text-anchor="middle" font-weight="700" letter-spacing="1.4">19 / 11 / 2026</text>
+        <text x="100" y="138" font-size="5" text-anchor="middle" font-weight="600" letter-spacing=".5">ALVORADA DE MINAS · MG</text>
+      </g>
+    </g>
+  </svg>
+
+  <div class="selo-dig">
+    <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#0b4ea2"/><path d="M7 12.4l3.2 3.1L17.2 8.6" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div><b>Documento assinado pelo Grupo DigitalGov</b> · CNPJ 24.361.188/0001-61<br>Data da assinatura: 19/11/2026 · Código do documento: <b>DG-OF-000/2026</b></div>
+  </div>
+
+  <div class="rodape">
+    <div class="info">
+      <div><b>DIGITALGOV</b> · Tecnologia a serviço da sua empresa<br>Desenvolvimento de software · Gestão eletrônica de documentos · Digitalização</div>
+      <div style="text-align:right">Rua Professor Sebastião Carvalho, 252 · Centro<br>Alvorada de Minas · MG · CEP 39140-000</div>
+    </div>
+    <div class="fil"></div><div class="barra"><span class="site">DIGITALGOV</span></div>
+  </div>
+</div>
+<script>if (new URLSearchParams(location.search).get('vazio')) for (const c of ['.corpo', '.assin', '.carimbo', '.selo-dig']) document.querySelector(c).remove();
+window.__ready = document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.complete ? 1 : new Promise((r) => (i.onload = i.onerror = r))))).then(() => (window.__ok = true));</script>
+</body></html>

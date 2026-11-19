@@ -7,9 +7,9 @@ const MIME = { '.html': 'text/html', '.png': 'image/png' };
 const server = http.createServer((req, res) => { const p = path.join(ROOT, decodeURIComponent(new URL(req.url, 'http://x').pathname));
   fs.readFile(p, (e, d) => { if (e) { res.writeHead(404); return res.end(); } res.writeHead(200, { 'Content-Type': MIME[path.extname(p)] || 'application/octet-stream' }); res.end(d); }); }).listen(0);
 const browser = await chromium.launch();
-for (const [q, nome] of [['', 'papel_timbrado_digitalgov_oficio'], ['?vazio=1', 'papel_timbrado_digitalgov_em_branco']]) {
+for (const [f, q, nome] of [['timbrado', '', 'papel_timbrado_digitalgov_oficio'], ['timbrado', '?vazio=1', 'papel_timbrado_digitalgov_em_branco'], ['timbrado_brasil', '', 'timbrado_brasil_tech_oficio'], ['timbrado_brasil', '?vazio=1', 'timbrado_brasil_tech_em_branco']]) {
   const page = await browser.newPage({ viewport: { width: 794, height: 1123 }, deviceScaleFactor: 3 });
-  await page.goto(`http://localhost:${server.address().port}/src/timbrado/timbrado.html${q}`); await page.waitForFunction('window.__ok === true');
+  await page.goto(`http://localhost:${server.address().port}/src/timbrado/${f}.html${q}`); await page.waitForFunction('window.__ok === true');
   await page.pdf({ path: path.join(out, nome + '.pdf'), format: 'A4', printBackground: true, preferCSSPageSize: true });
   await page.locator('.folha').screenshot({ path: path.join(out, nome + '.png') }); console.log(nome); await page.close();
 }

@@ -10,14 +10,16 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const P = new URLSearchParams(location.search);
 // modelo: americano (6 gomos, aba curva) | trucker (frente espuma + tela) | abareta (snapback aba reta) | dad (desestruturado, baixo)
-const MOD = P.get('modelo') || 'americano';
+const MOD0 = P.get('modelo') || 'americano', BR = MOD0 === 'brasil', MOD = BR ? 'americano' : MOD0;
 const COR = P.get('cor') || ({ americano: 'branco', trucker: 'marinho', abareta: 'marinho', dad: 'areia' }[MOD]), VISTA = P.get('vista') || 'frente34';
 const DARK = COR === 'marinho';
 const FAB = { marinho: '#1d2742', branco: '#efeee9', areia: '#d9cfb8' }[COR];
 const FAB_DARK = { marinho: '#141b30', branco: '#d9d7d0', areia: '#c3b89f' }[COR];
 const THREAD_SEAM = { marinho: '#18213a', branco: '#e2e0da', areia: '#cbbfa6' }[COR];
 const FRONT_FAB = MOD === 'trucker' ? '#f1f0ec' : FAB;           // trucker: frente branca em espuma
-const LOGO_DARK = MOD === 'trucker' ? false : DARK;               // fundo da logo é escuro?
+const LOGO_DARK = MOD === 'trucker' ? false : DARK;
+const LOGO_URL = BR ? '/build/bone/logo_marinho.png' : LOGO_DARK ? '/build/bone/logo_rgba_branca.png' : '/build/bone/logo_rgba.png';
+const ICON_URL = BR ? '/build/bone/icone_marinho.png' : '/build/bone/icone_rgba.png';               // fundo da logo é escuro?
 const W = innerWidth, H = innerHeight;
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
@@ -69,7 +71,7 @@ const twillN = twill();
 
 // ---------- carregamento das logos ----------
 const load = (u) => new Promise((r) => { const i = new Image(); i.onload = () => r(i); i.src = u; });
-const [logo, icone] = await Promise.all([load(LOGO_DARK ? '/build/bone/logo_rgba_branca.png' : '/build/bone/logo_rgba.png'), load('/build/bone/icone_rgba.png')]);
+const [logo, icone] = await Promise.all([load(LOGO_URL), load(ICON_URL)]);
 
 // Bordado: cor com fios em cetim (direção varia por região) + mapa de relevo (puff leve)
 function embroidery(img, outW, padFrac = 0.04) {
@@ -240,6 +242,8 @@ function brimTextures(top) {
   const [hc, hg] = canvas(Wd, Hd); hg.fillStyle = '#808080'; hg.fillRect(0, 0, Wd, Hd);
   if (top) for (let r = 0; r < (MOD === 'abareta' ? 8 : MOD === 'dad' ? 4 : 7); r++) { const y = Hd * (0.36 + r * 0.092); // pespontos paralelos seguindo o contorno
     for (let x = 0; x < Wd; x += 15) { g.fillStyle = THREAD_SEAM; g.fillRect(x, y - 2, 10, 4); hg.fillStyle = '#5a5a5a'; hg.fillRect(x, y - 3, 10, 6); } }
+  if (top && BR) { const bands = [['#002776', 0, 0.314], ['#ffd200', 0.32, 0.534], ['#009c3b', 0.54, 1]];
+    for (const [cl, a, b] of bands) { g.fillStyle = cl; g.fillRect(Wd * a, 0, Wd * (b - a), Hd * 0.055); } }
   return { color: c, normal: heightToNormal(hc, 1.2) };
 }
 const bt = brimTextures(true), bb = brimTextures(false);

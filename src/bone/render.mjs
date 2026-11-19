@@ -13,7 +13,7 @@ const port = server.address().port;
 const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 const jobs = [];
 for (const cor of ['branco', 'marinho']) for (const vista of ['frente34', 'frente', 'lado', 'tras']) jobs.push({ cor, vista, q: `cor=${cor}&vista=${vista}`, name: `bone_${cor}_${vista}` });
-for (const m of ['americano', 'trucker', 'abareta', 'dad']) for (const vista of ['frente34', 'tras']) jobs.push({ cor: m, vista, q: `modelo=${m}&vista=${vista}`, name: `modelo_${m}_${vista}` });
+for (const m of ['americano', 'trucker', 'abareta', 'dad', 'brasil']) for (const vista of ['frente34', 'tras']) jobs.push({ cor: m, vista, q: `modelo=${m}&vista=${vista}`, name: `modelo_${m}_${vista}` });
 for (const j of jobs.filter((j) => !only || only.split(',').includes(`${j.cor}_${j.vista}`))) {
   const page = await browser.newPage({ viewport: { width: 1600, height: 1200 }, deviceScaleFactor: dpr });
   page.on('console', (m) => m.type() === 'error' && console.error(m.text())); page.on('pageerror', (e) => console.error(e));

@@ -23,3 +23,5 @@ board([(f'modelo_{m}_frente34.png', l) for m, l in [('americano', 'Americano 6 g
 for cor, nome in [('branco', 'Branco'), ('marinho', 'Azul-marinho')]:
     board([(f'bone_{cor}_{v}.png', l) for v, l in [('frente34', '3/4 frontal'), ('frente', 'Frente'), ('lado', 'Lateral (ícone bordado)'), ('tras', 'Traseira (snapback)')]],
           f'Boné Americano — {nome}', 'Logo oficial em bordado com relevo · 6 gomos · ilhoses bordados', f'prancha_americano_{cor}')
+board([('modelo_brasil_frente34.png', '3/4 frontal · logo azul-marinho bordada · listra Brasil na aba'), ('modelo_brasil_tras.png', 'Traseira · ajuste snapback')],
+      'Boné DigitalGov — Brasil Tech', 'Americano 6 gomos branco · logo monocromática azul-marinho · listra verde-amarelo-azul', 'prancha_brasil_tech')

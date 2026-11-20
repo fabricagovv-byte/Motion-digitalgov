@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Forno Alvorada · Pizzaria em Alvorada de Minas – MG | Delivery e salão</title>
+  <meta name="description" content="Pizzaria em Alvorada de Minas (MG): pizzas assadas na hora, meio a meio, entrega e retirada. Veja o cardápio, monte seu pedido e envie pelo WhatsApp.">
+  <meta name="theme-color" content="#14100e">
+  <link rel="canonical" href="https://www.exemplo.com.br/">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Forno Alvorada · Pizzaria em Alvorada de Minas – MG">
+  <meta property="og:description" content="Pizzas assadas na hora. Monte seu pedido no site e envie pelo WhatsApp.">
+  <meta property="og:image" content="img/hero-960.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="geo.region" content="BR-MG">
+  <meta name="geo.placename" content="Alvorada de Minas">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="video/hero_poster.webp">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json" id="ld-json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Forno Alvorada",
+    "servesCuisine": ["Pizza", "Brasileira"],
+    "address": { "@type": "PostalAddress", "addressLocality": "Alvorada de Minas", "addressRegion": "MG", "postalCode": "39140-000", "addressCountry": "BR" },
+    "areaServed": "Alvorada de Minas, MG",
+    "hasMenu": "#cardapio",
+    "acceptsReservations": false
+  }
+  </script>
+  <script src="data/config.js"></script>
+  <script src="js/dados.js"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="demo-bar" id="demoBar" hidden>
+    <span><strong>Versão de apresentação.</strong> Nome, preços, horários e contatos ainda precisam ser confirmados pela pizzaria. Fotos ilustrativas.</span>
+    <button type="button" class="demo-bar__x" aria-label="Fechar aviso" data-close-demo>×</button>
+  </div>
+
+  <header class="hdr" id="topo">
+    <div class="hdr__in wrap">
+      <a class="brand" href="#inicio" aria-label="Página inicial">
+        <img src="img/logo.svg" alt="" width="44" height="44">
+        <span class="brand__txt"><b data-bind="nome">Forno Alvorada</b><small data-bind="cidadeUf">Alvorada de Minas · MG</small></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Seções do site">
+        <a href="#cardapio">Cardápio</a>
+        <a href="#promocoes">Promoções</a>
+        <a href="#sobre">A casa</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#avaliacoes">Avaliações</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="hdr__act">
+        <button class="cart-btn" type="button" data-open-cart aria-label="Abrir carrinho">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.6 8.2a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5 3H2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="20" r="1.4" fill="currentColor"/><circle cx="17.5" cy="20" r="1.4" fill="currentColor"/></svg>
+          <span class="cart-btn__n" data-cart-count>0</span>
+        </button>
+        <a class="btn btn--fire btn--sm hide-sm" href="#cardapio">Fazer pedido</a>
+        <button class="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav" data-burger><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- HERO -->
+    <section class="hero" id="inicio" aria-label="Apresentação">
+      <div class="hero__media" data-parallax="0.25">
+        <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="video/hero_poster.webp" aria-hidden="true">
+          <source src="video/hero_720p.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero__shade"></div>
+      <div class="hero__in wrap">
+        <p class="eyebrow reveal"><span class="dot" data-status-dot></span> <span data-status-text>Alvorada de Minas · MG</span></p>
+        <h1 class="hero__title reveal" style="--d:.08s">Pizza quentinha,<br><em>do forno</em> pra sua mesa.</h1>
+        <p class="hero__lead reveal" style="--d:.16s" data-bind="descricao">Pizzas assadas na hora, com ingredientes selecionados.</p>
+        <div class="hero__cta reveal" style="--d:.24s">
+          <a class="btn btn--fire btn--lg magnetic" href="#cardapio">
+            Montar meu pedido
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <button class="btn btn--glass btn--lg" type="button" data-play-promo>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+            Ver o vídeo
+          </button>
+        </div>
+      </div>
+      <a class="hero__scroll" href="#diferenciais" aria-label="Rolar para baixo"><span></span></a>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="perks" id="diferenciais" aria-label="Diferenciais">
+      <ul class="perks__list wrap" data-perks></ul>
+    </section>
+
+    <!-- DESTAQUES -->
+    <section class="sec sec--cream" aria-labelledby="t-dest">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <p class="kicker">Mais pedidas</p>
+          <h2 id="t-dest" class="sec__title">Os favoritos da casa</h2>
+        </div>
+      </div>
+      <div class="rail" data-featured tabindex="0" aria-label="Pizzas em destaque. Role para o lado."></div>
+    </section>
+
+    <!-- CARDÁPIO -->
+    <section class="sec sec--cream menu" id="cardapio" aria-labelledby="t-menu">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <p class="kicker">Cardápio</p>
+          <h2 id="t-menu" class="sec__title">Escolha, monte e peça</h2>
+          <p class="sec__sub">Toque em uma pizza para escolher o tamanho e, se quiser, montar meio a meio.</p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Categorias do cardápio" data-tabs>
+          <span class="tabs__ink" aria-hidden="true"></span>
+        </div>
+        <p class="note" data-price-note hidden>Os preços ainda estão sendo confirmados com a pizzaria. Você pode montar o pedido normalmente: o valor final é informado no WhatsApp.</p>
+        <div class="grid" data-menu aria-live="polite"></div>
+        <div class="sizes reveal" data-sizes></div>
+      </div>
+    </section>
+
+    <!-- PROMOÇÕES -->
+    <section class="sec sec--dark" id="promocoes" aria-labelledby="t-promo">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <p class="kicker kicker--amber">Promoções</p>
+          <h2 id="t-promo" class="sec__title">Ofertas da semana</h2>
+        </div>
+        <div class="promos" data-promos></div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="sec sec--cream about" id="sobre" aria-labelledby="t-sobre">
+      <div class="wrap about__in">
+        <div class="about__pics" aria-hidden="true">
+          <picture class="about__pic about__pic--a" data-parallax="-0.06">
+            <img src="img/pizzaiolo-960.webp" srcset="img/pizzaiolo-480.webp 480w, img/pizzaiolo-960.webp 960w" sizes="(max-width: 800px) 70vw, 34vw" alt="" loading="lazy" width="960" height="640">
+          </picture>
+          <picture class="about__pic about__pic--b" data-parallax="0.08">
+            <img src="img/forno-lenha-960.webp" srcset="img/forno-lenha-480.webp 480w, img/forno-lenha-960.webp 960w" sizes="(max-width: 800px) 50vw, 22vw" alt="" loading="lazy" width="960" height="1440">
+          </picture>
+          <span class="about__badge"><b data-bind="fundacaoBadge">MG</b><small>Estrada Real</small></span>
+        </div>
+        <div class="about__txt reveal">
+          <p class="kicker">A casa</p>
+          <h2 id="t-sobre" class="sec__title">Sabor de Minas, <em>forno</em> e boa conversa</h2>
+          <div data-historia></div>
+          <ul class="checks">
+            <li>Pedido pelo site com envio direto no WhatsApp</li>
+            <li>Meio a meio nos tamanhos médio, grande e família</li>
+            <li>Entrega e retirada no balcão</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO PEDIR -->
+    <section class="sec sec--dark how" aria-labelledby="t-how">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <p class="kicker kicker--amber">Como pedir</p>
+          <h2 id="t-how" class="sec__title">Do clique ao forno em 3 passos</h2>
+        </div>
+        <ol class="steps">
+          <li class="step reveal"><span class="step__n">1</span><h3>Escolha</h3><p>Navegue pelo cardápio e toque na pizza que deu vontade.</p></li>
+          <li class="step reveal" style="--d:.1s"><span class="step__n">2</span><h3>Monte</h3><p>Defina o tamanho, combine dois sabores e adicione bebidas.</p></li>
+          <li class="step reveal" style="--d:.2s"><span class="step__n">3</span><h3>Envie</h3><p>Informe entrega ou retirada e envie o pedido pronto pelo WhatsApp.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="sec sec--cream" id="galeria" aria-labelledby="t-gal">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <p class="kicker">Galeria</p>
+          <h2 id="t-gal" class="sec__title">Direto do forno</h2>
+          <p class="sec__sub" data-demo-only>Imagens ilustrativas. Substitua por fotos da pizzaria no painel.</p>
+        </div>
+        <div class="gallery" data-gallery></div>
+      </div>
+    </section>
+
+    <!-- AVALIAÇÕES -->
+    <section class="sec sec--dark" id="avaliacoes" aria-labelledby="t-rev">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <p class="kicker kicker--amber">Avaliações</p>
+          <h2 id="t-rev" class="sec__title">Quem prova, conta</h2>
+        </div>
+        <div class="reviews" data-reviews></div>
+      </div>
+    </section>
+
+    <!-- CONTATO / MAPA -->
+    <section class="sec sec--cream contact" id="contato" aria-labelledby="t-ct">
+      <div class="wrap contact__in">
+        <div class="contact__info reveal">
+          <p class="kicker">Onde estamos</p>
+          <h2 id="t-ct" class="sec__title">Venha nos visitar</h2>
+          <dl class="facts">
+            <div><dt>Endereço</dt><dd data-addr></dd></div>
+            <div><dt>WhatsApp</dt><dd data-wa-text></dd></div>
+            <div><dt>Telefone</dt><dd data-phone></dd></div>
+            <div><dt>Entrega</dt><dd data-delivery></dd></div>
+            <div><dt>Pagamento</dt><dd data-payments></dd></div>
+          </dl>
+          <h3 class="hours__title">Horário de funcionamento</h3>
+          <table class="hours" data-hours><caption class="sr">Horários por dia da semana</caption></table>
+          <div class="contact__cta">
+            <a class="btn btn--wa" data-wa-link href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Chamar no WhatsApp
+            </a>
+            <a class="btn btn--ghost" data-maps-link href="#" target="_blank" rel="noopener">Abrir no Google Maps</a>
+          </div>
+        </div>
+        <div class="contact__map reveal" style="--d:.1s">
+          <div class="map" data-map>
+            <button type="button" class="map__load" data-load-map>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.6" fill="currentColor"/></svg>
+              <span>Carregar mapa</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ftr">
+    <div class="wrap ftr__in">
+      <div class="ftr__brand">
+        <img src="img/logo.svg" alt="" width="56" height="56">
+        <p><b data-bind="nome">Forno Alvorada</b><br><span data-bind="slogan"></span></p>
+      </div>
+      <nav class="ftr__nav" aria-label="Rodapé">
+        <a href="#cardapio">Cardápio</a><a href="#promocoes">Promoções</a><a href="#sobre">A casa</a><a href="#contato">Contato</a><a href="creditos.html">Créditos das imagens</a>
+      </nav>
+      <div class="ftr__social" data-social></div>
+    </div>
+    <div class="wrap ftr__base">
+      <span>© <span data-year></span> <span data-bind="nome">Forno Alvorada</span> · <span data-bind="cidadeUf"></span></span>
+      <span>Pedidos feitos no site são enviados pelo WhatsApp e confirmados pela pizzaria. Nenhum pagamento é processado aqui.</span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flutuante -->
+  <a class="fab-wa" data-wa-link href="#" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+  </a>
+  <button class="fab-cart" type="button" data-open-cart hidden>
+    <span>Ver pedido</span><b data-cart-total-short>—</b><span class="fab-cart__n" data-cart-count>0</span>
+  </button>
+
+  <!-- MONTADOR DE PIZZA -->
+  <dialog class="sheet" id="builder" aria-labelledby="b-title">
+    <form method="dialog" class="sheet__in" data-builder-form>
+      <button class="sheet__x" value="cancel" aria-label="Fechar">×</button>
+      <div class="b__pic" data-b-pic></div>
+      <div class="b__body">
+        <h2 id="b-title" class="b__title" data-b-title>Pizza</h2>
+        <p class="b__desc" data-b-desc></p>
+        <fieldset class="b__group">
+          <legend>Tamanho</legend>
+          <div class="chips" data-b-sizes></div>
+        </fieldset>
+        <fieldset class="b__group" data-b-half-wrap>
+          <legend>Sabores</legend>
+          <label class="switch"><input type="checkbox" data-b-half> <span>Meio a meio (2 sabores)</span></label>
+          <div class="b__second" data-b-second hidden>
+            <label for="b-flavor2">Segundo sabor</label>
+            <select id="b-flavor2" data-b-flavor2></select>
+          </div>
+          <p class="b__rule" data-b-rule></p>
+        </fieldset>
+        <div class="b__group">
+          <label for="b-obs">Observações <small>(opcional)</small></label>
+          <textarea id="b-obs" rows="2" maxlength="140" placeholder="Ex.: sem cebola, bem assada…" data-b-obs></textarea>
+        </div>
+        <div class="b__foot">
+          <div class="qty" aria-label="Quantidade">
+            <button type="button" data-b-minus aria-label="Diminuir">−</button><output data-b-qty>1</output><button type="button" data-b-plus aria-label="Aumentar">+</button>
+          </div>
+          <button class="btn btn--fire b__add" type="submit" value="add" data-b-add>Adicionar <span data-b-price></span></button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- CARRINHO -->
+  <aside class="drawer" id="cart" aria-labelledby="c-title" aria-hidden="true">
+    <div class="drawer__bg" data-close-cart></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="c-title">
+      <header class="drawer__hdr">
+        <h2 id="c-title">Seu pedido</h2>
+        <button class="sheet__x" type="button" data-close-cart aria-label="Fechar carrinho">×</button>
+      </header>
+      <div class="drawer__body">
+        <ul class="lines" data-lines></ul>
+        <div class="empty" data-empty>
+          <img src="img/logo.svg" alt="" width="64" height="64">
+          <p>Seu pedido está vazio.<br>Que tal começar por uma pizza?</p>
+          <a class="btn btn--fire" href="#cardapio" data-close-cart>Ver cardápio</a>
+        </div>
+        <form class="checkout" data-checkout novalidate hidden>
+          <fieldset class="seg" data-mode>
+            <legend class="sr">Forma de receber</legend>
+            <label><input type="radio" name="modo" value="entrega" checked> <span>Entrega</span></label>
+            <label><input type="radio" name="modo" value="retirada"> <span>Retirar no local</span></label>
+          </fieldset>
+          <div class="f2">
+            <label>Seu nome<input name="nome" autocomplete="name" required></label>
+            <label>Telefone<input name="fone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(38) 9 9999-9999"></label>
+          </div>
+          <div data-addr-fields>
+            <div class="f2 f2--wide">
+              <label>Rua / logradouro<input name="rua" autocomplete="address-line1" required></label>
+              <label>Nº<input name="numero" inputmode="numeric" required></label>
+            </div>
+            <div class="f2">
+              <label>Bairro / comunidade<input name="bairro" required></label>
+              <label>Referência<input name="ref" placeholder="Perto de…"></label>
+            </div>
+          </div>
+          <div class="f2">
+            <label>Pagamento
+              <select name="pagamento" data-pay></select>
+            </label>
+            <label data-troco-wrap hidden>Troco para<input name="troco" inputmode="decimal" placeholder="R$"></label>
+          </div>
+          <label>Observações do pedido<textarea name="obs" rows="2" maxlength="200"></textarea></label>
+        </form>
+      </div>
+      <footer class="drawer__foot" data-foot hidden>
+        <dl class="totals">
+          <div><dt>Subtotal</dt><dd data-subtotal>—</dd></div>
+          <div data-fee-row><dt>Entrega</dt><dd data-fee>—</dd></div>
+          <div class="totals__big"><dt>Total</dt><dd data-total>—</dd></div>
+        </dl>
+        <p class="note note--sm" data-total-note hidden></p>
+        <button class="btn btn--wa btn--block" type="button" data-send>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Enviar pedido pelo WhatsApp
+        </button>
+        <p class="fine">Você revisa a mensagem antes de enviar. O pedido é confirmado pela pizzaria no WhatsApp; nenhum pagamento é feito no site.</p>
+      </footer>
+    </div>
+  </aside>
+
+  <!-- VÍDEO PROMOCIONAL -->
+  <dialog class="vbox" id="promo" aria-label="Vídeo promocional">
+    <button class="sheet__x" type="button" data-close-promo aria-label="Fechar vídeo">×</button>
+    <video controls playsinline preload="none" poster="video/hero_poster.webp" data-promo-video>
+      <source src="video/promo_16x9_1080p.mp4" type="video/mp4">
+    </video>
+  </dialog>
+
+  <!-- LIGHTBOX -->
+  <dialog class="lbox" id="lightbox" aria-label="Foto ampliada">
+    <button class="sheet__x" type="button" data-close-lb aria-label="Fechar">×</button>
+    <img alt="" data-lb-img>
+    <button class="lbox__nav lbox__nav--p" type="button" data-lb-prev aria-label="Anterior">‹</button>
+    <button class="lbox__nav lbox__nav--n" type="button" data-lb-next aria-label="Próxima">›</button>
+  </dialog>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.8.3-.2.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2 3.1 4.9 4.2 2.4.9 2.9.8 3.4.7.5 0 1.6-.6 1.8-1.2.2-.6.2-1.2.1-1.3 0-.1-.2-.2-.5-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1c-.1.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.4.1-.6l.4-.5.4-.6c.1-.2.1-.4 0-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.2z"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M12 21c-3.9 0-7-2.7-7-6.6 0-3.4 2.4-5.4 3.8-7.6.4 1.6 1.2 2.7 2.3 3.2C11.3 6.6 13 4.2 15 3c-.3 2.6.6 4.3 1.9 5.9 1.3 1.6 2.1 3.2 2.1 5.5C19 18.3 15.9 21 12 21z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M12 21c-1.7 0-3-1.2-3-2.9 0-1.9 1.6-2.9 2.3-4.4.9 1.2 3.7 2.2 3.7 4.4 0 1.7-1.3 2.9-3 2.9z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15M5 19l7-7"/></symbol>
+    <symbol id="i-half" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3.5v17" stroke="currentColor" stroke-width="1.6"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" opacity=".25"/></symbol>
+    <symbol id="i-bike" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17" r="3"/><circle cx="18.5" cy="17" r="3"/><path d="M5.5 17h5l3-6h4l1 6M13.5 11 12 7H9.5M16 7h2"/></g></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></g></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8.1v3h2.5V21z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1-4.5-4.2 6.1-.8z"/></symbol>
+  </svg>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>

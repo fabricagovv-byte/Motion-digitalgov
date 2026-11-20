@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Painel da Pizzaria</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="data/config.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/fotos.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="top__in">
+      <a class="top__brand" href="index.html"><img src="img/logo.svg" alt="" width="36" height="36"> <span>Painel <b data-nome></b></span></a>
+      <div class="top__act">
+        <span class="badge" data-status></span>
+        <a class="b b--ghost" href="index.html" target="_blank" rel="noopener">Ver site</a>
+        <button class="b" type="button" data-save>Salvar e pré-visualizar</button>
+        <button class="b b--fire" type="button" data-export>Exportar para publicar</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="help">
+      <h2>Como funciona</h2>
+      <ol>
+        <li><b>Edite</b> os dados nas abas abaixo.</li>
+        <li><b>Salvar e pré-visualizar</b> guarda um rascunho <em>só neste navegador</em> e mostra o site com as mudanças.</li>
+        <li><b>Exportar para publicar</b> baixa o arquivo <code>config.js</code>. Substitua <code>data/config.js</code> no servidor por ele e todos os visitantes verão a nova versão.</li>
+      </ol>
+      <p class="warn">Este painel não tem senha própria. Ao publicar o site, proteja <code>admin.html</code> com a senha do provedor (ex.: proteção por senha da hospedagem) ou não envie este arquivo ao servidor.</p>
+      <div class="help__tools">
+        <label class="b b--ghost b--file">Importar config.js<input type="file" accept=".js,.json" data-import></label>
+        <button class="b b--ghost" type="button" data-demo-prices>Preencher preços de demonstração</button>
+        <button class="b b--ghost b--danger" type="button" data-discard>Descartar rascunho</button>
+      </div>
+    </aside>
+
+    <nav class="tabs" role="tablist" aria-label="Seções do painel" data-tabs></nav>
+    <section class="panel" data-panel aria-live="polite"></section>
+  </main>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+  <script src="js/admin.js"></script>
+</body>
+</html>

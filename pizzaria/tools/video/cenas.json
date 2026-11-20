@@ -1,0 +1,137 @@
+{
+ "_sobre": "Roteiro do vídeo promocional (18 s). in/dur em segundos no clipe-fonte. crop_h/crop_v = recorte (x,y,w,h em fração do quadro) para 16:9 e 9:16.",
+ "cenas": [
+  {
+   "id": "massa",
+   "fonte": "6603329",
+   "in": 4.9,
+   "dur": 3.2,
+   "chamada": "Feita na hora",
+   "titulo": "A massa",
+   "crop_h": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "crop_v": [
+    0.3,
+    0,
+    0.316,
+    1
+   ]
+  },
+  {
+   "id": "mussarela",
+   "fonte": "6603328",
+   "in": 2.6,
+   "dur": 2.8,
+   "chamada": "Ingredientes",
+   "titulo": "O recheio",
+   "crop_h": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "crop_v": [
+    0.34,
+    0,
+    0.316,
+    1
+   ]
+  },
+  {
+   "id": "ingredientes",
+   "fonte": "8627109",
+   "in": 6.0,
+   "dur": 2.8,
+   "chamada": "Com capricho",
+   "titulo": "Cobertura generosa",
+   "crop_h": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "crop_v": [
+    0.36,
+    0,
+    0.316,
+    1
+   ]
+  },
+  {
+   "id": "forno",
+   "foto": "hero",
+   "dur": 3.2,
+   "chamada": "Calor do forno",
+   "titulo": "Direto pro forno",
+   "crop_h": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "crop_v": [
+    0.42,
+    0,
+    0.375,
+    1
+   ]
+  },
+  {
+   "id": "queijo",
+   "fonte": "16423978",
+   "in": 6.0,
+   "dur": 3.0,
+   "chamada": "Queijo derretendo",
+   "titulo": "Puxa-puxa",
+   "crop_h": [
+    0,
+    0.12,
+    1,
+    0.316
+   ],
+   "crop_v": [
+    0,
+    0,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "servindo",
+   "fonte": "16013244",
+   "in": 0.0,
+   "dur": 2.6,
+   "chamada": "Pronta pra você",
+   "titulo": "Na sua mesa",
+   "crop_h": [
+    0,
+    0.22,
+    1,
+    0.316
+   ],
+   "crop_v": [
+    0,
+    0,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "final",
+   "end": true,
+   "dur": 3.4
+  }
+ ],
+ "hero_ordem": [
+  "servindo",
+  "queijo",
+  "massa",
+  "mussarela",
+  "ingredientes",
+  "forno"
+ ]
+}

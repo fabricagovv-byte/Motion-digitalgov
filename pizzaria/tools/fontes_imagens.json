@@ -1,0 +1,147 @@
+{
+  "_sobre": "Fotos reais do banco Pexels (licença Pexels: uso gratuito comercial e não comercial, sem atribuição obrigatória; proibido revender a foto sem modificação ou sugerir endosso de pessoas/marcas retratadas). São IMAGENS ILUSTRATIVAS: não mostram o estabelecimento nem os produtos reais da pizzaria. Substituir por fotos próprias assim que possível.",
+  "fotos": {
+    "hero": {
+      "id": 14885422,
+      "titulo": "Man Putting a Pizza in a Stone Oven"
+    },
+    "forno-fogo": {
+      "id": 18126715,
+      "titulo": "Pizza in Oven"
+    },
+    "forno-lenha": {
+      "id": 3343627,
+      "titulo": "Pizza in Furnace"
+    },
+    "forno-pa": {
+      "id": 13946695,
+      "titulo": "A Pizza Taken from an Oven"
+    },
+    "mussarela": {
+      "id": 27583268,
+      "titulo": "A pizza with a slice missing from it on a wooden board"
+    },
+    "margherita": {
+      "id": 2147491,
+      "titulo": "Top View Photo Of Baked Pizza"
+    },
+    "calabresa": {
+      "id": 3727192,
+      "titulo": "Close Up Photo of Delicious Looking Pizza"
+    },
+    "pepperoni": {
+      "id": 4109069,
+      "titulo": "Pizza in Boxes"
+    },
+    "portuguesa": {
+      "id": 845812,
+      "titulo": "Pizza With Egg Photo"
+    },
+    "quatro-queijos": {
+      "id": 6697454,
+      "titulo": "Cheesy Pizza in a Round Wooden Tray"
+    },
+    "napolitana": {
+      "id": 27025471,
+      "titulo": "Close-up of a Pizza"
+    },
+    "frango": {
+      "id": 29173098,
+      "titulo": "Delicious Pepperoni Pizza Slice on Wooden Board"
+    },
+    "vegetariana": {
+      "id": 1049620,
+      "titulo": "Pizza With Red Pepper and Cheese"
+    },
+    "especial": {
+      "id": 40135620,
+      "titulo": "Diverse Pizza Slices with Spices Overhead View"
+    },
+    "chocolate": {
+      "id": 8444548,
+      "titulo": "Delectable Kitkat Cake on Wooden Surface (Guto Macedo)"
+    },
+    "caprese": {
+      "id": 6605232,
+      "titulo": "A Thin Sliced Saucy Pizza Topped with Cream Cheese and Basil Leaves"
+    },
+    "queijo-puxa": {
+      "id": 17291590,
+      "titulo": "Close-up of Woman Eating Pizza"
+    },
+    "fatia-mao": {
+      "id": 27349458,
+      "titulo": "Slice of Pizza in Hand"
+    },
+    "caixa": {
+      "id": 17870830,
+      "titulo": "Pizza in Box"
+    },
+    "caixas-pilha": {
+      "id": 21792435,
+      "titulo": "Stack of Boxes with Pizza"
+    },
+    "ambiente": {
+      "id": 40074503,
+      "titulo": "Romantic Italian Restaurant with Menu and Pizza"
+    },
+    "ambiente-madeira": {
+      "id": 30457533,
+      "titulo": "Cozy Rustic Restaurant Interior with Wooden Beams"
+    },
+    "pizzaiolo": {
+      "id": 32293378,
+      "titulo": "Chef Preparing Pizza in Brick Oven Kitchen"
+    },
+    "rustica": {
+      "id": 30478775,
+      "titulo": "Delicious Artisanal Margherita Pizza with Fresh Ingredients"
+    },
+    "mesa": {
+      "id": 35896422,
+      "titulo": "Delicious Pizza and Feast Table Spread"
+    },
+    "pa-forno": {
+      "id": 905847,
+      "titulo": "Baked Pizza on Pizza Peel in Oven"
+    },
+    "fatia-cebola": {
+      "id": 31094831,
+      "titulo": "Close-up of Pepperoni and Onion Pizza Slice"
+    }
+  },
+  "videos": {
+    "massa": {
+      "id": 6603329,
+      "titulo": "Man Preparing Pizza Dough"
+    },
+    "mussarela": {
+      "id": 6603328,
+      "titulo": "Adding Mozzarella into a Pizza"
+    },
+    "ingredientes": {
+      "id": 8627109,
+      "titulo": "Close Up Video of a Person Making Pizza"
+    },
+    "queijo-forma": {
+      "id": 3939628,
+      "titulo": "A Person Adding Cheese while Making Pizza"
+    },
+    "queijo-puxa": {
+      "id": 16423978,
+      "titulo": "The Ultimate Fior Di Latte Mozzarella Cheese Pull, pizza by Rene"
+    },
+    "servindo": {
+      "id": 16013244,
+      "titulo": "Wood-fired Sourdough Pizza Margherita Time!"
+    },
+    "fatiando": {
+      "id": 6221683,
+      "titulo": "Person Slicing a Pizza"
+    },
+    "jogando-massa": {
+      "id": 6603837,
+      "titulo": "Chef Making a Pizza"
+    }
+  }
+}

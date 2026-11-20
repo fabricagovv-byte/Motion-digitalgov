@@ -1,0 +1,2 @@
+/* Fotos disponíveis em img/ (gerado por tools/otimizar_imagens.py) */
+window.PIZZARIA_FOTOS = ["ambiente", "ambiente-madeira", "caixa", "caixas-pilha", "calabresa", "caprese", "chocolate", "especial", "fatia-cebola", "fatia-mao", "forno-fogo", "forno-lenha", "forno-pa", "frango", "hero", "margherita", "mesa", "mussarela", "napolitana", "pa-forno", "pepperoni", "pizzaiolo", "portuguesa", "quatro-queijos", "queijo-puxa", "rustica", "vegetariana"];

@@ -1,0 +1,32 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@500;600;700&display=block" rel="stylesheet">
+<script src="../../data/config.js"></script>
+<style>
+  html,body{margin:0;background:transparent;width:100vw;height:100vh;overflow:hidden;font-family:Inter,sans-serif;color:#fff8ec}
+  .cap{position:absolute;left:6vmin;bottom:7vmin;display:flex;flex-direction:column;gap:1.2vmin;text-shadow:0 .4vmin 3vmin rgba(0,0,0,.55)}
+  .cap small{font:600 2.1vmin Inter;letter-spacing:.42em;text-transform:uppercase;color:#f5b544}
+  .cap b{font:500 8.4vmin/1 Fraunces,serif;letter-spacing:-.01em}
+  .cap i{display:block;width:9vmin;height:.5vmin;background:#ff6b2c;border-radius:1vmin}
+  .end{position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+       background:radial-gradient(120% 90% at 50% 40%,rgba(28,19,16,.55),rgba(14,9,7,.92)),url(../../img/forno-fogo-1600.webp) center/cover}
+  .end .in{display:flex;flex-direction:column;align-items:center;gap:2.4vmin}
+  .end img{width:22vmin;height:22vmin;filter:drop-shadow(0 1vmin 4vmin rgba(0,0,0,.5))}
+  .end h1{margin:0;font:700 11vmin/0.95 Fraunces,serif;letter-spacing:-.02em}
+  .end p{margin:0;font:600 2.6vmin Inter;letter-spacing:.35em;text-transform:uppercase;color:#f5b544}
+  .end .cta{margin-top:2vmin;padding:2.2vmin 5vmin;border-radius:10vmin;background:#25d366;color:#0d2a17;font:700 3.6vmin Inter;display:flex;gap:1.6vmin;align-items:center}
+  .end .cta svg{width:4.2vmin;height:4.2vmin}
+  .end .city{font:500 2.4vmin Inter;letter-spacing:.1em;text-transform:none;color:#e9dccb;opacity:.9}
+  body.portrait .end h1{font-size:9.5vmin} body.portrait .cap{bottom:16vmin}
+</style></head><body>
+<script>
+const q=new URLSearchParams(location.search), D=window.PIZZARIA_DADOS.negocio;
+if(innerHeight>innerWidth) document.body.classList.add('portrait');
+if(q.get('end')){
+  document.body.innerHTML+=`<div class="end"><div class="in"><img src="../../img/coruja.svg" alt=""><h1>${D.nome}</h1><p>${D.slogan}</p>
+  <div class="cta"><svg viewBox="0 0 24 24" fill="#0d2a17"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.1 1.3z"/></svg>Peça pelo WhatsApp</div>
+  <span class="city">${D.telefone ? D.telefone + ' · ' : ''}${D.cidade} · ${D.uf}</span></div></div>`;
+} else {
+  document.body.innerHTML+=`<div class="cap"><small>${q.get('k')||''}</small><b>${q.get('t')||''}</b><i></i></div>`;
+}
+</script></body></html>

@@ -1,0 +1,11 @@
+{
+  "name": "Recanto da Coruja",
+  "short_name": "Recanto",
+  "description": "Pizzaria, churrascaria e pousada em Alvorada de Minas – MG",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0e1613",
+  "theme_color": "#0e1613",
+  "icons": [{ "src": "img/coruja.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Recanto da Coruja · Pizzaria, Churrascaria e Pousada em Alvorada de Minas – MG</title>
+  <meta name="description" content="Recanto da Coruja: pizzaria, churrascaria e pousada na Rua Ponte da Clara, à beira da Estrada Real, em Alvorada de Minas (MG). Peça sua pizza pelo WhatsApp ou reserve a pousada.">
+  <meta name="theme-color" content="#0e1613">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Recanto da Coruja · Alvorada de Minas – MG">
+  <meta property="og:description" content="Pizzaria, churrascaria e pousada à beira da Estrada Real.">
+  <meta property="og:image" content="img/hero-960.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="geo.region" content="BR-MG">
+  <meta name="geo.placename" content="Alvorada de Minas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="video/hero_poster.webp">
+  <link rel="stylesheet" href="css/site.css">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script type="application/ld+json" id="ld-json">
+  {"@context":"https://schema.org","@type":["Restaurant","LodgingBusiness"],"name":"Recanto da Coruja","servesCuisine":["Pizza","Churrasco"],"telephone":"+55 31 98358-2075","address":{"@type":"PostalAddress","streetAddress":"Rua Ponte da Clara, s/n","addressLocality":"Alvorada de Minas","addressRegion":"MG","postalCode":"39140-000","addressCountry":"BR"},"sameAs":["https://www.facebook.com/recantodacoruja.alvoradademinas/"],"numberOfRooms":10,"petsAllowed":true}
+  </script>
+  <script src="data/config.js"></script>
+  <script src="js/dados.js"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Abertura: a coruja abre os olhos -->
+  <div class="loader" aria-hidden="true" data-loader>
+    <svg class="loader__owl" viewBox="0 0 120 120"><use href="#owl"/></svg>
+    <span class="loader__n" data-loader-n>0</span>
+  </div>
+
+  <div class="cursor" aria-hidden="true" data-cursor><span></span></div>
+
+  <div class="demo" id="demo" hidden>
+    <span><b>Versão de apresentação.</b> Cardápio, preços e horários aguardam confirmação do Recanto. Fotos ilustrativas.</span>
+    <button type="button" aria-label="Fechar aviso" data-close-demo>×</button>
+  </div>
+
+  <header class="hdr" data-hdr>
+    <div class="hdr__in">
+      <a class="logo" href="#topo" aria-label="Recanto da Coruja, início">
+        <svg class="owl owl--sm" viewBox="0 0 120 120" aria-hidden="true" data-owl><use href="#owl-body"/><g class="owl__eyes"><use href="#owl-eyes"/></g><g class="owl__pupils" data-pupils><use href="#owl-pupils"/></g><g class="owl__lids" data-lids><use href="#owl-lids"/></g><use href="#owl-beak"/></svg>
+        <span class="logo__txt">Recanto<br><em>da Coruja</em></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Seções">
+        <a href="#casas">O Recanto</a>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#pousada">Pousada</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#chegar">Como chegar</a>
+      </nav>
+      <div class="hdr__act">
+        <button class="ico-btn" type="button" data-open-cart aria-label="Abrir pedido">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z M9 7V6a3 3 0 0 1 6 0v1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <span class="ico-btn__n" data-cart-count>0</span>
+        </button>
+        <a class="pill pill--ember hide-sm magnetic" href="#cardapio"><span>Pedir pizza</span></a>
+        <button class="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav" data-burger><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- HERO -->
+    <section class="hero" id="topo">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="wrap hero__grid">
+        <div class="hero__txt">
+          <p class="tag" data-anim="fade"><span class="tag__dot"></span> Alvorada de Minas · Estrada Real</p>
+          <h1 class="hero__title" data-split>
+            <span class="line">Pizza, brasa</span>
+            <span class="line">e descanso</span>
+            <span class="line"><em>na Estrada Real.</em></span>
+          </h1>
+          <p class="hero__lead" data-anim="fade" data-bind="descricao">Pizza, churrasco e pousada no mesmo endereço.</p>
+          <div class="hero__cta" data-anim="fade">
+            <a class="pill pill--ember pill--lg magnetic" href="#cardapio"><span>Montar meu pedido</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="pill pill--line pill--lg magnetic" href="#pousada"><span>Conhecer a pousada</span></a>
+          </div>
+        </div>
+        <div class="hero__owl" aria-hidden="true">
+          <svg class="owl owl--xl" viewBox="0 0 120 120" data-owl><use href="#owl-body"/><g class="owl__eyes"><use href="#owl-eyes"/></g><g class="owl__pupils" data-pupils><use href="#owl-pupils"/></g><g class="owl__lids" data-lids><use href="#owl-lids"/></g><use href="#owl-beak"/></svg>
+          <span class="hero__moon"></span>
+          <span class="chip chip--a">Pizzaria</span>
+          <span class="chip chip--b">Churrascaria</span>
+          <span class="chip chip--c">Pousada</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- REEL: vídeo que se abre com a rolagem -->
+    <section class="reel" aria-label="Vídeo do Recanto">
+      <div class="reel__sticky">
+        <div class="reel__frame" data-reel>
+          <video class="reel__video" autoplay muted loop playsinline preload="metadata" poster="video/hero_poster.webp" aria-hidden="true">
+            <source src="video/hero_720p.mp4" type="video/mp4">
+          </video>
+          <div class="reel__shade"></div>
+          <div class="reel__cap" data-reel-cap>
+            <p>Forno quente · brasa acesa · cama arrumada</p>
+            <button class="pill pill--glass" type="button" data-play-promo>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg><span>Assistir com som</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAIXA -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" data-marquee>
+        <span>Pizzaria</span><i>✦</i><span>Churrascaria</span><i>✦</i><span>Pousada</span><i>✦</i><span>Estrada Real</span><i>✦</i><span>Alvorada de Minas</span><i>✦</i>
+        <span>Pizzaria</span><i>✦</i><span>Churrascaria</span><i>✦</i><span>Pousada</span><i>✦</i><span>Estrada Real</span><i>✦</i><span>Alvorada de Minas</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- MANIFESTO -->
+    <section class="say" aria-label="Sobre o Recanto">
+      <div class="wrap">
+        <p class="say__txt" data-words>Na beira da Estrada Real, entre Conceição do Mato Dentro e o Serro, o Recanto da Coruja junta forno, brasa e pousada no mesmo lugar. Chegue com fome, saia descansado.</p>
+      </div>
+    </section>
+
+    <!-- TRÊS CASAS (cartões empilhados) -->
+    <section class="casas" id="casas" aria-labelledby="t-casas">
+      <div class="wrap">
+        <header class="head">
+          <p class="eyebrow">O Recanto</p>
+          <h2 class="h2" id="t-casas" data-split>Três jeitos de <em>aproveitar</em></h2>
+        </header>
+        <div class="stack">
+          <article class="slab slab--pizza" data-slab>
+            <div class="slab__txt">
+              <span class="slab__k">Pizzaria</span>
+              <h3>Forno quente e massa aberta na hora</h3>
+              <p>Sabores tradicionais e especiais, inteira ou meio a meio. Monte o pedido aqui no site e envie pelo WhatsApp.</p>
+              <a class="pill pill--ember magnetic" href="#cardapio"><span>Ver cardápio</span></a>
+            </div>
+            <figure class="slab__pic"><img src="img/forno-pa-960.webp" srcset="img/forno-pa-480.webp 480w, img/forno-pa-960.webp 960w, img/forno-pa-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw" alt="Pizza saindo do forno na pá (foto ilustrativa)" loading="lazy"></figure>
+          </article>
+          <article class="slab slab--brasa" data-slab>
+            <div class="slab__txt">
+              <span class="slab__k">Churrascaria</span>
+              <h3>Brasa acesa, espeto na mesa</h3>
+              <p>Churrasco no capricho para almoçar com a família ou reunir os amigos. Pergunte pelo cardápio do dia no WhatsApp.</p>
+              <a class="pill pill--light magnetic" data-wa-link data-wa-msg="Olá! Gostaria de saber o cardápio do churrasco de hoje." href="#" target="_blank" rel="noopener"><span>Perguntar o cardápio</span></a>
+            </div>
+            <figure class="slab__pic"><img src="img/churrasco-espetos-960.webp" srcset="img/churrasco-espetos-480.webp 480w, img/churrasco-espetos-960.webp 960w, img/churrasco-espetos-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw" alt="Espetos de churrasco com farofa e vinagrete (foto ilustrativa)" loading="lazy"></figure>
+          </article>
+          <article class="slab slab--pousada" data-slab>
+            <div class="slab__txt">
+              <span class="slab__k">Pousada</span>
+              <h3><span data-count="10">10</span> quartos para quem vem de longe</h3>
+              <p>Piscinas, playground e quadra de peteca para descansar depois da estrada. Check-in a partir das 14h.</p>
+              <a class="pill pill--ember magnetic" data-wa-link data-wa-msg="Olá! Gostaria de consultar disponibilidade e valores de hospedagem na pousada." href="#" target="_blank" rel="noopener"><span>Consultar reserva</span></a>
+            </div>
+            <figure class="slab__pic"><img src="img/serra-960.webp" srcset="img/serra-480.webp 480w, img/serra-960.webp 960w, img/serra-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw" alt="Casa rural entre montanhas (foto ilustrativa)" loading="lazy"></figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDÁPIO -->
+    <section class="menu" id="cardapio" aria-labelledby="t-menu">
+      <div class="wrap">
+        <header class="head head--row">
+          <div>
+            <p class="eyebrow">Cardápio</p>
+            <h2 class="h2" id="t-menu" data-split>Escolha, monte <em>e peça</em></h2>
+          </div>
+          <p class="head__sub">Toque numa pizza para escolher o tamanho e montar meio a meio. O pedido sai pronto para o WhatsApp do Recanto.</p>
+        </header>
+        <div class="tabs" role="tablist" aria-label="Categorias" data-tabs><span class="tabs__ink" aria-hidden="true"></span></div>
+        <p class="note" data-price-note hidden>Preços em confirmação com o Recanto: monte o pedido normalmente e o valor final vem pelo WhatsApp.</p>
+        <div class="grid" id="menu-grid" role="tabpanel" data-menu></div>
+        <p class="sizes" data-sizes></p>
+      </div>
+    </section>
+
+    <!-- GALERIA HORIZONTAL -->
+    <section class="gal" id="galeria" aria-labelledby="t-gal">
+      <div class="gal__pin" data-gal-pin>
+        <header class="gal__head wrap">
+          <p class="eyebrow">Galeria</p>
+          <h2 class="h2" id="t-gal">Do forno <em>à brasa</em></h2>
+          <p class="gal__hint">Imagens ilustrativas · em breve, fotos do Recanto</p>
+        </header>
+        <div class="gal__track" data-gal-track tabindex="0" aria-label="Galeria de fotos. Role para o lado."></div>
+      </div>
+    </section>
+
+    <!-- POUSADA -->
+    <section class="pousada" id="pousada" aria-labelledby="t-pou">
+      <div class="wrap pousada__grid">
+        <div class="pousada__txt">
+          <p class="eyebrow">Pousada</p>
+          <h2 class="h2" id="t-pou" data-split>Pra ficar <em>mais um dia</em></h2>
+          <p class="lead">Estrutura com piscinas, playground e quadra de peteca, a poucos quilômetros das cachoeiras e trilhas do Caminho dos Diamantes.</p>
+          <div class="stats">
+            <div><b data-count="10">10</b><span>quartos</span></div>
+            <div><b>14h</b><span>check-in</span></div>
+            <div><b data-pet>Pet</b><span>friendly</span></div>
+          </div>
+          <a class="pill pill--ember pill--lg magnetic" data-wa-link data-wa-msg="Olá! Gostaria de consultar disponibilidade e valores de hospedagem na pousada." href="#" target="_blank" rel="noopener"><span>Consultar disponibilidade</span></a>
+        </div>
+        <ul class="amen" data-amen></ul>
+      </div>
+    </section>
+
+    <!-- AVALIAÇÕES -->
+    <section class="rev" aria-labelledby="t-rev">
+      <div class="wrap rev__in">
+        <svg class="owl owl--md" viewBox="0 0 120 120" aria-hidden="true" data-owl><use href="#owl-body"/><g class="owl__eyes"><use href="#owl-eyes"/></g><g class="owl__pupils" data-pupils><use href="#owl-pupils"/></g><g class="owl__lids" data-lids><use href="#owl-lids"/></g><use href="#owl-beak"/></svg>
+        <div>
+          <h2 class="h3" id="t-rev">Já passou pelo Recanto?</h2>
+          <p data-reviews-txt>Sua avaliação no Google ajuda outros viajantes da Estrada Real a encontrar a gente.</p>
+        </div>
+        <a class="pill pill--light magnetic" data-review-link href="#" target="_blank" rel="noopener"><span>Avaliar no Google</span></a>
+      </div>
+      <div class="wrap reviews" data-reviews></div>
+    </section>
+
+    <!-- COMO CHEGAR -->
+    <section class="chegar" id="chegar" aria-labelledby="t-ch">
+      <div class="wrap chegar__grid">
+        <div>
+          <p class="eyebrow">Como chegar</p>
+          <h2 class="h2" id="t-ch" data-split>Siga a placa <em>da Estrada Real</em></h2>
+          <dl class="facts">
+            <div><dt>Endereço</dt><dd data-addr></dd></div>
+            <div><dt>Referência</dt><dd data-ref></dd></div>
+            <div><dt>Telefone</dt><dd data-phone></dd></div>
+            <div><dt>Pagamento</dt><dd data-payments></dd></div>
+          </dl>
+          <div class="row-cta">
+            <a class="pill pill--wa magnetic" data-wa-link href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+            <a class="pill pill--line magnetic" data-maps-link href="#" target="_blank" rel="noopener"><span>Abrir no Google Maps</span></a>
+            <a class="pill pill--line magnetic" data-fb-link href="#" target="_blank" rel="noopener"><span>Facebook</span></a>
+          </div>
+        </div>
+        <div class="hours">
+          <h3>Horários</h3>
+          <table data-hours><caption class="sr">Horário por dia da semana</caption></table>
+          <div class="route" aria-hidden="true">
+            <svg viewBox="0 0 400 220" preserveAspectRatio="none"><path class="route__path" d="M10 190 C 80 190, 90 60, 170 80 S 260 200, 320 120 S 380 40, 390 30" fill="none" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 10"/></svg>
+            <span class="route__a">Conceição do Mato Dentro</span>
+            <span class="route__pin"><svg viewBox="0 0 120 120"><use href="#owl"/></svg></span>
+            <span class="route__b">Serro</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ftr">
+    <div class="wrap ftr__top">
+      <p class="ftr__cta">Bateu a fome? <a href="#cardapio">Monte seu pedido →</a></p>
+      <nav aria-label="Rodapé"><a href="#cardapio">Cardápio</a><a href="#pousada">Pousada</a><a href="#chegar">Como chegar</a><a href="creditos.html">Créditos das imagens</a></nav>
+    </div>
+    <div class="ftr__word" aria-hidden="true" data-word>Recanto da Coruja</div>
+    <div class="wrap ftr__base">
+      <span>© <span data-year></span> Recanto da Coruja · Alvorada de Minas – MG</span>
+      <span>Pedidos e reservas são confirmados pelo Recanto no WhatsApp. Nenhum pagamento é feito no site.</span>
+    </div>
+  </footer>
+
+  <a class="fab-wa" data-wa-link href="#" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a>
+  <button class="fab-cart" type="button" data-open-cart hidden><span>Ver pedido</span><b data-cart-short>—</b><i data-cart-count>0</i></button>
+
+  <!-- Montador -->
+  <dialog class="sheet" id="builder" aria-labelledby="b-title">
+    <form method="dialog" class="sheet__in" data-builder-form>
+      <button class="x" value="cancel" aria-label="Fechar">×</button>
+      <div class="b__pic" data-b-pic></div>
+      <div class="b__body">
+        <h2 id="b-title" class="b__title" data-b-title>Pizza</h2>
+        <p class="b__desc" data-b-desc></p>
+        <fieldset class="b__grp"><legend>Tamanho</legend><div class="chips" data-b-sizes></div></fieldset>
+        <fieldset class="b__grp">
+          <legend>Sabores</legend>
+          <label class="switch"><input type="checkbox" id="b-half" data-b-half> <span>Meio a meio (2 sabores)</span></label>
+          <div class="b__second" data-b-second hidden><label for="b-flavor2">Segundo sabor</label><select id="b-flavor2" data-b-flavor2></select></div>
+          <p class="b__rule" data-b-rule></p>
+        </fieldset>
+        <div class="b__grp"><label for="b-obs">Observações <small>(opcional)</small></label><textarea id="b-obs" rows="2" maxlength="140" placeholder="Ex.: sem cebola, bem assada…" data-b-obs></textarea></div>
+        <div class="b__foot">
+          <div class="qty"><button type="button" data-b-minus aria-label="Diminuir">−</button><output data-b-qty>1</output><button type="button" data-b-plus aria-label="Aumentar">+</button></div>
+          <button class="pill pill--ember b__add" type="submit" value="add"><span>Adicionar <i data-b-price></i></span></button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Pedido -->
+  <aside class="drawer" id="cart" aria-hidden="true">
+    <div class="drawer__bg" data-close-cart></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="c-title">
+      <header class="drawer__hdr"><h2 id="c-title">Seu pedido</h2><button class="x" type="button" data-close-cart aria-label="Fechar">×</button></header>
+      <div class="drawer__body">
+        <ul class="lines" data-lines></ul>
+        <div class="empty" data-empty>
+          <svg class="owl owl--md" viewBox="0 0 120 120" aria-hidden="true"><use href="#owl"/></svg>
+          <p>A coruja está esperando seu pedido.</p>
+          <a class="pill pill--ember" href="#cardapio" data-close-cart><span>Ver cardápio</span></a>
+        </div>
+        <form class="checkout" data-checkout novalidate hidden>
+          <fieldset class="seg" data-modes><legend class="sr">Como vai receber</legend></fieldset>
+          <div class="f2">
+            <label for="c-nome">Seu nome<input id="c-nome" name="nome" autocomplete="name" required></label>
+            <label for="c-fone">Telefone<input id="c-fone" name="fone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(31) 9 9999-9999"></label>
+          </div>
+          <div class="addr" data-addr-fields>
+            <div class="f2 f2--n"><label for="c-rua">Rua<input id="c-rua" name="rua" autocomplete="address-line1"></label><label for="c-num">Nº<input id="c-num" name="numero" inputmode="numeric"></label></div>
+            <div class="f2"><label for="c-bairro">Bairro / comunidade<input id="c-bairro" name="bairro"></label><label for="c-ref">Referência<input id="c-ref" name="ref"></label></div>
+          </div>
+          <label for="c-hora" data-hora-wrap>Horário desejado<input id="c-hora" name="hora" placeholder="Ex.: 19h30"></label>
+          <div class="f2">
+            <label for="c-pag">Pagamento<select id="c-pag" name="pagamento" data-pay></select></label>
+            <label for="c-troco" data-troco-wrap hidden>Troco para<input id="c-troco" name="troco" inputmode="decimal" placeholder="R$"></label>
+          </div>
+          <label for="c-obs">Observações<textarea id="c-obs" name="obs" rows="2" maxlength="200"></textarea></label>
+        </form>
+      </div>
+      <footer class="drawer__foot" data-foot hidden>
+        <dl class="totals"><div><dt>Subtotal</dt><dd data-subtotal>—</dd></div><div data-fee-row><dt>Entrega</dt><dd data-fee>—</dd></div><div class="totals__big"><dt>Total</dt><dd data-total>—</dd></div></dl>
+        <p class="note note--sm" data-total-note hidden>Alguns preços ainda não foram confirmados. O Recanto informa o valor final pelo WhatsApp.</p>
+        <a class="pill pill--wa pill--block" href="#" target="_blank" rel="noopener" data-send><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg><span>Enviar pedido pelo WhatsApp</span></a>
+        <p class="fine">Você revisa a mensagem antes de enviar. O pedido só vale depois da confirmação do Recanto; nenhum pagamento é feito no site.</p>
+      </footer>
+    </div>
+  </aside>
+
+  <dialog class="vbox" id="promo" aria-label="Vídeo do Recanto da Coruja">
+    <button class="x" type="button" data-close-promo aria-label="Fechar vídeo">×</button>
+    <video controls playsinline preload="none" poster="video/hero_poster.webp" data-promo-video><source src="video/promo_16x9_1080p.mp4" type="video/mp4"></video>
+  </dialog>
+  <dialog class="lbox" id="lightbox" aria-label="Foto ampliada">
+    <button class="x" type="button" data-close-lb aria-label="Fechar">×</button>
+    <img alt="" data-lb-img>
+    <button class="lbox__nav lbox__nav--p" type="button" data-lb-prev aria-label="Anterior">‹</button>
+    <button class="lbox__nav lbox__nav--n" type="button" data-lb-next aria-label="Próxima">›</button>
+  </dialog>
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+  <!-- Símbolos -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <g id="owl-body"><path d="M22 44 L30 12 L49 30 Q60 26 71 30 L90 12 L98 44 Q106 66 97 86 Q85 112 60 113 Q35 112 23 86 Q14 66 22 44 Z" class="owl__b"/><path d="M38 92 q6 6 11 0 q5 6 11 0 q6 6 11 0 q5 6 11 0 M44 101 q5 5 9 0 q5 5 9 0 q5 5 9 0" class="owl__f"/></g>
+      <g id="owl-eyes"><circle cx="43" cy="55" r="17" class="owl__iris"/><circle cx="77" cy="55" r="17" class="owl__iris"/><circle cx="43" cy="55" r="12" class="owl__ring"/><circle cx="77" cy="55" r="12" class="owl__ring"/></g>
+      <g id="owl-pupils"><circle cx="43" cy="55" r="8" class="owl__pupil"/><circle cx="77" cy="55" r="8" class="owl__pupil"/><circle cx="46" cy="52" r="2.6" fill="#fff"/><circle cx="80" cy="52" r="2.6" fill="#fff"/></g>
+      <g id="owl-lids"><rect x="24" y="36" width="38" height="38" rx="19" class="owl__lid"/><rect x="58" y="36" width="38" height="38" rx="19" class="owl__lid"/></g>
+      <path id="owl-beak" d="M55 68 L65 68 L60 79 Z" class="owl__beak"/>
+      <g id="owl"><use href="#owl-body"/><use href="#owl-eyes"/><use href="#owl-pupils"/><use href="#owl-beak"/></g>
+    </defs>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.8.3-.2.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2 3.1 4.9 4.2 2.4.9 2.9.8 3.4.7.5 0 1.6-.6 1.8-1.2.2-.6.2-1.2.1-1.3 0-.1-.2-.2-.5-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1c-.1.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.4.1-.6l.4-.5.4-.6c.1-.2.1-.4 0-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.2z"/></symbol>
+    <symbol id="i-pool" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 17c2 1.3 4 1.3 6 0s4-1.3 6 0 4 1.3 6 0M3 21c2 1.3 4 1.3 6 0s4-1.3 6 0 4 1.3 6 0M8 14V5a2 2 0 0 1 4 0M16 14V5a2 2 0 0 0-4 0M8 8h8M8 11h8"/></g></symbol>
+    <symbol id="i-kids" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5l8-3 8 3v16M4 9h16M9 21v-6h6v6"/><path d="M12 9v6"/></g></symbol>
+    <symbol id="i-peteca" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15h6l1 3a4 4 0 0 1-8 0z"/><path d="M10 15 7 3M12 15V2M14 15l3-12"/></g></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19V6M3 15h18v4M21 15v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/></g></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1" fill="currentColor"/></g></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h14l2 5v5h-2M5 12h14"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/></g></symbol>
+    <symbol id="i-paw" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="7" cy="9" r="2"/><circle cx="11" cy="6" r="2"/><circle cx="15" cy="6.5" r="2"/><circle cx="18.5" cy="10" r="2"/><path d="M8 17c0-3 2-5.5 4.5-5.5S17 14 17 16.5 15 20 12.5 19 8 20 8 17z"/></g></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 10h18M7 15h4"/></g></symbol>
+  </svg>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/pedido.js"></script>
+  <script src="js/motion.js"></script>
+</body>
+</html>

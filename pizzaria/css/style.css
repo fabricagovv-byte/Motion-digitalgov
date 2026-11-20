@@ -34,6 +34,7 @@
   --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
   --hdr-h: 72px;
   --gutter: clamp(16px, 4vw, 40px);
+  color-scheme: light;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -48,7 +49,7 @@ a { color: inherit; }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 6px; }
-.wrap { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: var(--gutter); }
+.wrap { width: 100%; max-width: 1200px; margin-inline: auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
 .sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip { position: fixed; left: 12px; top: -60px; z-index: 100; background: var(--amber); color: var(--coal); padding: 10px 16px; border-radius: 10px; font-weight: 600; transition: top .2s; }
 .skip:focus { top: 12px; }
@@ -95,7 +96,7 @@ button { cursor: pointer; }
 
 /* ---------- Cabeçalho ---------- */
 .hdr {
-  position: sticky; top: 0; z-index: 50; height: var(--hdr-h);
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; height: var(--hdr-h);
   color: #fff; transition: background-color .35s, color .35s, box-shadow .35s, backdrop-filter .35s;
 }
 .hdr.is-solid {

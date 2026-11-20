@@ -249,6 +249,7 @@
     $('[data-total]').textContent = nada ? 'a confirmar' : t.faltando ? P.dinheiro(t.total) + ' + a confirmar' : P.dinheiro(t.total);
     $('[data-total-note]').hidden = !t.faltando;
     $('[data-total-note]').textContent = 'Alguns preços ou a taxa de entrega ainda não foram confirmados. A pizzaria informa o valor final pelo WhatsApp.';
+    if (typeof atualizarEnvio === 'function') atualizarEnvio();
     $('[data-cart-total-short]').textContent = t.faltando && t.sub === 0 ? n + (n > 1 ? ' itens' : ' item') : P.dinheiro(t.total);
   }
   $('[data-lines]').addEventListener('click', function (e) {
@@ -275,12 +276,15 @@
   function waNumero() { return (N.whatsapp || '').replace(/\D/g, ''); }
   function waLink(texto) { var n = waNumero(); return 'https://wa.me/' + n + (texto ? '?text=' + encodeURIComponent(texto) : ''); }
 
-  $('[data-send]').addEventListener('click', function () {
-    var f = form.elements, obrig = ['nome'].concat(modo() === 'entrega' ? ['rua', 'numero', 'bairro'] : []), erro = null;
-    obrig.forEach(function (k) { if (!f[k].value.trim()) { f[k].classList.add('is-invalid'); erro = erro || f[k]; } });
-    if (erro) { erro.focus(); toast('Preencha os campos destacados para enviar.'); return; }
-    var dados = {}; ['nome', 'fone', 'rua', 'numero', 'bairro', 'ref'].forEach(function (k) { dados[k] = f[k].value.trim(); }); store.set('pizzaria_cliente', dados);
-    var t = totais(), L = [];
+  /* O botão de envio é um link real (<a target="_blank">): funciona em qualquer navegador e
+     não depende de pop-up. O endereço é atualizado sempre que o pedido ou o formulário mudam. */
+  function camposInvalidos() {
+    var f = form.elements, obrig = ['nome'].concat(modo() === 'entrega' ? ['rua', 'numero', 'bairro'] : []);
+    return obrig.map(function (k) { return f[k]; }).filter(function (el) { return !el.value.trim(); });
+  }
+  function montarMensagem() {
+    var f = form.elements, t = totais(), L = [], d = {};
+    ['nome', 'fone', 'rua', 'numero', 'bairro', 'ref'].forEach(function (k) { d[k] = f[k].value.trim(); });
     L.push('*Novo pedido pelo site — ' + N.nome + '*', '');
     cart.forEach(function (l) { var v = precoLinha(l); L.push('• ' + l.qty + 'x ' + nomeLinha(l) + ' — ' + (v == null ? 'preço a confirmar' : P.dinheiro(v * l.qty))); if (l.obs) L.push('   _Obs.: ' + l.obs + '_'); });
     var nada = t.faltando && t.sub === 0;
@@ -288,13 +292,27 @@
     if (t.entrega) L.push('Entrega: ' + (t.taxa == null ? 'a confirmar' : P.dinheiro(t.taxa)));
     L.push('*Total: ' + (nada ? 'a confirmar pela pizzaria' : P.dinheiro(t.total) + (t.faltando ? ' + valores a confirmar' : '')) + '*', '');
     L.push('*' + (t.entrega ? 'Entrega' : 'Retirada no local') + '*');
-    L.push('Nome: ' + dados.nome); if (dados.fone) L.push('Telefone: ' + dados.fone);
-    if (t.entrega) { L.push('Endereço: ' + dados.rua + ', ' + dados.numero + ' — ' + dados.bairro); if (dados.ref) L.push('Referência: ' + dados.ref); }
+    L.push('Nome: ' + d.nome); if (d.fone) L.push('Telefone: ' + d.fone);
+    if (t.entrega) { L.push('Endereço: ' + d.rua + ', ' + d.numero + ' — ' + d.bairro); if (d.ref) L.push('Referência: ' + d.ref); }
     L.push('Pagamento: ' + f.pagamento.value + (f.troco.value && /dinheiro/i.test(f.pagamento.value) ? ' (troco para R$ ' + f.troco.value + ')' : ''));
     if (f.obs.value.trim()) L.push('Obs.: ' + f.obs.value.trim());
     L.push('', '_Aguardo a confirmação do pedido e do valor final._');
-    if (!waNumero()) toast('O número de WhatsApp da pizzaria ainda não foi configurado. Escolha o contato manualmente.');
-    window.open(waLink(L.join('\n')), '_blank', 'noopener');
+    return { texto: L.join('\n'), cliente: d };
+  }
+  var sendBtn = $('[data-send]');
+  function atualizarEnvio() { if (cart.length && sendBtn) sendBtn.href = waLink(montarMensagem().texto); }
+  form.addEventListener('input', atualizarEnvio);
+  form.addEventListener('change', atualizarEnvio);
+  sendBtn.addEventListener('click', function (ev) {
+    var inv = camposInvalidos();
+    if (inv.length) {
+      ev.preventDefault();
+      inv.forEach(function (el) { el.classList.add('is-invalid'); });
+      inv[0].focus(); toast('Preencha os campos destacados para enviar.'); return;
+    }
+    atualizarEnvio();
+    store.set('pizzaria_cliente', montarMensagem().cliente);
+    if (!waNumero()) toast('O WhatsApp da pizzaria ainda não foi configurado: escolha o contato na tela do WhatsApp.');
   });
   renderCart();
 
@@ -359,11 +377,13 @@
   /* o iframe do Google só carrega quando a pessoa pede (ou ao chegar perto), para manter o site leve */
   function carregarMapa() {
     var m = $('[data-map]'); if (m.querySelector('iframe')) return;
+    if (window.PIZZARIA_SEM_IFRAME) { window.open(mapsUrl, '_blank', 'noopener'); return; }
     var q = N.endereco ? N.endereco + ', ' + N.cidade + ' - ' + N.uf : N.mapaBusca;
     m.innerHTML = '<iframe title="Mapa: localização da pizzaria" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=' + encodeURIComponent(q) + '&z=15&output=embed"></iframe>';
   }
   $('[data-load-map]').addEventListener('click', carregarMapa);
-  if ('IntersectionObserver' in window) {
+  if (window.PIZZARIA_SEM_IFRAME) { var lm = $('[data-load-map]'); lm.outerHTML = '<a class="map__load" href="' + esc(mapsUrl) + '" target="_blank" rel="noopener">' + lm.innerHTML.replace('Carregar mapa', 'Ver no Google Maps') + '</a>'; }
+  else if ('IntersectionObserver' in window) {
     var ioMap = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { carregarMapa(); ioMap.disconnect(); } }, { rootMargin: '300px' });
     ioMap.observe($('[data-map]'));
   }

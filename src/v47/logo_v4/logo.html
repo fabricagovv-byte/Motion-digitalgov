@@ -1,0 +1,71 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>V4 · emblema animado</title>
+<style>
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+*{margin:0;padding:0}html,body{background:#000;overflow:hidden}#sv{display:block}
+</style></head><body><svg id="sv"></svg>
+<script>
+const q = new URLSearchParams(location.search), V = +(q.get('v') || 1), W = +(q.get('w') || 1080), H = +(q.get('h') || 1080), DUR = 5.5;
+const sv = document.getElementById('sv'); sv.setAttribute('width', W); sv.setAttribute('height', H);
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), eo = x => 1 - Math.pow(1 - cl(x), 3), eio = x => { x = cl(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const spr = x => x <= 0 ? 0 : 1 - Math.exp(-6 * x) * Math.cos(9 * x);
+// estilos: 1 = preto/branco (original), 2 = dourado V4, 3 = azul DigitalGov
+const ST = { 1: { bg1: '#1A1A1A', bg2: '#000', ink: '#FFFFFF', acc: '#FFFFFF', p: '#FFFFFF' },
+             2: { bg1: '#2A2113', bg2: '#0B0B0D', ink: 'url(#gold)', acc: '#D9A441', p: '#D9A441' },
+             3: { bg1: '#123061', bg2: '#060C1C', ink: '#FFFFFF', acc: '#1BB8EA', p: '#1BB8EA' } }[V];
+const L = 1254, CX = 618, CY = 598, R = 521;
+const S = Math.min(W, H) * (H > W ? .78 : .62) / L, OX = W / 2 - 627 * S, OY = H / 2 - 640 * S - (H > W ? 80 : 70) * Math.min(W, H) / 1080;
+const IMG = (m, op = 1) => `<rect width="${L}" height="${L}" fill="${ST.ink}" mask="url(#${m})" opacity="${op}"/>`;
+const pie = (a) => { if (a <= 0) return ''; if (a >= 359.9) return `<circle cx="${CX}" cy="${CY}" r="800" fill="#fff"/>`; const a0 = -110 * Math.PI / 180, a1 = a0 + a * Math.PI / 180;
+  return `<path d="M${CX} ${CY}L${CX + 900 * Math.cos(a0)} ${CY + 900 * Math.sin(a0)}A900 900 0 ${a > 180 ? 1 : 0} 1 ${CX + 900 * Math.cos(a1)} ${CY + 900 * Math.sin(a1)}Z" fill="#fff"/>`; };
+function part(id, shape, reveal) { return `<mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="${L}" height="${L}"><g mask="url(#${id}r)"><image href="img/v4_emblema_white.png" width="${L}" height="${L}"/></g></mask>
+  <mask id="${id}r" maskUnits="userSpaceOnUse" x="0" y="0" width="${L}" height="${L}"><g>${reveal}</g><g fill="#000">${shape}</g></mask>`; }
+function seek(t) {
+  // 1 anel (giro) · 2 montanhas (sobe) · 3 triângulo · 4 V4 (impacto) · 5 ondas (varre) · depois tudo + brilho
+  const pRing = eio(t / 1.0), pMt = eio((t - .7) / .8), pTri = spr((t - 1.2) * 1.3), pV = (t - 1.55), pSw = eio((t - 2.0) / .6), pAll = cl((t - 2.7) / .4);
+  const vScale = pV <= 0 ? 0 : 1 + .35 * (1 - spr(pV * 1.4)), vOp = cl(pV / .12);
+  // máscaras de região (branco = pertence à parte; preto recorta fora)
+  const ring = part('m1', `<rect x="20" y="500" width="260" height="120"/><circle cx="${CX}" cy="${CY}" r="478"/><circle cx="${CX}" cy="${CY}" r="745" fill="none" stroke="#000" stroke-width="400"/>`, `<g>${pie(pRing * 360)}</g>`);
+  const mt = part('m2', `<rect x="0" y="508" width="${L}" height="${L}"/><polygon points="800,500 985,200 1254,200 1254,500"/><circle cx="${CX}" cy="${CY}" r="${R + 30}" fill="none" stroke="#000" stroke-width="0"/>`,
+    `<rect x="60" y="${640 - 420 * pMt}" width="820" height="${420 * pMt}" fill="#fff"/>`);
+  const tri = part('m3', `<rect x="0" y="0" width="800" height="${L}"/><rect x="0" y="470" width="${L}" height="${L}"/>`,
+    `<g transform="translate(985 480) scale(1 ${cl(pTri, 0, 1.3)}) translate(-985 -480)"><rect x="790" y="180" width="380" height="300" fill="#fff"/></g>`);
+  const v4 = part('m4', `<rect x="0" y="0" width="${L}" height="505"/><rect x="0" y="888" width="${L}" height="400"/><rect x="1062" y="0" width="300" height="${L}"/><polygon points="720,520 1062,470 1062,535 760,545"/>`,
+    `<rect x="20" y="500" width="1060" height="400" fill="#fff"/>`);
+  const sw = part('m5', `<rect x="30" y="545" width="1030" height="280"/><rect x="0" y="0" width="${L}" height="400"/>`,
+    `<rect x="0" y="0" width="${L * pSw * 1.05}" height="${L}" fill="#fff"/>`);
+  const full = `<mask id="m6" maskUnits="userSpaceOnUse" x="0" y="0" width="${L}" height="${L}"><image href="img/v4_emblema_white.png" width="${L}" height="${L}"/></mask>`;
+  // partículas e brilho
+  let pts = ''; for (let i = 0; i < 70; i++) { const x = (i * 263) % W, y = ((i * 401) % H + H - (t * (14 + (i % 6) * 7)) % H) % H; pts += `<circle cx="${x}" cy="${y}" r="${1 + (i % 3)}" fill="${ST.p}" opacity="${.08 + .25 * Math.abs(Math.sin(t * 1.4 + i))}"/>`; }
+  const shX = -600 + 2600 * cl((t - 3.2) / 1.0);
+  const flash = cl(1 - Math.abs(t - 1.62) / .18);
+  const glow = .35 * eo((t - 1.6) / .6) * (1 + .15 * Math.sin(t * 3));
+  const ringGlowA = pRing > 0 && pRing < 1 ? (-110 + pRing * 360) * Math.PI / 180 : null;
+  sv.innerHTML = `<defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="${ST.bg1}"/><stop offset="1" stop-color="${ST.bg2}"/></radialGradient>
+    <radialGradient id="gl"><stop offset="0" stop-color="${ST.acc}" stop-opacity=".55"/><stop offset="1" stop-color="${ST.acc}" stop-opacity="0"/></radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8DC97"/><stop offset=".45" stop-color="#D9A441"/><stop offset=".7" stop-color="#F3CF7E"/><stop offset="1" stop-color="#9A6B1F"/></linearGradient>
+    <linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <filter id="bl" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="18"/></filter>
+    ${ring}${mt}${tri}${v4}${sw}${full}</defs>
+    <rect width="${W}" height="${H}" fill="url(#bg)"/>${pts}
+    <g transform="translate(${OX} ${OY}) scale(${S})">
+     <circle cx="${CX}" cy="${CY}" r="${R + 120}" fill="url(#gl)" opacity="${glow}"/>
+     <g opacity="${1 - pAll}">
+      ${IMG('m1')}${IMG('m2')}${IMG('m3')}
+      <g transform="translate(560 700) scale(${vScale}) translate(-560 -700)" opacity="${vOp}">${IMG('m4')}</g>
+      ${IMG('m5')}</g>
+     <g opacity="${pAll}">${IMG('m6')}</g>
+     ${ringGlowA !== null ? `<circle cx="${CX + (R - 12) * Math.cos(ringGlowA)}" cy="${CY + (R - 12) * Math.sin(ringGlowA)}" r="40" fill="${ST.acc}" filter="url(#bl)" opacity=".9"/><circle cx="${CX + (R - 12) * Math.cos(ringGlowA)}" cy="${CY + (R - 12) * Math.sin(ringGlowA)}" r="12" fill="#fff"/>` : ''}
+     <rect x="${shX}" y="-100" width="220" height="1500" fill="url(#sh)" mask="url(#m6)" transform="skewX(-20)" opacity="${t > 3.2 && t < 4.2 ? .85 : 0}"/>
+     <circle cx="560" cy="700" r="${300 + 500 * cl((t - 1.55) / .5)}" fill="none" stroke="${ST.acc}" stroke-width="${10 * (1 - cl((t - 1.55) / .5))}" opacity="${t > 1.55 && t < 2.05 ? .8 : 0}"/>
+    </g>
+    <rect width="${W}" height="${H}" fill="#fff" opacity="${.12 * flash}"/>
+    ${(() => { const p = cl((t - 2.9) / .5), y = OY + 1225 * S; return `<text x="${W / 2}" y="${y + 30 * (1 - eo(p))}" text-anchor="middle" font-family="Mont" font-weight="800" font-size="${Math.min(W, H) * .052}" letter-spacing="${Math.min(W, H) * .012}" fill="${V === 1 ? '#fff' : ST.acc}" opacity="${p}">V4 FÁBRICAGOV</text>
+      <text x="${W / 2}" y="${y + Math.min(W, H) * .055}" text-anchor="middle" font-family="Mont" font-weight="700" font-size="${Math.min(W, H) * .022}" letter-spacing="${Math.min(W, H) * .008}" fill="#B9B4AA" opacity="${cl((t - 3.2) / .5)}">TECNOLOGIA PARA O SETOR PÚBLICO</text>`; })()}`;
+  sv.style.opacity = 1 - cl((t - (DUR - .01)) / .01);
+}
+window.seek = seek; window.DUR = DUR;
+Promise.all(['800 40px Mont', '700 20px Mont'].map(f => document.fonts.load(f))).then(() => new Promise(r => { const i = new Image(); i.onload = r; i.src = 'img/v4_emblema_white.png'; }))
+ .then(() => { seek(0); window.ready = true; if (!q.has('render')) { const t0 = performance.now(); const lp = () => { seek(((performance.now() - t0) / 1000) % (DUR + 1)); requestAnimationFrame(lp); }; lp(); } });
+</script></body></html>

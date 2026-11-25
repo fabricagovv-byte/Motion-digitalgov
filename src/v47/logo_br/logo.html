@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 FábricaGov · logo motion BR</title>
+<style>
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-900-normal.woff2);font-weight:900}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;overflow:hidden}
+#root{position:relative;overflow:hidden;font-family:Mont}
+#bg{position:absolute;left:0;top:0}
+#box{position:absolute;width:1080px;height:1080px;transform-origin:0 0}
+#sv{position:absolute;left:0;top:0;overflow:visible}
+.wm{position:absolute;left:0;width:1080px;text-align:center;white-space:nowrap}
+.wm span{display:inline-block}
+#word{top:690px;font-size:112px;font-weight:900;letter-spacing:2px;line-height:1}
+#tag{top:830px;font-size:27px;font-weight:700;letter-spacing:7px}
+#bar{position:absolute;top:812px;left:390px;width:300px;height:8px;display:flex;border-radius:4px;overflow:hidden}
+#bar i{flex:1}
+</style>
+</head>
+<body>
+<div id="root"><svg id="bg"></svg><div id="box"><svg id="sv" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+ <div class="wm" id="word"></div><div id="bar"><i style="background:#009C3B"></i><i style="background:#FFDF00"></i><i style="background:#1D5BD8"></i></div><div class="wm" id="tag"></div></div></div>
+<script>
+const q = new URLSearchParams(location.search), V = +(q.get('v') || 1), W = +(q.get('w') || 1080), H = +(q.get('h') || 1080), DUR = 6.5;
+const S = Math.min(W, H) / 1080, $ = id => document.getElementById(id);
+const root = $('root'); root.style.width = W + 'px'; root.style.height = H + 'px';
+$('bg').setAttribute('width', W); $('bg').setAttribute('height', H);
+const box = $('box'); box.style.left = (W - 1080 * S) / 2 + 'px'; box.style.top = (H - 1080 * S) / 2 + 'px'; box.style.transform = `scale(${S})`;
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), eo = x => 1 - Math.pow(1 - cl(x), 3), eio = x => { x = cl(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const spr = x => x <= 0 ? 0 : 1 - Math.exp(-6 * x) * Math.cos(9 * x), lerp = (a, b, p) => a + (b - a) * p;
+const GREEN = '#009C3B', YEL = '#FFDF00', BLUE = '#1D5BD8', NAVY = '#002776', GOLD = '#D9A441', PAPER = '#F4F1EA';
+// marca V4 (PNG branco) usada como máscara para pintar em qualquer cor
+const MARK = (id) => `<mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1080"><image href="img/v4_mark_white.png" x="0" y="0" width="630" height="340"/></mask>`;
+const mark = (x, y, w, col, op = 1, id = 'mk') => `<g transform="translate(${x - w / 2} ${y - w * 340 / 630 / 2}) scale(${w / 630})" opacity="${op}"><rect width="630" height="340" fill="${col}" mask="url(#${id})"/></g>`;
+const star = (x, y, r, op) => `<path d="M${x} ${y - r}Q${x} ${y} ${x + r} ${y}Q${x} ${y} ${x} ${y + r}Q${x} ${y} ${x - r} ${y}Q${x} ${y} ${x} ${y - r}Z" fill="#fff" opacity="${op}"/>`;
+const glint = (x, y, t, t0) => { const p = cl((t - t0) / .7); return p <= 0 || p >= 1 ? '' : star(x, y, 46 * Math.sin(Math.PI * p), .95) + `<circle cx="${x}" cy="${y}" r="${30 * Math.sin(Math.PI * p)}" fill="#fff" opacity="${.35 * Math.sin(Math.PI * p)}"/>`; };
+// rhombus draw helper: perímetro parcial
+function polyPart(pts, p) { const segs = []; let L = 0; for (let i = 0; i < pts.length; i++) { const a = pts[i], b = pts[(i + 1) % pts.length], l = Math.hypot(b[0] - a[0], b[1] - a[1]); segs.push([a, b, l]); L += l; }
+  let rem = L * cl(p), d = `M${pts[0][0]} ${pts[0][1]}`; for (const [a, b, l] of segs) { if (rem <= 0) break; const k = Math.min(1, rem / l); d += `L${lerp(a[0], b[0], k)} ${lerp(a[1], b[1], k)}`; rem -= l; } return d; }
+
+// textos
+const WORD = 'FÁBRICAGOV', TAG = 'TECNOLOGIA PARA O SETOR PÚBLICO';
+$('word').innerHTML = [...WORD].map((c, i) => `<span style="color:${i < 7 ? '#fff' : (V === 3 ? YEL : V === 2 ? GOLD : YEL)}">${c}</span>`).join('');
+$('tag').innerHTML = TAG;
+const letters = [...$('word').children];
+function texts(t, t0, tagCol) {
+  letters.forEach((s, i) => { const p = t - t0 - i * .045; s.style.opacity = cl(p / .2); s.style.transform = `translateY(${(1 - spr(p * 1.4)) * 70}px)`; });
+  const pb = eio((t - t0 - .45) / .6); $('bar').style.width = 300 * pb + 'px'; $('bar').style.left = 540 - 150 * pb + 'px';
+  const pt = cl((t - t0 - .7) / .5); $('tag').style.opacity = pt; $('tag').style.letterSpacing = (7 + 10 * (1 - eo(pt))) + 'px'; $('tag').style.color = tagCol;
+}
+
+// fundos
+function bgParticles(t, n, col, seed = 1) { let s = ''; for (let i = 0; i < n; i++) { const a = (i * 137.5 + seed) % 360, r = ((i * 97) % 100) / 100; const x = (i * 211 + seed * 50) % W, y = ((i * 379) % H + H - (t * (12 + (i % 5) * 6)) % H) % H; s += `<circle cx="${x}" cy="${y}" r="${1.2 + (i % 3)}" fill="${col}" opacity="${.15 + .35 * Math.abs(Math.sin(t * 1.3 + a))}"/>`; } return s; }
+
+let MAP = null; // [{id,d,cx,cy}]
+function seek(t) {
+  const end = DUR, fade = 1;
+  let bg = '', fg = '';
+  if (V === 1) {
+    // ===== 1 · LOSANGO =====
+    bg = `<defs><radialGradient id="g1" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#00843A"/><stop offset=".6" stop-color="#00452A"/><stop offset="1" stop-color="#001E14"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#g1)"/>` + bgParticles(t, 60, YEL, 3);
+    // raios de luz atrás do emblema
+    let rays = ''; const pr = eo((t - 1.1) / 1.2); for (let i = 0; i < 24; i++) { const a = i * 15 + t * 6; rays += `<path d="M540 400L${540 + 2200 * Math.cos((a - 2.5) * Math.PI / 180)} ${400 + 2200 * Math.sin((a - 2.5) * Math.PI / 180)}L${540 + 2200 * Math.cos((a + 2.5) * Math.PI / 180)} ${400 + 2200 * Math.sin((a + 2.5) * Math.PI / 180)}Z" fill="${YEL}" opacity="${.05 * pr}"/>`; }
+    const R = [[540, 200], [820, 400], [540, 600], [260, 400]];
+    const pd = eio(t / 1.0), pf = eo((t - .85) / .35), sb = t < .85 ? 1 : 1 + .06 * Math.sin(cl((t - .85) / .4) * Math.PI);
+    const pc = spr((t - 1.1) * 1.2), pa = eio((t - 1.5) / .5), pm = spr((t - 1.85) * 1.3);
+    let stars = ''; [[500, 492, 8], [585, 496, 7], [455, 470, 5], [625, 472, 6], [540, 505, 6], [470, 340, 5], [610, 338, 5]].forEach(([x, y, r], i) => { const p = cl((t - 1.6 - i * .06) / .25); stars += star(x, y, r * p * (1 + .15 * Math.sin(t * 6 + i)), .9 * p); });
+    const arcD = `M400 470Q540 405 680 470`;
+    fg = `<defs>${MARK('mk')}<clipPath id="cc"><circle cx="540" cy="400" r="135"/></clipPath></defs>${rays}
+      <g transform="translate(540 400) scale(${sb}) translate(-540 -400)">
+       <polygon points="${R.join(' ')}" fill="${YEL}" opacity="${pf}"/>
+       <path d="${polyPart(R, pd)}" fill="none" stroke="${YEL}" stroke-width="10" stroke-linejoin="round"/></g>
+      <g transform="translate(540 400) scale(${pc}) translate(-540 -400)"><circle cx="540" cy="400" r="135" fill="${NAVY}"/>
+       <g clip-path="url(#cc)">${stars}<path d="${arcD}" fill="none" stroke="#fff" stroke-width="22" stroke-dasharray="320" stroke-dashoffset="${320 * (1 - pa)}" opacity=".95"/></g>
+       <circle cx="540" cy="400" r="135" fill="none" stroke="#fff" stroke-width="5" opacity=".9"/></g>
+      ${mark(540, 388, 165 * pm, '#fff', cl((t - 1.85) / .12))}
+      ${glint(800, 395, t, 3.6)}${glint(560, 205, t, 4.4)}`;
+    texts(t, 2.3, '#E6F2E9');
+  } else if (V === 2) {
+    // ===== 2 · FAIXAS =====
+    bg = `<defs><radialGradient id="g2" cx="50%" cy="45%" r="80%"><stop offset="0" stop-color="#1A1D24"/><stop offset="1" stop-color="#08090C"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#g2)"/>` + bgParticles(t, 40, GOLD, 7);
+    const cols = [GREEN, YEL, BLUE];
+    let bands = '';
+    cols.forEach((c, i) => {
+      const p1 = eio((t - i * .12) / .75);                  // entra varrendo
+      const p2 = eio((t - 1.05 - i * .06) / .6);             // vira a faixa embaixo do nome? -> vira tarja do emblema
+      // estado A: faixa diagonal gigante; estado B: chevron/listra fina sob a marca
+      const ax = lerp(-2600, -420, p1), ay = 240 + i * 210, aw = 2400, ah = 190, ar = -16;
+      const bx = 330 + i * 140, by = 560, bw = 140, bh = 14, br = 0;
+      const x = lerp(ax, bx, p2), y = lerp(ay, by, p2), w = lerp(aw, bw, p2), h = lerp(ah, bh, p2), r = lerp(ar, br, p2);
+      bands += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${lerp(0, 7, p2)}" fill="${c}" transform="rotate(${r} 540 540)"/>`;
+    });
+    // marca dourada com revelação (clip da esquerda pra direita) + brilho
+    const pw = eio((t - 1.35) / .6);
+    fg = `<defs>${MARK('mk')}<clipPath id="rv"><rect x="${300}" y="200" width="${480 * pw}" height="340"/></clipPath>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6D58A"/><stop offset=".5" stop-color="${GOLD}"/><stop offset="1" stop-color="#9A6B1F"/></linearGradient>
+      <linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <mask id="mk2" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1080"><g transform="translate(320 258) scale(${440 / 630})"><image href="img/v4_mark_white.png" width="630" height="340"/></g></mask></defs>
+      ${bands}
+      <g clip-path="url(#rv)"><g transform="translate(320 258) scale(${440 / 630})"><rect width="630" height="340" fill="url(#gold)" mask="url(#mk)"/></g></g>
+      <rect x="${lerp(150, 900, cl((t - 3.4) / .8))}" y="230" width="160" height="300" fill="url(#sh)" mask="url(#mk2)" transform="skewX(-18)" opacity="${t > 3.4 && t < 4.2 ? 1 : 0}"/>
+      <rect x="${300 + 480 * pw}" y="230" width="6" height="280" fill="#fff" opacity="${pw > 0 && pw < 1 ? .9 : 0}"/>
+      ${glint(765, 270, t, 3.9)}`;
+    texts(t, 2.0, '#B9B4AA'); $('bar').style.display = 'none';
+  } else {
+    // ===== 3 · MAPA DO BRASIL =====
+    bg = `<defs><radialGradient id="g3" cx="50%" cy="40%" r="80%"><stop offset="0" stop-color="#0E2447"/><stop offset=".65" stop-color="#081428"/><stop offset="1" stop-color="#040A15"/></radialGradient>
+      <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#1BB8EA" opacity=".18"/></pattern></defs>
+      <rect width="${W}" height="${H}" fill="url(#g3)"/><rect width="${W}" height="${H}" fill="url(#dots)"/>`;
+    // mapa: 613x639 -> encolhe para emblema
+    const pz = eio((t - 3.0) / .8);
+    const sc = lerp(1.0, .82, pz), cx = 540, cy = lerp(500, 410, pz);
+    const ox = cx - 306.5 * sc, oy = cy - 319.5 * sc;
+    let st = '', fills = '', links = '', nodes = '';
+    const mg = MAP.find(s => s.id === 'mg');
+    MAP.forEach((s, i) => {
+      const t0 = .1 + (i / MAP.length) * 1.5, p = eio((t - t0) / .7);
+      st += `<path d="${s.d}" pathLength="1" fill="none" stroke="${YEL}" stroke-width="${1.6 / sc}" stroke-dasharray="1" stroke-dashoffset="${1 - p}" opacity="${.9 - .4 * pz}"/>`;
+      const pf = eo((t - 1.9 - i * .02) / .5);
+      fills += `<path d="${s.d}" fill="${s.id === 'mg' ? YEL : 'url(#mf)'}" opacity="${(s.id === 'mg' ? .95 : .85) * pf}"/>`;
+      if (s.id !== 'mg') { const pl = eio((t - 2.2 - (i % 9) * .05) / .5), pd = cl((t - 2.7 - (i % 7) * .1) % 1.4 / 1.4);
+        const mx = (mg.cx + s.cx) / 2, my = (mg.cy + s.cy) / 2 - 40;
+        links += `<path d="M${mg.cx} ${mg.cy}Q${mx} ${my} ${s.cx} ${s.cy}" pathLength="1" fill="none" stroke="#fff" stroke-width="${1.3 / sc}" stroke-dasharray="1" stroke-dashoffset="${1 - pl}" opacity="${.55 * (1 - pz * .6)}"/>`;
+        if (t > 2.7) { const u = pd, bx = (1 - u) * (1 - u) * mg.cx + 2 * (1 - u) * u * mx + u * u * s.cx, by = (1 - u) * (1 - u) * mg.cy + 2 * (1 - u) * u * my + u * u * s.cy; links += `<circle cx="${bx}" cy="${by}" r="${3 / sc}" fill="${YEL}" opacity="${.9 * (1 - pz * .5)}"/>`; }
+        nodes += `<circle cx="${s.cx}" cy="${s.cy}" r="${4.5 * eo((t - 2.2) / .3) / sc}" fill="#fff"/>`; }
+    });
+    const ring = (k) => { const p = ((t - 2.0 + k * .6) % 1.8) / 1.8; return t < 2.0 ? '' : `<circle cx="${mg.cx}" cy="${mg.cy}" r="${(10 + 70 * p) / sc}" fill="none" stroke="${YEL}" stroke-width="${3 / sc}" opacity="${(1 - p) * .9}"/>`; };
+    fg = `<defs>${MARK('mk')}<linearGradient id="mf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${GREEN}"/><stop offset=".6" stop-color="#00703A"/><stop offset="1" stop-color="${NAVY}"/></linearGradient>
+      <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="10"/></filter></defs>
+      <g transform="translate(${ox} ${oy}) scale(${sc})">
+       <g filter="url(#glow)" opacity="${.5 * eo((t - 1.9) / .6)}">${MAP.map(s => `<path d="${s.d}" fill="${GREEN}"/>`).join('')}</g>
+       ${fills}${st}${links}${nodes}${ring(0)}${ring(1)}${ring(2)}
+       <circle cx="${mg.cx}" cy="${mg.cy}" r="${7 * eo((t - 2) / .3) / sc}" fill="#fff"/></g>
+      ${pz > 0 ? `<g opacity="${cl((t - 3.4) / .3)}"><circle cx="540" cy="${cy - 10}" r="${100 * spr((t - 3.4) * 1.2)}" fill="${NAVY}" stroke="#fff" stroke-width="5"/>${mark(540, cy - 14, 140 * spr((t - 3.55) * 1.3), '#fff')}</g>` : ''}
+      <text x="${ox + (mg.cx + 26) * sc}" y="${oy + mg.cy * sc + 6}" font-family="Mont" font-weight="800" font-size="20" fill="#fff" stroke="#081428" stroke-width="6" paint-order="stroke" opacity="${cl((t - 2.3) / .3) * (1 - cl((t - 3.0) / .3))}">ALVORADA DE MINAS · MG</text>
+      ${glint(700, cy - 120, t, 4.3)}`;
+    texts(t, 3.6, '#BFD3EC');
+    $('word').style.top = '700px';
+  }
+  $('bg').innerHTML = bg; $('sv').innerHTML = fg;
+  root.style.opacity = 1;
+}
+window.seek = seek;
+fetch('img/brazil.svg').then(r => r.text()).then(txt => {
+  const doc = new DOMParser().parseFromString(txt, 'image/svg+xml');
+  const tmp = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); tmp.setAttribute('viewBox', '0 0 613 639'); tmp.style.position = 'absolute'; document.body.appendChild(tmp);
+  MAP = [...doc.querySelectorAll('path')].map(p => { const e = document.createElementNS('http://www.w3.org/2000/svg', 'path'); e.setAttribute('d', p.getAttribute('d')); tmp.appendChild(e); const b = e.getBBox(); return { id: p.id, d: p.getAttribute('d'), cx: b.x + b.width / 2, cy: b.y + b.height / 2 }; });
+  // ajustes de centro visual em estados com recorte irregular
+  const fix = { mg: [0, 0], go: [0, 0] }; tmp.remove();
+  return Promise.all(['900 40px Mont', '700 20px Mont', '800 20px Mont'].map(f => document.fonts.load(f)));
+}).then(() => { seek(0); window.ready = true; window.DUR = DUR;
+  if (!q.has('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % (DUR + 1)); requestAnimationFrame(loop); }; loop(); } });
+</script>
+</body>
+</html>

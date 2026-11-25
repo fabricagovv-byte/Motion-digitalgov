@@ -157,6 +157,7 @@ o vídeo prende a atenção no primeiro quadro e mostra o caixa e a lista para a
 |---|---|
 | `DigitalGov_30dias_60s_1080p.mp4` | Versão principal, H.264 + AAC 320 kb/s, faixa de legenda opcional (pt-BR) |
 | `DigitalGov_30dias_60s_1080p_legendado.mp4` | Legendas embutidas (redes sociais / reprodução sem som) |
+| `previa_30dias_legendada.mp4` | Prévia leve (19 MB) com legendas embutidas — a única versão de vídeo versionada no git; as demais são geradas por `assemble.sh` |
 | `legendas_ptBR.srt` / `.vtt` | Legendas sincronizadas com a fala real |
 | `audio/mix_final_48k24.wav`, `audio/stem_*.flac` | Mixagem final (−14 LUFS, true peak ≤ −1 dBTP) e stems separados |
 

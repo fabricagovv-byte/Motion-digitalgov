@@ -1,0 +1,48 @@
+{
+  "fps": 30,
+  "duration": 60.0,
+  "scenes": [
+    { "id": "c1_hook", "start": 0.0, "end": 6.6 },
+    { "id": "c2_duas", "start": 6.6, "end": 21.0 },
+    { "id": "c3_caixa", "start": 21.0, "end": 32.0 },
+    { "id": "c4_lista", "start": 32.0, "end": 45.0 },
+    { "id": "c5_final", "start": 45.0, "end": 60.0 }
+  ],
+  "transition": 0.6,
+  "narration": [
+    { "id": "c1a", "at": 0.55 },
+    { "id": "c1b", "at": 3.3 },
+    { "id": "c2a", "at": 7.4 },
+    { "id": "c2b", "at": 14.7 },
+    { "id": "c3", "at": 21.7 },
+    { "id": "c4", "at": 32.8 },
+    { "id": "c5a", "at": 45.9 },
+    { "id": "c5b", "at": 53.2 }
+  ],
+  "cues": {
+    "c2": { "duas": 7.4, "seca": 9.9, "obra": 10.91, "buraco": 11.67, "ninguem": 12.77, "molhada": 15.36, "brota": 17.07, "real": 17.75, "rua": 18.65, "controle": 19.42 },
+    "c3": { "caixa": 21.7, "tem": 23.06, "entra": 23.88, "gasta": 24.67, "habitantes": 26.09, "decisao": 27.4 },
+    "c4": { "lista": 33.42, "items": [34.98, 35.62, 36.4, 36.86, 37.6, 38.24, 38.91], "item": 40.33, "bairro": 41.24, "tudo": 42.79 },
+    "c5": { "dia": 45.9, "chega": 46.91, "pronta": 48.02 }
+  },
+  "caixa": {
+    "saldo": 18.4, "entrou": 6.2, "gastou": 5.1, "habitantes": 42380, "porHabitante": 120,
+    "areas": [["Saúde", 1.6], ["Educação", 1.4], ["Obras", 0.9], ["Limpeza e coleta", 0.6], ["Iluminação", 0.3], ["Administração", 0.3]]
+  },
+  "lista": [
+    ["Ruas e pavimentação", "18 trechos mapeados", "road"],
+    ["Iluminação pública", "412 pontos", "lights"],
+    ["Água e saneamento", "Caixa d'água e rede", "tower"],
+    ["Escolas", "9 escolas", "school"],
+    ["Saúde", "5 UBS", "ubs"],
+    ["Coleta de lixo", "32 rotas", "trash"],
+    ["Obras", "4 em andamento", "works"]
+  ],
+  "endcard": {
+    "in": 52.0,
+    "brand": "DIGITALGOV",
+    "services": "Caixa do município • Apuração da cidade • Gestão de documentos",
+    "cta": "Prepare a sua cidade para o que importa.",
+    "contacts": ""
+  }
+}

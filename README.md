@@ -142,3 +142,47 @@ bash src/inst/assemble.sh                   # vídeos finais em deliverables/ins
 
 Prévia de quadros: `node src/render.mjs --film inst --stills 5,15,25 --out build/stills`.
 Cenas: `src/web/inst/i1_open.js` … `i5_end.js`; cenário: `room.js`; objetos e pessoas: `kit.js`; documentos e telas: `docs.js`.
+
+---
+
+# DigitalGov · "30 dias" (60 s, 5 cenas)
+
+Filme de **60 s** (1920×1080, 30 fps) feito no mesmo pipeline do institucional: cidade-diorama 3D (Three.js), narração
+neural pt-BR, trilha original, efeitos sincronizados e legendas. Premissa: **faltam 30 dias para o governador chegar** —
+o vídeo prende a atenção no primeiro quadro e mostra o caixa e a lista para apurar a cidade.
+
+## Entregáveis (`deliverables/cidade_30dias/`)
+
+| Arquivo | Descrição |
+|---|---|
+| `DigitalGov_30dias_60s_1080p.mp4` | Versão principal, H.264 + AAC 320 kb/s, faixa de legenda opcional (pt-BR) |
+| `DigitalGov_30dias_60s_1080p_legendado.mp4` | Legendas embutidas (redes sociais / reprodução sem som) |
+| `legendas_ptBR.srt` / `.vtt` | Legendas sincronizadas com a fala real |
+| `audio/mix_final_48k24.wav`, `audio/stem_*.flac` | Mixagem final (−14 LUFS, true peak ≤ −1 dBTP) e stems separados |
+
+## Roteiro técnico
+
+| Tempo | Cena | Imagem | Narração |
+|---|---|---|---|
+| 0:00–0:06,6 | 1 · Gancho | Quadro 0 já com a folha de calendário **"FALTAM 30 DIAS"** batendo na tela (impacto + relógio) sobre a cidade em terra seca; a câmera sobe do chão rachado; a folha vira o contador fixo do canto | "Faltam trinta dias para o governador chegar. O que a sua cidade vai mostrar?" |
+| 0:06,6–0:21 | 2 · Duas cidades | Duas fatias de cidade lado a lado. **Terra seca**: chão rachado, poeira, guindaste parado, rua com buraco, lixo, árvores secas. **Terra molhada**: chuva, asfalto, praças verdes, carros andando; as árvores brotam | "Olhe estas duas cidades. Numa, a terra é seca: a obra parou, a rua tem buraco, e ninguém sabe quanto tem. Na outra, a terra está molhada. Tudo brota, porque cada real e cada rua estão sob controle." |
+| 0:21–0:32 | 3 · O caixa | Prefeitura em órbita lenta + painel: **em caixa R$ 18,4 mi**, entrou R$ 6,2 mi, gastou R$ 5,1 mi, para onde foi o gasto (saúde, educação, obras…), **42.380 habitantes**, **R$ 120 por habitante/mês**. Contador: faltam 21 dias | "Tudo começa pelo caixa: quanto tem, quanto entra, quanto gasta. E quantos habitantes dependem de cada decisão." |
+| 0:32–0:45 | 4 · A lista | Lista de apuração (ruas, iluminação, água, escolas, saúde, coleta, obras): cada item marcado molha a terra a partir daquele ponto do mapa, com marcador; bairros apurados 0→12; carimbo **TUDO APURADO**. Contador: 12 → 3 dias | "Depois, a lista para apurar a cidade: ruas, iluminação, água, escolas, saúde, coleta e obras. Item por item, bairro por bairro. Está tudo ali." |
+| 0:45–1:00 | 5 · Dia 30 + assinatura | Fim de tarde: o comboio do governador chega à prefeitura numa cidade verde e iluminada ("DIA 30 · Cidade pronta."); cartela com a logo oficial | "No trigésimo dia, o governador chega e encontra uma cidade pronta. DigitalGov: gestão que faz a cidade florescer." |
+
+**Números são ilustrativos** (identificados na tela como "Dados ilustrativos"). Para usar dados reais de um município,
+edite `src/cidade/timeline.json` → `caixa` (saldo, entradas, gastos, habitantes, áreas) e `lista` (itens e status), e
+renderize de novo. A cartela final (serviços, chamada e contatos) fica em `endcard` no mesmo arquivo.
+
+## Como reproduzir
+
+```bash
+python3 src/cidade/narration.py --takes 6   # voz em voices/vits-piper-pt_BR-cadu-medium (+ ASR em voices/asr/)
+python3 src/cidade/audio.py                 # trilha, efeitos, mixagem e stems
+python3 src/cidade/subtitles.py             # legendas
+node src/render.mjs --film cidade --out build/cidade_frames --workers 4
+bash src/cidade/assemble.sh                 # vídeos finais em deliverables/cidade_30dias/
+```
+
+Prévia de quadros: `node src/render.mjs --film cidade --stills 0.1,8,25,37,47 --out build/stills`.
+Cenas: `src/web/cidade/c1_hook.js` … `c5_final.js`; cidade (terra seca ↔ molhada): `city.js`; painéis: `cidade.css`.

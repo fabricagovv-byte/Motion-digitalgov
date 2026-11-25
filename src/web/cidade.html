@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>DigitalGov — 30 dias</title>
+<link rel="stylesheet" href="cidade/cidade.css">
+<script type="importmap">
+{ "imports": {
+  "three": "/node_modules/three/build/three.module.js",
+  "three/addons/": "/node_modules/three/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="gl"></canvas>
+  <div id="overlay">
+    <div id="shade"></div>
+    <!-- Cena 1: gancho -->
+    <div id="hook">
+      <div id="leaf"><div class="top">FALTAM</div><div class="num">30</div><div class="bot">DIAS</div><div class="rings"><i></i><i></i></div></div>
+      <div id="hook-line"><span>para</span> <span>o</span> <span>governador</span> <span>chegar.</span></div>
+      <div id="hook-q"><div class="l1">O que a sua cidade</div><div class="l2">vai mostrar?</div></div>
+    </div>
+    <!-- Contador permanente -->
+    <div id="badge"><div class="box"><span class="n">30</span></div><div class="txt"><div class="k">FALTAM</div><div class="v">30 DIAS</div><div class="s">para o governador chegar</div></div></div>
+    <!-- Cena 2: rótulos das duas cidades -->
+    <div class="island-lab" id="lab-dry"><div class="t">TERRA SECA</div><div class="tags"><span>obra parada</span><span>rua com buraco</span><span>caixa: ?</span></div></div>
+    <div class="island-lab" id="lab-wet"><div class="t">TERRA MOLHADA</div><div class="tags"><span>tudo brota</span><span>cada real sob controle</span><span>cada rua no mapa</span></div></div>
+    <!-- Cena 3: caixa -->
+    <div id="dash">
+      <div class="head"><div class="k">CAIXA DO MUNICÍPIO</div><div class="h">Quanto tem. Quanto entra. Quanto gasta.</div></div>
+      <div class="card big" id="d-saldo"><div class="lbl">Em caixa hoje</div><div class="val"><small>R$</small> <b>0,0</b> <small>milhões</small></div><svg class="spark" viewBox="0 0 400 90" preserveAspectRatio="none"><path class="area"/><path class="line"/></svg></div>
+      <div class="row">
+        <div class="card" id="d-entrou"><div class="lbl"><i class="dot in"></i>Entrou no mês</div><div class="val pos">+ R$ <b>0,0</b> mi</div></div>
+        <div class="card" id="d-gastou"><div class="lbl"><i class="dot out"></i>Gastou no mês</div><div class="val neg">− R$ <b>0,0</b> mi</div></div>
+      </div>
+      <div class="card" id="d-areas"><div class="lbl">Para onde foi o gasto do mês</div><div class="bar"></div><div class="legend"></div></div>
+      <div class="row">
+        <div class="card" id="d-hab"><div class="lbl">Habitantes</div><div class="val"><b>0</b></div><div class="people"></div></div>
+        <div class="card" id="d-per"><div class="lbl">Gasto por habitante</div><div class="val">R$ <b>0</b> <small>/ mês</small></div></div>
+      </div>
+    </div>
+    <!-- Cena 4: lista de apuração -->
+    <div id="list">
+      <div class="head"><div class="k">APURAÇÃO DA CIDADE</div><div class="h">Lista completa</div></div>
+      <div class="items"></div>
+      <div class="foot"><div class="lbl"><span>Bairros apurados</span><b>0 de 12</b></div><div class="prog"><i></i></div></div>
+      <div class="stamp">TUDO APURADO</div>
+    </div>
+    <div id="pins"></div>
+    <div id="tag">Dados ilustrativos</div>
+    <!-- Cena 5 / encerramento -->
+    <div id="arrive"><div class="k">DIA 30</div><div class="h">Cidade pronta.</div></div>
+    <div id="card">
+      <div id="card-bg"></div>
+      <img id="logo" src="/assets/logo-digitalgov.png" alt="DigitalGov">
+      <div id="card-rule"></div>
+      <div id="card-services"></div>
+      <div id="card-cta"></div>
+      <div id="card-contacts"></div>
+    </div>
+    <div id="flash"></div>
+  </div>
+</div>
+<script type="module" src="cidade/main.js"></script>
+</body>
+</html>

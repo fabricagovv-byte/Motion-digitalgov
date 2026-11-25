@@ -1,0 +1,102 @@
+html, body { margin: 0; padding: 0; background: #000; overflow: hidden; }
+#stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #111; }
+#gl { position: absolute; inset: 0; width: 1920px; height: 1080px; display: block; }
+#overlay { position: absolute; inset: 0; pointer-events: none; font-family: "Inter", sans-serif; color: #fff; }
+#overlay > div { will-change: opacity, transform; }
+#shade { position: absolute; inset: 0; opacity: 0; }
+
+/* ---------- Cena 1: gancho */
+#hook { position: absolute; inset: 0; }
+#leaf { position: absolute; left: 300px; top: 300px; width: 380px; height: 450px; background: #fbfaf6; border-radius: 22px; overflow: hidden; color: #1b2230;
+  box-shadow: 0 40px 90px rgba(0,0,0,.55), 0 4px 0 #d9d4c8; transform-origin: 50% 50%; }
+#leaf .top { height: 96px; background: #e0402f; color: #fff; font: 700 40px "Inter Display", "Inter"; letter-spacing: .22em; text-align: center; line-height: 104px; }
+#leaf .num { font: 800 270px/1 "Inter Display", "Inter"; letter-spacing: -0.06em; text-align: center; margin-top: 14px; font-variant-numeric: tabular-nums; }
+#leaf .bot { font: 700 44px "Inter Display", "Inter"; letter-spacing: .3em; text-align: center; color: #5b6475; margin-top: 2px; padding-left: .3em; }
+#leaf .rings { position: absolute; top: 18px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 70px; }
+#leaf .rings i { width: 22px; height: 22px; border-radius: 50%; background: #7d1e14; box-shadow: inset 0 3px 3px rgba(0,0,0,.4); }
+#hook-line { position: absolute; left: 760px; top: 440px; font: 700 96px/1.02 "Inter Display", "Inter"; letter-spacing: -0.03em; width: 1000px; text-shadow: 0 6px 40px rgba(0,0,0,.6); }
+#hook-line span { display: inline-block; }
+#hook-q { position: absolute; left: 0; right: 0; top: 380px; text-align: center; text-shadow: 0 6px 50px rgba(0,0,0,.7); }
+#hook-q .l1 { font: 600 70px "Inter Display", "Inter"; letter-spacing: -0.02em; }
+#hook-q .l2 { font: 800 150px/1.05 "Inter Display", "Inter"; letter-spacing: -0.04em; color: #ffd166; }
+
+/* ---------- Contador */
+#badge { position: absolute; left: 64px; top: 56px; display: flex; align-items: center; gap: 20px; opacity: 0; }
+#badge .box { width: 108px; height: 108px; border-radius: 18px; background: #fbfaf6; color: #1b2230; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  border-top: 22px solid #e0402f; box-sizing: border-box; box-shadow: 0 14px 40px rgba(0,0,0,.35); }
+#badge .n { font: 800 58px/1 "Inter Display", "Inter"; letter-spacing: -0.04em; display: inline-block; font-variant-numeric: tabular-nums; }
+#badge .k { font: 700 18px "Inter"; letter-spacing: .2em; opacity: .85; }
+#badge .v { font: 800 44px/1.05 "Inter Display", "Inter"; letter-spacing: -0.02em; }
+#badge .s { font: 500 20px "Inter"; opacity: .85; }
+#badge .txt { text-shadow: 0 2px 20px rgba(0,0,0,.55); }
+
+/* ---------- Cena 2 */
+.island-lab { position: absolute; left: 0; top: 0; transform: translate(-50%, -100%); text-align: center; opacity: 0; }
+.island-lab .t { display: inline-block; font: 800 54px "Inter Display", "Inter"; letter-spacing: .06em; padding: 10px 30px; border-radius: 14px; color: #fff; }
+#lab-dry .t { background: #b7782c; box-shadow: 0 10px 40px rgba(120,70,20,.45); }
+#lab-wet .t { background: #1f8a5b; box-shadow: 0 10px 40px rgba(20,90,60,.45); }
+.island-lab .tags { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
+.island-lab .tags span { font: 600 26px "Inter"; padding: 8px 18px; border-radius: 999px; background: rgba(18,22,30,.72); opacity: 0; white-space: nowrap; }
+
+/* ---------- Cena 3: painel do caixa */
+#dash { position: absolute; left: 900px; top: 120px; width: 920px; opacity: 0; color: #13203a; }
+#dash .head { color: #fff; margin-bottom: 22px; text-shadow: 0 2px 20px rgba(0,0,0,.4); }
+.head .k { font: 700 20px "Inter"; letter-spacing: .22em; opacity: .9; }
+.head .h { font: 700 46px "Inter Display", "Inter"; letter-spacing: -0.02em; margin-top: 6px; }
+#dash .card { background: rgba(255,255,255,.94); border-radius: 20px; padding: 22px 28px; box-shadow: 0 20px 60px rgba(6,20,40,.28); margin-bottom: 18px; position: relative; overflow: hidden; }
+#dash .row { display: flex; gap: 18px; } #dash .row .card { flex: 1; }
+#dash .lbl { font: 600 22px "Inter"; color: #4a5a72; display: flex; align-items: center; gap: 10px; }
+#dash .val { font: 700 54px/1.1 "Inter Display", "Inter"; letter-spacing: -0.02em; margin-top: 6px; font-variant-numeric: tabular-nums; }
+#dash .val small { font-size: 28px; font-weight: 600; color: #4a5a72; }
+#dash .big .val { font-size: 92px; } #dash .big .val small { font-size: 36px; }
+#dash .val.pos { color: #1f8a5b; } #dash .val.neg { color: #d0612a; }
+#dash .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; } .dot.in { background: #1f8a5b; } .dot.out { background: #d0612a; }
+#dash .spark { position: absolute; right: 28px; bottom: 22px; width: 380px; height: 90px; }
+#dash .spark .line { fill: none; stroke: #1f6fd1; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+#dash .spark .area { fill: rgba(31,111,209,.12); }
+#dash .bar { display: flex; height: 30px; border-radius: 8px; overflow: hidden; margin-top: 14px; background: #edf0f4; gap: 3px; }
+#dash .bar i { display: block; height: 100%; transform-origin: left center; }
+#dash .legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 14px; font: 500 20px "Inter"; color: #2c3a52; }
+#dash .legend span { display: inline-flex; align-items: center; gap: 8px; } #dash .legend b { font-weight: 700; }
+#dash .legend i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+#dash .people { position: absolute; right: 24px; top: 26px; display: grid; grid-template-columns: repeat(6, 16px); gap: 6px; }
+#dash .people i { width: 16px; height: 22px; border-radius: 8px 8px 4px 4px; background: #9db6d6; display: block; }
+
+/* ---------- Cena 4: lista */
+#list { position: absolute; left: 90px; top: 215px; width: 700px; opacity: 0; }
+#list .head { margin-bottom: 20px; text-shadow: 0 2px 20px rgba(0,0,0,.45); }
+#list .items { background: rgba(255,255,255,.95); border-radius: 22px; padding: 10px 0; box-shadow: 0 20px 60px rgba(6,20,40,.3); color: #13203a; }
+#list .it { display: flex; align-items: center; gap: 20px; padding: 14px 28px; position: relative; }
+#list .it + .it { border-top: 1px solid #e7ebf0; }
+#list .ck { width: 40px; height: 40px; border-radius: 12px; border: 3px solid #c3ccd8; box-sizing: border-box; position: relative; flex: none; }
+#list .ck::after { content: ""; position: absolute; left: 10px; top: 3px; width: 11px; height: 20px; border: solid #fff; border-width: 0 5px 5px 0; transform: rotate(45deg) scale(var(--c, 0)); }
+#list .it.on .ck { background: #1f8a5b; border-color: #1f8a5b; }
+#list .nm { font: 700 32px "Inter Display", "Inter"; letter-spacing: -0.01em; flex: 1; }
+#list .st { font: 600 22px "Inter"; color: #1f8a5b; opacity: 0; white-space: nowrap; }
+#list .hl { position: absolute; inset: 0; background: rgba(31,138,91,.10); opacity: 0; }
+#list .foot { margin-top: 18px; background: rgba(12,22,38,.75); border-radius: 18px; padding: 18px 26px; }
+#list .foot .lbl { display: flex; justify-content: space-between; font: 600 24px "Inter"; } #list .foot b { font-variant-numeric: tabular-nums; }
+#list .prog { height: 12px; border-radius: 6px; background: rgba(255,255,255,.18); margin-top: 12px; overflow: hidden; }
+#list .prog i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, #2fb37a, #8ee06a); transform-origin: left center; transform: scaleX(0); }
+#list .stamp { position: absolute; right: -40px; top: 40px; font: 800 44px "Inter Display", "Inter"; letter-spacing: .08em; color: #1f8a5b; border: 6px solid #1f8a5b; border-radius: 14px;
+  padding: 8px 22px; background: rgba(255,255,255,.92); transform: rotate(-8deg) scale(1.6); opacity: 0; }
+#pins { position: absolute; inset: 0; }
+.pin { position: absolute; left: 0; top: 0; transform: translate(-50%, -100%); opacity: 0; }
+.pin .b { display: flex; align-items: center; gap: 10px; background: #fff; color: #13203a; font: 700 22px "Inter"; padding: 8px 16px 8px 10px; border-radius: 999px; box-shadow: 0 8px 26px rgba(0,0,0,.3); white-space: nowrap; }
+.pin .b i { width: 26px; height: 26px; border-radius: 50%; background: #1f8a5b; position: relative; display: inline-block; flex: none; }
+.pin .b i::after { content: ""; position: absolute; left: 9px; top: 4px; width: 6px; height: 12px; border: solid #fff; border-width: 0 3px 3px 0; transform: rotate(45deg); }
+.pin .stem { width: 3px; height: 46px; background: #fff; margin: 0 auto; box-shadow: 0 0 10px rgba(0,0,0,.3); }
+#tag { position: absolute; right: 48px; bottom: 36px; font: 500 18px "Inter"; color: rgba(255,255,255,.8); letter-spacing: .04em; opacity: 0; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
+
+/* ---------- Cena 5 */
+#arrive { position: absolute; left: 0; right: 0; top: 150px; text-align: center; opacity: 0; text-shadow: 0 6px 40px rgba(0,0,0,.55); }
+#arrive .k { display: inline-block; font: 800 38px "Inter Display", "Inter"; letter-spacing: .25em; background: #e0402f; padding: 8px 26px 8px 34px; border-radius: 12px; }
+#arrive .h { font: 800 120px/1.05 "Inter Display", "Inter"; letter-spacing: -0.04em; margin-top: 18px; }
+#card { position: absolute; inset: 0; opacity: 0; }
+#card-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 80% at 50% 45%, #ffffff 0%, #f6f8fb 65%, #eef2f7 100%); }
+#logo { position: absolute; left: 50%; top: 50%; width: 588px; height: 189px; margin-left: -294px; margin-top: -94.5px; display: block; }
+#card-rule { position: absolute; left: 50%; top: 640px; width: 120px; height: 3px; margin-left: -60px; background: #1f6fd1; border-radius: 2px; transform: scaleX(0); }
+#card-services { position: absolute; left: 0; right: 0; top: 670px; text-align: center; font-family: "Inter Display", "Inter"; font-size: 34px; font-weight: 600; color: #1b2a44; opacity: 0; }
+#card-cta { position: absolute; left: 0; right: 0; top: 728px; text-align: center; font-size: 28px; font-weight: 400; color: #4a5a72; opacity: 0; }
+#card-contacts { position: absolute; left: 0; right: 0; top: 850px; text-align: center; font-size: 26px; font-weight: 500; color: #1b2a44; opacity: 0; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; }

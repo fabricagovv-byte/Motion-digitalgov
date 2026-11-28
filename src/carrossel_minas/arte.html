@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>V4 · carrossel Minas</title>
+<style>
+@font-face{font-family:Marker;src:url(fonts/permanent-marker-latin-400-normal.woff2)}
+@font-face{font-family:Pacifico;src:url(fonts/pacifico-latin-400-normal.woff2)}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mont;src:url(fonts/montserrat-latin-900-normal.woff2);font-weight:900}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000}
+#p{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:Mont}
+#sv{position:absolute;left:0;top:0}
+.logo{position:absolute;top:44px;left:0;width:1080px;display:flex;justify-content:center;align-items:center;gap:14px}
+.mk{width:84px;height:45px;-webkit-mask:url(v4_mark_white.png) 0 0/100% 100% no-repeat;background:#fff}
+.lt{color:#fff;font-weight:900;font-size:34px;letter-spacing:1px;line-height:1}
+.lt small{display:block;font-size:11px;font-weight:600;letter-spacing:4px;margin-top:3px;opacity:.9}
+.box{position:absolute;font-weight:900;color:#fff;line-height:1.12}
+.box span{background:#1631E6;box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:2px 14px}
+.box b{color:#FFC93C;font-weight:900}
+.hint{position:absolute;right:40px;bottom:34px;color:#fff;font-weight:800;font-size:22px;letter-spacing:2px;background:#0E1E8A;padding:10px 18px;border-radius:999px}
+.pg{position:absolute;left:40px;bottom:36px;color:#fff;font-weight:800;font-size:20px;letter-spacing:3px;opacity:.85}
+</style>
+</head>
+<body>
+<div id="p"><svg id="sv" width="1080" height="1350" viewBox="0 0 1080 1350"></svg><div id="ov"></div></div>
+<script>
+const q = new URLSearchParams(location.search), N = +(q.get('n') || 0);
+const BLUE = '#1E3FB8', DEEP = '#16297A', WALL = '#F3F1EC';
+// conteúdo de cada página: frase nas nuvens, pichações na parede, caixa de texto
+const P = [
+ { c: ['Tá, mas o que', 'é a V4?'], g: [['TECNOLOGIA', 100, 1050, -5, 64], ['DADOS', 790, 1050, 4, 64], ['GESTÃO', 70, 1215, -8, 56]], box: ['Tecnologia feita em <b>Minas</b>', 'para o <b>setor público.</b>'], sun: 1 },
+ { c: ['Uai,', 'prazer!'], g: [['ALVORADA', 110, 1035, -4, 58], ['DE MINAS', 760, 1035, 3, 58], ['MG ♥', 90, 1215, -6, 60]], box: ['A <b>V4 FábricaGov</b> nasceu em', 'Alvorada de Minas e cria', 'sistemas para <b>prefeituras</b>', 'e órgãos públicos.'] },
+ { c: ['Plataforma', 'V4.7'], g: [['SAÚDE', 120, 1035, -5, 62], ['JURÍDICO', 770, 1035, 4, 56], ['OBRAS', 80, 1215, -7, 58]], box: ['<b>8 sistemas</b>: saúde, jurídico,', 'aprendizagem, pesquisa, obras,', 'digitalização e mais, num só', '<b>painel do gestor.</b>'] },
+ { c: ['Dados em', 'ordem!'], g: [['SEM PAPELADA', 90, 1035, -4, 50], ['BANCO ÚNICO', 740, 1035, 3, 50], ['LGPD', 90, 1215, -6, 62]], box: ['Limpamos e organizamos os', 'cadastros da sua cidade num', '<b>banco de dados único</b>', 'e seguro.'] },
+ { c: ['Obra no', 'prazo'], g: [['THR', 150, 1035, -6, 80], ['IA DE OBRAS', 740, 1035, 3, 50], ['MEDIÇÃO', 70, 1215, -7, 52]], box: ['<b>THR</b>, a IA de obras, acompanha', 'medições, custos e o avanço', 'de cada obra em <b>tempo real.</b>'] },
+ { c: ['Como', 'contratar?'], g: [['UST', 160, 1035, -5, 76], ['PONTO DE FUNÇÃO', 700, 1035, 3, 42], ['HST', 110, 1215, -6, 70]], box: ['Por <b>UST</b>, <b>Ponto de Função</b>,', '<b>HST</b> ou projeto fechado:', 'do jeito que o', 'órgão precisa.'] },
+ { c: ['Bora,', 'sô?'], g: [['CHAMA NO ZAP', 70, 1035, -5, 50], ['V4', 840, 1035, 4, 84], ['MINAS ♥', 80, 1215, -7, 56]], box: ['WhatsApp <b>(31) 99827-7323</b>', '@Grupo_v4_fabricagovv', 'fabricagovv@gmail.com'] },
+][N];
+const rnd = (() => { let s = 7 + N * 13; return () => (s = (s * 9301 + 49297) % 233280) / 233280; })();
+
+// ---------- casarão colonial mineiro ----------
+function janela(x, y, w, h, sacada) {
+  let s = `<rect x="${x - 16}" y="${y - 16}" width="${w + 32}" height="${h + 26}" fill="${BLUE}"/><path d="M${x - 24} ${y - 16}h${w + 48}v-14h-${w + 48}z" fill="${DEEP}"/>`;
+  s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#EDEFF4"/>`;
+  const cols = 3, rows = Math.round(h / 52);
+  for (let i = 0; i < 2; i++) { const px = x + i * w / 2; for (let c = 0; c < cols; c++) for (let r = 0; r < rows; r++) s += `<rect x="${px + 6 + c * (w / 2 - 12) / cols + 2}" y="${y + 6 + r * (h - 12) / rows + 2}" width="${(w / 2 - 12) / cols - 4}" height="${(h - 12) / rows - 4}" fill="#3A4660" opacity="${.75 + .2 * rnd()}"/>`; }
+  s += `<rect x="${x + w / 2 - 3}" y="${y}" width="6" height="${h}" fill="#fff"/><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="none" stroke="#fff" stroke-width="6"/>`;
+  if (sacada) { const by = y + h - 70; s += `<rect x="${x - 30}" y="${y + h + 8}" width="${w + 60}" height="16" fill="#3B3F49"/><rect x="${x - 26}" y="${by}" width="${w + 52}" height="8" fill="#16181D"/>`;
+    for (let k = 0; k <= 16; k++) s += `<rect x="${x - 26 + k * (w + 48) / 16}" y="${by}" width="4" height="78" fill="#16181D"/>`;
+    for (let k = 0; k < 8; k++) s += `<circle cx="${x - 14 + k * (w + 30) / 7.5}" cy="${by + 40}" r="9" fill="none" stroke="#16181D" stroke-width="3"/>`; }
+  return s;
+}
+function casarao(x0, w) {
+  const top = 580;
+  let s = `<rect x="${x0}" y="${top + 50}" width="${w}" height="${1350 - top}" fill="${WALL}" filter="url(#cal)"/>`;
+  // telhado e cornija
+  s += `<path d="M${x0 - 30} ${top + 6}h${w + 60}l-20 26h-${w + 20}z" fill="#7A3B22"/>`;
+  for (let k = 0; k < w / 22 + 2; k++) s += `<ellipse cx="${x0 - 22 + k * 22}" cy="${top + 4}" rx="12" ry="8" fill="${k % 2 ? '#9B4A2A' : '#B85B33'}"/>`;
+  s += `<rect x="${x0 - 14}" y="${top + 30}" width="${w + 28}" height="26" fill="${DEEP}"/><rect x="${x0}" y="${top + 56}" width="${w}" height="18" fill="${BLUE}"/>`;
+  // cunhais (pilastras dos cantos) e faixa entre andares
+  s += `<rect x="${x0}" y="${top + 56}" width="54" height="${1350 - top}" fill="${BLUE}"/><rect x="${x0 + w - 54}" y="${top + 56}" width="54" height="${1350 - top}" fill="${BLUE}"/>`;
+  s += `<rect x="${x0}" y="955" width="${w}" height="16" fill="${BLUE}" opacity=".9"/><rect x="${x0}" y="1300" width="${w}" height="50" fill="${BLUE}"/>`;
+  // andar de cima: 4 janelas com sacada
+  const gw = 150, gap = (w - 108 - 4 * gw) / 5;
+  for (let i = 0; i < 4; i++) s += janela(x0 + 54 + gap + i * (gw + gap), 690, gw, 190, i !== 1);
+  // térreo: porta em arco + 2 janelas
+  const dx = x0 + w / 2 - 105;
+  s += `<path d="M${dx - 22} 1300v-250a127 90 0 0 1 254 0v250z" fill="${BLUE}"/><path d="M${dx} 1300v-240a105 75 0 0 1 210 0v240z" fill="#1B2A6B"/>`;
+  for (let k = 0; k < 2; k++) for (let r = 0; r < 4; r++) s += `<rect x="${dx + 16 + k * 100}" y="${1080 + r * 54}" width="78" height="44" rx="4" fill="#22348A"/>`;
+  s += `<rect x="${dx + 103}" y="1000" width="4" height="300" fill="#121C4D"/>`;
+  s += janela(x0 + 160, 1110, 140, 150, false) + janela(x0 + w - 300, 1110, 140, 150, false);
+  return s;
+}
+// ---------- pichação (spray) ----------
+function picho([t, x, y, r, fs]) {
+  fs = Math.min(fs, 300 / (t.length * .56));
+  return `<g transform="rotate(${r} ${x} ${y})"><text x="${x}" y="${y}" font-family="Marker" font-size="${fs}" fill="${BLUE}" opacity=".35" filter="url(#spray)">${t}</text>
+    <text x="${x}" y="${y}" font-family="Marker" font-size="${fs}" fill="#2347C9" filter="url(#tinta)">${t}</text>
+    <path d="M${x} ${y + 16}q${fs * 2} -14 ${t.length * fs * .55} 4" fill="none" stroke="#2347C9" stroke-width="5" stroke-linecap="round" opacity=".85" filter="url(#tinta)"/></g>`;
+}
+function rabisco(x, y, k) { // coroinha / traços / estrelinha como na referência
+  if (k === 0) return `<path d="M${x} ${y}l10 -30 14 20 14 -26 14 26 14 -20 10 30z" fill="none" stroke="#2347C9" stroke-width="5" stroke-linejoin="round" filter="url(#tinta)"/>`;
+  if (k === 1) return `<path d="M${x} ${y}l40 -30M${x + 14} ${y + 18}l40 -30" stroke="#2347C9" stroke-width="6" stroke-linecap="round" filter="url(#tinta)"/>`;
+  return `<path d="M${x} ${y - 24}v48M${x - 24} ${y}h48M${x - 16} ${y - 16}l32 32M${x + 16} ${y - 16}l-32 32" stroke="#2347C9" stroke-width="4" stroke-linecap="round" filter="url(#tinta)"/>`;
+}
+// ---------- nuvens ----------
+function nuvemSolta(cx, cy, s) { let g = ''; for (let i = 0; i < 7; i++) g += `<ellipse cx="${cx + (i - 3) * 34 * s + rnd() * 20 * s}" cy="${cy - Math.sin(i / 6 * Math.PI) * 30 * s}" rx="${(46 + rnd() * 30) * s}" ry="${(30 + rnd() * 16) * s}" fill="#fff"/>`; return `<g filter="url(#nuvem)">${g}</g>`; }
+
+const defs = `<defs>
+ <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1230D8"/><stop offset=".55" stop-color="#2450F0"/><stop offset="1" stop-color="#3C6BFF"/></linearGradient>
+ <radialGradient id="sol" cx="0" cy="0" r="1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".25" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+ <filter id="nuvem" x="-30%" y="-60%" width="160%" height="220%">
+  <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="3" seed="${3 + N}" result="n"/>
+  <feDisplacementMap in="d" in2="n" scale="15" xChannelSelector="R" yChannelSelector="G" result="disp"/>
+  <feGaussianBlur in="disp" stdDeviation="2.2" result="soft"/>
+  <feGaussianBlur in="soft" stdDeviation="9" result="bump"/>
+  <feDiffuseLighting in="bump" surfaceScale="9" diffuseConstant="1.05" lighting-color="#fff" result="luz"><feDistantLight azimuth="235" elevation="48"/></feDiffuseLighting>
+  <feComposite in="luz" in2="soft" operator="in" result="sombreada"/>
+  <feColorMatrix in="sombreada" type="matrix" values=".8 0 0 0 .2  0 .82 0 0 .2  0 0 .7 0 .32  0 0 0 1 0" result="tint"/>
+  <feTurbulence type="fractalNoise" baseFrequency=".09" numOctaves="3" seed="${9 + N}" result="n2"/>
+  <feColorMatrix in="n2" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 -1.6 1.25" result="fofo"/>
+  <feComposite in="fofo" in2="soft" operator="in" result="fofo2"/>
+  <feGaussianBlur in="soft" stdDeviation="16" result="halo"/>
+  <feColorMatrix in="halo" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0" result="halo2"/>
+  <feMerge><feMergeNode in="halo2"/><feMergeNode in="tint"/><feMergeNode in="fofo2"/></feMerge>
+ </filter>
+ <filter id="tinta" x="-5%" y="-20%" width="110%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/><feGaussianBlur stdDeviation=".6"/></filter>
+ <filter id="spray" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="7"/></filter>
+ <filter id="cal" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".012 .05" numOctaves="4" seed="11" result="n"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 .6  0 0 0 0 .6  0 0 0 0 .66  0 0 0 -.5 .28" result="mancha"/><feComposite in="mancha" in2="SourceGraphic" operator="in" result="m2"/>
+  <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="m2"/></feMerge></filter>
+ <linearGradient id="chao" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#0A1040" stop-opacity=".35"/></linearGradient>
+</defs>`;
+
+// panorama contínuo: o casarão de cada página encosta no da próxima (efeito de rua ao arrastar)
+let rua = '';
+for (let k = -1; k <= 1; k++) { const x = k * 1080; if (k !== 0) rua += `<g opacity=".95">${casarao(x + 40, 1000)}</g>`; }
+rua += casarao(40, 1000);
+// muros baixos entre os casarões
+rua += `<rect x="-40" y="1010" width="80" height="340" fill="#ECE9E2"/><rect x="-40" y="1000" width="80" height="14" fill="${DEEP}"/><rect x="1040" y="1010" width="80" height="340" fill="#ECE9E2"/><rect x="1040" y="1000" width="80" height="14" fill="${DEEP}"/>`;
+
+const c = P.c;
+const big = c[1].length <= 7 ? 230 : c[1].length <= 10 ? 185 : 150;
+const nuvTxt = `<g filter="url(#nuvem)" font-family="Pacifico" fill="#fff" text-anchor="middle">
+  <text x="540" y="${c.length > 1 ? 290 : 380}" font-size="${c[0].length > 12 ? 124 : 140}" transform="rotate(-3 540 290)">${c[0]}</text>
+  ${c[1] ? `<text x="540" y="${290 + big * .95}" font-size="${big}" transform="rotate(-2 540 480)">${c[1]}</text>` : ''}</g>`;
+
+let sv = defs + `<rect width="1080" height="1350" fill="url(#ceu)"/>`;
+if (P.sun) sv += `<circle cx="40" cy="40" r="460" fill="url(#sol)"/>` + Array.from({ length: 14 }, (_, i) => { const a = i * 7 + 3; const b = a + 2.5, R = 900; return `<path d="M30 30L${30 + R * Math.cos(a * Math.PI / 180)} ${30 + R * Math.sin(a * Math.PI / 180)}L${30 + R * Math.cos(b * Math.PI / 180)} ${30 + R * Math.sin(b * Math.PI / 180)}Z" fill="#fff" opacity=".07"/>`; }).join('');
+else sv += `<circle cx="${N % 2 ? 1040 : 40}" cy="40" r="360" fill="url(#sol)" opacity=".55"/>`;
+sv += nuvemSolta(N % 2 ? 980 : 60, 640, 1.1) + nuvemSolta(N % 2 ? 120 : 980, 560, .9) + nuvemSolta(N % 2 ? 60 : 1010, 200, .6);
+sv += nuvTxt + rua + `<rect x="0" y="580" width="1080" height="770" fill="url(#chao)"/>`;
+sv += P.g.map(picho).join('') + rabisco(80, 1010, 0) + rabisco(900, 1180, 1) + rabisco(N % 2 ? 980 : 740, 960, 2);
+document.getElementById('sv').innerHTML = sv;
+
+// caixa de texto (canto inferior, sobre a parede)
+const L = P.box, fs = N === 6 ? 46 : 40;
+let ov = `<div class="logo"><div class="mk"></div><div class="lt">FÁBRICAGOV<small>TECNOLOGIA · MINAS GERAIS</small></div></div>`;
+ov += `<div class="box" style="right:40px;bottom:${N === 0 || N === 6 ? 110 : 100}px;font-size:${fs}px;text-align:left;max-width:760px">${L.map(l => `<span>${l}</span>`).join('<br>')}</div>`;
+ov += N === 0 ? `<div class="hint">ARRASTA →</div>` : `<div class="pg">${N + 1}/7</div>`;
+if (N > 0 && N < 6) ov += `<div class="hint">→</div>`;
+document.getElementById('ov').innerHTML = ov;
+Promise.all(['40px Marker', '40px Pacifico', '900 20px Mont', '800 20px Mont', '600 20px Mont'].map(f => document.fonts.load(f))).then(() => {
+  // re-render do SVG depois das fontes carregadas (o texto em filtro precisa delas)
+  document.getElementById('sv').innerHTML = sv; requestAnimationFrame(() => requestAnimationFrame(() => window.ready = true)); });
+</script>
+</body>
+</html>
